@@ -4,3 +4,4 @@ plugins:
 title: Informática ESO y Bachiller
 description: Página de apoyo con materiales para las asignaturas de informática de ESO y Bachiller.
 show_menu: true
+is_project_page: false
