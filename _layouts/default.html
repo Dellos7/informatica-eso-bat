@@ -25,10 +25,10 @@
         <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
       {% endif %}
       {% if site.show_menu %}
-        <a href="./asignaturas/trdr" class="btn">TRDR</a>
-        <a href="./asignaturas/piari" class="btn">PIARI</a>
-        <a href="./asignaturas/digitalizacion" class="btn">Digitalización</a>
-        <a href="./asignaturas/psiri" class="btn">PSIR I</a>
+        <a href="/{{ site.github.repository_name }}/asignaturas/trdr" class="btn">TRDR</a>
+        <a href="/{{ site.github.repository_name }}/asignaturas/piari" class="btn">PIARI</a>
+        <a href="/{{ site.github.repository_name }}/asignaturas/digitalizacion" class="btn">Digitalización</a>
+        <a href="/{{ site.github.repository_name }}/asignaturas/psiri" class="btn">PSIR I</a>
       {% endif %}
       {% if site.autor.mostrar %}
         <p>Profesor: {{ site.autor.nombre }}</p>
