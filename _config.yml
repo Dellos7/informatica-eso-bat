@@ -10,3 +10,4 @@ volver_pagina_principal: true
 autor:
   mostrar: true
   nombre: David López Castellote
+lang: es-ES
