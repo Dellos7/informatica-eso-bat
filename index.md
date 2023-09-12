@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# Asignaturas
+# Informática ESO y Bachiller
 
 - [Taller de Relaciones Digitales Responsables](./asignaturas/trdr/index.md)
 - [Programación, Inteligencia Artificial y Robótica](./asignaturas/psiri/index.md)

@@ -16,6 +16,9 @@
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
     <header class="page-header" role="banner">
+        {% if site.volver_pagina_principal %}
+            <a href="/{{ site.github.repository_name }}" class="btn">Volver a página principal</a>
+        {% endif %}
       <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       {% if site.github.is_project_page %}
@@ -26,6 +29,9 @@
         <a href="./asignaturas/piari" class="btn">PIARI</a>
         <a href="./asignaturas/digitalizacion" class="btn">Digitalización</a>
         <a href="./asignaturas/psiri" class="btn">PSIR I</a>
+      {% endif %}
+      {% if site.autor.mostrar %}
+        <p>Profesor: {{ site.autor.nombre }}</p>
       {% endif %}
     </header>
 
