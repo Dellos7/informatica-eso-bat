@@ -5,11 +5,11 @@
 *    1  -  2  +  3
 *    1  -  ( 2 + 3)                                         ¿por qué el resultado es diferente al del punto anterior?  
     
-*   - 3
-*   + -  3
-*   - - 3                                                     ¿por qué el resultado es negativo?              
+*   \- 3
+*   \+ -  3
+*   \- - 3                                                     ¿por qué el resultado es negativo?              
     
-*   - + - + - + - 3
+*   \- + - + - + - 3
 *    4 / 2
 *    4  //  2                                               ¿por qué el resultado es diferente al caso anterior?
 *    5  //  2  
