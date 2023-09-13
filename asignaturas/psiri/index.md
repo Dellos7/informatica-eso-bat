@@ -26,3 +26,5 @@
 
 - [Operadores Aritméticos](./1-operadores-aritmeticos/apuntes.md)
     - [Ejercicios 1. Operadores Aritméticos (no evaluable)](./1-operadores-aritmeticos/ejercicios.md)
+- [Tipos de datos básicos](./2-tipos-de-datos-basicos/apuntes.md)
+    - [Ejercicios 2. Tipos de datos básicos (no evaluable)](./2-tipos-de-datos-basicos/ejercicios.md)
