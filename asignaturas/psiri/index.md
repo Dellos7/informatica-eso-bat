@@ -19,10 +19,10 @@
 ### Recursos y materiales
 
 - [Apuntes (aprendepython.es)](https://aprendepython.es/)
-- [Libro aprendepython en PDF](archivos/aprendepython.pdf)
+- [Libro aprendepython en PDF](/archivos/aprendepython.pdf)
 - [Thonny (editor que utilizaremos)](https://thonny.org/)
 
 ### 1. Programas Básicos
 
-- [Operadores Aritméticos]()
-- - [Ejercicios 1. Operadores Aritméticos (no evaluable)]()
+- [Operadores Aritméticos](./1-operadores-aritmeticos/apuntes.md)
+    - [Ejercicios 1. Operadores Aritméticos (no evaluable)](./1-operadores-aritmeticos/ejercicios.md)
