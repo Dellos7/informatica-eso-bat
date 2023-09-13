@@ -8,13 +8,16 @@
 ### Introducción
 
 - [¿Qué es el Pensamiento Computacional?](https://youtu.be/ti315UlVtS4)
-- [¿Qué es el Pensamiento Computacional? (ampliado)](https://youtu.be/O1gXdte5kIM)
-- [Algoritmos](https://youtu.be/U3CGMyjzlvM)
-- [Algoritmos (ampliado)](https://youtu.be/dQ-j0Noadac)
+- [¿Qué es la Programación?](https://youtu.be/7vbi-OCFZEY)
+- [¿Qué es un Algoritmo?](https://youtu.be/U3CGMyjzlvM)
 - [El Algoritmo de la Amistad (Sheldon Cooper)](https://youtu.be/H3z3HDbl5QU)
+
+Ampliado:
+- [¿Qué es el Pensamiento Computacional? (ampliado)](https://youtu.be/O1gXdte5kIM)
+- [Algoritmos (ampliado)](https://youtu.be/dQ-j0Noadac)
 
 ### Actividades
 
 #### Actividad 0
 
-En un documento de LibreOffice Writer, escribe con tus propias palabras, y en base a los vídeos que hemos visto (puedes volverlos a ver si quieres), qué es para ti el **pensamiento computacional** y qué es un **algoritmo**.
+En un documento de LibreOffice Writer, **escribe con tus propias palabras**, y en base a los vídeos que hemos visto (puedes volverlos a ver si quieres), qué es para ti el **pensamiento computacional**, qué es la **programación** y qué es un **algoritmo**.
