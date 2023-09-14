@@ -21,3 +21,7 @@ Ampliado:
 #### Actividad 0
 
 En un documento de LibreOffice Writer, **escribe con tus propias palabras**, y en base a los vídeos que hemos visto (puedes volverlos a ver si quieres), qué es para ti el **pensamiento computacional**, qué es la **programación** y qué es un **algoritmo**.
+
+#### Actividad 1
+
+Enlace a la [Actividad 1](./sa1-pensamiento-computacional/actividad-1/index.md).
