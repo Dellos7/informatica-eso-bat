@@ -11,7 +11,7 @@ A continuación tienes las **pautas que debes seguir**:
 *   Deberás crear un archivo **index.html** dentro de la carpeta **actividad1.** Aquí es donde escribirás el código HTML para elaborar la web.
 *   **IMPORTANTE**: debes añadir la estructura adecuada de las etiquetas DOCTYPE, HTML, HEAD, META, TITLE, BODY...
 *   Ponle de **título** (etiqueta TITLE): Tim Berners-Lee
-*   Aquí tienes la referencia completa de todas las etiquetas HTML para que te sirva de ayuda: https://www.w3schools.com/tags/default.asp
+*   Aquí tienes la referencia completa de todas las etiquetas HTML para que te sirva de ayuda: [https://www.w3schools.com/tags/default.asp](https://www.w3schools.com/tags/default.asp)
 *   También puedes consultar los **apuntes de aules**
 *   A continuación tienes una imagen donde puedes ver las etiquetas que debes utilizar para hacer cada una de las partes de la web:
 
@@ -27,5 +27,5 @@ A continuación tienes las **pautas que debes seguir**:
 
 ### **Entrega**
 
-*   **NO OLVIDES** validar tu página en el validador (https://validator.w3.org/) antes de subirla
+*   **NO OLVIDES** validar tu página en el validador ([https://validator.w3.org/](https://www.w3schools.com/tags/default.asp)) antes de subirla
 *   Sube el archivo HTML que has creado y dale el nombre **actividad1_<tu-nombre>.html**; por ejemplo: **actividad1_david-lopez.html**
