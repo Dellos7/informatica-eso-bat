@@ -1,14 +1,13 @@
 # Ejercicios 1. Operadores Aritméticos (No Evaluable)
 
-**1 ) Escribe un programa que muestre el resultado de las siguientes operaciones:**
+**1 ) Piensa el resultado de las siguientes operaciones en Python y luego compruébalo:**
 
 *    1  -  2  +  3
 *    1  -  ( 2 + 3)                                         ¿por qué el resultado es diferente al del punto anterior?  
     
 *   \- 3
-*   \+ -  3
-*   \- - 3                                                     ¿por qué el resultado es negativo?              
-    
+*   \+ -  3                                          
+*   \- - 3                                                                  
 *   \- + - + - + - 3
 *    4 / 2
 *    4  //  2                                               ¿por qué el resultado es diferente al caso anterior?
