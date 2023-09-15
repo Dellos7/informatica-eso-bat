@@ -28,4 +28,4 @@ A continuación tienes las **pautas que debes seguir**:
 ### **Entrega**
 
 *   **NO OLVIDES** validar tu página en el validador (https://validator.w3.org/) antes de subirla
-*   Sube el archivo HTML que has creado y dale el nombre **actividad1\_<tu-nombre>.html**; por ejemplo: **actividad1\_david-lopez.html**
+*   Sube el archivo HTML que has creado y dale el nombre **actividad1_<tu-nombre>.html**; por ejemplo: **actividad1_david-lopez.html**
