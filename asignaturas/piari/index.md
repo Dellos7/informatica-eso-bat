@@ -25,3 +25,7 @@ En un documento de LibreOffice Writer, **escribe con tus propias palabras**, y e
 #### Actividad 1
 
 Enlace a la [Actividad 1](./sa1-pensamiento-computacional/actividad-1/index.md).
+
+#### Actividad 2
+
+Enlace a la [Actividad 2](./sa1-pensamiento-computacional/actividad-2/index.md)
