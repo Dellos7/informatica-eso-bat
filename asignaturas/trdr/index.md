@@ -11,4 +11,4 @@
 
 #### Actividad 1. Sistemas operativos comunes y aplicaciones
 
-<iframe id='presentation_iframe' src='//vishub.org/excursions/5305.full' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0; webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>
+Enlace a la [Actividad 1](http://vishub.org/excursions/5305).
