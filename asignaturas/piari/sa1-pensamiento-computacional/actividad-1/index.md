@@ -1,6 +1,6 @@
 # Actividad 1. Entrenando Ratones
 
-Un ratón de laboratorio, llamado **XC4**, ha sido entrenado por científicos. En un experimento, está situado en la entrada de un sistema de tuberías y **el objetivo** es que **llegue al queso** que se encuentra al final de la quinta canela. Estas son las instrucciones que siempre sigue XC4:
+Un ratón de laboratorio, llamado **XC4**, ha sido entrenado por científicos. En un experimento, está situado en la entrada de un sistema de tuberías y **el objetivo** es que **llegue al queso** que se encuentra al final de la quinta tubería. Estas son las instrucciones que siempre sigue XC4:
 
 1. Bajar por el tubo hasta que aparezca un túnel nuevo.
       
@@ -14,7 +14,7 @@ Un ratón de laboratorio, llamado **XC4**, ha sido entrenado por científicos. E
 
 #### **PREGUNTA**
 
-¿En qué entrada debería ingresar el ratón para llegar al queso? Dibuja en la imagen el camino que seguirá el ratón por el laberinto hasta llegar al queso.
+¿En qué entrada debería ingresar el ratón para llegar al queso? Dibuja en la imagen el camino que seguirá el ratón por el laberinto hasta llegar al queso. Utiliza para ello el programa GIMP.
 
 \------------------------------------------------- ---------------------------
 
@@ -26,7 +26,7 @@ Si prestamos atención al algoritmo, vemos que tiene tres **instrucciones que pr
 
 El siguiente ejemplo es un algoritmo de más instrucciones, que puede ser utilizado para cambiar una bombilla fundida:
 
-1. Buscar una escalera y situarla en posición de conseguir la bombilla rota.
+1. Buscar una escalera y situarla en posición de alcanzar la bombilla rota.
 2. Buscar una bombilla nueva.
 3. Cortar la energía eléctrica.
 4. Subir la escalera con la bombilla nueva.
@@ -54,4 +54,7 @@ En la escuela, los estudiantes también suelen trabajar con algoritmos:
 
 ##### DESAFÍO 1. **Reentrenando al ratón**
 
-Los científicos están buscando la manera de entrenar de nuevo al ratón para que ingresando por cualquier tubo, salga siempre por el número cinco, ¿puedes escribir un algoritmo que resuelva el problema?
+Los científicos están buscando la manera de entrenar de nuevo al ratón para que, ingresando por cualquier tubo, salga siempre por el número cinco. ¿Puedes escribir un algoritmo que resuelva el problema? Haz lo siguiente:
+
+- Escribe el algoritmo haciendo uso del programa LibreOffice Writer e indica todos los pasos que debería seguir el ratón.
+- Dibuja sobre la imagen original el camino seguido por el ratón entrando por los tubos 1 y 3, utilizando dos colores diferentes para cada camino. Inserta la imagen en el documento de LibreOffice Writer.

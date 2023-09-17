@@ -12,7 +12,7 @@ Heriberto necesita llegar a su casa y usa un automóvil autónomo (que está en 
 
 **PREGUNTA**
 
-Utilizando las tres instrucciones anteriores, ¿puedes escribir un algoritmo que guíe al personaje en su casa por el camino más corto (en cantidad de instrucciones)?
+Utilizando las tres instrucciones anteriores, ¿puedes escribir un algoritmo que guíe al personaje a su casa por el camino más corto (en cantidad de instrucciones)?
 
 **PISTA**
 
@@ -20,11 +20,11 @@ Como ejemplo, compartimos un algoritmo que lleva al automóvil desde el origen h
 
 \------------------------------------------------- -------------------------------------------------- ---
 
-PARA SABER MÁS
+**PARA SABER MÁS**
 
-Las computadoras sirven para realizar **tareas bien definidas**, para ello es necesario **programarlas**. La programación se realiza mediante un **lenguaje computacional** que las máquinas son capaces de interpretar y ejecutar. Este lenguaje es diferente al que utilizan las personas puesto que está compuesto de instrucciones claras, concisas e inequívocas.
+Las computadoras sirven para realizar **tareas bien definidas**, y para ello es necesario **programarlas**. La programación se realiza mediante un **lenguaje computacional** que las máquinas son capaces de interpretar y ejecutar. Este lenguaje es diferente al que utilizan las personas puesto que está compuesto de instrucciones claras, concisas e inequívocas.
 
-Un **algoritmo** se convierte en **programa** cuando un programador lo traduce en instrucciones que **el ordenador puede interpretar y ejecutar** (_en este caso, del automóvil autónomo_).
+Un **algoritmo** se convierte en **programa** cuando un programador lo traduce en instrucciones que **el ordenador puede interpretar y ejecutar** (_en este caso, el automóvil autónomo_).
 
 Los ordenadores siempre ejecutan las instrucciones de un programa al pie de la letra desconociendo las intenciones del programador y el problema por resolver.
 
@@ -55,10 +55,22 @@ Las instrucciones que puedes dar al robot son las siguientes:
 
 **T**: recoger tesoro.
 
-Inicialmente, el robot está en la posición **S** y está mirando hacia la derecha del mapa. El robot sólo puede recoger el tesoro si está en la misma casilla del mapa que el tesoro. Por ejemplo, en el siguiente algoritmo se muestra cómo recogería el robot el tesoro X:
+Inicialmente, el robot está en la posición **S** y está mirando hacia la derecha del mapa. El robot sólo puede recoger el tesoro si está en la misma casilla del mapa que el tesoro.
 
-A1, D, A3, D, A1, I, A2, I, A2, T.
+<!--Por ejemplo, en el siguiente algoritmo se muestra cómo recogería el robot el tesoro X:
 
-**PREGUNTA**
+A1, D, A3, D, A1, I, A2, I, A2, T.-->
 
-¿Cuál es el algoritmo necesario para programar al robot ( _saliendo de la casilla S_ ) con el objetivo de recoger el tesoro marcado con Y?
+**PREGUNTAS**
+
+- ¿Cuál es el algoritmo necesario para programar al robot ( _saliendo de la casilla S_ ) con el objetivo de recoger el tesoro marcado con X?
+
+- ¿Cuál es el algoritmo necesario para programar al robot ( _saliendo de la casilla S_ ) con el objetivo de recoger el tesoro marcado con Y?
+
+**RETO**
+
+Edita la imagen del laberinto del robot (utilizando, por ejemplo, GIMP) y borra las letras S, X e Y.
+
+A continuación, define una nueva posición de salida (S) y dos nuevas posiciones X e Y para los tesoros, dibujando estas letras en la propia imagen.
+
+Finalmente, indica los algoritmos necesarios para que, saliendo de la nueva posición S, el robot sea capaz de llegar a las nuevas posiciones X e Y.
