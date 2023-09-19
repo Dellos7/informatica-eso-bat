@@ -20,7 +20,11 @@ Ampliado:
 
 #### Actividad 0
 
-En un documento de LibreOffice Writer, **escribe con tus propias palabras**, y en base a los vídeos que hemos visto (puedes volverlos a ver si quieres), qué es para ti el **pensamiento computacional**, qué es la **programación** y qué es un **algoritmo**.
+Antes de nada, en la carpeta **Documentos** del ordenador, crea una carpeta llamada **PSIR**. Dentro, crea otra carpeta llamada **SA1** (o _Tema 1_).
+
+Ahora, en un documento de LibreOffice Writer, **escribe con tus propias palabras**, y en base a los vídeos que hemos visto (puedes volverlos a ver si quieres), qué es para ti el **pensamiento computacional**, qué es la **programación** y qué es un **algoritmo**.
+
+Guarda el documento con nombre **Actividad 0.odt** en la carpeta que has creado al principio.
 
 #### Actividad 1
 
