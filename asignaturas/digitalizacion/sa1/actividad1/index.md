@@ -12,7 +12,7 @@ A continuación tienes las **pautas que debes seguir**:
 *   **IMPORTANTE**: debes añadir la estructura adecuada de las etiquetas DOCTYPE, HTML, HEAD, META, TITLE, BODY...
 *   Ponle de **título** (etiqueta TITLE): Tim Berners-Lee
 *   Aquí tienes la referencia completa de todas las etiquetas HTML para que te sirva de ayuda: [https://www.w3schools.com/tags/default.asp](https://www.w3schools.com/tags/default.asp)
-*   También puedes consultar los **apuntes de aules**
+*   También puedes consultar los [**apuntes**](https://drive.google.com/drive/folders/1NSkcZkjUyqr1B7XVVDeVJct5uXwGXDbA?usp=sharing)
 *   A continuación tienes una imagen donde puedes ver las etiquetas que debes utilizar para hacer cada una de las partes de la web:
 
 <img src="./actividad1_ayuda.png" alt="Primera web" style="border: 1px solid  gray;">

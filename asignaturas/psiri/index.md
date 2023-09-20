@@ -28,3 +28,7 @@
     - [Ejercicios 1. Operadores Aritméticos (no evaluable)](./1-operadores-aritmeticos/ejercicios.md)
 - [Tipos de datos básicos](./2-tipos-de-datos-basicos/apuntes.md)
     - [Ejercicios 2. Tipos de datos básicos (no evaluable)](./2-tipos-de-datos-basicos/ejercicios.md)
+- [Variables](./3-variables/apuntes.md)
+<!--
+    - [Ejercicios 3. Variables (no evaluable)](./3-variables/3-Ejercicios_de_Variables.pdf)
+-->

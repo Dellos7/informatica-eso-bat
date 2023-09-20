@@ -19,6 +19,7 @@ Debe contener:
 
             *   Etiqueta **B** para resaltar en negrita tu nombre y apellidos
             *   Etiqueta **I** para resaltar en cursiva el texto "página web"
+        * Etiqueta **IMG** con atributos **src**, **alt** y **height**
 
 **Resultado:**
 
