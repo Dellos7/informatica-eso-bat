@@ -10,6 +10,10 @@ Heriberto necesita llegar a su casa y usa un automóvil autónomo (que está en 
 
 ![](act_02.png)
 
+**CÓMO ESCRIBIR LAS RESPUESTAS**:
+
+Abre el programa **LibreOffice Writer** y ve escribiendo en un documento las respuestas a todas las preguntas y retos planteados. Pega también las imágenes que vayas modificando con GIMP.
+
 **PREGUNTA**
 
 Utilizando las tres instrucciones anteriores, ¿puedes escribir un algoritmo que guíe al personaje a su casa por el camino más corto (en cantidad de instrucciones)?
