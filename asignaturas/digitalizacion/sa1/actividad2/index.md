@@ -10,6 +10,6 @@ Algunas pautas:
 #### **Entrega**
 
 *   **NO OLVIDES** **validar tu página** en el validador ([https://validator.w3.org/](https://validator.w3.org/)) antes de subirla
-*   Sube el archivo HTML que has creado y dale el nombre **actividad2_<tu-nombre>.html**; por ejemplo: **actividad2_david-lopez.html**
+*   **Comprime la carpeta de la actividad (donde tienes todos los archivos, incluidos el HTML y las imágenes) y súbelo a la tarea de Aule**s. Llama al archivo *actividad2_<tu_nombre>.zip* (y sustituye _<tu_nombre>_ por tu nombre y apellidos).
 
 <img src="./actividad2.jpg" alt="Actividad Listas" style="border: 1px solid  gray;">
