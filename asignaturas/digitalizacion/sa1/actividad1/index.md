@@ -28,4 +28,4 @@ A continuación tienes las **pautas que debes seguir**:
 ### **Entrega**
 
 *   **NO OLVIDES** validar tu página en el validador ([https://validator.w3.org/](https://www.w3schools.com/tags/default.asp)) antes de subirla
-*   Sube el archivo HTML que has creado y dale el nombre **actividad1_<tu-nombre>.html**; por ejemplo: **actividad1_david-lopez.html**
+* **Comprime la carpeta de la actividad (donde tienes todos los archivos, incluidos el HTML y las imágenes) y súbelo a la tarea de Aules**. Llama al archivo _actividad1_<tu_nombre>.zip_ (y sustituye _<tu_nombre>_ por tu nombre y apellidos).
