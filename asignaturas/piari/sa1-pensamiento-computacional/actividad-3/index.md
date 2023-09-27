@@ -1,4 +1,4 @@
-# Actividad 3 (INDIVIDUAL). Entrenando hormigas. 3 primeros niveles de Laby
+# Actividad 3. Entrenando hormigas. 3 primeros niveles de Laby
 
 En LliureX tenemos un juego que nos permite practicar el pensamiento computacional en cuanto a términos de algoritmia; es decir, las instrucciones que debemos especificar para resolver un problema concreto.
 
