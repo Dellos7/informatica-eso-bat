@@ -39,8 +39,11 @@ Enlace a la [Actividad 1](./sa1-pensamiento-computacional/actividad-1/index.md).
 
 Enlace a la [Actividad 2](./sa1-pensamiento-computacional/actividad-2/index.md)
 
-<!--
+
 ### Actividad 3
 
 Enlace a la [Actividad 3](./sa1-pensamiento-computacional/actividad-3/index.md)
--->
+
+### Actividad 4
+
+Enlace a la [Actividad 4](./sa1-pensamiento-computacional/actividad-4/index.md)
