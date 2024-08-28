@@ -1,3 +1,9 @@
+---
+layout: default
+title: Digitalización
+description: Asignatura optativa de 4º ESO.
+---
+
 # Digitalización
 
 ⏯️ [Evaluación Inicial](https://forms.office.com/e/rPu4EFsWTq)
@@ -32,6 +38,6 @@
 
 ### Actividades
 
-- [Actividad 0](./sa1/actividad0/index.md)
-- [Actividad 1](./sa1/actividad1/index.md)
-- [Actividad 2](./sa1/actividad2/index.md)
+- [Actividad 0](./sa1/actividad0)
+- [Actividad 1](./sa1/actividad1)
+- [Actividad 2](./sa1/actividad2)

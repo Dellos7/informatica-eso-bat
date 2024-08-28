@@ -1,3 +1,9 @@
+---
+layout: default
+title: SA1 - Actividad 1
+description: Actividad 1 de la SA1.
+---
+
 # SA1 - Actividad 1
 
 En esta actividad debes elaborar la siguiente página web:

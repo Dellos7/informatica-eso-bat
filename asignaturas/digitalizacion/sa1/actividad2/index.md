@@ -1,3 +1,9 @@
+---
+layout: default
+title: SA1 - Actividad 2
+description: Actividad 2 de la SA1.
+---
+
 # SA1 - Actividad 2
 
 En esta actividad debes elaborar la siguiente página web. Tienes anotados los elementos que deberás utilizar en cada caso.

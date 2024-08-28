@@ -4,10 +4,10 @@ layout: default
 
 # Informática ESO y Bachiller
 
-- [Taller de Relaciones Digitales Responsables](./asignaturas/trdr/index.md)
-- [Programación, Inteligencia Artificial y Robótica](./asignaturas/piari/index.md)
-- [Digitalización](./asignaturas/digitalizacion/index.md)
-- [Programación, Sistemas Informáticos y Redes I](./asignaturas/psiri/index.md)
+- [1º ESO - Taller de Relaciones Digitales Responsables](./asignaturas/trdr)
+- [2º/3º ESO - Programación, Inteligencia Artificial y Robótica](./asignaturas/piari)
+- [4º ESO - Digitalización](./asignaturas/digitalizacion)
+- [1º BATCH - Programación, Sistemas Informáticos y Redes I](./asignaturas/psiri)
 
 # Normas Aula Informática
 

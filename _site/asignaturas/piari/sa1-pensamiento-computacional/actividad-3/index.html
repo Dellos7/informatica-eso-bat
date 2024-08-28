@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Actividad 3. Entrenando hormigas. 3 primeros niveles de Laby | Informática ESO y Bachiller</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Actividad 3. Entrenando hormigas. 3 primeros niveles de Laby" />
+<meta property="og:locale" content="es_ES" />
+<meta name="description" content="Actividad 3 de la SA1" />
+<meta property="og:description" content="Actividad 3 de la SA1" />
+<link rel="canonical" href="http://0.0.0.0:4000/asignaturas/piari/sa1-pensamiento-computacional/actividad-3/" />
+<meta property="og:url" content="http://0.0.0.0:4000/asignaturas/piari/sa1-pensamiento-computacional/actividad-3/" />
+<meta property="og:site_name" content="Informática ESO y Bachiller" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Actividad 3. Entrenando hormigas. 3 primeros niveles de Laby" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Actividad 3 de la SA1","headline":"Actividad 3. Entrenando hormigas. 3 primeros niveles de Laby","url":"http://0.0.0.0:4000/asignaturas/piari/sa1-pensamiento-computacional/actividad-3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+        
+            <a href="/" class="btn">Volver a página principal</a>
+        
+      <h1 class="project-name">Actividad 3. Entrenando hormigas. 3 primeros niveles de Laby</h1>
+      <h2 class="project-tagline">Actividad 3 de la SA1</h2>
+      
+      
+        <a href="//asignaturas/trdr" class="btn">TRDR</a>
+        <a href="//asignaturas/piari" class="btn">PIARI</a>
+        <a href="//asignaturas/digitalizacion" class="btn">Digitalización</a>
+        <a href="//asignaturas/psiri" class="btn">PSIR I</a>
+      
+      
+        <p>Profesor: David López Castellote</p>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="actividad-3-entrenando-hormigas-3-primeros-niveles-de-laby">Actividad 3. Entrenando hormigas. 3 primeros niveles de Laby</h1>
+
+<p>En LliureX tenemos un juego que nos permite practicar el pensamiento computacional en cuanto a términos de algoritmia; es decir, las instrucciones que debemos especificar para resolver un problema concreto.</p>
+
+<p>Este juego se llama <strong>Laby</strong>, y lo puedes encontrar en el menú de aplicaciones de LliureX, en la categoría “Pensamiento Computacional”.</p>
+
+<h4 id="información-importante"><strong>Información importante</strong></h4>
+
+<p>1. Al abrir Laby, debes <strong>seleccionar el lenguaje de programación</strong> que utilizaremos. En este caso, escoge python</p>
+
+<p><img src="act3_1.png" alt="" /></p>
+
+<p>2. Puedes seleccionar y cambiar de nivel desde el menú de “Nivell”</p>
+
+<p><img src="act3_2.png" alt="" /></p>
+
+<p><strong>En esta actividad tienes el reto de superar los 3 primeros niveles de este juego (1a, 1b y 1c).</strong></p>
+
+<p>-&gt; El nivel 0 es una demostración. Puedes utilizarlo para practicar y revisar el programa que nos dan de ejemplo.</p>
+
+<p>3. La interfaz del juego se compone de 5 áreas:</p>
+
+<ul>
+  <li><strong>Área 1</strong>: es el juego en sí. La hormiga se moverá en base a las instrucciones que le demos en el programa (área 2).</li>
+  <li><strong>Área 2</strong>: es el programa. Aquí deberemos introducir las instrucciones que queremos darle a la hormiga (es decir, el algoritmo o programa). Las posibilidades son:
+    <ul>
+      <li><em>Valenciano</em>: <code class="language-plaintext highlighter-rouge">dreta()</code> , <code class="language-plaintext highlighter-rouge">esquerra()</code> , <code class="language-plaintext highlighter-rouge">endavant()</code> , <code class="language-plaintext highlighter-rouge">agafar()</code> , <code class="language-plaintext highlighter-rouge">deixar()</code> o <code class="language-plaintext highlighter-rouge">escapar()</code></li>
+      <li><em>Castellano</em>: <code class="language-plaintext highlighter-rouge">derecha()</code>, <code class="language-plaintext highlighter-rouge">izquierda()</code>, <code class="language-plaintext highlighter-rouge">avanzar()</code>, <code class="language-plaintext highlighter-rouge">tomar()</code>, <code class="language-plaintext highlighter-rouge">dejar()</code> o <code class="language-plaintext highlighter-rouge">escapar()</code></li>
+    </ul>
+  </li>
+  <li><strong>Área 3</strong>: son una serie de botones que permiten ejecutar el programa; es decir, que las instrucciones se manden al juego, y la hormiga empiece a seguirlas.</li>
+  <li><strong>Área 4</strong>: aquí veremos mensajes, tanto de éxito como de error en caso de que estemos ejecutando instrucciones que sean incorrectas o inválidas.</li>
+  <li><strong>Área 5</strong>: tenemos una ayuda donde nos indican las instrucciones aceptadas por el programa</li>
+</ul>
+
+<p><img src="act3_3.png" alt="" /></p>
+
+<h4 id="tareas"><strong>Tareas</strong></h4>
+
+<p>En esta actividad tienes el reto de <strong>superar los 3 primeros niveles</strong> de este juego (1a, 1b y 1c).</p>
+
+<h4 id="entrega"><strong>Entrega</strong></h4>
+
+<p>Debes enviarme una <strong>captura de pantalla de cada nivel</strong>, donde se vea cómo lo has superado y las instrucciones que has especificado para superarlo.</p>
+
+<p>EN LA CAPTURA DE PANTALLA TAMBIÉN DEBE <strong>VERSE EL NOMBRE DE USUARIO</strong> DEL ORDENADOR UTILIZADO.</p>
+
+<p>Para hacer capturas de pantalla puedes utilizar el programa <strong>Shutter</strong>.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,3 +1,9 @@
+---
+layout: default
+title: Actividad 4. La escapada
+description: Actividad 4 de la SA1
+---
+
 # Actividad 4. La escapada
 
 Es necesario ayudar a que el robot BAUN3 se escape del laberinto.

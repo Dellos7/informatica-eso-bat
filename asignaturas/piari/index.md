@@ -1,4 +1,10 @@
-# Programación, Inteligencia Artificial y Robótica
+---
+layout: default
+title: PIAR I
+description: Programación, Inteligencia Artificial y Robótica I (2º y 3º ESO)
+---
+
+# Programación, Inteligencia Artificial y Robótica I
 
 - ⏯️ [2º ESO - Evaluación Inicial](https://forms.office.com/e/sf7Wcw3EEd)
 - ⏯️ [3º ESO - Evaluación Inicial](https://forms.office.com/e/XdUBf3Nrn4)
@@ -33,17 +39,17 @@ Guarda el documento con nombre **Actividad 0.odt** en la carpeta que has creado 
 
 #### Actividad 1
 
-Enlace a la [Actividad 1](./sa1-pensamiento-computacional/actividad-1/index.md).
+Enlace a la [Actividad 1](./sa1-pensamiento-computacional/actividad-1).
 
 #### Actividad 2
 
-Enlace a la [Actividad 2](./sa1-pensamiento-computacional/actividad-2/index.md)
+Enlace a la [Actividad 2](./sa1-pensamiento-computacional/actividad-2)
 
 
 #### Actividad 3
 
-Enlace a la [Actividad 3](./sa1-pensamiento-computacional/actividad-3/index.md)
+Enlace a la [Actividad 3](./sa1-pensamiento-computacional/actividad-3)
 
 #### Actividad 4
 
-Enlace a la [Actividad 4](./sa1-pensamiento-computacional/actividad-4/index.md)
+Enlace a la [Actividad 4](./sa1-pensamiento-computacional/actividad-4)

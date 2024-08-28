@@ -1,3 +1,9 @@
+---
+layout: default
+title: Actividad 2. Camino a casa
+description: Actividad 2 de la SA1
+---
+
 # Actividad 2. Camino a casa
 
 Heriberto necesita llegar a su casa y usa un automóvil autónomo (que está en un estadio rudimentario de desarrollo, muy lejos de la inteligencia artificial deseada por sus realizadores). El automóvil está programado con sólo tres instrucciones:

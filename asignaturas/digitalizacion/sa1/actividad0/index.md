@@ -1,3 +1,9 @@
+---
+layout: default
+title: SA1 - Actividad 0
+description: Actividad 0 de la SA1.
+---
+
 # SA1 - Actividad 0
 
 Guarda el archivo **index.html** que hemos hecho en clase. **No te olvides de pasarlo por [el validador](https://validator.w3.org/)**.

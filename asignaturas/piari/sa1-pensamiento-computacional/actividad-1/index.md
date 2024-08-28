@@ -1,3 +1,9 @@
+---
+layout: default
+title: Actividad 1. Entrenando Ratones
+description: Actividad 1 de la SA1
+---
+
 # Actividad 1. Entrenando Ratones
 
 Un ratón de laboratorio, llamado **XC4**, ha sido entrenado por científicos. En un experimento, está situado en la entrada de un sistema de tuberías y **el objetivo** es que **llegue al queso** que se encuentra al final de la quinta tubería. Estas son las instrucciones que siempre sigue XC4:
