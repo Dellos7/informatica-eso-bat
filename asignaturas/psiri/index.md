@@ -1,5 +1,7 @@
 ---
 layout: default
+title: PSIR I
+description: Programación, Sistemas Informáticos y Redes I (1º BACH)
 ---
 
 # Programación, Sistemas Informáticos y Redes I
