@@ -14,6 +14,22 @@ description: Programación, Sistemas Informáticos y Redes II (2º BACH)
 
 👉 [Normas aula informática](/{{ site.github.repository_name }}/archivos/Normas-aula-informática.pdf)
 
+[🔒 Bitwarden (gestor de contraseñas)](https://bitwarden.com/es-la/)
+
 ## Tema 1. Servicios en red
 
-Probando
+### Apuntes
+
+- [1. Conceptos básicos web](https://docs.google.com/presentation/d/1pisrkFg5-CTMcYVk5mp0sdpWE2rsey32gDteZxNJFlo/edit?usp=sharing)
+- [2. Wordpress](https://docs.google.com/presentation/d/1zLRWKhYEcxdUwnVhzJwwGX_sFaiBR0t9qHWM2GMPu8A/edit?usp=sharing)
+- [Chat a través de terminal](./chat-terminal)
+
+### Enlaces
+
+- [Ubuntu](https://ubuntu.com/download)
+- [Wordpress.org](https://wordpress.org/)
+- [INFINITYFREE (HOSTING GRATUITO)](https://www.infinityfree.com/)
+
+### Actividades
+
+[Actividad 1. Instalación de Ubuntu, XAMPP y Wordpress](./actividad1)
