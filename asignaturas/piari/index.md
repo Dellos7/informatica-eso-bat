@@ -6,8 +6,8 @@ description: Programación, Inteligencia Artificial y Robótica I (2º y 3º ESO
 
 # Programación, Inteligencia Artificial y Robótica I
 
-- ⏯️ [2º ESO - Evaluación Inicial](https://forms.office.com/e/sf7Wcw3EEd)
-- ⏯️ [3º ESO - Evaluación Inicial](https://forms.office.com/e/XdUBf3Nrn4)
+- ⏯️ [2º ESO - Evaluación Inicial](https://forms.office.com/e/Rej4cFJxFy)
+- ⏯️ [3º ESO - Evaluación Inicial](https://forms.office.com/e/tkawJjSy8K)
 
 ## SA1. Pensamiento Computacional
 
