@@ -8,6 +8,8 @@ description: Taller de Relaciones Digitales Responsables (1º ESO)
 
 [⏯️ Evaluación inicial](https://forms.office.com/e/vch8zt1NpM)
 
+**⚠️DEBES TRAER UNOS AURICULARES DE CABLE A CLASE, NECESARIOS PARA HACER ALGUNOS EJERCICIOS⚠️**
+
 ## SA1. Aprendemos a manejar el ordenador
 
 <!--
