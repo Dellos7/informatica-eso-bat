@@ -14,6 +14,8 @@ layout: default
 
 [⏯️ Normas Aula Informática](./archivos/Normas-aula-informática.pdf)
 
+[🦾 Presentación Normas Aula Informática](https://www.canva.com/design/DAGQVgp_bkM/RunpqXnK1PqYf_tAbAoyeQ/edit)
+
 # Criterios Calificación ESO
 
 [⏯️ Criterios Calificación ESO](./archivos/Criterios-de-calificación-ESO.pdf)
