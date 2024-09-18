@@ -32,4 +32,6 @@ description: Programación, Sistemas Informáticos y Redes II (2º BACH)
 
 ### Actividades
 
-[Actividad 1. Instalación de Ubuntu, XAMPP y Wordpress](./actividad1)
+[Actividad 1. Instalación de Mint, XAMPP y Wordpress](./actividad1)
+
+[Actividad 2. Darse de alta en InfinityFree (hosting), instalar Wordpress y crear tienda](./actividad2)

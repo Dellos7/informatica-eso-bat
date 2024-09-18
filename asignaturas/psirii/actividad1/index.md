@@ -1,16 +1,18 @@
 ---
 layout: default
 title: Actividad 1
-description: Instalación de Ubuntu, XAMPP y Wordpress
+description: Instalación de Mint, XAMPP y Wordpress
 ---
 
-# Actividad1. Instalación de Ubuntu, XAMPP y Wordpress
+# Actividad1. Instalación de Mint, XAMPP y Wordpress
 
 En esta actividad deberás hacer lo siguiente:
 
 - Tener una cuenta de Bitwarden que utilices para almacenar todas las contraseñas que vayamos necesitando en clase
-- Instalar Ubuntu en VirtualBox en tu ordenador de clase
-- Instalar XAMPP dentro  de Ubuntu
+- Instalar Linux Mint en VirtualBox en tu ordenador de clase
+- Instalar XAMPP dentro  de Linux Mint
 - Instalar Wordpress dentro de XAMPP
-- Instalar el tema Blocksy de Wordpress y escoger una plantilla
+- Instalar el tema Blocksy de Wordpress y escoger una plantilla para una web personal
+- Modificar la plantilla utilizando Elementor para crear una web personal del estilo Currículum
+
 Una vez tengas todo hecho, deberás enseñárselo al profesor para que lo evalúe.
