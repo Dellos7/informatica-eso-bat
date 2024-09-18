@@ -14,6 +14,10 @@ Este juego se llama **Laby**, y lo puedes encontrar en el menú de aplicaciones 
 
 1\. Al abrir Laby, debes **seleccionar el lenguaje de programación** que utilizaremos. En este caso, escoge python
 
+**NOTA 1**: en caso de que no aparezca `python`, escoge `perl` en su lugar
+
+**NOTA 2**: si el juego está en inglés, deberías cambiar el idioma del sistema a Español, desde la configuración del sistema
+
 ![](act3_1.png)  
 
 2\. Puedes seleccionar y cambiar de nivel desde el menú de "Nivell"
