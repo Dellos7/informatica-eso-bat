@@ -15,4 +15,6 @@ En esta actividad deberás hacer lo siguiente:
 - Instalar el tema Blocksy de Wordpress y escoger una plantilla para una web personal
 - Modificar la plantilla utilizando Elementor para crear una web personal del estilo Currículum
 
+👉 [Vídeo Wordpress + Elementor](https://youtu.be/A_uNSJ8YucU?si=h8C9JyFxRz_ReCVj)
+
 Una vez tengas todo hecho, deberás enseñárselo al profesor para que lo evalúe.
