@@ -36,7 +36,8 @@ description: Programación, Sistemas Informáticos y Redes I (1º BACH)
     - [Ejercicios 2. Tipos de datos básicos (no evaluable)](./2-tipos-de-datos-basicos/ejercicios.md)
 - [Variables](./3-variables/apuntes.md)
     - [Ejercicios 3. Variables](./3-variables/3-Ejercicios_de_Variables.pdf)
-
+- [Funciones](./4-funciones/apuntes.md)
+    - [Ejercicios 4. Funciones](./4-funciones/ejercicios.md)
 
 <!--
     - [Ejercicios 3. Variables (no evaluable)](./3-variables/3-Ejercicios_de_Variables.pdf)
