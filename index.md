@@ -16,10 +16,6 @@ layout: default
 
 [🦾 Presentación Normas Aula Informática](https://www.canva.com/design/DAGQVgp_bkM/RunpqXnK1PqYf_tAbAoyeQ/edit)
 
-# Criterios Calificación ESO
+# Criterios Calificación ESO y Bachillerato
 
-[⏯️ Criterios Calificación ESO](./archivos/Criterios-de-calificación-ESO.pdf)
-
-# Criterios Calificación Bachiller
-
-[⏯️ Criterios Calificación Bachiller](./archivos/Criterios-de-calificación-Bachillerato.pdf)
+[⏯️ Criterios Calificación ESO y Bachillerato](./archivos/Criterios-de-calificación-ESO-y-Bachillerato.pdf)
