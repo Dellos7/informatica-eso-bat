@@ -6,8 +6,12 @@ description: Asignatura optativa de 4º ESO.
 
 # Digitalización
 
-⏯️ [Evaluación Inicial](https://forms.office.com/e/QTWPvT7akq)
+[⏯️ Normas Aula Informática](../../archivos/Normas-aula-informática.pdf)
+
+[⏯️ Criterios Calificación](../../archivos/Criterios-de-calificación-ESO-y-Bachillerato.pdf)
+
+[⏯️ Evaluación Inicial](https://forms.office.com/e/0esQj1xcvV)
 
 ## Temas
 
-- [Tema 1](./sa1)
+<!-- - [Tema 1](./sa1) -->

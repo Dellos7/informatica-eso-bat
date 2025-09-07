@@ -4,7 +4,7 @@ title: Tema 1
 description: Montando nuestro ordenador con HTML.
 ---
 
-# Tema 1. Montando nuestro ordenador con HTML
+# Tema 1. Creando webs con HTML
 
 ## Teoría
 
@@ -12,7 +12,7 @@ description: Montando nuestro ordenador con HTML.
 - [Validador HTML (W3S)](https://validator.w3.org/)
 - [Todas las etiquetas HTML (W3S)](https://www.w3schools.com/tags/default.asp)
 
-## Estructura básica página web
+## Estructura básica de una página web
 
 ![](./estructura_basica_html.PNG)
 
@@ -35,7 +35,9 @@ description: Montando nuestro ordenador con HTML.
 ### Actividades
 
 - [Actividad 0](./actividad0)
-- [Actividad 1](./actividad1)
+
+<!-- - [Actividad 1](./actividad1)
 - [Actividad 2](./actividad2)
 - [Actividad 3](./actividad3)
 - [Actividad 4](./actividad4)
+-->

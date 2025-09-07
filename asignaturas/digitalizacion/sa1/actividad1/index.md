@@ -1,14 +1,16 @@
 ---
 layout: default
-title: SA1 - Actividad 1
-description: Actividad 1 de la SA1.
+title: Tema 1 - Actividad 1
+description: Actividad 1 del Tema 1.
 ---
 
-# SA1 - Actividad 1
+# Tema 1 - Actividad 1
 
 En esta actividad debes elaborar la siguiente página web:
 
 <img src="./actividad1.png" alt="Primera web" style="border: 1px solid  gray;">
+
+[Ver en grande](./actividad1.png)
 
 A continuación tienes las **pautas que debes seguir**:
 
