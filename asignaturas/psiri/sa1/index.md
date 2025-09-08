@@ -10,7 +10,7 @@ description: Programación básica en Python
 
 - [¿Qué es la programación? (VÍDEO)](https://youtu.be/7vbi-OCFZEY)
 - [¿Qué es un algoritmo? (VÍDEO)](https://youtu.be/U3CGMyjzlvM)
-- [Probando Python en Linux](./probando-python-linux.md)
+- [Probando Python en Linux](./probando-python-linux)
 
 ## Recursos y materiales
 
@@ -20,7 +20,7 @@ description: Programación básica en Python
 
 ## 1. Programas Básicos
 
-- [Operadores Aritméticos](./1-operadores-aritmeticos/apuntes.md)
+- [Operadores Aritméticos](./1-operadores-aritmeticos/apuntes)
     - [Ejercicios 1. Operadores Aritméticos (no evaluable)](./1-operadores-aritmeticos/ejercicios.md)
 - [Tipos de datos básicos](./2-tipos-de-datos-basicos/apuntes.md)
     - [Ejercicios 2. Tipos de datos básicos (no evaluable)](./2-tipos-de-datos-basicos/ejercicios.md)

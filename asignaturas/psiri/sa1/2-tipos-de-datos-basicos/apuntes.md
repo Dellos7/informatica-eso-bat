@@ -1,3 +1,9 @@
+---
+layout: default
+title: Tema 1
+description: Tipos de datos básicos
+---
+
 # Tipos de datos básicos
 
 ##### ![](tipos-datos-basicos.png)  
@@ -27,7 +33,7 @@ Los tipos de datos Booleanos solo pueden tener dos valores: **True**,  o  **Fa
 
 También existen un conjunto de operadores que devuelven valores booleanos. Entre ellos tenemos a los operadores de comparación:  
 
-![operadores lógicos](operadores_comparaci%C3%B3n.jpg)  
+![operadores lógicos](operadores_comparaci%C3%B3n.jpg)
 
 Y la tabla de precedencia es:
 

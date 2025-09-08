@@ -1,3 +1,9 @@
+---
+layout: default
+title: Tema 1
+description: Operadores Aritméticos
+---
+
 # Operadores Aritméticos
 
 [**👉 NÚMEROS ENTEROS Y OPERACIONES (aprendepython.es)**](https://aprendepython.es/core/datatypes/numbers/#enteros)
