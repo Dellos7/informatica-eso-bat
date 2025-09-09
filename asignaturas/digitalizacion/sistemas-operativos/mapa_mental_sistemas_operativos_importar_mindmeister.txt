@@ -1,0 +1,34 @@
+Sistemas Operativos
+	Escritorio / PC
+		Windows
+			Windows XP
+			Windows 10
+			Windows 11
+		macOS
+		Linux
+			Ubuntu
+			Fedora
+			Debian
+			Mint
+			Lite
+		Chrome OS
+	Móviles / Tablets
+		Android
+		iOS
+	Servidores
+		Linux
+			Ubuntu Server
+			Red Hat Enterprise Linux
+			CentOS / Debian
+		Windows Server
+		Unix / BSD
+			FreeBSD
+			Solaris
+	Otros ámbitos
+		Embebidos / IoT
+			Raspbian
+			VxWorks
+		Videojuegos
+			PlayStation OS
+			Xbox OS
+			Nintendo Switch OS

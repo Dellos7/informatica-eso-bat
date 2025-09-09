@@ -10,9 +10,15 @@ description: Actividad 0. Uso (muy básico) del sistema operativo
 
 Aprender a organizar el sistema de archivos en LliureX, reconocer diferentes tipos de archivo y practicar con las herramientas básicas del sistema operativo.
 
+>**Definición**:
+> Un **sistema de archivos** es el método y la estructura que utiliza un sistema operativo para organizar, almacenar y acceder a los datos en un dispositivo de memoria, como un disco duro, una memoria USB o una tarjeta SD.
+
 ---
 
 ## Pasos de la actividad
+
+> ⚠️ **Advertencia:** Recuerda guardar todo lo que hagas dentro de la carpeta **Documentos** ya que es la que se sincroniza con el servidor de la clase. De lo contrario, podrías perder tus trabajos.
+{: .alert-warning}
 
 ### 1. Crear la estructura inicial de carpetas
 
@@ -44,7 +50,7 @@ Aprender a organizar el sistema de archivos en LliureX, reconocer diferentes tip
 ### 3. Abrir los archivos y comprobar programas
 
 1. Intenta abrir cada archivo descargado.
-2. Anota con qué programa se abre en LliureX (por ejemplo: PDF → Document Viewer, JPG → Visor de imágenes, MP3 → Rhythmbox, etc.).
+2. Anota con qué programa se abre en LliureX.
 3. Crea un archivo de texto llamado **extensiones.txt** en la misma carpeta (**Tema 1/Actividad 0**).
 4. Dentro de ese archivo, escribe una lista de cada extensión y el programa que has utilizado para abrirlo.
 
@@ -70,6 +76,14 @@ Aprender a organizar el sistema de archivos en LliureX, reconocer diferentes tip
 3. Guarda el dibujo en la carpeta **Tema 1/Actividad 0** con el nombre **arbol\_carpetas.odg**.
 
 ---
+
+<!--
+## Un poco de IA...
+
+1. Utiliza **ChatGPT** para que te genere un archivo de texto con el esquema de las carpetas que has creado. Debe ser importable en la plataforma [**MindMeister**](https://www.mindmeister.com/es) (deberás registrarte en MindMeister con el correo electrónico de Outlook del instituto). Pista: puedes pedirle que te pregunte cuál es tu estructura de carpetas y archivos para que te sea más sencillo indicárselo
+2. Importa el archivo de texto en MindMeister para generar el esquema.
+3. Haz una captura de pantalla del esquema y guárdala dentro de la carpeta de la **Actividad 0**.
+-->
 
 ## Entregables en Aules
 
