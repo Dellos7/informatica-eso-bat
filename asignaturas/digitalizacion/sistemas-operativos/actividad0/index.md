@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Tema 1
-description: Actividad 0. Uso (muy básico) del sistema operativo
+title: Actividad 0. Uso (muy básico) del sistema operativo
+description: Tema 1
 ---
 
 # 🗂️ Actividad 0 – Explorando el sistema de archivos en LliureX
