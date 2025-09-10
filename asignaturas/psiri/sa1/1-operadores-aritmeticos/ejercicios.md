@@ -1,3 +1,9 @@
+---
+layout: default
+title: Tema 1
+description: Ejercicios de Operadores Aritméticos
+---
+
 # Ejercicios 1. Operadores Aritméticos (No Evaluable)
 
 **1 ) Piensa el resultado de las siguientes operaciones en Python y luego compruébalo:**

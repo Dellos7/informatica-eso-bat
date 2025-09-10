@@ -20,8 +20,9 @@ description: Programación básica en Python
 
 ## 1. Programas Básicos
 
+- [Tipos de datos](https://aprendepython.es/core/datatypes/data/)
 - [Operadores Aritméticos](./1-operadores-aritmeticos/apuntes)
-    - [Ejercicios 1. Operadores Aritméticos (no evaluable)](./1-operadores-aritmeticos/ejercicios.md)
+    - [Ejercicios 1. Operadores Aritméticos (no evaluable)](./1-operadores-aritmeticos/ejercicios)
 - [Tipos de datos básicos](./2-tipos-de-datos-basicos/apuntes.md)
     - [Ejercicios 2. Tipos de datos básicos (no evaluable)](./2-tipos-de-datos-basicos/ejercicios.md)
 - [Variables](./3-variables/apuntes.md)
