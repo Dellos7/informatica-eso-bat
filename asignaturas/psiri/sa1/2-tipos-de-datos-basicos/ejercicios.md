@@ -1,3 +1,9 @@
+---
+layout: default
+title: Tema 1
+description: Ejercicios de Tipos de datos básicos
+---
+
 # 2. Ejercicios Tipos de datos básicos (No Evaluable)
 
 **1 ) Realiza las siguientes operaciones:**

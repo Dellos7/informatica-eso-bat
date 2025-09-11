@@ -6,18 +6,18 @@ description: Tipos de datos básicos
 
 # Tipos de datos básicos
 
-##### ![](tipos-datos-basicos.png)  
+![Tipos de datos básicos](./tipos-datos-basicos.png)  
   
 
-**[👉 NÚMEROS ENTEROS (aprendepython.es)  
-](https://aprendepython.es/core/datatypes/numbers/#enteros)
-[👉 NÚMEROS FLOTANTES (DECIMALES) (aprendepython.es)  
-](https://aprendepython.es/core/datatypes/numbers/#flotantes)
-[👉 BOOLEANOS (aprendepython.es)  
-](https://aprendepython.es/core/datatypes/numbers/#booleanos)
-[👉 CADENAS DE TEXTO (aprendepython.es) 
-](https://aprendepython.es/core/datatypes/strings/) --> *solo hasta "Operaciones con strings" (combinar y repetir)*
-[💡 COMENTARIOS EN PYTHON (aprendepython.es)](https://aprendepython.es/core/controlflow/conditionals/?highlight=comentarios#comentarios)**
+[👉 NÚMEROS ENTEROS (aprendepython.es)](https://aprendepython.es/core/datatypes/numbers/#integers)
+
+[👉 NÚMEROS FLOTANTES (DECIMALES) (aprendepython.es)](https://aprendepython.es/core/datatypes/numbers/#floats)
+
+[👉 BOOLEANOS (aprendepython.es)](https://aprendepython.es/core/datatypes/numbers/#booleans)
+
+[👉 CADENAS DE TEXTO (aprendepython.es)](https://aprendepython.es/core/datatypes/strings/) --> *solo hasta "Operaciones con strings" (combinar y repetir)*
+
+[💡 COMENTARIOS EN PYTHON (aprendepython.es)](https://aprendepython.es/core/controlflow/conditionals/#comments)
 
 ### **Ampliación:**
 
