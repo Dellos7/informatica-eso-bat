@@ -10,6 +10,7 @@ description: Programación básica en Python
 
 - [¿Qué es la programación? (VÍDEO)](https://youtu.be/7vbi-OCFZEY)
 - [¿Qué es un algoritmo? (VÍDEO)](https://youtu.be/U3CGMyjzlvM)
+- [El algoritmo para hacer amigos (Sheldon Cooper)](https://youtu.be/uFUboyAX1b8?si=Ol7pMkDGK_gZPNah)
 - [Probando Python en Linux](./probando-python-linux)
 
 ## Recursos y materiales
