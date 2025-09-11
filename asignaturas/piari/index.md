@@ -16,4 +16,4 @@ description: Programación, Inteligencia Artificial y Robótica I (2º y 3º ESO
 
 ## Temas
 
-<!-- - [Tema 1](./sa1-pensamiento-computacional/) -->
+- [Tema 1](./sa1-pensamiento-computacional/)
