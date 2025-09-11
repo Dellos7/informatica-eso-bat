@@ -16,4 +16,4 @@ description: Taller de Relaciones Digitales Responsables (1º ESO)
 
 ## Temas
 
-<!-- - [Tema 1](./sa1/) -->
+- [Tema 1](./aprendemos-a-manejar-el-ordenador/)
