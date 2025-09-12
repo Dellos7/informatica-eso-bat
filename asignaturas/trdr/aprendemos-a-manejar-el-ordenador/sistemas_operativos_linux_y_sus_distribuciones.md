@@ -84,3 +84,6 @@ Como **sistema operativo**, LliureX se encarga de gestionar los **recursos físi
 
 > **EJERCICIO 2**: Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
 {: .alert-success}
+
+[👈 Atrás](./sistemas_operativos_familia_windows)
+[👉 Siguiente](./sistemas_operativos_mac_os)

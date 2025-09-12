@@ -21,6 +21,8 @@ description: Aprendemos a manejar el ordenador
 3. [Sistemas Operativos: Linux y sus distribuciones](./sistemas_operativos_linux_y_sus_distribuciones)
 4. [Sistemas Operativos: MacOS](./sistemas_operativos_mac_os)
 5. [Sistemas Operativos para Smartphone](./sistemas_operativos_para_smartphone)
+6. [Aplicaciones](./aplicaciones)
+7. [Ejercicios de repaso](./ejercicios_de_repaso)
 
 ### 🛠️ Ejercicios
 

@@ -17,8 +17,7 @@ En esta primera sesión de la unidad, estudiaremos las los siguientes puntos:
 1. **Sistemas Operativos:** Veremos los sistemas operativos más utilizados: Windows. Linux, Mac OS así como los sistemas operativos para smartphone más utilizados por excelencia que son iOS y Android.
 2. **Aplicaciones:** En este punto, veremos qué es una aplicación y diferentes tipos de aplicaciones así como diferentes aplicaciones de ejemplo que se encuentran disponibles en los diferentes sistemas operativos estudiados.
 
+<img src="./images/Imagen_principal_sesion_actual.1.jpg" height="250" class="img-centrada">
 
-![](images/Imagen_principal_sesion_actual.1.jpg)
-
-
+[👈 Atrás](./index)
 [👉 Siguiente](./sistemas_operativos_familia_windows)
