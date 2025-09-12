@@ -6,15 +6,16 @@ description: Sistemas Operativos. Linux y sus distribuciones
 
 # Sistemas Operativos: LINUX y sus Distribuciones
 
-## LINUX Y SUS DISTRIBUCIONES
+## Linux y sus distribuciones
 
 Linux es un núcleo de Sistema Operativo **libre** basado en **Unix**. Al ser libre su uso es **gratuito**.
 
 El hecho de que Linux sea un núcleo hace que se creen multitud de **distribuciones**. Una **distribución de Linux** **es un software basado en el núcleo de Linux que incluye distintos paquetes de aplicaciones**. 
 
-<img src="./images/Distribuciones_de_linux_mas_conocidas.png" alt="Distribuciones de linux más conocidas" height="80"/>
+<img src="./images/Distribuciones_de_linux_mas_conocidas.png" alt="Distribuciones de linux más conocidas" height="350" class="img-centrada"/>
 
 **Distribuciones de Linux más conocidas**
+{: .centrado}
 
 La iniciativa de **software libre** alcanza su máxima expresión cuando en el equipo se instala el sistema operativo **GNU Linux** en lugar de Windows. Existen múltiples distribuciones gratuitas (OpenSuse, Fedora, Debian, Red Hat, Ubuntu, etc). Algunos han visto en esta diversidad uno de los principales problemas para su implantación. No obstante todos ellos ofrecen un **entorno gratuito totalmente visual y gráfico que facilita el uso de aplicaciones**.  Algunas **Comunidades Autónomas españolas** han creado y distribuido a los centros sus propias versiones de Linux: Guadalinex (Andalucía), Linex (Extremadura), MAX (Madrid), **LliureX (Comunidad Valenciana)**, etc. En la actualidad a nivel mundial la tendencia que parece consolidarse es **Ubuntu**. 
 
@@ -36,17 +37,18 @@ Es una distribución GNU/Linux que ofrece un **interesante sistema operativo par
 
 El término **“[Ubuntu](http://es.wikipedia.org/wiki/Ubuntu)” proviene del zulú y significa “humanidad hacia otros” o bien “yo soy porque nosotros somos”**. Precisamente su slogan “Linux para seres humanos” (Linux for Human Beings) pretende enfatizar esa facilidad de manejo. Está patrocinado por [Canonical Ltd.](http://www.canonical.com/) Se trata de una compañía británica privada fundada y financiada por el empresario sudafricano Mark Shuttleworth. Esta empresa ofrece **Ubuntu de forma libre y gratuita** aprovechando las aportaciones de los desarrolladores de una amplia comunidad a nivel mundial. En lugar de lucrarse por la distribución del sistema, su financiación se obtiene del soporte técnico.
 
-<img src="./images/Logo_de_ubuntu.png" alt="Logo de Ubuntu" height="80"/>
+<img src="./images/Logo_de_ubuntu.png" alt="Logo de Ubuntu" height="80" class="img-centrada"/>
 
 
 **Logo de Ubuntu (distribución de Linux)**
+{: .centrado}
 
  Veamos una pantalla del mismo:
 
-<img src="./images/Pantallazo_de_Ubuntu.jpg" alt="Logo de Ubuntu" height="80"/>
-
+<img src="./images/Pantallazo_de_Ubuntu.jpg" alt="Logo de Ubuntu" height="350" class="img-centrada"/>
 
 **Pantallazo de ubuntu**
+{: .centrado}
 
 Como puede observarse en la foto, al igual que Windows, **Ubuntu está basado también** en el concepto de **ventana**. Además, comparte muchas similitudes con el S.O. de Microsoft.
 
@@ -62,8 +64,7 @@ Entre las **aplicaciones de usuario**, Ubuntu cuenta por ejemplo con:
 
 Algunas **aplicaciones de Windows no son desarrolladas para los sistemas Linux (Adobe Photoshop, Microsoft Word...)**. Sin embargo, existe una **alternativa** **libre** a cada uno de estos programas. A poco que investigues en la web encontrarás cada una de ellas. Debido a que la mayoría de programas son libres y que estos se encuentran en continuo desarrollo, **el número de aplicaciones existentes bajo Linux es impresionante**.
 
-**Lliurex**
-
+### Lliurex
 
 **Distribución** educativa **realizada por** la **Conselleria d'Educació de la Generalitat Valenciana**.
 
@@ -72,22 +73,14 @@ Algunas **aplicaciones de Windows no son desarrolladas para los sistemas Linux (
 
 LliureX es, por lo tanto, **la distribución [GNU/Linux](https://www.gnu.org/gnu/gnu-history.md) valenciana destinada a la docencia educativa.**
 
-![](images/Pantallazo_Escritorio_LliureX21.jpg)
+<img src="./images/Pantallazo_Escritorio_LliureX21.jpg" alt="Logo de Ubuntu" height="350" class="img-centrada"/>
 
 **Escritorio de Lliurex**
+{: .centrado}
 
 Como **sistema operativo**, LliureX se encarga de gestionar los **recursos físicos del ordenador y de proveer de servicios básicos los programas de aplicación**. Pero LliureX no es un sistema operativo diseñado desde cero, sino que aprovecha las ventajas del **software libre** y utiliza como núcleo el conocido sistema [**Linux**](https://ca.wikipedia.org/wiki/Linux_(nucli)). Como **conjunto de aplicaciones**, LliureX dispone de un enorme catálogo de software libre enfocado a facilitar la tarea educativa.
 
-
-## Vídeo: X Aniversario de LliureX
-
-
-Mira este vídeo donde se explica **qué es LliureX**, **en qué ámbitos se utiliza** **y las ventajas que tiene** trabajar con un sistema operativo como este:
-
-[Vídeo](https://youtu.be/AHnRN8VSZHg?si=mgbDaqGGZW1hJstB)
-
 ## Actividad
 
-**EJERCICIO 2: RELACIÓN 1**
-
-**Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.**
+> **EJERCICIO 2**: Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
+{: .alert-success}
