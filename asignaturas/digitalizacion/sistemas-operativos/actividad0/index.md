@@ -41,7 +41,7 @@ Aprender a organizar el sistema de archivos en LliureX, reconocer diferentes tip
    - `filetype:pdf` → un archivo PDF.
    - `filetype:ppt` → una presentación de diapositivas PowerPoint.
    - `filetype:epub` → una libro electrónico.
-   - `filetype:xsl` → un documento de hoja de cálculo de Excel.
+   - `filetype:xls` → un documento de hoja de cálculo de Excel.
    - `filetype:odt` → un documento de texto de LibreOffice.
 3. Descarga al menos **5 archivos de distintos tipos** y guárdalos en la carpeta **Tema 1/Actividad 0**.
 
