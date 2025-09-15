@@ -4,7 +4,7 @@ title: Actividad 0. Uso (muy básico) del sistema operativo
 description: Tema 1
 ---
 
-# 🗂️ Actividad 0 – Explorando el sistema de archivos en LliureX
+# 🗂️ Actividad 0 – Uso (muy básico) del sistema operativo
 
 ## Objetivo
 
@@ -39,9 +39,9 @@ Aprender a organizar el sistema de archivos en LliureX, reconocer diferentes tip
 1. Abre tu navegador web.
 2. Busca en Google usando el operador **filetype** para encontrar archivos con diferentes extensiones. Ejemplos:
    - `filetype:pdf` → un archivo PDF.
-   - `filetype:jpg` → una imagen JPG.
-   - `filetype:png` → una imagen PNG.
-   - `filetype:mp3` → un archivo de audio MP3.
+   - `filetype:ppt` → una presentación de diapositivas PowerPoint.
+   - `filetype:epub` → una libro electrónico.
+   - `filetype:xsl` → un documento de hoja de cálculo de Excel.
    - `filetype:odt` → un documento de texto de LibreOffice.
 3. Descarga al menos **5 archivos de distintos tipos** y guárdalos en la carpeta **Tema 1/Actividad 0**.
 
@@ -77,17 +77,31 @@ Aprender a organizar el sistema de archivos en LliureX, reconocer diferentes tip
 
 ---
 
-<!--
-## Un poco de IA...
+### 5. Un poco de IA...
 
-1. Utiliza **ChatGPT** para que te genere un archivo de texto con el esquema de las carpetas que has creado. Debe ser importable en la plataforma [**MindMeister**](https://www.mindmeister.com/es) (deberás registrarte en MindMeister con el correo electrónico de Outlook del instituto). Pista: puedes pedirle que te pregunte cuál es tu estructura de carpetas y archivos para que te sea más sencillo indicárselo
+![Registro en MindMeister](./registro_mindmeister.png)
+{: .img .img-350}
+
+**Regístrate en MeindMeister con tu correo de Outlook**
+{: .centrado}
+
+1. Utiliza **ChatGPT** para que te genere un archivo de texto con el esquema de las carpetas que has creado. Debe ser importable en la plataforma [**MindMeister**](https://www.mindmeister.com/es) (deberás registrarte en MindMeister con el correo electrónico de Outlook del instituto). **Pista**: puedes pedirle que te pregunte cuál es tu estructura de carpetas y archivos para que te sea más sencillo indicárselo, y no olvides decirle que debe ser importable en MindMeister
 2. Importa el archivo de texto en MindMeister para generar el esquema.
-3. Haz una captura de pantalla del esquema y guárdala dentro de la carpeta de la **Actividad 0**.
--->
+3. Haz una **captura de pantalla** de la **conversación con ChatGPT** y **otra del esquema** y guárdala dentro de la carpeta de la **Actividad 0**.
+
+![Importar archivo en MindMeister](./importar_archivo_mindmeister.png)
+
+**Importar archivo de texto en MindMeister**
+{: .centrado}
 
 ## Entregables en Aules
 
-- Archivo comprimido de la carpeta **Actividad 0** con la estructura de carpetas creada. El archivo debe llamarse **actividad0\_\<nombre>.zip** (sustituye \<nombre> por tu nombre y apellidos).
+Deberás subir a la plataforma Aules:
+
+1. Archivo comprimido de la carpeta **Actividad 0** con la estructura de carpetas creada. El archivo debe llamarse **actividad0\_\<nombre>.zip** (sustituye \<nombre> por tu nombre y apellidos).
+2. Captura de pantalla donde se vea **en tu sistema de archivos** las **carpetas** que has creado y los **archivos** que has guardado.
+3. Capturas de pantalla de la conversación con ChatGPT de la tarea 5
+4. Esquema creado en MindMeister en la tarea 5
 
 ---
 

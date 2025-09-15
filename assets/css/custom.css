@@ -37,3 +37,39 @@ p:has(.img-centrada){
 .centrado{
   text-align: center;
 }
+
+img{
+  border: 1px solid;
+}
+
+.img{
+  text-align: center;
+}
+
+.img-100 > img{
+  height: 100px;
+}
+
+.img-150 > img{
+  height: 150px;
+}
+
+.img-200 > img{
+  height: 200px;
+}
+
+.img-250 > img{
+  height: 250px;
+}
+
+.img-300 > img{
+  height: 300px;
+}
+
+.img-350 > img{
+  height: 350px;
+}
+
+.img-400 > img{
+  height: 400px;
+}
