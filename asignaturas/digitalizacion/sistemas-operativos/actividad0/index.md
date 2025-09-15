@@ -85,8 +85,7 @@ Aprender a organizar el sistema de archivos en LliureX, reconocer diferentes tip
 **Regístrate en MeindMeister con tu correo de Outlook**
 {: .centrado}
 
-1. Utiliza **ChatGPT** para que te genere un archivo de texto con el esquema de las carpetas que has creado. Debe ser importable en la plataforma [**MindMeister**](https://www.mindmeister.com/es) (deberás registrarte en MindMeister con el correo electrónico de Outlook del instituto). **Pista**: puedes pedirle que te pregunte cuál es tu estructura de carpetas y archivos para que te sea más sencillo indicárselo, y no olvides decirle que debe ser importable en MindMeister
-2. Importa el archivo de texto en MindMeister para generar el esquema.
+1. Utiliza **ChatGPT** para que te genere un archivo de texto con el esquema de las carpetas que has creado. Debe ser importable en la plataforma [**MindMeister**](https://www.mindmeister.com/es) (deberás **registrarte** en MindMeister con el **correo electrónico** de Outlook del instituto. Si no lo tienes o no te acuerdas, pídeselo al profesor).
 3. Haz una **captura de pantalla** de la **conversación con ChatGPT** y **otra del esquema** y guárdala dentro de la carpeta de la **Actividad 0**.
 
 ![Importar archivo en MindMeister](./importar_archivo_mindmeister.png)

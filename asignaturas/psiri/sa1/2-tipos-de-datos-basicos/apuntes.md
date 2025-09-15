@@ -61,6 +61,7 @@ En Python (y en cualquier lenguaje de programación) las cadenas de texto tambi�
     
 
 ![Comparación de cadenas en Python](savan-comparison.png)
+{: .img .img-400}
 
 Ejemplos de comparación de cadenas:
 
