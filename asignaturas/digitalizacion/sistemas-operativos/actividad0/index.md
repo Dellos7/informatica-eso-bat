@@ -82,7 +82,7 @@ Aprender a organizar el sistema de archivos en LliureX, reconocer diferentes tip
 ![Registro en MindMeister](./registro_mindmeister.png)
 {: .img .img-350}
 
-**Regístrate en MeindMeister con tu correo de Outlook**
+**Regístrate en MindMeister con tu correo de Outlook**
 {: .centrado}
 
 1. Utiliza **ChatGPT** para que te genere un archivo de texto con el esquema de las carpetas que has creado. Debe ser importable en la plataforma [**MindMeister**](https://www.mindmeister.com/es) (deberás **registrarte** en MindMeister con el **correo electrónico** de Outlook del instituto. Si no lo tienes o no te acuerdas, pídeselo al profesor).
