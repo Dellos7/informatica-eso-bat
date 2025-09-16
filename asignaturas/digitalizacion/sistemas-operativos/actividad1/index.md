@@ -31,15 +31,31 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 
 ---
 
+## Cómo crear una máquina virtual en Lliurex
+
+> Lee atentamente la siguiente página y después vuelve a la página de la actividad para completar los pasos.
+{: .alert-warning}
+
+[👉 Crear una máquina virtual en Lliurex](/{{ site.github.repository_name }}/asignaturas/apuntes/crear-mv-vbox-lliurex)
+
 ## Parte 1 – Máquina virtual con Windows XP
 
 1. Crea una nueva máquina virtual en VirtualBox con las siguientes características:
    - **Nombre:** Windows XP  
-   - **Tipo:** Microsoft Windows  
-   - **Versión:** Windows XP (64-bit)  
-   - **Memoria RAM:** 2048 MB (2 GB)  
-   - **Disco duro virtual:** 10 GB  
-   - **Deshabilitar paginación imbrincada** y **controlador USB**
+   - **Imagen ISO**: el archivo **.iso** descargado de Windows XP
+   - **Tipo:** Microsoft Windows
+   - **Versión:** Windows XP (64-bit)
+   - **Skip Unattended Installation**: ✅ Marcar
+   - **Memoria RAM (Hardware):** 2048 MB (2 GB)
+   - **Disco duro virtual (Hard Disk):** 10 GB
+
+   - ‼️**IMPORTANTE**‼️: **Deshabilitar paginación imbrincada** y **controlador USB**
+
+![Deshabilitar paginación imbrincada](./winxp_conf_1.png)
+{: .img .img-300}
+
+![Deshabilitar controlador USB](./winxp_conf_2.png)
+{: .img .img-300}
 
 2. Instala Windows XP en la máquina virtual.
 
@@ -69,12 +85,13 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 ## Parte 2 – Máquina virtual con Linux Lite
 
 1. Crea una nueva máquina virtual en VirtualBox con las siguientes características:
-   - **Nombre:** Linux Lite  
-   - **Tipo:** Linux  
-   - **Subtipo:** Ubuntu  
-   - **Versión:** Ubuntu (64-bit)  
-   - **Memoria RAM:** 3072 MB (3 GB)  
-   - **Disco duro virtual:** 25 GB  
+   - **Nombre:** Linux Lite
+   - **Imagen ISO**: el archivo **.iso** descargado de Linux Lite
+   - **Tipo:** Linux
+   - **Versión:** Ubuntu (64-bit)
+   - **Skip Unattended Installation**: ✅ Marcar
+   - **Memoria RAM (Hardware):** 3072 MB (3 GB)
+   - **Disco duro virtual (Hard Disk):** 25 GB
 
 2. Instala Linux Lite en la máquina virtual.
 
@@ -118,22 +135,30 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
    - **Procesadores:** 2 (si el equipo lo permite)  
    - **Gráficos:** Activa *habilitar aceleración 3D* para mejorar el rendimiento.  
 
+   - **Nombre:** Windows 11
+   - **Imagen ISO**: el archivo **.iso** descargado de Windows 11
+   - **Tipo:** Microsoft Windows
+   - **Versión:** Windows 11 (64-bit)
+   - **Skip Unattended Installation**: ✅ Marcar
+   - **Memoria RAM (Hardware):** 8192 MB (8 GB)
+   - **Disco duro virtual (Hard Disk):** 80 GB
+
 2. Instala Windows 11 en la máquina virtual.
    - Durante la instalación, selecciona **idioma español (España)**.  
    - Crea un **usuario** con tu nombre y apellidos.  
    - Configura una contraseña sencilla para no olvidarla (opcional).  
 
 3. Una vez instalado, realiza las siguientes acciones dentro de Windows 11:
-   - Cambia la **imagen de perfil** del usuario.  
+   - Cambia la **imagen de perfil** del usuario.
    - Crea dentro de la carpeta **Documentos** un archivo llamado **Actividad 1.txt** con tu información personal (Nombre, Edad y Curso).  
-   - Personaliza brevemente el escritorio (por ejemplo, cambiando el fondo de pantalla).  
+   - Personaliza brevemente el escritorio (por ejemplo, cambiando el fondo de pantalla). 
 
 4. Haz una **captura de pantalla** en la que se vea:
    - El menú Inicio con tu usuario.  
    - El archivo **Actividad 1.txt** dentro de Documentos.  
-   - El escritorio con tu personalización.  
+   - El escritorio con tu personalización.
 
-💡 Opcional: explora las nuevas aplicaciones que incluye Windows 11 (Bloc de notas, Fotos, Microsoft Store, etc.).
+👉 Explora las nuevas aplicaciones que incluye Windows 11 (Bloc de notas, Fotos, Microsoft Store, etc.).
 
 ---
 
@@ -141,8 +166,7 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 Deberás subir en Aules:
 - **Captura de pantalla de Windows XP** (usuario, foto y archivo Actividad 1.txt).  
 - **Captura de pantalla de Linux Lite** (usuario y archivo Actividad 1.txt).  
-- **Captura de pantalla de Windows 11** (usuario, personalización y archivo Actividad 1.txt).  
-
+- **Captura de pantalla de Windows 11** (usuario, personalización y archivo Actividad 1.txt).
 
 # Rúbrica – Actividad 1: Máquinas virtuales en VirtualBox
 
