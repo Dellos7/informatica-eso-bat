@@ -26,7 +26,7 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 
 ## Recursos necesarios
 - VirtualBox instalado (ya lo tienes en clase).
-- Archivos **.iso** de los sistemas operativos indicados.
+- Archivos **.iso** de los sistemas operativos indicados. 👉 **Cópialos de la carpeta compartida** que tienes en el ordenador de clase (pregunta al profesor cómo acceder).
 - Conexión a Internet para descargar software adicional.
 
 ---
