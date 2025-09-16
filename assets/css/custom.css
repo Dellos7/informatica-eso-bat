@@ -73,3 +73,11 @@ img{
 .img-400 > img{
   height: 400px;
 }
+
+.img-450 > img{
+  height: 450px;
+}
+
+.img-500 > img{
+  height: 500px;
+}

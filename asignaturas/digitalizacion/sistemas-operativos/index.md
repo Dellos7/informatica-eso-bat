@@ -15,3 +15,4 @@ description: Sistemas Operativos
 ## Actividades
 
 - [Actividad 0](./actividad0/)
+- [Actividad 1](./actividad1/)
