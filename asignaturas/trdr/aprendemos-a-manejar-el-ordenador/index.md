@@ -4,7 +4,8 @@ title: Tema 1
 description: Aprendemos a manejar el ordenador
 ---
 
-**⚠️DEBES TRAER UNOS AURICULARES DE CABLE A CLASE, NECESARIOS PARA HACER ALGUNOS EJERCICIOS⚠️**
+> **⚠️DEBES TRAER UNOS AURICULARES DE CABLE A CLASE, NECESARIOS PARA HACER ALGUNOS EJERCICIOS⚠️**
+{: .alert-warning}
 
 # Tema 1. Aprendemos a manejar el ordenador
 
