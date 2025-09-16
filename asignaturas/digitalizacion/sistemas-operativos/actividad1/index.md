@@ -29,11 +29,14 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 - Archivos **.iso** de los sistemas operativos indicados. 👉 **Cópialos de la carpeta compartida** que tienes en el ordenador de clase (pregunta al profesor cómo acceder).
 - Conexión a Internet para descargar software adicional.
 
+> **IMPORTANTE**: Deberás copiar los archivos **.iso** de la carpeta compartida a tu carpeta de **Inici** del ordenador de clase (**NO a la carpeta **Documents**)
+{: .alert-error}
+
 ---
 
 ## Cómo crear una máquina virtual en Lliurex
 
-> Lee atentamente la siguiente página y después vuelve a la página de la actividad para completar los pasos.
+> Una vez has copiado los archivos, lee atentamente la siguiente página y después vuelve a la página de la actividad para completar los pasos.
 {: .alert-warning}
 
 [👉 Crear una máquina virtual en Lliurex](/{{ site.github.repository_name }}/asignaturas/apuntes/crear-mv-vbox-lliurex)
