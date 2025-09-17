@@ -11,3 +11,7 @@ autor:
   mostrar: true
   nombre: David López Castellote
 lang: es-ES
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
