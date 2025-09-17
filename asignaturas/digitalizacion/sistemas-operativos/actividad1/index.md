@@ -58,16 +58,19 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 {: .img .img-300}
 
 2. Instala Windows XP en la máquina virtual.
+{:start="2"}
 
 3. Dentro de Windows XP realiza las siguientes acciones:
    - Cambia el idioma del sistema a **español**.  
    - Crea un **usuario** con tu nombre.  
    - Cambia la **imagen de perfil** de ese usuario.  
    - Dentro de la carpeta **Mis documentos**, crea un archivo llamado **Actividad 1.txt** con tu información personal (Nombre, Edad y Curso).  
+{:start="3"}
 
 4. Haz una **captura de pantalla** en la que se vea:
    - El menú Inicio con tu foto de perfil y tu nombre de usuario.  
    - El archivo **Actividad 1.txt** dentro de Mis documentos.
+{:start="4"}
 
 ![Usuario en Windows XP](./captura_winxp.png)
 {: .img .img-500}
