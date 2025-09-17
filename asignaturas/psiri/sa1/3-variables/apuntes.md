@@ -1,8 +1,14 @@
+---
+layout: default
+title: Tema 1
+description: Variables
+---
+
 # Variables
 
 [**👉VARIABLES (aprendepython.es)**](https://aprendepython.es/core/datatypes/data/#variables)  
-[**👉ASIGNACIÓN AUMENTADA (aprendepython.es)**](https://aprendepython.es/core/datatypes/numbers/#asignacion-aumentada)  
-[**👉 LEER DATOS DESDE TECLADO con INPUT (aprendepython.es)**](https://aprendepython.es/core/datatypes/strings/#leer-datos-desde-teclado)
+[**👉ASIGNACIÓN AUMENTADA (aprendepython.es)**](https://aprendepython.es/core/datatypes/numbers/#augmented-assignment)  
+[**👉 LEER DATOS DESDE TECLADO con INPUT (aprendepython.es)**](https://aprendepython.es/core/datatypes/strings/#read-from-keyboard)
 
 #### Función print()
 

@@ -29,11 +29,14 @@ description: Programación básica en Python
 - [Tipos de datos básicos](./2-tipos-de-datos-basicos/apuntes)
     - [Ejercicios 2. Tipos de datos básicos (no evaluable)](./2-tipos-de-datos-basicos/ejercicios)
 
-<!--
-- [Variables](./3-variables/apuntes.md)
+- [Variables](./3-variables/apuntes)
     - [Ejercicios 3. Variables](./3-variables/3-Ejercicios_de_Variables.pdf)
+
+<!--
+
 - [Funciones](./4-funciones/apuntes.md)
     - [Ejercicios 4. Funciones](./4-funciones/ejercicios.md)
+
 -->
 
 <!--
