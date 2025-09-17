@@ -11,7 +11,7 @@ description: Pensamiento Computacional
 - [¿Qué es el Pensamiento Computacional?](https://youtu.be/ti315UlVtS4)
 - [¿Qué es la Programación?](https://youtu.be/7vbi-OCFZEY)
 - [¿Qué es un Algoritmo?](https://youtu.be/U3CGMyjzlvM)
-- [El Algoritmo de la Amistad (Sheldon Cooper)](https://youtu.be/H3z3HDbl5QU)
+- [El Algoritmo de la Amistad (Sheldon Cooper)](https://youtu.be/uFUboyAX1b8?si=rxfZXBixP9LKTc9d)
 
 Ampliado:
 - [¿Qué es el Pensamiento Computacional? (ampliado)](https://youtu.be/O1gXdte5kIM)
