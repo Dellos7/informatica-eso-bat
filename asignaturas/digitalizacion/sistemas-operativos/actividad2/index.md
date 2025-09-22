@@ -19,7 +19,7 @@ Realiza las siguientes tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}
 
 - Dentro de tu **carpeta personal**, y dentro de **Documents/Tema 1**, crea una carpeta llamada **Actividad-2**.
 - Dentro de **Actividad-2** descarga el archivo comprimido del siguiente enlace:  
-  [davidlopezcastellote.com/terminal/fotos_comida.zip](https://davidlopezcastellote.com/terminal/fotos_comida.zip)  
+  [dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/sistemas-operativos/actividad2/fotos_comida.zip](./fotos_comida.zip)
 - Descomprime el archivo para extraer todas las fotos que contiene.  
 - Partiendo desde **Actividad-2**, crea toda la estructura de carpetas que se aprecia en la imagen de arriba.  
 - **HAZ CAPTURA DE PANTALLA DE LOS COMANDOS QUE VAS EJECUTANDO**.  
