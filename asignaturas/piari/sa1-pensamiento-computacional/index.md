@@ -19,27 +19,11 @@ Ampliado:
 
 ## Actividades
 
-### Actividad 0
-
-Enlace a la [Actividad 0](./actividad-0).
-
-### Actividad 1
-
-Enlace a la [Actividad 1](./actividad-1).
+- [Actividad 0](./actividad-0).
+- [Actividad 1](./actividad-1).
+- [Actividad 2](./actividad-2).
 
 <!--
-
-### Actividad 2
-
-Enlace a la [Actividad 2](./actividad-2)
-
-
-### Actividad 3
-
-Enlace a la [Actividad 3](./actividad-3)
-
-### Actividad 4
-
-Enlace a la [Actividad 4](./actividad-4)
-
+- [Actividad 3](./actividad-3).
+- [Actividad 4](./actividad-4).
 -->
