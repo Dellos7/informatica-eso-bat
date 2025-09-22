@@ -67,3 +67,19 @@ Los científicos están buscando la manera de **entrenar de nuevo al ratón** pa
 
 > Deberás entregar en Aules **el documento** de LibreOffice Writer con el algoritmo y la imagen insertada.
 {: .alert-warning}
+
+# 📊 Rúbrica – Actividad 1: Entrenando Ratones (máx. 10 puntos)
+
+| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 4 puntos |
+|----------|----------|----------|----------|----------|----------|
+| **Representación del recorrido (Tarea 1)** | No representa el recorrido o es incoherente. | Representación incompleta o con errores relevantes. | Representación clara y correcta del recorrido del ratón. | – | – |
+| **Representación de las instrucciones (Tarea 2)** | No representa las instrucciones o son incoherentes. | Representación incompleta o con errores relevantes. | Representación clara y correcta de las instrucciones. | – | – |
+| **Aplicación del pensamiento computacional (Tarea 2 – Reto)** | No aplica pensamiento computacional o el algoritmo es incoherente. | Aplica pensamiento computacional de forma muy básica, con errores relevantes. | Aplica pensamiento computacional con un algoritmo comprensible aunque mejorable. | Aplica pensamiento computacional de forma clara y eficaz, resolviendo el reto con corrección. | Aplica pensamiento computacional de forma clara, eficaz y optimizada, resolviendo el reto sin errores. |
+| **Entrega en plazo** | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – | – |
+
+
+## 📌 Criterios de evaluación asociados a la Actividad 1
+
+- **CE2.1**: Analizar problemas elementales significativos para el alumnado, mediante la abstracción y modelización de la realidad.  
+- **CE2.3**: Resolver de forma guiada problemas elementales utilizando los algoritmos y las estructuras de datos necesarias.  
+- **CE2.4**: Programar aplicaciones sencillas de forma guiada para resolver problemas elementales.  

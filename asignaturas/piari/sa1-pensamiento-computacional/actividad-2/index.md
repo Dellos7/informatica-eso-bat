@@ -64,3 +64,20 @@ Las instrucciones que puedes dar al robot son las siguientes:
 - **Edita la imagen** del laberinto del robot (utilizando, por ejemplo, GIMP) y **borra las letras** S, X e Y.
 - A continuación, **define una nueva posición de salida (S)** y **dos nuevas posiciones X e Y** para los tesoros, dibujando estas letras en la propia imagen.
 - Finalmente, **indica los algoritmos** necesarios para que, saliendo de la nueva posición S, el robot sea capaz de llegar a las nuevas posiciones X e Y.
+
+# 📊 Rúbrica – Actividad 2: Camino a casa (máx. 10 puntos)
+
+| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 4 puntos |
+|----------|----------|----------|----------|----------|----------|
+| **Precisión del algoritmo (Tarea 1 y 2)** | Algoritmo incorrecto o incoherente. | Algoritmo muy incompleto, apenas avanza. | Algoritmo incompleto o con varios errores. | Algoritmo casi correcto, con 1 error menor. | Algoritmo correcto en todas las tareas. |
+| **Claridad y orden en la presentación** | Instrucciones poco comprensibles o mal planteadas. | Instrucciones comprensibles pero con desorden/confusión. | Instrucciones claras, bien secuenciadas y fáciles de seguir. | – | – |
+| **Creatividad y eficiencia (Tarea 3)** | Laberinto incorrecto o sin solución. | Laberinto funcional pero sencillo/poco optimizado. | Laberinto original y algoritmo eficiente. | – | – |
+| **Entrega en plazo** | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – | – |
+
+## 📌 Criterios de evaluación asociados a la Actividad 2
+
+- **CE2.1**: Analizar problemas elementales significativos para el alumnado, mediante la abstracción y modelización de la realidad.  
+- **CE2.3**: Resolver de forma guiada problemas elementales utilizando los algoritmos y las estructuras de datos necesarias.  
+- **CE2.4**: Programar aplicaciones sencillas de forma guiada para resolver problemas elementales.  
+- **CE4.1**: Participar activamente en equipos de trabajo para desarrollar soluciones digitales y tecnológicas, demostrando empatía y respetando los roles asignados y las aportaciones del resto de personas integrantes.  
+- **CE4.3**: Describir y valorar la adecuación de las tecnologías, entornos de desarrollo, dispositivos y componentes para resolver los retos planteados, analizando sus características y especificaciones.  
