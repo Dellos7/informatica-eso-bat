@@ -29,7 +29,7 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 - Archivos **.iso** de los sistemas operativos indicados. 👉 **Cópialos de la carpeta compartida** que tienes en el ordenador de clase (pregunta al profesor cómo acceder).
 - Conexión a Internet para descargar software adicional.
 
-> **IMPORTANTE**: Deberás copiar los archivos **.iso** de la carpeta compartida a tu carpeta de **Inici** del ordenador de clase (**NO a la carpeta **Documents**)
+> **IMPORTANTE**: Deberás copiar los archivos **.iso** de la carpeta compartida a tu carpeta de **Inici** del ordenador de clase (**NO** a la carpeta **Documents**)
 {: .alert-error}
 
 ---
@@ -52,15 +52,27 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
    - **Memoria RAM (Hardware):** 2048 MB (2 GB)
    - **Disco duro virtual (Hard Disk):** 10 GB
 
-   - ‼️**IMPORTANTE**‼️: **Deshabilitar paginación imbrincada** y **controlador USB**
+   - ‼️**IMPORTANTE**‼️: Debes entrar en la **Configuración** y Deshabilitar paginación imbrincada, cambiar *Dispositiu del punter* de la Placa mare y deshabilitar controlador USB
+
+**1. Deshabilitar paginació imbrincada**
+{: .centrado}
 
 ![Deshabilitar paginación imbrincada](./winxp_conf_1.png)
-{: .img .img-300}
+{: .img .img-350}
+
+**2. Cambiar Dispositiu del punter de la Placa Mare a Ratolí PS/2**
+{: .centrado}
+
+![Cambiar Dispositiu del punter de la Placa Mare a Ratolí PS/2](./winxp_conf_3.png)
+{: .img .img-350}
+
+**3. Deshabilitar controlador USB**
+{: .centrado}
 
 ![Deshabilitar controlador USB](./winxp_conf_2.png)
-{: .img .img-300}
+{: .img .img-350}
 
-2. Instala Windows XP en la máquina virtual.
+2. **Inicia la máquina virtual** e **instala Windows XP** siguiendo los pasos que se van indicando.
 {:start="2"}
 
 3. Dentro de Windows XP realiza las siguientes acciones. **Pista** muchas se pueden hacer desde el Panel de Control:
@@ -142,19 +154,35 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
    - **Memoria RAM (Hardware):** 8192 MB (8 GB)
    - **Disco duro virtual (Hard Disk):** 80 GB
 
-2. Instala Windows 11 en la máquina virtual.
-   - Durante la instalación, selecciona **idioma español (España)**.  
-   - Crea un **usuario** con tu nombre y apellidos.  
-   - Configura una contraseña sencilla para no olvidarla (opcional).  
+2. **Instala Windows 11 en la máquina virtual**. Sigue los pasos de la instalación. Deberás tener en cuenta lo siguiente:
+
+> Llegará un punto de la instalación donde **se te pedirá que inicies sesión** con una cuenta de Microsoft/Outlook o bien que crees una nueva cuenta (NOTA: la cuenta de Outlook del instituto no te servirá). **IMPORTANTE**: NO debes iniciar sesión con una cuenta de Microsoft/Outlook ni crear una nueva cuenta.
+{: .alert-error}
+
+> **¿Qué hacer entonces?** Queremos que durante la instalación Windows 11 nos deje crear un usuario local sin necesidad de tener que iniciar sesión con una cuenta de correo, pero (_sin utilizar ningún truco_) no podemos hacerlo. **Utiliza ChatGPT** para que te ayude a crear un usuario local durante la instalación de Windows 11. **Pista**: tiene algo que ver con desactivar internet en la máquina virtual y hacer otro _hackeo_ adicional.
+{: .alert-success}
 
 3. Una vez instalado, realiza las siguientes acciones dentro de Windows 11:
-   - Cambia la **imagen de perfil** del usuario.
-   - Crea dentro de la carpeta **Documentos** un archivo llamado **Actividad 1.txt** con tu información personal (Nombre, Edad y Curso).  
+   - Crea dentro de la carpeta **Documentos** un archivo llamado **Actividad 1.txt** con tu información personal (Nombre, Edad y Curso).
+{:start="3"}
+
+> **NOTA**: Debe verse la extensión del archivo. Por defecto no aparece, así que deberás buscar en las opciones del sistema de archivos cómo **mostrar las Extensiones de nombre de archivo**
+{: .alert-warning}
+
    - Personaliza brevemente el escritorio (por ejemplo, cambiando el fondo de pantalla). 
 
 4. Haz una **captura de pantalla** en la que se vea:
-   - El menú Inicio con tu usuario.  
+{:start="4"}
+   - El menú Inicio con tu usuario.
+
+![Usuario local Windows 11](./capt_win11_vbox_2.png)
+{: .img .img-500}
+
    - El archivo **Actividad 1.txt** dentro de Documentos.  
+
+![Archivo .txt en Windows 11](./capt_win11_vbox_1.png)
+{: .img .img-500}
+
    - El escritorio con tu personalización.
 
 👉 Explora las nuevas aplicaciones que incluye Windows 11 (Bloc de notas, Fotos, Microsoft Store, etc.).
@@ -165,7 +193,7 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 Deberás subir en Aules:
 - **Captura/s de pantalla de Windows XP** (usuario, foto y archivo Actividad 1.txt).  
 - **Captura/s de pantalla de Linux Lite** (usuario y archivo Actividad 1.txt).  
-- **Captura/s de pantalla de Windows 11** (usuario, personalización y archivo Actividad 1.txt).
+- **Captura/s de pantalla de Windows 11** (usuario y archivo Actividad 1.txt).
 
 # Rúbrica – Actividad 1: Máquinas virtuales en VirtualBox
 
@@ -173,8 +201,6 @@ Deberás subir en Aules:
 |----------|-----------|------|------------|--------------|
 | **Configuración de las máquinas virtuales** (2 pts) | Configura correctamente las 3 máquinas virtuales con las características indicadas. | Configura correctamente 2 máquinas. | Configura solo 1 máquina de forma correcta. | No configura ninguna correctamente. |
 | **Instalación de sistemas operativos** (2 pts) | Instala y arranca sin problemas los 3 sistemas operativos (XP, Linux Lite y Windows 11). | Instala y arranca 2 sistemas de forma correcta. | Instala y arranca 1 sistema de forma correcta. | No consigue instalar ninguno correctamente. |
-| **Personalización de usuario e idioma** (2 pts) | Cambia idioma, crea usuario y cambia imagen de perfil en los 3 sistemas. | Realiza estos cambios en 2 sistemas. | Realiza estos cambios en 1 sistema. | No realiza cambios. |
+| **Personalización de usuario e idioma** (2 pts) | Cambia idioma, crea usuario, cambia imagen de perfil y realiza las configuraciones solicitadas en los 3 sistemas. | Realiza estos cambios en 2 sistemas. | Realiza estos cambios en 1 sistema. | No realiza cambios. |
 | **Archivo Actividad 1.txt** (2 pts) | Crea correctamente el archivo en los 3 sistemas, con todos los datos completos. | Crea el archivo en 2 sistemas con la información pedida. | Crea el archivo en 1 sistema o con datos incompletos. | No crea el archivo en ningún sistema. |
 | **Entrega** (2 pts) | Entrega la actividad dentro del plazo establecido. | Entrega con un ligero retraso (máx. 2 días). | Entrega con retraso moderado (hasta 1 semana). | Entrega muy tarde (más de 1 semana) o no entrega. |
-
-**Puntuación total: /10**
