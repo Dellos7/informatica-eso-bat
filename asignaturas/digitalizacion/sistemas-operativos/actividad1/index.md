@@ -194,6 +194,11 @@ Deberás subir en Aules:
 - **Captura/s de pantalla de Windows XP** (usuario, foto y archivo Actividad 1.txt).  
 - **Captura/s de pantalla de Linux Lite** (usuario y archivo Actividad 1.txt).  
 - **Captura/s de pantalla de Windows 11** (usuario y archivo Actividad 1.txt).
+- **Crear un documento** con LibreOffice Writer en Lliurex y **responde a las siguientes preguntas**:
+   1. ¿Qué diferencias aprecias entre los 3 sistemas operativos?
+   2. A nivel de hardware y recursos, ¿cuál de todos consume menos recursos? ¿Y cuál más?
+   3. Explica por qué crees que un sistema operativo consume más recursos y otro sistema consume menos recursos del ordenador.
+
 
 # Rúbrica – Actividad 1: Máquinas virtuales en VirtualBox
 
