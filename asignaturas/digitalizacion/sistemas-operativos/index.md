@@ -11,6 +11,9 @@ description: Sistemas Operativos
 
 ![Mapa mental Sistemas Operativos](./mapa_mental_sistemas_operativos.png)
 
+## Apuntes
+
+- [Apuntes Comandos Linux](./apuntes_comandos)
 
 ## Actividades
 

@@ -81,3 +81,7 @@ img{
 .img-500 > img{
   height: 500px;
 }
+
+strong.rojo{
+  color: red;
+}

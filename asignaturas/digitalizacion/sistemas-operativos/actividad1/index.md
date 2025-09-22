@@ -63,7 +63,8 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 2. Instala Windows XP en la máquina virtual.
 {:start="2"}
 
-3. Dentro de Windows XP realiza las siguientes acciones:
+3. Dentro de Windows XP realiza las siguientes acciones. **Pista** muchas se pueden hacer desde el Panel de Control:
+   - Cambia la **resolución de la pantalla** para que se vea más grande y con más espacio.
    - Cambia el idioma del sistema a **español**.  
    - Crea un **usuario** con tu nombre.  
    - Cambia la **imagen de perfil** de ese usuario.  
@@ -133,14 +134,6 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 ## Parte 3 – Máquina virtual con Windows 11
 
 1. Crea una nueva máquina virtual en VirtualBox con las siguientes características:
-   - **Nombre:** Windows 11  
-   - **Tipo:** Microsoft Windows  
-   - **Versión:** Windows 11 (64-bit)  
-   - **Memoria RAM:** 4096 MB (4 GB)  
-   - **Disco duro virtual:** 64 GB  
-   - **Procesadores:** 2 (si el equipo lo permite)  
-   - **Gráficos:** Activa *habilitar aceleración 3D* para mejorar el rendimiento.  
-
    - **Nombre:** Windows 11
    - **Imagen ISO**: el archivo **.iso** descargado de Windows 11
    - **Tipo:** Microsoft Windows
@@ -170,20 +163,18 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 
 ## Entrega
 Deberás subir en Aules:
-- **Captura de pantalla de Windows XP** (usuario, foto y archivo Actividad 1.txt).  
-- **Captura de pantalla de Linux Lite** (usuario y archivo Actividad 1.txt).  
-- **Captura de pantalla de Windows 11** (usuario, personalización y archivo Actividad 1.txt).
+- **Captura/s de pantalla de Windows XP** (usuario, foto y archivo Actividad 1.txt).  
+- **Captura/s de pantalla de Linux Lite** (usuario y archivo Actividad 1.txt).  
+- **Captura/s de pantalla de Windows 11** (usuario, personalización y archivo Actividad 1.txt).
 
 # Rúbrica – Actividad 1: Máquinas virtuales en VirtualBox
 
-| Criterio | Excelente (10) | Bien (7-9) | Suficiente (5-6) | Insuficiente (<5) | Puntos |
-|----------|----------------|------------|------------------|-------------------|--------|
-| **Configuración de las máquinas virtuales** | Configura correctamente las 3 máquinas virtuales con las características indicadas (RAM, disco, versión, etc.). | Configura correctamente 2 de las máquinas virtuales. | Configura solo 1 máquina virtual de forma correcta. | No configura ninguna máquina virtual o las configuraciones son incorrectas. | /10 |
-| **Instalación de sistemas operativos** | Instala y arranca sin problemas los 3 sistemas operativos (XP, Linux Lite y Windows 11). | Instala y arranca 2 sistemas operativos de forma correcta. | Instala y arranca 1 sistema operativo de forma correcta. | No consigue instalar ninguno correctamente. | /10 |
-| **Personalización de usuario e idioma** | Cambia idioma, crea usuario con nombre y apellidos, cambia imagen de perfil en todos los sistemas. | Realiza estos cambios en 2 de los sistemas. | Realiza estos cambios solo en 1 sistema. | No realiza cambios de usuario ni idioma. | /10 |
-| **Archivo Actividad 1.txt** | Crea correctamente el archivo en la ubicación pedida en los 3 sistemas, con todos los datos completos. | Crea el archivo en 2 sistemas con la información pedida. | Crea el archivo solo en 1 sistema o con datos incompletos. | No crea el archivo en ningún sistema. | /10 |
-| **Capturas de pantalla** | Entrega capturas claras de los 3 sistemas, mostrando exactamente lo que se pide (usuario, archivo, personalización, etc.). | Entrega capturas correctas de 2 sistemas. | Entrega capturas de solo 1 sistema o poco claras. | No entrega capturas o no cumplen los requisitos. | /10 |
-| **Uso de programas adicionales** | Prueba programas/juegos en XP y consigue instalar *Super Tux Kart* en Linux Lite. Explora y personaliza Windows 11. | Prueba al menos 2 de los apartados opcionales. | Prueba solo 1 apartado opcional. | No prueba ningún programa ni instalación opcional. | /5 |
-| **Autonomía y organización** | Trabaja de forma autónoma, organizada y demuestra iniciativa durante toda la actividad. | Trabaja de forma mayoritariamente autónoma, con pocas dudas. | Necesita ayuda frecuente para completar la actividad. | No muestra iniciativa ni logra avanzar en la tarea. | /5 |
+| Criterio | Excelente | Bien | Suficiente | Insuficiente |
+|----------|-----------|------|------------|--------------|
+| **Configuración de las máquinas virtuales** (2 pts) | Configura correctamente las 3 máquinas virtuales con las características indicadas. | Configura correctamente 2 máquinas. | Configura solo 1 máquina de forma correcta. | No configura ninguna correctamente. |
+| **Instalación de sistemas operativos** (2 pts) | Instala y arranca sin problemas los 3 sistemas operativos (XP, Linux Lite y Windows 11). | Instala y arranca 2 sistemas de forma correcta. | Instala y arranca 1 sistema de forma correcta. | No consigue instalar ninguno correctamente. |
+| **Personalización de usuario e idioma** (2 pts) | Cambia idioma, crea usuario y cambia imagen de perfil en los 3 sistemas. | Realiza estos cambios en 2 sistemas. | Realiza estos cambios en 1 sistema. | No realiza cambios. |
+| **Archivo Actividad 1.txt** (2 pts) | Crea correctamente el archivo en los 3 sistemas, con todos los datos completos. | Crea el archivo en 2 sistemas con la información pedida. | Crea el archivo en 1 sistema o con datos incompletos. | No crea el archivo en ningún sistema. |
+| **Entrega** (2 pts) | Entrega la actividad dentro del plazo establecido. | Entrega con un ligero retraso (máx. 2 días). | Entrega con retraso moderado (hasta 1 semana). | Entrega muy tarde (más de 1 semana) o no entrega. |
 
-**Puntuación total: /60 → Nota final sobre 10**  
+**Puntuación total: /10**
