@@ -169,7 +169,7 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 > **NOTA**: Debe verse la extensión del archivo. Por defecto no aparece, así que deberás buscar en las opciones del sistema de archivos cómo **mostrar las Extensiones de nombre de archivo**
 {: .alert-warning}
 
-   - Personaliza brevemente el escritorio (por ejemplo, cambiando el fondo de pantalla). 
+   - Instala alguna aplicación desde **Microsoft Store**
 
 4. Haz una **captura de pantalla** en la que se vea:
 {:start="4"}
@@ -183,7 +183,7 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 ![Archivo .txt en Windows 11](./capt_win11_vbox_1.png)
 {: .img .img-500}
 
-   - El escritorio con tu personalización.
+   - La aplicación instalada con Microsoft Store.
 
 👉 Explora las nuevas aplicaciones que incluye Windows 11 (Bloc de notas, Fotos, Microsoft Store, etc.).
 
