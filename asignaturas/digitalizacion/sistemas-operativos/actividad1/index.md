@@ -141,6 +141,8 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 ![SuperTux Kart](./captura_supertux.png)
 {: .img .img-400}
 
+   - Haz una **captura de pantalla** donde se vea el **juego instalado**.
+
 ---
 
 ## Parte 3 – Máquina virtual con Windows 11
@@ -191,9 +193,9 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 
 ## Entrega
 Deberás subir en Aules:
-- **Captura/s de pantalla de Windows XP** (usuario, foto y archivo Actividad 1.txt).  
-- **Captura/s de pantalla de Linux Lite** (usuario y archivo Actividad 1.txt).  
-- **Captura/s de pantalla de Windows 11** (usuario y archivo Actividad 1.txt).
+- **Captura/s de pantalla de Windows XP** (usuario, foto, archivo Actividad 1.txt y juegos Pinball, Buscaminas, Solitario...)
+- **Captura/s de pantalla de Linux Lite** (usuario y archivo Actividad 1.txt y juego SuperTuxKart).  
+- **Captura/s de pantalla de Windows 11** (usuario y archivo Actividad 1.txt y programa/aplicación instalada de Microsoft Store).
 - **Crear un documento** con LibreOffice Writer en Lliurex y **responde a las siguientes preguntas**:
    1. ¿Qué diferencias aprecias entre los 3 sistemas operativos?
    2. A nivel de hardware y recursos, ¿cuál de todos consume menos recursos? ¿Y cuál más?
