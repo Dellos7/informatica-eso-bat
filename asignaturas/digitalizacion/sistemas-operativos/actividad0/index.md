@@ -104,18 +104,19 @@ Deberás subir a la plataforma Aules:
 
 ---
 
-<!--
 
 ## Rúbrica – Actividad 0: Explorando el sistema de archivos en LliureX
 
-| Criterio | 4 puntos | Bien 3 puntos | 2 puntos | 1 punto | 0 puntos |
-|----------|---------------------|----------------|-----------------------|------------------------|
-| **Organización de carpetas** (3 pts) | Crea toda la estructura solicitada con total corrección y lógica. | Crea casi toda la estructura, con algún error menor. | Crea parte de la estructura, faltan algunas carpetas o nombres incorrectos. | No crea la estructura o la hace de forma incorrecta. |
-| **Tipos de archivos** (2 pts) | Descarga y organiza 5 o más archivos de diferentes tipos. | Descarga al menos 4 archivos de distintos tipos. | Descarga al menos 3 archivos. | Descarga menos de 3 archivos o no los organiza. |
-| **Documento extensiones.txt** (2 pts) | Archivo completo, con todos los programas identificados correctamente. | Archivo con la mayoría de programas identificados (1 error máximo). | Archivo incompleto o con varios errores. | No entrega el archivo o está muy incompleto. |
-| **Árbol de carpetas** (2 pts) | Esquema claro, ordenado, bien representado y guardado en formato correcto. | Esquema correcto aunque con algunos detalles mejorables. | Esquema básico, incompleto o poco claro. | No entrega esquema o es incorrecto. |
+| Criterio | 0 pts | 0.5 pts | 1 pt | 2 pts |
+|----------|-------|----------|------|-------|
+| **Organización de carpetas** (máx. 1 pt) | No crea la estructura o la hace de forma incorrecta. | Crea parte de la estructura, faltan varias carpetas o nombres incorrectos. | Crea toda la estructura solicitada con corrección parcial. | — |
+| **Tipos de archivos** (máx. 2 pts) | Descarga menos de 3 archivos o no los organiza. | Descarga al menos 3 archivos. | Descarga 4 archivos de distintos tipos. | Descarga y organiza 5 o más archivos de diferentes tipos. |
+| **Documento extensiones.txt** (máx. 1 pt) | No entrega el archivo o está muy incompleto. | Archivo incompleto o con varios errores. | Archivo correcto con los programas identificados. | — |
+| **Árbol de carpetas** (máx. 2 pts) | No entrega esquema o es incorrecto. | Esquema básico, incompleto o poco claro. | Esquema correcto, aunque con detalles mejorables. | Esquema claro, ordenado, bien representado y guardado en formato correcto. |
+| **MindMeister + ChatGPT** (máx. 2 pts) | No se registra o no entrega ninguna evidencia. | Se registra o genera archivo, pero no incluye las capturas requeridas. | Se registra, genera archivo y presenta alguna de las capturas. | Se registra correctamente, genera archivo importable en MindMeister y guarda capturas de conversación y esquema. |
+| **Entrega a tiempo** (máx. 2 pts) | Entrega más de 2 días tarde. | — | Entrega hasta 2 días tarde. | Entrega a tiempo. |
 
--->
+
 
 ## Criterio de evaluación relacionado
 
