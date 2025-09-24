@@ -104,7 +104,19 @@ Deberás subir a la plataforma Aules:
 
 ---
 
+<!--
+
+## Rúbrica – Actividad 0: Explorando el sistema de archivos en LliureX
+
+| Criterio | 4 puntos | Bien 3 puntos | 2 puntos | 1 punto | 0 puntos |
+|----------|---------------------|----------------|-----------------------|------------------------|
+| **Organización de carpetas** (3 pts) | Crea toda la estructura solicitada con total corrección y lógica. | Crea casi toda la estructura, con algún error menor. | Crea parte de la estructura, faltan algunas carpetas o nombres incorrectos. | No crea la estructura o la hace de forma incorrecta. |
+| **Tipos de archivos** (2 pts) | Descarga y organiza 5 o más archivos de diferentes tipos. | Descarga al menos 4 archivos de distintos tipos. | Descarga al menos 3 archivos. | Descarga menos de 3 archivos o no los organiza. |
+| **Documento extensiones.txt** (2 pts) | Archivo completo, con todos los programas identificados correctamente. | Archivo con la mayoría de programas identificados (1 error máximo). | Archivo incompleto o con varios errores. | No entrega el archivo o está muy incompleto. |
+| **Árbol de carpetas** (2 pts) | Esquema claro, ordenado, bien representado y guardado en formato correcto. | Esquema correcto aunque con algunos detalles mejorables. | Esquema básico, incompleto o poco claro. | No entrega esquema o es incorrecto. |
+
+-->
+
 ## Criterio de evaluación relacionado
 
 **CE2 – 2.2. Organizar y gestionar el entorno personal de aprendizaje mediante la integración de recursos digitales de manera autónoma.**
-

@@ -78,14 +78,3 @@ Realiza las siguientes tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}
 En esta tarea de **Aules** debes subir:  
 - **Captura de pantalla** del comando `history` mostrando todos los comandos y tu usuario.  
 - El archivo **actividad-3.zip** que hayas descargado con SCP desde el servidor. *(El profesor comprobará que dicho archivo existe y está creado en el servidor).*
-
-# Rúbrica – Actividad 0: Explorando el sistema de archivos en LliureX
-
-| Criterio | Excelente (3-4 pts) | Bien (2-3 pts) | Suficiente (1-2 pts) | Insuficiente (0-1 pts) |
-|----------|---------------------|----------------|-----------------------|------------------------|
-| **Organización de carpetas** (4 pts) | Crea toda la estructura solicitada con total corrección y lógica. | Crea casi toda la estructura, con algún error menor. | Crea parte de la estructura, faltan algunas carpetas o nombres incorrectos. | No crea la estructura o la hace de forma incorrecta. |
-| **Tipos de archivos** (2 pts) | Descarga y organiza 5 o más archivos de diferentes tipos. | Descarga al menos 4 archivos de distintos tipos. | Descarga al menos 3 archivos. | Descarga menos de 3 archivos o no los organiza. |
-| **Documento extensiones.txt** (2 pts) | Archivo completo, con todos los programas identificados correctamente. | Archivo con la mayoría de programas identificados (1 error máximo). | Archivo incompleto o con varios errores. | No entrega el archivo o está muy incompleto. |
-| **Árbol de carpetas** (2 pts) | Esquema claro, ordenado, bien representado y guardado en formato correcto. | Esquema correcto aunque con algunos detalles mejorables. | Esquema básico, incompleto o poco claro. | No entrega esquema o es incorrecto. |
-
-**Puntuación total: /10**
