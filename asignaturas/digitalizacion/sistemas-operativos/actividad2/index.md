@@ -19,10 +19,10 @@ Realiza las siguientes tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}
 
 - Dentro de tu **carpeta personal**, y dentro de **Documents/Tema 1**, crea una carpeta llamada **Actividad-2**.
 - Dentro de **Actividad-2** descarga el archivo comprimido del siguiente enlace:  
-  **dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/sistemas-operativos/actividad2/fotos_comida.zip**
+  **dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/sistemas-operativos/actividad2/fotos_comida.zip**{: .verde}
 - Descomprime el archivo para extraer todas las fotos que contiene.  
 - Partiendo desde **Actividad-2**, crea toda la estructura de carpetas que se aprecia en la imagen de arriba.  
-- **HAZ CAPTURA DE PANTALLA DE LOS COMANDOS QUE VAS EJECUTANDO**.  
+- **HAZ CAPTURA DE PANTALLA DE LOS COMANDOS QUE VAS EJECUTANDO**{: .rojo}.  
 - **Organiza las fotos** en las carpetas correspondientes (muévelas a su carpeta adecuada).  
 - Comprime la carpeta **Recetas** en un archivo llamado **recetas.zip** →  
   **ASEGÚRATE DE QUE el archivo `recetas.zip` CONTIENE TODAS LAS CARPETAS, SUBCARPETAS Y FOTOS ORGANIZADAS**.  
@@ -35,7 +35,7 @@ Realiza las siguientes tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}
 Sube en esta tarea de **Aules**:
 
 - El archivo comprimido resultante (**recetas.zip**).  
-- **Una captura de pantalla donde se vea cómo has ejecutado el comando `history` en la terminal.**  
+- **Las capturas de pantalla de los comandos que has ido ejecutando en la terminal.**  
   Se deben ver todos los comandos utilizados para hacer la actividad y, también, tu nombre de usuario.
 
 # Rúbrica – Actividad: Uso básico de la terminal en Linux (versión simplificada)
