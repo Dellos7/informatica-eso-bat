@@ -17,7 +17,7 @@ description: Tema 1
 Realiza las siguientes tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}:
 
 1. **Conéctate por SSH** al servidor de la clase (revisa los apuntes de SSH y SCP):  
-   - **IP del servidor**: `10.2.5.31`
+   - **IP del servidor**: `10.2.5.50`
    - **Usuario**: tu usuario de inicio de sesión en la clase  
    - **Contraseña**: tu contraseña de inicio de sesión en la clase  
 
@@ -69,7 +69,7 @@ Realiza las siguientes tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}
 9. **Descarga el archivo al ordenador local con SCP**:  
    - Copia `actividad-3.zip` desde el servidor a tu ordenador.  
    - **Recuerda**: en el comando `scp` deberás modificar tu **usuario real**, la **IP** del servidor y la **ruta local**.  
-   - Ejemplo orientativo de sintaxis: `scp usuario@10.2.5.31:/home/usuario/Actividad-3/actividad-3.zip /ruta/local/que/elijas/`
+   - Ejemplo orientativo de sintaxis: `scp usuario@10.2.5.50:/home/usuario/Actividad-3/actividad-3.zip /ruta/local/que/elijas/`
 
 ---
 
