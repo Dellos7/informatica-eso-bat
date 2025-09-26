@@ -1,3 +1,9 @@
+---
+layout: default
+title: Tema 1
+description: Ejercicios de Funciones y módulos
+---
+
 # Ejercicios de Funciones y módulos
 
 <ol>

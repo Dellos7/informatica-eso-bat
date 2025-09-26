@@ -32,12 +32,9 @@ description: Programación básica en Python
 - [Variables](./3-variables/apuntes)
     - [Ejercicios 3. Variables](./3-variables/ejercicios)
 
-<!--
+- [Funciones](./4-funciones/apuntes)
+    - [Ejercicios 4. Funciones](./4-funciones/ejercicios)
 
-- [Funciones](./4-funciones/apuntes.md)
-    - [Ejercicios 4. Funciones](./4-funciones/ejercicios.md)
-
--->
 
 <!--
     - [Ejercicios 3. Variables (no evaluable)](./3-variables/3-Ejercicios_de_Variables.pdf)
