@@ -19,7 +19,7 @@ Realiza las siguientes tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}
 1. **Conéctate por SSH** al servidor de la clase (revisa los apuntes de SSH y SCP):  
    - **IP del servidor**: `10.2.5.50`
    - **Usuario**: tu usuario de inicio de sesión en la clase  
-   - **Contraseña**: tu contraseña de inicio de sesión en la clase  
+   - **Contraseña**: tu contraseña de inicio de sesión en la clase
 
 2. Dentro del servidor, realiza lo siguiente:  
    - En tu carpeta personal, crea una carpeta llamada **Actividad-3**.  
@@ -55,15 +55,15 @@ Realiza las siguientes tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}
 3. **Modifica la estructura de Frutos secos**:  
    - Elimina los archivos dentro de **Frutas → Frutos secos → Sin cáscara**, pero no borres aún la carpeta.  
    - Elimina la carpeta **Sin cáscara**.  
-   - Copia las imágenes de **Con cáscara** a la carpeta **Frutos secos**.  
-   - Elimina las carpetas **Con cáscara** y **Sin cáscara**.  
-   - 👉 Si lo haces bien, todas las imágenes de frutos secos quedarán en una sola carpeta (**Frutos secos**).
+   - Copia las imágenes de **Con cáscara** a la carpeta **Frutos secos**.
+   - Elimina la carpeta **Con cáscara**.
+   - 👉 Si lo haces bien, todas las imágenes de frutos secos con cáscara quedarán en una sola carpeta (**Frutos secos**).
 {:start="3"}
 
 - **HAZ CAPTURA DE PANTALLA DE LOS COMANDOS QUE VAS EJECUTANDO**{: .rojo}.
 
 4. **Crea archivos de texto en cada carpeta final**:  
-   - Para cada carpeta final (`alto_contenido_en_grasa`, `bajo_contenido_en_grasa`, `frutos_secos`, `crecen_debajo_de_la_tierra`, `crecen_encima_de_la_tierra`), crea un archivo de texto con el mismo nombre (usando guiones bajos).  
+   - Para cada carpeta final (`alto_contenido_en_grasa`, `bajo_contenido_en_grasa`, `frutos_secos`, `crecen_debajo_de_la_tierra`, `crecen_encima_de_la_tierra`), crea un archivo de texto con el mismo nombre (usando guiones bajos).
    - Dentro escribe los nombres de las frutas o verduras que contiene.  
    - Ejemplo: en `alto_contenido_en_grasa.txt` deben aparecer *Aguacate*, *Coco* y *Olivas*.
 {:start="4"}

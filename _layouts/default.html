@@ -11,6 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/custom.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/breadcrumbs.css?v=' | append: site.github.build_revision | relative_url }}">
     {% include head-custom.html %}
     <script>
       window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
@@ -43,6 +44,7 @@
     </header>
 
     <main id="content" class="main-content" role="main">
+      {% include breadcrumbs.html %}
       {{ content }}
 
       <footer class="site-footer">

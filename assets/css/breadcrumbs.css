@@ -1,0 +1,30 @@
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.breadcrumbs li + li::before {
+  content: "›";
+  display: inline-block;
+  margin: 0 .5rem;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+}
+
+.breadcrumbs [aria-current="page"] {
+  font-weight: 600;
+}

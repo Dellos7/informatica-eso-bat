@@ -1,0 +1,86 @@
+{% comment %}
+  breadcrumbs.html — Migas de pan horizontales (compatible con GitHub Pages)
+  Uso:
+    {% include breadcrumbs.html %}
+    {% include breadcrumbs.html root_label="Inicio" %}
+    {% include breadcrumbs.html root_url="/" %}
+    {% include breadcrumbs.html ignore="docs|blog" %}  (omite segmentos concretos)
+
+  Notas:
+  - Busca páginas por URL en las variantes: /ruta/, /ruta.html, /ruta/index.html
+  - Si no encuentra coincidencia, muestra el slug "humanizado"
+  - Requiere CSS externo para el estilo (lista horizontal con separadores)
+{% endcomment %}
+
+{% assign root_label = include.root_label | default: 'Inicio' %}
+{% assign root_url   = include.root_url   | default: '/' %}
+{% assign ignore_str = include.ignore     | default: '' %}
+{% assign ignore     = ignore_str | split:'|' %}
+
+{%- comment -%} Obtener segmentos limpios de la URL actual {%- endcomment -%}
+{% assign raw = page.url
+  | replace: 'index.html',''
+  | replace: '//','/' 
+  | split: '/' %}
+
+{% assign crumbs = "" | split: "" %}
+{% for seg in raw %}
+  {% unless seg == "" %}
+    {% assign crumbs = crumbs | push: seg %}
+  {% endunless %}
+{% endfor %}
+
+<nav class="breadcrumbs" aria-label="migas de pan">
+  <ol>
+    <li><a href="{{ root_url | relative_url }}">{{ root_label }}</a></li>
+
+    {% assign path = "" %}
+    {% for c in crumbs %}
+      {%- comment -%} Omitir segmentos indicados en include.ignore {%- endcomment -%}
+      {% if ignore_str != '' and ignore contains c %}
+        {% assign path = path | append: '/' | append: c %}
+        {% continue %}
+      {% endif %}
+
+      {% assign path = path | append: '/' | append: c %}
+
+      {%- comment -%} Candidatos de URL a probar {%- endcomment -%}
+      {% assign candidate_dir   = path | append: '/' %}
+      {% assign candidate_html  = path | append: '.html' %}
+      {% assign candidate_index = path | append: '/index.html' %}
+
+      {%- comment -%} Buscar coincidencias en site.html_pages y site.pages {%- endcomment -%}
+      {% assign pages_match = site.html_pages | where: "url", candidate_dir %}
+      {% if pages_match == empty %}
+        {% assign pages_match = site.html_pages | where: "url", candidate_html %}
+      {% endif %}
+      {% if pages_match == empty %}
+        {% assign pages_match = site.html_pages | where: "url", candidate_index %}
+      {% endif %}
+      {% if pages_match == empty %}
+        {% assign pages_match = site.pages | where: "url", candidate_dir %}
+      {% endif %}
+      {% if pages_match == empty %}
+        {% assign pages_match = site.pages | where: "url", candidate_html %}
+      {% endif %}
+      {% if pages_match == empty %}
+        {% assign pages_match = site.pages | where: "url", candidate_index %}
+      {% endif %}
+
+      {%- comment -%} Título legible {%- endcomment -%}
+      {% if pages_match != empty and pages_match.first.title %}
+        {% assign crumb_title = pages_match.first.title %}
+      {% else %}
+        {% assign crumb_title = c | replace:'-',' ' | replace:'.html','' | capitalize %}
+      {% endif %}
+
+      {% if forloop.last %}
+        <li aria-current="page">{{ crumb_title }}</li>
+      {% else %}
+        {%- comment -%} Enlaces intermedios: preferir candidate_dir para URLs bonitas {%- endcomment -%}
+        {% assign href = candidate_dir %}
+        <li><a href="{{ href | relative_url }}">{{ crumb_title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</nav>

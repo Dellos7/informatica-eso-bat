@@ -4,13 +4,16 @@ title: Apuntes Comandos Linux
 description: Tema 1
 ---
 
-# Tabla de contenidos
+# Apuntes Comandos Linux
+{: .no_toc }
+
+## Tabla de contenidos
 {: .no_toc }
 
 * TOC
 {:toc}
 
-# Funcionamiento básico de la terminal de comandos
+## Funcionamiento básico de la terminal de comandos
 
 > La terminal de comandos de Linux es un programa llamado `Konsole` que permite ejecutar comandos en el sistema operativo. Cada **comando** es una instrucción que se le da al sistema para que realice una acción determinada, como por ejemplo: crear una carpeta, crear un archivo, entrar dentro de una carpeta, mostrar el contenido de una carpeta, etc.
 {: .alert-info}
@@ -47,7 +50,7 @@ También podemos **movernos por el sistema de archivos**, entrar en una carpeta,
 **Ejemplo: entrar en una carpeta y mostrar su contenido**
 {: .centrado}
 
-# Lista de comandos básicos con ejemplos
+## Lista de comandos básicos con ejemplos
 
 | **Comando** | **Descripción** | **Ejemplo de uso** |
 |-------------|-----------------|--------------------|

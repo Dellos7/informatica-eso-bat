@@ -14,6 +14,7 @@ description: Sistemas Operativos
 ## Apuntes
 
 - [Apuntes Comandos Linux](./apuntes_comandos)
+- [Apuntes SSH y SCP](./apuntes_ssh_scp)
 - [Archivo fotos_animales.zip para el ejemplo](./fotos_animales.zip)
 
 ## Actividades
