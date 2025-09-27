@@ -44,7 +44,7 @@ Sube en esta tarea de **Aules**:
 - **Las capturas de pantalla de los comandos que has ido ejecutando en la terminal.**  
   Se deben ver todos los comandos utilizados para hacer la actividad y, también, tu nombre de usuario.
 
-## Rúbrica – Actividad: Uso básico de la terminal en Linux (versión simplificada)
+## Rúbrica – Actividad: Uso básico de la terminal en Linux
 
 | Criterio | 0 pts | 0.5 pts | 1 pt | 2 pts | 4 pts |
 |----------|-------|---------|------|-------|-------|

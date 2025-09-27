@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Actividad 3 – Uso básico de la terminal en Linux (bash)
+title: Actividad 3 – Uso de SSH y SCP en Linux
 description: Tema 1
 ---
 
@@ -93,3 +93,11 @@ Realiza las siguientes tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}
 En esta tarea de **Aules** debes subir:  
 - **Captura de pantalla** del comando `history` mostrando todos los comandos y tu usuario.  
 - El archivo **actividad-3.zip** que hayas descargado con SCP desde el servidor. *(El profesor comprobará que dicho archivo existe y está creado en el servidor).*
+
+## Rúbrica – Actividad 3 – Uso de SSH y SCP en Linux
+
+| Criterio | 0 pts | 0.5 pts | 1 pt | 2 pts | 4 pts |
+|----------|-------|---------|------|-------|-------|
+| **Ejecución en terminal (SSH y comandos)** (4 pts) | No utiliza la terminal o no se conecta por SSH. | – | Ejecuta algunos comandos en terminal pero de forma incorrecta (ej. en local en lugar de dentro del servidor SSH). | Se conecta al servidor por SSH y la mayoría de comandos los ejecuta en el servidor, aunque hay algún error menor o confusión con comandos en local. | Se conecta correctamente por SSH y ejecuta todos los comandos en el servidor remoto de forma adecuada (clasificación, compresión, etc.). |
+| **Resultado final** (4 pts) | No entrega un resultado válido. | – | El resultado es incompleto (faltan carpetas, archivos de texto o las imágenes no están bien clasificadas). | El resultado final tiene pequeños fallos (alguna carpeta mal, algún archivo mal nombrado, o el `.zip` incompleto). | La estructura de carpetas es correcta, las imágenes están bien organizadas, los archivos de texto creados en cada carpeta final son correctos y el archivo `actividad-3.zip` es completo. |
+| **Entrega** (2 pts) | Entrega muy tarde, incompleta o no entrega. | Entrega con retraso moderado (hasta 1 semana). | Entrega con un ligero retraso (máx. 2 días). | Entrega en plazo el archivo `actividad-3.zip` descargado con SCP y la captura de `history` es clara y completa (se ven todos los comandos y el usuario en el servidor). | – |
