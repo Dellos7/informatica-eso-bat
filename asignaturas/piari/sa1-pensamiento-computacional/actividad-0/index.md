@@ -27,6 +27,15 @@ Asegúrate de que tu documento **se vea más o menos así** (con las respuestas)
 
 ![Resultado Act. 0](./preguntas_act0.png)
 
+## 📊 Rúbrica – Actividad 0: Conceptos básicos (máx. 10 puntos)
+
+| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 4 puntos | 5 puntos |
+|----------|----------|----------|----------|----------|----------|----------|
+| **Respuestas a las preguntas** (máx. 5) | No responde o las respuestas son copiadas literalmente de internet o ChatGPT. | Responde de forma muy incompleta o incorrecta. | Responde de forma comprensible pero con errores conceptuales relevantes. | Responde correctamente a la mayoría de las preguntas, con explicaciones claras. | Responde a casi todas las preguntas con corrección y ejemplos adecuados. | Responde a todas las preguntas con claridad, corrección y ejemplos pertinentes y bien desarrollados. |
+| **Claridad y presentación del documento** (máx. 3) | Documento desordenado o con formato incorrecto. | Documento con muchos problemas de formato o difícil de leer. | Documento aceptable pero con errores de formato o faltas frecuentes. | Documento bien estructurado, claro, sin faltas y siguiendo las indicaciones dadas. | – | – |
+| **Entrega en plazo** (máx. 2) | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – | – | – |
+
+
 ## Criterios de evaluación relacionados
 
 **CE2 - 2.1.** Analizar problemas elementales significativos para el alumnado, mediante la abstracción y modelización de la realidad.

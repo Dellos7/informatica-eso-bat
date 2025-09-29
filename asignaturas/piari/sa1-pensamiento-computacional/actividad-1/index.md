@@ -73,9 +73,10 @@ Los científicos están buscando la manera de **entrenar de nuevo al ratón** pa
 | Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 4 puntos |
 |----------|----------|----------|----------|----------|----------|
 | **Representación del recorrido (Tarea 1)** | No representa el recorrido o es incoherente. | Representación incompleta o con errores relevantes. | Representación clara y correcta del recorrido del ratón. | – | – |
-| **Representación de las instrucciones (Tarea 2)** | No representa las instrucciones o son incoherentes. | Representación incompleta o con errores relevantes. | Representación clara y correcta de las instrucciones. | – | – |
 | **Aplicación del pensamiento computacional (Tarea 2 – Reto)** | No aplica pensamiento computacional o el algoritmo es incoherente. | Aplica pensamiento computacional de forma muy básica, con errores relevantes. | Aplica pensamiento computacional con un algoritmo comprensible aunque mejorable. | Aplica pensamiento computacional de forma clara y eficaz, resolviendo el reto con corrección. | Aplica pensamiento computacional de forma clara, eficaz y optimizada, resolviendo el reto sin errores. |
+| **Entrega de documentos y formato adecuado** | No entrega los documentos o están en un formato incorrecto. | Entrega los documentos incompletos o con formato poco adecuado. | Entrega los documentos completos y en el formato indicado. | – | – |
 | **Entrega en plazo** | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – | – |
+
 
 
 ## 📌 Criterios de evaluación asociados a la Actividad 1

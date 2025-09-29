@@ -67,12 +67,15 @@ Las instrucciones que puedes dar al robot son las siguientes:
 
 # 📊 Rúbrica – Actividad 2: Camino a casa (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 4 puntos |
-|----------|----------|----------|----------|----------|----------|
-| **Precisión del algoritmo (Tarea 1 y 2)** | Algoritmo incorrecto o incoherente. | Algoritmo muy incompleto, apenas avanza. | Algoritmo incompleto o con varios errores. | Algoritmo casi correcto, con 1 error menor. | Algoritmo correcto en todas las tareas. |
-| **Claridad y orden en la presentación** | Instrucciones poco comprensibles o mal planteadas. | Instrucciones comprensibles pero con desorden/confusión. | Instrucciones claras, bien secuenciadas y fáciles de seguir. | – | – |
-| **Creatividad y eficiencia (Tarea 3)** | Laberinto incorrecto o sin solución. | Laberinto funcional pero sencillo/poco optimizado. | Laberinto original y algoritmo eficiente. | – | – |
-| **Entrega en plazo** | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – | – |
+| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
+|----------|----------|----------|----------|----------|
+| **Precisión del algoritmo (Tarea 1)** | Algoritmo incorrecto o incoherente. | Algoritmo correcto en la tarea. | – | – |
+| **Precisión del algoritmo (Tarea 2)** | Algoritmo incorrecto o incoherente. | Algoritmo incompleto o con varios errores. | Algoritmo casi correcto, con 1 error menor. | Algoritmo correcto en la tarea. |
+| **Claridad y orden en la presentación** | Instrucciones poco comprensibles o mal planteadas. | Instrucciones comprensibles pero con desorden/confusión. | Instrucciones claras, bien secuenciadas y fáciles de seguir. | – |
+| **Creatividad y eficiencia (Tarea 3)** | Laberinto incorrecto o sin solución. | Laberinto funcional pero sencillo/poco optimizado. | Laberinto original y algoritmo eficiente. | – |
+| **Entrega en plazo** | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – |
+
+
 
 ## 📌 Criterios de evaluación asociados a la Actividad 2
 
