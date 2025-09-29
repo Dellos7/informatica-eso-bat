@@ -69,7 +69,7 @@ Debes enviarme **una captura de pantalla de cada nivel**, donde se vea cómo lo 
 > Cada archivo de imagen de las capturas de pantalla debe llamarse como el nivel (por ejemplo: `1a.png`)
 {: .alert-warning}
 
-# 📊 Rúbrica – Actividad 3: Entrenando hormigas (máx. 10 puntos)
+## 📊 Rúbrica – Actividad 3: Entrenando hormigas (máx. 10 puntos)
 
 | Criterio | 0 puntos | 1 punto | 2 puntos | 4 puntos | 7 puntos |
 |----------|----------|----------|----------|----------|----------|
