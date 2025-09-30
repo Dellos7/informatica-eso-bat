@@ -21,3 +21,4 @@ description: Sistemas Operativos
 
 - [Actividad 0](./actividad0/)
 - [Actividad 1](./actividad1/)
+- [Actividad 2](./actividad2/)
