@@ -74,6 +74,13 @@ Una vez que sabemos cómo abrir el explorador de ficheros Dolphin, vamos a estud
 
 **6. La barra [Estado]:** Muestra información “variada”, dependiendo de la acción que esté realizando el usuario: espacio libre en el dispositivo de almacenamiento,...
 
+## Actividad:
+
+[🫱 Actividad](https://es.educaplay.com/juego/13429004-entorno_de_trabajo_de_dolphin.html)
+
+> **EJERCICIO 22:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
+{: .alert-success}
+
 ## La carpeta personal
 
 La **Carpeta Personal o Carpeta del Usuario**, es la carpeta que **se abre por defecto al iniciar el Explorador** de ficheros Dolphin. Las **carpetas más importantes** que muestra son las siguientes:
@@ -112,13 +119,6 @@ Para ver el contenido de las carpetas es necesario seguir “explorando”. Son 
 
 **Acceso al contenido de la carpeta 'Descargas' haciendo click en esta carpeta (circulo rojo) del Panel lateral**
 {: .centrado}
-
-## Actividad:
-
-[🫱 Actividad](https://es.educaplay.com/juego/13429004-entorno_de_trabajo_de_dolphin.html)
-
-> **EJERCICIO 22:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
-{: .alert-success}
 
 ## La ruta de acceso
 
