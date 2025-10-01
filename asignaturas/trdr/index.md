@@ -6,7 +6,8 @@ description: Taller de Relaciones Digitales Responsables (1º ESO)
 
 # Taller de Relaciones Digitales Responsables
 
-**⚠️DEBES TRAER UNOS AURICULARES DE CABLE A CLASE, NECESARIOS PARA HACER ALGUNOS EJERCICIOS⚠️**
+> **⚠️DEBES TRAER UNOS AURICULARES DE CABLE A CLASE, NECESARIOS PARA HACER ALGUNOS EJERCICIOS⚠️**
+{: .alert-warning}
 
 [⏯️ Normas Aula Informática](../../archivos/Normas-aula-informática.pdf)
 
