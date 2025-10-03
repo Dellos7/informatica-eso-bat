@@ -71,8 +71,8 @@ Debes enviarme **una captura de pantalla de cada nivel**, donde se vea cómo lo 
 
 ## 📊 Rúbrica – Actividad 3: Entrenando hormigas (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 4 puntos | 7 puntos |
+| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 3.5 puntos | 5.5 puntos | 7 puntos |
 |----------|----------|----------|----------|----------|----------|
-| **Resolución de niveles (1a, 1b, 1c)** | No supera ningún nivel. |  | Supera 1 nivel. | Supera 2 niveles. | Supera los 3 niveles. |
-| **Presentación de capturas** | Sin capturas o capturas ilegibles. | Capturas correctas y legibles, con los archivos renombrados **1a.png**, **1b.png**, **1c.png**. |  |  |  |
-| **Entrega en plazo** | No entrega o lo hace muy tarde. | Entrega con pequeño retraso. | Entrega en plazo. |  |  |
+| **Resolución de niveles (1a, 1b, 1c)** | No supera ningún nivel. |  | Supera 1 nivel. | Supera 2 niveles pero sobran instrucciones que no son necesarias. | Supera 2 niveles. | Supera los 3 niveles pero sobran instrucciones que no son necesarias. | Supera los 3 niveles. |
+| **Presentación de capturas** | Sin capturas o capturas ilegibles. | Capturas correctas y legibles, con los archivos renombrados **1a.png**, **1b.png**, **1c.png**. |  |  |  | | |
+| **Entrega en plazo** | No entrega o lo hace muy tarde. | Entrega con pequeño retraso. | Entrega en plazo. |  |  | | |
