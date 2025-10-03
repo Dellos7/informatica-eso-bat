@@ -47,7 +47,7 @@ description: Tema 1
 10. **sistema.py**  
     Importa el módulo [sys](https://docs.python.org/3/library/sys.html) y muestra la versión de Python que estás utilizando y el sistema operativo en el que se ejecuta el programa. **Pista**: utiliza las constantes `version` y `platform`. Ejemplo: `La versión de Python es 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)] y el sistema operativo es: win32`
 
-11. **turtle – triángulo y figuras**  
+11. **tortuga.py - triángulo y figuras**  
     Utiliza el módulo [turtle](https://docs.python.org/3/library/turtle.html#turtle-tutorial) para dibujar un triángulo equilátero de color azul. Para ello, acaba el siguiente programa:
 
 ```python
@@ -56,6 +56,7 @@ color("blue")
 forward(100)
 left(120)
 forward(100)
+exitonclick()
 ```
 
    Prueba ahora el siguiente código:
@@ -67,6 +68,7 @@ for steps in range(100):
       color(c)
       forward(steps)
       right(30)
+exitonclick()
 ```
 
    Después, modifica el código para dibujar figuras diferentes cambiando colores, ángulos y repeticiones.
