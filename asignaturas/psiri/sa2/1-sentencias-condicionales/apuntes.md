@@ -1,12 +1,10 @@
 ---
 layout: default
-title: Tema 2
-description: Sentencias condicionales y repetitivas en Python
+title: Sentencias condicionales
+description: Tema 2
 ---
 
-# Tema 2. Sentencias condicionales y repetitivas en Python
-
-## 1. Sentencias condicionales
+# 1. Sentencias condicionales
 
 - [Comentarios](https://aprendepython.es/core/controlflow/conditionals/#comments)
 - [Sentencias condicionales](https://aprendepython.es/core/controlflow/conditionals/)
