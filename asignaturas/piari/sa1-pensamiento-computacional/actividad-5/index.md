@@ -35,6 +35,7 @@ Asegúrate de guardar el código de un ejercicio en el ordenador (sobre todo si 
 > Cada vez que superes uno de los mundos debes:  
 - **Hacer una captura de pantalla**.  
 - **Anotar tu nombre en la misma**. 
+- **Guardar el código del mundo desde el menú Código --> Guardar**
 {: .alert-warning}
 
 ### 🔴 Karel_1
@@ -51,5 +52,5 @@ No es necesario volver a la posición inicial.
 
 ## 📸 Entrega 
 
-> Sube las capturas de cada mundo en Aules. Debes llamar al archivo de imagen como el mundo, por ejemplo: **mundo_1.png**
+> Debes subir a Aules las **capturas de cada mundo resuelto** y el **archivo .txt** (código) de cada mundo. Debes llamar a los archivos como el mundo, por ejemplo: **karel_1.png** y **karel_1.txt**
 {: .alert-info}
