@@ -4,6 +4,9 @@ title: Ejercicios de Sentencias Iterativas For
 description: Tema 2
 ---
 
+> POR REVISAR
+{: .alert-error}
+
 # Ejercicios de sentencias iterativas for
 
 A continuación tienes una serie de ejercicios para practicar el uso de bucles `for` en Python. En los enunciados se incluyen ejemplos cuando procede.
