@@ -1,9 +1,8 @@
 ---
 layout: default
-title: TRDR
-description: Taller de Relaciones Digitales Responsables (1º ESO)
+title: Actividad 1. Sistemas operativos comunes y aplicaciones
+description: Tema 1
 ---
-
 
 # Actividad 1: Sistemas operativos comunes y aplicaciones
 

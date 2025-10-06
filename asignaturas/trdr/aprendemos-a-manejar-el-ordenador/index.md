@@ -27,6 +27,20 @@ description: Aprendemos a manejar el ordenador
 
 ### 🛠️ Ejercicios
 
-- [Ejercicios Actividad 1](/{{ site.github.repository_name }}/archivos/Ejercicios%20Actividad%201%20-%20SA1.odt).
+- [Ejercicios Actividad 1 - Tema 1](/{{ site.github.repository_name }}/archivos/Ejercicios%20Actividad%201%20-%20SA1.odt).
 
 ⏯️ Descarga el documento de ejercicios y colócalo dentro de la carpeta "Documentos" del ordenador.
+
+<!--
+### 🧛 Avatar para Aules
+
+- Crea un avatar que se parezca a ti utilizando la página [https://www.creartuavatar.com/](https://www.creartuavatar.com/)
+- Asegúrate de descargar el avatar en formato imagen a tu ordenador.
+- Después, actualiza tu perfil de Aules subiendo el avatar creado y descargado en tu ordenador.
+-->
+
+### Entregas
+
+> Deberás entregar en aules:
+- Los ejercicios de la Actividad 1 acabados
+- El avatar
