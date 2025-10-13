@@ -38,13 +38,13 @@ Asegúrate de guardar el código de un ejercicio en el ordenador (sobre todo si 
 - **Guardar el código del mundo desde el menú Código --> Guardar**
 {: .alert-warning}
 
-### 🔴 Karel_1
+### 🔴 Karel_1 (<a href="Karel_1.in" download>Karel_1.in</a>)
 Debes recoger el zumbador situado en la **columna 9 y fila 3** y volver a la posición inicial.  
 
-### 🔴 Karel_2
+### 🔴 Karel_2 (<a href="Karel_2.in" download>Karel_2.in</a>)
 Debes recoger los **5 zumbadores** del mundo y volver a la posición inicial.  
 
-### 🔴 Karel_3
+### 🔴 Karel_3 (<a href="Karel_3.in" download>Karel_3.in</a>)
 Debes recoger los **7 zumbadores** del mundo, **teniendo en cuenta que hay paredes que no puedes atravesar**.  
 No es necesario volver a la posición inicial.  
 
