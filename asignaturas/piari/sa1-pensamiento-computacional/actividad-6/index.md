@@ -80,7 +80,7 @@ Recoge todos los zumbadores del **laberinto (186 zumbadores)** y déjalos en la 
 Aquí tienes un vídeo de cómo tiene que quedar resuelto:  
 
 <video controls width="400">
-  <source src="{{ '/archivos/karel_8.mov' | relative_url }}" type="video/mov">
+  <source src="{{ '/archivos/karel_8.mp4' | relative_url }}" type="video/mp4">
   Tu navegador no soporta video.
 </video>
 
