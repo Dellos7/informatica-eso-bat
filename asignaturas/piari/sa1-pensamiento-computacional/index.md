@@ -25,3 +25,4 @@ Ampliado:
 - [Actividad 3](./actividad-3).
 - [Actividad 4](./actividad-4).
 - [Actividad 5](./actividad-5).
+- [Actividad 6](./actividad-6).
