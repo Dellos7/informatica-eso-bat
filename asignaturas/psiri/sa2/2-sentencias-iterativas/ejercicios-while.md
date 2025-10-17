@@ -4,14 +4,9 @@ title: Ejercicios de Sentencias Iterativas While
 description: Tema 2
 ---
 
-> POR REVISAR
-{: .alert-error}
-
 # Ejercicios de sentencias iterativas while
 
 A continuación tienes una serie de ejercicios para practicar el uso de bucles `while` en Python. En los enunciados se indican ejemplos de ejecución cuando procede.
-
-> **Importante:** todos los programas deben pedirse y mostrarse por consola. Nombra cada archivo exactamente como se indica.
 
 ---
 
@@ -50,7 +45,7 @@ _Recuerda:_ un número es par si es divisible entre 2.
 ## Ejercicio 4 — `divisores.py`
 
 Muestra **todos los divisores** de un número introducido por el usuario.  
-Un **divisor** de *n* es todo número que divide a *n* dejando **resto 0**.
+Un **divisor** de *n* es todo número que divide a *n* dejando el **resto 0**.
 
 **Ejemplo**  
 ```
@@ -132,7 +127,7 @@ Entre el 5 y el 50 hay 23 números pares.
 
 Crea un **juego** que rete al usuario a adivinar un número entre **10 y 30**.  
 El programa:
-- Genera un **número aleatorio** en ese rango (usa `from random import randint` y `randint(10, 30)`).
+- Genera un **número aleatorio** en ese rango (módulo [random](https://docs.python.org/3/library/random.html)).
 - Pide intentos al usuario y muestra pistas: **"¡Te has pasado!"** o **"¡Te has quedado corto!"** hasta acertar.
 
 **Ejemplo**  
@@ -189,7 +184,7 @@ El máximo es: 20
 
 ## Ejercicio 14 — `primo.py`
 
-Pide un número y dice si es **primo** o no.  
+Pide un número e indica si es **primo** o no.  
 Un **número primo** es un entero mayor que 1 que tiene exactamente **dos divisores positivos**: 1 y él mismo.
 
 ---
@@ -219,7 +214,7 @@ Dime un número: 0
 Convierte un **número decimal** a **binario** usando un **bucle** (sin funciones de conversión directas).  
 Sigue el algoritmo clásico de **divisiones sucesivas entre 2**, acumulando los restos al revés.
 
-![Algoritmo decimal a binario](https://aules.edu.gva.es/batxillerat/draftfile.php/1418330/user/draft/897256728/binario.png)
+![Algoritmo decimal a binario](./decimal_binario.png)
 
 ---
 
@@ -231,10 +226,19 @@ Modifica el programa anterior para que **repita** conversiones hasta que el usua
 
 ## Ejercicio 18 — `hexadecimal.py`
 
-Convierte un **número decimal** a **hexadecimal** usando **divisiones sucesivas entre 16**.  
-Cuando el resto sea **10…15**, sustitúyelo por las letras **A–F**.
+Convierte un **número decimal** a **hexadecimal** usando **divisiones sucesivas entre 16**. Se sigue el mismo algoritmo que para convertirlo a binario, solo que la división no es entre 2, si no entre 16 (ya que el 2 y el 16 son las bases a las que queremos convertir dicho número).
 
 ![Conversión decimal a hexadecimal](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJxY_5OSBqy0BDQ5CIl8QMoeN2LbKxg5vFc32_KK6pfQIATtO0tkN9zeY60aonyRh9mF8&usqp=CAU)
+
+Lo que se debe tener aquí en cuenta es que, si el resto da un número superior a 9 (esto puede ser 10, 11, 12, 13, 14 o 15), este número se sustituye por una letra:
+10 --> A
+11 --> B
+12 --> C
+13 --> D
+14 --> E
+15 --> F
+
+Por tanto, el número anterior sería --> 1 11 5 8 --> 1B58
 
 **Ejemplos**  
 ```
@@ -278,6 +282,22 @@ Conversión: FF
 ## Ejercicio 20 — `caracteres_cadena.py`
 
 Muestra, **uno por línea**, cada carácter de una **cadena** introducida por el usuario.
+
+Para poder resolver el ejercicio, necesitamos saber cómo comprobar cada uno de los caracteres de una cadena. Las cadenas están compuestas por un cierto número de caracteres. Por ejemplo, la cadena "Python" tiene 6 caracteres. Si queremos "acceder" al primer carácter de esta cadena, tendríamos que hacerlo así:
+
+```python
+cadena = "Python"
+primeraLetra = cadena[0]
+```
+
+De esta manera, en la variable primeraLetra estaremos guardando la letra "P", ya que es la primera letra de la cadena. Si quisiéramos guardar la segunda y la tercera letra, sería así:
+
+```python
+segundaLetra = cadena[1]
+terceraLetra = cadena[2]
+```
+
+![Indexación cadenas](./indexacion_strings.png)
 
 **Ejemplos**  
 ```
@@ -380,7 +400,3 @@ ERROR: No tiene símbolos.
 Dime una contraseña: David94*
 LA CONTRASEÑA ES ROBUSTA.
 ```
-
----
-
-**¡Listo!** Guarda cada archivo con el nombre indicado y prueba tus programas desde la terminal.
