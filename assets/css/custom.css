@@ -89,3 +89,10 @@ strong.rojo{
 strong.verde{
   color: #159957;
 }
+
+/** Quitamos espacio blanco a izq. y der. del contenido principal **/
+@media screen and (min-width: 64em) {
+    .main-content {
+        padding: 2rem 3rem !important;
+    }
+}

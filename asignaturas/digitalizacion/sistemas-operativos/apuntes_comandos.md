@@ -69,9 +69,9 @@ También podemos **movernos por el sistema de archivos**, entrar en una carpeta,
 | `mv` | Mueve un archivo o directorio a otra localización. | `mv datos.txt Documentos/UD1` |
 | `rm` | Elimina un archivo. | `rm datos.txt` |
 | `rmdir` | Elimina un directorio vacío. | `rmdir Documentos/UD2` |
-| `wget` | Descarga un archivo de internet a través de su URL. | `wget https://davidlopezcastellote.com/1eso/que-es-dns.png` |
+| `wget` | Descarga un archivo de internet a través de su URL. | `wget davidlopezcastellote.com/1eso/que-es-dns.png` |
 | `unzip` | Descomprime un archivo `.zip`. | `unzip fotos.zip` |
 | `zip` | Comprime varios archivos en un único `.zip`. | `zip fotos.zip foto1.png foto2.jpg foto3.webp` |
-| `zip -r` | Comprime una carpeta con todas sus subcarpetas y archivos. | `zip -r fotos.zip Fotos` |
+| `zip -r` | Comprime una carpeta con todas sus subcarpetas y archivos. En el ejemplo, la carpeta es `Fotos` y el archivo comprimido resultante es `fotos.zip` | `zip -r fotos.zip Fotos` |
 | `ssh` | Permite conectarse a un servidor remoto para gestionarlo. | `ssh usuario@ip` |
 | `scp` | Copia archivos entre el ordenador local y un servidor. | `scp usuario@IP_servidor:/home/usuario/archivo /home/local/carpeta` |

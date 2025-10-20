@@ -15,6 +15,7 @@ description: Sistemas Operativos
 
 - [Apuntes Comandos Linux](./apuntes_comandos)
 - [Apuntes SSH y SCP](./apuntes_ssh_scp)
+- [Apuntes Scripts Linux](./apuntes_scripts)
 - [Archivo fotos_animales.zip para el ejemplo](./fotos_animales.zip) **dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/sistemas-operativos/fotos_animales.zip**{: .verde}
 
 ## Actividades

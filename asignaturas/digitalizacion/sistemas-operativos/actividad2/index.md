@@ -46,8 +46,8 @@ Sube en esta tarea de **Aules**:
 
 ## Rúbrica – Actividad: Uso básico de la terminal en Linux
 
-| Criterio | 0 pts | 0.5 pts | 1 pt | 2 pts | 4 pts |
-|----------|-------|---------|------|-------|-------|
-| **Ejecución en terminal** (4 pts) | No se usan comandos de terminal para la actividad. || Algunos pasos se hacen en terminal, otros con GUI. | La mayoría de pasos se hacen en terminal, con algún error menor. | Todos los pasos se realizan correctamente con comandos de terminal, sin errores. |
-| **Resultado final** (4 pts) | No entrega un resultado válido. || El resultado es incompleto (faltan varias partes). | El resultado final tiene pequeños fallos (falta algún archivo o carpeta). | La estructura de carpetas está bien hecha, las fotos bien organizadas y el archivo `recetas.zip` es correcto y completo. |
-| **Entrega** (2 pts) | Entrega muy tarde, incompleta o no entrega. | Entrega con retraso moderado (hasta 1 semana). | Entrega con un ligero retraso (máx. 2 días). | Entrega en plazo `recetas.zip` y las capturas de pantalla son claras y completas (se ven comandos y usuario). | – |
+| Criterio | 0 pts | 0.5 pts | 1 pt | 2 pts | 3 pts | 4 pts |
+|----------|-------|---------|------|-------|-------|-------|
+| **Ejecución en terminal** (4 pts) | No se usan comandos de terminal para la actividad o no se han entregado las capturas de pantalla. || Solo algunos pasos se hacen en terminal, o bien la mayoría de comandos son erróneos. | Se aprecian distintos comandos, pero faltan unos cuantos en las capturas de pantalla o hay bastantes errores. | La mayoría de pasos se hacen en terminal, pero hay algún error menor o falta algún comando que no se ve en las capturas. | Todos los pasos se realizan correctamente con comandos de terminal, sin errores. |
+| **Resultado final** (4 pts) | No entrega un resultado válido. || El resultado es incompleto (faltan bastantes partes). | El resultado final tiene fallos (faltan varios archivos y/o carpetas) | El resultado final tiene fallos menores y/o falta algún archivo. | La estructura de carpetas está bien hecha, las fotos bien organizadas y el archivo `recetas.zip` es correcto y completo. |
+| **Entrega** (2 pts) | Entrega muy tarde, incompleta o no entrega. | Entrega con retraso moderado (hasta 1 semana). | Entrega con un ligero retraso (máx. 2 días). | Entrega en plazo `recetas.zip` y las capturas de pantalla son claras y completas (se ven comandos y usuario). | – | - |
