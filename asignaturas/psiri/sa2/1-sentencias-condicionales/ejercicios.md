@@ -196,13 +196,26 @@ Realiza un programa que calcule el **desglose en billetes y monedas** de una can
 ## Ejercicio 21
 Haz un programa que convierta un **número decimal a binario**.
 
-**Algoritmo recordatorio**: divide el número decimal (p. ej., 81) entre 2 de forma **entera** hasta que el resultado sea **0**. El número binario se obtiene leyendo los **restos** de las divisiones **de abajo arriba**.  
+**Algoritmo**: divide el número decimal (p. ej., 81) entre 2 de forma **entera** hasta que el resultado sea **0**. El número binario se obtiene a partir de los **restos** de las divisiones (**de abajo arriba**).
+
+  ![Decimal a binario](./decimal_binario.png)
+
 Para 81 → **1010001** (7 bits).
 
 **Pistas adicionales:**
 - Límite: el máximo número decimal será **1023** (máximo representable en **10 bits**). El 1023 es **1111111111**.
-- Si se introduce un número >1023 o <0, el programa lo indicará con un mensaje adecuado.
-- Según el rango del número, tendrá un número fijo de bits (p. ej., 64–127 → **7 bits**; 16–31 → **5 bits**), y por tanto harás ese número de divisiones.
+- Si se introduce un **número fuera de rango** (es decir, >1023 o <0), el programa lo indicará con un mensaje adecuado.
+- **Según el rango del número**, tendrá un **número fijo de bits**. Si te fijas, el número de bits **coincide con el número de divisiones** que deberás realizar siguiendo el algoritmo para obtener el binario.
+    - 0-1 → 1 bit
+    - 2-3 → 2 bits
+    - 4-7 → 3 bits
+    - 8-15 → 4 bits
+    - 16-31 → 5 bits
+    - 32-63 → 6 bits
+    - 64-127 → 7 bits
+    - 128-255 → 8 bits
+    - 256-511 → 9 bits
+    - 512-1023 → 10 bits
 
 ---
 
@@ -216,9 +229,9 @@ Queremos hacer un programa que **compruebe contraseñas robustas**. Considerarem
 - Al menos **un símbolo** de entre:  
   **! " # $ % & ' ( ) * + , - . /**
 
-Para poder resolverlo, recuerda cómo **comprobar cada carácter** de una cadena (indexación):
+Para poder resolverlo, necesitarás saber cómo **obtener cada carácter de una cadena** (indexación):
 
-```
+```python
 cadena = "Python"
 primeraLetra = cadena[0]  # "P"
 segundaLetra = cadena[1]  # "y"
