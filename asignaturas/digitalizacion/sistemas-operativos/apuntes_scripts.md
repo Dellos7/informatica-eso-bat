@@ -13,14 +13,14 @@ description: Tema 1
 * TOC
 {:toc}
 
-## 🧠 ¿Qué es y para qué sirve un script?
+## 🧠 1. ¿Qué es y para qué sirve un script?
 
 Un **script** es un archivo que podemos ejecutar en Linux.  
 Este tipo de archivos **contienen una serie de instrucciones (comandos)** que, al ejecutarse, **se ejecutarán una detrás de otra**.
 
 Los scripts suelen tener la extensión **`.sh`**.
 
-Por ejemplo, si tenemos un archivo llamado **`actividad-5.sh`** con el siguiente contenido (lo podemos crear utilizando un simple editor de texto, como *KWrite*):
+Por ejemplo, si tenemos un archivo llamado **`actividad-5.sh`** con el siguiente contenido (**lo podemos crear** utilizando un simple editor de texto, como **Kate**):
 
 ![Ejemplo de script](./capturas/apuntes_scripts_1.png)
 
@@ -49,7 +49,7 @@ Actividad-5/
 
 ---
 
-## ⚙️ Ejecutar un script
+## ⚙️ 2. Ejecutar un script
 
 Para **ejecutar un script**, debemos hacer dos cosas:
 
@@ -77,7 +77,7 @@ Así de simple: el script se ejecutará y realizará **todos los comandos escrit
 
 ---
 
-## 📁 Scripts que leen un fichero
+## 📁 3. Scripts que leen un fichero
 
 Hacer un script que ejecute comandos uno tras otro es útil, pero todavía más útil es si conseguimos que el script realice **tareas más complejas**, como **leer un fichero de texto y procesar sus datos**.
 
@@ -148,7 +148,7 @@ Fotos
 
 ---
 
-## 💬 Mostrando información en Konsole
+## 💬 4. Mostrando información en Konsole
 
 Si queremos **mostrar un mensaje en la consola** desde el propio script, usamos el comando `echo`.
 
