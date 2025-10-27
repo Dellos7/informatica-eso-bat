@@ -276,3 +276,40 @@ ERROR: No tiene símbolos.
 Dime una contraseña (8 caracteres de largo): David94*
 LA CONTRASEÑA ES ROBUSTA.
 ```
+
+## Ejercicio 23
+
+Convierte un **número decimal** a **hexadecimal** usando **divisiones sucesivas entre 16**. Se sigue el mismo algoritmo que para convertirlo a binario, solo que la división no es entre 2, si no entre 16 (ya que el 2 y el 16 son las bases a las que queremos convertir dicho número).
+
+![Conversión decimal a hexadecimal](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJxY_5OSBqy0BDQ5CIl8QMoeN2LbKxg5vFc32_KK6pfQIATtO0tkN9zeY60aonyRh9mF8&usqp=CAU)
+
+Lo que se debe tener aquí en cuenta es que, si el resto da un número superior a 9 (esto puede ser 10, 11, 12, 13, 14 o 15), este número se sustituye por una letra:
+
+- 10 --> A
+- 11 --> B
+- 12 --> C
+- 13 --> D
+- 14 --> E
+- 15 --> F
+
+Por tanto, el número anterior sería --> 1 11 5 8 --> 1B58
+
+> En este caso, limitaremos el número máximo a 65535 (el cuál sería el número máximo que podemos representar con 4 cifras hexadecimales: `FFFF`).
+{: .alert .alert-warning}
+
+> **Piensa**: ¿qué rangos de números necesitarás utilizar ahora para las divisiones?
+
+**Ejemplos**  
+```
+Dime un número: 150
+Hexadecimal: 96
+
+Dime un número: 255
+Hexadecimal: FF
+
+Dime un número: 127
+Hexadecimal: 7F
+
+Dime un número: 7000
+Hexadecimal: 1B58
+```
