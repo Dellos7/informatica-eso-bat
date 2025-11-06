@@ -1,0 +1,10 @@
+Frutas
+Frutas/Frutos secos
+Frutas/Frutos secos/Con cáscara
+Frutas/Frutos secos/Sin cáscara
+Frutas/Carnosas
+Frutas/Carnosas/Alto contenido en grasa
+Frutas/Carnosas/Bajo contenido en grasa
+Verduras
+Verduras/Crecen debajo de la tierra
+Verduras/Crecen encima de la tierra

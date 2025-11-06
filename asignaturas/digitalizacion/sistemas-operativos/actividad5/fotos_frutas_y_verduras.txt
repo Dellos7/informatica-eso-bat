@@ -1,0 +1,17 @@
+aguacate.jpg Frutas/Carnosas/Alto contenido en grasa
+almendra.jpg Frutas/Frutos secos/Con cáscara
+calabacin.jpg Verduras/Crecen encima de la tierra
+cebolla.jpg Verduras/Crecen debajo de la tierra
+ciruela.jpg Frutas/Carnosas/Bajo contenido en grasa
+coco.jpg Frutas/Carnosas/Alto contenido en grasa
+col.jpg Verduras/Crecen encima de la tierra
+datiles.jpg Frutas/Frutos secos/Sin cáscara
+melon.jpg Frutas/Carnosas/Bajo contenido en grasa
+nuez.jpg Frutas/Frutos secos/Con cáscara
+olivas.jpg Frutas/Carnosas/Alto contenido en grasa
+pasas.jpg Frutas/Frutos secos/Sin cáscara
+patata.jpg Verduras/Crecen debajo de la tierra
+pinya.jpg Frutas/Carnosas/Bajo contenido en grasa
+pipa.jpg Frutas/Frutos secos/Con cáscara
+pistacho.jpg Frutas/Frutos secos/Con cáscara
+zanahoria.jpg Verduras/Crecen debajo de la tierra
