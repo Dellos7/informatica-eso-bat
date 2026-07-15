@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 1. Máquinas virtuales en VirtualBox
+title: Actividad 2. Máquinas virtuales en VirtualBox
 description: Tema 1
 ---
 
-# Actividad 1 – Máquinas virtuales en VirtualBox
+# Actividad 2 – Máquinas virtuales en VirtualBox
 
 ## Contexto
 Un sistema operativo no tiene por qué estar instalado directamente en un ordenador físico.  
@@ -14,13 +14,6 @@ Podemos crear **máquinas virtuales** dentro de un programa llamado **VirtualBox
 {: .img .img-300}
 
 Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad de tener varios ordenadores**.  
-
-En los equipos del aula ya está instalado **VirtualBox**, pero si lo quieres en casa puedes descargarlo desde la página oficial:  
-👉 [VirtualBox – Descarga](https://www.virtualbox.org/wiki/Downloads)
-
-Para instalar un sistema operativo en VirtualBox se utiliza un archivo en formato **.iso**.  
-Aquí tienes una recopilación de distribuciones Linux que también puedes investigar:  
-👉 [Mejores distros Linux](https://www.adslzone.net/reportajes/software/mejores-distros-linux/)
 
 ---
 
@@ -49,6 +42,7 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
    - **Tipo:** Microsoft Windows
    - **Versión:** Windows XP (64-bit)
    - **Skip Unattended Installation**: ✅ Marcar
+   - *o bien* **Proceed with Unattended Installation**: ❌ No Marcar
    - **Memoria RAM (Hardware):** 2048 MB (2 GB)
    - **Disco duro virtual (Hard Disk):** 10 GB
 
@@ -72,7 +66,7 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
 ![Deshabilitar controlador USB](./winxp_conf_2.png)
 {: .img .img-350}
 
-2. **Inicia la máquina virtual** e **instala Windows XP** siguiendo los pasos que se van indicando.
+2. **Inicia la máquina virtual** e **instala Windows XP** siguiendo los pasos que se van indicando (Idioma, Zona horaria, Usuario, etc.).
 {:start="2"}
 
 3. Dentro de Windows XP realiza las siguientes acciones. **Pista** muchas se pueden hacer desde el Panel de Control:
@@ -109,6 +103,7 @@ Aquí tienes una recopilación de distribuciones Linux que también puedes inves
    - **Tipo:** Linux
    - **Versión:** Ubuntu (64-bit)
    - **Skip Unattended Installation**: ✅ Marcar
+   - *o bien* **Proceed with Unattended Installation**: ❌ No Marcar
    - **Memoria RAM (Hardware):** 3072 MB (3 GB)
    - **Disco duro virtual (Hard Disk):** 25 GB
 
@@ -202,7 +197,7 @@ Deberás subir en Aules:
    3. Explica por qué crees que un sistema operativo consume más recursos y otro sistema consume menos recursos del ordenador.
 
 
-# Rúbrica – Actividad 1: Máquinas virtuales en VirtualBox
+## Rúbrica – Actividad 1: Máquinas virtuales en VirtualBox
 
 | Criterio | 0 pts | 1 pt | 2 pts | 3 pts |
 |----------|-------|-------|-------|-------|
