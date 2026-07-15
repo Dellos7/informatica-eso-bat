@@ -1,213 +1,158 @@
 ---
 layout: default
-title: Actividad 1. Máquinas virtuales en VirtualBox
-description: Tema 1
+title: Actividad 1. Explorando LliureX y el Sistema de Archivos
+description: Tema 1 - Sistemas Operativos
 ---
 
-# Actividad 1 – Máquinas virtuales en VirtualBox
+# 🗂️ Actividad 1 – Conociendo LliureX y el sistema de archivos
 
-## Contexto
-Un sistema operativo no tiene por qué estar instalado directamente en un ordenador físico.  
-Podemos crear **máquinas virtuales** dentro de un programa llamado **VirtualBox** y allí instalar cualquier sistema operativo que queramos.  
+## Objetivo
+Aprender a organizar el sistema de archivos local en LliureX, conocer las especificaciones de tu ordenador de clase, identificar extensiones comunes de archivos y utilizar herramientas de diagramación y reflexión con la ayuda de la Inteligencia Artificial.
 
-![Esquema virtualización](./virtualizacion_ejemplo_clase.png)
-{: .img .img-300}
-
-Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad de tener varios ordenadores**.  
-
-En los equipos del aula ya está instalado **VirtualBox**, pero si lo quieres en casa puedes descargarlo desde la página oficial:  
-👉 [VirtualBox – Descarga](https://www.virtualbox.org/wiki/Downloads)
-
-Para instalar un sistema operativo en VirtualBox se utiliza un archivo en formato **.iso**.  
-Aquí tienes una recopilación de distribuciones Linux que también puedes investigar:  
-👉 [Mejores distros Linux](https://www.adslzone.net/reportajes/software/mejores-distros-linux/)
+> **Definición clave**:
+> Un **sistema de archivos** es la estructura que utiliza el sistema operativo para organizar, nombrar y almacenar los datos en el disco duro o unidad de almacenamiento.
 
 ---
 
-## Recursos necesarios
-- VirtualBox instalado (ya lo tienes en clase).
-- Archivos **.iso** de los sistemas operativos indicados. 👉 **Cópialos de la carpeta compartida** que tienes en el ordenador de clase (pregunta al profesor cómo acceder).
-- Conexión a Internet para descargar software adicional.
+## Pasos de la actividad
 
-> **IMPORTANTE**: Deberás copiar los archivos **.iso** de la carpeta compartida a tu carpeta de **Inici** del ordenador de clase (**NO** a la carpeta **Documents**)
-{: .alert-error}
-
----
-
-## Cómo crear una máquina virtual en Lliurex
-
-> Una vez has copiado los archivos, lee atentamente la siguiente página y después vuelve a la página de la actividad para completar los pasos.
+> ⚠️ **¡Atención!** Recuerda guardar todo tu trabajo dentro de la carpeta **Documentos**.
 {: .alert-warning}
 
-[👉 Crear una máquina virtual en Lliurex](/{{ site.github.repository_name }}/asignaturas/apuntes/crear-mv-vbox-lliurex)
+### 1. Crear la estructura de carpetas
+Antes de empezar a trabajar, vamos a preparar tu espacio de trabajo para este curso.
 
-## Parte 1 – Máquina virtual con Windows XP
-
-1. Crea una nueva máquina virtual en VirtualBox con las siguientes características:
-   - **Nombre:** Windows XP  
-   - **Imagen ISO**: el archivo **.iso** descargado de Windows XP
-   - **Tipo:** Microsoft Windows
-   - **Versión:** Windows XP (64-bit)
-   - **Skip Unattended Installation**: ✅ Marcar
-   - **Memoria RAM (Hardware):** 2048 MB (2 GB)
-   - **Disco duro virtual (Hard Disk):** 10 GB
-
-   - ‼️**IMPORTANTE**‼️: Debes entrar en la **Configuración** y Deshabilitar paginación imbrincada, cambiar *Dispositiu del punter* de la Placa mare y deshabilitar controlador USB
-
-**1. Deshabilitar paginació imbrincada**
-{: .centrado}
-
-![Deshabilitar paginación imbrincada](./winxp_conf_1.png)
-{: .img .img-350}
-
-**2. Cambiar Dispositiu del punter de la Placa Mare a Ratolí PS/2**
-{: .centrado}
-
-![Cambiar Dispositiu del punter de la Placa Mare a Ratolí PS/2](./winxp_conf_3.png)
-{: .img .img-350}
-
-**3. Deshabilitar controlador USB**
-{: .centrado}
-
-![Deshabilitar controlador USB](./winxp_conf_2.png)
-{: .img .img-350}
-
-2. **Inicia la máquina virtual** e **instala Windows XP** siguiendo los pasos que se van indicando.
-{:start="2"}
-
-3. Dentro de Windows XP realiza las siguientes acciones. **Pista** muchas se pueden hacer desde el Panel de Control:
-   - Cambia la **resolución de la pantalla** para que se vea más grande y con más espacio.
-   - Cambia el idioma del sistema a **español**.  
-   - Crea un **usuario** con tu nombre.  
-   - Cambia la **imagen de perfil** de ese usuario.  
-   - Dentro de la carpeta **Mis documentos**, crea un archivo llamado **Actividad 1.txt** con tu información personal (Nombre, Edad y Curso).  
-{:start="3"}
-
-4. Haz una **captura de pantalla** en la que se vea:
-   - El menú Inicio con tu foto de perfil y tu nombre de usuario.  
-   - El archivo **Actividad 1.txt** dentro de Mis documentos.
-{:start="4"}
-
-![Usuario en Windows XP](./captura_winxp.png)
-{: .img .img-500}
-
-👉 Prueba juegos clásicos como **Pinball**, **Solitario**, **Buscaminas** o programas como las primeras versiones de Paint.
-
-![Juegos Windows XP](./captura_winxp_2.png)
-{: .img .img-400}
-
-![Aplicaciones Windows XP](./captura_winxp_3.png)
-{: .img .img-400}
+1. Abre el gestor de archivos (el explorador de carpetas de LliureX).
+2. Entra en **Documentos** y crea una carpeta llamada **Digitalizacion_4ESO**.
+3. Dentro de ella, crea las carpetas para estructurar los bloques del curso:
+   * `Tema_1`
+   * `Tema_2`
+   * `Tema_3`
+   * `Tema_4`
+   * `Tema_5`
+4. Dentro de la carpeta `Tema_1`, crea una subcarpeta llamada `Actividad_1`. 
+*(Nota: Evita usar espacios en los nombres de las carpetas; acostúmbrate a usar guiones bajos `_` en informática).*
 
 ---
 
-## Parte 2 – Máquina virtual con Linux Lite
+### 2. Crear la hoja de respuestas y conocer tu equipo
+Todas las respuestas y datos que se te soliciten a lo largo de esta actividad deberás redactarlos en un único documento de texto.
 
-1. Crea una nueva máquina virtual en VirtualBox con las siguientes características:
-   - **Nombre:** Linux Lite
-   - **Imagen ISO**: el archivo **.iso** descargado de Linux Lite
-   - **Tipo:** Linux
-   - **Versión:** Ubuntu (64-bit)
-   - **Skip Unattended Installation**: ✅ Marcar
-   - **Memoria RAM (Hardware):** 3072 MB (3 GB)
-   - **Disco duro virtual (Hard Disk):** 25 GB
-
-2. Instala Linux Lite en la máquina virtual.
-
-3. Durante la instalación:
-   - Selecciona **idioma español**.  
-   - El **usuario** debe ser tu nombre + apellidos (ejemplo: juanperez).  
-
-4. Dentro de Linux Lite realiza las siguientes acciones:
-   - En la carpeta **Documentos**, crea un archivo llamado **Actividad 1.txt** con tu información personal (Nombre, Edad y Curso).  
-   - Haz una **captura de pantalla** en la que se vea:
-     - Tu nombre de usuario.  
-     - El archivo **Actividad 1.txt** dentro de Documentos.  
-
-![Linux Lite](./captura_linuxlite.png)
-{: .img .img-500}
-
-
-5. Instala el juego **Super Tux Kart**:
-   - Abre la aplicación **Emulador de terminal**.  
-   - Escribe y ejecuta los siguientes comandos (uno por uno):  
-     ```bash
-     sudo apt install snapd
-     sudo snap install supertuxkart
-     ```
-   - Cierra la sesión y vuelve a entrar en el sistema.  
-{:start="5"}
-
-![SuperTux Kart](./captura_supertux.png)
-{: .img .img-400}
-
-   - Haz una **captura de pantalla** donde se vea el **juego instalado**.
+1. Abre **LibreOffice Writer** (el procesador de textos de LliureX).
+2. Crea un documento nuevo y escribe como título de portada o cabecera: **Actividad 1: Uso del sistema operativo LliureX - [Tu Nombre y Apellidos]**.
+3. Guarda inmediatamente este documento vacío en la carpeta que acabas de crear: `Digitalizacion_4ESO/Tema_1/Actividad_1/` con el nombre `actividad1_respuestas.odt`. **Ve guardando (Ctrl+S) constantemente**.
+4. Ahora, abre el menú de inicio de LliureX (abajo a la izquierda) y busca la aplicación **Centro de información** (en valenciano: *Centre d'informació*).
+5. En tu documento `actividad1_respuestas.odt`, bajo un apartado llamado **"Ejercicio 2: Especificaciones del ordenador"**, anota los siguientes datos técnicos de tu máquina de clase:
+   * ¿Qué modelo de procesador (CPU) tiene tu ordenador?
+   * ¿Cuánta memoria RAM tiene instalada?
+   * ¿En qué sistema operativo GNU/Linux (distribución base) se apoya la versión actual de LliureX que utilizas?
+   * ¿Qué versión exacta de LliureX estás utilizando en este momento?
+   * Anota la marca y modelo del ordenador (Fabricante y Nombre del producto).
+   * Anota el número de serie del ordenador que estás utilizando.
+   * Busca en internet: ¿qué es y para qué sirve un número de serie?
 
 ---
 
-## Parte 3 – Máquina virtual con Windows 11
+### 3. Resolver "Tipos de archivos y extensiones" (Asociación de archivos)
+El profesor ha dejado un archivo comprimido en Aules llamado `archivos_comprimidos.zip`.
 
-1. Crea una nueva máquina virtual en VirtualBox con las siguientes características:
-   - **Nombre:** Windows 11
-   - **Imagen ISO**: el archivo **.iso** descargado de Windows 11
-   - **Tipo:** Microsoft Windows
-   - **Versión:** Windows 11 (64-bit)
-   - **Skip Unattended Installation**: ✅ Marcar
-   - **Memoria RAM (Hardware):** 8192 MB (8 GB)
-   - **Disco duro virtual (Hard Disk):** 80 GB
+1. Descarga el archivo `archivos_comprimidos.zip` y muévelo a tu carpeta `Actividad_1`.
+2. Haz clic derecho sobre él y selecciona **Extraer aquí** para descomprimirlo.
+3. Verás que aparecen varios archivos con extensiones diferentes (ej. `.odt`, `.pdf`, `.png`, `.mp3`, `.csv`).
+4. Intenta abrir cada uno de ellos haciendo doble clic.
+5. En tu documento de respuestas (`actividad1_respuestas.odt`), bajo el encabezado **"Ejercicio 3: Tipos de archivos y extensiones"**, crea una tabla como la siguiente donde indiques:
+   * Nombre del archivo.
+   * Extensión de cada archivo.
+   * Qué tipo de archivo es (audio, vídeo, documento de texto, etc.).
+   * Qué programa nativo de LliureX se ha abierto por defecto para leerlo (ej: LibreOffice Writer, Visor de documentos, Reproductor VLC, etc.).
 
-2. **Instala Windows 11 en la máquina virtual**. Sigue los pasos de la instalación. Deberás tener en cuenta lo siguiente:
-
-> Llegará un punto de la instalación donde **se te pedirá que inicies sesión** con una cuenta de Microsoft/Outlook o bien que crees una nueva cuenta (NOTA: la cuenta de Outlook del instituto no te servirá). **IMPORTANTE**: NO debes iniciar sesión con una cuenta de Microsoft/Outlook ni crear una nueva cuenta.
-{: .alert-error}
-
-> **¿Qué hacer entonces?** Queremos que durante la instalación Windows 11 nos deje crear un usuario local sin necesidad de tener que iniciar sesión con una cuenta de correo, pero (_sin utilizar ningún truco_) no podemos hacerlo. **Utiliza ChatGPT** para que te ayude a crear un usuario local durante la instalación de Windows 11. Deberás indicarle que quieres hacer esto mismo, y que no quieres que te pida de forma obligatoria iniciar sesión con una cuenta de correo. Si la ayuda que te da ChatGPT no te funciona, insístele en que no te funciona para que te de otras alternativas.
-{: .alert-success}
-
-3. Una vez instalado, realiza las siguientes acciones dentro de Windows 11:
-   - Crea dentro de la carpeta **Documentos** un archivo llamado **Actividad 1.txt** con tu información personal (Nombre, Edad y Curso).
-{:start="3"}
-
-> **NOTA**: Debe verse la extensión del archivo. Por defecto no aparece, así que deberás buscar en las opciones del sistema de archivos cómo **mostrar las Extensiones de nombre de archivo**
-{: .alert-warning}
-
-   - Instala alguna aplicación desde **Microsoft Store**
-
-4. Haz una **captura de pantalla** en la que se vea:
-{:start="4"}
-   - El menú Inicio con tu usuario.
-
-![Usuario local Windows 11](./capt_win11_vbox_2.png)
-{: .img .img-500}
-
-   - El archivo **Actividad 1.txt** dentro de Documentos.  
-
-![Archivo .txt en Windows 11](./capt_win11_vbox_1.png)
-{: .img .img-500}
-
-   - La aplicación instalada con Microsoft Store.
-
-👉 Explora las nuevas aplicaciones que incluye Windows 11 (Bloc de notas, Fotos, Microsoft Store, etc.).
+![Tabla Ejercicio 3](./ej3_tabla.png){: .no-border}
 
 ---
 
-## Entrega
-Deberás subir en Aules:
-- **Captura/s de pantalla de Windows XP** (usuario, foto, archivo Actividad 1.txt y juegos Pinball, Buscaminas, Solitario...)
-- **Captura/s de pantalla de Linux Lite** (usuario y archivo Actividad 1.txt y juego SuperTuxKart).  
-- **Captura/s de pantalla de Windows 11** (usuario y archivo Actividad 1.txt y programa/aplicación instalada de Microsoft Store).
-- **Crear un documento** con LibreOffice Writer en Lliurex y **responde a las siguientes preguntas**:
-   1. ¿Qué diferencias aprecias entre los 3 sistemas operativos?
-   2. A nivel de hardware y recursos, ¿cuál de todos consume menos recursos? ¿Y cuál más?
-   3. Explica por qué crees que un sistema operativo consume más recursos y otro sistema consume menos recursos del ordenador.
+### 4. Primeros pasos con la IA y reflexión
+Antes de pedirle tareas complejas a la Inteligencia Artificial, vamos a realizar una pequeña prueba para analizar cómo nos explica la tecnología y reflexionar sobre las respuestas que nos ofrece.
 
+1. Abre el navegador web y accede a **ChatGPT** (o la herramienta de IA que te indique el profesor).
+2. Escribe el siguiente prompt en el chat:
+   > *"¿Qué es un sistema operativo? Explícalo de forma sencilla para un alumno de 15 años."*
+3. **Haz una captura de pantalla completa de tu conversación con la IA**. 
+4. En tu documento de respuestas (`actividad1_respuestas.odt`), bajo el encabezado **"Ejercicio 4: Introducción a la IA"**, realiza las siguientes tareas:
+   * **Pega la captura de pantalla** del chat con la IA.
+   * **Copia y pega** el texto de la respuesta completa que te ha proporcionado la IA.
+   * Indica, de todo lo que ha explicado la IA, **una cosa que ya sabías** previamente sobre los sistemas operativos.
+   * Indica **una cosa nueva que hayas aprendido** o entendido mejor gracias a la explicación de la IA.
 
-# Rúbrica – Actividad 1: Máquinas virtuales en VirtualBox
+---
 
-| Criterio | 0 pts | 1 pt | 2 pts | 3 pts |
-|----------|-------|-------|-------|-------|
-| **Windows XP (2 pts)** | No consigue instalar ni configurar Windows XP correctamente, ni entregar las capturas solicitadas. | Instala el sistema y hace alguna configuración básica, pero faltan varios elementos solicitados. | Configura correctamente la máquina virtual, instala Windows XP, cambia idioma, crea usuario con foto de perfil, crea el archivo `Actividad 1.txt` completo y muestra las capturas de usuario, archivo y juegos clásicos (Pinball, Buscaminas, Solitario). | – |
-| **Linux Lite (2 pts)** | No consigue instalar ni configurar Linux Lite correctamente, ni entregar las capturas solicitadas. | Instala el sistema y realiza solo una parte de lo solicitado (ej. usuario o archivo sin completar). | Configura correctamente la máquina virtual, instala Linux Lite en español, crea usuario, crea el archivo `Actividad 1.txt` completo y muestra capturas de usuario, archivo y juego **SuperTuxKart** funcionando. | – |
-| **Windows 11 (3 pts)** | No consigue instalar ni configurar Windows 11 correctamente, ni entregar las capturas solicitadas. | Instala el sistema y realiza solo una parte de lo solicitado. | Realiza la instalación y configuraciones principales, pero falta algún elemento (ej. archivo incompleto o sin programa instalado de la Store). | Configura correctamente la máquina virtual, instala Windows 11, cambia idioma, crea usuario con foto de perfil, crea el archivo `Actividad 1.txt` completo y muestra capturas de usuario, archivo y un programa/aplicación instalada desde Microsoft Store. |
-| **Documento en LibreOffice (1 pt)** | No entrega el documento, está en blanco, es copia o se genera con una IA (ChatGPT, etc). | Entrega el documento en LibreOffice con respuestas completas y bien razonadas a las 3 preguntas. | – | – |
-| **Plazo de entrega (2 pts)** | Entrega muy tarde (más de 1 semana) o no entrega. | Entrega con retraso moderado (hasta 1 semana). | Entrega con un ligero retraso (máx. 2 días). | Entrega la actividad dentro del plazo establecido. |
+### 5. Generar un mapa mental del S.O. con Freeplane e Inteligencia Artificial
+Vamos a crear un mapa mental sobre qué compone un Sistema Operativo. El mapa debe incluir cinco ramas principales: **Qué es**, **Hardware**, **Software**, **Ejemplos** y **Funciones principales**. 
+
+Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local y segura en LliureX) e interactuaremos con una Inteligencia Artificial (como ChatGPT) para que nos ahorre el trabajo de diseñar la estructura XML que Freeplane lee de forma nativa.
+
+1. Abre de nuevo tu chat de Inteligencia Artificial.
+2. Pídele que te ayude a crear tu mapa mental proporcionándole un ejemplo de cómo es la estructura de un archivo `.mm` (que en realidad es un código tipo XML) para que imite su estructura. 
+3. **Copia y pega el siguiente prompt adaptándolo a tu chat:**
+
+> *"Quiero crear un mapa mental en Freeplane que resuma qué es un sistema operativo. Necesito que me generes el código XML estructurado y limpio para poder guardarlo como un archivo de extensión `.mm` e importarlo directamente en el programa. El mapa debe tener como nodo central 'Sistemas Operativos' y debe dividirse en: ¿Qué son?, Hardware, Software, Funciones principales, y Ejemplos (con subnodos detallados para cada uno). Para ayudarte a entender el formato que lee Freeplane, aquí tienes un ejemplo corto de cómo estructurar los nodos:*
+> 
+> ```xml
+> <map version="freeplane 1.9.13">
+>   <node TEXT="Sistemas Operativos" ID="ID_ROOT">
+>     <node TEXT="¿Qué son?" POSITION="right">
+>       <node TEXT="Software fundamental del sistema"/>
+>       <node TEXT="Gestiona recursos del ordenador"/>
+>     </node>
+>     <node TEXT="Hardware" POSITION="right">
+>       <node TEXT="CPU"/>
+>       <node TEXT="Memoria RAM"/>
+>     </node>
+>   </node>
+> </map>
+> ```
+> *Por favor, genera el código completo con todos los apartados requeridos usando este mismo formato exacto."*
+
+4. Copia la respuesta en formato de código que te devuelva la IA (similar al que ves arriba pero más extenso).
+5. En tu ordenador, abre un editor de texto plano (como **KWrite** o **Kate**, que vienen preinstalados en LliureX).
+6. Pega el código XML de la IA y guárdalo en tu carpeta de la `Actividad_1` como `mapa_sistema_operativo.mm` (¡asegúrate de que la extensión del archivo sea `.mm` y no `.txt`!).
+7. Abre **Freeplane** en LliureX, ve a *Archivo -> Abrir* y selecciona tu archivo `mapa_sistema_operativo.mm`. ¡Debería aparecer tu mapa mental perfectamente estructurado!
+8. Organiza visualmente el mapa si es necesario, y expórtalo como imagen (*Archivo -> Exportar -> como PNG*) con el nombre `mapa_sistema_operativo.png`.
+9. Haz una captura de pantalla de la conversación que has tenido con la IA y pégala dentro de tu documento de respuestas (`actividad1_respuestas.odt`) bajo el título **"Ejercicio 5: Mapa mental e IA"**, junto a una breve reflexión de qué te ha parecido este método.
+
+---
+
+### 6. Empaquetar y comprimir la entrega
+Para enviar el trabajo de forma limpia y profesional, utilizaremos el compresor del sistema operativo.
+
+1. En el gestor de archivos, ve a la carpeta `Tema_1`.
+2. Haz clic derecho sobre la carpeta `Actividad_1` y selecciona **Comprimir...**
+3. Elige el formato `.zip` y nómbralo como `actividad1_tuapellido_tunombre.zip`.
+
+---
+
+## Entregables en Aules
+
+Deberás subir a la tarea de Aules únicamente:
+
+1. El archivo comprimido **`actividad1_tuapellido_tunombre.zip`**. 
+
+Dentro del `.zip`, el profesor comprobará que la estructura de carpetas es correcta y que dentro de la carpeta `Actividad_1` se encuentran:
+* Tu documento de respuestas finalizado: **`actividad1_respuestas.odt`** (con las Especificaciones del Ejercicio 2, la tabla de Tipos de archivos y extensiones del Ejercicio 3, la captura de pantalla, texto y reflexiones sobre la IA del Ejercicio 4, y las capturas e imágenes del Ejercicio 5).
+* El archivo editable del mapa mental: **`mapa_sistema_operativo.mm`**.
+* La exportación del mapa mental en imagen: **`mapa_sistema_operativo.png`**.
+
+---
+
+## Rúbrica de Evaluación
+
+| Criterio | 0 pts | 1 pt | 2 pts |
+|----------|-------|------|-------|
+| **Estructura de carpetas y Compresión** (máx. 2 pts) | No crea la estructura o entrega carpetas sueltas sin comprimir. | Crea la estructura a medias o el archivo comprimido está mal nombrado o dañado. | Estructura perfecta (`Digitalizacion_4ESO/Tema_1/Actividad_1`), archivos organizados y entrega en un único `.zip` bien nombrado. |
+| **Especificaciones e Info de LliureX (ODT)** (máx. 2 pts) | No identifica las especificaciones técnicas ni entrega el archivo `.odt`. | Entrega el `.odt` incompleto, o no responde a los datos del número de serie o el S.O. base. | Identifica perfectamente la CPU, RAM, número de serie, fabricante, versión de LliureX y su distribución base en el `.odt`. |
+| **Asociación y Tipos de archivos (ODT)** (máx. 2 pts) | No realiza la clasificación de los archivos descomprimidos. | Clasifica los archivos pero no identifica correctamente todos los tipos o programas por defecto de LliureX. | Identifica con precisión todas las extensiones, tipos de archivo y programas asociados por defecto en una tabla limpia. |
+| **Primeros pasos con la IA** (máx. 2 pts) | No utiliza la IA o no entrega las evidencias en el documento. | Usa la IA pero le falta adjuntar la captura de pantalla del chat o no reflexiona sobre el aprendizaje (sabía/aprendido). | Presenta la captura del chat, el texto copiado y elabora una reflexión clara diferenciando conceptos conocidos y nuevos conocimientos. |
+| **Mapa Mental (Freeplane & IA)** (máx. 2 pts) | No genera el mapa mental o no presenta evidencias de la IA. | Genera el mapa pero no incluye el código XML, la captura de la IA o no exporta la imagen `.png`. | Proceso excelente de uso de IA, importación impecable del XML en Freeplane, mapa exportado en `.png` e integrado en el `.odt` con su captura. |
+
+**Criterio de evaluación de la programación:**
+* **CE2 – 2.2.** Organizar y gestionar el entorno personal de aprendizaje mediante la integración de recursos digitales de manera autónoma (Digitalización 4º ESO - Comunidad Valenciana).
+

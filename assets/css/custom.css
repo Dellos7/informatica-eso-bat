@@ -1,5 +1,6 @@
 .main-content blockquote {
-  border-left: 6px solid #dce6f0; /* color base */
+  border-left: 6px solid #dce6f0;
+  /* color base */
   margin: 1em 0;
   border-radius: 8px;
   font-size: 0.95em;
@@ -30,69 +31,73 @@ blockquote.alert-error {
   border-color: #f5c6cb;
 }
 
-p:has(.img-centrada){
-    text-align: center;
-}
-
-.centrado{
+p:has(.img-centrada) {
   text-align: center;
 }
 
-img{
+.centrado {
+  text-align: center;
+}
+
+img {
   border: 1px solid;
 }
 
-.img{
+.no-border {
+  border: none;
+}
+
+.img {
   text-align: center;
 }
 
-.img-100 > img{
+.img-100>img {
   height: 100px;
 }
 
-.img-150 > img{
+.img-150>img {
   height: 150px;
 }
 
-.img-200 > img{
+.img-200>img {
   height: 200px;
 }
 
-.img-250 > img{
+.img-250>img {
   height: 250px;
 }
 
-.img-300 > img{
+.img-300>img {
   height: 300px;
 }
 
-.img-350 > img{
+.img-350>img {
   height: 350px;
 }
 
-.img-400 > img{
+.img-400>img {
   height: 400px;
 }
 
-.img-450 > img{
+.img-450>img {
   height: 450px;
 }
 
-.img-500 > img{
+.img-500>img {
   height: 500px;
 }
 
-strong.rojo{
+strong.rojo {
   color: red;
 }
 
-strong.verde{
+strong.verde {
   color: #159957;
 }
 
 /** Quitamos espacio blanco a izq. y der. del contenido principal **/
 @media screen and (min-width: 64em) {
-    .main-content {
-        padding: 2rem 3rem !important;
-    }
+  .main-content {
+    padding: 2rem 3rem !important;
+  }
 }
