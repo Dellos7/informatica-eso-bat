@@ -1,52 +1,51 @@
 ---
 layout: default
-title: Actividad 4 – Creación de scripts en Bash
+title: Actividad 5 – Scripts que leen ficheros
 description: Tema 1
 ---
 
-# 💻 Actividad 4 – Creación de scripts en Bash
+# Actividad 5: Scripts que leen ficheros
 
-👉 **Antes de empezar**, revisa los [**Apuntes de Scripts**](../apuntes_scripts) (apartados [**¿Qué es y para qué sirve un script?**](../apuntes_scripts#-1-qué-es-y-para-qué-sirve-un-script) y [**Ejecutar un script**](../apuntes_scripts#%EF%B8%8F-2-ejecutar-un-script))
+## 🍽️ Tarea 3 – Crear carpetas desde un fichero
 
-Cada tarea que hagas debe estar dentro de la carpeta **Actividad-4**.
+Lee ahora también el apartado [**Scripts que son capaces de leer un fichero**](../apuntes_scripts#-3-scripts-que-leen-un-fichero) de los apuntes.
 
+1. Crea la carpeta **Tarea-3** dentro de **Actividad-5**.  
+2. Realiza un script llamado **`tarea3.sh`** que:
+  - Lea las rutas de carpetas del archivo <a href="recetas.txt" download>recetas.txt</a>
+  - Cree todas las carpetas usando `while / done`.  
+  - Descargue el archivo: **dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/sistemas-operativos/actividad2/fotos_comida.zip**{: .verde}
+  - Lo descomprima.  
+  - Copie las imágenes `macarrons.jpg`, `paella.jpg` y `arros al forn.jpg` en la carpeta `Recetas/Platos`.  
+  - Muestre un mensaje `echo` (personalizado con tu nombre de usuario, NIA y nombre) después de cada comando. Ejemplo:  
+```bash
+echo "(usuario - nia - nombre) Copiando imágenes a Recetas/Platos..."
+```
+> **NOTA**: Añade al menos 2 carpetas inventadas por ti al final del archivo <a href="recetas.txt" download>recetas.txt</a>.
+{: .alert-warning}
+
+3. Ejecuta el script en tu ordenador y verifica que se ha creado la estructura de carpetas correspondiente. **Haz captura de pantalla de la ejecución y de la estructura de carpetas**{: .rojo}.
+{:start="3"}
+4. Copia el script de tu ordenador al servidor a través del comando `scp` (**revisa y pon bien los datos**). Deberás también **copiar el archivo `recetas.txt`**. **Haz captura de pantalla de la ejecución y de la estructura de carpetas**{: .rojo}:
+{:start="4"}
 ---
 
 ## 🧩 Tarea 1 – Crear estructura básica
 
-Lee los apartados [**¿Qué es y para qué sirve un script?**](../apuntes_scripts#-1-qué-es-y-para-qué-sirve-un-script) y [**Ejecutar un script**](../apuntes_scripts#%EF%B8%8F-2-ejecutar-un-script) de los apuntes.
-
-1. Crea en tu ordenador la carpeta **Actividad-4**, y dentro otra llamada **Tarea-1**.  
-2. Dentro de **Tarea-1**, crea un script llamado **`tarea1.sh`** (con el programa **Kate**) que genere la siguiente estructura de carpetas.
-
-> **Solo puedes utilizar** para esta tarea los métodos explicados en los apartados 1 y 2 de los apuntes.
-{: .alert-error}
-
-![Tarea 1](./tarea-1.png)
-
-3. Añade al principio del script tu nombre y apellidos y NIA en una variable, por ejemplo:  
-   ```bash
-   NOMBRE="..."
-   NIA="..."
-   echo "Script ejecutado por $NOMBRE ($NIA) en el usuario $USER"
-   ```
-{:start="3"}
-
-4. Ejecuta el script en tu ordenador y verifica que se ha creado la estructura de carpetas correspondiente. **Haz captura de pantalla de la ejecución y de la estructura de carpetas**{: .rojo}.
-{:start="4"}
-
-5. Copia el script de tu ordenador al servidor a través del comando `scp` (**revisa y pon bien los datos**). **Haz captura de pantalla de la ejecución y de la estructura de carpetas**{: .rojo}:
-{:start="5"}
-
+1. Crea la carpeta **Tarea-4** dentro de **Actividad-5**.  
+2. Crea un script llamado **`tarea4.sh`** que:
+   - Descargue el archivo: **dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/sistemas-operativos/actividad3/frutas_y_verduras.zip**{: .verde}
+   - Lo descomprima.
+   - Lea el archivo <a href="carpetas_frutas_verduras.txt" download>carpetas_frutas_verduras.txt</a> y cree las carpetas correspondientes con `while / done`.
+   - Lea el archivo <a href="fotos_frutas_y_verduras.txt" download>fotos_frutas_y_verduras.txt</a> y copie cada imagen en la carpeta indicada.
+   - Muestre un mensaje `echo` (personalizado con tu nombre de usuario, NIA y nombre) después de cada comando. Ejemplo:  
 ```bash
-scp "/home/davcas/Documents/Actividad-4/Tarea-1/tarea1.sh" davcas@10.2.5.50:/home/davcas
+echo "(usuario - nia - nombre) Copiando imágenes a Frutas/Frutos secos/Con cáscara..."
 ```
-
-6. Conéctate al servidor con SSH y ejecuta el script. **Haz captura de pantalla**{: .rojo}
-{:start="6"}
-
-> **Entrega:** el script **tarea1.sh** y las **capturas de pantalla** solicitadas.
-{: .alert-warning}
+3. Ejecuta el script en tu ordenador y verifica que se ha creado la estructura de carpetas correspondiente. **Haz captura de pantalla de la ejecución y de la estructura de carpetas**{: .rojo}.
+{:start="3"}
+4. Copia el script de tu ordenador al servidor a través del comando `scp` (**revisa y pon bien los datos**). Deberás también **copiar los archivos .txt**. **Haz captura de pantalla de la ejecución y de la estructura de carpetas**{: .rojo}:
+{:start="4"}
 
 ---
 
@@ -55,19 +54,17 @@ scp "/home/davcas/Documents/Actividad-4/Tarea-1/tarea1.sh" davcas@10.2.5.50:/hom
 > **Solo puedes utilizar** para esta tarea los métodos explicados en los apartados 1 y 2 de los apuntes.
 {: .alert-error}
 
-1. Dentro de **Actividad-4**, crea la carpeta **Tarea-2**.  
-2. Crea un script llamado **`tarea2.sh`** que **borre las carpetas creadas en la Tarea 1**.  
-3. El script debe:
-   - Mostrar un mensaje con `echo` antes y después de cada acción.
-   - Incluir tu nombre, NIA y usuario en un mensaje inicial.
-4. Ejecuta el script en tu ordenador y verifica que se ha borrado la estructura de carpetas correspondiente. **Haz captura de pantalla**{: .rojo}.
-5. Copia el script de tu ordenador al servidor a través del comando `scp`.
-6. Conéctate al servidor con SSH y ejecuta el script. **Haz captura de pantalla**{: .rojo}
+- Los scripts **tarea3.sh** y **tarea4.sh**.  
+- Las **capturas de pantalla** con las ejecuciones (deben verse los mensajes personalizados y tu nombre de usuario), tanto en tu **ordenador local** como en **el servidor**.
 
-> **Entrega:** el script **tarea2.sh** y las **capturas de pantalla** solicitadas.
-{: .alert-warning}
+## 📊 Rúbrica – Actividad 5: Scripts que leen ficheros
 
----
+| Criterio                                                                          | 0 puntos                            | 1 punto                                                                                      | 2 puntos                                                                                                                                                | 3 puntos                                                                                                                     | 4 puntos                                                                                                                                                                                                                                                             |
+| --------------------------------------------------------------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Tarea 3 – Script con lectura de fichero y creación de carpetas (4 pts)**        | No entrega el script o no funciona. | Entrega el script pero no lee correctamente el archivo `recetas.txt` o no crea las carpetas. | El script funciona parcialmente (por ejemplo, crea solo parte de las carpetas o no muestra mensajes con `echo`), o bien faltan capturas de pantalla.    | El script está correcto y personalizado, pero no se copia o ejecuta en el servidor; o bien falta alguna captura de pantalla. | Entrega el script completo, con comentarios y mensajes informativos, personalizado (nombre, NIA, usuario, fecha, equipo), lo ejecuta correctamente tanto en su ordenador como en el servidor, incluyendo las capturas solicitadas.                                   |
+| **Tarea 4 – Script con lectura de varios ficheros y copiado de imágenes (4 pts)** | No entrega el script o no funciona. | Entrega el script pero no crea correctamente las carpetas o no copia los archivos.           | El script funciona parcialmente (por ejemplo, errores en la lectura de variables o en las rutas), o bien faltan mensajes `echo` o capturas de pantalla. | El script está correcto y personalizado, pero no se copia o ejecuta en el servidor; o bien falta alguna captura de pantalla. | Entrega el script completo y funcional, personalizado (nombre, NIA, usuario, fecha, equipo), que lee correctamente ambos archivos, crea las carpetas, copia las imágenes y muestra mensajes `echo`, ejecutándolo correctamente en ordenador y servidor con capturas. |
+| **Entrega en plazo (2 pts)**                                                      | No entrega o lo hace muy tarde.     | Entrega con pequeño retraso.                                                                 | Entrega en plazo.                                                                                                                                       |                                                                                                                              |                                                                                                                                                                                                                                                                      |
+
 
 ## 📊 Rúbrica – Actividad 4: Creación de scripts en Bash (máx. 10 puntos)
 
