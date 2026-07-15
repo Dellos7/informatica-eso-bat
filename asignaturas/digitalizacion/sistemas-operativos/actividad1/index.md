@@ -42,7 +42,7 @@ Todas las respuestas y datos que se te soliciten a lo largo de esta actividad de
 2. Crea un documento nuevo y escribe como título de portada o cabecera: **Actividad 1: Uso del sistema operativo LliureX - [Tu Nombre y Apellidos]**.
 3. Guarda inmediatamente este documento vacío en la carpeta que acabas de crear: `Digitalizacion_4ESO/Tema_1/Actividad_1/` con el nombre `actividad1_respuestas.odt`. **Ve guardando (Ctrl+S) constantemente**.
 4. Ahora, abre el menú de inicio de LliureX (abajo a la izquierda) y busca la aplicación **Centro de información** (en valenciano: *Centre d'informació*).
-5. En tu documento `actividad1_respuestas.odt`, bajo un apartado llamado **"Ejercicio 2: Especificaciones del ordenador"**, anota los siguientes datos técnicos de tu máquina de clase:
+5. En tu documento `actividad1_respuestas.odt`, bajo un apartado llamado **«Ejercicio 2: Especificaciones del ordenador»**, anota los siguientes datos técnicos de tu máquina de clase:
    * ¿Qué modelo de procesador (CPU) tiene tu ordenador?
    * ¿Cuánta memoria RAM tiene instalada?
    * ¿En qué sistema operativo GNU/Linux (distribución base) se apoya la versión actual de LliureX que utilizas?
@@ -53,14 +53,15 @@ Todas las respuestas y datos que se te soliciten a lo largo de esta actividad de
 
 ---
 
-### 3. Resolver "Tipos de archivos y extensiones" (Asociación de archivos)
-El profesor ha dejado un archivo comprimido en Aules llamado `archivos_comprimidos.zip`.
+### 3. Resolver «Tipos de archivos y extensiones» (Asociación de archivos)
 
-1. Descarga el archivo `archivos_comprimidos.zip` y muévelo a tu carpeta `Actividad_1`.
+A partir de un **archivo comprimido**, deberás resolver las siguientes cuestiones acerca de los **tipos de archivos y extensiones** del sistema operativo.
+
+1. Descarga el archivo comprimido [act1_ej3.zip](./act1_ej3.zip) y muévelo a tu carpeta `Actividad_1`.
 2. Haz clic derecho sobre él y selecciona **Extraer aquí** para descomprimirlo.
 3. Verás que aparecen varios archivos con extensiones diferentes (ej. `.odt`, `.pdf`, `.png`, `.mp3`, `.csv`).
 4. Intenta abrir cada uno de ellos haciendo doble clic.
-5. En tu documento de respuestas (`actividad1_respuestas.odt`), bajo el encabezado **"Ejercicio 3: Tipos de archivos y extensiones"**, crea una tabla como la siguiente donde indiques:
+5. En tu documento de respuestas (`actividad1_respuestas.odt`), bajo el encabezado **«Ejercicio 3: Tipos de archivos y extensiones»**, crea una tabla como la siguiente donde indiques:
    * Nombre del archivo.
    * Extensión de cada archivo.
    * Qué tipo de archivo es (audio, vídeo, documento de texto, etc.).
@@ -75,9 +76,9 @@ Antes de pedirle tareas complejas a la Inteligencia Artificial, vamos a realizar
 
 1. Abre el navegador web y accede a **ChatGPT** (o la herramienta de IA que te indique el profesor).
 2. Escribe el siguiente prompt en el chat:
-   > *"¿Qué es un sistema operativo? Explícalo de forma sencilla para un alumno de 15 años."*
+   > Qué es un sistema operativo? Explícalo de forma sencilla para un alumno de 15 años.
 3. **Haz una captura de pantalla completa de tu conversación con la IA**. 
-4. En tu documento de respuestas (`actividad1_respuestas.odt`), bajo el encabezado **"Ejercicio 4: Introducción a la IA"**, realiza las siguientes tareas:
+4. En tu documento de respuestas (`actividad1_respuestas.odt`), bajo el encabezado **«Ejercicio 4: Introducción a la IA»**, realiza las siguientes tareas:
    * **Pega la captura de pantalla** del chat con la IA.
    * **Copia y pega** el texto de la respuesta completa que te ha proporcionado la IA.
    * Indica, de todo lo que ha explicado la IA, **una cosa que ya sabías** previamente sobre los sistemas operativos.
@@ -88,13 +89,13 @@ Antes de pedirle tareas complejas a la Inteligencia Artificial, vamos a realizar
 ### 5. Generar un mapa mental del S.O. con Freeplane e Inteligencia Artificial
 Vamos a crear un mapa mental sobre qué compone un Sistema Operativo. El mapa debe incluir cinco ramas principales: **Qué es**, **Hardware**, **Software**, **Ejemplos** y **Funciones principales**. 
 
-Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local y segura en LliureX) e interactuaremos con una Inteligencia Artificial (como ChatGPT) para que nos ahorre el trabajo de diseñar la estructura XML que Freeplane lee de forma nativa.
+Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local y segura en LliureX) e interactuaremos con una Inteligencia Artificial (como ChatGPT) para que nos ahorre el trabajo de diseñar el archivo que importaremos directamente en Freeplane.
 
 1. Abre de nuevo tu chat de Inteligencia Artificial.
 2. Pídele que te ayude a crear tu mapa mental proporcionándole un ejemplo de cómo es la estructura de un archivo `.mm` (que en realidad es un código tipo XML) para que imite su estructura. 
-3. **Copia y pega el siguiente prompt adaptándolo a tu chat:**
+3. Para ello, **copia y pega el siguiente prompt ADAPTÁNDOLO a tu chat:**
 
-> *"Quiero crear un mapa mental en Freeplane que resuma qué es un sistema operativo. Necesito que me generes el código XML estructurado y limpio para poder guardarlo como un archivo de extensión `.mm` e importarlo directamente en el programa. El mapa debe tener como nodo central 'Sistemas Operativos' y debe dividirse en: ¿Qué son?, Hardware, Software, Funciones principales, y Ejemplos (con subnodos detallados para cada uno). Para ayudarte a entender el formato que lee Freeplane, aquí tienes un ejemplo corto de cómo estructurar los nodos:*
+> Quiero crear un mapa mental en Freeplane que resuma qué es un ...... . Necesito que me generes el código XML estructurado y limpio para poder guardarlo como un archivo de extensión `.mm` e importarlo directamente en el programa. El mapa debe tener como nodo central "Sistemas Operativos" y debe dividirse en: ...... (con subnodos detallados para cada uno). Para ayudarte a entender el formato que lee Freeplane, aquí tienes un ejemplo corto de cómo estructurar los nodos:
 > 
 > ```xml
 > <map version="freeplane 1.9.13">
@@ -110,14 +111,14 @@ Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local
 >   </node>
 > </map>
 > ```
-> *Por favor, genera el código completo con todos los apartados requeridos usando este mismo formato exacto."*
+> Por favor, genera el código completo con todos los apartados requeridos usando este mismo formato exacto.
 
 4. Copia la respuesta en formato de código que te devuelva la IA (similar al que ves arriba pero más extenso).
 5. En tu ordenador, abre un editor de texto plano (como **KWrite** o **Kate**, que vienen preinstalados en LliureX).
 6. Pega el código XML de la IA y guárdalo en tu carpeta de la `Actividad_1` como `mapa_sistema_operativo.mm` (¡asegúrate de que la extensión del archivo sea `.mm` y no `.txt`!).
 7. Abre **Freeplane** en LliureX, ve a *Archivo -> Abrir* y selecciona tu archivo `mapa_sistema_operativo.mm`. ¡Debería aparecer tu mapa mental perfectamente estructurado!
 8. Organiza visualmente el mapa si es necesario, y expórtalo como imagen (*Archivo -> Exportar -> como PNG*) con el nombre `mapa_sistema_operativo.png`.
-9. Haz una captura de pantalla de la conversación que has tenido con la IA y pégala dentro de tu documento de respuestas (`actividad1_respuestas.odt`) bajo el título **"Ejercicio 5: Mapa mental e IA"**, junto a una breve reflexión de qué te ha parecido este método.
+9. Haz una captura de pantalla de la conversación que has tenido con la IA y pégala dentro de tu documento de respuestas (`actividad1_respuestas.odt`) bajo el título **«Ejercicio 5: Mapa mental e IA»**, junto a una breve reflexión de qué te ha parecido este método.
 
 ---
 
