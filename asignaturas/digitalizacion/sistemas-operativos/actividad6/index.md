@@ -1,3 +1,9 @@
+---
+layout: default
+title: Actividad 6
+description: Tema 1
+---
+
 ## 🍽️ Tarea 3 – Crear carpetas desde un fichero
 
 Lee ahora también el apartado *Scripts que son capaces de leer un fichero* de los apuntes.

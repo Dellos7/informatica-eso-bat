@@ -25,4 +25,4 @@ description: Sistemas Operativos
 - [Actividad 3](./actividad3/)
 - [Actividad 4](./actividad4/)
 - [Actividad 5](./actividad5/)
-- [Actividad 6](./actividad/)
+- [Actividad 6](./actividad6/)
