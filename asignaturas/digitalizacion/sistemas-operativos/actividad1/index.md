@@ -58,7 +58,7 @@ Todas las respuestas y datos que se te soliciten a lo largo de esta actividad de
 A partir de un **archivo comprimido**, deberás resolver las siguientes cuestiones acerca de los **tipos de archivos y extensiones** del sistema operativo.
 
 1. Descarga el archivo comprimido [act1_ej3.zip](./act1_ej3.zip) y muévelo a tu carpeta `Actividad_1`.
-2. Haz clic derecho sobre él y selecciona **Extraer aquí** para descomprimirlo.
+2. Haz clic derecho sobre él y selecciona **Extraer --> Extraer archivo comprimido aquí, autodetectar subcarpeta** para descomprimirlo.
 3. Verás que aparecen varios archivos con extensiones diferentes (ej. `.odt`, `.pdf`, `.png`, `.mp3`, `.csv`).
 4. Intenta abrir cada uno de ellos haciendo doble clic.
 5. En tu documento de respuestas (`actividad1_respuestas.odt`), bajo el encabezado **«Ejercicio 3: Tipos de archivos y extensiones»**, crea una tabla como la siguiente donde indiques:
@@ -116,9 +116,12 @@ Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local
 4. Copia la respuesta en formato de código que te devuelva la IA (similar al que ves arriba pero más extenso).
 5. En tu ordenador, abre un editor de texto plano (como **KWrite** o **Kate**, que vienen preinstalados en LliureX).
 6. Pega el código XML de la IA y guárdalo en tu carpeta de la `Actividad_1` como `mapa_sistema_operativo.mm` (¡asegúrate de que la extensión del archivo sea `.mm` y no `.txt`!).
-7. Abre **Freeplane** en LliureX, ve a *Archivo -> Abrir* y selecciona tu archivo `mapa_sistema_operativo.mm`. ¡Debería aparecer tu mapa mental perfectamente estructurado!
-8. Organiza visualmente el mapa si es necesario, y expórtalo como imagen (*Archivo -> Exportar -> como PNG*) con el nombre `mapa_sistema_operativo.png`.
-9. Haz una captura de pantalla de la conversación que has tenido con la IA y pégala dentro de tu documento de respuestas (`actividad1_respuestas.odt`) bajo el título **«Ejercicio 5: Mapa mental e IA»**, junto a una breve reflexión de qué te ha parecido este método.
+7. Abre **Freeplane** en LliureX, ve a *Archivo -> Abrir* y selecciona tu archivo `mapa_sistema_operativo.mm`, o bien haz doble clic directamente sobre él.
+8. Organiza visualmente el mapa si es necesario y **añade tu nombre y apellidos**.
+9. Guarda el mapa editado.
+10. Expórtalo como imagen (*Archivo -> Exportar mapa -> JPG*) con el nombre `mapa_sistema_operativo.jpg`.
+11. Haz una captura de pantalla de la conversación que has tenido con la IA y pégala dentro de tu documento de respuestas (`actividad1_respuestas.odt`) bajo el título **«Ejercicio 5: Mapa mental e IA»**, junto a una breve reflexión de qué te ha parecido este método.
+12. Pega también la imagen del mapa mental en tu documento de respuestas.
 
 ---
 
@@ -140,19 +143,20 @@ Deberás subir a la tarea de Aules únicamente:
 Dentro del `.zip`, el profesor comprobará que la estructura de carpetas es correcta y que dentro de la carpeta `Actividad_1` se encuentran:
 * Tu documento de respuestas finalizado: **`actividad1_respuestas.odt`** (con las Especificaciones del Ejercicio 2, la tabla de Tipos de archivos y extensiones del Ejercicio 3, la captura de pantalla, texto y reflexiones sobre la IA del Ejercicio 4, y las capturas e imágenes del Ejercicio 5).
 * El archivo editable del mapa mental: **`mapa_sistema_operativo.mm`**.
-* La exportación del mapa mental en imagen: **`mapa_sistema_operativo.png`**.
+* La exportación del mapa mental en imagen: **`mapa_sistema_operativo.jpg`**.
 
 ---
 
 ## Rúbrica de Evaluación
 
-| Criterio | 0 pts | 1 pt | 2 pts |
-|----------|-------|------|-------|
-| **Estructura de carpetas y Compresión** (máx. 2 pts) | No crea la estructura o entrega carpetas sueltas sin comprimir. | Crea la estructura a medias o el archivo comprimido está mal nombrado o dañado. | Estructura perfecta (`Digitalizacion_4ESO/Tema_1/Actividad_1`), archivos organizados y entrega en un único `.zip` bien nombrado. |
-| **Especificaciones e Info de LliureX (ODT)** (máx. 2 pts) | No identifica las especificaciones técnicas ni entrega el archivo `.odt`. | Entrega el `.odt` incompleto, o no responde a los datos del número de serie o el S.O. base. | Identifica perfectamente la CPU, RAM, número de serie, fabricante, versión de LliureX y su distribución base en el `.odt`. |
-| **Asociación y Tipos de archivos (ODT)** (máx. 2 pts) | No realiza la clasificación de los archivos descomprimidos. | Clasifica los archivos pero no identifica correctamente todos los tipos o programas por defecto de LliureX. | Identifica con precisión todas las extensiones, tipos de archivo y programas asociados por defecto en una tabla limpia. |
-| **Primeros pasos con la IA** (máx. 2 pts) | No utiliza la IA o no entrega las evidencias en el documento. | Usa la IA pero le falta adjuntar la captura de pantalla del chat o no reflexiona sobre el aprendizaje (sabía/aprendido). | Presenta la captura del chat, el texto copiado y elabora una reflexión clara diferenciando conceptos conocidos y nuevos conocimientos. |
-| **Mapa Mental (Freeplane & IA)** (máx. 2 pts) | No genera el mapa mental o no presenta evidencias de la IA. | Genera el mapa pero no incluye el código XML, la captura de la IA o no exporta la imagen `.png`. | Proceso excelente de uso de IA, importación impecable del XML en Freeplane, mapa exportado en `.png` e integrado en el `.odt` con su captura. |
+| Criterio | 0 pts | 0.5 pts | 1 pt | 1.5 pts | 2 pts |
+|----------|-------|---------|------|---------|-------|
+| **Estructura de carpetas y Compresión** (máx. 1.5 pts) | No crea la estructura o entrega carpetas sueltas sin comprimir. | Estructura de carpetas incorrecta o el archivo comprimido está dañado o mal nombrado. | Estructura de carpetas correcta, pero comete errores en los nombres de las carpetas o la ubicación de los archivos. | Estructura perfecta (`Digitalizacion_4ESO/Tema_1/Actividad_1`), archivos organizados y entrega en un único `.zip` bien nombrado. | |
+| **Especificaciones e Info de LliureX (ODT)** (máx. 1.5 pts) | No identifica las especificaciones técnicas ni entrega el archivo `.odt`. | Entrega el `.odt` muy incompleto, o faltan la mayoría de los datos técnicos solicitados. | Entrega el `.odt` con la información técnica de su máquina, pero le faltan algunos datos o no responde a la pregunta sobre el número de serie. | Identifica perfectamente la CPU, RAM, número de serie, fabricante, versión de LliureX y su distribución base en el `.odt`. | |
+| **Asociación y Tipos de archivos (ODT)** (máx. 1.5 pts) | No realiza la clasificación de los archivos descomprimidos. | Clasifica muy pocos archivos de prueba o comete errores graves al identificar sus extensiones. | Clasifica la mayoría de los archivos de prueba, pero no asocia correctamente todos los programas por defecto de LliureX. | Identifica con precisión todas las extensiones, tipos de archivo y programas asociados por defecto en una tabla limpia. | |
+| **Primeros pasos con la IA** (máx. 1.5 pts) | No utiliza la IA o no entrega las evidencias en el documento. | Usa la IA pero falta la captura del chat o no incluye la respuesta de texto completa. | Presenta la captura y el texto, pero la reflexión sobre el aprendizaje (conceptos sabidos/nuevos) es muy escasa. | Presenta la captura del chat, el texto copiado y elabora una reflexión clara diferenciando conceptos conocidos y nuevos conocimientos. | |
+| **Mapa Mental (Freeplane & IA)** (máx. 2 pts) | No genera el mapa mental o no presenta evidencias de la IA. | Genera el mapa mental en Freeplane pero no muestra evidencias del chat de IA o el archivo no se abre. | Importa el XML generado por la IA en Freeplane pero no exporta la imagen `.jpg` o no incluye la reflexión en el documento `.odt`. | | Proceso excelente de uso de IA, importación impecable del XML en Freeplane, mapa exportado en `.jpg` e integrado en el `.odt` con su captura. |
+| **Entrega en plazo** (máx. 2 pts) | No entrega o entrega con retraso de más de una semana. | Entrega con un retraso importante de hasta una semana. | Entrega con un pequeño retraso de máximo 2 días. | | Entrega la actividad a tiempo dentro del plazo establecido. |
 
 **Criterio de evaluación de la programación:**
 * **CE2 – 2.2.** Organizar y gestionar el entorno personal de aprendizaje mediante la integración de recursos digitales de manera autónoma (Digitalización 4º ESO - Comunidad Valenciana).
