@@ -30,19 +30,21 @@ Contribuye a la capacitación técnica y la adaptabilidad en entornos cambiantes
 **Competencias Específicas y Criterios de Evaluación vinculados:**
 - **Competencia Específica 1:** Diseñar equipos y redes de comunicación de uso personal y doméstico, administrarlos y utilizarlos de manera segura y sostenible.
   - Criterios de evaluación: 1.4, 1.5, 1.6
+- **Competencia Específica 2:** Buscar, seleccionar y organizar la información en el entorno personal de aprendizaje, y utilizarla para la creación, edición, publicación y difusión de contenidos digitales.
+  - Criterios de evaluación: 2.1, 2.2
 - **Competencia Específica 5:** Afrontar los desafíos informáticos y digitales que la sociedad de la información plantea en los ámbitos personal, doméstico y educativo, y formular posibles soluciones.
   - Criterios de evaluación: 5.1, 5.4
 
 **Saberes Básicos:**
 - **Bloque Dispositivos digitals, sistemes operatius i de comunicació:** Sistemas operativos comunes para ordenadores personales y dispositivos móviles. Instalación, configuración, actualización y desinstalación de aplicaciones. Estrategias para la prevención de problemas técnicos.
-- **Bloque Digitalització de l’entorn personal d’aprenentatge:** Tipos de software: el software libre y el software de propiedad. Licencias de software.
+- **Bloque Digitalització de l’entorn personal d’aprenentatge:** Organización de la información en el almacenamiento secundario y en red. Operaciones básicas con archivos y carpetas. Creación de contenidos digitales con herramientas ofimáticas, multimedia y de desarrollo web (mapas conceptuales). Tipos de software: el software libre y el software de propiedad. Licencias de software. Inteligencia artificial en aplicaciones informáticas.
 
 **Organización:**
 | Secuenciación de actividades | Organización de espacios | Distribución del tiempo | Recursos y materiales | Medidas de respuesta educativa para la inclusión |
 | :--- | :--- | :--- | :--- | :--- |
-| **Actividad 1:** Laboratorio de virtualización. Instalación de un SO Linux en VirtualBox. | Aula de informática | 4 sesiones (220 min) | Ordenadores, VirtualBox, ISOs de Linux. | **Dislexia:** Guías visuales paso a paso con iconos. **Nivel III:** Apoyo de pareja (tutoría entre iguales). **Idioma:** Glosario bilingüe de términos de instalación. |
-| **Actividad 2:** Gestión de aplicaciones y repositorios: comparativa de licencias. | Aula de informática | 4 sesiones (220 min) | Acceso a internet, hojas de análisis. | **Dislexia:** Lectores de pantalla para textos largos sobre licencias. **Nivel III:** Simplificación de la tarea de comparación. **Idioma:** Uso de traductores y materiales multimodales. |
-| **Actividad 3:** Resolución de conflictos en el SO mediante herramientas de monitorización. | Aula de informática | 4 sesiones (220 min) | Administrador de tareas, herramientas de sistema. | **Dislexia:** Uso de esquemas de flujo para la detección de errores. **Nivel III:** Checklists de resolución de problemas. **Idioma:** Tarjetas visuales de errores frecuentes. |
+| **Actividad 1:** Explorando LliureX, gestión del sistema de archivos e introducción a la IA. Uso de Freeplane e IA para diseñar un mapa conceptual (.mm) sobre sistemas operativos. | Aula de informática | 3 sesiones (165 min) | LliureX, LibreOffice Writer, Freeplane, ChatGPT. | **Dislexia:** Fichas visuales para extensión de archivos. **Nivel III:** Plantilla XML para importar mapa mental. **Idioma:** Glosario visual de tipos de archivo. |
+| **Actividad 2:** Máquinas virtuales en VirtualBox. Instalación y configuración de Windows XP, Linux Lite y Windows 11. Instalación de aplicaciones (terminal snap en Linux / Store en Win11) y uso de ChatGPT para eludir el login de Microsoft. Comparativa de recursos. | Aula de informática | 5 sesiones (275 min) | VirtualBox, imágenes ISO (Win XP, Linux Lite, Win 11), ChatGPT. | **Dislexia:** Guía visual paso a paso de configuración de máquinas. **Nivel III:** Reducción de las especificaciones a comparar. **Idioma:** Glosario de términos de instalación en inglés/español. |
+| **Actividad 3:** Administración de archivos y uso básico de la terminal Linux (bash). Creación de estructuras complejas de directorios y ordenamiento de archivos de forma exclusiva desde terminal. | Aula de informática | 4 sesiones (220 min) | Terminal bash de LliureX/Linux Lite, archivos de comida comprimidos. | **Dislexia:** Lista gráfica de equivalencias de comandos bash principales. **Nivel III:** Checklists ordenados del proceso en consola. **Idioma:** Diagrama visual de la estructura final deseada. |
 
 **Instrumentos de recogida de información:**
 Portfolio digital con capturas de la instalación, cuestionarios sobre licencias y rúbrica de resolución de problemas técnicos.
@@ -286,8 +288,8 @@ Práctica de firma digital, comparativa de seguridad en e-commerce y campaña de
 | Criterio 1.5 | ✓ | | ✓ | | | | | |
 | Criterio 1.6 | ✓ | | ✓ | | | | | |
 | **Competencia Específica 2** | | | | | | | | |
-| Criterio 2.1 | | ✓ | | ✓ | | ✓ | | |
-| Criterio 2.2 | | ✓ | | | | | | |
+| Criterio 2.1 | ✓ | ✓ | | ✓ | | ✓ | | |
+| Criterio 2.2 | ✓ | ✓ | | | | | | |
 | Criterio 2.3 | | ✓ | | ✓ | | | ✓ | |
 | Criterio 2.4 | | | | | | ✓ | ✓ | |
 | Criterio 2.5 | | ✓ | | | | | | |

@@ -12,11 +12,11 @@ Las asignaturas son:
 - 1º Bachillerato (PSIRI: Programación, Sistemas Informáticos y Redes I)
 - 2º Bachillerato (PSIRI: Programación, Sistemas Informáticos y Redes II)
 
-Dentro de la carpeta de cada asignatura se colocará un archivo con extensión .md que será la Programación de Aula de dicha asignatura. Este archivo se deberá tener en cuenta como contexto general que sirva de apoyo para poder desarrollar las actividades propuestas. De ningún modo se deberá seguir de forma estricta sin el consentimiento explícito del usuario que gestiona la web, en este caso el profesor. Si el profesor considera oportuno hacer algún cambio en la programación, se le deberá consultar para que dé su consentimiento explícito.
-
-Por ejemplo, para la asignatura Digitalización, dentro de la carpeta asignarturas/ditializacion, se dispone de un archivo llamado 4eso_digitalizacion_prog-aula.md que contiene las pautas y el contexto general para poder desarrollar las actividades propuestas para dicha asignatura.
+Dentro de la carpeta de cada asignatura se colocará un archivo con extensión .md que será la Programación de Aula de dicha asignatura. Este archivo se deberá tener en cuenta como contexto general que sirva de apoyo para poder desarrollar las actividades propuestas. De ningún modo se deberá seguir de forma estricta sin el consentimiento explícito del usuario que gestiona la web, en este caso el profesor. Si el profesor considera oportuno hacer algún cambio en la programación, se le deberá consultar para que dé su consentimiento explícito. Por ejemplo, para la asignatura Digitalización, dentro de la carpeta asignarturas/ditializacion, se dispone de un archivo llamado 4eso_digitalizacion_prog-aula.md que contiene las pautas y el contexto general para poder desarrollar las actividades propuestas para dicha asignatura.
 
 La programación de aula es una propuesta; sin embargo, las actividades que se vayan desarrollando podrán ser distintas a las que se proponen en la programación de aula.
+
+Además, dentro de la carpeta de cada asignatura también he añadido un PDF con el currículum de la asignatura, de tal forma que puedas consultarlo para tener una idea más clara de los objetivos que se persiguen y los contenidos que se deben impartir: las competencias específicas, saberes básicos, criterios de evaluación, etc. Por ejemplo, para la asignatura Digitalización, dentro de la carpeta asignaturas/digitalizacion, se dispone de un archivo llamado 4eso_digitalizacion_curriculum.pdf que contiene el currículum de la asignatura. Este archivo deberá tenerse en cuenta como contexto general que sirva de apoyo para poder desarrollar las actividades propuestas.
 
 La idea es que el agente de IA utilizado como apoyo para desarrollar la página web pueda, siempre bajo el mandato, supervisión y consentimiento explícito del profesor, modificar la programación de aula en base a las actividades, o desarrollar nuevas actividades basándose en la programación de aula.
 
@@ -24,3 +24,6 @@ En general, dentro de la carpeta de cada asignatura tendremos distintas carpetas
 
 Cada una de estas carpetas de actividades se componen de un archivo markdown index.md que contiene la descripción, desarrollo y paso a paso de cada actividad.
 
+El agente de IA deberá tener en cuenta no solo la programación de aula, sino también las actividades que se han desarrollado y las que se van a desarrollar, de tal forma que pueda ofrecer una ayuda coherente y adaptada al nivel de los alumnos.
+
+Por último, el agente de IA deberá tener en cuenta las directrices del profesor para el desarrollo de la página web. Si el profesor considera oportuno hacer algún cambio en la programación, se le deberá consultar para que dé su consentimiento explícito. Sin embargo, el agente de IA podrá sugerir cambios en la programación de aula, siempre y cuando estén justificados y sean coherentes con el nivel de los alumnos y con los objetivos que se persiguen.

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 2 – Uso básico de la terminal en Linux (bash)
+title: Actividad 3 – Uso básico de la terminal en Linux (bash)
 description: Tema 1
 ---
 
-# Actividad 2 – Uso básico de la terminal en Linux (bash)
+# Actividad 3 – Uso básico de la terminal en Linux (bash)
 
 Antes de realizar las tareas, **lee atentamente**:
 
@@ -16,11 +16,11 @@ Antes de realizar las tareas, **lee atentamente**:
 
 Realiza las siguientes tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}:
 
-- Dentro de tu **carpeta personal**, y dentro de **Documents/Tema 1**, crea una carpeta llamada **Actividad-2**.
-- Dentro de **Actividad-2** descarga el archivo comprimido del siguiente enlace:  
-  **dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/sistemas-operativos/actividad2/fotos_comida.zip**{: .verde}
+- Dentro de tu **carpeta personal**, y dentro de **Documents/Tema 1**, crea una carpeta llamada **Actividad-3**.
+- Dentro de **Actividad-3** descarga el archivo comprimido del siguiente enlace:  
+  **dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/sistemas-operativos/actividad3/fotos_comida.zip**{: .verde}
 - Descomprime el archivo para extraer todas las fotos que contiene.  
-- Partiendo desde **Actividad-2**, **crea toda la estructura de carpetas**{: .rojo} que se aprecia en la **imagen de abajo**.
+- Partiendo desde **Actividad-3**, **crea toda la estructura de carpetas**{: .rojo} que se aprecia en la **imagen de abajo**.
 - **HAZ CAPTURA DE PANTALLA DE LOS COMANDOS QUE VAS EJECUTANDO**{: .rojo}.  
 - **Organiza las fotos** en las carpetas correspondientes (muévelas a su carpeta adecuada).  
 - Comprime la carpeta **Recetas** en un archivo llamado **recetas.zip** →  
