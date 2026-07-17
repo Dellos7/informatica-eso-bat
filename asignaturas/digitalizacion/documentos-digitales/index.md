@@ -6,3 +6,7 @@ description: Documentos digitales
 
 # Tema 2: Documentos digitales
 
+## Actividades
+
+- [Actividad 1](./actividad1/)
+
