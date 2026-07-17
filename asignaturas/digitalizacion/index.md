@@ -15,3 +15,4 @@ description: Asignatura optativa de 4º ESO.
 ## Temas
 
 - [Tema 1](./sistemas-operativos)
+- [Tema 2](./documentos-digitales)

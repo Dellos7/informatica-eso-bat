@@ -5,7 +5,7 @@
 | Situación de Aprendizaje | Número de Sesiones Totales | Trimestre |
 | :--- | :---: | :---: |
 | SdA 1: Arquitectos de sistemas: Sistemas Operativos y Virtualización | 12 | 1º |
-| SdA 2: Gestión eficiente de la información: Productividad integrada | 15 | 1º |
+| SdA 2: Dominando la oficina digital: Creación, cálculo y automatización | 15 | 1º |
 | SdA 3: Dentro de la caja: Simulación de hardware y montaje | 12 | 1º |
 | SdA 4: El código oculto: Representación digital de la información | 12 | 2º |
 | SdA 5: Escudo Digital: Seguridad, privacidad y bienestar en la red | 12 | 2º |
@@ -49,7 +49,7 @@ Contribuye a la capacitación técnica y la adaptabilidad en entornos cambiantes
 **Instrumentos de recogida de información:**
 Portfolio digital con capturas de la instalación, cuestionarios sobre licencias y rúbrica de resolución de problemas técnicos.
 
-## SITUACIÓN DE APRENDIZAJE 2: Gestión eficiente de la información: Productividad integrada
+## SITUACIÓN DE APRENDIZAJE 2: Dominando la oficina digital: Creación, cálculo y automatización
 
 **Contexto:**
 | Personal | Educativo | Social | Profesional |
@@ -67,17 +67,20 @@ Mejora de la alfabetización informacional. ODS 4 (Educación de calidad).
   - Criterios de evaluación: 2.1, 2.2, 2.3, 2.5, 2.6
 
 **Saberes Básicos:**
-- **Bloque Digitalització de l’entorn personal d’aprenentatge:** Organización de la información en el almacenamiento secundario y en red. Operaciones básicas con archivos y carpetas. Creación de contenidos digitales con herramientas ofimáticas, multimedia y de desarrollo web. Gestión y organización del trabajo en pequeños grupos.
+- **Bloque Digitalització de l’entorn personal d’aprenentatge:**
+  - **Organización del entorno de trabajo digital:** Organización de la información en el almacenamiento secundario y en red. Operaciones básicas con archivos y carpetas.
+  - **Creación de contenidos digitales:** Creación de contenidos digitales con herramientas ofimáticas (procesadores de texto y hojas de cálculo), multimedia y de desarrollo web. Estética y formato en documentos y hojas de cálculo.
+  - **Comunicación y colaboración en red:** Gestión y organización del trabajo en pequeños grupos. Herramientas colaborativas de edición de contenidos digitales.
 
 **Organización:**
 | Secuenciación de actividades | Organización de espacios | Distribución del tiempo | Recursos y materiales | Medidas de respuesta educativa para la inclusión |
 | :--- | :--- | :--- | :--- | :--- |
-| **Actividad 1:** Estructura de archivos y gestión en la nube colaborativa. | Aula de informática | 3 sesiones (165 min) | Drive/OneDrive, esquemas de organización. | **Dislexia:** Códigos de colores para carpetas. **Nivel III:** Fragmentación de la jerarquía de carpetas. **Idioma:** Ayuda visual para nombres de funciones. |
-| **Actividad 2:** La hoja de cálculo inteligente: automatización de presupuestos de un viaje. | Aula de informática | 6 sesiones (330 min) | Hojas de cálculo, acceso a portales de viajes. | **Dislexia:** Uso de plantillas con fórmulas preestablecidas. **Nivel III:** Tareas de cálculo simplificadas. **Idioma:** Vídeos tutoriales subtitulados. |
-| **Actividad 3:** Informe técnico integrado: vinculación de tablas de datos en documentos. | Aula de informática | 6 sesiones (330 min) | Procesadores de texto, datos de la Actividad 2. | **Dislexia:** Uso de correctores ortográficos avanzados y dictado por voz. **Nivel III:** Guion estructurado del informe. **Idioma:** Plantillas con conectores textuales. |
+| **Actividad 1:** Creación y diseño de documentos formales con **LibreOffice Writer**. Aprendizaje práctico sobre formato de carácter, párrafo y página; inserción de imágenes y tablas; organización en columnas y uso de secciones para configurar diferentes orientaciones o encabezados en un mismo documento. | Aula de informática | 5 sesiones (275 min) | LliureX, LibreOffice Writer, guías de estilo de documentos. | **Dislexia:** Guía visual de atajos de teclado y tipografía accesible (OpenDyslexic). <br>**Nivel III:** Plantillas semiestructuradas con los elementos clave ya dispuestos. <br>**Idioma:** Glosario de términos de edición de texto y formato. |
+| **Actividad 2:** Gestión de datos y presupuestos con **LibreOffice Calc**. Diseño de hojas de cálculo aplicando formato de celdas, autorrelleno y series. Uso práctico de fórmulas y funciones matemáticas/estadísticas, referencias relativas y absolutas, y representación visual mediante la creación de gráficos. | Aula de informática | 6 sesiones (330 min) | LliureX, LibreOffice Calc, conjuntos de datos de prueba. | **Dislexia:** Hojas de cálculo con códigos de color para delimitar áreas de entrada de datos y fórmulas. <br>**Nivel III:** Fórmulas guiadas paso a paso y conjuntos de datos reducidos. <br>**Idioma:** Vídeo-tutoriales de las funciones matemáticas con traducción/subtítulos. |
+| **Actividad 3:** Automatización de documentos mediante **Combinación de correspondencia**. Vinculación de una base de datos (u hoja de cálculo de Calc) con plantillas de Writer para generar de forma automática múltiples cartas, credenciales o informes personalizados. | Aula de informática | 4 sesiones (220 min) | LliureX, LibreOffice Writer y Calc, base de datos simulada. | **Dislexia:** Checklist visual interactivo con los pasos secuenciales de la combinación. <br>**Nivel III:** Base de datos simplificada con campos mínimos para pruebas rápidas. <br>**Idioma:** Plantillas pre-etiquetadas con iconos en los campos de combinación. |
 
 **Instrumentos de recogida de información:**
-Documento maestro compartido, hoja de cálculo funcional con fórmulas complejas y coevaluación del trabajo en grupo.
+Documento técnico de Writer con secciones, columnas y tablas complejas; libro de cálculo de Calc con fórmulas y gráficos estadísticos funcionales; y lote de documentos personalizados generados mediante combinación de correspondencia.
 
 ## SITUACIÓN DE APRENDIZAJE 3: Dentro de la caja: Simulación de hardware y montaje
 
