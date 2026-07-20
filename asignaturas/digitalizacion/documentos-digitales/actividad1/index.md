@@ -43,40 +43,67 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
    * Elige **Salto de página** y en **Estilo** selecciona **Estilo predeterminado** (Default Page Style). Haz clic en *Aceptar*.
 
 **Ejemplo de resultado esperado (Portada):**
-![Ejemplo Portada](./captura_portada_writer.png){: .no-border}
+{: .centrado}
+
+![Ejemplo Portada](./captura_portada_writer_real.png)
+{: .no-border .img .img-450}
 
 ---
 
 ### 2. Formato de carácter y párrafo
 En esta segunda página (que ahora tiene el *Estilo predeterminado*), redactaremos la introducción aplicando formatos detallados y estructurando los encabezados mediante estilos para poder generar un índice automático en el futuro.
 
+> **Nota:** Utiliza el **pegado especial de texto sin formato** para evitar copiar estilos del navegador:
+![Pegar texto sin formato](./pegar_texto_sin_formato.png)
+{: .img}
+{: .alert-info}
+
 1. Escribe el título: **«1. Introducción al almacenamiento digital»**.
    * Selecciónalo y asígnale el estilo **Título 1** (Heading 1).
-   * Modifícalo a: fuente **Liberation Sans**, tamaño **14 pt**, negrita, color **Azul oscuro** y actualiza el estilo pulsando en **Actualizar estilo seleccionado**.
-2. Redacta dos párrafos de introducción (de unas 5-6 líneas cada uno) sobre la evolución del almacenamiento desde los disquetes hasta el almacenamiento moderno.
-3. Aplica los siguientes formatos avanzados:
-   * **Párrafo general:** Fuente *Liberation Serif*, 11 pt, **Justificado**, interlineado de `1,15 líneas`, con un espaciado de `0,25 cm` después del párrafo.
+   * Modifícalo a: fuente **Liberation Sans**, tamaño **16 pt**, negrita, color **Azul oscuro**, alineado a la izquierda.
+   * Ve a *Formato -> Párrafo* y añade espaciado bajo el párrafo de **0,50 cm**.
+   * Por último, actualiza el estilo pulsando en **Actualizar estilo seleccionado**.
+2. **Redacta dos párrafos de introducción** (de unas 5-6 líneas cada uno) sobre la evolución del almacenamiento desde los disquetes hasta el almacenamiento moderno. Puedes utilizar internet o alguna I.A. tipo ChatGPT para que te ayude. **Asegúrate de que entre ambos párrafos no haya espacios (líneas) en blanco**.
+3. Aplica los siguientes formatos a los párrafos que has redactado:
+   * **Párrafo general:**
+      - *Formato -> Carácter:* Fuente *Liberation Serif*, 12 pt, **Justificado**.
+      - *Formato -> Párrafo:* Interlineado de `1,5 líneas`, con un espaciado de `0,35 cm` después del párrafo.
+      - Asegúrate de que tienen seleccionado el estilo **Estilo de párrafo predeterminado**
    * **Letra Capitular (Drop Cap):** Selecciona el primer párrafo, ve a *Formato -> Párrafo -> pestaña Letras capitulares*. Activa "Mostrar letras capitulares", que ocupe `3 líneas` de alto y tenga una distancia al texto de `0,2 cm`.
    * **Sangría de primera línea:** En el segundo párrafo, añade una sangría de primera línea de `1,25 cm` (*Formato -> Párrafo -> pestaña Sangrías y espaciados*).
-   * **Efectos de carácter:** Destaca 3 palabras clave del texto usando negrita y **color de fuente azul**. Busca un término en inglés (ej. *cloud computing*), aplícale cursiva y un **color de fondo de carácter (resaltado) amarillo suave**.
-4. **Párrafo destacado (Callout):** Inserta un tercer párrafo corto con una frase célebre o dato curioso. Selecciónalo y aplícale:
-   * Sangría izquierda y derecha de `1,5 cm`.
-   * Un borde izquierdo grueso (de `3,0 pt` en color azul) y ningún borde en los otros lados.
+   * Actualiza el estilo pulsando en **Actualizar estilo seleccionado**.
+   * **Efectos de carácter:** Destaca al menos 3 palabras clave del texto usando negrita y **color de fuente azul**. Busca un término en inglés (ej. *cloud computing*), aplícale cursiva y un **color de fondo de carácter (resaltado) amarillo suave**.
+4. **Párrafo destacado:** Inserta un tercer párrafo corto con una frase célebre o dato curioso. Selecciónalo y aplícale (*Formato -> Párrafo*):
+   * Sangría izquierda y derecha de `1,5 cm` y sin sangría de primera línea.
+   * Un borde izquierdo grueso (de `3,0 pt` en color azul) y ningún borde en los otros lados, con una separación al texto por izquierda y derecha de 0,5cm y por arriba y abajo de 0,1cm.
    * Un color de fondo gris muy claro y un sombreado gris (*Formato -> Párrafo -> pestaña Bordes*).
+
+**Ejemplo de resultado esperado (Formato de carácter y párrafo):**
+{: .centrado}
+
+![Ejemplo Ejercicio 2](./captura_ejercicio2_writer_real.png)
+{: .no-border .img .img-450}
 
 ---
 
 ### 3. Secciones y columnas con personalización
-1. Sal del párrafo destacado y añade un título de nivel 2: **«1.1. Comparación de soportes magnéticos y ópticos»**.
+1. Sal del párrafo destacado e inserta un salto de página (*Insertar -> Salto de página*)
+2. Añade un título de nivel 2: **«1.1. Comparación de soportes magnéticos y ópticos»**.
    * Selecciónalo y asígnale el estilo **Título 2** (Heading 2).
-   * Modifícalo a: fuente **Liberation Sans**, tamaño **12 pt**, negrita, color **Azul oscuro** y pulsa en **Actualizar estilo seleccionado**.
-2. Inserta una sección de dos columnas con fondo personalizado:
+   * Modifícalo a: fuente **Liberation Sans**, tamaño **14 pt**, negrita, color **Azul oscuro**, alineado a la izquierda y pulsa en **Actualizar estilo seleccionado**.
+3. Inserta una sección de dos columnas con fondo personalizado:
    * Ve a *Insertar -> Sección...*
-   * En la pestaña **Columnas**, selecciona `2` columnas y añade un espacio de separación de `0,5 cm` entre ellas.
+   * En la pestaña **Columnas**, selecciona `2` columnas, ponles anchura 8,25cm cada una y deja un espacio de separación de `0,5 cm` entre ellas.
    * En la pestaña **Área**, selecciona un color de fondo muy suave (por ejemplo, verde pastel claro o amarillo pastel claro).
    * Haz clic en *Insertar*.
-3. Escribe en la columna de la izquierda el funcionamiento básico de un disco duro mecánico (HDD) y en la de la derecha el de un disco óptico (CD/DVD).
 4. Aplica una **sangría de sección** de `0,5 cm` a la izquierda y derecha para que el color de fondo de la sección no quede pegado a los márgenes generales del papel.
+5. Escribe en la columna de la izquierda el funcionamiento básico de un disco duro mecánico (HDD) y en la de la derecha el de un disco óptico (CD/DVD).
+
+**Ejemplo de resultado esperado (Secciones y columnas con personalización):**
+{: .centrado}
+
+![Ejemplo Ejercicio 3](./captura_ejercicio3_writer.png)
+{: .no-border .img .img-450}
 
 ---
 
