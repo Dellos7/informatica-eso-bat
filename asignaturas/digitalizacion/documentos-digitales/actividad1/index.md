@@ -90,10 +90,10 @@ En esta segunda página (que ahora tiene el *Estilo predeterminado*), redactarem
 1. Sal del párrafo destacado e inserta un salto de página (*Insertar -> Salto de página*)
 2. Añade un título de nivel 2: **«1.1. Comparación de soportes magnéticos y ópticos»**.
    * Selecciónalo y asígnale el estilo **Título 2** (Heading 2).
-   * Modifícalo a: fuente **Liberation Sans**, tamaño **14 pt**, negrita, color **Azul oscuro**, alineado a la izquierda y pulsa en **Actualizar estilo seleccionado**.
+   * Modifícalo a: fuente **Liberation Sans**, tamaño **14 pt**, negrita, color **Azul oscuro**, alineado a la izquierda, añade un **espaciado debajo** del párrafo de **0,50 cm** y pulsa en **Actualizar estilo seleccionado**.
 3. Inserta una sección de dos columnas con fondo personalizado:
    * Ve a *Insertar -> Sección...*
-   * En la pestaña **Columnas**, selecciona `2` columnas, ponles anchura 8,25cm cada una y deja un espacio de separación de `0,5 cm` entre ellas.
+   * En la pestaña **Columnas**, selecciona `2` columnas, ponles anchura 8,25cm cada una y deja un espaciado de `0,5 cm` entre ellas. Añade también una **linea de separación** entre ellas, sólida de color negro y de *0,5pt*.
    * En la pestaña **Área**, selecciona un color de fondo muy suave (por ejemplo, verde pastel claro o amarillo pastel claro).
    * Haz clic en *Insertar*.
 4. Aplica una **sangría de sección** de `0,5 cm` a la izquierda y derecha para que el color de fondo de la sección no quede pegado a los márgenes generales del papel.
@@ -102,23 +102,35 @@ En esta segunda página (que ahora tiene el *Estilo predeterminado*), redactarem
 **Ejemplo de resultado esperado (Secciones y columnas con personalización):**
 {: .centrado}
 
-![Ejemplo Ejercicio 3](./captura_ejercicio3_writer.png)
+![Ejemplo Ejercicio 3](./captura_ejercicio3_writer_real.png)
 {: .no-border .img .img-450}
 
 ---
 
 ### 4. Inserción de imágenes con leyendas y tablas
-1. Sal de la sección haciendo doble clic abajo y escribe el título: **«2. Comparativa de rendimiento de unidades de estado sólido»**.
-   * Selecciónalo y asígnale el estilo **Título 1** (Heading 1). Verás que automáticamente adopta el formato (14 pt, negrita, azul oscuro) que definiste previamente al actualizar este estilo.
-2. Busca e inserta una imagen de un disco SSD:
-   * Cambia su tamaño de manera proporcional (manteniendo la relación de aspecto) para que ocupe el centro de la página.
-   * **Leyenda automática:** Haz clic derecho sobre la imagen y selecciona **Insertar leyenda...**. Escribe como texto: `Estructura interna de una unidad SSD NVMe`. Writer añadirá automáticamente el texto debajo con el formato "Ilustración 1: ...".
-   * Ajusta el texto para que la imagen y su leyenda tengan un ajuste **Arriba y abajo** (el texto no se colocará a los lados, sino que fluirá limpiamente antes y después).
-3. **Tabla con formato avanzado:** Inserta una tabla de **4 columnas y 4 filas** para comparar tecnologías (SATA SSD, M.2 SATA, NVMe PCIe 3.0, NVMe PCIe 4.0):
-   * **Fila de cabecera:** Aplica un color de fondo azul oscuro, texto en blanco, negrita y centrado.
-   * **Alineación vertical:** Selecciona toda la tabla, haz clic derecho y en *Propiedades de la tabla -> pestaña Flujo de texto* (o desde el menú Alineación), asegúrate de que el texto de todas las celdas esté **centrado verticalmente**.
-   * **Bordes personalizados:** Configura los bordes internos de la tabla en color gris claro (`0,5 pt`) y el borde exterior en un color azul más grueso (`1,5 pt`).
-   * Añade datos de velocidad de lectura/escritura y precio estimado en las celdas.
+1. Sal de la sección haciendo doble clic abajo, añade un salto de página (*Insertar -> Salto de página*) y escribe el título: **«2. Comparativa de rendimiento de unidades de estado sólido»**.
+   * Selecciónalo y asígnale el estilo **Título 1** (Heading 1). Verás que automáticamente adopta el formato (16 pt, negrita, azul oscuro) que definiste previamente al actualizar este estilo.
+2. Busca e inserta **dos imágenes** de discos de estado sólido (un **disco SSD SATA** de 2,5" y un **disco SSD M.2**):
+   * Asegúrate de que ambas imágenes tengan **fondo transparente** o bien utiliza la web [remove.bg](https://www.remove.bg){:target="_blank"} para eliminar el fondo.
+   * Coloca ambas imágenes una al lado de la otra debajo del título de la sección.
+   * **Leyenda en cada imagen:** Haz clic derecho sobre cada imagen y selecciona **Insertar leyenda...**:
+     * En la primera imagen añade como texto: `Disco sólido SATA` (categoría **Ilustración**).
+     * En la segunda imagen añade como texto: `Disco sólido M.2` (categoría **Ilustración**).
+   * Ajusta ambos marcos para que tengan un ajuste adecuado y una separación inferior (`0,75 cm`) para no quedar pegados al texto que irá debajo.
+3. Escribe un **párrafo introductorio** explicando brevemente la evolución y ventajas de las unidades de estado sólido (SSD) respecto a interfaces y protocolos (SATA, M.2, NVMe PCIe 3.0 y 4.0). Utiliza el estilo **Cuerpo de texto**.
+4. **Tabla con formato avanzado y leyenda:** Inserta una tabla de **4 columnas y 5 filas** (*Tabla -> Insertar tabla*) para comparar tecnologías:
+   * **Contenido:** Puedes consultar o pedir a ChatGPT/IA una tabla comparativa entre SATA SSD, M.2 SATA, NVMe PCIe 3.0 y NVMe PCIe 4.0 con datos de velocidad máxima teórica, interfaz utilizada, y latencia/rendimiento.
+   * **Formato de la tabla:**
+     * **Fila de cabecera:** Aplica un color de fondo azul oscuro, texto en blanco, negrita y centrado.
+     * **Alineación vertical:** Selecciona toda la tabla, haz clic derecho y en *Propiedades de la tabla -> pestaña Flujo de texto* (o desde el menú Alineación), asegúrate de que el texto de todas las celdas esté **centrado verticalmente**.
+     * **Bordes personalizados:** Configura los bordes internos de la tabla (clic derecho -> *Propiedades de la tabla* -> pestaña *Borde*) en color gris claro (`0,5 pt`) y el borde exterior en un color azul más grueso (`1,5 pt`).
+   * **Leyenda automática en la tabla:** Haz clic derecho sobre la tabla, selecciona **Insertar leyenda...**, escoge como categoría **Tabla** y añade el texto: `Comparativa de tecnologías de discos SSD`. Colócala debajo de la tabla y céntrala. Verás que aparece debajo como *"Tabla 1: Comparativa..."*.
+
+**Ejemplo de resultado esperado (Imágenes con leyenda, párrafo y tabla con formato):**
+{: .centrado}
+
+![Ejemplo Ejercicio 4](./captura_ejercicio4_writer_real.png)
+{: .no-border .img .img-450}
 
 ---
 
