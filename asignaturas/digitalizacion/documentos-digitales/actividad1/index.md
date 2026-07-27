@@ -136,12 +136,24 @@ En esta segunda página (que ahora tiene el *Estilo predeterminado*), redactarem
 
 ### 5. Secciones horizontales y saltos de página
 1. Al final del documento, introduce un salto de página manual para cambiar la orientación de la hoja:
-   * *Insertar -> Salto manual... -> Salto de página*.
-   * En **Estilo**, selecciona **Página horizontal** (Landscape). Haz clic en *Aceptar*.
+   * *Insertar -> Más saltos -> Salto manual...*.
+   * Escoge **Tipo**: *Salto de página*.
+   * En **Estilo de página**, selecciona **Horizontal**. Haz clic en *Aceptar*.
 2. En esta hoja horizontal, añade el título: **«3. Mapa de ruta y velocidades de transferencia del almacenamiento»**.
    * Selecciónalo y asígnale el estilo **Título 1** (Heading 1).
-3. Inserta una tabla ancha de 6 columnas donde detalles una cronología del almacenamiento (desde 1980 hasta la actualidad). Al estar en página horizontal, aprovecha el espacio para hacer las columnas anchas.
-4. Regresa al formato vertical: introduce otro salto manual (*Insertar -> Salto manual... -> Salto de página*) y selecciona en estilo: **Estilo predeterminado**.
+3. Inserta una tabla ancha de 6 columnas donde detalles una cronología del almacenamiento digital (desde 1980 hasta la actualidad) e inserta imágenes representativas de cada tecnología en una columna adicional.
+   *Al estar en página horizontal, aprovecha el espacio para hacer las columnas anchas.
+   * Utiliza el mismo estilo de tabla que en el ejercicio anterior.
+   * Inserta una leyenda debajo de la tabla con el texto: `Cronología del almacenamiento digital`.
+   * Añade un párrafo introductorio antes de la tabla.
+   * Si la tabla no cabe en una página, deja que fluya hasta la siguiente.
+4. Regresa al formato vertical: introduce otro **salto de página manual** (*Insertar -> Más saltos -> Salto manual...*) y selecciona en estilo: **Estilo de página predeterminado**.
+
+**Ejemplo de resultado esperado (Secciones horizontales y saltos de página):**
+{: .centrado}
+
+![Ejemplo Ejercicio 5](./captura_ejercicio5_writer_real.png)
+{: .no-border .img .img-450}
 
 ---
 
@@ -149,31 +161,49 @@ En esta segunda página (que ahora tiene el *Estilo predeterminado*), redactarem
 1. Haz clic en la cabecera de la página 2 (Estilo predeterminado) y añade un **Encabezado**.
 2. Escribe a la izquierda: **«Tema 2: Documentos Digitales»**.
 3. Pulsa el tabulador para ir a la derecha e inserta un campo automático: *Insertar -> Campo -> Fecha*. Verás que se inserta la fecha de hoy de manera automática.
-4. En el pie de página, añade un **Pie de página**.
-5. Escribe a la izquierda tu nombre completo, y a la derecha introduce la numeración en formato dinámico:
+4. Selecciona todo el texto de la cabecera y hazlo en tamaño **10pt**.
+5. Ve a *Formato -> Estilo de página -> Cabecera -> Más... -> Bordes* y añade un borde inferior de color azul y **0,5pt**.
+6. En el pie de página, añade un **Pie de página**.
+7. Escribe a la izquierda tu nombre completo, y a la derecha introduce la numeración en formato dinámico:
    * Escribe la palabra `Página ` e inserta el campo *Número de página* (*Insertar -> Campo -> Número de página*).
    * Escribe ` de ` e inserta el campo *Total de páginas* (*Insertar -> Campo -> Total de páginas*).
    * Debe quedar visualmente como: `Página 2 de 4` (y se actualizará solo).
-6. **Verificación:** Comprueba que la página de la Portada (página 1) **no tiene** ni encabezado ni pie de página, gracias al uso de estilos de página independientes.
+8. Añade el mismo pie y cabecera a las **páginas horizontales** si no lo tienen.
+9. **Verificación:** Comprueba que la página de la Portada (página 1) **no tiene** ni encabezado ni pie de página, gracias al uso de estilos de página independientes.
+
+**Ejemplo de resultado esperado (Encabezados y pies de página):**
+{: .centrado}
+
+![Ejemplo Ejercicio 6](./captura_ejercicio6_writer_real.png)
+{: .no-border .img .img-450}
 
 ---
 
 ## Entregables en Aules
 
-Sube a la tarea de Aules únicamente el archivo de LibreOffice Writer editable:
-* **`actividad1_writer_tuapellido_tunombre.odt`**
+Sube a la tarea de Aules los siguientes **dos archivos**:
+* **`actividad1_writer_tuapellido_tunombre.odt`** (archivo editable de LibreOffice Writer)
+* **`actividad1_writer_tuapellido_tunombre.pdf`** (versión exportada en formato PDF)
+
+> 💡 **¿Cómo exportar a PDF en LibreOffice Writer?**
+> 1. Ve al menú superior: *Archivo -> Exportar a -> Exportar a PDF...* (o haz clic en el botón directo *Exportar directamente a PDF* de la barra de herramientas superior).
+> 2. En la ventana emergente de opciones de PDF, haz clic en **Exportar**.
+> 3. Selecciona la carpeta de la actividad, asegúrate de nombrarlo como `actividad1_writer_tuapellido_tunombre.pdf` y haz clic en **Guardar**.
+{: .alert-info}
 
 ---
 
 ## Rúbrica de Evaluación
 
-| Criterio | 0 pts | 1 pt | 2 pts | 3 pts |
-|----------|-------|------|------|------|
-| **Estilos de página y Portada** (máx. 3 pts) | No aplica estilos de página diferenciados. La portada tiene encabezado/pie de las demás páginas. | Aplica estilos de página pero la portada carece de formato visual (bordes, fondo de área) o datos del alumno. | Configura la portada sin encabezado/pie, pero el formato visual no coincide con las especificaciones (borde de 1.5 pt, fondo de área). | Portada perfecta con estilo "Primera página" (sin cabecera/pie), borde azul de 1.5 pt, fondo de área suave y datos bien estructurados. |
-| **Formato de párrafo avanzado** (máx. 2 pts) | No aplica sangrías ni letras capitulares de forma correcta. | Aplica algunos formatos de párrafo, pero carece de la letra capitular exacta (3 líneas, 0.2 cm), la sangría de primera línea (1.25 cm) o el párrafo callout. | Formato de párrafo impecable: letra capitular configurada con precisión, sangría en segundo párrafo y estilo callout destacado con borde izquierdo azul y fondo gris. | |
-| **Secciones, columnas y fondos** (máx. 2 pts) | No crea secciones ni divide el texto en columnas. | Crea las columnas pero no aplica el fondo de color de sección, o no define las sangrías de sección requeridas. | Sección de dos columnas estructurada con separación de 0.5 cm, color de fondo suave y sangrías de sección laterales de 0.5 cm aplicadas. | |
-| **Imágenes con leyendas y tablas avanzadas** (máx. 2 pts) | Inserta tablas e imágenes sin formato ni alineaciones avanzadas. | Imagen sin leyenda automática o tabla con texto desalineado verticalmente y bordes genéricos. | Imagen con leyenda automática e interactiva. Tabla con cabecera en azul oscuro/blanco, bordes personalizados y textos centrados verticalmente. | |
-| **Alternancia de páginas (Vertical/Horizontal)** (máx. 1 pt) | No alterna la orientación de las páginas. | | | Alterna correctamente páginas verticales y horizontales de forma limpia usando saltos de página con cambio de estilo. |
+| Criterio | 0 pts | 0.5 pts | 1 pt | 1.5 pts | 2 pts |
+|----------|-------|---------|------|---------|-------|
+| **1. Portada y Estilos de página** (máx. 1.5 pts) | No aplica estilos de página diferenciados. La portada incluye encabezado/pie de las demás páginas. | Aplica el estilo "Primera página" pero la portada carece de formatos visuales (borde, área) o datos del alumno. | Configura la portada sin encabezado/pie, pero comete errores en bordes (1,5 pt con 1,0 cm separación), fondo de área o personalización de Título/Subtítulo. | Portada impecable con estilo "Primera página" (sin cabecera/pie), borde azul de 1,5 pt con separación de 1,0 cm, área de fondo suave, estilos Título (38 pt) y Subtítulo (18 pt) actualizados y datos a la derecha. | |
+| **2. Formato de carácter y párrafo avanzado** (máx. 1.5 pts) | No aplica sangrías, letras capitulares ni formatos avanzados de párrafo o carácter. | Aplica algún formato pero omite la letra capitular, la sangría de primera línea o el párrafo destacado. | Configura el texto principal (Justificado, 1,5 líneas, espaciado 0,35 cm) pero la letra capitular (3 líneas, 0,2 cm) o sangría (1,25 cm) son incorrectas. | Formato de párrafo impecable: Título 1 actualizado (16 pt azul), letra capitular exacta en 1er párrafo, sangría de 1,25 cm en 2º, efectos de carácter (negrita azul y resaltado amarillo) y estilo callout destacado perfecto. | |
+| **3. Secciones y columnas con personalización** (máx. 1 pt) | No crea secciones ni divide el texto en columnas. | Crea las columnas pero no aplica la sección con fondo pastel, la sangría de sección (0,5 cm) o la línea de separación. | Sección de dos columnas (8,25 cm ancho, 0,5 cm espaciado) perfectamente estructurada con línea de separación de 0,5 pt, fondo pastel y sangrías de sección laterales de 0,5 cm. | | |
+| **4. Imágenes con leyendas y tablas comparativas** (máx. 1.5 pts) | Inserta imágenes y tabla sin formato ni leyendas. | Inserta imágenes pero sin fondo transparente o sin leyendas automáticas de ilustración. | Tabla comparativa 4x5 insertada pero carece de centrado vertical de celdas, bordes personalizados o leyenda automática de tabla. | Dos imágenes transparentes con leyendas automáticas. Tabla 4x5 con cabecera azul/blanco centrada, texto centrado verticalmente, bordes personalizados y leyenda automática de tabla. | |
+| **5. Secciones horizontales y tabla cronológica** (máx. 1.5 pts) | No alterna la orientación de página a horizontal ni crea la tabla cronológica. | Cambia la orientación pero sin utilizar saltos de página manuales con cambio de estilo de página. | Página horizontal correcta con la tabla, pero omite las imágenes representativas en la columna adicional, el párrafo introductorio o la leyenda automática. | Alternancia perfecta a página horizontal mediante saltos manuales ("Horizontal" y retorno a "Predeterminado"), tabla ancha de 6 columnas con imágenes, párrafo introductorio y leyenda automática. | |
+| **6. Encabezados y pies de página dinámicos** (máx. 1 pt) | No añade encabezado ni pie de página, o escribe el texto manualmente sin campos. | Inserta encabezado y pie pero sin utilizar campos automáticos (Fecha, Número de página, Total de páginas) o no aplica formato/borde al encabezado. | Encabezado (10pt, borde inferior azul 0,5pt con Fecha) y pie dinámico (`Página X de Y`) aplicados en todas las páginas (verticales y horizontales) manteniendo la Portada limpia. | | |
+| **7. Entrega en plazo** (máx. 2 pts) | No entrega o entrega con un retraso de más de una semana. | Entrega con un retraso importante de hasta una semana. | Entrega con un pequeño retraso de máximo 2 días. | | Entrega la actividad a tiempo dentro del plazo establecido. |
 
 **Criterios de evaluación de la programación:**
 * **CE2 – 2.3.** Crear, integrar y editar contenidos digitales con sentido estético de manera individual o colectiva, seleccionando las herramientas más apropiadas para generar un nuevo conocimiento y contenidos digitales de manera creativa, y respectando los derechos de autoría.
