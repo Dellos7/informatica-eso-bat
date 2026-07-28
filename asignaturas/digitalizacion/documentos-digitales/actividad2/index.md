@@ -17,34 +17,34 @@ Dominar las herramientas esenciales de cálculo, análisis de datos y representa
 {: .alert-warning}
 
 ### 1. Configuración del Libro, Estructura y Formato de Celdas
-Comenzaremos creando la estructura de la tabla de costes de componentes informáticos y personalizando su aspecto visual.
+Comenzaremos creando la tabla de costes de componentes informáticos y aplicando los formatos de celda principales.
 
-1. Abre **LibreOffice Calc**.
-2. Cambia el nombre de la hoja actual (doble clic sobre la pestaña "Hoja1" abajo) a **«Presupuesto_Hardware»**.
-3. **Bloque de Parámetros Generales (Cabecera fija):**
-   * En las celdas `A2:B3`, crea un pequeño cuadro de parámetros de la empresa:
-     * `A2`: `Tipo de IVA aplicable:` | `B2`: `21%` (Aplica formato de Porcentaje `%`).
-     * `A3`: `Descuento Proveedor (VIP):` | `B3`: `5%` (Aplica formato de Porcentaje `%`).
-   * Aplica a las celdas `A2:A3` negrita y fondo gris claro.
-4. **Tabla Principal de Datos (comienza en la fila 5):**
-   * Introduce las siguientes cabeceras en el rango `A5:H5`:
-     * `A5`: `ID Producto`
-     * `B5`: `Componente / Servicio`
-     * `C5`: `Categoría`
-     * `D5`: `Cantidad`
-     * `E5`: `Precio Unitario (€)`
-     * `F5`: `Subtotal (€)`
-     * `G5`: `Precio con IVA (€)`
-     * `H5`: `Estado Stock`
-5. **Uso de Autorrelleno y Series:**
-   * En `A6` escribe `COMP-001`. Usa el tirador de relleno (cuadradito negro en la esquina inferior derecha de la celda) y arrastra hacia abajo hasta `A15` para generar automáticamente la serie (`COMP-001` a `COMP-010`).
-6. **Formato Visual de la Tabla:**
-   * **Cabecera (`A5:H5`):** Fondo azul oscuro, texto en blanco, negrita, centrado vertical y horizontal.
-   * **Rango de Datos (`A6:H15`):** Rellena los datos de 10 componentes (procesadores, memoria RAM, SSD, fuentes, servicio de montaje, etc.) con sus cantidades y precios unitarios.
-   * Aplica formato de **Moneda (€)** con 2 decimales a las columnas de Precios (`E6:G15`).
-   * Ajusta el ancho de las columnas (*Formato -> Formato de columnas -> Ancho óptimo*) para que ningún texto quede cortado.
+1. Abre **LibreOffice Calc** y renombra la pestaña inferior "Hoja1" a **`Presupuesto_Hardware`** (doble clic sobre la pestaña).
+2. **Cuadro de Parámetros (`A2:B3`):**
+   * Escribe en `A2`: `Tipo de IVA aplicable:` y en `B2`: `21%`.
+   * Escribe en `A3`: `Descuento Proveedor (VIP):` y en `B3`: `5%`.
+   * *Formato:* Aplica fondo gris claro y negrita a `A2:A3`. Selecciona `B2:B3` y aplica el formato **Porcentaje (`%`)** con el botón de la barra superior (o *Formato -> Celdas -> Números*).
+3. **Cabecera de la Tabla (`A5:H5`):**
+   * Escribe las cabeceras: `ID Producto`, `Componente / Servicio`, `Categoría`, `Cantidad`, `Precio Unitario (€)`, `Subtotal (€)`, `Precio con IVA (€)` y `Estado Stock`.
+   * *Estilo:* Aplica fondo azul oscuro, texto blanco, negrita y alineación centrada (horizontal y vertical).
+4. **Serie de IDs (`A6:A15`):**
+   * Escribe `COMP-001` en `A6` y arrastra el tirador de relleno (cuadradito negro de la esquina de la celda) hacia abajo hasta `A15` para generar los códigos (`COMP-001` a `COMP-010`).
+5. **Relleno de datos y Formato Moneda (€):**
+   * Rellena las filas `B6:E15` con 10 componentes, sus cantidades y sus precios unitarios.
+   * Selecciona las columnas de precios (`E6:G15`) y haz clic en el icono de **Moneda (€)** en la barra de herramientas superior.
+6. **Bordes y Ancho de columna:**
+   * Selecciona toda la tabla (`A5:H15`) y añade **Bordes completos** desde la barra de herramientas.
+   * Ajusta el ancho de las columnas (*Formato -> Columnas -> Anchura óptima...*).
+
+**Ejemplo de resultado esperado (Estructura y formato de celdas):**
+{: .centrado}
+
+![Ejemplo Ejercicio 1](./captura_ejercicio1_calc_real.png)
+{: .no-border .img .img-450}
 
 ---
+
+
 
 ### 2. Fórmulas básicas y Referencias Relativas y Absolutas ($)
 Para realizar cálculos automáticos que se actualicen si cambian las condiciones (como el % de IVA), utilizaremos referencias fijas o absolutas.
