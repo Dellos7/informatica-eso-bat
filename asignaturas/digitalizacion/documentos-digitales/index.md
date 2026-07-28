@@ -9,4 +9,6 @@ description: Documentos digitales
 ## Actividades
 
 - [Actividad 1](./actividad1/)
+- [Actividad 2](./actividad2/)
+
 
