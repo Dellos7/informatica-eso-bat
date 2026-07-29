@@ -48,6 +48,9 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
 ![Ejemplo Portada](./captura_portada_writer_real.png)
 {: .no-border .img .img-450}
 
+> **Importante**: Sube a Aules el documento con el **ejercicio 1 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej1.odt`
+{: .alert-success}
+
 ---
 
 ### 2. Formato de carácter y párrafo
@@ -84,6 +87,9 @@ En esta segunda página (que ahora tiene el *Estilo predeterminado*), redactarem
 ![Ejemplo Ejercicio 2](./captura_ejercicio2_writer_real.png)
 {: .no-border .img .img-450}
 
+> **Importante**: Sube a Aules el documento con el **ejercicio 2 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej2.odt`
+{: .alert-success}
+
 ---
 
 ### 3. Secciones y columnas con personalización
@@ -104,6 +110,9 @@ En esta segunda página (que ahora tiene el *Estilo predeterminado*), redactarem
 
 ![Ejemplo Ejercicio 3](./captura_ejercicio3_writer_real.png)
 {: .no-border .img .img-450}
+
+> **Importante**: Sube a Aules el documento con el **ejercicio 3 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej3.odt`
+{: .alert-success}
 
 ---
 
@@ -132,6 +141,9 @@ En esta segunda página (que ahora tiene el *Estilo predeterminado*), redactarem
 ![Ejemplo Ejercicio 4](./captura_ejercicio4_writer_real.png)
 {: .no-border .img .img-450}
 
+> **Importante**: Sube a Aules el documento con el **ejercicio 4 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej4.odt`
+{: .alert-success}
+
 ---
 
 ### 5. Secciones horizontales y saltos de página
@@ -155,6 +167,9 @@ En esta segunda página (que ahora tiene el *Estilo predeterminado*), redactarem
 ![Ejemplo Ejercicio 5](./captura_ejercicio5_writer_real.png)
 {: .no-border .img .img-450}
 
+> **Importante**: Sube a Aules el documento con el **ejercicio 5 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej5.odt`
+{: .alert-success}
+
 ---
 
 ### 6. Encabezados y pies de página con campos dinámicos
@@ -177,18 +192,21 @@ En esta segunda página (que ahora tiene el *Estilo predeterminado*), redactarem
 ![Ejemplo Ejercicio 6](./captura_ejercicio6_writer_real.png)
 {: .no-border .img .img-450}
 
+> **Importante**: Sube a Aules el documento con el **ejercicio 6 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej6.odt`
+{: .alert-success}
+
 ---
 
 ## Entregables en Aules
 
 Sube a la tarea de Aules los siguientes **dos archivos**:
-* **`actividad1_writer_tuapellido_tunombre.odt`** (archivo editable de LibreOffice Writer)
-* **`actividad1_writer_tuapellido_tunombre.pdf`** (versión exportada en formato PDF)
+* **`actividad1_writer_tuapellido_tunombre_final.odt`** (archivo editable de LibreOffice Writer)
+* **`actividad1_writer_tuapellido_tunombre_final.pdf`** (versión exportada en formato PDF)
 
 > 💡 **¿Cómo exportar a PDF en LibreOffice Writer?**
 > 1. Ve al menú superior: *Archivo -> Exportar a -> Exportar a PDF...* (o haz clic en el botón directo *Exportar directamente a PDF* de la barra de herramientas superior).
 > 2. En la ventana emergente de opciones de PDF, haz clic en **Exportar**.
-> 3. Selecciona la carpeta de la actividad, asegúrate de nombrarlo como `actividad1_writer_tuapellido_tunombre.pdf` y haz clic en **Guardar**.
+> 3. Selecciona la carpeta de la actividad, asegúrate de nombrarlo como `actividad1_writer_tuapellido_tunombre_final.pdf` y haz clic en **Guardar**.
 {: .alert-info}
 
 ---

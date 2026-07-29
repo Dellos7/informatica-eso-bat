@@ -30,7 +30,7 @@ Comenzaremos creando la tabla de costes de componentes informáticos y aplicando
 4. **Serie de IDs (`A6:A15`):**
    * Escribe `COMP-001` en `A6` y arrastra el tirador de relleno (cuadradito negro de la esquina de la celda) hacia abajo hasta `A15` para generar los códigos (`COMP-001` a `COMP-010`).
 5. **Relleno de datos y Formato Moneda (€):**
-   * Rellena las filas `B6:E15` con 10 componentes, sus cantidades y sus precios unitarios.
+   * Rellena las filas `B6:E15` con 10 componentes y/o servicios informáticos (procesadores, discos duros, memorias RAM, montaje, instalación, etc.), sus cantidades, precios unitarios y estado de stock. Puedes utilizar una IA para que te ayude en esta tarea. **No rellenes el subtotal ni el precio con IVA ya que se calcularán de forma automática en posteriores ejercicios.**{: .rojo}.
    * Selecciona las columnas de precios (`E6:G15`) y haz clic en el icono de **Moneda (€)** en la barra de herramientas superior.
 6. **Bordes y Ancho de columna:**
    * Selecciona toda la tabla (`A5:H15`) y añade **Bordes completos** desde la barra de herramientas.
@@ -41,6 +41,9 @@ Comenzaremos creando la tabla de costes de componentes informáticos y aplicando
 
 ![Ejemplo Ejercicio 1](./captura_ejercicio1_calc_real.png)
 {: .no-border .img .img-450}
+
+> **Importante**: Sube a Aules el documento con el **ejercicio 1 finalizado** y con el nombre: `actividad2_calc_tuapellido_tunombre_ej1.ods`
+{: .alert-success}
 
 ---
 
@@ -53,9 +56,37 @@ Para realizar cálculos automáticos que se actualicen si cambian las condicione
    * En la celda `F6`, escribe la fórmula para calcular el subtotal de la primera fila: `=D6*E6` (Cantidad * Precio Unitario).
    * Copia la fórmula arrastrando el tirador de relleno hacia abajo hasta `F15`.
 2. **Cálculo del Precio con IVA (Referencia Absoluta `$B$2`):**
-   * En la celda `G6`, calcula el importe final aplicando la celda del IVA fija: `=F6*(1+$B$2)`.
-   * > 💡 **¿Por qué usamos `$B$2`?** El signo `$` fija la fila y la columna para que al arrastrar la fórmula hacia abajo, la celda del IVA no cambie a B3, B4, etc.
+
+   * En la celda `G6`, calcula el importe final aplicando el IVA.
+   
+ > **Nota:** Para calcular el precio con IVA de un producto, suma al subtotal el resultado de multiplicar el subtotal por el tipo de IVA. Es decir, la fórmula quedaría: `=F6+F6*$B$2`, ya que la celda `B2` es la celda donde tenemos anotado el IVA que se debe aplicar.
+ {: .alert-info}
+
+> 💡 **¿Por qué usamos `$B$2`?** El signo `$` puesto delante de la letra fija la fila y puesto delante del número fija la columna para que al arrastrar la fórmula hacia abajo, la celda del IVA no cambie a B3, B4, etc.
+{: .alert-warning}
    * Copia la fórmula desde `G6` hasta `G15`. Comprueba que todas las filas calculan el IVA correctamente sobre la celda `B2`.
+
+3. **Cálculo del Precio con Descuento (Referencia Absoluta `$B$3`):**
+   * Añade una nueva columna a la tabla con la cabecera **«Precio con Descuento (€)»**. Puedes aplicar fácilmente el estilo y formato del resto de columnas seleccionando una celda ya formateada y haciendo clic en **Clonar formato** (icono del pincel/brocha de la barra de herramientas).
+   * En la celda `I6`, **calcula el importe final aplicando el descuento del proveedor.**
+{:start="3"}
+
+ > **Nota:** Para calcular el precio con descuento de un producto, debes escribir una fórmula que reste al precio con IVA (en la columna G) el resultado de multiplicar el precio con IVA por el porcentaje de descuento (en la celda `B3`).
+ {: .alert-info}
+
+> 💡 **Recordatorio:** Al igual que con el IVA, usamos la referencia absoluta `$B$3` para fijar la celda del descuento al arrastrar la fórmula hacia abajo.
+{: .alert-warning}
+
+   * Copia la fórmula desde `I6` hasta `I15`. Comprueba que todas las filas calculan el descuento correctamente sobre la celda `B3`.
+
+**Ejemplo de resultado esperado (Fórmulas básicas y referencias relativas y absolutas):**
+{: .centrado}
+
+![Ejemplo Ejercicio 2](./captura_ejercicio2_calc_real.png)
+{: .no-border .img .img-450}
+
+> **Importante**: Sube a Aules el documento con el **ejercicio 2 finalizado** y con el nombre: `actividad2_calc_tuapellido_tunombre_ej2.ods`
+{: .alert-success}
 
 ---
 
@@ -73,6 +104,9 @@ Añadiremos un resumen de métricas en la parte inferior y utilizaremos condicio
      `=SI(D6<5; "REPONER"; "OK")`
    * Arrastra la fórmula hasta `H15`. Verás que las celdas con cantidad inferior a 5 mostrarán el texto "REPONER" y el resto "OK".
 
+> **Importante**: Sube a Aules el documento con el **ejercicio 3 finalizado** y con el nombre: `actividad2_calc_tuapellido_tunombre_ej3.ods`
+{: .alert-success}
+
 ---
 
 ### 4. Formato Condicional y Código de Colores
@@ -83,6 +117,9 @@ Utilizaremos el formato condicional para que la hoja destaque visualmente las al
 3. **Regla 1 (Alerta Red):** Si el valor de la celda es *igual a* `"REPONER"`, aplica un estilo con fondo rojo claro y texto en rojo oscuro/negrita.
 4. **Regla 2 (Correcto Green):** Añade una segunda condición: si el valor es *igual a* `"OK"`, aplica un estilo con fondo verde claro y texto en verde oscuro.
 5. **Escala de Color / Barras de datos en Cantidades:** Selecciona el rango de Cantidades (`D6:D15`), ve a *Formato -> Formato condicional -> Barra de datos* para añadir una barra visual proporcional a la cantidad almacenada.
+
+> **Importante**: Sube a Aules el documento con el **ejercicio 4 finalizado** y con el nombre: `actividad2_calc_tuapellido_tunombre_ej4.ods`
+{: .alert-success}
 
 ---
 
@@ -102,6 +139,9 @@ Representaremos visualmente los datos para facilitar la toma de decisiones.
    * Muestra las **etiquetas de datos** en porcentaje (`%`) sobre cada porción del gráfico.
 3. Coloca ambos gráficos de forma ordenada debajo o al lado de las tablas de datos.
 
+> **Importante**: Sube a Aules el documento con el **ejercicio 5 finalizado** y con el nombre: `actividad2_calc_tuapellido_tunombre_ej5.ods`
+{: .alert-success}
+
 ---
 
 ### 6. Maquetación, Encabezado/Pie y Exportación
@@ -111,13 +151,16 @@ Representaremos visualmente los datos para facilitar la toma de decisiones.
 4. En la pestaña **Pie de página**, activa el pie y añade a la izquierda tu nombre completo y a la derecha el campo **Página X de Y**.
 5. Revisa la *Vista previa de impresión* (*Archivo -> Vista previa de la impresión*) y ajusta en la pestaña **Hoja** la opción de escala a **"Ajustar alcance(s) de impresión al número de páginas: 1"** para que todo el contenido quede perfectamente encuadrado.
 
+> **Importante**: Sube a Aules el documento con el **ejercicio 6 finalizado** y con el nombre: `actividad2_calc_tuapellido_tunombre_ej6.ods`
+{: .alert-success}
+
 ---
 
 ## Entregables en Aules
 
 Sube a la tarea de Aules los siguientes **dos archivos**:
-* **`actividad2_calc_tuapellido_tunombre.ods`** (Libro editable de LibreOffice Calc con fórmulas funcionales)
-* **`actividad2_calc_tuapellido_tunombre.pdf`** (Documento exportado en formato PDF ajustado a página)
+* **`actividad2_calc_tuapellido_tunombre_final.ods`** (Libro editable de LibreOffice Calc con fórmulas funcionales)
+* **`actividad2_calc_tuapellido_tunombre_final.pdf`** (Documento exportado en formato PDF ajustado a página)
 
 ---
 
