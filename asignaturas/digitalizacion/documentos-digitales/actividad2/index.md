@@ -94,11 +94,11 @@ Para realizar cálculos automáticos que se actualicen si cambian las condicione
 Añadiremos un resumen de métricas en la parte inferior y utilizaremos condicionales para evaluar el inventario.
 
 1. **Fila de Totales y Resumen Estadístico (Filas 17 a 21):**
-   * En `E17` escribe `TOTAL PRESUPUESTO:` y en `G17` aplica la función sumatorio: `=SUMA(G6:G15)`. Pon esta celda en negrita y tamaño 12pt.
-   * En `E18` escribe `Precio Medio Componente:` y en `G18` usa la función `=PROMEDIO(G6:G15)`.
-   * En `E19` escribe `Componente Más Caro:` y en `G19` usa `=MAX(G6:G15)`.
-   * En `E20` escribe `Componente Más Barato:` y en `G20` usa `=MIN(G6:G15)`.
-   * En `E21` escribe `Nº Ítems en Stock Bajo:` y en `G21` usa `=CONTAR.SI(D6:D15;"<5")`.
+   * En `E17` escribe `Total:` y en `G17` aplica la función sumatorio: `=SUMA(G6:G15)`. Pon esta celda en negrita y tamaño 12pt.
+   * En `F18` escribe `Precio Medio Componente:` y en `G18` usa la función `=PROMEDIO(E6:E15)`.
+   * En `F19` escribe `Componente Más Caro:` y en `G19` usa `=MAX(E6:E15)`.
+   * En `F20` escribe `Componente Más Barato:` y en `G20` usa `=MIN(E6:E15)`.
+   * En `F21` escribe `Nº Ítems en Stock Bajo:` y en `G21` usa `=CONTAR.SI(D6:D15;"<5")`.
 2. **Uso de la Función Lógica `SI` (Estado de Stock):**
    * En la celda `H6` (Estado Stock), escribe una fórmula condicional que evalúe la cantidad disponible:
      `=SI(D6<5; "REPONER"; "OK")`
