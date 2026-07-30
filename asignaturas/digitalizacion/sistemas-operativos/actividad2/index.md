@@ -197,7 +197,7 @@ Deberás subir en Aules:
    3. Explica por qué crees que un sistema operativo consume más recursos y otro sistema consume menos recursos del ordenador.
 
 
-## Rúbrica – Actividad 1: Máquinas virtuales en VirtualBox
+## Rúbrica – Actividad 2: Máquinas virtuales en VirtualBox
 
 | Criterio | 0 pts | 1 pt | 2 pts | 3 pts |
 |----------|-------|-------|-------|-------|
@@ -205,4 +205,7 @@ Deberás subir en Aules:
 | **Linux Lite (2 pts)** | No consigue instalar ni configurar Linux Lite correctamente, ni entregar las capturas solicitadas. | Instala el sistema y realiza solo una parte de lo solicitado (ej. usuario o archivo sin completar). | Configura correctamente la máquina virtual, instala Linux Lite en español, crea usuario, crea el archivo `Actividad 1.txt` completo y muestra capturas de usuario, archivo y juego **SuperTuxKart** funcionando. | – |
 | **Windows 11 (3 pts)** | No consigue instalar ni configurar Windows 11 correctamente, ni entregar las capturas solicitadas. | Instala el sistema y realiza solo una parte de lo solicitado. | Realiza la instalación y configuraciones principales, pero falta algún elemento (ej. archivo incompleto o sin programa instalado de la Store). | Configura correctamente la máquina virtual, instala Windows 11, cambia idioma, crea usuario con foto de perfil, crea el archivo `Actividad 1.txt` completo y muestra capturas de usuario, archivo y un programa/aplicación instalada desde Microsoft Store. |
 | **Documento en LibreOffice (1 pt)** | No entrega el documento, está en blanco, es copia o se genera con una IA (ChatGPT, etc). | Entrega el documento en LibreOffice con respuestas completas y bien razonadas a las 3 preguntas. | – | – |
-| **Plazo de entrega (2 pts)** | Entrega muy tarde (más de 1 semana) o no entrega. | Entrega con retraso moderado (hasta 1 semana). | Entrega con un ligero retraso (máx. 2 días). | Entrega la actividad dentro del plazo establecido. |
+| **Plazo de entrega (2 pts)** | No entrega o entrega con retraso de más de una semana. | Entrega con un ligero retraso (máx. 2 días). | Entrega la actividad dentro del plazo establecido. | – |
+
+> ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
+{: .alert-error}

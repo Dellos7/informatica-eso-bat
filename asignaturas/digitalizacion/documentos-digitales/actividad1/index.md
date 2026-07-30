@@ -223,5 +223,8 @@ Sube a la tarea de Aules los siguientes **dos archivos**:
 | **6. Encabezados y pies de página dinámicos** (máx. 1 pt) | No añade encabezado ni pie de página, o escribe el texto manualmente sin campos. | Inserta encabezado y pie pero sin utilizar campos automáticos (Fecha, Número de página, Total de páginas) o no aplica formato/borde al encabezado. | Encabezado (10pt, borde inferior azul 0,5pt con Fecha) y pie dinámico (`Página X de Y`) aplicados en todas las páginas (verticales y horizontales) manteniendo la Portada limpia. | | |
 | **7. Entrega en plazo** (máx. 2 pts) | No entrega o entrega con un retraso de más de una semana. | Entrega con un retraso importante de hasta una semana. | Entrega con un pequeño retraso de máximo 2 días. | | Entrega la actividad a tiempo dentro del plazo establecido. |
 
+> ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
+{: .alert-error}
+
 **Criterios de evaluación de la programación:**
 * **CE2 – 2.3.** Crear, integrar y editar contenidos digitales con sentido estético de manera individual o colectiva, seleccionando las herramientas más apropiadas para generar un nuevo conocimiento y contenidos digitales de manera creativa, y respectando los derechos de autoría.

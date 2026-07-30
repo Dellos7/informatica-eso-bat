@@ -158,6 +158,9 @@ Dentro del `.zip`, el profesor comprobará que la estructura de carpetas es corr
 | **5. Mapa Mental (Freeplane & IA)** (máx. 2 pts) | No genera el mapa mental o no presenta evidencias de la IA. | Genera el mapa mental en Freeplane pero no muestra evidencias del chat de IA o el archivo no se abre. | Importa el XML generado por la IA en Freeplane pero no exporta la imagen `.jpg` o no incluye la reflexión en el documento `.odt`. | | Proceso excelente de uso de IA, importación impecable del XML en Freeplane, mapa exportado en `.jpg` e integrado en el `.odt` con su captura. |
 | **6. Entrega en plazo** (máx. 2 pts) | No entrega o entrega con retraso de más de una semana. | Entrega con un retraso importante de hasta una semana. | Entrega con un pequeño retraso de máximo 2 días. | | Entrega la actividad a tiempo dentro del plazo establecido. |
 
+> ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
+{: .alert-error}
+
 **Criterio de evaluación de la programación:**
 * **CE2 – 2.2.** Organizar y gestionar el entorno personal de aprendizaje mediante la integración de recursos digitales de manera autónoma (Digitalización 4º ESO - Comunidad Valenciana).
 
