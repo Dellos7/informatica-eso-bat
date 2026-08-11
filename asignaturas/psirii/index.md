@@ -24,14 +24,8 @@ description: Programación, Sistemas Informáticos y Redes II (2º BACH)
 - [2. Wordpress](https://docs.google.com/presentation/d/1zLRWKhYEcxdUwnVhzJwwGX_sFaiBR0t9qHWM2GMPu8A/edit?usp=sharing)
 - [Chat a través de terminal](./chat-terminal)
 
-### Enlaces
-
-- [Ubuntu](https://ubuntu.com/download)
-- [Wordpress.org](https://wordpress.org/)
-- [INFINITYFREE (HOSTING GRATUITO)](https://www.infinityfree.com/)
-
 ### Actividades
 
 [Actividad 1. Instalación de Mint, XAMPP y Wordpress](./actividad1)
 
-[Actividad 2. Darse de alta en InfinityFree (hosting), instalar Wordpress y crear tienda](./actividad2)
+[Actividad 2. Despliegue en InfinityFree (hosting) e instalación de aplicaciones web](./actividad2)
