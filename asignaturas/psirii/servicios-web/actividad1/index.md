@@ -16,7 +16,7 @@ En esta actividad aprenderás a montar un entorno de servidor web completo parti
 2. **Virtualización:** Crear y configurar una máquina virtual con **Linux Mint** en **VirtualBox**.
 3. **Servidor Web Local:** Instalar y administrar el stack **XAMPP** (servidor web Apache, base de datos MariaDB/MySQL y PHP) sobre Linux.
 4. **Despliegue de CMS:** Instalar y configurar **WordPress** sobre el servidor local XAMPP.
-5. **Diseño y Maquetación Web:** Instalar el tema **Blocksy**, seleccionar e importar una plantilla para web personal/currículum y editarla utilizando el maquetador **Elementor**.
+5. **Diseño y Maquetación Web:** Instalar el tema **Blocksy**, seleccionar e importar una plantilla para web personal/currículum y editarla utilizando el editor de bloques **Gutenberg** o el maquetador **Elementor**.
 
 ---
 
@@ -91,13 +91,15 @@ Antes de iniciar la instalación técnica, es fundamental aplicar buenas prácti
 
 ---
 
-### Paso 5: Personalización con el tema Blocksy, maquetación con Elementor y exportación
+### Paso 5: Personalización con el tema Blocksy, maquetación web y exportación
 1. Accede al panel de administración de WordPress (`http://localhost/wordpress/wp-admin`).
 2. Ve a **Apariencia > Temas > Añadir nuevo**, busca e instala el tema **Blocksy**. Actívalo.
 3. Instala el plugin **Blocksy Companion** si el sistema lo requiere para acceder al catálogo de plantillas preconfiguradas (*Starter Sites*).
 4. Elige e importa una plantilla enfocada a **sitio web personal o Currículum Vitae (CV)**.
-5. Ve a **Plugins > Añadir nuevo** e instala y activa el maquetador visual **Elementor**.
-6. Edita la página principal utilizando Elementor:
+   > **Elección del editor:** Al instalar una plantilla, normalmente la interfaz permite elegir qué tipo de editor prefieres utilizar: el editor de bloques **Gutenberg** (nativo de WordPress) o el maquetador visual **Elementor**. Puedes elegir el que prefieras.
+{: .alert-info}
+5. *(Opcional)* Si decides utilizar Elementor y no se ha instalado automáticamente al importar la plantilla, ve a **Plugins > Añadir nuevo** e instala y activa **Elementor**. Si eliges Gutenberg, no es necesario instalar ningún maquetador adicional.
+6. Edita la página principal utilizando el editor seleccionado (Gutenberg o Elementor):
    - Personaliza los encabezados con tu nombre y perfil técnico.
    - Añade o modifica secciones de formación, competencias informáticas y proyectos desarrollados.
    - Adapta la sección o datos de contacto.
@@ -129,7 +131,7 @@ Una vez realizada la entrega en Aules, **enseña el trabajo al profesor en clase
 | **Gestión de Seguridad (Bitwarden)** | No utiliza gestor de contraseñas ni almacena las credenciales requeridas. | Registra credenciales de forma incompleta o poco organizada. | Utiliza Bitwarden registrando la mayoría de claves del entorno local. | Registra y organiza adecuadamente en Bitwarden todos los usuarios y claves creados. |
 | **Virtualización y Sistema Operativo** | No consigue instalar la máquina virtual o presenta errores insalvables. | Instala Linux Mint con ayuda continua y problemas de configuración. | Linux Mint instalado y operativo en VirtualBox con los parámetros adecuados. | Máquina virtual perfectamente configurada, optimizada y fluida en su funcionamiento. |
 | **Stack XAMPP y Servidor Web Local** | No consigue instalar XAMPP ni iniciar los servicios web/base de datos. | Instala XAMPP pero requiere asistencia para arrancar Apache o MySQL. | Instala y arranca XAMPP, permitiendo el acceso correcto a localhost y phpMyAdmin. | Stack XAMPP instalado y gestionado autónomamente, creando las BD sin incidencias. |
-| **Despliegue y Maquetación WordPress** | WordPress no instalado o inaccesible en el entorno local. | WordPress instalado pero sin adaptar, utilizar plantilla ni editar contenidos. | WordPress instalado con tema Blocksy y personalización básica mediante Elementor. | Sitio web personal estilo CV maquetado con criterio (Blocksy/Elementor) y exportado con All-in-One WP Migration (.wpress). |
+| **Despliegue y Maquetación WordPress** | WordPress no instalado o inaccesible en el entorno local. | WordPress instalado pero sin adaptar, utilizar plantilla ni editar contenidos. | WordPress instalado con tema Blocksy y personalización básica mediante Gutenberg o Elementor. | Sitio web personal estilo CV maquetado con criterio (Blocksy con Gutenberg/Elementor) y exportado con All-in-One WP Migration (.wpress). |
 | **Entrega en plazo y verificación** | No entrega la actividad o presenta un retraso injustificado. | Entrega con retraso importante o faltan entregables en Aules. | Entrega con un pequeño retraso o entrega incompleta (falta documento o .wpress). | Entrega puntual en Aules del documento con capturas de la web en XAMPP y el archivo .wpress, y comprobada en el aula. |
 
 ---
