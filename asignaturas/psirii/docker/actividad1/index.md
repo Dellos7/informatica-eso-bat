@@ -30,14 +30,7 @@ En esta actividad darás tus primeros pasos prácticos con la contenerización. 
    docker --version
    docker compose version
    ```
-3. Si no estuviera instalado, ejecuta los siguientes comandos de instalación:
-   ```bash
-   sudo apt update
-   sudo apt install -y docker.io docker-compose-v2
-   sudo systemctl enable --now docker
-   sudo usermod -aG docker $USER
-   newgrp docker
-   ```
+3. Si no estuviera instalado, habla con el profesor.
 4. Realiza una prueba ejecutando `docker run hello-world` para confirmar que puedes ejecutar contenedores sin necesidad de usar `sudo`.
 
 ---
