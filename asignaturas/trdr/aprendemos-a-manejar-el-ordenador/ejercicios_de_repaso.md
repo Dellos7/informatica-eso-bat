@@ -10,7 +10,11 @@ description: Ejercicios de repaso
 
 En esta actividad se te ofrecen varias **frases con sus palabras desordenadas y deberás ordenarlas** de acuerdo con lo que has aprendido en esta sesión de **Sistemas operativos y sus aplicaciones**:
 
+<!-->
 [Juego](https://es.educaplay.com/juego/13261724-sistemas_operativos_comunes_y_aplicaciones.html)
+-->
+
+[Juego](https://infojuegos-ashy.vercel.app/)
 
 ## Actividad
 

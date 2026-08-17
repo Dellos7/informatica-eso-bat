@@ -27,7 +27,7 @@ description: Aprendemos a manejar el ordenador
 
 ### 🛠️ Ejercicios
 
-- [Ejercicios Actividad 1 - Tema 1](/{{ site.github.repository_name }}/archivos/Ejercicios%20Actividad%201%20-%20SA1.odt).
+- [Ejercicios Actividad 1 - Tema 1](/{{ site.github.repository_name }}/archivos/trdr/Ejercicios%20Actividad%201%20-%20SA1.odt).
 
 ⏯️ Descarga el documento de ejercicios y colócalo dentro de la carpeta "Documentos" del ordenador.
 
