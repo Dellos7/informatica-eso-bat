@@ -41,3 +41,4 @@ description: Sistemas operativos y aplicaciones
 
 > Deberás entregar en aules:
 - Los ejercicios del Tema 1 acabados
+- El avatar creado una vez has acabado los ejercicios
