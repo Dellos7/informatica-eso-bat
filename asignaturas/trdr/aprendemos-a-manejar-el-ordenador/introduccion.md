@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 1. Sistemas operativos comunes y aplicaciones
-description: Tema 1
+title: Tema 1
+description: Sistemas operativos y aplicaciones
 ---
 
-# Actividad 1: Sistemas operativos comunes y aplicaciones
+# Tema 1: Sistemas operativos y aplicaciones
 
 
 Un **sistema operativo****(S.O.)** es un conjunto de programas que permite manejar la **memoria, disco, medios de almacenamiento de información** y los diferentes periféricos o recursos de nuestra computadora (**teclado, ratón, impresora...**). Dicho de otra manera: es el programa **(software)** más importante, sin el sistema operativo tus programas como Word o Excel no funcionan y no puedes usar impresoras, teclados, etc. Básicamente sin un sistema operativo tu dispositivo no sirve para nada.
