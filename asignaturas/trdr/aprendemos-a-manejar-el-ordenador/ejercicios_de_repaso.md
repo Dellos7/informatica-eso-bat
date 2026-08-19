@@ -14,7 +14,7 @@ En esta actividad se te ofrecen varias **frases con sus palabras desordenadas y 
 [Juego](https://es.educaplay.com/juego/13261724-sistemas_operativos_comunes_y_aplicaciones.html)
 -->
 
-[🎮 Juego 💻 ](https://bytechallenge.vercel.app/){:target="_blank"}
+[🎮 Juego](https://bytechallenge.vercel.app/){:target="_blank"}
 
 ## Actividad
 
