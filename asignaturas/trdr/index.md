@@ -17,5 +17,5 @@ description: Taller de Relaciones Digitales Responsables (1º ESO)
 
 ## Temas
 
-- [Tema 1](./aprendemos-a-manejar-el-ordenador/)
+- [Tema 1](./sistemas-operativos-y-aplicaciones/)
 - [Tema 2](./organizacion-de-la-informacion/)
