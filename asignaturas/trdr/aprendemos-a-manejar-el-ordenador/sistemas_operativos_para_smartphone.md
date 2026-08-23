@@ -69,7 +69,7 @@ Su **interfaz** es muy **intuitiva** y **se basa en el uso de pantallas táctile
 **Escritorio Android**
 {: .centrado}
 
-Tal y como se ha comentado antes, **la barra de Google es un «widget»** que funciona como la caja de búsqueda de Google en el navegador, pero que **se puede integrar directamente en la pantalla de inicio** para que puedas buscar más rápido en Internet. Muchos celulares ya incorporan de fábrica esta barra, pero si el tuyo no la trae, puedes **añadirla desde tu pantalla de widgets**.
+Una de las características más importantes de **Android es que está basado en el núcleo (kernel) de Linux** y es un sistema de **código abierto** (*open source*). A diferencia de iOS (que es exclusivo de Apple), cualquier fabricante como Samsung, Xiaomi o Motorola puede utilizar Android y adaptarlo a sus propios dispositivos. Además, destaca por su **gran capacidad de personalización**: permite a los usuarios modificar la interfaz, organizar el escritorio con **widgets interactivos**, cambiar los temas e incluso instalar aplicaciones directamente desde archivos **APK**.
 
 ## Actividad
 
