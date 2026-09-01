@@ -25,19 +25,20 @@ description: Sistemas operativos y aplicaciones
 
 ### 🛠️ Actividades
 
-#### Actividad 1: Ejercicios del Tema 1
+#### ➡️ Actividad 1: Ejercicios del Tema 1
 
-- [Ejercicios Tema 1](/{{ site.github.repository_name }}/archivos/trdr/Ejercicios%20Tema%201.odt).
+- Descarga los [Ejercicios del Tema 1](/{{ site.github.repository_name }}/archivos/trdr/Ejercicios%20Tema%201.odt).
 
-⏯️ Descarga el documento de ejercicios y colócalo dentro de la carpeta "Documentos" del ordenador. Responde a las cuestiones consultando los apuntes y completa el reto interactivo indicado al final.
+> Descarga el documento de ejercicios y colócalo dentro de la carpeta "Documentos" del ordenador. Responde a las cuestiones consultando los apuntes y completa el reto interactivo indicado al final.
+{: .alert-info}
 
-#### Actividad 2: Avatar para Aules
+#### ➡️ Actividad 2: Avatar para Aules
 
 - Crea un avatar que se parezca a ti utilizando la página [Crear tu avatar](https://www.creartuavatar.com/).
 - Asegúrate de descargar el avatar en formato imagen a tu ordenador (en la carpeta "Imágenes" o "Documentos").
 - Después, actualiza tu perfil de Aules subiendo el avatar creado y descargado en tu ordenador.
 
-#### Actividad 3: Personalización del escritorio y barra de tareas
+#### ➡️ Actividad 3: Personalización del escritorio y barra de tareas
 
 - Personaliza el fondo de pantalla de tu ordenador con una imagen adecuada.
 - Configura la barra de tareas (o dock) anclando accesos directos a las aplicaciones que más utilizaremos en clase:
@@ -46,7 +47,7 @@ description: Sistemas operativos y aplicaciones
   - **Navegador web** (Google Chrome o Mozilla Firefox)
 - Realiza una captura de pantalla completa de tu escritorio donde se aprecie el fondo y la barra de tareas configurada con las aplicaciones.
 
-#### Actividad 4: Cuestionario en Aules
+#### ➡️ Actividad 4: Cuestionario en Aules
 
 - Accede al curso en la plataforma **Aules** y realiza el **Cuestionario del Tema 1: Sistemas operativos y aplicaciones**.
 - Este test servirá para comprobar y afianzar los conceptos clave aprendidos durante la unidad.
