@@ -18,7 +18,7 @@ description: Organización de la información
 
 ### 🛠️ Ejercicios
 
-- [Ejercicios Actividad 1 - Tema 2](/{{ site.github.repository_name }}/archivos/trdr/Ejercicios%20Actividad%202%20-%20Tema%202.odt)
+- [Ejercicios Tema 2](/{{ site.github.repository_name }}/archivos/trdr/Ejercicios%20Tema%202.odt)
 - [LLiurexBasico.zip](/{{ site.github.repository_name }}/archivos/trdr/LLiurexBasico.zip)
 
 ⏯️ Descarga el documento de ejercicios y colócalo dentro de la carpeta "Documentos" del ordenador.
