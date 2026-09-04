@@ -41,20 +41,19 @@ Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad
    - **Imagen ISO**: el archivo **.iso** descargado de Windows XP
    - **Tipo:** Microsoft Windows
    - **Versión:** Windows XP (64-bit)
-   - **Skip Unattended Installation**: ✅ Marcar
-   - *o bien* **Proceed with Unattended Installation**: ❌ No Marcar
+   - **Proceed with Unattended Installation**: ❌ No Marcar
    - **Memoria RAM (Hardware):** 2048 MB (2 GB)
    - **Disco duro virtual (Hard Disk):** 10 GB
 
    - ‼️**IMPORTANTE**‼️: Debes entrar en la **Configuración** y Deshabilitar paginación imbrincada, cambiar *Dispositiu del punter* de la Placa mare y deshabilitar controlador USB
 
-**1. Deshabilitar paginació imbrincada**
+**1. Deshabilitar paginació imbrincada (en inglés: *Nested Paging*)**
 {: .centrado}
 
 ![Deshabilitar paginación imbrincada](./winxp_conf_1.png)
 {: .img .img-350}
 
-**2. Cambiar Dispositiu del punter de la Placa Mare a Ratolí PS/2**
+**2. Cambiar Dispositiu del punter (en inglés: *Pointing Device*) de la Placa Mare a Ratolí PS/2**
 {: .centrado}
 
 ![Cambiar Dispositiu del punter de la Placa Mare a Ratolí PS/2](./winxp_conf_3.png)
@@ -68,6 +67,9 @@ Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad
 
 2. **Inicia la máquina virtual** e **instala Windows XP** siguiendo los pasos que se van indicando (Idioma, Zona horaria, Usuario, etc.).
 {:start="2"}
+
+> **IMPORTANTE**: Pon una **contraseña** fácil de recordar y apúntala. Si se te olvida, tendrás que **volver a empezar**.
+{: .alert .alert-error}
 
 3. Dentro de Windows XP realiza las siguientes acciones. **Pista** muchas se pueden hacer desde el Panel de Control:
    - Cambia la **resolución de la pantalla** para que se vea más grande y con más espacio.
@@ -102,22 +104,27 @@ Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad
    - **Imagen ISO**: el archivo **.iso** descargado de Linux Lite
    - **Tipo:** Linux
    - **Versión:** Ubuntu (64-bit)
-   - **Skip Unattended Installation**: ✅ Marcar
-   - *o bien* **Proceed with Unattended Installation**: ❌ No Marcar
+   - **Proceed with Unattended Installation**: ❌ No Marcar
    - **Memoria RAM (Hardware):** 3072 MB (3 GB)
    - **Disco duro virtual (Hard Disk):** 25 GB
 
 2. Instala Linux Lite en la máquina virtual.
+{:start="2"}
 
 3. Durante la instalación:
    - Selecciona **idioma español**.  
-   - El **usuario** debe ser tu nombre + apellidos (ejemplo: juanperez).  
+   - El **usuario** debe ser tu nombre + apellidos (ejemplo: juanperez).
+{:start="3"}
+
+> **IMPORTANTE**: Pon una **contraseña** fácil de recordar y apúntala. Si se te olvida, tendrás que **volver a empezar**.
+{: .alert .alert-error}
 
 4. Dentro de Linux Lite realiza las siguientes acciones:
    - En la carpeta **Documentos**, crea un archivo llamado **Actividad 1.txt** con tu información personal (Nombre, Edad y Curso).  
    - Haz una **captura de pantalla** en la que se vea:
      - Tu nombre de usuario.  
      - El archivo **Actividad 1.txt** dentro de Documentos.  
+{:start="4"}
 
 ![Linux Lite](./captura_linuxlite.png)
 {: .img .img-500}
@@ -147,7 +154,7 @@ Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad
    - **Imagen ISO**: el archivo **.iso** descargado de Windows 11
    - **Tipo:** Microsoft Windows
    - **Versión:** Windows 11 (64-bit)
-   - **Skip Unattended Installation**: ✅ Marcar
+   - **Proceed with Unattended Installation**: ❌ No Marcar
    - **Memoria RAM (Hardware):** 8192 MB (8 GB)
    - **Disco duro virtual (Hard Disk):** 80 GB
 
