@@ -13,7 +13,7 @@ description: VirtualBox
 
 ## 2. Crear una nueva máquina virtual
 
-![Crear máquina virtual](./vbox_2.png)
+![Crear máquina virtual](./vbox_2_v2.png)
 {: .img .img-500}
 
 ## 3. Especificar los datos de la máquina virtual
