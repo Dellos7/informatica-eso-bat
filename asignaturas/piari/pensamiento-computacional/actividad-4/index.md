@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 3. Entrenando hormigas. 3 primeros niveles de Laby
-description: Actividad 3 de la SA1
+title: Actividad 4. Entrenando hormigas. 3 primeros niveles de Laby
+description: Actividad 4 de la SA1
 ---
 
-# Actividad 3. Entrenando hormigas. 3 primeros niveles de Laby
+# Actividad 4. Entrenando hormigas. 3 primeros niveles de Laby
 
 En LliureX tenemos un juego que nos permite practicar el pensamiento computacional en cuanto a términos de algoritmia; es decir, las instrucciones que debemos especificar para resolver un problema concreto.
 
@@ -69,7 +69,7 @@ Debes enviarme **una captura de pantalla de cada nivel**, donde se vea cómo lo 
 > Cada archivo de imagen de las capturas de pantalla debe llamarse como el nivel (por ejemplo: `1a.png`)
 {: .alert-warning}
 
-## 📊 Rúbrica – Actividad 3: Entrenando hormigas (máx. 10 puntos)
+## 📊 Rúbrica – Actividad 4: Entrenando hormigas (máx. 10 puntos)
 
 | Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 3.5 puntos | 5.5 puntos | 7 puntos |
 |----------|----------|----------|----------|----------|----------|

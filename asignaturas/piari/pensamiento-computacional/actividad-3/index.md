@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 2. Camino a casa
-description: Actividad 2 de la SA1
+title: Actividad 3. Camino a casa
+description: Actividad 3 de la SA1
 ---
 
-# Actividad 2. Camino a casa
+# Actividad 3. Camino a casa
 
 ## Tarea 1
 
@@ -65,7 +65,7 @@ Las instrucciones que puedes dar al robot son las siguientes:
 - A continuación, **define una nueva posición de salida (S)** y **dos nuevas posiciones X e Y** para los tesoros, dibujando estas letras en la propia imagen.
 - Finalmente, **indica los algoritmos** necesarios para que, saliendo de la nueva posición S, el robot sea capaz de llegar a las nuevas posiciones X e Y.
 
-# 📊 Rúbrica – Actividad 2: Camino a casa (máx. 10 puntos)
+# 📊 Rúbrica – Actividad 3: Camino a casa (máx. 10 puntos)
 
 | Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
 |----------|----------|----------|----------|----------|
@@ -77,7 +77,7 @@ Las instrucciones que puedes dar al robot son las siguientes:
 
 
 
-## 📌 Criterios de evaluación asociados a la Actividad 2
+## 📌 Criterios de evaluación asociados a la Actividad 3
 
 - **CE2.1**: Analizar problemas elementales significativos para el alumnado, mediante la abstracción y modelización de la realidad.  
 - **CE2.3**: Resolver de forma guiada problemas elementales utilizando los algoritmos y las estructuras de datos necesarias.  

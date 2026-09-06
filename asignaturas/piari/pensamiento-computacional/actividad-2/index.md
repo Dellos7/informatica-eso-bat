@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 1. Entrenando Ratones
-description: Actividad 1 de la SA1
+title: Actividad 2. Entrenando Ratones
+description: Actividad 2 de la SA1
 ---
 
-# Actividad 1. Entrenando Ratones
+# Actividad 2. Entrenando Ratones
 
 Un ratón de laboratorio, llamado **XC4**, ha sido entrenado por científicos. En un experimento, está situado en la entrada de un sistema de tuberías y **el objetivo** es que **llegue al queso** que se encuentra al final de la quinta tubería. Estas son las instrucciones que siempre sigue XC4:
 
@@ -16,11 +16,11 @@ Un ratón de laboratorio, llamado **XC4**, ha sido entrenado por científicos. E
 
 ## Tarea 1
 
-1. Crea la carpeta **Actividad 1** dentro de la carpeta del **Tema 1**
-2. **Descarga la imagen** del ratón que tienes más arriba. Guárdala en la carpeta **Actividad 1**
+1. Crea la carpeta **Actividad 2** dentro de la carpeta del **Tema 1**
+2. **Descarga la imagen** del ratón que tienes más arriba. Guárdala en la carpeta **Actividad 2**
 3. **Abre la imagen** con el programa **GIMP** (GNU Manipulation Program).
 4. ¿En qué tubo debería entrar el ratón para llegar al queso? Dibuja en la imagen el camino que seguirá el ratón por el laberinto hasta llegar al queso.
-5. **Guarda** la imagen editada en la carpeta **Actividad 1**
+5. **Guarda** la imagen editada en la carpeta **Actividad 2**
 
 > Deberás entregar en Aules **la imagen** del camino seguido por el ratón para llegar al queso.
 {: .alert-warning}
@@ -68,7 +68,7 @@ Los científicos están buscando la manera de **entrenar de nuevo al ratón** pa
 > Deberás entregar en Aules **el documento** de LibreOffice Writer con el algoritmo y la imagen insertada.
 {: .alert-warning}
 
-# 📊 Rúbrica – Actividad 1: Entrenando Ratones (máx. 10 puntos)
+# 📊 Rúbrica – Actividad 2: Entrenando Ratones (máx. 10 puntos)
 
 | Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 4 puntos |
 |----------|----------|----------|----------|----------|----------|
@@ -79,7 +79,7 @@ Los científicos están buscando la manera de **entrenar de nuevo al ratón** pa
 
 
 
-## 📌 Criterios de evaluación asociados a la Actividad 1
+## 📌 Criterios de evaluación asociados a la Actividad 2
 
 - **CE2.1**: Analizar problemas elementales significativos para el alumnado, mediante la abstracción y modelización de la realidad.  
 - **CE2.3**: Resolver de forma guiada problemas elementales utilizando los algoritmos y las estructuras de datos necesarias.  

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 4. La escapada
-description: Actividad 4 de la SA1
+title: Actividad 5 (anterior). La escapada
+description: Actividad 5 (anterior) de la SA1
 ---
 
-# Actividad 4. La escapada
+# Actividad 5 (anterior). La escapada
 
 Es necesario ayudar a que el robot BAUN3 se escape del laberinto.
 

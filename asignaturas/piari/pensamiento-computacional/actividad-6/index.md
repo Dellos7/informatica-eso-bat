@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 5. El mundo de Karel. Retos básicos
+title: Actividad 6. El mundo de Karel. Retos básicos
 description: Tema 1
 ---
 
-# Actividad 5. El mundo de Karel. Retos básicos
+# Actividad 6. El mundo de Karel. Retos básicos
 
 > 🚀 **ANTES DE HACER LA ACTIVIDAD DEBES LEER**: 👉 [Funcionamiento básico de Karel](../funcionamiento-basico-karel) 👈
 {: .alert-warning}
@@ -19,14 +19,14 @@ En esta actividad debes resolver los mundos <a href="Karel_1.in" download>Karel_
 2. Haz clic en **Mundo → Abrir .in**.  
 3. Abre el archivo con extensión `.in` descargado de Aules.  
 
-![Actividad 5](./act5_1.png)
+![Actividad 6](./act5_1.png)
 
 ---
 
 ## 💾 Guarda el código (sobre todo si no has acabado)
 Asegúrate de guardar el código de un ejercicio en el ordenador (sobre todo si no lo has acabado y lo quieres terminar en la próxima sesión).  
 
-![Actividad 5](./act5_2.png)
+![Actividad 6](./act5_2.png)
 
 ---
 
@@ -55,7 +55,7 @@ No es necesario volver a la posición inicial.
 > Debes subir a Aules las **capturas de cada mundo resuelto** y el **archivo .txt** (código) de cada mundo. Debes llamar a los archivos como el mundo, por ejemplo: **karel_1.png** y **karel_1.txt**
 {: .alert-info}
 
-## 📊 Rúbrica – Actividad 5: El mundo de Karel. Retos básicos (máx. 10 puntos)
+## 📊 Rúbrica – Actividad 6: El mundo de Karel. Retos básicos (máx. 10 puntos)
 
 | Criterio                          | 0 puntos                                                               | 1 punto                                                                                                        | 2 puntos                                                                                                                                                                           | 3 puntos                                                                                                                                            |
 | --------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |

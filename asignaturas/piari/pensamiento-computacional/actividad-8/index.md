@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 7. Code.org - Aventurero de Minecraft.
+title: Actividad 8. Code.org - Aventurero de Minecraft.
 description: Tema 1
 ---
 
-# Actividad 7. Code.org - Aventurero de Minecraft.
+# Actividad 8. Code.org - Aventurero de Minecraft.
 
 ## Tarea
 

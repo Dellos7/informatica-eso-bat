@@ -19,7 +19,6 @@ Ampliado:
 
 ## Actividades
 
-- [Actividad 0](./actividad-0).
 - [Actividad 1](./actividad-1).
 - [Actividad 2](./actividad-2).
 - [Actividad 3](./actividad-3).
@@ -27,3 +26,4 @@ Ampliado:
 - [Actividad 5](./actividad-5).
 - [Actividad 6](./actividad-6).
 - [Actividad 7](./actividad-7).
+- [Actividad 8](./actividad-8).

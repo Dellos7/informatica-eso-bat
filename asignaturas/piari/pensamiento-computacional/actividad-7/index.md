@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 6. El mundo de Karel. Bucles y condicionales
+title: Actividad 7. El mundo de Karel. Bucles y condicionales
 description: Tema 1
 ---
 
-# Actividad 6. El mundo de Karel. Bucles y condicionales
+# Actividad 7. El mundo de Karel. Bucles y condicionales
 
 > 🚀 **ANTES DE HACER LA ACTIVIDAD DEBES LEER**: 👉 [Bucles y condicionales en Karel](../bucles-y-condicionales-en-karel) 👈
 {: .alert-warning}
@@ -24,14 +24,14 @@ En esta actividad debes resolver los mundos <a href="Karel_4.in" download>Karel_
 2. Haz clic en **Mundo → Abrir .in**
 3. Abre el archivo con extensión `.in` descargado de Aules.  
 
-![Actividad 6](./act6_1.png)
+![Actividad 7](./act6_1.png)
 
 ---
 
 ## 💾 Guarda el código (si no has acabado)
 Asegúrate de guardar el código de un ejercicio en el ordenador (sobre todo si no lo has acabado y lo quieres continuar en la próxima sesión).  
 
-![Actividad 6](./act6_2.png)
+![Actividad 7](./act6_2.png)
 
 ---
 
@@ -67,7 +67,7 @@ Recoge todos los zumbadores del **laberinto (68 zumbadores)** y déjalos en la *
 
 **Situación final:**  
 
-![Actividad 6](./act6_3.png)
+![Actividad 7](./act6_3.png)
 
 ---
 
@@ -91,7 +91,7 @@ Aquí tienes un vídeo de cómo tiene que quedar resuelto:
 > Debes subir a Aules las **capturas de cada mundo resuelto** y el **archivo .txt** (código) de cada mundo. Debes llamar a los archivos como el mundo, por ejemplo: **karel_4.png** y **karel_4.txt**
 {: .alert-info}
 
-## 📊 Rúbrica – Actividad 6: El mundo de Karel. Bucles y condicionales (máx. 10 puntos)
+## 📊 Rúbrica – Actividad 7: El mundo de Karel. Bucles y condicionales (máx. 10 puntos)
 
 
 | Criterio                          | 0 puntos                                                                    | 1 punto                                                                                                                            | 1.5 puntos                                                                                                               | 2 puntos                                                                                                                                            | 2.5 puntos                                                                                                                                       |
