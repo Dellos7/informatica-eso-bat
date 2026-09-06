@@ -9,11 +9,15 @@ description: Tema 2
 **Internet es una red abierta** y, por lo tanto, una herramienta muy popular. En la actualidad, **no solo los ordenadores y los dispositivos móviles tienen conexión a Internet**: la sociedad parece avanzar hacia el Internet de las cosas, lo que significa que **cualquier objeto puede estar conectado a la red**.  
 Esto implica que sea **necesario seguir una serie de normas de seguridad**, con el objetivo de garantizar que la información que millones de personas  hacemos circular en la red está bajo control. 
 
-En esta sesión estudiaremos las los siguientes puntos:
+En esta sesión estudiaremos los siguientes puntos:
 
-1. **Organización de la información:** En este primer punto de esta sesión, veremos qué es un fichero y una carpeta. Además, veremos la forma de acceder a ficheros y carpetas desde LliureX mediante el explorador Dolphin así como el entorno de trabajo de este explorador.
-2. **Operaciones básicas con carpetas:** En este punto veremos las operaciones que podemos hacer con carpetas desde las diferentes opciones de LliureX.
-3. **Operaciones básicas con archivos:** Veremos las operaciones que podemos hacer con archivos desde las diferentes opciones de LliureX.
+1. **Organización de la información:** Veremos qué es un fichero y una carpeta, los soportes de almacenamiento, las rutas y el entorno del explorador Dolphin.
+2. **Operaciones básicas con archivos y carpetas:** Aprenderemos a seleccionar, crear, abrir, mover, copiar, renombrar y eliminar elementos (y rescatarlos de la papelera).
+3. **Extensiones de archivo:** Analizaremos qué son las extensiones, cómo asocian los programas en LliureX y la importancia de no alterarlas.
+4. **Ejercicios de repaso:** Reto final con sopa de letras interactiva y chuleta digital de atajos.
+
+> ⚡ **Recurso de consulta rápida:** Puedes tener a mano durante todas las sesiones la guía de [Atajos de Teclado para el Sistema de Archivos](./atajos_teclado).
+{: .alert-info}
 
 ![](images/Imagen_principal_sesion_actual_Organizacion_de_la_informacion.jpg)  
 

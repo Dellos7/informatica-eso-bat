@@ -110,55 +110,53 @@ Una vez completada la descompresión, responde a las siguientes preguntas de com
 
 ---
 
-### 4.º) Lectura e interpretación de rutas y relaciones Padre/Hijo
+### 4.º) Creación de un árbol de ficheros y carpetas con LibreOffice Draw
 
-Cuando navegamos por el ordenador, las carpetas forman un árbol jerárquico donde unas carpetas contienen a otras. Entra en Dolphin en la siguiente carpeta:
+Haciendo uso de un programa de dibujo vectorial como **LibreOffice Draw**, vamos a representar gráficamente la estructura jerárquica de una carpeta del ordenador para comprender cómo se organizan sus elementos.
+
+Abre Dolphin y explora el contenido de la siguiente carpeta:  
 `Documentos/LliurexBasico/01_Exploracion/Instituto/1ESO`
 
-Responde a las siguientes preguntas técnicas fijándote en la ventana de Dolphin:
+Observa con atención las subcarpetas que contiene (`Ciencias`, `Informatica`, `Musica`) y los archivos guardados en el interior de cada una de ellas.
 
-1. **Carpeta activa:** ¿Cuál es la carpeta en la que te encuentras en este momento?
-   - *Respuesta:* _____________________________________________
-2. **Ruta absoluta:** Escribe la ruta completa que aparece en la barra superior (debe empezar por `/home/...`):
-   - *Respuesta:* `/home/___________________________________________________________________________`
-3. **Carpeta Padre:** ¿Cuál es la carpeta que está justo un nivel por encima (su carpeta contenedora)?
-   - *Respuesta:* _____________________________________________
-4. **Carpetas Hijas (subcarpetas):** ¿Qué subcarpetas están contenidas directamente dentro de la carpeta activa?
-   - *Respuesta:* __________________________________________________________________________________
-5. **Ficheros Hijos:** ¿Hay algún fichero suelto directamente dentro de `1ESO` o solo hay carpetas?
-   - *Respuesta:* _____________________________________________
+**Instrucciones para realizar el esquema en LibreOffice Draw:**
+1. Abre **LibreOffice Draw** (desde el menú de aplicaciones de LliureX o buscándolo en el lanzador).
+2. Representa la carpeta raíz `1ESO` en la parte superior utilizando un **rectángulo**.
+3. Dibuja debajo las tres carpetas hijas (`Ciencias`, `Informatica` y `Musica`) utilizando rectángulos, y conéctalas a la carpeta raíz con **líneas conectoras**.
+4. Debajo de cada subcarpeta, añade sus ficheros correspondientes utilizando **líneas inclinadas** (o cuadros con su extensión, por ejemplo: `Ecosistemas.txt`, `Volcanes.txt`, `Hardware.txt`, `Internet.txt`, `Perifericos.txt`, `Cancion_Lliurex.mp3` e `Instrumentos.txt`).
+5. Copia o exporta tu dibujo y pégalo a continuación en esta libreta digital para su corrección:
+
+*(Inserta aquí la imagen o captura de tu árbol realizado en LibreOffice Draw)*
 
 ---
 
-### 5.º) Práctica de creación: Tu propio espacio de trabajo escolar
+### 5.º) Práctica de creación: Estructura de carpetas y creación de ficheros
 
-En lugar de tener todos los trabajos desordenados en el escritorio o en `Descargas`, vamos a crear una estructura limpia, ordenada y profesional para tus asignaturas de 1.º ESO.
+En lugar de tener todos los documentos desordenados en el escritorio o en `Descargas`, vamos a organizar tu espacio de trabajo escolar para 1.º ESO. En este ejercicio no solo crearás la jerarquía de carpetas, sino que además crearás tus primeros ficheros guardándolos directamente desde sus aplicaciones correspondientes (**KWrite/Kate** y **GIMP**).
 
-Crea dentro de tu carpeta **`Documentos`** (o en la raíz de tu memoria USB) la siguiente estructura de directorios:
+Observa con atención el siguiente árbol esquemático y reproduce fielmente su estructura dentro de tu carpeta **`Documentos`**:
 
-```
-Mi_Instituto_1ESO/
-├── TRDR/
-│   ├── Apuntes/
-│   └── Practicas/
-├── Matematicas/
-│   └── Ejercicios/
-├── Castellano/
-│   └── Lecturas/
-└── Ingles/
-    └── Vocabulario/
-```
+![Árbol de ficheros y carpetas](../../asignaturas/trdr/organizacion-de-la-informacion/images/Arbol_Mi_Instituto.png)
 
-**Instrucciones paso a paso:**
-1. Ve a `Documentos`. Pulsa la tecla **`F10`** (o clic derecho en un espacio vacío -> *Crear nuevo -> Carpeta*).
-2. Nómbrala exactamente: `Mi_Instituto_1ESO`.
-3. Entra en ella y crea las cuatro carpetas principales de asignaturas (`TRDR`, `Matematicas`, `Castellano`, `Ingles`).
-4. Entra en cada una de ellas y crea las subcarpetas indicadas en el esquema.
+**Paso 1: Creación de la estructura de carpetas (en Dolphin):**
+1. Abre Dolphin, ve a tu carpeta **`Documentos`**, pulsa **`F10`** (o clic derecho en un espacio vacío -> *Crear nuevo -> Carpeta...*) y crea la carpeta raíz: **`Mi_Instituto_1ESO`**.
+2. Entra en **`Mi_Instituto_1ESO`** y crea las cuatro carpetas de asignaturas: **`TRDR`**, **`Matemáticas`**, **`Castellano`** e **`Inglés`**.
+3. Entra en cada una de ellas y crea las subcarpetas indicadas:
+   - En `TRDR`: crea **`Apuntes`** y **`Prácticas`**.
+   - En `Matemáticas`: crea **`Ejercicios`**.
+   - En `Castellano`: crea **`Lecturas`**.
+   - En `Inglés`: crea **`Vocabulario`**.
+
+**Paso 2: Creación y guardado de ficheros desde aplicaciones:**
+- **`Notas.txt` (con KWrite o Kate):** Abre el editor de texto plano (**KWrite** o **Kate**) desde el menú de aplicaciones de LliureX. Escribe un texto breve (por ejemplo, tres normas para organizar bien el ordenador o tus objetivos de curso). Pulsa en **Archivo > Guardar como...**, navega hasta `Documentos/Mi_Instituto_1ESO/TRDR/Apuntes` y guárdalo con el nombre **`Notas.txt`**.
+- **`Dibujo.xcf` (con GIMP):** Abre el programa de diseño gráfico **GIMP** (*Menú > Gráficos > GIMP*). Crea un lienzo nuevo (**Archivo > Nuevo...**), realiza un dibujo o boceto sencillo con el pincel, y pulsa en **Archivo > Guardar como...**. Navega hasta `Documentos/Mi_Instituto_1ESO/TRDR/Prácticas` y guárdalo como proyecto con el nombre **`Dibujo.xcf`**.
 
 **Preguntas de control:**
-- ¿Qué atajo de teclado te permite crear una carpeta nueva en Dolphin de forma inmediata sin usar el ratón?
+- a) ¿Qué atajo de teclado te permite crear una carpeta nueva en Dolphin de forma inmediata sin usar el ratón?
   - *Respuesta:* _______________________
-- ¿Por qué es una mala costumbre guardar todos los documentos directamente en el Escritorio del ordenador?
+- b) ¿Por qué creamos el fichero `Dibujo.xcf` guardándolo desde GIMP en lugar de crearlo directamente con `F10` en Dolphin?
+  - *Respuesta:* __________________________________________________________________________________
+- c) ¿Por qué no se deben guardar todos los trabajos mezclados en el Escritorio del ordenador?
   - *Respuesta:* __________________________________________________________________________________
 
 ---
@@ -281,7 +279,27 @@ Entra en `LliurexBasico/05_Detectives_Extensiones`. Analiza los archivos y compl
 
 ---
 
-### 10.º) La Papelera de reciclaje a prueba (Seguridad y Rescate)
+### 10.º) Cambio de la aplicación predeterminada para un tipo de archivo en LliureX
+
+En LliureX podemos configurar con qué programa queremos que se abra automáticamente cada tipo de archivo al hacer doble clic sobre él.
+
+Entra en la carpeta `LliurexBasico/05_Detectives_Extensiones` y realiza los siguientes pasos guiados:
+
+1. Localiza el archivo `Nota_Urgente.txt`. Haz doble clic sobre él.
+   - ¿Qué programa lo abre por defecto? ___________________________________________ *(KWrite)*
+2. Cierra la aplicación. Ahora haz **clic derecho** sobre `Nota_Urgente.txt` y selecciona **Propiedades** (o pulsa `Alt + Enter`).
+3. En la pestaña **General**, pulsa sobre el botón **Configurar las preferencias de tipo de archivo...**.
+4. En la lista **Orden de preferencia de aplicaciones**, localiza el editor avanzado **Kate** (o **LibreOffice Writer**):
+   - Selecciónalo y pulsa el botón **Subir** repetidamente hasta colocarlo en la primera posición de la lista.
+   - Pulsa **Aplicar** y después **Aceptar**.
+5. Vuelve a hacer doble clic sobre `Nota_Urgente.txt`:
+   - ¿Se abre ahora con el nuevo programa que has situado en primer lugar? ________
+6. **Pregunta de comprobación:** Si ahora creas un archivo nuevo con extensión `.txt` en tu carpeta `Documentos`, ¿con qué programa se abrirá al hacerle doble clic? ¿Por qué?
+   - *Respuesta:* __________________________________________________________________________________
+
+---
+
+### 11.º) La Papelera de reciclaje a prueba (Seguridad y Rescate)
 
 La Papelera de reciclaje es una red de seguridad que evita que perdamos trabajos importantes por un descuido o error.
 
@@ -306,7 +324,7 @@ Entra en la carpeta `LliurexBasico/06_Papelera` y realiza las siguientes comprob
 
 ---
 
-### 11.º) Reto Lúdico Final: Sopa de Letras de Operaciones y Chuleta de Atajos
+### 12.º) Reto Lúdico Final: Sopa de Letras de Operaciones y Chuleta de Atajos
 
 Demuestra lo que has aprendido completando el reto de operaciones con archivos y carpetas.
 

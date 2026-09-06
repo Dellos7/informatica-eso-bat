@@ -10,9 +10,14 @@ description: Ejercicios de repaso
 
 [Juego](https://es.educaplay.com/juego/13605672-operaciones_con_ficheros.html)
 
+## Chuleta de atajos
+
+Recuerda que tienes la guía completa en [Atajos de Teclado para el Sistema de Archivos](./atajos_teclado).
+
 ## Actividad
 
-> **EJERCICIO 39 y 40:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
+> **EJERCICIO 12:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
 {: .alert-success}
 
-[👈 Atrás](./operaciones_bsicas_con_archivos)
+[👈 Atrás](./extensiones)
+[🏠 Inicio del Tema 2](./index)

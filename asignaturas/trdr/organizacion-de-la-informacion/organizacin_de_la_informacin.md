@@ -5,6 +5,7 @@ description: Tema 2
 ---
 
 # Organización de la información
+<!--
 {: .no_toc }
 
 ## Tabla de contenidos
@@ -12,17 +13,30 @@ description: Tema 2
 
 * TOC
 {:toc}
+-->
 
 ## Introducción
 
-Podemos decir que TODA **la información** en LliureX **se almacena en archivos y** se organiza **en** **carpetas** (directorios).
+Podemos decir que TODA **la información** en un sistema operativo **se almacena en archivos y** se organiza **en** **carpetas** (directorios).
 
-* **Ficheros:**Al finalizar cualquier trabajo, por ejemplo un escrito, se debe de guardar o almacenar. Solo así se podrá terminar o modificar más tarde. Independientemente del trabajo realizado (un documento, un dibujo, un video, un audio,...) todos ellos acaban empaquetados en un objeto llamado fichero o archivo. Con el paso del tiempo el trabajo del usuario va produciendo una mayor cantidad de ficheros. A medida que su número crece resulta más difícil gestionarlos, por ejemplo, buscar un documento entre tantos ficheros. La gravedad del problema exige una solución, se necesita un sistema que permita organizar de forma eficiente esa gran cantidad de ficheros. La solución son las carpetas.
-* **Carpetas:** Una carpeta es una especie de cajón que contiene ficheros. El usuario se puede crear las carpetas que considere necesarias, asignarles un nombre y guardar los ficheros que estime oportunos. De ésta forma es posible organizar los ficheros según el criterio del usuario: por asignaturas, por contenidos, por fechas,... Las carpetas contienen ficheros pero, a su vez, también pueden contener otras carpetas. 
-* **El Disco Duro:** La información se empaqueta en ficheros y se organiza en carpetas pero se guarda sobre un “soporte de almacenamiento”, por éste motivo, todo Sistema Informático posee -al menos- un Disco Duro. El Disco Duro se encuentra en el interior de la carcasa y no es visible a simple vista. En el Disco Duro se almacena la siguiente información:
-	* Los ficheros del sistema operativo que hace posible que el ordenador arranque y se pueda usar.
-	* Los ficheros de los programas que permiten al usuario escribir, dibujar, crear videos,....
-	* Los Ficheros del usuario -con sus trabajos-.
+* **Ficheros:** Al finalizar cualquier trabajo, por ejemplo un escrito, se debe de guardar o almacenar. Solo así se podrá terminar o modificar más tarde. Independientemente del trabajo realizado (un documento, un dibujo, un video, un audio,...) todos ellos acaban empaquetados en un objeto llamado fichero o archivo. Con el paso del tiempo el trabajo del usuario va produciendo una mayor cantidad de ficheros. A medida que su número crece resulta más difícil gestionarlos, por ejemplo, buscar un documento entre tantos ficheros. La gravedad del problema exige una solución, se necesita un sistema que permita organizar de forma eficiente esa gran cantidad de ficheros. La solución son las carpetas.
+
+![](images/ejemplo_ficheros_archivos.jpg)
+{: .img .img-350}
+
+* **Carpetas:** Una carpeta es una especie de cajón que contiene ficheros. El usuario se puede crear las carpetas que considere necesarias, asignarles un nombre y guardar los ficheros que estime oportunos. De ésta forma es posible organizar los ficheros según el criterio del usuario: por asignaturas, por contenidos, por fechas,... Las carpetas contienen ficheros pero, a su vez, también pueden contener otras carpetas. 
+
+![](images/ejemplo_carpetas.jpg)
+{: .img .img-350}
+
+* **Soportes de almacenamiento:** La información se empaqueta en ficheros y se organiza en carpetas, pero debe guardarse en un soporte o dispositivo de almacenamiento para no perderse al apagar el equipo. En él se almacenan el sistema operativo, las aplicaciones y los trabajos del usuario. Los principales tipos de soportes son:
+	* **Disco duro tradicional (HDD):** Almacenamiento magnético con piezas mecánicas en movimiento (platos giratorios y cabezal de lectura/escritura). Ofrece gran capacidad a precio económico, pero es más lento.
+	* **Disco de estado sólido (SSD):** Almacenamiento electrónico moderno basado en microchips de memoria flash (sin piezas móviles). Es mucho más rápido, silencioso y resistente que el HDD, siendo el estándar en ordenadores actuales.
+	* **Memoria USB (Pendrive):** Dispositivo portátil y ligero basado en memoria flash, ideal para transportar documentos y tareas de un equipo a otro de forma rápida.
+	* **Almacenamiento en la nube (Aules / Google Drive):** Permite guardar archivos en servidores remotos a través de Internet. Facilita acceder a la información desde cualquier lugar o dispositivo, compartir contenidos y entregar tareas escolares (como en la plataforma Aules).
+
+![](images/soportes_almacenamiento.jpg)
+{: .img .img-350}
 
 La cantidad de ficheros es tal qué, fácilmente pueden superar los miles, es evidente la necesidad de utilizar **carpetas para organizar los ficheros y no mezclarlos.** Aún así las carpetas también son muy numerosas, no obstante, el usuario no debe preocuparse, porque de todas ellas únicamente le interesa “una”, la que contiene sus trabajos y que se llama justamente [**Carpeta Personal**]. **Otros nombres** que se pueden encontrar **para referirse a la Carpeta Personal** son: 
 
@@ -34,10 +48,8 @@ La cantidad de ficheros es tal qué, fácilmente pueden superar los miles, es e
 Mira este vídeo para repasar qué es un **archivo y una carpeta** y en qué lugares se pueden **guardar**:
 
 [👉 Ver el vídeo](https://youtu.be/g5NxT_tywko?si=x9PuLNv6PLFRt-gE)
-   
-### Actividad
 
-> **EJERCICIO 21:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
+> **EJERCICIO 1:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
 {: .alert-success}
 
 ## El explorador de ficheros
@@ -74,11 +86,9 @@ Una vez que sabemos cómo abrir el explorador de ficheros Dolphin, vamos a estud
 
 **6. La barra [Estado]:** Muestra información “variada”, dependiendo de la acción que esté realizando el usuario: espacio libre en el dispositivo de almacenamiento,...
 
-## Actividad:
-
 [🫱 Actividad](https://es.educaplay.com/juego/13429004-entorno_de_trabajo_de_dolphin.html)
 
-> **EJERCICIO 22:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
+> **EJERCICIO 2:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
 {: .alert-success}
 
 ## La carpeta personal
@@ -134,16 +144,14 @@ La ruta de acceso debe de respetar la siguiente sintaxis:
 •  Las carpetas se deben **unir con el carácter “/”**. Nunca insertar ni al principio ni al final de la ruta.  
 •  El **último objeto de la ruta** debe ser el **fichero o carpeta** buscado.
 
-### Actividad
-
-> **EJERCICIO 23:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
+> **EJERCICIO 3:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
 {: .alert-success}
 
 ## Árbol de ficheros y carpetas
 
-Para **describir la información guardada en una “carpeta”**, en vez de utilizar un fragmento de texto describiendo el contenido, se recurre a una **representación gráfica**, un esquema llamado **Árbol de Ficheros y****Carpetas** que resulta más sencillo de leer y comprender. 
+Para **describir la información guardada en una “carpeta”**, en vez de utilizar un fragmento de texto describiendo el contenido, se recurre a una **representación gráfica**, un esquema llamado **Árbol de Ficheros y Carpetas** que resulta más sencillo de leer y comprender. 
 
-### Ejemplo  
+
 La figura siguiente utiliza un **gráfico del tipo Árbol de Ficheros y Carpetas** para mostrar el contenido de la carpeta **MisTrabajos:**
 
 ![](images/Arbol_de_ficheros_y_carpetas.jpg)
@@ -178,19 +186,17 @@ Para **dibujar el esquemas en árbol de ficheros y carpetas** como el anterior, 
 
 ### Actividad
 
-> **EJERCICIO 24:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
+> **EJERCICIO 4:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
 {: .alert-success}
 
-## Vídeo: Crear un árbol de ficheros y carpetas en LliureX
+<!--
+## Vídeo: Crear en LliureX la estructura de un árbol
 
-Mira este vídeo donde, se explica **cómo crear** en el Sistema operativo LliureX **el árbol de Ficheros y Carpetas** que tienes en el ejemplo anterior:
+Mira este vídeo donde se explica **cómo crear** en el sistema operativo LliureX **la estructura de carpetas y ficheros** a partir del esquema del árbol:
 
 [👉 Ver el vídeo](https://youtu.be/BAbz4lFGZXg?si=FUNaxVr2mhfK9_Cl)
 
-### Actividad
-
-> **EJERCICIO 25:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.**
-{: .alert-success}
+-->
 
 [👈 Atrás](./introduccion)
-[👉 Siguiente](./operaciones_bsicas_con_carpetas)
+[👉 Siguiente](./operaciones_basicas)
