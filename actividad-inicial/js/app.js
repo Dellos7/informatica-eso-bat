@@ -74,12 +74,44 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgressUI();
   }
 
-  // 1. Detectar parámetro ?curso= en la URL
+  // 1. Detectar parámetros en la URL (?curso=, ?view=stats, ?stats=, ?radar=, #stats...)
   function checkUrlParams() {
     const params = new URLSearchParams(window.location.search);
-    const cursoParam = params.get('curso') || params.get('c');
-    if (cursoParam && COURSES_DATA[cursoParam.toLowerCase()]) {
-      selectCourse(cursoParam.toLowerCase());
+    const hash = window.location.hash.toLowerCase();
+
+    // Detectar si el usuario pide ver el radar de estadísticas directamente
+    const isDirectStatsRequested = (
+      params.has('stats') ||
+      params.has('radar') ||
+      params.get('view') === 'stats' ||
+      params.get('view') === 'radar' ||
+      params.get('pantalla') === 'stats' ||
+      params.get('pantalla') === 'radar' ||
+      hash === '#stats' ||
+      hash === '#radar'
+    );
+
+    // Extraer identificador de curso
+    let cursoKey = (params.get('curso') || params.get('c') || '').toLowerCase();
+
+    // Comprobar si el valor del parámetro stats o radar o view es la clave de un curso (?stats=piari, etc.)
+    const directCourseParam = (params.get('stats') || params.get('radar') || params.get('view') || '').toLowerCase();
+    if (!cursoKey && directCourseParam && COURSES_DATA[directCourseParam]) {
+      cursoKey = directCourseParam;
+    }
+
+    // Si pidieron ver estadísticas directamente pero no especificaron curso, asignar el primero ('piari') por defecto
+    if (!cursoKey && isDirectStatsRequested) {
+      cursoKey = Object.keys(COURSES_DATA)[0] || 'piari';
+    }
+
+    if (cursoKey && COURSES_DATA[cursoKey]) {
+      selectCourse(cursoKey);
+    }
+
+    // Si se pidió ver estadísticas directamente, saltar de inmediato a la Pantalla 5 (Radar del Aula)
+    if (isDirectStatsRequested) {
+      goToScreen(5);
     }
   }
 
@@ -278,6 +310,11 @@ document.addEventListener('DOMContentLoaded', () => {
       loadCurrentChallenge();
     }
 
+    // Detener polling de estadísticas si sale de la pantalla 5
+    if (index !== 5) {
+      stopStatsPolling();
+    }
+
     // Pantalla 4 (Acreditación): emitir carnet y enviar datos
     if (index === 4) {
       state.completedAt = new Date().toISOString();
@@ -285,9 +322,12 @@ document.addEventListener('DOMContentLoaded', () => {
       sendDataToTeacher();
     }
 
-    // Pantalla 5 (Radar del Aula): cargar estadísticas de clase
+    // Pantalla 5 (Radar del Aula): cargar estadísticas de clase e iniciar polling
     if (index === 5) {
-      loadClassStats();
+      updateStatsBackButton();
+      renderStatsCourseTabs();
+      loadClassStats(false);
+      startStatsPolling();
     }
 
     screens.forEach((s, idx) => {
@@ -913,9 +953,91 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 13. Carga y renderizado de Estadísticas Globales del Aula (Pantalla 5)
-  async function loadClassStats() {
+  let statsPollTimer = null;
+  let countdownSeconds = 10;
+  const POLL_INTERVAL_SECONDS = 10;
+
+  function startStatsPolling() {
+    stopStatsPolling();
+    countdownSeconds = POLL_INTERVAL_SECONDS;
+    updateCountdownUI();
+
+    statsPollTimer = setInterval(() => {
+      countdownSeconds--;
+      updateCountdownUI();
+      if (countdownSeconds <= 0) {
+        countdownSeconds = POLL_INTERVAL_SECONDS;
+        loadClassStats(true); // auto-refresh periódico sin bloquear la UI
+      }
+    }, 1000);
+  }
+
+  function stopStatsPolling() {
+    if (statsPollTimer) {
+      clearInterval(statsPollTimer);
+      statsPollTimer = null;
+    }
+  }
+
+  function updateCountdownUI() {
+    const el = document.getElementById('stats-countdown');
+    if (el) el.textContent = countdownSeconds;
+  }
+
+  // Petición con fallback JSONP para evitar bloqueos de CORS en localhost / navegadores
+  function fetchStatsData(url) {
+    return new Promise((resolve, reject) => {
+      // 1. Intentar primero con fetch simple (sin headers personalizados para evitar OPTIONS)
+      fetch(url, { method: 'GET' })
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.json();
+        })
+        .then(data => resolve(data))
+        .catch(fetchErr => {
+          // 2. Fallback JSONP automático si fetch falla por CORS o políticas de redirección
+          const callbackName = 'gasCallback_' + Math.round(100000 * Math.random());
+          const script = document.createElement('script');
+          let finished = false;
+
+          const timer = setTimeout(() => {
+            if (finished) return;
+            finished = true;
+            cleanup();
+            reject(fetchErr);
+          }, 6000);
+
+          function cleanup() {
+            if (script.parentNode) script.parentNode.removeChild(script);
+            delete window[callbackName];
+            clearTimeout(timer);
+          }
+
+          window[callbackName] = function(data) {
+            if (finished) return;
+            finished = true;
+            cleanup();
+            resolve(data);
+          };
+
+          script.onerror = function() {
+            if (finished) return;
+            finished = true;
+            cleanup();
+            reject(new Error('No se pudo conectar con Google Sheets (CORS/Red)'));
+          };
+
+          const separator = url.indexOf('?') > -1 ? '&' : '?';
+          script.src = `${url}${separator}callback=${callbackName}`;
+          document.head.appendChild(script);
+        });
+    });
+  }
+
+  async function loadClassStats(isAutoRefresh = false) {
     const loadingBox = document.getElementById('stats-loading');
     const contentBox = document.getElementById('stats-content');
+    const emptyBox = document.getElementById('stats-empty');
     const badgeEl = document.getElementById('stats-course-badge');
 
     if (badgeEl && state.course) {
@@ -924,51 +1046,64 @@ document.addEventListener('DOMContentLoaded', () => {
       badgeEl.style.borderColor = state.course.themeColor;
     }
 
-    if (loadingBox) loadingBox.style.display = 'flex';
-    if (contentBox) contentBox.style.display = 'none';
+    if (!isAutoRefresh) {
+      if (loadingBox) loadingBox.style.display = 'flex';
+      if (contentBox) contentBox.style.display = 'none';
+      if (emptyBox) emptyBox.style.display = 'none';
+    }
 
     if (!APP_CONFIG.EXCEL_WEBHOOK_URL || APP_CONFIG.EXCEL_WEBHOOK_URL.trim() === '') {
-      renderFallbackStats();
+      showEmptyWaitingState('El webhook de Google Sheets no está configurado en config.js.');
       return;
     }
 
     try {
-      // Petición GET con parámetro curso y timestamp para evitar caché
       const fetchUrl = `${APP_CONFIG.EXCEL_WEBHOOK_URL}?curso=${encodeURIComponent(state.courseId || '')}&t=${Date.now()}`;
-      const response = await fetch(fetchUrl, {
-        method: 'GET',
-        headers: { 'Accept': 'application/json' }
-      });
+      const data = await fetchStatsData(fetchUrl);
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-
-      const data = await response.json();
-      if (data && data.status === 'success') {
+      if (data && data.status === 'success' && data.totalAlumnos > 0) {
+        if (loadingBox) loadingBox.style.display = 'none';
+        if (emptyBox) emptyBox.style.display = 'none';
+        if (contentBox) contentBox.style.display = 'block';
         renderClassStats(data);
       } else {
-        throw new Error(data ? data.message : 'Error en datos');
+        showEmptyWaitingState('Aún no se han recibido registros para esta asignatura en la hoja de cálculo.');
       }
     } catch (err) {
-      console.warn('No se pudieron obtener estadísticas de Google Sheets, cargando vista orientativa:', err);
-      renderFallbackStats();
+      console.warn('Conexión con Google Sheets en espera (CORS o pendiente de publicar doGet):', err);
+      showEmptyWaitingState('Esperando respuesta de Google Sheets. Si acabas de actualizar Apps Script, asegúrate de publicar una "Nueva versión" con acceso "Cualquier usuario".');
     }
   }
 
-  function renderClassStats(data) {
+  function showEmptyWaitingState(reason) {
     const loadingBox = document.getElementById('stats-loading');
     const contentBox = document.getElementById('stats-content');
+    const emptyBox = document.getElementById('stats-empty');
+    const descEl = document.getElementById('stats-empty-desc');
 
     if (loadingBox) loadingBox.style.display = 'none';
-    if (contentBox) contentBox.style.display = 'block';
+    if (contentBox) contentBox.style.display = 'none';
+    if (emptyBox) emptyBox.style.display = 'block';
 
+    if (descEl && reason) {
+      descEl.textContent = reason;
+    }
+
+    const totalEl = document.getElementById('stat-total-alumnos');
+    const dificilEl = document.getElementById('stat-reto-dificil');
+    const metaEl = document.getElementById('stat-meta-top');
+    if (totalEl) totalEl.textContent = '0 agentes';
+    if (dificilEl) dificilEl.textContent = '--';
+    if (metaEl) metaEl.textContent = 'En espera...';
+  }
+
+  function renderClassStats(data) {
     const total = data.totalAlumnos || 0;
     const totalEl = document.getElementById('stat-total-alumnos');
     if (totalEl) totalEl.textContent = total > 0 ? `${total} agentes` : '1 agente';
 
     if (total === 0) {
-      renderEmptyGroupNotice();
+      showEmptyWaitingState('Aún no se han registrado alumnos para esta asignatura en la hoja de cálculo.');
       return;
     }
 
@@ -1089,81 +1224,89 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function renderEmptyGroupNotice() {
-    const contentBox = document.getElementById('stats-content');
-    if (!contentBox) return;
-    contentBox.style.display = 'block';
-
-    const grid = contentBox.querySelector('.stats-grid');
-    if (grid) {
-      grid.innerHTML = `
-        <div class="stats-card stats-card-wide" style="text-align: center; padding: 3rem 1.5rem;">
-          <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">📡</span>
-          <h3 style="margin: 0.75rem 0 0.5rem 0; font-size: 1.35rem; color: #ffffff;">¡Eres el primer agente registrado en este grupo!</h3>
-          <p style="color: var(--text-muted); max-width: 540px; margin: 0 auto 1.5rem auto; line-height: 1.6;">
-            Tu credencial ha sido transmitida a la base de datos con éxito. Conforme tus compañeros de clase vayan completando la misión, este radar se actualizará automáticamente con las tendencias y estadísticas globales del aula.
-          </p>
-          <button type="button" class="btn btn-secondary" id="btn-empty-refresh">🔄 Comprobar de Nuevo</button>
-        </div>
-      `;
-      const btn = document.getElementById('btn-empty-refresh');
-      if (btn) btn.onclick = () => loadClassStats();
+  // 14. Pestañas de selector de asignaturas en el radar y botón volver
+  function updateStatsBackButton() {
+    const backBtn = document.getElementById('btn-back-from-stats');
+    if (!backBtn) return;
+    if (state.completedAt) {
+      backBtn.textContent = '← Volver a mi Carnet';
+      backBtn.setAttribute('data-goto-screen', '4');
+    } else {
+      backBtn.textContent = '← Ir a la Misión del Alumnado';
+      backBtn.setAttribute('data-goto-screen', state.course ? '1' : '0');
     }
   }
 
-  function renderFallbackStats() {
-    // Si la llamada GET falla (por ejemplo antes de publicar doGet en Apps Script),
-    // mostramos una simulación elegante y educativa basada en el propio curso
-    const loadingBox = document.getElementById('stats-loading');
-    const contentBox = document.getElementById('stats-content');
+  function renderStatsCourseTabs() {
+    const tabsContainer = document.getElementById('stats-course-tabs');
+    if (!tabsContainer) return;
+    tabsContainer.innerHTML = '';
 
-    if (loadingBox) loadingBox.style.display = 'none';
-    if (contentBox) contentBox.style.display = 'block';
+    Object.keys(COURSES_DATA).forEach(courseKey => {
+      const course = COURSES_DATA[courseKey];
+      const tabBtn = document.createElement('button');
+      tabBtn.type = 'button';
+      const isActive = state.courseId === courseKey;
+      tabBtn.className = `stats-tab-btn ${isActive ? 'active' : ''}`;
+      tabBtn.innerHTML = `<span>${course.code}</span> <small>${course.shortName}</small>`;
 
-    const simulatedTotal = 19;
-    const simulatedData = {
-      status: 'success',
-      totalAlumnos: simulatedTotal,
-      retos: [18, 17, 15, 9, 14, 12, 16, 11],
-      metas: {},
-      estilos: {
-        'En pareja o equipo colaborativo': 14,
-        'Cacharreando y aprendiendo de los errores': 15,
-        'Siguiendo tutoriales paso a paso bien explicados': 9,
-        'De forma individual y concentrada': 7
-      },
-      dispositivos: {
-        '💻 Ordenador propio': 15,
-        '📲 Móvil Android': 13,
-        '🍎 Móvil iPhone (iOS)': 6,
-        '👨‍👩‍👧 PC familiar compartido': 5,
-        '📱 Tablet Android': 8,
-        '🍏 iPad / Tablet iOS': 4
+      if (isActive) {
+        tabBtn.style.borderColor = course.themeColor;
+        tabBtn.style.color = course.themeColor;
       }
-    };
 
-    if (state.course) {
-      state.course.skillsToUnlock.forEach((sk, i) => {
-        simulatedData.metas[sk.label] = Math.max(3, 17 - i * 3);
+      tabBtn.addEventListener('click', () => {
+        if (state.courseId === courseKey) return;
+        selectCourse(courseKey);
+        // Actualizar URL sin recargar la página para reflejar el curso actual
+        const newUrl = `${window.location.pathname}?curso=${courseKey}&view=radar`;
+        window.history.replaceState({}, '', newUrl);
+        renderStatsCourseTabs();
+        countdownSeconds = POLL_INTERVAL_SECONDS;
+        loadClassStats(false);
       });
-    }
 
-    renderClassStats(simulatedData);
-  }
-
-  // 14. Botón de refresco de estadísticas
-  const refreshBtn = document.getElementById('btn-refresh-stats');
-  if (refreshBtn) {
-    refreshBtn.addEventListener('click', () => {
-      loadClassStats();
+      tabsContainer.appendChild(tabBtn);
     });
   }
 
-  // 15. Enlaces entre botones estándar
+  // 15. Botones de refresco y comprobación forzada
+  const refreshBtn = document.getElementById('btn-refresh-stats');
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+      countdownSeconds = POLL_INTERVAL_SECONDS;
+      loadClassStats(false);
+    });
+  }
+
+  const forceCheckBtn = document.getElementById('btn-force-check');
+  if (forceCheckBtn) {
+    forceCheckBtn.addEventListener('click', () => {
+      countdownSeconds = POLL_INTERVAL_SECONDS;
+      loadClassStats(false);
+    });
+  }
+
+  // 16. Enlaces entre botones estándar
   document.querySelectorAll('[data-goto-screen]').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = parseInt(btn.getAttribute('data-goto-screen'), 10);
       goToScreen(target);
     });
+  });
+
+  // 17. Permitir clic directo en el nodo 6 (Radar Aula) del stepper superior
+  const radarStepItem = document.getElementById('step-item-5');
+  if (radarStepItem) {
+    radarStepItem.style.cursor = 'pointer';
+    radarStepItem.title = 'Ver Radar del Aula';
+    radarStepItem.addEventListener('click', () => {
+      goToScreen(5);
+    });
+  }
+
+  // 18. Escuchar cambios de hash para acceso directo (#stats o #radar)
+  window.addEventListener('hashchange', () => {
+    checkUrlParams();
   });
 });

@@ -391,6 +391,14 @@
           Resultados globales y 100% anónimos recogidos en directo para este grupo. Descubre las tendencias, destrezas favoritas y desafíos comunes de la clase.
         </p>
 
+        <!-- Selector rápido de materia para el docente / proyector -->
+        <div class="stats-course-switcher">
+          <span class="switcher-label">Cambiar Asignatura:</span>
+          <div id="stats-course-tabs" class="stats-course-tabs">
+            <!-- Pestañas inyectadas por JS -->
+          </div>
+        </div>
+
         <div class="stats-summary-bar">
           <div class="summary-pill">
             <span class="pill-label">AGENTES REGISTRADOS</span>
@@ -411,6 +419,28 @@
       <div id="stats-loading" class="stats-loading-box">
         <div class="cyber-spinner"></div>
         <span>Conectando con la base de datos de Google Sheets del aula...</span>
+      </div>
+
+      <!-- Contenedor de Espera / Sin Datos aún con cuenta atrás -->
+      <div id="stats-empty" class="stats-card stats-card-wide" style="display: none; text-align: center; padding: 3rem 1.5rem; margin-bottom: 1.5rem;">
+        <span style="font-size: 3.2rem; display: block; margin-bottom: 0.75rem;">📡</span>
+        <h3 style="font-size: 1.35rem; color: #ffffff; margin-bottom: 0.5rem;" id="stats-empty-title">
+          Radar a la espera de datos del aula
+        </h3>
+        <p style="color: var(--text-muted); max-width: 580px; margin: 0 auto 1.5rem auto; line-height: 1.6;" id="stats-empty-desc">
+          Aún no se han recibido registros para esta asignatura o el sistema está sincronizando con la base de datos de Google Sheets.
+        </p>
+        
+        <div class="stats-timer-box">
+          <span class="pulse-dot"></span>
+          <span>Próxima comprobación automática en <strong id="stats-countdown">10</strong>s</span>
+        </div>
+
+        <div style="margin-top: 1.25rem;">
+          <button type="button" id="btn-force-check" class="btn btn-secondary">
+            ⚡ Comprobar ahora
+          </button>
+        </div>
       </div>
 
       <!-- Contenedor dinámico de estadísticas -->
@@ -467,7 +497,7 @@
       </div>
 
       <div class="btn-bar" style="justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-        <button type="button" class="btn btn-secondary" data-goto-screen="4">← Volver a mi Carnet</button>
+        <button type="button" class="btn btn-secondary" id="btn-back-from-stats" data-goto-screen="4">← Volver a mi Carnet</button>
         <div style="display: flex; gap: 1rem;">
           <button type="button" id="btn-refresh-stats" class="btn btn-secondary">🔄 Actualizar Datos</button>
           <a href="../" class="btn btn-primary">Volver a la Web de la Asignatura 🏠</a>

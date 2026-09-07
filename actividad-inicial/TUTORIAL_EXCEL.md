@@ -81,14 +81,14 @@ function doGet(e) {
     var rows = sheet.getDataRange().getValues();
 
     if (rows.length <= 1) {
-      return ContentService.createTextOutput(JSON.stringify({
+      return createResponse({
         status: "success",
         totalAlumnos: 0,
         retos: [0, 0, 0, 0, 0, 0, 0, 0],
         metas: {},
         estilos: {},
         dispositivos: {}
-      })).setMimeType(ContentService.MimeType.JSON);
+      }, e);
     }
 
     var headers = rows[0];
@@ -157,15 +157,25 @@ function doGet(e) {
       dispositivos: dispCount
     };
 
-    return ContentService.createTextOutput(JSON.stringify(result))
-      .setMimeType(ContentService.MimeType.JSON);
+    return createResponse(result, e);
 
   } catch (error) {
-    return ContentService.createTextOutput(JSON.stringify({
+    return createResponse({
       status: "error",
       message: error.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
+    }, e);
   }
+}
+
+// Helper para generar respuesta JSON o JSONP (evita bloqueos de CORS en navegadores)
+function createResponse(data, e) {
+  var json = JSON.stringify(data);
+  if (e && e.parameter && e.parameter.callback) {
+    return ContentService.createTextOutput(e.parameter.callback + '(' + json + ');')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return ContentService.createTextOutput(json)
+    .setMimeType(ContentService.MimeType.JSON);
 }
 ```
 
@@ -189,6 +199,9 @@ function doGet(e) {
    - Pulsa **Permitir**.
 6. En la ventana final verás el campo **URL de la aplicación web** (una URL que termina en `/exec`).
 7. **Copia esa URL**.
+
+> 💡 **Nota si ya tenías una implementación creada previamente:**  
+> Cuando actualices el código de un script ya publicado, para que tome efecto debes ir a **Implementar ➔ Gestionar implementaciones**, pulsar en el icono de **lápiz (Editar)**, seleccionar en Versión: **"Nueva versión"** y pulsar **Implementar**. De esta forma mantendrás exactamente la misma URL sin tener que cambiar `config.js`.
 
 ---
 
