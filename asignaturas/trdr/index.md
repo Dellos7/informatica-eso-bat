@@ -13,7 +13,9 @@ description: Taller de Relaciones Digitales Responsables (1º ESO)
 
 [⏯️ Criterios Calificación](../../archivos/Criterios-de-calificación-ESO-y-Bachillerato.pdf)
 
-[⏯️ Evaluación inicial](https://forms.office.com/e/h461aTaGu3)
+[🚀 Actividad Inicial: Tech Passport (Misión Nivel 0)](../../actividad-inicial/?curso=trdr)
+
+[⏯️ Cuestionario alternativo (Forms)](https://forms.office.com/e/h461aTaGu3)
 
 ## Temas
 

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Passport // Misión Nivel 0 - Informática</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+</head>
+<body>
+
+  <!-- Cabecera Superior Fija -->
+  <header class="top-header">
+    <a href="../" class="brand-badge">
+      <span class="brand-icon">⚡</span>
+      <span>INFOR_MÁTICA // PASSPORT</span>
+    </a>
+    <div id="header-course-badge" class="course-indicator" style="display: none;">
+      Cargando materia...
+    </div>
+  </header>
+
+  <!-- Indicador de Progreso Global -->
+  <div class="progress-container">
+    <div class="progress-line-track">
+      <div class="progress-line-bg"></div>
+      <div id="progress-line-fill" class="progress-line-fill"></div>
+    </div>
+    <div class="progress-steps">
+      <div class="step-item active" id="step-item-0">
+        <div class="step-node" id="node-0">1</div>
+        <span class="step-label">Materia</span>
+      </div>
+      <div class="step-item" id="step-item-1">
+        <div class="step-node" id="node-1">2</div>
+        <span class="step-label">Perfil</span>
+      </div>
+      <div class="step-item" id="step-item-2">
+        <div class="step-node" id="node-2">3</div>
+        <span class="step-label">Retos</span>
+      </div>
+      <div class="step-item" id="step-item-3">
+        <div class="step-node" id="node-3">4</div>
+        <span class="step-label">Intereses</span>
+      </div>
+      <div class="step-item" id="step-item-4">
+        <div class="step-node" id="node-4">5</div>
+        <span class="step-label">Acreditación</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor de Pantallas Dinámicas -->
+  <main class="main-wrapper">
+
+    <!-- PANTALLA 0: Materia (Selector o Bienvenida inicial de la Asignatura) -->
+    <section id="screen-course" class="screen active">
+
+      <!-- Vista A: Selector de asignaturas (si entra sin ?curso) -->
+      <div id="course-selector-view">
+        <h1 class="screen-title">Bienvenido/a a la Misión Nivel 0</h1>
+        <p class="screen-subtitle">
+          Selecciona tu asignatura para iniciar la calibración de sistemas y generar tu acreditación oficial del curso.
+        </p>
+
+        <div id="course-grid-container" class="course-grid">
+          <!-- Cursos inyectados dinámicamente -->
+        </div>
+      </div>
+
+      <!-- Vista B: Bienvenida inicial exclusiva de la Asignatura -->
+      <div id="course-welcome-view" style="display: none;">
+        <div class="course-landing-card">
+          <span id="welcome-badge" class="course-card-badge">CURSO</span>
+          <h1 id="welcome-title" class="screen-title" style="font-size: 2.2rem; margin: 0.75rem 0 1.25rem 0;">
+            Nombre de la Asignatura
+          </h1>
+          <p id="welcome-description" class="course-landing-desc">
+            Descripción breve de la asignatura...
+          </p>
+
+          <div class="landing-action-box">
+            <button type="button" id="btn-start-course" class="btn btn-primary btn-start-hero">
+              Empezar 🚀
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- PANTALLA 1: Perfil de Agente y Datos de Entorno -->
+    <section id="screen-profile" class="screen">
+      <h2 class="screen-title">Ficha de Identidad Digital</h2>
+      <p class="screen-subtitle">
+        Cuéntanos cómo te llamas y qué equipamiento utilizas en casa para personalizar las prácticas del aula.
+      </p>
+
+      <form id="form-profile" onsubmit="event.preventDefault();">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="input-nombre">Nombre <span class="required-star">*</span></label>
+            <input type="text" id="input-nombre" class="form-input" placeholder="Ej: Lucía" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="input-apellidos">Apellidos <span class="required-star">*</span></label>
+            <input type="text" id="input-apellidos" class="form-input" placeholder="Ej: García Pérez" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="input-alias">Alias o Nombre preferido en clase</label>
+            <input type="text" id="input-alias" class="form-input" placeholder="¿Cómo prefieres que te llame el profesor?">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="input-email">Correo educativo institucional</label>
+            <input type="email" id="input-email" class="form-input" placeholder="usuario@alu.edu.gva.es">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Elige tu Avatar de Agente</label>
+          <div id="avatar-grid-container" class="avatar-grid">
+            <!-- Avatares inyectados por JS -->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">¿Qué dispositivo usas habitualmente en casa para estudiar o hacer tareas?</label>
+          <div id="dispositivos-group" class="radio-card-grid">
+            <div class="radio-card" data-value="Ordenador propio (sobremesa o portátil)">
+              <div class="radio-card-dot"></div>
+              <span>💻 Ordenador propio</span>
+            </div>
+            <div class="radio-card" data-value="Ordenador compartido con la familia">
+              <div class="radio-card-dot"></div>
+              <span>👨‍👩‍👧 PC compartido</span>
+            </div>
+            <div class="radio-card" data-value="Tablet con teclado o táctil">
+              <div class="radio-card-dot"></div>
+              <span>📱 Tablet</span>
+            </div>
+            <div class="radio-card" data-value="Principalmente teléfono móvil">
+              <div class="radio-card-dot"></div>
+              <span>📲 Solo móvil</span>
+            </div>
+            <div class="radio-card" data-value="No dispongo de equipo o conexión habitual">
+              <div class="radio-card-dot"></div>
+              <span>🚫 Sin equipo habitual</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Si usas ordenador en casa, ¿qué sistema operativo tiene?</label>
+          <div id="so-group" class="radio-card-grid">
+            <div class="radio-card" data-value="Windows">
+              <div class="radio-card-dot"></div>
+              <span>🪟 Windows</span>
+            </div>
+            <div class="radio-card" data-value="Linux / LliureX / Ubuntu">
+              <div class="radio-card-dot"></div>
+              <span>🐧 Linux / LliureX</span>
+            </div>
+            <div class="radio-card" data-value="macOS (Apple)">
+              <div class="radio-card-dot"></div>
+              <span>🍎 Apple Mac</span>
+            </div>
+            <div class="radio-card" data-value="No estoy seguro/a">
+              <div class="radio-card-dot"></div>
+              <span>❓ No lo sé</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-bar" style="justify-content: flex-end;">
+          <button type="button" class="btn btn-primary" data-goto-screen="2">Iniciar Calibración de Retos →</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- PANTALLA 2: Minirretos Diagnósticos -->
+    <section id="screen-challenges" class="screen">
+      <h2 class="screen-title">Test de Calibración de Sistemas</h2>
+      <p class="screen-subtitle">
+        Demuestra tus deducciones lógicas. Esta actividad no es evaluada: si te equivocas no pasa nada, puedes pedir pistas o volver a intentarlo.
+      </p>
+
+      <div class="challenge-box">
+        <div class="challenge-header">
+          <span id="challenge-counter" class="challenge-num">Reto 1 de 4</span>
+          <div class="hint-wrapper">
+            <button type="button" id="btn-toggle-hint" class="hint-toggle-btn">
+              <span>💡</span> ¿Necesitas una pista?
+            </button>
+          </div>
+        </div>
+
+        <h3 id="challenge-title" class="challenge-title">Cargando reto...</h3>
+        <div id="challenge-context" class="challenge-context">Contexto del problema...</div>
+        <div id="challenge-instruction" class="challenge-instruction">Instrucción del reto...</div>
+
+        <!-- Contenedor de Pista -->
+        <div id="hint-content" class="hint-content">Pista explicativa...</div>
+
+        <!-- Opciones Interactivas -->
+        <div id="challenge-options-container" class="challenge-options">
+          <!-- Opciones inyectadas por JS -->
+        </div>
+
+        <!-- Mensaje de Feedback -->
+        <div id="challenge-feedback" class="feedback-box">
+          <!-- Feedback de acierto o fallo -->
+        </div>
+      </div>
+
+      <div class="btn-bar">
+        <button type="button" class="btn btn-secondary" data-goto-screen="1">← Volver al Perfil</button>
+        <button type="button" id="btn-next-challenge" class="btn btn-primary" disabled>
+          Siguiente Reto →
+        </button>
+      </div>
+    </section>
+
+    <!-- PANTALLA 3: Intereses, Aficiones y Planes de Futuro -->
+    <section id="screen-interests" class="screen">
+      <h2 class="screen-title">Árbol de Habilidades e Intereses</h2>
+      <p class="screen-subtitle">
+        Queremos que el curso te resulte útil y apasionante. Dinos qué te motiva aprender y qué te gusta fuera de clase.
+      </p>
+
+      <!-- Habilidades a Desbloquear -->
+      <div class="form-group">
+        <label class="form-label">
+          ¿Qué destrezas te gustaría desbloquear este año? <span style="font-weight: 400; color: var(--text-muted);">(Selecciona hasta 3)</span>
+        </label>
+        <div id="skills-grid-container" class="skills-grid">
+          <!-- Opciones de habilidades del curso inyectadas por JS -->
+        </div>
+      </div>
+
+      <!-- Aficiones y Día a Día (Nuevo campo solicitado por el usuario) -->
+      <div class="form-group">
+        <label class="form-label" for="input-aficiones">
+          Tus aficiones y tiempo libre: ¿Qué te gusta hacer en tu día a día?
+        </label>
+        <textarea id="input-aficiones" class="form-textarea" rows="2" 
+          placeholder="Ej: Jugar a videojuegos (Minecraft, Valorant...), practicar baloncesto, tocar la guitarra, editar vídeos en TikTok/CapCut, dibujar, salir con amigos..."></textarea>
+      </div>
+
+      <!-- Planes de Futuro (Nuevo campo solicitado por el usuario) -->
+      <div class="form-group">
+        <label class="form-label" for="input-futuro">
+          Planes y vocación: ¿Qué te gustaría estudiar o a qué te gustaría dedicarte en el futuro?
+        </label>
+        <input type="text" id="input-futuro" class="form-input" 
+          placeholder="Ej: Grado Medio/Superior de Informática, Bachillerato de Ciencias, Ingeniería, Diseño Gráfico, Medicina, Aún lo estoy pensando...">
+      </div>
+
+      <!-- Estilo de Aprendizaje -->
+      <div class="form-group">
+        <label class="form-label">¿Cómo aprendes y trabajas más cómodo/a en el aula de informática?</label>
+        <div id="learning-style-group" class="radio-card-grid">
+          <div class="radio-card" data-value="En pareja o equipo colaborativo">
+            <div class="radio-card-dot"></div>
+            <span>🤝 En parejas o equipo</span>
+          </div>
+          <div class="radio-card" data-value="De forma individual y concentrada">
+            <div class="radio-card-dot"></div>
+            <span>🎧 Individual a mi ritmo</span>
+          </div>
+          <div class="radio-card" data-value="Cacharreando y aprendiendo de los errores">
+            <div class="radio-card-dot"></div>
+            <span>🔧 Experimentando</span>
+          </div>
+          <div class="radio-card" data-value="Siguiendo tutoriales paso a paso bien explicados">
+            <div class="radio-card-dot"></div>
+            <span>📋 Con guías detalladas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Propuesta Abierta Opcional -->
+      <div class="form-group">
+        <label class="form-label" for="input-idea">
+          Si pudieras programar o inventar una aplicación para resolver un problema cotidiano, ¿qué haría? <span style="font-weight: 400; color: var(--text-dim);">(Opcional)</span>
+        </label>
+        <input type="text" id="input-idea" class="form-input" placeholder="Ej: Una app para recordar deberes automáticamente, un clasificador de basura con cámara...">
+      </div>
+
+      <div class="btn-bar">
+        <button type="button" class="btn btn-secondary" data-goto-screen="2">← Volver a los Retos</button>
+        <button type="button" class="btn btn-primary" data-goto-screen="4">
+          Completar Misión y Generar Pasaporte 🚀
+        </button>
+      </div>
+    </section>
+
+    <!-- PANTALLA 4: Ficha Final / Tech Passport & Entrega -->
+    <section id="screen-passport" class="screen">
+      <h2 class="screen-title">¡Misión Nivel 0 Completada! 🎉</h2>
+      <p class="screen-subtitle">
+        Tu credencial digital ha sido emitida. A continuación tienes tu pasaporte oficial para el curso 2026-2027.
+      </p>
+
+      <!-- Estado de Transmisión al Webhook de Excel -->
+      <div id="sync-status-box" class="sync-status">
+        <!-- Rellenado dinámicamente por JS -->
+      </div>
+
+      <!-- Contenedor del Canvas Gráfico -->
+      <div class="passport-container">
+        <canvas id="passportCanvas"></canvas>
+        <button type="button" id="btn-download-passport" class="btn btn-download">
+          📥 Descargar Carnet Digital (PNG)
+        </button>
+      </div>
+
+      <!-- Instrucciones para el Aula / Aules -->
+      <div class="aules-instruction-card">
+        <h4><span>📌</span> Paso Final de la Sesión</h4>
+        <p>
+          1. Pulsa en el botón verde superior para <strong>descargar la imagen de tu carnet</strong> en tu ordenador.<br>
+          2. Entra en el aula virtual <strong>Aules</strong> del instituto.<br>
+          3. Abre la tarea <strong>"Misión 0: Presentación y Pasaporte Digital"</strong> y sube el archivo descargado para inaugurar tu portafolio del curso.
+        </p>
+      </div>
+
+      <div class="btn-bar" style="justify-content: center;">
+        <a href="../" class="btn btn-primary">Volver a la Web de la Asignatura 🏠</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p>Dpto. de Informática • Generalitat Valenciana • Curso 2026-2027</p>
+  </footer>
+
+  <!-- Scripts de la Aplicación -->
+  <script src="js/config.js"></script>
+  <script src="js/courses-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
