@@ -110,8 +110,8 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="input-alias">Alias o Nombre preferido en clase</label>
-            <input type="text" id="input-alias" class="form-input" placeholder="¿Cómo prefieres que te llame el profesor?">
+            <label class="form-label" for="input-alias">Alias <span style="font-weight: 400; color: var(--text-muted);">(en internet o en clase)</span></label>
+            <input type="text" id="input-alias" class="form-input" placeholder="Ej: Neo, CiberLucia, AlexDev...">
           </div>
           <div class="form-group">
             <label class="form-label" for="input-email">Correo educativo institucional</label>
@@ -127,25 +127,36 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label">¿Qué dispositivo usas habitualmente en casa para estudiar o hacer tareas?</label>
-          <div id="dispositivos-group" class="radio-card-grid">
-            <div class="radio-card" data-value="Ordenador propio (sobremesa o portátil)">
+          <label class="form-label">
+            ¿Qué dispositivos usas habitualmente en casa para estudiar o hacer tareas?
+            <span style="font-weight: 400; color: var(--text-muted);">(Selecciona todos los que uses)</span>
+          </label>
+          <div id="dispositivos-group" class="radio-card-grid multi-grid">
+            <div class="radio-card multi" data-value="Ordenador propio (sobremesa o portátil)">
               <div class="radio-card-dot"></div>
               <span>💻 Ordenador propio</span>
             </div>
-            <div class="radio-card" data-value="Ordenador compartido con la familia">
+            <div class="radio-card multi" data-value="Ordenador compartido familiar">
               <div class="radio-card-dot"></div>
-              <span>👨‍👩‍👧 PC compartido</span>
+              <span>👨‍👩‍👧 PC familiar compartido</span>
             </div>
-            <div class="radio-card" data-value="Tablet con teclado o táctil">
+            <div class="radio-card multi" data-value="Tablet Android">
               <div class="radio-card-dot"></div>
-              <span>📱 Tablet</span>
+              <span>📱 Tablet Android</span>
             </div>
-            <div class="radio-card" data-value="Principalmente teléfono móvil">
+            <div class="radio-card multi" data-value="iPad / Tablet iOS">
               <div class="radio-card-dot"></div>
-              <span>📲 Solo móvil</span>
+              <span>🍏 iPad / Tablet iOS</span>
             </div>
-            <div class="radio-card" data-value="No dispongo de equipo o conexión habitual">
+            <div class="radio-card multi" data-value="Teléfono móvil Android">
+              <div class="radio-card-dot"></div>
+              <span>📲 Móvil Android</span>
+            </div>
+            <div class="radio-card multi" data-value="Teléfono móvil iPhone (iOS)">
+              <div class="radio-card-dot"></div>
+              <span>🍎 Móvil iPhone (iOS)</span>
+            </div>
+            <div class="radio-card multi" data-value="No dispongo de equipo o conexión habitual">
               <div class="radio-card-dot"></div>
               <span>🚫 Sin equipo habitual</span>
             </div>
@@ -184,12 +195,12 @@
     <section id="screen-challenges" class="screen">
       <h2 class="screen-title">Test de Calibración de Sistemas</h2>
       <p class="screen-subtitle">
-        Demuestra tus deducciones lógicas. Esta actividad no es evaluada: si te equivocas no pasa nada, puedes pedir pistas o volver a intentarlo.
+        Demuestra tus deducciones lógicas. Esta actividad es una valoración diagnóstica para conocer tu punto de partida: responde con sinceridad y pasa de reto cuando quieras.
       </p>
 
       <div class="challenge-box">
         <div class="challenge-header">
-          <span id="challenge-counter" class="challenge-num">Reto 1 de 4</span>
+          <span id="challenge-counter" class="challenge-num">Reto 1 de 8</span>
           <div class="hint-wrapper">
             <button type="button" id="btn-toggle-hint" class="hint-toggle-btn">
               <span>💡</span> ¿Necesitas una pista?
@@ -201,17 +212,26 @@
         <div id="challenge-context" class="challenge-context">Contexto del problema...</div>
         <div id="challenge-instruction" class="challenge-instruction">Instrucción del reto...</div>
 
+        <!-- Contenedor Dinámico de Imagen de Apoyo -->
+        <div id="challenge-image-container" class="challenge-image-box" style="display: none;"></div>
+
         <!-- Contenedor de Pista -->
         <div id="hint-content" class="hint-content">Pista explicativa...</div>
 
-        <!-- Opciones Interactivas -->
+        <!-- Opciones Interactivas (para retos de selección) -->
         <div id="challenge-options-container" class="challenge-options">
           <!-- Opciones inyectadas por JS -->
         </div>
 
-        <!-- Mensaje de Feedback -->
-        <div id="challenge-feedback" class="feedback-box">
-          <!-- Feedback de acierto o fallo -->
+        <!-- Contenedor de Respuesta en Texto (para retos abiertos) -->
+        <div id="challenge-text-container" class="challenge-text-box" style="display: none;">
+          <textarea id="challenge-text-input" class="form-textarea" rows="3" placeholder="Escribe aquí tu respuesta o razonamiento..."></textarea>
+          <div class="challenge-text-status" id="challenge-text-status"></div>
+        </div>
+
+        <!-- Mensaje de Estado Neutro / Confirmación -->
+        <div id="challenge-feedback" class="feedback-box" style="display: none;">
+          <!-- Mensaje neutro inyectado por JS -->
         </div>
       </div>
 
@@ -227,71 +247,80 @@
     <section id="screen-interests" class="screen">
       <h2 class="screen-title">Árbol de Habilidades e Intereses</h2>
       <p class="screen-subtitle">
-        Queremos que el curso te resulte útil y apasionante. Dinos qué te motiva aprender y qué te gusta fuera de clase.
+        Por favor, completa todos los campos para ayudarnos a personalizar las sesiones y desbloquear tu credencial final.
       </p>
 
+      <div id="interests-alert" class="alert-box error" style="display: none;">
+        <span>⚠️</span>
+        <div id="interests-alert-text">Por favor, rellena todos los campos requeridos para poder finalizar.</div>
+      </div>
+
       <!-- Habilidades a Desbloquear -->
-      <div class="form-group">
+      <div class="form-group" id="group-skills">
         <label class="form-label">
-          ¿Qué destrezas te gustaría desbloquear este año? <span style="font-weight: 400; color: var(--text-muted);">(Selecciona hasta 3)</span>
+          ¿Qué destrezas te gustaría desbloquear este año? <span class="required-star">*</span>
+          <span style="font-weight: 400; color: var(--text-muted);">(Selecciona de 1 a 3 metas)</span>
         </label>
         <div id="skills-grid-container" class="skills-grid">
           <!-- Opciones de habilidades del curso inyectadas por JS -->
         </div>
       </div>
 
-      <!-- Aficiones y Día a Día (Nuevo campo solicitado por el usuario) -->
-      <div class="form-group">
+      <!-- Aficiones y Día a Día -->
+      <div class="form-group" id="group-aficiones">
         <label class="form-label" for="input-aficiones">
-          Tus aficiones y tiempo libre: ¿Qué te gusta hacer en tu día a día?
+          Tus aficiones y tiempo libre: ¿Qué te gusta hacer en tu día a día? <span class="required-star">*</span>
         </label>
         <textarea id="input-aficiones" class="form-textarea" rows="2" 
-          placeholder="Ej: Jugar a videojuegos (Minecraft, Valorant...), practicar baloncesto, tocar la guitarra, editar vídeos en TikTok/CapCut, dibujar, salir con amigos..."></textarea>
+          placeholder="Ej: Jugar a videojuegos (Minecraft, Valorant...), practicar deporte, tocar un instrumento, editar vídeos en TikTok/CapCut, dibujar, salir con amigos..."></textarea>
       </div>
 
-      <!-- Planes de Futuro (Nuevo campo solicitado por el usuario) -->
-      <div class="form-group">
+      <!-- Planes de Futuro -->
+      <div class="form-group" id="group-futuro">
         <label class="form-label" for="input-futuro">
-          Planes y vocación: ¿Qué te gustaría estudiar o a qué te gustaría dedicarte en el futuro?
+          Planes y vocación: ¿Qué te gustaría estudiar o a qué te gustaría dedicarte en el futuro? <span class="required-star">*</span>
         </label>
         <input type="text" id="input-futuro" class="form-input" 
           placeholder="Ej: Grado Medio/Superior de Informática, Bachillerato de Ciencias, Ingeniería, Diseño Gráfico, Medicina, Aún lo estoy pensando...">
       </div>
 
       <!-- Estilo de Aprendizaje -->
-      <div class="form-group">
-        <label class="form-label">¿Cómo aprendes y trabajas más cómodo/a en el aula de informática?</label>
-        <div id="learning-style-group" class="radio-card-grid">
-          <div class="radio-card" data-value="En pareja o equipo colaborativo">
+      <div class="form-group" id="group-learning-style">
+        <label class="form-label">
+          ¿Cómo aprendes y trabajas más cómodo/a en el aula de informática? <span class="required-star">*</span>
+          <span style="font-weight: 400; color: var(--text-muted);">(Selecciona todas las opciones que se ajusten a ti)</span>
+        </label>
+        <div id="learning-style-group" class="radio-card-grid multi-grid">
+          <div class="radio-card multi" data-value="En pareja o equipo colaborativo">
             <div class="radio-card-dot"></div>
             <span>🤝 En parejas o equipo</span>
           </div>
-          <div class="radio-card" data-value="De forma individual y concentrada">
+          <div class="radio-card multi" data-value="De forma individual y concentrada">
             <div class="radio-card-dot"></div>
             <span>🎧 Individual a mi ritmo</span>
           </div>
-          <div class="radio-card" data-value="Cacharreando y aprendiendo de los errores">
+          <div class="radio-card multi" data-value="Cacharreando y aprendiendo de los errores">
             <div class="radio-card-dot"></div>
             <span>🔧 Experimentando</span>
           </div>
-          <div class="radio-card" data-value="Siguiendo tutoriales paso a paso bien explicados">
+          <div class="radio-card multi" data-value="Siguiendo tutoriales paso a paso bien explicados">
             <div class="radio-card-dot"></div>
             <span>📋 Con guías detalladas</span>
           </div>
         </div>
       </div>
 
-      <!-- Propuesta Abierta Opcional -->
-      <div class="form-group">
+      <!-- Propuesta Abierta de Aplicación -->
+      <div class="form-group" id="group-idea">
         <label class="form-label" for="input-idea">
-          Si pudieras programar o inventar una aplicación para resolver un problema cotidiano, ¿qué haría? <span style="font-weight: 400; color: var(--text-dim);">(Opcional)</span>
+          Si pudieras programar o inventar una aplicación para resolver un problema cotidiano, ¿qué haría? <span class="required-star">*</span>
         </label>
-        <input type="text" id="input-idea" class="form-input" placeholder="Ej: Una app para recordar deberes automáticamente, un clasificador de basura con cámara...">
+        <input type="text" id="input-idea" class="form-input" placeholder="Ej: Una app para organizar deberes automáticamente, un detector inteligente de reciclaje...">
       </div>
 
       <div class="btn-bar">
         <button type="button" class="btn btn-secondary" data-goto-screen="2">← Volver a los Retos</button>
-        <button type="button" class="btn btn-primary" data-goto-screen="4">
+        <button type="button" id="btn-complete-interests" class="btn btn-primary">
           Completar Misión y Generar Pasaporte 🚀
         </button>
       </div>
@@ -301,10 +330,10 @@
     <section id="screen-passport" class="screen">
       <h2 class="screen-title">¡Misión Nivel 0 Completada! 🎉</h2>
       <p class="screen-subtitle">
-        Tu credencial digital ha sido emitida. A continuación tienes tu pasaporte oficial para el curso 2026-2027.
+        Tu credencial digital ha sido emitida con éxito. A continuación tienes tu pasaporte oficial para el curso 2026-2027.
       </p>
 
-      <!-- Estado de Transmisión al Webhook de Excel -->
+      <!-- Estado de Transmisión al Webhook de Google Sheets -->
       <div id="sync-status-box" class="sync-status">
         <!-- Rellenado dinámicamente por JS -->
       </div>
@@ -333,6 +362,36 @@
     </section>
 
   </main>
+
+  <!-- MODAL MINIJUEGO FINAL: PROTOCOLO CYBER-CAPTCHA -->
+  <div id="captcha-modal" class="captcha-modal-overlay" style="display: none;">
+    <div class="captcha-modal-card">
+      <div class="captcha-header">
+        <div class="captcha-badge">VERIFICACIÓN HUMANA // TURING SECURITY CHECK</div>
+        <h3 id="captcha-modal-title" class="captcha-title">Chequeo de Calibración</h3>
+        <p class="captcha-subtitle">
+          Completa el siguiente patrón de seguridad informática para autenticar tu agente y activar tu credencial oficial:
+        </p>
+      </div>
+
+      <div id="captcha-instruction" class="captcha-instruction-box">
+        <!-- Instrucción inyectada por JS -->
+      </div>
+
+      <div id="captcha-grid-container" class="captcha-grid">
+        <!-- Tokens inyectados por JS -->
+      </div>
+
+      <div id="captcha-feedback" class="captcha-feedback-msg" style="display: none;"></div>
+
+      <div class="captcha-actions">
+        <button type="button" id="btn-cancel-captcha" class="btn btn-secondary">Cancelar</button>
+        <button type="button" id="btn-submit-captcha" class="btn btn-primary btn-captcha-verify">
+          Verificar y Desbloquear Credencial 🛡️
+        </button>
+      </div>
+    </div>
+  </div>
 
   <footer class="app-footer">
     <p>Dpto. de Informática • Generalitat Valenciana • Curso 2026-2027</p>

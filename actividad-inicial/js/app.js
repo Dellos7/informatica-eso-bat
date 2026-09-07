@@ -1,5 +1,5 @@
 // ==========================================================================
-// CONTROLADOR PRINCIPAL DE LA SPA - TECH PASSPORT
+// CONTROLADOR PRINCIPAL DE LA SPA - TECH PASSPORT (EDICIÓN MEJORADA)
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,18 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
       apellidos: '',
       email: '',
       alias: '',
-      avatarEmoji: '⚡',
-      avatarName: 'Constructor/a',
-      dispositivosCasa: '',
+      avatarEmoji: '💻',
+      avatarName: 'Programador/a',
+      dispositivosCasa: [], // Selección múltiple
       soCasa: ''
     },
     challenges: {
       currentIndex: 0,
-      results: [] // { id, attempts, usedHint, solved }
+      results: [] // { id, type, selectedAnswer, textResponse, usedHint, isCorrect }
     },
     interests: {
       selectedSkills: [],
-      estiloAprendizaje: '',
+      estiloAprendizaje: [], // Selección múltiple
       aficionesDiaADia: '',
       planesFuturo: '',
       ideaProyecto: ''
@@ -32,8 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
     completedAt: null
   };
 
-  // Avatares disponibles
+  // Catálogo ampliado de avatares tecnológicos
   const AVATARS = [
+    { emoji: '💻', name: 'Programador/a' },
+    { emoji: '🎮', name: 'Dev Videojuegos' },
+    { emoji: '🔧', name: 'Maker / Hardware' },
+    { emoji: '📊', name: 'Data Scientist' },
+    { emoji: '🌐', name: 'SysAdmin / Redes' },
+    { emoji: '🎧', name: 'Creador/a Digital' },
     { emoji: '⚡', name: 'Constructor/a' },
     { emoji: '🛡️', name: 'Ciberguardián/a' },
     { emoji: '🤖', name: 'Domador/a de IA' },
@@ -52,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const progressLine = document.getElementById('progress-line-fill');
-  const stepNodes = document.querySelectorAll('.step-node');
   const courseBadgeIndicator = document.getElementById('header-course-badge');
 
   // Inicialización
@@ -61,8 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function init() {
     renderCourseGrid();
     renderAvatarGrid();
-    setupRadioCards();
+    setupOptionGroups();
     setupWelcomeButtons();
+    setupInterestsValidation();
     checkUrlParams();
     updateProgressUI();
   }
@@ -73,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursoParam = params.get('curso') || params.get('c');
     if (cursoParam && COURSES_DATA[cursoParam.toLowerCase()]) {
       selectCourse(cursoParam.toLowerCase());
-      // No salta a la pantalla 1: se queda en la pantalla de bienvenida con el botón "Empezar"
     }
   }
 
@@ -83,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (startBtn) {
       startBtn.addEventListener('click', () => {
         if (!state.course) return;
-        goToScreen(1); // Ahora sí salta a la Pantalla 1 (Perfil)
+        goToScreen(1); // Salta a la Pantalla 1 (Perfil)
       });
     }
   }
@@ -137,13 +142,15 @@ document.addEventListener('DOMContentLoaded', () => {
       courseBadgeIndicator.style.color = state.course.themeColor;
     }
 
-    // Inicializar seguimiento de retos
+    // Inicializar seguimiento diagnóstico de retos
     state.challenges.currentIndex = 0;
     state.challenges.results = state.course.challenges.map(c => ({
       id: c.id,
-      attempts: 0,
+      type: c.type || 'choice',
+      selectedAnswer: null,
+      textResponse: '',
       usedHint: false,
-      solved: false
+      isCorrect: false
     }));
 
     // Renderizar contenidos dependientes del curso
@@ -195,14 +202,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Configurar radio cards (Dispositivos, SO, Estilo aprendizaje)
-  function setupRadioCards() {
-    setupGroup('dispositivos-group', (val) => state.profile.dispositivosCasa = val);
-    setupGroup('so-group', (val) => state.profile.soCasa = val);
-    setupGroup('learning-style-group', (val) => state.interests.estiloAprendizaje = val);
+  // 5. Configurar grupos de opciones (simples y múltiples)
+  function setupOptionGroups() {
+    // Dispositivos: selección múltiple
+    setupMultiSelectGroup('dispositivos-group', (selectedArr) => {
+      state.profile.dispositivosCasa = selectedArr;
+    });
+
+    // Sistema Operativo: selección simple
+    setupSingleSelectGroup('so-group', (val) => {
+      state.profile.soCasa = val;
+    });
+
+    // Estilo de Aprendizaje: selección múltiple
+    setupMultiSelectGroup('learning-style-group', (selectedArr) => {
+      state.interests.estiloAprendizaje = selectedArr;
+    });
   }
 
-  function setupGroup(containerId, onSelect) {
+  function setupSingleSelectGroup(containerId, onSelect) {
     const container = document.getElementById(containerId);
     if (!container) return;
     const cards = container.querySelectorAll('.radio-card');
@@ -212,6 +230,20 @@ document.addEventListener('DOMContentLoaded', () => {
         card.classList.add('selected');
         const val = card.getAttribute('data-value');
         onSelect(val);
+      });
+    });
+  }
+
+  function setupMultiSelectGroup(containerId, onUpdate) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const cards = container.querySelectorAll('.radio-card.multi');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('selected');
+        const selectedValues = Array.from(container.querySelectorAll('.radio-card.multi.selected'))
+          .map(c => c.getAttribute('data-value'));
+        onUpdate(selectedValues);
       });
     });
   }
@@ -245,13 +277,8 @@ document.addEventListener('DOMContentLoaded', () => {
       loadCurrentChallenge();
     }
 
-    // Validación de avance desde Pantalla 3 (Intereses)
-    if (state.currentScreen === 3 && index > 3) {
-      state.interests.aficionesDiaADia = document.getElementById('input-aficiones').value.trim();
-      state.interests.planesFuturo = document.getElementById('input-futuro').value.trim();
-      state.interests.ideaProyecto = document.getElementById('input-idea').value.trim();
-
-      // Al entrar a pantalla final, generar el pasaporte y transmitir datos
+    // Pantalla 4 (Acreditación): emitir carnet y enviar datos
+    if (index === 4) {
       state.completedAt = new Date().toISOString();
       renderPassportBadge();
       sendDataToTeacher();
@@ -298,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Lógica de Minirretos (Pantalla 2)
+  // 7. Lógica de Minirretos Diagnósticos (Pantalla 2)
   function loadCurrentChallenge() {
     if (!state.course) return;
 
@@ -312,62 +339,112 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('challenge-context').textContent = currentChallenge.context;
     document.getElementById('challenge-instruction').textContent = currentChallenge.instruction;
 
-    // Pista
+    // Renderizado dinámico de imagen de apoyo si el reto la incluye
+    const imgContainer = document.getElementById('challenge-image-container');
+    if (currentChallenge.image) {
+      imgContainer.style.display = 'block';
+      imgContainer.innerHTML = `<img src="${currentChallenge.image}" class="challenge-img" alt="${currentChallenge.title}">`;
+    } else {
+      imgContainer.style.display = 'none';
+      imgContainer.innerHTML = '';
+    }
+
+    // Pista explicativa reflexiva
     const hintContent = document.getElementById('hint-content');
     hintContent.textContent = currentChallenge.hint;
     hintContent.classList.remove('visible');
 
-    // Feedback
+    // Mensaje de feedback neutro
     const feedbackBox = document.getElementById('challenge-feedback');
     feedbackBox.className = 'feedback-box';
     feedbackBox.style.display = 'none';
 
     // Botón siguiente reto
     const nextBtn = document.getElementById('btn-next-challenge');
-    nextBtn.disabled = true;
 
-    // Opciones
     const optionsContainer = document.getElementById('challenge-options-container');
-    optionsContainer.innerHTML = '';
+    const textContainer = document.getElementById('challenge-text-container');
+    const textInput = document.getElementById('challenge-text-input');
+    const textStatus = document.getElementById('challenge-text-status');
 
-    currentChallenge.options.forEach(opt => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'option-btn';
-      btn.innerHTML = `<span>🔹</span> <span>${opt.text}</span>`;
-      btn.addEventListener('click', () => {
-        handleOptionClick(opt, btn, currentChallenge, challengeState);
+    if (currentChallenge.type === 'text') {
+      // Reto de respuesta en texto
+      optionsContainer.style.display = 'none';
+      optionsContainer.innerHTML = '';
+      textContainer.style.display = 'block';
+
+      textInput.value = challengeState.textResponse || '';
+      textInput.placeholder = currentChallenge.placeholder || 'Escribe tu respuesta o razonamiento aquí...';
+      
+      const hasText = challengeState.textResponse && challengeState.textResponse.trim().length > 0;
+      nextBtn.disabled = !hasText;
+      textStatus.textContent = hasText ? 'Respuesta guardada 💾' : '';
+
+      textInput.oninput = () => {
+        const val = textInput.value.trim();
+        challengeState.textResponse = val;
+        challengeState.selectedAnswer = val;
+        challengeState.isCorrect = val.length > 2; // Criterio diagnóstico de completitud
+        if (val.length > 0) {
+          textStatus.textContent = 'Respuesta guardada 💾';
+          nextBtn.disabled = false;
+        } else {
+          textStatus.textContent = '';
+          nextBtn.disabled = true;
+        }
+      };
+    } else {
+      // Reto de selección (tipo choice)
+      textContainer.style.display = 'none';
+      optionsContainer.style.display = 'flex';
+      optionsContainer.innerHTML = '';
+
+      const hasAnswer = challengeState.selectedAnswer !== null;
+      nextBtn.disabled = !hasAnswer;
+
+      if (hasAnswer) {
+        feedbackBox.className = 'feedback-box recorded visible';
+        feedbackBox.style.display = 'flex';
+        feedbackBox.innerHTML = `<span>💾</span> <div><strong>Respuesta registrada.</strong> Puedes continuar al siguiente reto cuando quieras.</div>`;
+      }
+
+      currentChallenge.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `option-btn ${challengeState.selectedAnswer === opt.text ? 'selected' : ''}`;
+        btn.innerHTML = `<span>🔹</span> <span>${opt.text}</span>`;
+        btn.addEventListener('click', () => {
+          handleOptionClick(opt, btn, currentChallenge, challengeState);
+        });
+        optionsContainer.appendChild(btn);
       });
-      optionsContainer.appendChild(btn);
-    });
+    }
   }
 
+  // Manejo de clic en opción diagnóstica (sin revelar acierto/fallo al alumno)
   function handleOptionClick(option, btnElement, challenge, challengeState) {
-    challengeState.attempts++;
     const optionsContainer = document.getElementById('challenge-options-container');
     const allBtns = optionsContainer.querySelectorAll('.option-btn');
     const feedbackBox = document.getElementById('challenge-feedback');
     const nextBtn = document.getElementById('btn-next-challenge');
 
-    if (option.correct) {
-      challengeState.solved = true;
-      allBtns.forEach(b => b.classList.add('locked'));
-      btnElement.classList.add('correct');
+    allBtns.forEach(b => b.classList.remove('selected'));
+    btnElement.classList.add('selected');
 
-      feedbackBox.className = 'feedback-box correct visible';
-      feedbackBox.style.display = 'flex';
-      feedbackBox.innerHTML = `<span>🌟</span> <div><strong>¡Excelente deducción!</strong> ${challenge.explanation}</div>`;
+    // Registrar respuesta del alumno internamente para la evaluación diagnóstica
+    challengeState.selectedAnswer = option.text;
+    challengeState.isCorrect = !!option.correct;
 
-      nextBtn.disabled = false;
-    } else {
-      btnElement.classList.add('incorrect');
-      feedbackBox.className = 'feedback-box retrying visible';
-      feedbackBox.style.display = 'flex';
-      feedbackBox.innerHTML = `<span>💡</span> <div>¡Casi! No es la opción óptima. Revisa el enunciado o pulsa en <strong>"¿Necesitas una pista?"</strong> para volver a intentarlo.</div>`;
-    }
+    // Mensaje neutro de confirmación
+    feedbackBox.className = 'feedback-box recorded visible';
+    feedbackBox.style.display = 'flex';
+    feedbackBox.innerHTML = `<span>💾</span> <div><strong>Respuesta registrada.</strong> Puedes pulsar en <em>Siguiente Reto</em> para continuar.</div>`;
+
+    // Se permite avanzar inmediatamente con cualquier respuesta
+    nextBtn.disabled = false;
   }
 
-  // Toggle de pista
+  // Toggle de pista reflexiva
   const hintBtn = document.getElementById('btn-toggle-hint');
   if (hintBtn) {
     hintBtn.addEventListener('click', () => {
@@ -387,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
         state.challenges.currentIndex++;
         loadCurrentChallenge();
       } else {
-        // Fin de los retos -> pasar a intereses
+        // Fin de los 8 retos -> pasar a intereses
         goToScreen(3);
       }
     });
@@ -425,7 +502,167 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 9. Generador del Carnet Digital en Canvas (Pantalla 4)
+  // 9. Validación obligatoria de todos los campos en Pantalla 3
+  function setupInterestsValidation() {
+    const completeBtn = document.getElementById('btn-complete-interests');
+    if (completeBtn) {
+      completeBtn.addEventListener('click', () => {
+        validateAndLaunchCaptcha();
+      });
+    }
+  }
+
+  function validateAndLaunchCaptcha() {
+    const alertBox = document.getElementById('interests-alert');
+    const alertText = document.getElementById('interests-alert-text');
+    if (alertBox) alertBox.style.display = 'none';
+
+    // Limpiar marcas de error previas
+    document.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+
+    const errors = [];
+
+    // Validar destrezas (debe elegir al menos 1)
+    if (!state.interests.selectedSkills || state.interests.selectedSkills.length === 0) {
+      errors.push('Selecciona al menos 1 destreza a desbloquear este curso');
+      const gSkills = document.getElementById('group-skills');
+      if (gSkills) gSkills.classList.add('field-error');
+    }
+
+    // Validar aficiones
+    const aficionesInput = document.getElementById('input-aficiones');
+    const aficiones = aficionesInput ? aficionesInput.value.trim() : '';
+    if (!aficiones) {
+      errors.push('Indica tus aficiones y actividades en tu tiempo libre');
+      if (aficionesInput) aficionesInput.classList.add('field-error');
+    }
+
+    // Validar planes de futuro
+    const futuroInput = document.getElementById('input-futuro');
+    const futuro = futuroInput ? futuroInput.value.trim() : '';
+    if (!futuro) {
+      errors.push('Indica tus planes de futuro o vocación formativa');
+      if (futuroInput) futuroInput.classList.add('field-error');
+    }
+
+    // Validar estilo de aprendizaje (al menos 1)
+    if (!state.interests.estiloAprendizaje || state.interests.estiloAprendizaje.length === 0) {
+      errors.push('Selecciona al menos un estilo de aprendizaje cómodo en el aula');
+      const gStyle = document.getElementById('group-learning-style');
+      if (gStyle) gStyle.classList.add('field-error');
+    }
+
+    // Validar propuesta de aplicación
+    const ideaInput = document.getElementById('input-idea');
+    const idea = ideaInput ? ideaInput.value.trim() : '';
+    if (!idea) {
+      errors.push('Describe tu propuesta o idea de aplicación informática');
+      if (ideaInput) ideaInput.classList.add('field-error');
+    }
+
+    // Si falta algún campo obligatorio, mostrar aviso
+    if (errors.length > 0) {
+      if (alertBox && alertText) {
+        alertText.innerHTML = `<strong>Faltan campos por completar para finalizar la misión:</strong><br>• ${errors.join('<br>• ')}`;
+        alertBox.style.display = 'flex';
+        alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+
+    // Guardar datos validados en el estado
+    state.interests.aficionesDiaADia = aficiones;
+    state.interests.planesFuturo = futuro;
+    state.interests.ideaProyecto = idea;
+
+    // Lanzar el minijuego Cyber-Captcha final
+    openCaptchaModal();
+  }
+
+  // 10. Minijuego Cyber-Captcha interactivo
+  let selectedCaptchaTokens = new Set();
+
+  function openCaptchaModal() {
+    const modal = document.getElementById('captcha-modal');
+    if (!modal || !state.course) return;
+
+    selectedCaptchaTokens.clear();
+
+    const captchaConfig = state.course.captcha || {
+      title: 'Verificación de Seguridad Informática',
+      instruction: 'Selecciona los 3 elementos de Hardware físico:',
+      items: [
+        { id: 'c1', text: 'Teclado y Ratón', icon: '⌨️', correct: true },
+        { id: 'c2', text: 'Navegador Web', icon: '🌐', correct: false },
+        { id: 'c3', text: 'Pantalla Monitor', icon: '🖥️', correct: true },
+        { id: 'c4', text: 'Sistema LliureX', icon: '🐧', correct: false },
+        { id: 'c5', text: 'Disco Duro SSD', icon: '💾', correct: true },
+        { id: 'c6', text: 'Videojuego', icon: '🎮', correct: false }
+      ]
+    };
+
+    document.getElementById('captcha-modal-title').textContent = captchaConfig.title;
+    document.getElementById('captcha-instruction').textContent = captchaConfig.instruction;
+
+    const feedbackMsg = document.getElementById('captcha-feedback');
+    feedbackMsg.style.display = 'none';
+    feedbackMsg.className = 'captcha-feedback-msg';
+
+    const container = document.getElementById('captcha-grid-container');
+    container.innerHTML = '';
+
+    captchaConfig.items.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'captcha-item';
+      card.innerHTML = `
+        <span class="captcha-icon">${item.icon}</span>
+        <span class="captcha-text">${item.text}</span>
+      `;
+      card.addEventListener('click', () => {
+        if (selectedCaptchaTokens.has(item.id)) {
+          selectedCaptchaTokens.delete(item.id);
+          card.classList.remove('selected');
+        } else {
+          selectedCaptchaTokens.add(item.id);
+          card.classList.add('selected');
+        }
+      });
+      container.appendChild(card);
+    });
+
+    modal.style.display = 'flex';
+
+    // Botón cancelar
+    const cancelBtn = document.getElementById('btn-cancel-captcha');
+    cancelBtn.onclick = () => {
+      modal.style.display = 'none';
+    };
+
+    // Botón verificar agente humano
+    const verifyBtn = document.getElementById('btn-submit-captcha');
+    verifyBtn.onclick = () => {
+      const correctItems = captchaConfig.items.filter(i => i.correct).map(i => i.id);
+      const isComplete = correctItems.length === selectedCaptchaTokens.size &&
+                         correctItems.every(id => selectedCaptchaTokens.has(id));
+
+      if (isComplete) {
+        feedbackMsg.className = 'captcha-feedback-msg success';
+        feedbackMsg.innerHTML = '<span>✅</span> ¡Agente Humano Verificado! Desbloqueando Tech Passport...';
+        feedbackMsg.style.display = 'block';
+
+        setTimeout(() => {
+          modal.style.display = 'none';
+          goToScreen(4); // Pasar a Pantalla 4 (Acreditación)
+        }, 850);
+      } else {
+        feedbackMsg.className = 'captcha-feedback-msg error';
+        feedbackMsg.innerHTML = '<span>⚠️</span> Calibración inexacta: revisa los elementos seleccionados (debes elegir exactamente los 3 correctos).';
+        feedbackMsg.style.display = 'block';
+      }
+    };
+  }
+
+  // 11. Generador del Carnet Digital en Canvas (Pantalla 4)
   function renderPassportBadge() {
     const canvas = document.getElementById('passportCanvas');
     if (!canvas) return;
@@ -522,7 +759,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.fillStyle = '#94a3b8';
     ctx.font = '12px "Fira Code", monospace';
-    ctx.fillText('ALIAS EN EL AULA:', 240, 210);
+    ctx.fillText('ALIAS:', 240, 210);
     ctx.fillStyle = state.course ? state.course.themeColor : '#00f5d4';
     ctx.font = 'bold 18px "Fira Code", monospace';
     ctx.fillText(`"${state.profile.alias}"`, 240, 235);
@@ -535,8 +772,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillText(state.profile.email || 'No especificado (@alu.edu.gva.es)', 240, 290);
 
     // Métricas diagnósticas
-    const solvedCount = state.challenges.results.filter(r => r.solved).length;
-    const hintsCount = state.challenges.results.filter(r => r.usedHint).length;
+    const totalAnswered = state.challenges.results.filter(r => r.selectedAnswer || r.textResponse).length;
 
     ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
     ctx.fillRect(48, 340, 704, 75);
@@ -545,18 +781,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.fillStyle = '#94a3b8';
     ctx.font = '12px "Fira Code", monospace';
-    ctx.fillText('CALIBRACIÓN:', 70, 365);
-    ctx.fillText('DESTREZAS A DESBLOQUEAR:', 300, 365);
+    ctx.fillText('CALIBRACIÓN DIAGNÓSTICA:', 70, 365);
+    ctx.fillText('METAS A DESBLOQUEAR:', 330, 365);
     ctx.fillText('ESTADO DEL SISTEMA:', 590, 365);
 
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 16px Outfit, sans-serif';
-    ctx.fillText(`${solvedCount}/${state.challenges.results.length} Retos Superados`, 70, 395);
+    ctx.fillText(`${totalAnswered}/${state.challenges.results.length} Retos Completados`, 70, 395);
 
     const skillsSummary = state.interests.selectedSkills.length > 0 
       ? state.interests.selectedSkills.length + ' metas seleccionadas'
       : 'Exploración global';
-    ctx.fillText(skillsSummary, 300, 395);
+    ctx.fillText(skillsSummary, 330, 395);
 
     ctx.fillStyle = '#06d6a0';
     ctx.fillText('AUTORIZADO ✓', 590, 395);
@@ -582,7 +818,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 10. Envío de datos al Webhook de Microsoft Excel Online
+  // 12. Envío de datos al Webhook de Google Sheets (Apps Script)
   async function sendDataToTeacher() {
     const statusBox = document.getElementById('sync-status-box');
     if (!statusBox) return;
@@ -590,10 +826,15 @@ document.addEventListener('DOMContentLoaded', () => {
     statusBox.classList.remove('success', 'fallback');
     statusBox.classList.add('visible');
 
-    const solvedCount = state.challenges.results.filter(r => r.solved).length;
+    const solvedCount = state.challenges.results.filter(r => r.isCorrect).length;
     const hintsCount = state.challenges.results.filter(r => r.usedHint).length;
 
-    // Payload plano estructurado para Excel
+    // Resumen de respuestas diagnósticas de los 8 retos
+    const detalleRespuestas = state.challenges.results
+      .map((r, i) => `R${i + 1}: ${r.selectedAnswer || r.textResponse || '-'}`)
+      .join(' | ');
+
+    // Payload plano estructurado para Google Sheets
     const payload = {
       Timestamp: new Date().toLocaleString('es-ES'),
       Curso: state.course ? state.course.shortName : 'No especificado',
@@ -602,15 +843,17 @@ document.addEventListener('DOMContentLoaded', () => {
       Email: state.profile.email,
       Alias: state.profile.alias,
       Avatar: `${state.profile.avatarEmoji} ${state.profile.avatarName}`,
-      Dispositivos_Casa: state.profile.dispositivosCasa || 'No especificado',
+      Dispositivos_Casa: state.profile.dispositivosCasa.join('; ') || 'No especificado',
       SO_Casa: state.profile.soCasa || 'No especificado',
       Retos_Superados: `${solvedCount}/${state.challenges.results.length}`,
       Pistas_Utilizadas: hintsCount,
       Metas_Seleccionadas: state.interests.selectedSkills.join('; '),
-      Estilo_Aprendizaje: state.interests.estiloAprendizaje || 'No especificado',
+      Estilo_Aprendizaje: state.interests.estiloAprendizaje.join('; ') || 'No especificado',
       Aficiones_Dia_A_Dia: state.interests.aficionesDiaADia || 'No especificado',
       Planes_Futuro: state.interests.planesFuturo || 'No especificado',
-      Idea_Proyecto: state.interests.ideaProyecto || 'Sin propuesta'
+      Idea_Proyecto: state.interests.ideaProyecto || 'Sin propuesta',
+      Detalle_Respuestas: detalleRespuestas,
+      Captcha_Verificado: 'Sí (Superado)'
     };
 
     // Si no hay Webhook configurado aún, informar al alumno amigablemente
@@ -620,16 +863,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <span>💾</span>
         <div>
           <strong>¡Misión completada con éxito!</strong><br>
-          Descarga tu acreditación con el botón inferior y súbela a la tarea de bienvenida en <strong>Aules</strong>.
+          Descarga tu acreditación con el botón verde inferior y súbela a la tarea de bienvenida en <strong>Aules</strong>.
         </div>
       `;
       return;
     }
 
-    // Si hay Webhook, intentar la llamada HTTP POST
+    // Si hay Webhook de Apps Script, intentar la llamada HTTP POST
     try {
       statusBox.innerHTML = `<span>⏳</span> Conectando con la base de datos del curso...`;
-      // Enviar como text/plain para evitar preflight OPTIONS de CORS (compatible con Google Apps Script y webhooks)
+      // Enviar como text/plain para evitar preflight OPTIONS de CORS con Google Apps Script
       const response = await fetch(APP_CONFIG.EXCEL_WEBHOOK_URL, {
         method: 'POST',
         headers: {
@@ -663,7 +906,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 11. Enlaces entre botones estándar
+  // 13. Enlaces entre botones estándar
   document.querySelectorAll('[data-goto-screen]').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = parseInt(btn.getAttribute('data-goto-screen'), 10);

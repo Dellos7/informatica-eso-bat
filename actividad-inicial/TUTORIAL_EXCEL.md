@@ -34,10 +34,10 @@ function doPost(e) {
         "Timestamp", "Curso", "Nombre", "Apellidos", "Email", "Alias", "Avatar",
         "Dispositivos_Casa", "SO_Casa", "Retos_Superados", "Pistas_Utilizadas",
         "Metas_Seleccionadas", "Estilo_Aprendizaje", "Aficiones_Dia_A_Dia",
-        "Planes_Futuro", "Idea_Proyecto"
+        "Planes_Futuro", "Idea_Proyecto", "Detalle_Respuestas", "Captcha_Verificado"
       ]);
       // Formato negrita y fondo suave a la cabecera
-      sheet.getRange(1, 1, 1, 16).setFontWeight("bold").setBackground("#e2e8f0");
+      sheet.getRange(1, 1, 1, 18).setFontWeight("bold").setBackground("#e2e8f0");
     }
 
     // Parsear el JSON recibido desde la aplicación web
@@ -60,7 +60,9 @@ function doPost(e) {
       data.Estilo_Aprendizaje || "",
       data.Aficiones_Dia_A_Dia || "",
       data.Planes_Futuro || "",
-      data.Idea_Proyecto || ""
+      data.Idea_Proyecto || "",
+      data.Detalle_Respuestas || "",
+      data.Captcha_Verificado || ""
     ]);
 
     return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
