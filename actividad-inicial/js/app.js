@@ -61,8 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressLine = document.getElementById('progress-line-fill');
   const courseBadgeIndicator = document.getElementById('header-course-badge');
 
-  // Inicialización
-  init();
+  // Temporizadores y estado del Radar (Pantalla 5)
+  let statsPollTimer = null;
+  let countdownSeconds = 10;
+  const POLL_INTERVAL_SECONDS = 10;
 
   function init() {
     renderCourseGrid();
@@ -77,7 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Detectar parámetros en la URL (?curso=, ?view=stats, ?stats=, ?radar=, #stats...)
   function checkUrlParams() {
     const params = new URLSearchParams(window.location.search);
-    const hash = window.location.hash.toLowerCase();
+    const rawHash = window.location.hash || '';
+    const hash = rawHash.toLowerCase();
+    const hashParams = new URLSearchParams(rawHash.replace(/^#\??/, ''));
 
     // Detectar si el usuario pide ver el radar de estadísticas directamente
     const isDirectStatsRequested = (
@@ -87,17 +91,44 @@ document.addEventListener('DOMContentLoaded', () => {
       params.get('view') === 'radar' ||
       params.get('pantalla') === 'stats' ||
       params.get('pantalla') === 'radar' ||
+      hashParams.has('stats') ||
+      hashParams.has('radar') ||
+      hashParams.get('view') === 'stats' ||
+      hashParams.get('view') === 'radar' ||
       hash === '#stats' ||
-      hash === '#radar'
+      hash === '#radar' ||
+      hash.includes('radar') ||
+      hash.includes('stats')
     );
 
     // Extraer identificador de curso
-    let cursoKey = (params.get('curso') || params.get('c') || '').toLowerCase();
+    let cursoKey = (
+      params.get('curso') ||
+      params.get('c') ||
+      hashParams.get('curso') ||
+      hashParams.get('c') ||
+      ''
+    ).toLowerCase();
 
     // Comprobar si el valor del parámetro stats o radar o view es la clave de un curso (?stats=piari, etc.)
-    const directCourseParam = (params.get('stats') || params.get('radar') || params.get('view') || '').toLowerCase();
+    const directCourseParam = (
+      params.get('stats') ||
+      params.get('radar') ||
+      params.get('view') ||
+      hashParams.get('stats') ||
+      hashParams.get('radar') ||
+      hashParams.get('view') ||
+      ''
+    ).toLowerCase();
+
     if (!cursoKey && directCourseParam && COURSES_DATA[directCourseParam]) {
       cursoKey = directCourseParam;
+    }
+
+    // Comprobar también si el hash contiene directamente el nombre del curso (ej: #radar-piari o #piari)
+    if (!cursoKey) {
+      const matchedKey = Object.keys(COURSES_DATA).find(k => hash.includes(k));
+      if (matchedKey) cursoKey = matchedKey;
     }
 
     // Si pidieron ver estadísticas directamente pero no especificaron curso, asignar el primero ('piari') por defecto
@@ -952,10 +983,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 13. Carga y renderizado de Estadísticas Globales del Aula (Pantalla 5)
-  let statsPollTimer = null;
-  let countdownSeconds = 10;
-  const POLL_INTERVAL_SECONDS = 10;
-
   function startStatsPolling() {
     stopStatsPolling();
     countdownSeconds = POLL_INTERVAL_SECONDS;
@@ -1028,7 +1055,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const separator = url.indexOf('?') > -1 ? '&' : '?';
           script.src = `${url}${separator}callback=${callbackName}`;
-          document.head.appendChild(script);
+          (document.head || document.body || document.documentElement).appendChild(script);
         });
     });
   }
@@ -1265,4 +1292,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('hashchange', () => {
     checkUrlParams();
   });
+
+  // Inicialización de la aplicación (al final, tras declarar variables y handlers)
+  init();
 });
