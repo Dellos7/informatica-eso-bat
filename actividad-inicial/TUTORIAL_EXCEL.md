@@ -73,6 +73,100 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
+
+// ENDPOINT GET: Devuelve estadísticas anónimas y agregadas del grupo para el Radar del Aula
+function doGet(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var rows = sheet.getDataRange().getValues();
+
+    if (rows.length <= 1) {
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        totalAlumnos: 0,
+        retos: [0, 0, 0, 0, 0, 0, 0, 0],
+        metas: {},
+        estilos: {},
+        dispositivos: {}
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    var headers = rows[0];
+    var cursoParam = (e && e.parameter && e.parameter.curso) ? e.parameter.curso.toLowerCase() : "";
+
+    var colCurso = headers.indexOf("Curso");
+    var colMetas = headers.indexOf("Metas_Seleccionadas");
+    var colDisp = headers.indexOf("Dispositivos_Casa");
+    var colEstilo = headers.indexOf("Estilo_Aprendizaje");
+    var colDetalle = headers.indexOf("Detalle_Respuestas");
+
+    var alumnosCurso = 0;
+    var retosAciertos = [0, 0, 0, 0, 0, 0, 0, 0];
+    var metasCount = {};
+    var dispCount = {};
+    var estiloCount = {};
+
+    for (var i = 1; i < rows.length; i++) {
+      var row = rows[i];
+      var cursoRow = (row[colCurso] || "").toString().toLowerCase();
+
+      // Filtrar por la asignatura actual
+      if (cursoParam && cursoRow.indexOf(cursoParam) === -1) {
+        continue;
+      }
+
+      alumnosCurso++;
+
+      // Retos acertados ([OK])
+      var detalle = (colDetalle > -1 && row[colDetalle]) ? row[colDetalle].toString() : "";
+      for (var r = 1; r <= 8; r++) {
+        if (detalle.indexOf("R" + r + ": [OK]") > -1) {
+          retosAciertos[r - 1]++;
+        }
+      }
+
+      // Metas seleccionadas
+      var metas = (row[colMetas] || "").toString().split(";");
+      metas.forEach(function(m) {
+        var clean = m.trim();
+        if (clean) metasCount[clean] = (metasCount[clean] || 0) + 1;
+      });
+
+      // Dispositivos en casa
+      var disps = (row[colDisp] || "").toString().split(";");
+      disps.forEach(function(d) {
+        var clean = d.trim();
+        if (clean) dispCount[clean] = (dispCount[clean] || 0) + 1;
+      });
+
+      // Estilos de trabajo
+      var estilos = (row[colEstilo] || "").toString().split(";");
+      estilos.forEach(function(es) {
+        var clean = es.trim();
+        if (clean) estiloCount[clean] = (estiloCount[clean] || 0) + 1;
+      });
+    }
+
+    var result = {
+      status: "success",
+      curso: cursoParam,
+      totalAlumnos: alumnosCurso,
+      retos: retosAciertos,
+      metas: metasCount,
+      estilos: estiloCount,
+      dispositivos: dispCount
+    };
+
+    return ContentService.createTextOutput(JSON.stringify(result))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "error",
+      message: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
 ```
 
 4. Pulsa en el icono de **Guardar** (disquete) o presiona `Ctrl + S`.

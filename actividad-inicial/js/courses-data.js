@@ -21,7 +21,7 @@ const COURSES_DATA = {
     ],
     captcha: {
       title: 'Verificación de Seguridad: Componentes Físicos',
-      instruction: 'Selecciona exactamente los 3 elementos que forman parte del HARDWARE físico (los que puedes tocar con las manos):',
+      instruction: 'Selecciona exactamente los 3 elementos que forman parte del HARDWARE físico:',
       items: [
         { id: 'cap1', text: 'Teclado y Ratón', icon: '⌨️', correct: true },
         { id: 'cap2', text: 'Sistema Operativo LliureX', icon: '🐧', correct: false },
@@ -95,7 +95,7 @@ const COURSES_DATA = {
         title: 'Reto 5: Diseñando una Contraseña Robusta',
         context: 'Millones de cuentas son hackeadas cada año por usar contraseñas como "123456", "teclado" o el nombre de una mascota.',
         instruction: 'Escribe un ejemplo de contraseña robusta e inventada (al menos 8 caracteres) que combine mayúsculas, minúsculas, números y algún símbolo especial, sin incluir tu nombre real ni datos obvios.',
-        placeholder: 'Ej: V1aJ3_Espaci@l.99',
+        placeholder: '',
         hint: 'Las contraseñas resistentes suelen ser frases memorables donde sustituyes letras por números o añades puntuación intercalada.'
       },
       {

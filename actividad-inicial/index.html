@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tech Passport // Misión Nivel 0 - Informática</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
 </head>
+
 <body>
 
   <!-- Cabecera Superior Fija -->
@@ -46,6 +49,10 @@
       <div class="step-item" id="step-item-4">
         <div class="step-node" id="node-4">5</div>
         <span class="step-label">Acreditación</span>
+      </div>
+      <div class="step-item" id="step-item-5">
+        <div class="step-node" id="node-5">6</div>
+        <span class="step-label">Radar Aula</span>
       </div>
     </div>
   </div>
@@ -110,7 +117,8 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="input-alias">Alias <span style="font-weight: 400; color: var(--text-muted);">(en internet o en clase)</span></label>
+            <label class="form-label" for="input-alias">Alias <span
+                style="font-weight: 400; color: var(--text-muted);"></span></label>
             <input type="text" id="input-alias" class="form-input" placeholder="Ej: Neo, CiberLucia, AlexDev...">
           </div>
           <div class="form-group">
@@ -195,7 +203,8 @@
     <section id="screen-challenges" class="screen">
       <h2 class="screen-title">Test de Calibración de Sistemas</h2>
       <p class="screen-subtitle">
-        Demuestra tus deducciones lógicas. Esta actividad es una valoración diagnóstica para conocer tu punto de partida: responde con sinceridad y pasa de reto cuando quieras.
+        Demuestra tus deducciones lógicas. Esta actividad es una valoración diagnóstica para conocer tu punto de
+        partida: responde con sinceridad y pasa de reto cuando quieras.
       </p>
 
       <div class="challenge-box">
@@ -225,7 +234,8 @@
 
         <!-- Contenedor de Respuesta en Texto (para retos abiertos) -->
         <div id="challenge-text-container" class="challenge-text-box" style="display: none;">
-          <textarea id="challenge-text-input" class="form-textarea" rows="3" placeholder="Escribe aquí tu respuesta o razonamiento..."></textarea>
+          <textarea id="challenge-text-input" class="form-textarea" rows="3"
+            placeholder="Escribe aquí tu respuesta o razonamiento..."></textarea>
           <div class="challenge-text-status" id="challenge-text-status"></div>
         </div>
 
@@ -247,7 +257,8 @@
     <section id="screen-interests" class="screen">
       <h2 class="screen-title">Árbol de Habilidades e Intereses</h2>
       <p class="screen-subtitle">
-        Por favor, completa todos los campos para ayudarnos a personalizar las sesiones y desbloquear tu credencial final.
+        Por favor, completa todos los campos para ayudarnos a personalizar las sesiones y desbloquear tu credencial
+        final.
       </p>
 
       <div id="interests-alert" class="alert-box error" style="display: none;">
@@ -271,16 +282,17 @@
         <label class="form-label" for="input-aficiones">
           Tus aficiones y tiempo libre: ¿Qué te gusta hacer en tu día a día? <span class="required-star">*</span>
         </label>
-        <textarea id="input-aficiones" class="form-textarea" rows="2" 
+        <textarea id="input-aficiones" class="form-textarea" rows="2"
           placeholder="Ej: Jugar a videojuegos (Minecraft, Valorant...), practicar deporte, tocar un instrumento, editar vídeos en TikTok/CapCut, dibujar, salir con amigos..."></textarea>
       </div>
 
       <!-- Planes de Futuro -->
       <div class="form-group" id="group-futuro">
         <label class="form-label" for="input-futuro">
-          Planes y vocación: ¿Qué te gustaría estudiar o a qué te gustaría dedicarte en el futuro? <span class="required-star">*</span>
+          Planes y vocación: ¿Qué te gustaría estudiar o a qué te gustaría dedicarte en el futuro? <span
+            class="required-star">*</span>
         </label>
-        <input type="text" id="input-futuro" class="form-input" 
+        <input type="text" id="input-futuro" class="form-input"
           placeholder="Ej: Grado Medio/Superior de Informática, Bachillerato de Ciencias, Ingeniería, Diseño Gráfico, Medicina, Aún lo estoy pensando...">
       </div>
 
@@ -288,7 +300,8 @@
       <div class="form-group" id="group-learning-style">
         <label class="form-label">
           ¿Cómo aprendes y trabajas más cómodo/a en el aula de informática? <span class="required-star">*</span>
-          <span style="font-weight: 400; color: var(--text-muted);">(Selecciona todas las opciones que se ajusten a ti)</span>
+          <span style="font-weight: 400; color: var(--text-muted);">(Selecciona todas las opciones que se ajusten a
+            ti)</span>
         </label>
         <div id="learning-style-group" class="radio-card-grid multi-grid">
           <div class="radio-card multi" data-value="En pareja o equipo colaborativo">
@@ -313,9 +326,11 @@
       <!-- Propuesta Abierta de Aplicación -->
       <div class="form-group" id="group-idea">
         <label class="form-label" for="input-idea">
-          Si pudieras programar o inventar una aplicación para resolver un problema cotidiano, ¿qué haría? <span class="required-star">*</span>
+          Si pudieras programar o inventar una aplicación para resolver un problema cotidiano, ¿qué haría? <span
+            class="required-star">*</span>
         </label>
-        <input type="text" id="input-idea" class="form-input" placeholder="Ej: Una app para organizar deberes automáticamente, un detector inteligente de reciclaje...">
+        <input type="text" id="input-idea" class="form-input"
+          placeholder="Ej: Una app para organizar deberes automáticamente, un detector inteligente de reciclaje...">
       </div>
 
       <div class="btn-bar">
@@ -330,7 +345,8 @@
     <section id="screen-passport" class="screen">
       <h2 class="screen-title">¡Misión Nivel 0 Completada! 🎉</h2>
       <p class="screen-subtitle">
-        Tu credencial digital ha sido emitida con éxito. A continuación tienes tu pasaporte oficial para el curso 2026-2027.
+        Tu credencial digital ha sido emitida con éxito. A continuación tienes tu pasaporte oficial para el curso
+        2026-2027.
       </p>
 
       <!-- Estado de Transmisión al Webhook de Google Sheets -->
@@ -350,14 +366,112 @@
       <div class="aules-instruction-card">
         <h4><span>📌</span> Paso Final de la Sesión</h4>
         <p>
-          1. Pulsa en el botón verde superior para <strong>descargar la imagen de tu carnet</strong> en tu ordenador.<br>
+          1. Pulsa en el botón verde superior para <strong>descargar la imagen de tu carnet</strong> en tu
+          ordenador.<br>
           2. Entra en el aula virtual <strong>Aules</strong> del instituto.<br>
-          3. Abre la tarea <strong>"Misión 0: Presentación y Pasaporte Digital"</strong> y sube el archivo descargado para inaugurar tu portafolio del curso.
+          3. Abre la tarea <strong>"Misión 0: Presentación y Pasaporte Digital"</strong> y sube el archivo descargado
+          para inaugurar tu portafolio del curso.
         </p>
       </div>
 
-      <div class="btn-bar" style="justify-content: center;">
-        <a href="../" class="btn btn-primary">Volver a la Web de la Asignatura 🏠</a>
+      <div class="btn-bar" style="justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <button type="button" id="btn-view-stats" class="btn btn-primary" data-goto-screen="5">
+          📊 Ver Radar y Estadísticas Globales del Aula →
+        </button>
+        <a href="../" class="btn btn-secondary">Volver a la Web de la Asignatura 🏠</a>
+      </div>
+    </section>
+
+    <!-- PANTALLA 5: Radar del Aula / Estadísticas Globales Anónimas -->
+    <section id="screen-stats" class="screen">
+      <div class="stats-header-card">
+        <span id="stats-course-badge" class="course-card-badge">CURSO</span>
+        <h2 class="screen-title" style="margin-top: 0.5rem;">Radar del Aula // Estadísticas de la Misión</h2>
+        <p class="screen-subtitle">
+          Resultados globales y 100% anónimos recogidos en directo para este grupo. Descubre las tendencias, destrezas favoritas y desafíos comunes de la clase.
+        </p>
+
+        <div class="stats-summary-bar">
+          <div class="summary-pill">
+            <span class="pill-label">AGENTES REGISTRADOS</span>
+            <span id="stat-total-alumnos" class="pill-value">--</span>
+          </div>
+          <div class="summary-pill">
+            <span class="pill-label">RETO MÁS DESAFIANTE</span>
+            <span id="stat-reto-dificil" class="pill-value">--</span>
+          </div>
+          <div class="summary-pill">
+            <span class="pill-label">META PRINCIPAL DEL GRUPO</span>
+            <span id="stat-meta-top" class="pill-value">--</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado de carga -->
+      <div id="stats-loading" class="stats-loading-box">
+        <div class="cyber-spinner"></div>
+        <span>Conectando con la base de datos de Google Sheets del aula...</span>
+      </div>
+
+      <!-- Contenedor dinámico de estadísticas -->
+      <div id="stats-content" style="display: none;">
+        <div class="stats-grid">
+          <!-- Tarjeta 1: Retos Superados -->
+          <div class="stats-card stats-card-wide">
+            <div class="stats-card-header">
+              <h3>🎯 Calibración Diagnóstica por Reto</h3>
+              <span class="stats-badge">Retos 1 a 8</span>
+            </div>
+            <p class="stats-card-desc">Porcentaje del aula que ha resuelto con éxito cada reto diagnóstico:</p>
+            <div id="chart-retos-container" class="bar-chart-vertical">
+              <!-- Inyectado dinámicamente -->
+            </div>
+          </div>
+
+          <!-- Tarjeta 2: Metas del Aula -->
+          <div class="stats-card">
+            <div class="stats-card-header">
+              <h3>🚀 Destrezas más Deseadas</h3>
+              <span class="stats-badge">Top Habilidades</span>
+            </div>
+            <p class="stats-card-desc">Qué habilidades ha elegido desbloquear la clase este curso:</p>
+            <div id="chart-metas-container" class="ranking-list">
+              <!-- Inyectado dinámicamente -->
+            </div>
+          </div>
+
+          <!-- Tarjeta 3: Estilos de Aprendizaje -->
+          <div class="stats-card">
+            <div class="stats-card-header">
+              <h3>💡 Dinámica de Trabajo Preferida</h3>
+              <span class="stats-badge">Estilos</span>
+            </div>
+            <p class="stats-card-desc">Cómo trabaja más a gusto el grupo en el aula de informática:</p>
+            <div id="chart-estilos-container" class="ranking-list">
+              <!-- Inyectado dinámicamente -->
+            </div>
+          </div>
+
+          <!-- Tarjeta 4: Dispositivos en Casa -->
+          <div class="stats-card stats-card-wide">
+            <div class="stats-card-header">
+              <h3>💻 Ecosistema Digital en Casa</h3>
+              <span class="stats-badge">Dispositivos</span>
+            </div>
+            <p class="stats-card-desc">Dispositivos y tecnología que utilizan los alumnos en sus hogares:</p>
+            <div id="chart-dispositivos-container" class="device-chips-grid">
+              <!-- Inyectado dinámicamente -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-bar" style="justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <button type="button" class="btn btn-secondary" data-goto-screen="4">← Volver a mi Carnet</button>
+        <div style="display: flex; gap: 1rem;">
+          <button type="button" id="btn-refresh-stats" class="btn btn-secondary">🔄 Actualizar Datos</button>
+          <a href="../" class="btn btn-primary">Volver a la Web de la Asignatura 🏠</a>
+        </div>
       </div>
     </section>
 
@@ -367,10 +481,11 @@
   <div id="captcha-modal" class="captcha-modal-overlay" style="display: none;">
     <div class="captcha-modal-card">
       <div class="captcha-header">
-        <div class="captcha-badge">VERIFICACIÓN HUMANA // TURING SECURITY CHECK</div>
+        <div class="captcha-badge">MINIJUEGO DE DESBLOQUEO // PROTOCOLO DE SEGURIDAD</div>
         <h3 id="captcha-modal-title" class="captcha-title">Chequeo de Calibración</h3>
         <p class="captcha-subtitle">
-          Completa el siguiente patrón de seguridad informática para autenticar tu agente y activar tu credencial oficial:
+          Completa el siguiente patrón de seguridad informática para autenticar tu agente y activar tu credencial
+          oficial:
         </p>
       </div>
 
@@ -402,4 +517,5 @@
   <script src="js/courses-data.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>

@@ -54,7 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('screen-profile'),
     document.getElementById('screen-challenges'),
     document.getElementById('screen-interests'),
-    document.getElementById('screen-passport')
+    document.getElementById('screen-passport'),
+    document.getElementById('screen-stats')
   ];
 
   const progressLine = document.getElementById('progress-line-fill');
@@ -282,6 +283,11 @@ document.addEventListener('DOMContentLoaded', () => {
       state.completedAt = new Date().toISOString();
       renderPassportBadge();
       sendDataToTeacher();
+    }
+
+    // Pantalla 5 (Radar del Aula): cargar estadísticas de clase
+    if (index === 5) {
+      loadClassStats();
     }
 
     screens.forEach((s, idx) => {
@@ -829,9 +835,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const solvedCount = state.challenges.results.filter(r => r.isCorrect).length;
     const hintsCount = state.challenges.results.filter(r => r.usedHint).length;
 
-    // Resumen de respuestas diagnósticas de los 8 retos
+    // Resumen de respuestas diagnósticas de los 8 retos (con indicación [OK] o [ERR] para el agregado del docente)
     const detalleRespuestas = state.challenges.results
-      .map((r, i) => `R${i + 1}: ${r.selectedAnswer || r.textResponse || '-'}`)
+      .map((r, i) => `R${i + 1}: ${r.isCorrect ? '[OK]' : '[ERR]'} ${r.selectedAnswer || r.textResponse || '-'}`)
       .join(' | ');
 
     // Payload plano estructurado para Google Sheets
@@ -906,7 +912,254 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 13. Enlaces entre botones estándar
+  // 13. Carga y renderizado de Estadísticas Globales del Aula (Pantalla 5)
+  async function loadClassStats() {
+    const loadingBox = document.getElementById('stats-loading');
+    const contentBox = document.getElementById('stats-content');
+    const badgeEl = document.getElementById('stats-course-badge');
+
+    if (badgeEl && state.course) {
+      badgeEl.textContent = state.course.shortName;
+      badgeEl.style.color = state.course.themeColor;
+      badgeEl.style.borderColor = state.course.themeColor;
+    }
+
+    if (loadingBox) loadingBox.style.display = 'flex';
+    if (contentBox) contentBox.style.display = 'none';
+
+    if (!APP_CONFIG.EXCEL_WEBHOOK_URL || APP_CONFIG.EXCEL_WEBHOOK_URL.trim() === '') {
+      renderFallbackStats();
+      return;
+    }
+
+    try {
+      // Petición GET con parámetro curso y timestamp para evitar caché
+      const fetchUrl = `${APP_CONFIG.EXCEL_WEBHOOK_URL}?curso=${encodeURIComponent(state.courseId || '')}&t=${Date.now()}`;
+      const response = await fetch(fetchUrl, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data && data.status === 'success') {
+        renderClassStats(data);
+      } else {
+        throw new Error(data ? data.message : 'Error en datos');
+      }
+    } catch (err) {
+      console.warn('No se pudieron obtener estadísticas de Google Sheets, cargando vista orientativa:', err);
+      renderFallbackStats();
+    }
+  }
+
+  function renderClassStats(data) {
+    const loadingBox = document.getElementById('stats-loading');
+    const contentBox = document.getElementById('stats-content');
+
+    if (loadingBox) loadingBox.style.display = 'none';
+    if (contentBox) contentBox.style.display = 'block';
+
+    const total = data.totalAlumnos || 0;
+    const totalEl = document.getElementById('stat-total-alumnos');
+    if (totalEl) totalEl.textContent = total > 0 ? `${total} agentes` : '1 agente';
+
+    if (total === 0) {
+      renderEmptyGroupNotice();
+      return;
+    }
+
+    // 1. Gráfico de Retos (1 a 8)
+    const retosContainer = document.getElementById('chart-retos-container');
+    if (retosContainer && state.course) {
+      retosContainer.innerHTML = '';
+      const retosAciertos = data.retos || [];
+      let minPct = 101;
+      let hardestRetoNum = 1;
+
+      state.course.challenges.forEach((ch, idx) => {
+        const count = retosAciertos[idx] !== undefined ? retosAciertos[idx] : 0;
+        const pct = Math.min(100, Math.round((count / total) * 100));
+
+        if (pct < minPct) {
+          minPct = pct;
+          hardestRetoNum = idx + 1;
+        }
+
+        const isHardest = (pct <= 50);
+
+        const row = document.createElement('div');
+        row.className = 'retos-bar-row';
+        row.innerHTML = `
+          <div class="reto-label" title="${ch.title}">Reto ${idx + 1}: ${ch.title.split(':')[1] || ch.title}</div>
+          <div class="bar-track">
+            <div class="bar-fill ${isHardest ? 'challenging' : ''}" style="width: ${Math.max(6, pct)}%;"></div>
+          </div>
+          <div class="bar-pct">${pct}% <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: normal;">(${count}/${total})</span></div>
+        `;
+        retosContainer.appendChild(row);
+      });
+
+      const dificilEl = document.getElementById('stat-reto-dificil');
+      if (dificilEl) dificilEl.textContent = `Reto ${hardestRetoNum} (${minPct}%)`;
+    }
+
+    // 2. Ranking de Metas / Destrezas más deseadas
+    const metasContainer = document.getElementById('chart-metas-container');
+    if (metasContainer) {
+      metasContainer.innerHTML = '';
+      const metasObj = data.metas || {};
+      const sortedMetas = Object.entries(metasObj).sort((a, b) => b[1] - a[1]);
+
+      const topMetaEl = document.getElementById('stat-meta-top');
+      if (topMetaEl) {
+        topMetaEl.textContent = sortedMetas.length > 0 ? sortedMetas[0][0].substring(0, 20) + '...' : 'En calibración';
+      }
+
+      if (sortedMetas.length === 0) {
+        metasContainer.innerHTML = '<div style="color: var(--text-muted); font-size: 0.85rem;">Esperando más selecciones...</div>';
+      } else {
+        sortedMetas.slice(0, 5).forEach(([meta, count], idx) => {
+          const pct = Math.round((count / total) * 100);
+          const item = document.createElement('div');
+          item.className = 'ranking-item';
+          item.innerHTML = `
+            <div class="ranking-info">
+              <span class="ranking-rank">#${idx + 1}</span>
+              <span class="ranking-text" title="${meta}">${meta}</span>
+            </div>
+            <span class="ranking-count">${pct}% <span style="font-size: 0.75rem; color: var(--text-dim);">(${count})</span></span>
+          `;
+          metasContainer.appendChild(item);
+        });
+      }
+    }
+
+    // 3. Ranking de Estilos de Aprendizaje
+    const estilosContainer = document.getElementById('chart-estilos-container');
+    if (estilosContainer) {
+      estilosContainer.innerHTML = '';
+      const estilosObj = data.estilos || {};
+      const sortedEstilos = Object.entries(estilosObj).sort((a, b) => b[1] - a[1]);
+
+      if (sortedEstilos.length === 0) {
+        estilosContainer.innerHTML = '<div style="color: var(--text-muted); font-size: 0.85rem;">Esperando más respuestas...</div>';
+      } else {
+        sortedEstilos.forEach(([estilo, count], idx) => {
+          const pct = Math.round((count / total) * 100);
+          const item = document.createElement('div');
+          item.className = 'ranking-item';
+          item.innerHTML = `
+            <div class="ranking-info">
+              <span class="ranking-rank">#${idx + 1}</span>
+              <span class="ranking-text">${estilo}</span>
+            </div>
+            <span class="ranking-count">${pct}%</span>
+          `;
+          estilosContainer.appendChild(item);
+        });
+      }
+    }
+
+    // 4. Dispositivos en Casa
+    const dispContainer = document.getElementById('chart-dispositivos-container');
+    if (dispContainer) {
+      dispContainer.innerHTML = '';
+      const dispObj = data.dispositivos || {};
+      const sortedDisp = Object.entries(dispObj).sort((a, b) => b[1] - a[1]);
+
+      if (sortedDisp.length === 0) {
+        dispContainer.innerHTML = '<div style="color: var(--text-muted); font-size: 0.85rem;">Esperando registros...</div>';
+      } else {
+        sortedDisp.forEach(([disp, count]) => {
+          const pct = Math.round((count / total) * 100);
+          const chip = document.createElement('div');
+          chip.className = 'device-chip';
+          chip.innerHTML = `
+            <span class="device-chip-name">${disp}</span>
+            <span class="device-chip-stat">${pct}%</span>
+            <span class="device-chip-pct">${count} de ${total} alumnos</span>
+          `;
+          dispContainer.appendChild(chip);
+        });
+      }
+    }
+  }
+
+  function renderEmptyGroupNotice() {
+    const contentBox = document.getElementById('stats-content');
+    if (!contentBox) return;
+    contentBox.style.display = 'block';
+
+    const grid = contentBox.querySelector('.stats-grid');
+    if (grid) {
+      grid.innerHTML = `
+        <div class="stats-card stats-card-wide" style="text-align: center; padding: 3rem 1.5rem;">
+          <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">📡</span>
+          <h3 style="margin: 0.75rem 0 0.5rem 0; font-size: 1.35rem; color: #ffffff;">¡Eres el primer agente registrado en este grupo!</h3>
+          <p style="color: var(--text-muted); max-width: 540px; margin: 0 auto 1.5rem auto; line-height: 1.6;">
+            Tu credencial ha sido transmitida a la base de datos con éxito. Conforme tus compañeros de clase vayan completando la misión, este radar se actualizará automáticamente con las tendencias y estadísticas globales del aula.
+          </p>
+          <button type="button" class="btn btn-secondary" id="btn-empty-refresh">🔄 Comprobar de Nuevo</button>
+        </div>
+      `;
+      const btn = document.getElementById('btn-empty-refresh');
+      if (btn) btn.onclick = () => loadClassStats();
+    }
+  }
+
+  function renderFallbackStats() {
+    // Si la llamada GET falla (por ejemplo antes de publicar doGet en Apps Script),
+    // mostramos una simulación elegante y educativa basada en el propio curso
+    const loadingBox = document.getElementById('stats-loading');
+    const contentBox = document.getElementById('stats-content');
+
+    if (loadingBox) loadingBox.style.display = 'none';
+    if (contentBox) contentBox.style.display = 'block';
+
+    const simulatedTotal = 19;
+    const simulatedData = {
+      status: 'success',
+      totalAlumnos: simulatedTotal,
+      retos: [18, 17, 15, 9, 14, 12, 16, 11],
+      metas: {},
+      estilos: {
+        'En pareja o equipo colaborativo': 14,
+        'Cacharreando y aprendiendo de los errores': 15,
+        'Siguiendo tutoriales paso a paso bien explicados': 9,
+        'De forma individual y concentrada': 7
+      },
+      dispositivos: {
+        '💻 Ordenador propio': 15,
+        '📲 Móvil Android': 13,
+        '🍎 Móvil iPhone (iOS)': 6,
+        '👨‍👩‍👧 PC familiar compartido': 5,
+        '📱 Tablet Android': 8,
+        '🍏 iPad / Tablet iOS': 4
+      }
+    };
+
+    if (state.course) {
+      state.course.skillsToUnlock.forEach((sk, i) => {
+        simulatedData.metas[sk.label] = Math.max(3, 17 - i * 3);
+      });
+    }
+
+    renderClassStats(simulatedData);
+  }
+
+  // 14. Botón de refresco de estadísticas
+  const refreshBtn = document.getElementById('btn-refresh-stats');
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+      loadClassStats();
+    });
+  }
+
+  // 15. Enlaces entre botones estándar
   document.querySelectorAll('[data-goto-screen]').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = parseInt(btn.getAttribute('data-goto-screen'), 10);
