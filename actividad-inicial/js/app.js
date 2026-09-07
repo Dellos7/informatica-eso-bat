@@ -325,7 +325,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Pantalla 5 (Radar del Aula): cargar estadísticas de clase e iniciar polling
     if (index === 5) {
       updateStatsBackButton();
-      renderStatsCourseTabs();
       loadClassStats(false);
       startStatsPolling();
     }
@@ -1237,39 +1236,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function renderStatsCourseTabs() {
-    const tabsContainer = document.getElementById('stats-course-tabs');
-    if (!tabsContainer) return;
-    tabsContainer.innerHTML = '';
-
-    Object.keys(COURSES_DATA).forEach(courseKey => {
-      const course = COURSES_DATA[courseKey];
-      const tabBtn = document.createElement('button');
-      tabBtn.type = 'button';
-      const isActive = state.courseId === courseKey;
-      tabBtn.className = `stats-tab-btn ${isActive ? 'active' : ''}`;
-      tabBtn.innerHTML = `<span>${course.code}</span> <small>${course.shortName}</small>`;
-
-      if (isActive) {
-        tabBtn.style.borderColor = course.themeColor;
-        tabBtn.style.color = course.themeColor;
-      }
-
-      tabBtn.addEventListener('click', () => {
-        if (state.courseId === courseKey) return;
-        selectCourse(courseKey);
-        // Actualizar URL sin recargar la página para reflejar el curso actual
-        const newUrl = `${window.location.pathname}?curso=${courseKey}&view=radar`;
-        window.history.replaceState({}, '', newUrl);
-        renderStatsCourseTabs();
-        countdownSeconds = POLL_INTERVAL_SECONDS;
-        loadClassStats(false);
-      });
-
-      tabsContainer.appendChild(tabBtn);
-    });
-  }
-
   // 15. Botones de refresco y comprobación forzada
   const refreshBtn = document.getElementById('btn-refresh-stats');
   if (refreshBtn) {
@@ -1295,17 +1261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 17. Permitir clic directo en el nodo 6 (Radar Aula) del stepper superior
-  const radarStepItem = document.getElementById('step-item-5');
-  if (radarStepItem) {
-    radarStepItem.style.cursor = 'pointer';
-    radarStepItem.title = 'Ver Radar del Aula';
-    radarStepItem.addEventListener('click', () => {
-      goToScreen(5);
-    });
-  }
-
-  // 18. Escuchar cambios de hash para acceso directo (#stats o #radar)
+  // 17. Escuchar cambios de hash para acceso directo (#stats o #radar)
   window.addEventListener('hashchange', () => {
     checkUrlParams();
   });
