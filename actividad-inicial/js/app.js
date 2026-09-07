@@ -1010,53 +1010,43 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el) el.textContent = countdownSeconds;
   }
 
-  // Petición con fallback JSONP para evitar bloqueos de CORS en localhost / navegadores
+  // Consulta de estadísticas mediante JSONP (evita 100% las restricciones de CORS en cualquier dominio o localhost)
   function fetchStatsData(url) {
     return new Promise((resolve, reject) => {
-      // 1. Intentar primero con fetch simple (sin headers personalizados para evitar OPTIONS)
-      fetch(url, { method: 'GET' })
-        .then(res => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          return res.json();
-        })
-        .then(data => resolve(data))
-        .catch(fetchErr => {
-          // 2. Fallback JSONP automático si fetch falla por CORS o políticas de redirección
-          const callbackName = 'gasCallback_' + Math.round(100000 * Math.random());
-          const script = document.createElement('script');
-          let finished = false;
+      const callbackName = 'gasCallback_' + Math.round(100000 * Math.random());
+      const script = document.createElement('script');
+      let finished = false;
 
-          const timer = setTimeout(() => {
-            if (finished) return;
-            finished = true;
-            cleanup();
-            reject(fetchErr);
-          }, 6000);
+      const timer = setTimeout(() => {
+        if (finished) return;
+        finished = true;
+        cleanup();
+        reject(new Error('Tiempo de espera agotado al conectar con Google Sheets'));
+      }, 7000);
 
-          function cleanup() {
-            if (script.parentNode) script.parentNode.removeChild(script);
-            delete window[callbackName];
-            clearTimeout(timer);
-          }
+      function cleanup() {
+        if (script.parentNode) script.parentNode.removeChild(script);
+        delete window[callbackName];
+        clearTimeout(timer);
+      }
 
-          window[callbackName] = function(data) {
-            if (finished) return;
-            finished = true;
-            cleanup();
-            resolve(data);
-          };
+      window[callbackName] = function(data) {
+        if (finished) return;
+        finished = true;
+        cleanup();
+        resolve(data);
+      };
 
-          script.onerror = function() {
-            if (finished) return;
-            finished = true;
-            cleanup();
-            reject(new Error('No se pudo conectar con Google Sheets (CORS/Red)'));
-          };
+      script.onerror = function() {
+        if (finished) return;
+        finished = true;
+        cleanup();
+        reject(new Error('No se pudo conectar con la base de datos'));
+      };
 
-          const separator = url.indexOf('?') > -1 ? '&' : '?';
-          script.src = `${url}${separator}callback=${callbackName}`;
-          (document.head || document.body || document.documentElement).appendChild(script);
-        });
+      const separator = url.indexOf('?') > -1 ? '&' : '?';
+      script.src = `${url}${separator}callback=${callbackName}`;
+      (document.head || document.body || document.documentElement).appendChild(script);
     });
   }
 
