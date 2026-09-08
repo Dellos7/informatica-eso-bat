@@ -10,9 +10,11 @@ description: Asignatura optativa de 4º ESO.
 
 [⏯️ Criterios Calificación](../../archivos/Criterios-de-calificación-ESO-y-Bachillerato.pdf)
 
-[🚀 Actividad Inicial: Tech Passport (Misión Nivel 0)](../../actividad-inicial/?curso=digitalizacion)
+[🚀 Actividad Inicial](../../actividad-inicial/?curso=digitalizacion)
 
+<!--
 [⏯️ Cuestionario alternativo (Forms)](https://forms.office.com/e/0esQj1xcvV)
+-->
 
 ## Temas
 

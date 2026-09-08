@@ -219,6 +219,21 @@
 
         <h3 id="challenge-title" class="challenge-title">Cargando reto...</h3>
         <div id="challenge-context" class="challenge-context">Contexto del problema...</div>
+
+        <!-- Contenedor Dinámico de Código con Sintaxis Coloreada (IDE) -->
+        <div id="challenge-code-container" class="challenge-code-box" style="display: none;">
+          <div class="code-window-header">
+            <div class="window-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span id="challenge-code-filename" class="code-filename">script.py</span>
+            <span id="challenge-code-lang" class="code-lang-badge">PYTHON</span>
+          </div>
+          <pre class="code-pre"><code id="challenge-code-content" class="code-body"></code></pre>
+        </div>
+
         <div id="challenge-instruction" class="challenge-instruction">Instrucción del reto...</div>
 
         <!-- Contenedor Dinámico de Imagen de Apoyo -->

@@ -425,6 +425,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Helper para formatear texto con código inline (`variable`) y saltos de línea
+  function formatRichText(raw) {
+    if (!raw) return '';
+    let s = raw
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    s = s.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+    s = s.replace(/\n/g, '<br>');
+    return s;
+  }
+
+  // Syntax Highlighter ligero para Python con estética VS Code Dark
+  function highlightPython(rawCode) {
+    if (!rawCode) return '';
+    const tokenRegex = /(#.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(\b(?:def|return|if|elif|else|for|in|while|and|or|not|import|from|as|class|pass|break|continue)\b)|(\b(?:print|range|len|int|str|float|bool|list|dict|tuple|set|input)\b)|(\b(?:True|False|None)\b)|(\b\d+(?:\.\d+)?\b)|(\b[a-zA-Z_]\w*\b(?=\s*\())/gm;
+    const escaped = rawCode
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    return escaped.replace(tokenRegex, (match, comment, str, kw, builtin, bool, num, fn) => {
+      if (comment) return `<span class="syntax-comment">${comment}</span>`;
+      if (str) return `<span class="syntax-string">${str}</span>`;
+      if (kw) return `<span class="syntax-keyword">${kw}</span>`;
+      if (builtin) return `<span class="syntax-builtin">${builtin}</span>`;
+      if (bool) return `<span class="syntax-boolean">${bool}</span>`;
+      if (num) return `<span class="syntax-number">${num}</span>`;
+      if (fn) return `<span class="syntax-function">${fn}</span>`;
+      return match;
+    });
+  }
+
   // 7. Lógica de Minirretos Diagnósticos (Pantalla 2)
   function loadCurrentChallenge() {
     if (!state.course) return;
@@ -436,8 +469,30 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('challenge-counter').textContent = 
       `Reto ${state.challenges.currentIndex + 1} de ${challenges.length} (${state.course.code})`;
     document.getElementById('challenge-title').textContent = currentChallenge.title;
-    document.getElementById('challenge-context').textContent = currentChallenge.context;
-    document.getElementById('challenge-instruction').textContent = currentChallenge.instruction;
+    document.getElementById('challenge-context').innerHTML = formatRichText(currentChallenge.context);
+    document.getElementById('challenge-instruction').innerHTML = formatRichText(currentChallenge.instruction);
+
+    // Renderizado dinámico de bloque de código con sintaxis coloreada (IDE)
+    const codeContainer = document.getElementById('challenge-code-container');
+    const codeContent = document.getElementById('challenge-code-content');
+    const codeFilename = document.getElementById('challenge-code-filename');
+    const codeLang = document.getElementById('challenge-code-lang');
+
+    if (currentChallenge.code) {
+      if (codeContainer) codeContainer.style.display = 'block';
+      const rawCode = typeof currentChallenge.code === 'string' 
+        ? currentChallenge.code 
+        : (currentChallenge.code.content || '');
+      const filename = (currentChallenge.code && currentChallenge.code.filename) || 'script.py';
+      const lang = (currentChallenge.code && currentChallenge.code.language) || 'PYTHON';
+
+      if (codeFilename) codeFilename.textContent = filename;
+      if (codeLang) codeLang.textContent = lang.toUpperCase();
+      if (codeContent) codeContent.innerHTML = highlightPython(rawCode);
+    } else {
+      if (codeContainer) codeContainer.style.display = 'none';
+      if (codeContent) codeContent.innerHTML = '';
+    }
 
     // Renderizado dinámico de imagen de apoyo si el reto la incluye
     const imgContainer = document.getElementById('challenge-image-container');

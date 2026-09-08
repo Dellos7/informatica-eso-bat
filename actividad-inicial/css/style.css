@@ -582,6 +582,105 @@ body {
   font-size: 1.05rem;
 }
 
+/* Contenedor de Código con Estética IDE / Terminal */
+.challenge-code-box {
+  margin: 1.25rem 0 1.5rem 0;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.12);
+}
+
+.code-window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #161b22;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.65rem 1.15rem;
+}
+
+.window-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.window-dots .dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+
+.code-filename {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: #8b949e;
+  letter-spacing: 0.04em;
+}
+
+.code-lang-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.code-pre {
+  margin: 0;
+  padding: 1.25rem 1.4rem;
+  font-family: 'Fira Code', 'Cascadia Code', 'Source Code Pro', 'Menlo', 'Consolas', monospace;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #e6edf3;
+  background: #0d1117;
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 4;
+}
+
+.code-pre code {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: transparent;
+  padding: 0;
+  border: none;
+  display: block;
+  white-space: pre;
+}
+
+/* Colores de Sintaxis Coloreada (Estilo VS Code Dark Modern) */
+.syntax-keyword { color: #ff7b72; font-weight: 600; }  /* def, if, elif, else, for, in, return, while */
+.syntax-builtin { color: #79c0ff; font-weight: 600; }  /* print, range, len, int, str, bool */
+.syntax-string { color: #a5d6ff; }                     /* "texto", 'texto' */
+.syntax-number { color: #f59e0b; font-weight: 600; }   /* 10, 20, 65, 3 */
+.syntax-operator { color: #ff7b72; }                   /* +, -, *, /, =, <, > */
+.syntax-comment { color: #8b949e; font-style: italic; }/* # comentario */
+.syntax-function { color: #d2a8ff; font-weight: 600; } /* nombres de funciones */
+.syntax-boolean { color: #ff7b72; font-weight: 600; }  /* True, False, None */
+
+.inline-code {
+  font-family: var(--font-mono);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #38bdf8;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
 /* Contenedor dinámico de imagen de apoyo */
 .challenge-image-box {
   margin: 1rem 0 1.25rem 0;

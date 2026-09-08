@@ -440,83 +440,92 @@ const COURSES_DATA = {
       { id: 'security_vault', label: 'Administrar credenciales profesionales con Bitwarden y asegurar infraestructuras', icon: '🔐' }
     ],
     captcha: {
-      title: 'Verificación de Seguridad: Protocolos y Servicios',
-      instruction: 'Selecciona exactamente los 3 elementos que son PROTOCOLOS o SERVICIOS DE RED a nivel lógico:',
+      title: 'Verificación de Seguridad: Tipos de Datos en Python',
+      instruction: 'Selecciona exactamente los 3 elementos que son TIPOS DE DATOS BÁSICOS estándar en Python:',
       items: [
-        { id: 'cap1', text: 'Protocolo Seguro HTTPS (Web)', icon: '🔒', correct: true },
-        { id: 'cap2', text: 'Cable de par trenzado RJ-45', icon: '🖧', correct: false },
-        { id: 'cap3', text: 'Servicio SSH (Terminal remota)', icon: '🔑', correct: true },
-        { id: 'cap4', text: 'Carcasa de servidor Rack', icon: '📦', correct: false },
-        { id: 'cap5', text: 'Resolución DNS (Nombres de dominio)', icon: '🌐', correct: true },
-        { id: 'cap6', text: 'Tarjeta de interfaz de red física', icon: '🔌', correct: false }
+        { id: 'cap1', text: 'int (Números enteros)', icon: '🔢', correct: true },
+        { id: 'cap2', text: 'while (Bucle repetitivo)', icon: '🔄', correct: false },
+        { id: 'cap3', text: 'str (Cadenas de texto)', icon: '🔤', correct: true },
+        { id: 'cap4', text: 'def (Definir función)', icon: '⚙️', correct: false },
+        { id: 'cap5', text: 'bool (Booleanos True / False)', icon: '⚖️', correct: true },
+        { id: 'cap6', text: 'print (Función de salida)', icon: '🖨️', correct: false }
       ]
     },
     challenges: [
       {
         id: 'c1',
         type: 'choice',
-        title: 'Reto 1: La Odisea de una Petición Web (Arquitectura)',
-        context: 'Un usuario escribe `https://miweb.com/perfil` en su navegador y pulsa Enter.',
-        instruction: '¿Cuál es el orden cronológico real de los acontecimientos en la red antes de recibir el documento HTML?',
+        title: 'Reto 1: Variables y Conversión de Tipos (Python)',
+        context: 'En un script de Python tenemos declaradas dos variables de distinto tipo (numérica y texto):',
+        code: 'a = 20\nb = "10"\nprint(a + int(b))',
+        instruction: '¿Qué resultado mostrará la consola tras ejecutar este código?',
         options: [
-          { id: 'opt1', text: 'Resolución DNS (IP) ➔ Handshake TCP/TLS ➔ Petición HTTP GET al servidor ➔ Servidor/BD procesa ➔ Respuesta 200 con payload', correct: true },
-          { id: 'opt2', text: 'El navegador descarga el HTML ➔ luego busca la IP ➔ y luego pregunta al servidor DNS', correct: false },
-          { id: 'opt3', text: 'La base de datos remota envía directamente el código PHP al navegador del cliente para que lo compile', correct: false },
-          { id: 'opt4', text: 'El router del cliente genera la página web localmente mediante caché UDP', correct: false }
+          { id: 'opt1', text: '30 (suma aritmética tras convertir el texto "10" a entero)', correct: true },
+          { id: 'opt2', text: '"2010" (unión o concatenación de textos)', correct: false },
+          { id: 'opt3', text: 'Error de sintaxis: no se pueden sumar números mayores de 10', correct: false },
+          { id: 'opt4', text: '200 (multiplicación implícita)', correct: false }
         ],
-        hint: 'Antes de abrir un socket de transporte TCP hacia un destino se necesita conocer la dirección numérica IP del host mediante el sistema de nombres.'
+        hint: 'La función int(b) transforma la cadena de caracteres "10" en el valor numérico 10, permitiendo que el operador + actúe como suma matemática.'
       },
       {
         id: 'c2',
         type: 'choice',
-        title: 'Reto 2: Paradigmas de Virtualización (VM vs Docker)',
-        context: 'En la SdA 1 utilizamos máquinas virtuales con VirtualBox y en la SdA 2 migramos a Docker Compose.',
-        instruction: '¿Cuál es la diferencia arquitectónica fundamental que hace que un contenedor Docker sea mucho más ligero y rápido que una Máquina Virtual?',
+        title: 'Reto 2: Condicionales y Flujo de Control (if / elif / else)',
+        context: 'Observa la siguiente estructura lógica en Python encargada de evaluar la latencia de red de un servidor:',
+        code: 'latencia = 65\n\nif latencia < 50:\n    diagnostico = "Óptimo"\nelif latencia < 100:\n    diagnostico = "Aceptable"\nelse:\n    diagnostico = "Crítico"',
+        instruction: 'Si la variable `latencia` vale 65, ¿qué valor exacto tendrá la variable `diagnostico` tras ejecutarse este bloque?',
         options: [
-          { id: 'opt1', text: 'Los contenedores comparten el kernel del SO anfitrión mediante namespaces y cgroups, mientras que una VM emula hardware y levanta un SO invitado completo', correct: true },
-          { id: 'opt2', text: 'Docker solo puede ejecutar aplicaciones de Windows y no de Linux', correct: false },
-          { id: 'opt3', text: 'Las máquinas virtuales no pueden conectarse a internet mientras que los contenedores sí', correct: false },
-          { id: 'opt4', text: 'Docker guarda los archivos en la memoria caché del monitor para evitar lecturas de disco', correct: false }
+          { id: 'opt1', text: '"Aceptable" (la primera condición es falsa y la segunda es verdadera: 65 < 100)', correct: true },
+          { id: 'opt2', text: '"Óptimo"', correct: false },
+          { id: 'opt3', text: '"Crítico"', correct: false },
+          { id: 'opt4', text: 'Dará un error porque 65 no se puede comparar con números', correct: false }
         ],
-        hint: 'Piensa en las capas: una VM emula BIOS, CPU virtual y un kernel propio (gigabytes de consumo); un contenedor solo empaqueta binarios y librerías de usuario.'
+        hint: 'Python evalúa las bifurcaciones en orden de arriba a abajo y únicamente ejecuta el bloque de la primera condición que resulte verdadera (True).'
       },
       {
         id: 'c3',
         type: 'choice',
-        title: 'Reto 3: Puertos Estándar y Servicios de Red',
-        context: 'Estás configurando las reglas de firewall y el mapeo de puertos (`ports:`) en un archivo `docker-compose.yml`.',
-        instruction: '¿A qué servicios corresponden por defecto los puertos bien conocidos (well-known ports) 22, 80, 443 y 3306?',
+        title: 'Reto 3: Estructuras Iterativas (Bucles for y range)',
+        context: 'Un bucle `for` permite recorrer secuencias numéricas generadas con la función `range(inicio, fin)`:',
+        code: 'for i in range(1, 4):\n    print(i, end=" ")',
+        instruction: '¿Qué imprimirá exactamente por consola este bucle al ejecutarse?',
         options: [
-          { id: 'opt1', text: '22: SSH | 80: HTTP | 443: HTTPS | 3306: MySQL/MariaDB', correct: true },
-          { id: 'opt2', text: '22: Minecraft | 80: Steam | 443: Discord | 3306: Spotify', correct: false },
-          { id: 'opt3', text: '22: Impresora | 80: DNS | 443: DHCP | 3306: FTP', correct: false },
-          { id: 'opt4', text: 'Son números aleatorios sin asignación estándar en las especificaciones IANA', correct: false }
+          { id: 'opt1', text: '1 2 3 (el límite superior 4 queda excluido)', correct: true },
+          { id: 'opt2', text: '1 2 3 4', correct: false },
+          { id: 'opt3', text: '0 1 2 3 4', correct: false },
+          { id: 'opt4', text: '4 3 2 1', correct: false }
         ],
-        hint: '22 es el canal cifrado de administración remota; 80 y 443 son los protocolos mundiales del hipertexto web.'
+        hint: 'En Python, range(inicio, fin) genera números desde el valor de inicio hasta fin - 1 (el último número de parada nunca se incluye en la secuencia).'
       },
       {
         id: 'c4',
         type: 'choice',
-        image: 'img/psirii_docker.jpg',
-        title: 'Reto 4: Análisis de Arquitectura Docker Multicontenedor',
-        context: 'Observa la arquitectura de microservicios orquestada con Docker Engine en el servidor host (`192.168.1.100`).',
-        instruction: 'Cuando un cliente de internet envía una petición HTTPS al puerto 443, ¿qué contenedor actúa como servidor perimetral recibiendo la conexión inicial?',
+        title: 'Reto 4: Modularidad con Funciones (def y return)',
+        context: 'En programación modular se definen funciones reutilizables con parámetros y valores de retorno:',
+        code: 'def duplicar_y_sumar(x, extra):\n    return (x * 2) + extra\n\nprint(duplicar_y_sumar(5, 3))',
+        instruction: '¿Qué valor mostrará la consola tras ejecutar este programa?',
         options: [
-          { id: 'opt1', text: 'web-nginx (puertos 80 y 443 mapeados)', correct: true },
-          { id: 'opt2', text: 'app-backend (puerto interno 9000)', correct: false },
-          { id: 'opt3', text: 'db-mariadb (puerto interno 3306)', correct: false },
-          { id: 'opt4', text: 'Persistent Volume db_data', correct: false }
+          { id: 'opt1', text: '13 (duplica 5 obteniendo 10 y le suma 3)', correct: true },
+          { id: 'opt2', text: '16', correct: false },
+          { id: 'opt3', text: '10', correct: false },
+          { id: 'opt4', text: 'None', correct: false }
         ],
-        hint: 'Sigue la flecha entrante desde el cliente web: el contenedor de Nginx realiza el port mapping y balancea hacia el backend.'
+        hint: 'Sigue el orden de operaciones: x toma el valor 5 (5 * 2 = 10), extra toma el valor 3 (10 + 3 = 13), y la sentencia return devuelve ese resultado final.'
       },
       {
         id: 'c5',
-        type: 'text',
-        title: 'Reto 5: Persistencia de Datos en Docker Compose',
-        context: 'Por diseño, los contenedores Docker son efímeros: si el contenedor de base de datos se reinicia o actualiza, los datos internos se borran.',
-        instruction: '¿Qué sección o directiva de un archivo `docker-compose.yml` se utiliza para montar almacenamiento persistente que sobreviva a la destrucción del contenedor?',
-        placeholder: 'Ej: directiva en inglés (plural)...',
-        hint: 'Se trata de la directiva de volúmenes de almacenamiento (volumes) que vincula una carpeta del host o un volumen administrado.'
+        type: 'choice',
+        title: 'Reto 5: Colecciones de Datos (Listas en Python)',
+        context: 'Trabajamos con una lista de nombres de servicios y consultamos sus elementos:',
+        code: 'servidores = ["dns", "web", "db", "mail"]\n\nprimer_servicio = servidores[0]\ntotal = len(servidores)',
+        instruction: '¿Qué valor contiene `primer_servicio` y qué número devuelve `len(servidores)`?',
+        options: [
+          { id: 'opt1', text: 'primer_servicio es "dns" y len(servidores) devuelve 4', correct: true },
+          { id: 'opt2', text: 'primer_servicio es "web" y len(servidores) devuelve 3', correct: false },
+          { id: 'opt3', text: 'primer_servicio es "mail" y len(servidores) devuelve 5', correct: false },
+          { id: 'opt4', text: 'primer_servicio es "dns" y len(servidores) devuelve 0', correct: false }
+        ],
+        hint: 'En Python las posiciones de las listas se indexan empezando en cero (el primer elemento es [0]) y len() cuenta el total de elementos.'
       },
       {
         id: 'c6',
