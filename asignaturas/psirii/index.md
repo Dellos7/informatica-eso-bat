@@ -12,7 +12,7 @@ description: Programación, Sistemas Informáticos y Redes II (2º BACH)
 
 👉 [Normas aula informática](/{{ site.github.repository_name }}/archivos/Normas-aula-informática.pdf)
 
-[🚀 Actividad Inicial: Tech Passport (Misión Nivel 0)](../../actividad-inicial/?curso=psirii)
+[🚀 Actividad Inicial](../../actividad-inicial/?curso=psirii)
 
 [🔒 Bitwarden (gestor de contraseñas)](https://bitwarden.com/es-la/)
 
