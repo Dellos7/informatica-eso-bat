@@ -24,6 +24,7 @@ Utilizando las tres instrucciones anteriores, ¿puedes escribir un **algoritmo q
 
 ---
 
+<!--
 ## Para saber más
 
 Las computadoras sirven para realizar **tareas bien definidas**, y para ello es necesario **programarlas**. La programación se realiza mediante un **lenguaje computacional** que las máquinas son capaces de interpretar y ejecutar. Este lenguaje es diferente al que utilizan las personas puesto que está compuesto de instrucciones claras, concisas e inequívocas.
@@ -37,6 +38,7 @@ En la tarea anterior, si el programa es correcto (_no contiene errores_), el aut
 Los ordenadores, independientemente de su forma y propósito (de escritorio, teléfonos inteligentes, robots de entretenimiento o industriales, etc.), siguen las instrucciones que les indican los programas que se les cargan. Los programas de ordenador son **deterministas**, es decir, si siempre se ingresan los mismos datos, el programa realizará los mismos cálculos y entregará los mismos resultados.
 
 Uno de los trabajos de los científicos de las ciencias de la computación es encontrar los **algoritmos más eficientes**. Es decir, aquéllos que resuelven un problema en el menor tiempo, usando la menor cantidad de recursos (_por ejemplo: memoria, acceso a disco rígido, uso de red, etc_.).
+-->
 
 ---
 
