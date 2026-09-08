@@ -101,16 +101,30 @@ document.addEventListener('DOMContentLoaded', () => {
       hash.includes('stats')
     );
 
+    function resolveCourseKey(raw) {
+      if (!raw) return '';
+      const clean = raw.toLowerCase().trim();
+      if (COURSES_DATA[clean]) return clean;
+      const aliases = {
+        '1eso': 'trdr', '1ºeso': 'trdr', '1-eso': 'trdr', 'trdr': 'trdr',
+        '2eso': 'piari', '2ºeso': 'piari', '2-eso': 'piari', 'piari': 'piari',
+        '4eso': 'digitalizacion', '4ºeso': 'digitalizacion', '4-eso': 'digitalizacion', 'digital': 'digitalizacion', 'digitalizacion': 'digitalizacion', 'digitalización': 'digitalizacion',
+        '2bat': 'psirii', '2ºbat': 'psirii', '2-bat': 'psirii', 'bat': 'psirii', 'psir': 'psirii', 'psirii': 'psirii'
+      };
+      return aliases[clean] || '';
+    }
+
     // Extraer identificador de curso
-    let cursoKey = (
+    let rawCursoKey = (
       params.get('curso') ||
       params.get('c') ||
       hashParams.get('curso') ||
       hashParams.get('c') ||
       ''
-    ).toLowerCase();
+    );
+    let cursoKey = resolveCourseKey(rawCursoKey);
 
-    // Comprobar si el valor del parámetro stats o radar o view es la clave de un curso (?stats=piari, etc.)
+    // Comprobar si el valor del parámetro stats o radar o view es la clave de un curso (?stats=piari, ?radar=4eso, etc.)
     const directCourseParam = (
       params.get('stats') ||
       params.get('radar') ||
@@ -119,16 +133,26 @@ document.addEventListener('DOMContentLoaded', () => {
       hashParams.get('radar') ||
       hashParams.get('view') ||
       ''
-    ).toLowerCase();
+    );
 
-    if (!cursoKey && directCourseParam && COURSES_DATA[directCourseParam]) {
-      cursoKey = directCourseParam;
+    if (!cursoKey && directCourseParam) {
+      cursoKey = resolveCourseKey(directCourseParam);
     }
 
-    // Comprobar también si el hash contiene directamente el nombre del curso (ej: #radar-piari o #piari)
+    // Comprobar también si el hash contiene directamente el nombre del curso (ej: #radar-piari o #4eso)
     if (!cursoKey) {
       const matchedKey = Object.keys(COURSES_DATA).find(k => hash.includes(k));
-      if (matchedKey) cursoKey = matchedKey;
+      if (matchedKey) {
+        cursoKey = matchedKey;
+      } else if (hash.includes('4eso') || hash.includes('4ºeso') || hash.includes('digital')) {
+        cursoKey = 'digitalizacion';
+      } else if (hash.includes('2bat') || hash.includes('psir')) {
+        cursoKey = 'psirii';
+      } else if (hash.includes('1eso') || hash.includes('trdr')) {
+        cursoKey = 'trdr';
+      } else if (hash.includes('2eso') || hash.includes('piari')) {
+        cursoKey = 'piari';
+      }
     }
 
     // Si pidieron ver estadísticas directamente pero no especificaron curso, asignar el primero ('piari') por defecto
@@ -1074,7 +1098,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const fetchUrl = `${APP_CONFIG.EXCEL_WEBHOOK_URL}?curso=${encodeURIComponent(state.courseId || '')}&t=${Date.now()}`;
+      const courseQueryMap = {
+        trdr: 'trdr',
+        piari: 'piari',
+        digitalizacion: 'digitaliz',
+        psirii: 'psir'
+      };
+      const queryParam = (state.course && state.course.queryTerm) || courseQueryMap[state.courseId] || state.courseId || '';
+      const fetchUrl = `${APP_CONFIG.EXCEL_WEBHOOK_URL}?curso=${encodeURIComponent(queryParam)}&t=${Date.now()}`;
       const data = await fetchStatsData(fetchUrl);
 
       if (data && data.status === 'success' && data.totalAlumnos > 0) {

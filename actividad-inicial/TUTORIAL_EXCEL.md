@@ -92,7 +92,16 @@ function doGet(e) {
     }
 
     var headers = rows[0];
-    var cursoParam = (e && e.parameter && e.parameter.curso) ? e.parameter.curso.toLowerCase() : "";
+    function normalizeCourse(str) {
+      return (str || "")
+        .toString()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "");
+    }
+
+    var cursoParam = (e && e.parameter && e.parameter.curso) ? normalizeCourse(e.parameter.curso) : "";
 
     var colCurso = headers.indexOf("Curso");
     var colMetas = headers.indexOf("Metas_Seleccionadas");
@@ -108,9 +117,9 @@ function doGet(e) {
 
     for (var i = 1; i < rows.length; i++) {
       var row = rows[i];
-      var cursoRow = (row[colCurso] || "").toString().toLowerCase();
+      var cursoRow = normalizeCourse(row[colCurso] || "");
 
-      // Filtrar por la asignatura actual
+      // Filtrar por la asignatura actual (insensible a tildes, mayúsculas y espacios)
       if (cursoParam && cursoRow.indexOf(cursoParam) === -1) {
         continue;
       }

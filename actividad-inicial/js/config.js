@@ -10,7 +10,7 @@ const APP_CONFIG = {
   // Pega aquí la URL HTTP POST que te proporcione el flujo de Power Automate.
   // Si se deja vacía (''), la web simulará el guardado correctamente y permitirá
   // descargar el carnet para subirlo a Aules.
-  EXCEL_WEBHOOK_URL: 'https://script.google.com/macros/s/AKfycbzn98yPcpw9Bnl3EAINLTuWQE07rAQs3rlnD-bdcY6aTh0XDmK84XAjCbr9RsN9ViFU/exec',
+  EXCEL_WEBHOOK_URL: 'https://script.google.com/macros/s/AKfycbxKtNWmdr10okZ5jDJs4kD8VO3CNJu2ejC84CTNyQ_aVkRlQw3RUpPZjYWbo15eo7_1/exec',
 
   // Nombre de la institución o centro (opcional)
   CENTRO_EDUCATIVO: 'Dpto. de Informática',

@@ -5,6 +5,7 @@
 const COURSES_DATA = {
   trdr: {
     id: 'trdr',
+    queryTerm: 'trdr',
     code: '1º ESO',
     name: 'Taller de Relaciones Digitales Responsables',
     shortName: 'TRDR (1º ESO)',
@@ -140,6 +141,7 @@ const COURSES_DATA = {
 
   piari: {
     id: 'piari',
+    queryTerm: 'piari',
     code: '2º ESO',
     name: 'Programación, Inteligencia Artificial y Robótica I',
     shortName: 'PIARI (2º ESO)',
@@ -185,44 +187,44 @@ const COURSES_DATA = {
       {
         id: 'c2',
         type: 'choice',
-        title: 'Reto 2: Comprimiendo Código (Estructuras de Control)',
-        context: 'Para dibujar un hexágono regular de 6 lados iguales, un robot ejecuta: `Avanzar 10cm, Girar 60°, Avanzar 10cm, Girar 60°, Avanzar 10cm, Girar 60°, Avanzar 10cm, Girar 60°, Avanzar 10cm, Girar 60°, Avanzar 10cm, Girar 60°`. Son 12 líneas idénticas.',
-        instruction: '¿Qué estructura de programación permite condensar este comportamiento de forma limpia y eficiente?',
+        title: 'Reto 2: IA y Sesgos en los Datos de Entrenamiento',
+        context: 'Entrenamos un modelo de Inteligencia Artificial para clasificar frutas mostrándole 2.000 fotografías de manzanas rojas y ninguna de manzanas verdes ni amarillas. Al mostrarle una manzana verde fresca, el sistema responde: "No es una fruta reconocida".',
+        instruction: '¿A qué se debe principalmente este fallo en la Inteligencia Artificial?',
         options: [
-          { id: 'opt1', text: 'Un bucle de repetición: "Repetir 6 veces [Avanzar 10cm, Girar 60°]"', correct: true },
-          { id: 'opt2', text: 'Una estructura condicional: "Si es hexágono entonces Avanzar"', correct: false },
-          { id: 'opt3', text: 'Guardar la palabra "hexágono" en una variable de texto', correct: false },
-          { id: 'opt4', text: 'Aumentar la velocidad del procesador para que lea las 12 líneas más rápido', correct: false }
+          { id: 'opt1', text: 'A un sesgo en los datos de entrenamiento: la IA solo predice a partir de los ejemplos que vio y no sabe generalizar lo que nunca le enseñaron', correct: true },
+          { id: 'opt2', text: 'A que la IA se ha cansado de procesar fotos y necesita desconectarse para recargar energía', correct: false },
+          { id: 'opt3', text: 'A que las manzanas verdes son químicamente incompatibles con los circuitos del ordenador', correct: false },
+          { id: 'opt4', text: 'A que la cámara web necesita limpiarse con agua destilada para reconocer colores fríos', correct: false }
         ],
-        hint: 'Identifica el bloque de acciones que se reproduce de manera periódica y cuántas veces debe repetirse.'
+        hint: 'Una IA no posee sentido común humano ni conocimiento del mundo real; su precisión depende por completo de la variedad y representatividad de los datos con los que fue entrenada.'
       },
       {
         id: 'c3',
         type: 'choice',
-        title: 'Reto 3: ¿Mente Biológica o Algoritmo de IA?',
-        context: 'Con frecuencia se humanizan los modelos de Inteligencia Artificial como si tuvieran sentimientos o consciencia.',
-        instruction: '¿Cuál de las siguientes afirmaciones describe cómo funciona realmente un modelo de Inteligencia Artificial (Machine Learning)?',
+        title: 'Reto 3: ¿Mente Biológica o Algoritmo Matemático?',
+        context: 'En películas y noticias a menudo se humaniza a los modelos de Inteligencia Artificial (como ChatGPT o generadores de imágenes), diciendo que "piensan" o "tienen intenciones".',
+        instruction: '¿Cuál de las siguientes afirmaciones describe de forma realista y científica cómo funciona un modelo de IA moderno?',
         options: [
-          { id: 'opt1', text: 'Calcula probabilidades estadísticas y patrones matemáticos a partir de miles de datos previos', correct: true },
-          { id: 'opt2', text: 'Siente alegría cuando resuelve una tarea y tristeza cuando se equivoca', correct: false },
-          { id: 'opt3', text: 'Posee consciencia propia y decide libremente si le apetece responder hoy', correct: false },
-          { id: 'opt4', text: 'Tiene recuerdos de su infancia almacenados en la tarjeta gráfica', correct: false }
+          { id: 'opt1', text: 'Calcula probabilidades estadísticas y patrones matemáticos a partir de millones de datos previos para predecir la respuesta', correct: true },
+          { id: 'opt2', text: 'Siente alegría cuando acierta una respuesta y tristeza o enfado si el usuario le corrige', correct: false },
+          { id: 'opt3', text: 'Posee consciencia propia y decide libremente qué días le apetece colaborar en clase', correct: false },
+          { id: 'opt4', text: 'Tiene recuerdos emocionales de su infancia guardados en la memoria RAM', correct: false }
         ],
-        hint: 'Detrás de los modelos de IA no hay biología ni emociones, sino operaciones con matrices numéricas y optimización de funciones de coste.'
+        hint: 'Detrás de la IA no hay emociones ni conciencia biológica, sino matrices numéricas, cálculos estadísticos y algoritmos de optimización.'
       },
       {
         id: 'c4',
         type: 'choice',
-        title: 'Reto 4: Caza del Bug (Depuración de Código)',
-        context: 'Un sensor de ultrasonidos en un robot tiene este código para evitar colisiones: `Si distancia < 15cm entonces [Acelerar a máxima velocidad] si no [Frenar motores]`.',
-        instruction: '¿Qué sucederá cuando pongamos el robot en marcha en línea recta hacia una pared?',
+        title: 'Reto 4: Ética de la IA y Responsabilidad Humana',
+        context: 'Un vehículo con conducción autónoma controlada por IA circula por la vía. De pronto, un obstáculo imprevisto cae a la carretera y el coche debe elegir en milésimas de segundo si frenar bruscamente o esquivarlo hacia un lateral.',
+        instruction: '¿Quién debe haber establecido de antemano los principios éticos, de seguridad y las prioridades que guían la toma de decisiones del vehículo en situaciones críticas?',
         options: [
-          { id: 'opt1', text: 'El robot chocará con fuerza contra la pared, porque acelera justo cuando está cerca', correct: true },
-          { id: 'opt2', text: 'El robot se detendrá suavemente a 15 cm de la pared', correct: false },
-          { id: 'opt3', text: 'El robot dará la vuelta automáticamente y buscará otra sala', correct: false },
-          { id: 'opt4', text: 'El sensor de ultrasonidos explotará por sobrecalentamiento', correct: false }
+          { id: 'opt1', text: 'El equipo humano de ingenieros, comités éticos y legisladores mediante normativas y programación responsable', correct: true },
+          { id: 'opt2', text: 'El propio coche autónomo, porque con los kilómetros desarrolla su propio criterio moral y conciencia', correct: false },
+          { id: 'opt3', text: 'El motor eléctrico, según la temperatura que alcancen las baterías en ese segundo', correct: false },
+          { id: 'opt4', text: 'El sensor de las ruedas, lanzando una moneda al aire de forma aleatoria', correct: false }
         ],
-        hint: 'Lee con rigor la condición lógica: cuando la distancia al obstáculo sea pequeña (<15cm), ¿qué acción está programada por error?'
+        hint: 'Las máquinas y los algoritmos no tienen moral ni son sujetos legales; la responsabilidad del diseño ético y de la seguridad recae siempre en las personas y organizaciones humanas.'
       },
       {
         id: 'c5',
@@ -241,12 +243,17 @@ const COURSES_DATA = {
       },
       {
         id: 'c6',
-        type: 'text',
-        title: 'Reto 6: Algoritmia en Pseudocódigo',
-        context: 'Queremos diseñar el algoritmo para una puerta de garaje automática con un sensor de presencia y un motor.',
-        instruction: 'Escribe en 2 o 3 líneas sencillas de pseudocódigo (ejemplo: "Si detecta coche entonces... si no...") cómo programarías la apertura y cierre de la puerta.',
-        placeholder: 'Si sensor_presencia == activado entonces abrir_puerta sino...',
-        hint: 'Establece claramente la condición que activa el motor de apertura y qué debe hacer el sistema cuando la condición no se cumple.'
+        type: 'choice',
+        title: 'Reto 6: IA Generativa, Deepfakes y Desinformación',
+        context: 'Recibes por redes sociales un vídeo donde una persona famosa o una autoridad política parece anunciar el cierre urgente de todos los colegios del país, pero notas un ligero parpadeo extraño en su boca y un tono de voz algo metálico.',
+        instruction: 'Con las herramientas actuales de Inteligencia Artificial generativa, ¿cómo se denomina este contenido y cómo debes actuar?',
+        options: [
+          { id: 'opt1', text: 'Es un "Deepfake" (vídeo/audio sintético manipulado con IA); debo verificarlo en medios oficiales fiables antes de creerlo o compartirlo', correct: true },
+          { id: 'opt2', text: 'Es un fallo de la pantalla del móvil; para corregirlo debo reenviarlo a todos mis grupos de mensajería', correct: false },
+          { id: 'opt3', text: 'Si aparece en formato de vídeo es 100% real e imposible de falsificar, por lo que no hace falta comprobar nada', correct: false },
+          { id: 'opt4', text: 'Es una función automática del sistema para comprimir vídeos de alta definición', correct: false }
+        ],
+        hint: 'Las redes neuronales permiten clonar rostros y timbres de voz con gran realismo. Ante contenidos sensacionalistas o alarmantes, la regla de oro es contrastar en fuentes de noticias verificadas.'
       },
       {
         id: 'c7',
@@ -265,17 +272,18 @@ const COURSES_DATA = {
       {
         id: 'c8',
         type: 'text',
-        title: 'Reto 8: Sesgos en la Inteligencia Artificial',
-        context: 'Si entrenamos una IA de reconocimiento de perros usando únicamente fotos de perros de color blanco en la nieve, es probable que no reconozca a un perro negro o marrón.',
-        instruction: '¿Por qué ocurre este problema y qué deberíamos hacer con los datos de entrenamiento para solucionarlo?',
-        placeholder: 'Explica por qué falla y cómo mejorar los datos de entrenamiento...',
-        hint: 'Piensa en la representatividad y diversidad del conjunto de datos con el que se alimenta el algoritmo durante su fase de aprendizaje.'
+        title: 'Reto 8: Dilema Ético: Uso Responsable de la IA en la Escuela',
+        context: 'Un estudiante tiene que elaborar una redacción para clase. En lugar de investigar y redactar, le pide a una IA generativa que escriba el trabajo completo, lo copia y lo entrega con su nombre sin citar la IA ni comprobar si los datos son ciertos.',
+        instruction: 'Explica con tus propias palabras qué problemas éticos o de aprendizaje tiene esta acción. (Piensa en la honestidad sobre la autoría, los posibles datos inventados o "alucinaciones" de la IA, y en si el estudiante desarrolla realmente sus propias destrezas de pensamiento).',
+        placeholder: 'Explica qué consecuencias éticas y de aprendizaje ves en entregar un trabajo hecho al 100% por IA sin revisar...',
+        hint: 'Reflexiona sobre el valor del esfuerzo y la autoría propia, la fiabilidad de las respuestas que genera la máquina y qué habilidades pierdes si dejas que la IA piense siempre por ti.'
       }
     ]
   },
 
   digitalizacion: {
     id: 'digitalizacion',
+    queryTerm: 'digitaliz',
     code: '4º ESO',
     name: 'Digitalización',
     shortName: 'Digitalización (4º ESO)',
@@ -335,39 +343,44 @@ const COURSES_DATA = {
       {
         id: 'c3',
         type: 'choice',
-        title: 'Reto 3: La Consola de Comandos Linux (Bash)',
-        context: 'En servidores y administración de sistemas a menudo no existe interfaz gráfica y todo se opera mediante la terminal.',
-        instruction: 'Estás en tu carpeta de usuario y quieres crear una carpeta llamada "proyectos". ¿Qué comando debes escribir?',
+        title: 'Reto 3: El Escudo del Doble Factor (2FA / MFA)',
+        context: 'Cada año se filtran en internet millones de contraseñas debido a brechas de seguridad en servicios web o ataques automáticos de fuerza bruta.',
+        instruction: '¿Cómo protege a una cuenta activar la "Autenticación en Dos Pasos" (2FA / doble factor)?',
         options: [
-          { id: 'opt1', text: 'mkdir proyectos', correct: true },
-          { id: 'opt2', text: 'rm -rf proyectos', correct: false },
-          { id: 'opt3', text: 'cat proyectos', correct: false },
-          { id: 'opt4', text: 'cd proyectos', correct: false }
+          { id: 'opt1', text: 'Exige un segundo paso temporal que solo tú posees (como un código en tu móvil o app autenticadora), impidiendo el acceso aunque averigüen tu contraseña', correct: true },
+          { id: 'opt2', text: 'Te obliga a escribir tu contraseña exactamente dos veces seguidas en la misma casilla', correct: false },
+          { id: 'opt3', text: 'Cambia tu contraseña automáticamente por una palabra inventada al azar cada cinco minutos', correct: false },
+          { id: 'opt4', text: 'Apaga la conexión Wi-Fi de tu casa automáticamente durante las noches', correct: false }
         ],
-        hint: 'El comando proviene del inglés "Make Directory" (crear directorio). Cuidado: `rm` es para eliminar y `cat` para leer.'
+        hint: 'La seguridad multifactor combina algo que sabes (tu clave secreta) con algo que tienes físicamente (tu smartphone o llave de seguridad).'
       },
       {
         id: 'c4',
-        type: 'text',
-        title: 'Reto 4: Auditoría de Archivos en la Terminal',
-        context: 'Quieres examinar el contenido de un directorio en Linux viendo todos los archivos (incluso los ocultos que empiezan por `.`), sus permisos y su tamaño.',
-        instruction: 'Escribe el comando de Bash con sus opciones (flags) para listar todos los archivos en formato largo y detallado.',
-        placeholder: 'Ej: comando -opciones',
-        hint: 'Combina el comando de listar `ls` con las opciones para formato largo (long) y mostrar todos (all).'
+        type: 'choice',
+        title: 'Reto 4: Salvaguarda de Datos (Copias de Seguridad)',
+        context: 'Has dedicado dos semanas a redactar un informe digital decisivo para el curso. De pronto, tu equipo sufre una sobretensión eléctrica imprevista y el disco queda dañado sin arrancar.',
+        instruction: '¿Cuál de las siguientes es la estrategia más sensata y eficaz para garantizar que nunca pierdas tu trabajo?',
+        options: [
+          { id: 'opt1', text: 'Mantener copias de seguridad periódicas en más de un soporte independiente (por ejemplo, en el disco local y sincronizado en la nube o en un dispositivo externo)', correct: true },
+          { id: 'opt2', text: 'Dejar la ventana del documento minimizada en el escritorio para que la memoria no la olvide', correct: false },
+          { id: 'opt3', text: 'Renombrar el archivo a "archivo_definitivo_imposible_de_perder.docx"', correct: false },
+          { id: 'opt4', text: 'Guardarlo dentro de la Papelera de reciclaje porque ningún virus busca información allí', correct: false }
+        ],
+        hint: 'Cualquier dispositivo físico puede fallar en cualquier momento. La base de la seguridad de datos es la regla 3-2-1: contar siempre con duplicados en medios o ubicaciones distintas.'
       },
       {
         id: 'c5',
         type: 'choice',
-        title: 'Reto 5: Virtualización con VirtualBox',
-        context: 'En las prácticas de sistemas montamos máquinas virtuales para probar Linux Lite y Windows XP dentro de LliureX.',
-        instruction: '¿Cuál es la principal ventaja técnica de experimentar dentro de una Máquina Virtual?',
+        title: 'Reto 5: El Laboratorio Seguro (Máquinas Virtuales)',
+        context: 'En la materia de Digitalización realizamos prácticas para instalar sistemas operativos como Linux y probar programas desconocidos sin poner en riesgo los ordenadores del instituto ni el de casa.',
+        instruction: '¿Cuál es la gran ventaja técnica de utilizar un software de virtualización (como VirtualBox)?',
         options: [
-          { id: 'opt1', text: 'Aislamiento seguro (sandbox): cualquier fallo o prueba de malware no afecta al sistema operativo real anfitrión', correct: true },
-          { id: 'opt2', text: 'Que el equipo consume un 90% menos de energía eléctrica', correct: false },
-          { id: 'opt3', text: 'Que duplica físicamente la memoria RAM soldada en la placa base', correct: false },
-          { id: 'opt4', text: 'Que permite jugar a videojuegos sin necesidad de tarjeta gráfica', correct: false }
+          { id: 'opt1', text: 'Crea un entorno aislado (sandbox): cualquier fallo, virus de prueba o formateo ocurre dentro de un ordenador simulado por software y no daña tu sistema real', correct: true },
+          { id: 'opt2', text: 'Reduce en un 95% el consumo de electricidad de la toma de corriente de la pared', correct: false },
+          { id: 'opt3', text: 'Multiplica por diez los gigabytes de memoria RAM soldados físicamente en la placa', correct: false },
+          { id: 'opt4', text: 'Permite que el monitor del ordenador proyecte imágenes holográficas en 3D en la habitación', correct: false }
         ],
-        hint: 'Piensa en el concepto de "caja de arena": un entorno encapsulado en software cuyos discos duros son simples archivos aislados.'
+        hint: 'Imagina una "caja de arena" donde puedes experimentar, borrar o romper cosas libremente sin que la arena salga jamás al resto del aula.'
       },
       {
         id: 'c6',
@@ -386,32 +399,32 @@ const COURSES_DATA = {
       {
         id: 'c7',
         type: 'choice',
-        image: 'img/digital_network.jpg',
-        title: 'Reto 7: Direccionamiento IP en Redes Locales (LAN)',
-        context: 'Observa el esquema de la red doméstica con el router actuando de puerta de enlace (Gateway).',
-        instruction: '¿Qué dirección IP privada local tiene asignada el ordenador de sobremesa (PC Desktop)?',
+        title: 'Reto 7: El Sistema de Archivos (Rutas y Carpetas)',
+        context: 'En cualquier sistema operativo, los archivos no se guardan de forma desordenada en el disco, sino organizados en una estructura jerárquica de carpetas y subcarpetas. Para localizar un documento sin confusiones, el sistema utiliza una **ruta de acceso** (por ejemplo: `Documentos / Digitalizacion / Tareas / trabajo.pdf`).',
+        instruction: '¿Qué indica la ruta de acceso de un archivo en el sistema de ficheros?',
         options: [
-          { id: 'opt1', text: '192.168.1.10', correct: true },
-          { id: 'opt2', text: '192.168.1.1', correct: false },
-          { id: 'opt3', text: '82.14.90.1', correct: false },
-          { id: 'opt4', text: '192.168.1.25', correct: false }
+          { id: 'opt1', text: 'El camino o dirección exacta de carpetas que debes seguir para localizar ese archivo en el almacenamiento', correct: true },
+          { id: 'opt2', text: 'La velocidad de la conexión Wi-Fi en el momento de crear el archivo', correct: false },
+          { id: 'opt3', text: 'El número de palabras y páginas que tiene escritas el documento', correct: false },
+          { id: 'opt4', text: 'Una clave secreta que bloquea el archivo para que nadie pueda abrirlo', correct: false }
         ],
-        hint: 'Busca el icono de la torre con monitor y lee la línea que especifica su dirección IP privada bajo el nombre PC Desktop.'
+        hint: 'Piensa en la ruta como la "dirección postal" de un archivo: especifica con precisión en qué disco, carpeta y subcarpeta vive el documento.'
       },
       {
         id: 'c8',
         type: 'text',
-        title: 'Reto 8: Variables en Motores de Videojuegos',
-        context: 'En un motor 2D como GDevelop o Scratch estás programando un videojuego con varios niveles.',
-        instruction: '¿Por qué la variable que guarda la puntuación (`Score`) del jugador debe configurarse como "Variable Global" en vez de como variable de escena o de objeto?',
-        placeholder: 'Explica qué ocurriría con la puntuación al cambiar de nivel o escena...',
-        hint: 'Piensa en qué ocurre con los elementos de una pantalla cuando el jugador pasa al nivel 2: ¿se destruyen o se mantienen en memoria?'
+        title: 'Reto 8: Ética Digital: Imágenes, Derechos de Autor y Licencias',
+        context: 'Para diseñar un cartel publicitario o una página web en clase, buscas ilustraciones en el buscador de imágenes de Google y encuentras fotografías profesionales con derechos de autor reservados (Copyright).',
+        instruction: '¿Por qué no se debe copiar y utilizar libremente cualquier imagen de internet en un proyecto público sin permiso, y qué alternativas legales conoces (como licencias abiertas Creative Commons o bancos de imágenes de dominio público)?',
+        placeholder: 'Explica por qué no se debe copiar cualquier imagen con copyright y qué alternativas libres conoces...',
+        hint: 'Piensa en los derechos morales y económicos de los autores originales, y en plataformas que ofrecen contenido bajo licencias libres citando la autoría.'
       }
     ]
   },
 
   psirii: {
     id: 'psirii',
+    queryTerm: 'psir',
     code: '2º Bachillerato',
     name: 'Programación, Sistemas Informáticos y Redes II',
     shortName: 'PSIR II (2º BAT)',
