@@ -8,7 +8,7 @@ description: Informática ESO y Bachiller
 
 - [1º ESO - Taller de Relaciones Digitales Responsables](./trdr)
 - [2º ESO - Programación, Inteligencia Artificial y Robótica I](./piari)
-- [3º ESO - Programación, Inteligencia Artificial y Robótica I](./piari)
+- [3º ESO - Programación, Inteligencia Artificial y Robótica I](./piari_3eso)
 - [4º ESO - Digitalización](./digitalizacion)
 
 # Asignaturas informática Bachiller

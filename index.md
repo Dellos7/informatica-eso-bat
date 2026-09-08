@@ -6,7 +6,7 @@ layout: default
 
 - [1º ESO - Taller de Relaciones Digitales Responsables](./asignaturas/trdr)
 - [2º ESO - Programación, Inteligencia Artificial y Robótica I](./asignaturas/piari)
-- [3º ESO - Programación, Inteligencia Artificial y Robótica I](./asignaturas/piari)
+- [3º ESO - Programación, Inteligencia Artificial y Robótica I](./asignaturas/piari_3eso)
 - [4º ESO - Digitalización](./asignaturas/digitalizacion)
 
 # Asignaturas informática Bachiller

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: PIAR I
-description: Programación, Inteligencia Artificial y Robótica I (2º y 3º ESO)
+description: Programación, Inteligencia Artificial y Robótica I (2º ESO)
 ---
 
 # Programación, Inteligencia Artificial y Robótica I
