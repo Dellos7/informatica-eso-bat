@@ -12,9 +12,30 @@ Esta guía explica cómo controlar qué asignaturas, temas y actividades se mues
    - **Casilla de tema/actividad marcada (TRUE):** El elemento está **visible**.  
    - **Casilla de tema/actividad desmarcada (FALSE):** El elemento se **oculta visualmente** en los menús y listas (y si un alumno entra por enlace directo, se muestra un aviso de *Contenido no disponible*).  
    - **Elementos nuevos que no estén en la hoja:** **Se muestran siempre por defecto**.
+   - **Casilla vacía (fila añadida sin marcar) o valor no reconocido:** también se **muestra**. Solo se oculta con un NO explícito (casilla desmarcada, `FALSO`, `NO`, `0`), de forma que nunca desaparezca material recién publicado por un despiste al dar de alta la fila o por una errata.
 
-2. **Sin cachés ni esperas:**  
-   Al consultar directamente Google Apps Script en vivo, los cambios que realices en las casillas toman efecto de inmediato en las siguientes visitas de los alumnos.
+2. **¿Cuándo se aplican los cambios?**  
+   La web consulta Google Apps Script en vivo, así que no hay que esperar a ningún despliegue: en cuanto marcas o desmarcas una casilla, la regla ya está publicada. Lo que determina cuándo lo *ve* cada persona es el momento en que su navegador vuelve a preguntar, y eso ocurre:
+   - Al **cargar o recargar** cualquier página de la web.
+   - Al **volver a la pestaña** de la web después de haber estado en otra (con un margen mínimo de 5 segundos entre consultas).
+   - Al volver con el botón **Atrás/Adelante** del navegador.
+   - Al **recuperar la conexión** tras un corte de red.
+
+   En la práctica esto significa que puedes dejar la web abierta en una pestaña, ir a la hoja de cálculo, cambiar las casillas y volver a la pestaña: el cambio se aplica solo, sin pulsar F5.
+
+   **Sobre la copia local:** para que el alumnado no vea aparecer y desaparecer contenidos al cargar cada página, el navegador guarda una copia de las últimas reglas conocidas (con una validez máxima de 6 horas) y la usa para pintar la página al instante, mientras consulta la versión en vivo por detrás. Esa copia solo sirve para el primer instante de la carga; siempre se sustituye por lo que responda Google Sheets un momento después.
+
+   **Si algo no se actualiza:** normalmente es un problema de red o de que Apps Script ha tardado demasiado en responder. El script hace hasta 3 intentos y, si aun así falla, mantiene el último estado conocido y deja un aviso en la consola del navegador (F12) empezando por `[Visibilidad]`. Desde esa misma consola puedes forzar una actualización inmediata con:
+
+   ```javascript
+   INF_VISIBILITY.refresh()
+   ```
+
+   Y si alguna vez quieres descartar por completo la copia local guardada en el navegador:
+
+   ```javascript
+   INF_VISIBILITY.clearCache()
+   ```
 
 ---
 
@@ -64,21 +85,16 @@ function doGet(e) {
 
       if (!asig) continue;
 
-      // Determinar si está visible (soporta checkbox booleano, VERDADERO, SI, 1, etc.)
-      var isVisible = (
-        rawVal === true ||
-        String(rawVal).toUpperCase() === "TRUE" ||
-        String(rawVal).toUpperCase() === "VERDADERO" ||
-        String(rawVal).toUpperCase() === "SI" ||
-        String(rawVal).toUpperCase() === "SÍ" ||
-        String(rawVal) === "1"
-      );
-
       // Interruptor maestro directamente desde Google Sheets (actualización instantánea en 0 seg)
+      // Si su casilla está vacía, el sistema se desactiva y se muestra TODA la web.
       if (asig === "_general_" || asig === "_master_" || asig === "control_general") {
-        masterEnabled = isVisible;
+        masterEnabled = leerVisible(rawVal, false);
         continue;
       }
+
+      // Filas de contenido: una casilla vacía significa VISIBLE.
+      // Solo se oculta aquello marcado explícitamente como no visible.
+      var isVisible = leerVisible(rawVal, true);
 
       // Generar clave única según el nivel
       var key = "";
@@ -106,6 +122,30 @@ function doGet(e) {
       message: err.toString()
     }, e);
   }
+}
+
+// Interpreta la columna F ("Visible"): admite casilla de verificación booleana,
+// VERDADERO, SI, 1, etc. Solo se oculta con un NO explícito (casilla desmarcada,
+// FALSO, NO, 0). Una celda vacía, o con un texto que no se reconozca, devuelve el
+// valor por defecto: así una fila nueva a la que se te olvide poner la casilla, o
+// una errata al escribir, NUNCA hacen desaparecer contenido de la web.
+function leerVisible(rawVal, porDefecto) {
+  if (rawVal === null || rawVal === undefined) return porDefecto;
+  if (rawVal === true) return true;
+  if (rawVal === false) return false;
+
+  var txt = String(rawVal).trim().toUpperCase();
+  if (txt === "") return porDefecto;
+
+  if (txt === "TRUE" || txt === "VERDADERO" || txt === "SI" || txt === "SÍ" || txt === "1") {
+    return true;
+  }
+  if (txt === "FALSE" || txt === "FALSO" || txt === "NO" || txt === "0") {
+    return false;
+  }
+
+  // Valor no reconocido: ante la duda, mostrar.
+  return porDefecto;
 }
 
 // Genera respuesta JSON con soporte JSONP opcional

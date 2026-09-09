@@ -9,11 +9,31 @@
   const CONFIG = {
     // URL de la Aplicación Web de Google Apps Script (generada tras publicar el script de Google Sheets)
     // Puedes pegar tu URL aquí directamente, o definirla en window.VISIBILITY_APPS_SCRIPT_URL
-    APPS_SCRIPT_URL: window.VISIBILITY_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbzTeOVH_XfidipMrpSBxZp2mIBe9MCObXfzrApTeOQDMAv7FSifdFmW6yLcX7kF4roZ/exec',
+    APPS_SCRIPT_URL: window.VISIBILITY_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwQL62bFMgP4Gmm9Xcwff9nYC-QzDYH_60XTm3Ceq670u1iAnXwDkulB4Rsi1JwhBSi/exec',
 
-    // Clave de almacenamiento en sessionStorage para evitar parpadeos visuales al navegar
-    CACHE_KEY_DATA: 'inf_visibilidad_data'
+    // Clave de almacenamiento local para evitar parpadeos visuales al navegar
+    CACHE_KEY_DATA: 'inf_visibilidad_data',
+
+    // Antigüedad máxima de la copia local antes de ignorarla (6 horas)
+    CACHE_MAX_AGE_MS: 6 * 60 * 60 * 1000,
+
+    // Tiempo máximo de espera de la petición a Apps Script antes de abortarla
+    FETCH_TIMEOUT_MS: 8000,
+
+    // Reintentos si la petición falla (arranques en frío de Apps Script, wifi del centro, etc.)
+    FETCH_RETRIES: 2,
+
+    // Tiempo mínimo entre reconsultas al volver a la pestaña
+    REVALIDATE_MIN_MS: 5000
   };
+
+  // Clave antigua en sessionStorage (versiones previas de este script)
+  const LEGACY_SESSION_KEY = 'inf_visibilidad_data';
+
+  // Estado interno
+  let lastAppliedSignature = null;  // Evita repintar el DOM si las reglas no han cambiado
+  let lastFetchAt = 0;              // Marca temporal de la última consulta correcta
+  let inFlight = null;              // Petición en curso (evita consultas simultáneas)
 
   /**
    * Normaliza una ruta eliminando dominio, barras iniciales/finales e index.html
@@ -57,12 +77,32 @@
   }
 
   /**
+   * Marca un elemento como oculto por este script.
+   * El atributo data-* permite restaurar después SOLO lo que hemos tocado nosotros.
+   */
+  function hideElement(el) {
+    el.classList.add('visibility-hidden');
+    el.setAttribute('data-visibility-hidden', '');
+  }
+
+  /**
+   * Oculta con estilo en línea (usado por el aviso de contenido restringido),
+   * dejando constancia del valor anterior para poder revertirlo con exactitud.
+   */
+  function hideElementInline(el) {
+    if (el.hasAttribute('data-visibility-inline-hidden')) return;
+    el.setAttribute('data-visibility-inline-hidden', el.style.display || '');
+    el.style.display = 'none';
+  }
+
+  /**
    * Restablece completamente el DOM a su estado original visible
    */
   function clearVisibilityStyles() {
     // 1. Quitar la clase de ocultación de todos los elementos
     document.querySelectorAll('.visibility-hidden').forEach(el => {
       el.classList.remove('visibility-hidden');
+      el.removeAttribute('data-visibility-hidden');
     });
 
     // 2. Eliminar el aviso de contenido restringido si existía
@@ -71,25 +111,71 @@
       notice.remove();
     }
 
-    // 3. Restaurar todos los elementos hijos del contenido principal
-    const mainContent = document.querySelector('.page-content-main');
-    if (mainContent) {
-      Array.from(mainContent.children).forEach(child => {
-        if (child.style.display === 'none') {
-          child.style.display = '';
-        }
-      });
-    }
+    // 3. Restaurar únicamente los elementos que ocultamos con estilo en línea,
+    //    devolviéndoles el valor de display que tenían originalmente.
+    document.querySelectorAll('[data-visibility-inline-hidden]').forEach(el => {
+      el.style.display = el.getAttribute('data-visibility-inline-hidden') || '';
+      el.removeAttribute('data-visibility-inline-hidden');
+    });
+  }
 
-    // 4. Restaurar el índice de contenidos lateral
-    const tocAside = document.getElementById('page-toc');
-    if (tocAside && tocAside.style.display === 'none') {
-      tocAside.style.display = '';
+  /**
+   * Lee la copia local de las reglas, descartándola si es demasiado antigua.
+   */
+  function readCachedRules() {
+    try {
+      // Limpiar el formato antiguo (sessionStorage sin marca de tiempo)
+      sessionStorage.removeItem(LEGACY_SESSION_KEY);
+
+      const raw = localStorage.getItem(CONFIG.CACHE_KEY_DATA);
+      if (!raw) return null;
+
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== 'object' || !parsed.v) return null;
+      if (Date.now() - (parsed.t || 0) > CONFIG.CACHE_MAX_AGE_MS) {
+        localStorage.removeItem(CONFIG.CACHE_KEY_DATA);
+        return null;
+      }
+      return parsed.v;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeCachedRules(rules) {
+    try {
+      localStorage.setItem(CONFIG.CACHE_KEY_DATA, JSON.stringify({ t: Date.now(), v: rules }));
+    } catch (e) { }
+  }
+
+  function clearCachedRules() {
+    try {
+      localStorage.removeItem(CONFIG.CACHE_KEY_DATA);
+      sessionStorage.removeItem(LEGACY_SESSION_KEY);
+    } catch (e) { }
+  }
+
+  /**
+   * fetch con tiempo máximo de espera: si Apps Script tarda demasiado, abortamos
+   * en lugar de dejar la página esperando indefinidamente.
+   */
+  async function fetchWithTimeout(url) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), CONFIG.FETCH_TIMEOUT_MS);
+    try {
+      return await fetch(url, {
+        redirect: 'follow',
+        cache: 'no-store',
+        signal: controller.signal
+      });
+    } finally {
+      clearTimeout(timer);
     }
   }
 
   /**
-   * Consulta las reglas de visibilidad desde Google Apps Script
+   * Consulta las reglas de visibilidad desde Google Apps Script.
+   * Devuelve el objeto de reglas, o null si la consulta ha fallado.
    */
   async function fetchVisibilityRules() {
     const url = CONFIG.APPS_SCRIPT_URL;
@@ -98,27 +184,37 @@
       return null;
     }
 
-    try {
-      // Consulta en vivo a Google Apps Script con timestamp anticaché
-      const bustCache = (url.indexOf('?') === -1 ? '?' : '&') + `_t=${Date.now()}`;
-      const resp = await fetch(url + bustCache, { redirect: 'follow' });
-      if (resp.ok) {
-        const json = await resp.json();
-        if (json && json.status === 'success') {
-          // Soporte para interruptor maestro gestionado directamente desde Google Sheets
-          if (json.enabled === false) {
-            return { _master_enabled: false };
+    for (let intento = 0; intento <= CONFIG.FETCH_RETRIES; intento++) {
+      try {
+        // Consulta en vivo a Google Apps Script con timestamp anticaché
+        const bustCache = (url.indexOf('?') === -1 ? '?' : '&') + '_t=' + Date.now();
+        const resp = await fetchWithTimeout(url + bustCache);
+
+        if (resp.ok) {
+          const json = await resp.json();
+          if (json && json.status === 'success') {
+            lastFetchAt = Date.now();
+
+            // Soporte para interruptor maestro gestionado directamente desde Google Sheets
+            if (json.enabled === false) {
+              return { _master_enabled: false };
+            }
+            if (json.visibility) {
+              writeCachedRules(json.visibility);
+              return json.visibility;
+            }
           }
-          if (json.visibility) {
-            sessionStorage.setItem(CONFIG.CACHE_KEY_DATA, JSON.stringify(json.visibility));
-            return json.visibility;
-          }
+          console.warn('[Visibilidad] Respuesta inesperada de Apps Script:', json && json.status);
+        } else {
+          console.warn('[Visibilidad] Apps Script respondió con HTTP', resp.status);
         }
+      } catch (e) {
+        const motivo = (e && e.name === 'AbortError') ? 'tiempo de espera agotado' : e;
+        console.warn('[Visibilidad] Intento ' + (intento + 1) + ' fallido:', motivo);
       }
-    } catch (e) {
-      console.warn('[Visibilidad] No se pudieron descargar las reglas de Apps Script:', e);
     }
 
+    console.warn('[Visibilidad] No se pudieron descargar las reglas. Se mantiene el último estado conocido (puede estar desactualizado).');
     return null;
   }
 
@@ -126,11 +222,17 @@
    * Aplica las reglas de visibilidad en el DOM
    */
   function applyRules(rules) {
+    if (!rules || typeof rules !== 'object') return;
+
+    // Si las reglas son idénticas a las ya aplicadas, no tocar el DOM.
+    // Evita el parpadeo de aplicar primero la copia local y justo después la respuesta en vivo.
+    const signature = JSON.stringify(rules);
+    if (signature === lastAppliedSignature) return;
+    lastAppliedSignature = signature;
+
     // 0. Siempre restablecer el DOM primero a su estado limpio.
     // Esto permite que elementos que antes estaban ocultos y ahora se han activado en Sheets vuelvan a mostrarse de inmediato.
     clearVisibilityStyles();
-
-    if (!rules || typeof rules !== 'object') return;
 
     // Si el interruptor global de visibilidad está apagado, no ocultar nada
     if (rules._master_enabled === false) return;
@@ -152,15 +254,14 @@
     const allLinks = document.querySelectorAll('a[href]');
     allLinks.forEach(link => {
       const href = link.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('http://') || href.startsWith('https://')) {
-        // Enlaces externos o anclas no son rutas del sitio
-        if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
-          // A menos que sea enlace absoluto a nuestro propio dominio
-          if (href.indexOf(window.location.host) === -1) return;
-        } else {
-          return;
-        }
-      }
+      if (!href || href.startsWith('#')) return;
+
+      // Descartar esquemas que no son rutas del sitio
+      const scheme = (href.split(':')[0] || '').toLowerCase();
+      if (/^(mailto|tel|javascript|data|blob)$/.test(scheme)) return;
+
+      // Descartar enlaces externos comparando el host ya resuelto, no el texto del href
+      if (link.host && link.host !== window.location.host) return;
 
       const linkPath = normalizePath(link.href);
 
@@ -169,46 +270,46 @@
         if (isPathMatch(linkPath, hidden)) {
           // Si está en el menú de navegación superior Cayman (etiqueta .btn en el header)
           if (link.classList.contains('btn') && link.closest('.page-header')) {
-            link.classList.add('visibility-hidden');
+            hideElement(link);
             break;
           }
 
           // Si está en una lista de temas o actividades
           const li = link.closest('li');
-          if (li) {
-            li.classList.add('visibility-hidden');
-            break;
-          } else {
-            link.classList.add('visibility-hidden');
-            break;
-          }
+          hideElement(li || link);
+          break;
         }
       }
     });
 
-    // 2. Soporte para temas tipo TRDR con encabezados de actividades en la misma página
+    // 2. Soporte para temas tipo TRDR con encabezados de actividades en la misma página.
+    //    Solo se aplica si la página actual ES la del tema al que pertenece la actividad oculta;
+    //    en otro caso ocultaríamos "Actividad 3" en asignaturas ajenas que comparten numeración.
     hiddenEntries.forEach(hidden => {
       const parts = hidden.split('/');
       const lastPart = parts[parts.length - 1]; // Ej: actividad1, actividad2...
       const actMatch = lastPart.match(/actividad(\d+)/i);
-      if (actMatch) {
-        const actNum = actMatch[1];
-        // Buscar encabezados h3 o h4 que contengan "Actividad X"
-        const headings = document.querySelectorAll('.page-content-main h3, .page-content-main h4');
-        headings.forEach(heading => {
-          const text = heading.textContent.toLowerCase();
-          const regex = new RegExp(`actividad\\s*${actNum}(\\D|$)`, 'i');
-          if (regex.test(text)) {
-            // Ocultar este encabezado y los elementos hermanos hasta el siguiente encabezado
-            heading.classList.add('visibility-hidden');
-            let next = heading.nextElementSibling;
-            while (next && !/^H[1-4]$/i.test(next.tagName)) {
-              next.classList.add('visibility-hidden');
-              next = next.nextElementSibling;
-            }
+      if (!actMatch) return;
+
+      const parentPath = parts.slice(0, -1).join('/');
+      if (!parentPath || !isPathMatch(currentPath, parentPath)) return;
+
+      const actNum = actMatch[1];
+      // Buscar encabezados h3 o h4 que contengan "Actividad X"
+      const headings = document.querySelectorAll('.page-content-main h3, .page-content-main h4');
+      headings.forEach(heading => {
+        const text = heading.textContent.toLowerCase();
+        const regex = new RegExp('actividad\\s*' + actNum + '(\\D|$)', 'i');
+        if (regex.test(text)) {
+          // Ocultar este encabezado y los elementos hermanos hasta el siguiente encabezado
+          hideElement(heading);
+          let next = heading.nextElementSibling;
+          while (next && !/^H[1-4]$/i.test(next.tagName)) {
+            hideElement(next);
+            next = next.nextElementSibling;
           }
-        });
-      }
+        }
+      });
     });
 
     // 3. Comprobar si el usuario se encuentra actualmente en una página que está oculta
@@ -230,7 +331,7 @@
     // Ocultar TOC lateral
     const tocAside = document.getElementById('page-toc');
     if (tocAside) {
-      tocAside.style.display = 'none';
+      hideElementInline(tocAside);
     }
 
     // Si ya hay un aviso previo, no duplicarlo
@@ -239,14 +340,14 @@
     // Crear bloque de aviso
     const notice = document.createElement('div');
     notice.className = 'visibility-restricted-notice';
-    notice.innerHTML = `
-      <span class="visibility-restricted-icon">🔒</span>
-      <h2 class="visibility-restricted-title">Contenido no disponible</h2>
-      <p class="visibility-restricted-message">
-        Esta actividad o tema no se encuentra visible actualmente. Estará disponible cuando el profesor la active.
-      </p>
-      <a href="../" class="visibility-btn-back">⬅️ Volver atrás</a>
-    `;
+    notice.innerHTML = [
+      '<span class="visibility-restricted-icon">🔒</span>',
+      '<h2 class="visibility-restricted-title">Contenido no disponible</h2>',
+      '<p class="visibility-restricted-message">',
+      '  Esta actividad o tema no se encuentra visible actualmente. Estará disponible cuando el profesor la active.',
+      '</p>',
+      '<a href="../" class="visibility-btn-back">⬅️ Volver atrás</a>'
+    ].join('\n');
 
     // Reemplazar o superponer el contenido
     const children = Array.from(mainContent.children);
@@ -255,7 +356,7 @@
       if (child.classList.contains('breadcrumbs') || child.classList.contains('site-footer')) {
         return;
       }
-      child.style.display = 'none';
+      hideElementInline(child);
     });
 
     const breadcrumbs = mainContent.querySelector('.breadcrumbs');
@@ -267,29 +368,64 @@
   }
 
   /**
+   * Consulta Apps Script y aplica el resultado.
+   * force = true ignora el intervalo mínimo entre reconsultas.
+   */
+  function refresh(force) {
+    if (!force && Date.now() - lastFetchAt < CONFIG.REVALIDATE_MIN_MS) return Promise.resolve();
+
+    // Si ya hay una consulta en curso, reutilizarla en lugar de lanzar otra
+    if (inFlight) return inFlight;
+
+    inFlight = (async () => {
+      try {
+        const rules = await fetchVisibilityRules();
+        if (!rules) return; // Fallo de red: se conserva el último estado conocido
+
+        // Si el interruptor maestro de Google Sheets está apagado (mostrar todo)
+        if (rules._master_enabled === false) {
+          clearCachedRules();
+        }
+        applyRules(rules);
+      } finally {
+        inFlight = null;
+      }
+    })();
+
+    return inFlight;
+  }
+
+  /**
    * Inicialización principal
    */
   async function init() {
-    // 0. Si ya tenemos reglas en la pestaña actual, aplicarlas al instante (0 retraso visual al navegar)
-    try {
-      const cached = sessionStorage.getItem(CONFIG.CACHE_KEY_DATA);
-      if (cached) {
-        applyRules(JSON.parse(cached));
-      }
-    } catch (e) { }
+    // 0. Si ya tenemos reglas guardadas, aplicarlas al instante (0 retraso visual al navegar)
+    const cached = readCachedRules();
+    if (cached) applyRules(cached);
 
-    // Descargar reglas actualizadas de Google Apps Script (en vivo)
-    const rules = await fetchVisibilityRules();
+    // 1. Descargar reglas actualizadas de Google Apps Script (en vivo)
+    await refresh(true);
+  }
 
-    if (rules) {
-      // Si el interruptor maestro de Google Sheets está apagado (mostrar todo)
-      if (rules._master_enabled === false) {
-        clearVisibilityStyles();
-        sessionStorage.removeItem(CONFIG.CACHE_KEY_DATA);
-        return;
-      }
-      applyRules(rules);
-    }
+  /**
+   * Revalidación: vuelve a consultar Apps Script cuando la página "reaparece".
+   * Sin esto, una pestaña que se queda abierta o una vuelta con el botón Atrás
+   * conservarían indefinidamente las reglas del momento en que se cargó la página.
+   */
+  function setupRevalidation() {
+    // Vuelta con el botón Atrás/Adelante: el navegador restaura la página desde
+    // la bfcache SIN volver a ejecutar los scripts, así que hay que forzar la consulta.
+    window.addEventListener('pageshow', event => {
+      if (event.persisted) refresh(true);
+    });
+
+    // Al volver a la pestaña tras cambiar las casillas en Google Sheets
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') refresh(false);
+    });
+
+    // Al recuperar la conexión tras un fallo de red
+    window.addEventListener('online', () => refresh(true));
   }
 
   // Ejecución cuando el DOM esté listo
@@ -299,7 +435,14 @@
     init();
   }
 
-  // Exponer CONFIG en window para pruebas o configuración dinámica desde consola
+  setupRevalidation();
+
+  // Exponer CONFIG y utilidades en window para pruebas o configuración dinámica desde consola
   window.INF_VISIBILITY_CONFIG = CONFIG;
+  window.INF_VISIBILITY = {
+    CONFIG: CONFIG,
+    refresh: () => refresh(true),
+    clearCache: clearCachedRules
+  };
 
 })();
