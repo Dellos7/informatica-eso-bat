@@ -8,14 +8,14 @@ Esta guía explica cómo controlar qué asignaturas, temas y actividades se mues
 
 1. **Control 100% desde Google Sheets:**  
    Todo el control de la web se gestiona desde una única hoja de cálculo con casillas de verificación (checkboxes ☑️).  
-   - **Fila 2 (Control General):** Desmarcar esta casilla desactiva todo el sistema al instante y hace visible el 100% de la web.
+   - **Fila 2 (Control General):** Desmarcar esta casilla desactiva todo el sistema y hace visible el 100% de la web (tarda como mucho 30 segundos en propagarse; ver el punto 2).
    - **Casilla de tema/actividad marcada (TRUE):** El elemento está **visible**.  
    - **Casilla de tema/actividad desmarcada (FALSE):** El elemento se **oculta visualmente** en los menús y listas (y si un alumno entra por enlace directo, se muestra un aviso de *Contenido no disponible*).  
    - **Elementos nuevos que no estén en la hoja:** **Se muestran siempre por defecto**.
    - **Casilla vacía (fila añadida sin marcar) o valor no reconocido:** también se **muestra**. Solo se oculta con un NO explícito (casilla desmarcada, `FALSO`, `NO`, `0`), de forma que nunca desaparezca material recién publicado por un despiste al dar de alta la fila o por una errata.
 
 2. **¿Cuándo se aplican los cambios?**  
-   La web consulta Google Apps Script en vivo, así que no hay que esperar a ningún despliegue: en cuanto marcas o desmarcas una casilla, la regla ya está publicada. Lo que determina cuándo lo *ve* cada persona es el momento en que su navegador vuelve a preguntar, y eso ocurre:
+   La web consulta Google Apps Script en vivo, así que no hay que esperar a ningún despliegue: en cuanto marcas o desmarcas una casilla, la regla queda publicada (con un margen de hasta 30 segundos por la caché del servidor, explicada más abajo). Lo que determina cuándo lo *ve* cada persona es el momento en que su navegador vuelve a preguntar, y eso ocurre:
    - Al **cargar o recargar** cualquier página de la web.
    - Al **volver a la pestaña** de la web después de haber estado en otra (con un margen mínimo de 5 segundos entre consultas).
    - Al volver con el botón **Atrás/Adelante** del navegador.
@@ -23,9 +23,14 @@ Esta guía explica cómo controlar qué asignaturas, temas y actividades se mues
 
    En la práctica esto significa que puedes dejar la web abierta en una pestaña, ir a la hoja de cálculo, cambiar las casillas y volver a la pestaña: el cambio se aplica solo, sin pulsar F5.
 
-   **Sobre la copia local:** para que el alumnado no vea aparecer y desaparecer contenidos al cargar cada página, el navegador guarda una copia de las últimas reglas conocidas (con una validez máxima de 6 horas) y la usa para pintar la página al instante, mientras consulta la versión en vivo por detrás. Esa copia solo sirve para el primer instante de la carga; siempre se sustituye por lo que responda Google Sheets un momento después.
+   **Hay dos cachés, y conviene no confundirlas:**
 
-   **Si algo no se actualiza:** normalmente es un problema de red o de que Apps Script ha tardado demasiado en responder. El script hace hasta 3 intentos y, si aun así falla, mantiene el último estado conocido y deja un aviso en la consola del navegador (F12) empezando por `[Visibilidad]`. Desde esa misma consola puedes forzar una actualización inmediata con:
+   - **En el navegador de cada persona (hasta 6 horas).** Para que el alumnado no vea aparecer y desaparecer contenidos al cargar cada página, el navegador guarda una copia de las últimas reglas conocidas y la usa para pintar la página al instante, mientras consulta la versión en vivo por detrás. Solo sirve para el primer instante de la carga: siempre se sustituye por lo que responda Google Sheets un momento después.
+   - **En el servidor de Apps Script (30 segundos).** Es la que limita de verdad la rapidez de tus cambios. Existe porque Apps Script se satura cuando una clase entera abre la web a la vez: sin ella, 30 alumnos provocan 30 lecturas simultáneas de la hoja y el servicio empieza a devolver errores. Con ella, esos 30 alumnos se resuelven con **una sola** lectura.
+
+   Para comprobar un cambio sin esperar esos 30 segundos, abre la URL de tu Apps Script en el navegador añadiéndole `?fresh=1` al final. Eso salta la caché, lee la hoja al momento y de paso deja la caché actualizada para todos los demás.
+
+   **Si algo no se actualiza:** casi siempre es que Apps Script ha tardado demasiado en responder. La web espera hasta 25 segundos y, si se agota ese plazo, mantiene el último estado conocido y deja un aviso en la consola del navegador (F12) empezando por `[Visibilidad]`. No se reintenta automáticamente, a propósito: reintentar en ráfaga empeora la saturación que causó el fallo. Basta con recargar la página. Desde la consola también puedes forzar una actualización inmediata con:
 
    ```javascript
    INF_VISIBILITY.refresh()
@@ -61,9 +66,30 @@ Esta guía explica cómo controlar qué asignaturas, temas y actividades se mues
  * Web: https://dlopezcastellote.dev/informatica-eso-bat/
  */
 
+// Segundos que se guarda la respuesta en la caché del servidor.
+// Protege la hoja cuando una clase entera abre la web a la vez: en lugar de
+// 30 lecturas simultáneas de la hoja se hace UNA y se reparte a todos.
+// A cambio, un cambio de casilla puede tardar hasta este tiempo en propagarse.
+var CACHE_TTL_SEGUNDOS = 30;
+var CACHE_CLAVE = "visibilidad_json_v1";
+
 // ENDPOINT GET: Devuelve el estado de visibilidad de cada ruta
 function doGet(e) {
   try {
+    // Si se pide con ?fresh=1 se salta la caché y se lee la hoja al momento.
+    // Útil para comprobar tú mismo un cambio sin esperar al TTL.
+    var sinCache = !!(e && e.parameter && e.parameter.fresh);
+    var cache = CacheService.getScriptCache();
+
+    if (!sinCache) {
+      var guardado = cache.get(CACHE_CLAVE);
+      if (guardado) {
+        var recuperado = JSON.parse(guardado);
+        recuperado.fromCache = true;
+        return createResponse(recuperado, e);
+      }
+    }
+
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = ss.getSheetByName("Visibilidad") || ss.getActiveSheet();
     var data = sheet.getDataRange().getValues();
@@ -109,12 +135,18 @@ function doGet(e) {
       visibility[key] = isVisible;
     }
 
-    return createResponse({
+    var payload = {
       status: "success",
       enabled: masterEnabled,
       updatedAt: new Date().toISOString(),
       visibility: masterEnabled ? visibility : {}
-    }, e);
+    };
+
+    // Guardar en caché para que las siguientes visitas no vuelvan a abrir la hoja.
+    // Los errores nunca se cachean: solo se guarda una respuesta correcta.
+    cache.put(CACHE_CLAVE, JSON.stringify(payload), CACHE_TTL_SEGUNDOS);
+
+    return createResponse(payload, e);
 
   } catch (err) {
     return createResponse({
@@ -297,7 +329,7 @@ function inicializarHoja() {
 5. Copia la **URL de la aplicación web** (la que termina en `/exec`).
 
 > 💡 **Nota al hacer cambios futuros en el script:**  
-> Si alguna vez modificas el código de Apps Script, para que tome efecto debes ir a **Implementar ➔ Gestionar implementaciones**, pulsar el lápiz (Editar), seleccionar versión: **"Nueva versión"** y pulsar **Implementar**. Si solo marcas o desmarcas casillas en la hoja de cálculo, **NO necesitas reimplementar**: los cambios en las celdas se reflejan al instante.
+> Si alguna vez modificas el código de Apps Script, para que tome efecto debes ir a **Implementar ➔ Gestionar implementaciones**, pulsar el lápiz (Editar), seleccionar versión: **"Nueva versión"** y pulsar **Implementar**. Si solo marcas o desmarcas casillas en la hoja de cálculo, **NO necesitas reimplementar**: los cambios en las celdas se reflejan solos en menos de 30 segundos.
 
 ---
 
@@ -358,7 +390,7 @@ Para que el script reconozca automáticamente la ruta, mantén siempre la misma 
 
 ### 4. Preguntas Frecuentes al añadir contenidos
 * **¿Tengo que volver a "Implementar" Apps Script?**  
-  **No.** Apps Script utiliza `getDataRange()`, lo que significa que detecta y lee automáticamente cualquier fila nueva que agregues a la hoja al instante.
+  **No.** Apps Script utiliza `getDataRange()`, lo que significa que detecta y lee automáticamente cualquier fila nueva que agregues a la hoja, como mucho 30 segundos después.
 * **¿Tengo que modificar `visibility.js`?**  
   **No.** El script de la web procesa las rutas de forma completamente dinámica a partir de lo que devuelve Google Sheets.
 

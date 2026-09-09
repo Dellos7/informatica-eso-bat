@@ -9,7 +9,7 @@
   const CONFIG = {
     // URL de la Aplicación Web de Google Apps Script (generada tras publicar el script de Google Sheets)
     // Puedes pegar tu URL aquí directamente, o definirla en window.VISIBILITY_APPS_SCRIPT_URL
-    APPS_SCRIPT_URL: window.VISIBILITY_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwQL62bFMgP4Gmm9Xcwff9nYC-QzDYH_60XTm3Ceq670u1iAnXwDkulB4Rsi1JwhBSi/exec',
+    APPS_SCRIPT_URL: window.VISIBILITY_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwZ537mvmL3EqXSXzz_REwMccI_WtReSCzo_X7sWBZzukpeNap8fWLcOAL6hIuLa9y6/exec',
 
     // Clave de almacenamiento local para evitar parpadeos visuales al navegar
     CACHE_KEY_DATA: 'inf_visibilidad_data',
@@ -17,11 +17,17 @@
     // Antigüedad máxima de la copia local antes de ignorarla (6 horas)
     CACHE_MAX_AGE_MS: 6 * 60 * 60 * 1000,
 
-    // Tiempo máximo de espera de la petición a Apps Script antes de abortarla
-    FETCH_TIMEOUT_MS: 8000,
+    // Tiempo máximo de espera de la petición a Apps Script antes de abortarla.
+    // Apps Script es lento e irregular: medido sobre este endpoint, lo habitual son
+    // 1,5-3 s, pero se va a 9, 15 o 26 s sin previo aviso. Abortar antes de tiempo
+    // era la causa principal de que un cambio de la hoja no llegara a aplicarse.
+    FETCH_TIMEOUT_MS: 25000,
 
-    // Reintentos si la petición falla (arranques en frío de Apps Script, wifi del centro, etc.)
-    FETCH_RETRIES: 2,
+    // Reintentos adicionales tras un fallo. Deliberadamente 0: reintentar en ráfaga
+    // multiplica la carga sobre Apps Script justo cuando ya está saturado (una clase
+    // entera entrando a la vez), que es precisamente cuando falla. Recargar o volver
+    // a la pestaña ya provoca un intento nuevo.
+    FETCH_RETRIES: 0,
 
     // Tiempo mínimo entre reconsultas al volver a la pestaña
     REVALIDATE_MIN_MS: 5000
