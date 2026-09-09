@@ -19,11 +19,11 @@ Ampliado:
 
 ## Actividades
 
-- [Actividad 1](./actividad-1).
-- [Actividad 2](./actividad-2).
-- [Actividad 3](./actividad-3).
-- [Actividad 4](./actividad-4).
-- [Actividad 5](./actividad-5).
-- [Actividad 6](./actividad-6).
-- [Actividad 7](./actividad-7).
-- [Actividad 8](./actividad-8).
+- [Actividad 1](./actividad1)
+- [Actividad 2](./actividad2)
+- [Actividad 3](./actividad3)
+- [Actividad 4](./actividad4)
+- [Actividad 5](./actividad5)
+- [Actividad 6](./actividad6)
+- [Actividad 7](./actividad7)
+- [Actividad 8](./actividad8)

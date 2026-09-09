@@ -1,0 +1,62 @@
+Tipo,Asignatura,Tema,Actividad,Título / Descripción,Visible
+Asignatura,trdr,,,1º ESO - Taller de Relaciones Digitales Responsables,TRUE
+Tema,trdr,sistemas-operativos-y-aplicaciones,,Tema 1. Sistemas operativos y aplicaciones,TRUE
+Actividad,trdr,sistemas-operativos-y-aplicaciones,actividad1,Actividad 1. Ejercicios del Tema 1,TRUE
+Actividad,trdr,sistemas-operativos-y-aplicaciones,actividad2,Actividad 2. Avatar para Aules,TRUE
+Actividad,trdr,sistemas-operativos-y-aplicaciones,actividad3,Actividad 3. Personalización del escritorio y barra de tareas,TRUE
+Actividad,trdr,sistemas-operativos-y-aplicaciones,actividad4,Actividad 4. Cuestionario en Aules,TRUE
+Tema,trdr,organizacion-de-la-informacion,,Tema 2. Organización de la información,TRUE
+Actividad,trdr,organizacion-de-la-informacion,actividad1,Actividad 1. Organización de la información,TRUE
+Asignatura,piari,,,"2º ESO - Programación, Inteligencia Artificial y Robótica I",TRUE
+Tema,piari,pensamiento-computacional,,Tema 1. Pensamiento Computacional,TRUE
+Actividad,piari,pensamiento-computacional,actividad1,Actividad 1. Conceptos básicos,TRUE
+Actividad,piari,pensamiento-computacional,actividad2,Actividad 2. Entrenando Ratones,TRUE
+Actividad,piari,pensamiento-computacional,actividad3,Actividad 3. Camino a casa,TRUE
+Actividad,piari,pensamiento-computacional,actividad4,Actividad 4. Entrenando hormigas. 3 primeros niveles de Laby,TRUE
+Actividad,piari,pensamiento-computacional,actividad5,Actividad 5. Compute IT,TRUE
+Actividad,piari,pensamiento-computacional,actividad6,Actividad 6. Laby avanzado y diseño de niveles,TRUE
+Actividad,piari,pensamiento-computacional,actividad7,Actividad 7. Code.org - Aventurero de Minecraft,TRUE
+Actividad,piari,pensamiento-computacional,actividad8,Actividad 8. Creando nuestro primer videojuego en Scratch,TRUE
+Asignatura,piari_3eso,,,"3º ESO - Programación, Inteligencia Artificial y Robótica I (3º ESO)",TRUE
+Tema,piari_3eso,pensamiento-computacional,,Tema 1. Pensamiento Computacional,TRUE
+Actividad,piari_3eso,pensamiento-computacional,actividad1,Actividad 1. Conceptos básicos,TRUE
+Actividad,piari_3eso,pensamiento-computacional,actividad2,Actividad 2. Entrenando Ratones,TRUE
+Actividad,piari_3eso,pensamiento-computacional,actividad3,Actividad 3. Camino a casa,TRUE
+Actividad,piari_3eso,pensamiento-computacional,actividad4,Actividad 4. Entrenando hormigas. 3 primeros niveles de Laby,TRUE
+Actividad,piari_3eso,pensamiento-computacional,actividad5,Actividad 5. Compute IT,TRUE
+Actividad,piari_3eso,pensamiento-computacional,actividad6,Actividad 6. El mundo de Karel. Retos básicos,TRUE
+Actividad,piari_3eso,pensamiento-computacional,actividad7,Actividad 7. El mundo de Karel. Bucles y condicionales,TRUE
+Actividad,piari_3eso,pensamiento-computacional,actividad8,Actividad 8. Code.org - Aventurero de Minecraft,TRUE
+Asignatura,digitalizacion,,,4º ESO - Digitalización,TRUE
+Tema,digitalizacion,sistemas-operativos,,Tema 1. Sistemas Operativos,TRUE
+Actividad,digitalizacion,sistemas-operativos,actividad1,Actividad 1. Explorando LliureX y el Sistema de Archivos,TRUE
+Actividad,digitalizacion,sistemas-operativos,actividad2,Actividad 2. Máquinas virtuales en VirtualBox,TRUE
+Actividad,digitalizacion,sistemas-operativos,actividad3,Actividad 3. Uso básico de la terminal en Linux (bash),TRUE
+Actividad,digitalizacion,sistemas-operativos,actividad4,Actividad 4. Servidor SSH y SCP en Linux,TRUE
+Actividad,digitalizacion,sistemas-operativos,actividad5,Actividad 5. Scripts de automatización,TRUE
+Actividad,digitalizacion,sistemas-operativos,actividad6,Actividad 6. Scripts avanzados,TRUE
+Tema,digitalizacion,documentos-digitales,,Tema 2. Documentos digitales,TRUE
+Actividad,digitalizacion,documentos-digitales,actividad1,Actividad 1. Creación de documentos con LibreOffice Writer,TRUE
+Actividad,digitalizacion,documentos-digitales,actividad2,Actividad 2. Gestión de datos y presupuestos con LibreOffice Calc,TRUE
+Actividad,digitalizacion,documentos-digitales,actividad3,Actividad 3. Automatización de documentos con Combinación de Correspondencia,TRUE
+Tema,digitalizacion,html,,Tema 3. Creando webs con HTML,TRUE
+Actividad,digitalizacion,html,actividad0,Actividad 0. Primer documento HTML,TRUE
+Actividad,digitalizacion,html,actividad1,Actividad 1. Etiquetas básicas de texto,TRUE
+Actividad,digitalizacion,html,actividad2,Actividad 2. Enlaces e imágenes,TRUE
+Actividad,digitalizacion,html,actividad3,Actividad 3. Listas y tablas,TRUE
+Actividad,digitalizacion,html,actividad4,Actividad 4. Formulario y multimedia,TRUE
+Asignatura,psiri,,,"1º BACH - Programación, Sistemas Informáticos y Redes I",TRUE
+Tema,psiri,sa1,,Tema 1. Programación básica en Python,TRUE
+Actividad,psiri,sa1,1-operadores-aritmeticos,Operadores Aritméticos,TRUE
+Actividad,psiri,sa1,2-tipos-de-datos-basicos,Tipos de datos básicos,TRUE
+Actividad,psiri,sa1,3-variables,Variables,TRUE
+Actividad,psiri,sa1,4-funciones,Funciones,TRUE
+Tema,psiri,sa2,,Tema 2. Sentencias condicionales y repetitivas en Python,TRUE
+Actividad,psiri,sa2,1-sentencias-condicionales,Sentencias condicionales,TRUE
+Actividad,psiri,sa2,2-sentencias-iterativas,Sentencias iterativas,TRUE
+Asignatura,psirii,,,"2º BACH - Programación, Sistemas Informáticos y Redes II",TRUE
+Tema,psirii,servicios-web,,Tema 1. Servicios web,TRUE
+Actividad,psirii,servicios-web,actividad1,"Actividad 1. Instalación de Mint, XAMPP y WordPress",TRUE
+Actividad,psirii,servicios-web,actividad2,Actividad 2. Despliegue en hosting remoto con InfinityFree,TRUE
+Tema,psirii,docker,,Tema 2. Contenerización con Docker,TRUE
+Actividad,psirii,docker,actividad1,Actividad 1. Orquestación multiservicio con Docker Compose,TRUE

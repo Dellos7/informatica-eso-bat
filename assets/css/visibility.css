@@ -1,0 +1,53 @@
+/* --- Estilos para Control Dinámico de Visibilidad --- */
+
+.visibility-hidden {
+  display: none !important;
+}
+
+/* Banner cuando un usuario accede por URL directa a contenido oculto */
+.visibility-restricted-notice {
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin: 2rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.visibility-restricted-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.visibility-restricted-title {
+  font-size: 1.75rem;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.visibility-restricted-message {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 540px;
+  margin: 0 auto 1.75rem auto;
+  line-height: 1.6;
+}
+
+.visibility-btn-back {
+  display: inline-block;
+  background: #159957;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.visibility-btn-back:hover {
+  background: #128249;
+  transform: translateY(-1px);
+}
