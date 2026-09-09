@@ -6,6 +6,19 @@
 (function () {
   'use strict';
 
+  // ===========================================================================
+  //  INTERRUPTOR GENERAL DEL SISTEMA
+  //
+  //  Ponlo a false para desactivar por completo el control de visibilidad:
+  //  la web deja de consultar a Google Apps Script y muestra el 100% del
+  //  contenido, como si este archivo no existiera.
+  //
+  //  Es la salida de emergencia si Apps Script da problemas de forma
+  //  persistente. Al desactivarlo se borra además lo que el navegador tuviera
+  //  guardado, para que no quede ningún resto ocultando contenido.
+  // ===========================================================================
+  const VISIBILIDAD_ACTIVADA = true;
+
   const CONFIG = {
     // URL de la Aplicación Web de Google Apps Script (generada tras publicar el script de Google Sheets)
     // Puedes pegar tu URL aquí directamente, o definirla en window.VISIBILITY_APPS_SCRIPT_URL
@@ -14,8 +27,19 @@
     // Clave de almacenamiento local para evitar parpadeos visuales al navegar
     CACHE_KEY_DATA: 'inf_visibilidad_data',
 
-    // Antigüedad máxima de la copia local antes de ignorarla (6 horas)
+    // Marca de cuándo empezó la racha de fallos actual (se borra al primer acierto)
+    CACHE_KEY_FAIL: 'inf_visibilidad_fallo_desde',
+
+    // Cuánto tiempo sigue sirviendo la copia local para pintar la página al instante.
+    // Es generoso a propósito: solo evita el parpadeo del primer segundo de carga, y
+    // siempre queda sustituida por la respuesta en vivo un momento después.
     CACHE_MAX_AGE_MS: 6 * 60 * 60 * 1000,
+
+    // FALLO HACIA MOSTRAR: tiempo SEGUIDO sin una sola respuesta correcta de Apps
+    // Script tras el cual se deja de ocultar y se enseña el 100% de la web. El
+    // contador arranca en el primer fallo de la racha y se pone a cero en cuanto
+    // una consulta funciona, así que un error suelto no destapa nada.
+    FAIL_OPEN_AFTER_MS: 5 * 60 * 1000,
 
     // Tiempo máximo de espera de la petición a Apps Script antes de abortarla.
     // Apps Script es lento e irregular: medido sobre este endpoint, lo habitual son
@@ -23,11 +47,12 @@
     // era la causa principal de que un cambio de la hoja no llegara a aplicarse.
     FETCH_TIMEOUT_MS: 25000,
 
-    // Reintentos adicionales tras un fallo. Deliberadamente 0: reintentar en ráfaga
-    // multiplica la carga sobre Apps Script justo cuando ya está saturado (una clase
-    // entera entrando a la vez), que es precisamente cuando falla. Recargar o volver
-    // a la pestaña ya provoca un intento nuevo.
-    FETCH_RETRIES: 0,
+    // Reintentos adicionales, SOLO para errores HTTP (el 404 intermitente que
+    // googleusercontent devuelve al entregar la respuesta). Ese fallo es de entrega y
+    // el segundo intento suele funcionar. Un agotamiento del tiempo de espera NO se
+    // reintenta nunca: significa que Apps Script está saturado y reintentar en ráfaga
+    // multiplica la carga justo cuando peor está.
+    FETCH_RETRIES_HTTP: 1,
 
     // Tiempo mínimo entre reconsultas al volver a la pestaña
     REVALIDATE_MIN_MS: 5000
@@ -154,6 +179,28 @@
     } catch (e) { }
   }
 
+  /**
+   * Registra el comienzo de una racha de fallos y devuelve cuándo empezó.
+   * Se guarda en localStorage porque cada carga de página es un contexto nuevo:
+   * sin persistirlo, la racha se reiniciaría al navegar y nunca se cumpliría el plazo.
+   */
+  function markFailure() {
+    const ahora = Date.now();
+    try {
+      const previo = parseInt(localStorage.getItem(CONFIG.CACHE_KEY_FAIL), 10);
+      if (previo) return previo;
+      localStorage.setItem(CONFIG.CACHE_KEY_FAIL, String(ahora));
+    } catch (e) { }
+    return ahora;
+  }
+
+  /** Una consulta correcta cierra la racha de fallos. */
+  function clearFailureStreak() {
+    try {
+      localStorage.removeItem(CONFIG.CACHE_KEY_FAIL);
+    } catch (e) { }
+  }
+
   function clearCachedRules() {
     try {
       localStorage.removeItem(CONFIG.CACHE_KEY_DATA);
@@ -190,7 +237,7 @@
       return null;
     }
 
-    for (let intento = 0; intento <= CONFIG.FETCH_RETRIES; intento++) {
+    for (let intento = 0; intento <= CONFIG.FETCH_RETRIES_HTTP; intento++) {
       try {
         // Consulta en vivo a Google Apps Script con timestamp anticaché
         const bustCache = (url.indexOf('?') === -1 ? '?' : '&') + '_t=' + Date.now();
@@ -215,12 +262,16 @@
           console.warn('[Visibilidad] Apps Script respondió con HTTP', resp.status);
         }
       } catch (e) {
-        const motivo = (e && e.name === 'AbortError') ? 'tiempo de espera agotado' : e;
-        console.warn('[Visibilidad] Intento ' + (intento + 1) + ' fallido:', motivo);
+        if (e && e.name === 'AbortError') {
+          // Saturación: reintentar aquí solo echaría más leña al fuego.
+          console.warn('[Visibilidad] Tiempo de espera agotado (' + (CONFIG.FETCH_TIMEOUT_MS / 1000) + ' s). No se reintenta para no saturar Apps Script.');
+          break;
+        }
+        console.warn('[Visibilidad] Intento ' + (intento + 1) + ' fallido:', e);
       }
     }
 
-    console.warn('[Visibilidad] No se pudieron descargar las reglas. Se mantiene el último estado conocido (puede estar desactualizado).');
+    console.warn('[Visibilidad] No se pudieron descargar las reglas de Apps Script.');
     return null;
   }
 
@@ -378,6 +429,7 @@
    * force = true ignora el intervalo mínimo entre reconsultas.
    */
   function refresh(force) {
+    if (!VISIBILIDAD_ACTIVADA) return Promise.resolve();
     if (!force && Date.now() - lastFetchAt < CONFIG.REVALIDATE_MIN_MS) return Promise.resolve();
 
     // Si ya hay una consulta en curso, reutilizarla en lugar de lanzar otra
@@ -386,7 +438,27 @@
     inFlight = (async () => {
       try {
         const rules = await fetchVisibilityRules();
-        if (!rules) return; // Fallo de red: se conserva el último estado conocido
+
+        if (!rules) {
+          // La consulta ha fallado. Un fallo suelto no cambia nada: se conserva lo
+          // que hubiera aplicado para no destapar contenido por un error puntual.
+          // Pero si la racha de fallos se prolonga, se deja de ocultar y se muestra
+          // TODO: que Google falle nunca debe impedir al alumnado ver la web.
+          const fallandoDesde = markFailure();
+          const segundos = Math.round((Date.now() - fallandoDesde) / 1000);
+
+          if (Date.now() - fallandoDesde > CONFIG.FAIL_OPEN_AFTER_MS) {
+            console.warn('[Visibilidad] ' + segundos + ' s seguidos sin respuesta correcta: se muestra todo el contenido.');
+            clearCachedRules();
+            clearVisibilityStyles();
+            lastAppliedSignature = null;
+          } else {
+            console.warn('[Visibilidad] Fallo puntual (' + segundos + ' s de racha). Se conserva el último estado conocido.');
+          }
+          return;
+        }
+
+        clearFailureStreak();
 
         // Si el interruptor maestro de Google Sheets está apagado (mostrar todo)
         if (rules._master_enabled === false) {
@@ -434,21 +506,30 @@
     window.addEventListener('online', () => refresh(true));
   }
 
-  // Ejecución cuando el DOM esté listo
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-
-  setupRevalidation();
-
   // Exponer CONFIG y utilidades en window para pruebas o configuración dinámica desde consola
   window.INF_VISIBILITY_CONFIG = CONFIG;
   window.INF_VISIBILITY = {
     CONFIG: CONFIG,
+    enabled: VISIBILIDAD_ACTIVADA,
     refresh: () => refresh(true),
     clearCache: clearCachedRules
   };
+
+  if (!VISIBILIDAD_ACTIVADA) {
+    // Desactivado a mano: ni se consulta a Apps Script ni se oculta nada.
+    // Se limpia lo guardado por el navegador para no dejar rastros que oculten.
+    clearCachedRules();
+    clearFailureStreak();
+    console.info('[Visibilidad] Sistema desactivado en visibility.js (VISIBILIDAD_ACTIVADA = false). Se muestra todo el contenido.');
+  } else {
+    // Ejecución cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    setupRevalidation();
+  }
 
 })();

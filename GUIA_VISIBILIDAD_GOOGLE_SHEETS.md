@@ -30,7 +30,11 @@ Esta guía explica cómo controlar qué asignaturas, temas y actividades se mues
 
    Para comprobar un cambio sin esperar esos 30 segundos, abre la URL de tu Apps Script en el navegador añadiéndole `?fresh=1` al final. Eso salta la caché, lee la hoja al momento y de paso deja la caché actualizada para todos los demás.
 
-   **Si algo no se actualiza:** casi siempre es que Apps Script ha tardado demasiado en responder. La web espera hasta 25 segundos y, si se agota ese plazo, mantiene el último estado conocido y deja un aviso en la consola del navegador (F12) empezando por `[Visibilidad]`. No se reintenta automáticamente, a propósito: reintentar en ráfaga empeora la saturación que causó el fallo. Basta con recargar la página. Desde la consola también puedes forzar una actualización inmediata con:
+   **Qué pasa si Apps Script falla:** la web espera hasta 25 segundos por respuesta y deja un aviso en la consola del navegador (F12) empezando por `[Visibilidad]`. Hay dos tipos de fallo y se tratan distinto: ante un **error HTTP** (el 404 intermitente que devuelve Google al entregar la respuesta) se hace un segundo intento, porque suele funcionar; ante un **agotamiento del tiempo de espera** no se reintenta, porque eso significa que Apps Script está saturado y insistir lo empeora. Basta con recargar la página.
+
+   **Y si el fallo se prolonga, se muestra todo.** Esta es la garantía importante: tras **5 minutos seguidos** sin una sola respuesta correcta, la web deja de ocultar nada y enseña el 100% del contenido. El contador arranca en el primer fallo de la racha y se pone a cero en cuanto una consulta funciona, así que un error suelto no destapa nada; hacen falta 5 minutos de fallo continuado. Que Google se caiga o estrangule tu cuenta nunca debe impedir al alumnado ver los materiales. La consecuencia es que **este sistema no sirve para esconder nada con garantías**: si necesitas que algo no se vea pase lo que pase, comenta o retira ese contenido del archivo `.md` de la página, que es lo único que no depende de un servicio externo.
+
+   Desde la consola también puedes forzar una actualización inmediata con:
 
    ```javascript
    INF_VISIBILITY.refresh()
@@ -41,6 +45,17 @@ Esta guía explica cómo controlar qué asignaturas, temas y actividades se mues
    ```javascript
    INF_VISIBILITY.clearCache()
    ```
+
+3. **Interruptor de emergencia en el código:**
+   Si algún día quieres desactivar el sistema entero, abre `assets/js/visibility.js` y cambia la variable que hay al principio del archivo:
+
+   ```javascript
+   const VISIBILIDAD_ACTIVADA = false;
+   ```
+
+   Con eso la web deja de consultar a Google y muestra el 100% del contenido, como si el sistema no existiera. Haz `git push` para publicarlo.
+
+   No lo confundas con la casilla de **CONTROL GENERAL** de la hoja de cálculo: aquella se maneja desde Google Sheets y actúa en menos de un minuto, pero depende de que Apps Script funcione. Esta vive en el repositorio y tarda lo que tarde el despliegue de GitHub Pages, pero **funciona aunque Google esté caído**.
 
 ---
 
