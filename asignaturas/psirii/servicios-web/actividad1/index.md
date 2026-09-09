@@ -99,12 +99,41 @@ Antes de iniciar la instalación técnica, es fundamental aplicar buenas prácti
    > **Elección del editor:** Al instalar una plantilla, normalmente la interfaz permite elegir qué tipo de editor prefieres utilizar: el editor de bloques **Gutenberg** (nativo de WordPress) o el maquetador visual **Elementor**. Puedes elegir el que prefieras.
 {: .alert-info}
 5. *(Opcional)* Si decides utilizar Elementor y no se ha instalado automáticamente al importar la plantilla, ve a **Plugins > Añadir nuevo** e instala y activa **Elementor**. Si eliges Gutenberg, no es necesario instalar ningún maquetador adicional.
-6. Edita la página principal utilizando el editor seleccionado (Gutenberg o Elementor):
-   - Personaliza los encabezados con tu nombre y perfil técnico.
-   - Añade o modifica secciones de formación, competencias informáticas y proyectos desarrollados.
-   - Adapta la sección o datos de contacto.
+{:start="5"}
+6. Edita y personaliza la página principal utilizando el editor seleccionado (Gutenberg o Elementor):
+   
+   Accede a **Páginas > Todas las páginas**, localiza la página de inicio (habitualmente llamada *Home* o *Inicio*) y pulsa en **Editar** (o **Editar con Elementor** si optaste por dicho maquetador). Adapta el contenido para que funcione como tu carta de presentación profesional o currículum digital:
+   
+   - **Cabecera principal (Hero Section):**
+     - Sustituye los textos de ejemplo por tu **nombre y apellidos** y un titular de perfil técnico (ej.: *Estudiante de 2º Bachillerato / Entusiasta de Sistemas, Redes y Desarrollo Web*).
+     - Redacta una breve presentación o biografía personal (2-3 líneas resumiendo tus intereses formativos y tecnológicos).
+     - Sustituye la foto de la plantilla por tu fotografía o un avatar/ilustración profesional representativa.
+     - Configura los botones de acción (*Call to Action*), por ejemplo: *"Ver proyectos"* y *"Contactar"*.
+   
+   - **Competencias técnicas e informáticas (Skills):**
+     - Adapta las etiquetas (*badges*), barras de progreso o tarjetas para destacar las tecnologías que trabajamos en la materia o de tu interés: **Linux Mint (terminal y administración)**, **WordPress y diseño web**, **Programación en Python**, **Redes y protocolos**, **Docker**, **HTML/CSS**, etc.
+   
+   - **Proyectos desarrollados (Portfolio):**
+     - Crea o personaliza al menos **2 o 3 tarjetas de proyectos** trabajados en la asignatura o de ámbito personal.
+     - *Ejemplos sugeridos:*
+       1. *Despliegue de Servidor LAMP en entorno local Linux Mint.*
+       2. *Instalación y personalización de CMS WordPress.*
+       3. *Simulación de redes locales o contenedores Docker.*
+     - Para cada tarjeta, incluye un título descriptivo, las tecnologías utilizadas y una imagen o captura ilustrativa.
+   
+   - **Sección o datos de contacto:**
+     - Adapta los enlaces a redes o repositorios de código (enlace a tu GitHub, LinkedIn o correo electrónico ficticio/educativo).
+
+   > 👁️ **Ejemplo visual de referencia:**  
+   > A continuación se muestra un ejemplo orientativo de cómo puede quedar la distribución de secciones en la página principal:
+   > 
+   > ![Ejemplo de maquetación de web personal CV](./ejemplo_web_cv.jpg)
+   {: .alert-info}
+{:start="6"}
 7. Ve a **Plugins > Añadir nuevo**, busca e instala el plugin **All-in-One WP Migration**. Actívalo.
+{:start="7"}
 8. Ve a **All-in-One WP Migration > Exportar**, selecciona **Exportar a > Archivo** y descarga la copia de seguridad de tu sitio web (archivo con extensión `.wpress`).
+{:start="8"}
 
 ---
 
