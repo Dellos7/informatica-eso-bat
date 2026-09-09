@@ -1,22 +1,20 @@
 # 📊 Guía: Control de Visibilidad de Contenidos desde Google Sheets
 
-Esta guía explica cómo controlar qué asignaturas, temas y actividades se muestran u ocultan en la web del departamento de informática a través de una **hoja de cálculo de Google Sheets**, con sincronización en tiempo real e interruptor general de activación/desactivación en GitHub.
+Esta guía explica cómo controlar qué asignaturas, temas y actividades se muestran u ocultan en la web del departamento de informática a través de una **hoja de cálculo de Google Sheets**, con sincronización en tiempo real e interruptor general sin dependencias externas.
 
 ---
 
 ## ⚡ En resumen: ¿Cómo funciona?
 
-1. **Interruptor General (GitHub):**  
-   El archivo JSON en tu repositorio:  
-   `https://raw.githubusercontent.com/Dellos7/activar-desactivar-visibilidad-inf-eso-bat/refs/heads/main/visibilidad_contenido_inf-eso-bat.json`  
-   - Si tiene `"activado": false` ➔ Todo se muestra con normalidad (el sistema está apagado).  
-   - Si tiene `"activado": true` ➔ La web consulta Google Sheets y oculta lo que indiques.
+1. **Control 100% desde Google Sheets:**  
+   Todo el control de la web se gestiona desde una única hoja de cálculo con casillas de verificación (checkboxes ☑️).  
+   - **Fila 2 (Control General):** Desmarcar esta casilla desactiva todo el sistema al instante y hace visible el 100% de la web.
+   - **Casilla de tema/actividad marcada (TRUE):** El elemento está **visible**.  
+   - **Casilla de tema/actividad desmarcada (FALSE):** El elemento se **oculta visualmente** en los menús y listas (y si un alumno entra por enlace directo, se muestra un aviso de *Contenido no disponible*).  
+   - **Elementos nuevos que no estén en la hoja:** **Se muestran siempre por defecto**.
 
-2. **Hoja de Cálculo (Google Sheets):**  
-   Una hoja con casillas de verificación (checkboxes ☑️).  
-   - Casilla **marcada** (TRUE): El elemento está **visible**.  
-   - Casilla **desmarcada** (FALSE): El elemento se **oculta visualmente** (y si entran por enlace directo, se muestra un aviso de *Contenido no disponible*).  
-   - Elementos nuevos que no estén en la hoja: **Se muestran siempre por defecto**.
+2. **Sin cachés ni esperas:**  
+   Al consultar directamente Google Apps Script en vivo, los cambios que realices en las casillas toman efecto de inmediato en las siguientes visitas de los alumnos.
 
 ---
 
@@ -50,10 +48,11 @@ function doGet(e) {
     var data = sheet.getDataRange().getValues();
 
     if (data.length <= 1) {
-      return createResponse({ status: "success", visibility: {} }, e);
+      return createResponse({ status: "success", enabled: true, visibility: {} }, e);
     }
 
     var visibility = {};
+    var masterEnabled = true;
 
     // Empezamos en la fila 1 (la 0 son los encabezados)
     for (var i = 1; i < data.length; i++) {
@@ -75,6 +74,12 @@ function doGet(e) {
         String(rawVal) === "1"
       );
 
+      // Interruptor maestro directamente desde Google Sheets (actualización instantánea en 0 seg)
+      if (asig === "_general_" || asig === "_master_" || asig === "control_general") {
+        masterEnabled = isVisible;
+        continue;
+      }
+
       // Generar clave única según el nivel
       var key = "";
       if (act) {
@@ -90,8 +95,9 @@ function doGet(e) {
 
     return createResponse({
       status: "success",
+      enabled: masterEnabled,
       updatedAt: new Date().toISOString(),
-      visibility: visibility
+      visibility: masterEnabled ? visibility : {}
     }, e);
 
   } catch (err) {
@@ -139,6 +145,9 @@ function inicializarHoja() {
 
   // 2. Catálogo completo actual de la web
   var items = [
+    // Interruptor General (Opcional: puedes desmarcarlo para mostrar TODO al instante sin ir a GitHub)
+    ["Sistema", "_general_", "", "", "🔘 CONTROL GENERAL (Desmarca esta casilla para mostrar TODO en la web)", true],
+
     // 1º ESO - TRDR
     ["Asignatura", "trdr", "", "", "1º ESO - Taller de Relaciones Digitales Responsables", true],
     ["Tema", "trdr", "sistemas-operativos-y-aplicaciones", "", "Tema 1. Sistemas operativos y aplicaciones", true],

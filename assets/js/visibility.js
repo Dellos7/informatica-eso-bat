@@ -7,19 +7,12 @@
   'use strict';
 
   const CONFIG = {
-    // URL del repositorio GitHub para activar o desactivar la funcionalidad
-    SWITCH_URL: 'https://raw.githubusercontent.com/Dellos7/activar-desactivar-visibilidad-inf-eso-bat/refs/heads/main/visibilidad_contenido_inf-eso-bat.json',
-    // URL de respaldo (Gist)
-    SWITCH_FALLBACK_URL: 'https://gist.githubusercontent.com/Dellos7/088434572e59d0acfc3f2415524e376f/raw/visibilidad_contenido_inf-eso-bat.json',
-
     // URL de la Aplicación Web de Google Apps Script (generada tras publicar el script de Google Sheets)
     // Puedes pegar tu URL aquí directamente, o definirla en window.VISIBILITY_APPS_SCRIPT_URL
-    APPS_SCRIPT_URL: window.VISIBILITY_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwPzhAhk3Oj7Lr4LuJ1cr0D4ITS6Pb3Cv-3AczeQC2AbhXi6l2up-WUQwbmjGbkeYjv/exec',
+    APPS_SCRIPT_URL: window.VISIBILITY_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbzTeOVH_XfidipMrpSBxZp2mIBe9MCObXfzrApTeOQDMAv7FSifdFmW6yLcX7kF4roZ/exec',
 
-    // Tiempo de vida de la caché local (en milisegundos) - 5 minutos por defecto
-    CACHE_TTL: 5 * 60 * 1000,
-    CACHE_KEY_DATA: 'inf_visibilidad_data',
-    CACHE_KEY_TIME: 'inf_visibilidad_time'
+    // Clave de almacenamiento en sessionStorage para evitar parpadeos visuales al navegar
+    CACHE_KEY_DATA: 'inf_visibilidad_data'
   };
 
   /**
@@ -64,60 +57,35 @@
   }
 
   /**
-   * Parsea contenido JSON de forma tolerante (soporta tanto JSON estricto como { activado: true })
+   * Restablece completamente el DOM a su estado original visible
    */
-  function parseLooseJson(text) {
-    if (!text) return null;
-    try {
-      return JSON.parse(text);
-    } catch (err) {
-      try {
-        // Fallback evaluador para sintaxis JS relajada
-        return (new Function('return ' + text))();
-      } catch (e2) {
-        // Fallback por expresión regular para { activado: true / false }
-        const match = text.match(/activado\s*:\s*(true|false)/i);
-        if (match) {
-          return { activado: match[1].toLowerCase() === 'true' };
-        }
-        return null;
-      }
-    }
-  }
+  function clearVisibilityStyles() {
+    // 1. Quitar la clase de ocultación de todos los elementos
+    document.querySelectorAll('.visibility-hidden').forEach(el => {
+      el.classList.remove('visibility-hidden');
+    });
 
-  /**
-   * Consulta el interruptor maestro en GitHub
-   */
-  async function checkMasterSwitch() {
-    const bustCache = `?_t=${Date.now()}`;
-    try {
-      const resp = await fetch(CONFIG.SWITCH_URL + bustCache, { cache: 'no-store' });
-      if (resp.ok) {
-        const txt = await resp.text();
-        const data = parseLooseJson(txt);
-        if (data && typeof data.activado === 'boolean') {
-          return data.activado;
-        }
-      }
-    } catch (e) {
-      console.warn('[Visibilidad] Error al consultar SWITCH_URL principal, probando respaldo...', e);
+    // 2. Eliminar el aviso de contenido restringido si existía
+    const notice = document.querySelector('.visibility-restricted-notice');
+    if (notice) {
+      notice.remove();
     }
 
-    // Probar URL de respaldo si la principal falla
-    try {
-      const respFallback = await fetch(CONFIG.SWITCH_FALLBACK_URL + bustCache, { cache: 'no-store' });
-      if (respFallback.ok) {
-        const txt = await respFallback.text();
-        const data = parseLooseJson(txt);
-        if (data && typeof data.activado === 'boolean') {
-          return data.activado;
+    // 3. Restaurar todos los elementos hijos del contenido principal
+    const mainContent = document.querySelector('.page-content-main');
+    if (mainContent) {
+      Array.from(mainContent.children).forEach(child => {
+        if (child.style.display === 'none') {
+          child.style.display = '';
         }
-      }
-    } catch (e2) {
-      console.warn('[Visibilidad] Error al consultar SWITCH_FALLBACK_URL:', e2);
+      });
     }
 
-    return true; // Por defecto activo si no se puede determinar
+    // 4. Restaurar el índice de contenidos lateral
+    const tocAside = document.getElementById('page-toc');
+    if (tocAside && tocAside.style.display === 'none') {
+      tocAside.style.display = '';
+    }
   }
 
   /**
@@ -136,9 +104,15 @@
       const resp = await fetch(url + bustCache, { redirect: 'follow' });
       if (resp.ok) {
         const json = await resp.json();
-        if (json && json.status === 'success' && json.visibility) {
-          sessionStorage.setItem(CONFIG.CACHE_KEY_DATA, JSON.stringify(json.visibility));
-          return json.visibility;
+        if (json && json.status === 'success') {
+          // Soporte para interruptor maestro gestionado directamente desde Google Sheets
+          if (json.enabled === false) {
+            return { _master_enabled: false };
+          }
+          if (json.visibility) {
+            sessionStorage.setItem(CONFIG.CACHE_KEY_DATA, JSON.stringify(json.visibility));
+            return json.visibility;
+          }
         }
       }
     } catch (e) {
@@ -152,11 +126,19 @@
    * Aplica las reglas de visibilidad en el DOM
    */
   function applyRules(rules) {
+    // 0. Siempre restablecer el DOM primero a su estado limpio.
+    // Esto permite que elementos que antes estaban ocultos y ahora se han activado en Sheets vuelvan a mostrarse de inmediato.
+    clearVisibilityStyles();
+
     if (!rules || typeof rules !== 'object') return;
+
+    // Si el interruptor global de visibilidad está apagado, no ocultar nada
+    if (rules._master_enabled === false) return;
 
     // Obtener todas las claves con valor explícito false
     const hiddenEntries = [];
     Object.keys(rules).forEach(key => {
+      if (key.startsWith('_')) return;
       if (rules[key] === false) {
         hiddenEntries.push(key.toLowerCase().replace(/^\/+|\/+$/g, ''));
       }
@@ -251,6 +233,9 @@
       tocAside.style.display = 'none';
     }
 
+    // Si ya hay un aviso previo, no duplicarlo
+    if (mainContent.querySelector('.visibility-restricted-notice')) return;
+
     // Crear bloque de aviso
     const notice = document.createElement('div');
     notice.className = 'visibility-restricted-notice';
@@ -285,7 +270,7 @@
    * Inicialización principal
    */
   async function init() {
-    // 0. Si ya tenemos reglas en la pestaña actual, aplicarlas al instante (0 retraso/parpadeo al navegar)
+    // 0. Si ya tenemos reglas en la pestaña actual, aplicarlas al instante (0 retraso visual al navegar)
     try {
       const cached = sessionStorage.getItem(CONFIG.CACHE_KEY_DATA);
       if (cached) {
@@ -293,18 +278,16 @@
       }
     } catch (e) { }
 
-    // Paso 1: Comprobar interruptor maestro de GitHub (en vivo)
-    const isEnabled = await checkMasterSwitch();
-    if (!isEnabled) {
-      // Si se desactiva en GitHub, limpiar clases de inmediato y borrar caché
-      document.querySelectorAll('.visibility-hidden').forEach(el => el.classList.remove('visibility-hidden'));
-      sessionStorage.removeItem(CONFIG.CACHE_KEY_DATA);
-      return;
-    }
-
-    // Paso 2: Descargar reglas actualizadas de Google Sheets (en vivo) y aplicar cualquier cambio reciente
+    // Descargar reglas actualizadas de Google Apps Script (en vivo)
     const rules = await fetchVisibilityRules();
+
     if (rules) {
+      // Si el interruptor maestro de Google Sheets está apagado (mostrar todo)
+      if (rules._master_enabled === false) {
+        clearVisibilityStyles();
+        sessionStorage.removeItem(CONFIG.CACHE_KEY_DATA);
+        return;
+      }
       applyRules(rules);
     }
   }
