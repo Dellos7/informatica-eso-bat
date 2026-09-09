@@ -42,6 +42,28 @@
   }
 
   /**
+   * Comprueba si targetPath coincide exactamente o es descendiente de hiddenPath
+   * respetando los límites de los segmentos de ruta (evita falsos positivos como psiri vs psirii o piari vs piari_3eso).
+   */
+  function isPathMatch(targetPath, hiddenPath) {
+    if (!targetPath || !hiddenPath) return false;
+    const targetSegments = targetPath.toLowerCase().split('/').filter(Boolean);
+    const hiddenSegments = hiddenPath.toLowerCase().split('/').filter(Boolean);
+    if (hiddenSegments.length > targetSegments.length) return false;
+    for (let i = 0; i <= targetSegments.length - hiddenSegments.length; i++) {
+      let match = true;
+      for (let j = 0; j < hiddenSegments.length; j++) {
+        if (targetSegments[i + j] !== hiddenSegments[j]) {
+          match = false;
+          break;
+        }
+      }
+      if (match) return true;
+    }
+    return false;
+  }
+
+  /**
    * Parsea contenido JSON de forma tolerante (soporta tanto JSON estricto como { activado: true })
    */
   function parseLooseJson(text) {
@@ -161,14 +183,8 @@
       const linkPath = normalizePath(link.href);
 
       for (const hidden of hiddenEntries) {
-        // Comprobar si el enlace apunta al elemento oculto
-        const isMatch = linkPath === hidden ||
-          linkPath.endsWith('/' + hidden) ||
-          linkPath.endsWith('/' + hidden + '/') ||
-          linkPath.includes('/' + hidden + '/') ||
-          linkPath.includes('/asignaturas/' + hidden);
-
-        if (isMatch) {
+        // Comprobar si el enlace apunta al elemento oculto respetando límites de palabras
+        if (isPathMatch(linkPath, hidden)) {
           // Si está en el menú de navegación superior Cayman (etiqueta .btn en el header)
           if (link.classList.contains('btn') && link.closest('.page-header')) {
             link.classList.add('visibility-hidden');
@@ -215,12 +231,7 @@
 
     // 3. Comprobar si el usuario se encuentra actualmente en una página que está oculta
     for (const hidden of hiddenEntries) {
-      const isCurrentPageHidden = currentPath === hidden ||
-        currentPath.endsWith('/' + hidden) ||
-        currentPath.includes('/' + hidden + '/') ||
-        currentPath.includes('/asignaturas/' + hidden);
-
-      if (isCurrentPageHidden) {
+      if (isPathMatch(currentPath, hidden)) {
         showRestrictedNotice();
         break;
       }
