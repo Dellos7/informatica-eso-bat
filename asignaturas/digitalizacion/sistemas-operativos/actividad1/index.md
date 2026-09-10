@@ -42,7 +42,7 @@ Todas las respuestas y datos que se te soliciten a lo largo de esta actividad de
 2. Crea un documento nuevo y escribe como título de portada o cabecera: **Actividad 1: Uso del sistema operativo LliureX - [Tu Nombre y Apellidos]**.
 3. Guarda inmediatamente este documento vacío en la carpeta que acabas de crear: `Digitalizacion_4ESO/Tema_1/Actividad_1/` con el nombre `actividad1_respuestas.odt`. **Ve guardando (Ctrl+S) constantemente**.
 4. Ahora, abre el menú de inicio de LliureX (abajo a la izquierda) y busca la aplicación **Centro de información** (en valenciano: *Centre d'informació*).
-5. En tu documento `actividad1_respuestas.odt`, bajo un apartado llamado **«Ejercicio 2: Especificaciones del ordenador»**, anota los siguientes datos técnicos de tu máquina de clase:
+5. En tu documento `actividad1_respuestas.odt`, bajo un apartado llamado **«Ejercicio 2: Especificaciones del ordenador»**, anota los siguientes datos técnicos de tu máquina de clase (busca en el **Centro de información** del sistema):
    * ¿Qué modelo de procesador (CPU) tiene tu ordenador?
    * ¿Cuánta memoria RAM tiene instalada?
    * ¿En qué sistema operativo GNU/Linux (distribución base) se apoya la versión actual de LliureX que utilizas?

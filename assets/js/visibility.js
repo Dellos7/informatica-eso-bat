@@ -30,6 +30,10 @@
     // Marca de cuándo empezó la racha de fallos actual (se borra al primer acierto)
     CACHE_KEY_FAIL: 'inf_visibilidad_fallo_desde',
 
+    // Preferencia del botón de desarrollo. SOLO se consulta en entorno local:
+    // en producción se ignora por completo aunque exista en el navegador.
+    CACHE_KEY_LOCAL: 'inf_visibilidad_local_activada',
+
     // Cuánto tiempo sigue sirviendo la copia local para pintar la página al instante.
     // Es generoso a propósito: solo evita el parpadeo del primer segundo de carga, y
     // siempre queda sustituida por la respuesta en vivo un momento después.
@@ -65,6 +69,57 @@
   let lastAppliedSignature = null;  // Evita repintar el DOM si las reglas no han cambiado
   let lastFetchAt = 0;              // Marca temporal de la última consulta correcta
   let inFlight = null;              // Petición en curso (evita consultas simultáneas)
+
+  /**
+   * ¿Estamos en la máquina de desarrollo? Cubre localhost, la IP de bucle,
+   * los dominios .local y los tres rangos de IP privada, para que también
+   * funcione al abrir la web desde el móvil contra el Jekyll del portátil.
+   */
+  function isLocalEnvironment() {
+    const h = (window.location.hostname || '').toLowerCase();
+
+    // Sin hostname es un archivo abierto directamente (file://)
+    if (!h) return true;
+
+    if (h === 'localhost' || h === '127.0.0.1' || h === '::1' || h === '[::1]') return true;
+    if (h.endsWith('.local') || h.endsWith('.localhost')) return true;
+
+    // Rangos privados IPv4: 10.x.x.x, 192.168.x.x y 172.16.x.x - 172.31.x.x
+    if (/^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(h)) return true;
+    if (/^192\.168\.\d{1,3}\.\d{1,3}$/.test(h)) return true;
+    if (/^172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}$/.test(h)) return true;
+
+    return false;
+  }
+
+  /** Preferencia del botón de desarrollo (solo tiene efecto en local). */
+  function localEnabled() {
+    try {
+      return localStorage.getItem(CONFIG.CACHE_KEY_LOCAL) === '1';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function setLocalEnabled(activado) {
+    try {
+      if (activado) {
+        localStorage.setItem(CONFIG.CACHE_KEY_LOCAL, '1');
+      } else {
+        localStorage.removeItem(CONFIG.CACHE_KEY_LOCAL);
+      }
+    } catch (e) { }
+  }
+
+  /**
+   * ¿Debe ocultarse contenido ahora mismo? En local manda el botón y por defecto
+   * está apagado; en producción manda únicamente VISIBILIDAD_ACTIVADA.
+   */
+  function systemActive() {
+    if (!VISIBILIDAD_ACTIVADA) return false;
+    if (isLocalEnvironment()) return localEnabled();
+    return true;
+  }
 
   /**
    * Normaliza una ruta eliminando dominio, barras iniciales/finales e index.html
@@ -429,7 +484,7 @@
    * force = true ignora el intervalo mínimo entre reconsultas.
    */
   function refresh(force) {
-    if (!VISIBILIDAD_ACTIVADA) return Promise.resolve();
+    if (!systemActive()) return Promise.resolve();
     if (!force && Date.now() - lastFetchAt < CONFIG.REVALIDATE_MIN_MS) return Promise.resolve();
 
     // Si ya hay una consulta en curso, reutilizarla en lugar de lanzar otra
@@ -506,29 +561,101 @@
     window.addEventListener('online', () => refresh(true));
   }
 
+  /**
+   * Apagado completo: deja el DOM visible y borra lo que el navegador guardase,
+   * para que no quede ningún resto ocultando contenido.
+   */
+  function deactivate() {
+    clearCachedRules();
+    clearFailureStreak();
+    clearVisibilityStyles();
+    lastAppliedSignature = null;
+  }
+
+  /** Arranque normal, esperando al DOM si hace falta. */
+  function start() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  }
+
+  /**
+   * Botón flotante de desarrollo. Solo se crea en entorno local: en producción
+   * esta función no llega a llamarse nunca, así que el alumnado jamás lo ve.
+   */
+  function renderLocalToggle() {
+    const pintar = () => {
+      if (!document.body || document.getElementById('visibility-local-toggle')) return;
+
+      const btn = document.createElement('button');
+      btn.id = 'visibility-local-toggle';
+      btn.type = 'button';
+      btn.className = 'visibility-local-toggle';
+      btn.title = 'Solo visible en local. Alterna entre ver la web completa y verla como la ve el alumnado.';
+
+      const actualizar = () => {
+        const activo = localEnabled();
+        btn.textContent = activo ? 'Visibilidad ACTIVADA · vista del alumnado' : 'Visibilidad desactivada · vista local';
+        btn.setAttribute('data-activa', activo ? 'si' : 'no');
+      };
+
+      btn.addEventListener('click', () => {
+        const nuevo = !localEnabled();
+        setLocalEnabled(nuevo);
+        actualizar();
+        if (nuevo) {
+          start();
+        } else {
+          deactivate();
+        }
+      });
+
+      actualizar();
+      document.body.appendChild(btn);
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', pintar);
+    } else {
+      pintar();
+    }
+  }
+
   // Exponer CONFIG y utilidades en window para pruebas o configuración dinámica desde consola
   window.INF_VISIBILITY_CONFIG = CONFIG;
   window.INF_VISIBILITY = {
     CONFIG: CONFIG,
-    enabled: VISIBILIDAD_ACTIVADA,
+    get enabled() { return systemActive(); },
+    get isLocal() { return isLocalEnvironment(); },
     refresh: () => refresh(true),
     clearCache: clearCachedRules
   };
 
   if (!VISIBILIDAD_ACTIVADA) {
     // Desactivado a mano: ni se consulta a Apps Script ni se oculta nada.
-    // Se limpia lo guardado por el navegador para no dejar rastros que oculten.
-    clearCachedRules();
-    clearFailureStreak();
+    deactivate();
     console.info('[Visibilidad] Sistema desactivado en visibility.js (VISIBILIDAD_ACTIVADA = false). Se muestra todo el contenido.');
-  } else {
-    // Ejecución cuando el DOM esté listo
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
+
+  } else if (isLocalEnvironment()) {
+    // Máquina de desarrollo: por defecto NO se oculta nada, para poder trabajar en
+    // la web sin depender de Google. El botón flotante permite ver la web tal como
+    // la ve el alumnado, y la elección se recuerda en este navegador.
+    renderLocalToggle();
+
+    if (localEnabled()) {
+      console.info('[Visibilidad] Entorno local: sistema ACTIVADO desde el botón.');
+      start();
     } else {
-      init();
+      console.info('[Visibilidad] Entorno local: sistema desactivado por defecto. Actívalo con el botón de la esquina.');
+      deactivate();
     }
 
+    setupRevalidation();
+
+  } else {
+    start();
     setupRevalidation();
   }
 

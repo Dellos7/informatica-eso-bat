@@ -51,3 +51,37 @@
   background: #128249;
   transform: translateY(-1px);
 }
+
+/* --- Botón de desarrollo -----------------------------------------------
+   Solo se inserta en localhost o en una IP de red local. En producción el
+   script nunca lo crea, así que estas reglas no llegan a aplicarse nunca. */
+.visibility-local-toggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 0.6rem 0.95rem;
+  border: 2px solid #cbd5e1;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #1e293b;
+  cursor: pointer;
+  opacity: 0.92;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  transition: background 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
+}
+
+.visibility-local-toggle:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.visibility-local-toggle[data-activa="si"] {
+  background: #159957;
+  border-color: #0f7a45;
+  color: #ffffff;
+}

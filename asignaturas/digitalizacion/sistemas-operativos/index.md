@@ -11,13 +11,13 @@ description: Sistemas Operativos
 
 ![Mapa mental Sistemas Operativos](./mapa_mental_sistemas_operativos.png)
 
-
+<!--
 ## Apuntes
 
 - [Apuntes Comandos Linux](./apuntes_comandos)
 - [Archivo fotos_animales.zip para el ejemplo](./fotos_animales.zip) **dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/sistemas-operativos/fotos_animales.zip**{: .verde}
 
-<!--
+
 - [Apuntes SSH y SCP](./apuntes_ssh_scp)
 - [Apuntes Scripts Linux](./apuntes_scripts)
 -->

@@ -57,6 +57,13 @@ Esta guía explica cómo controlar qué asignaturas, temas y actividades se mues
 
    No lo confundas con la casilla de **CONTROL GENERAL** de la hoja de cálculo: aquella se maneja desde Google Sheets y actúa en menos de un minuto, pero depende de que Apps Script funcione. Esta vive en el repositorio y tarda lo que tarde el despliegue de GitHub Pages, pero **funciona aunque Google esté caído**.
 
+4. **Al trabajar en local no se oculta nada:**
+   Cuando abres la web en tu ordenador (`localhost`, `127.0.0.1`, un dominio `.local` o una IP de red interna como `192.168.x.x`), el sistema **arranca desactivado**: no se consulta a Google y se ve el 100% del contenido. Así puedes desarrollar sin depender de que Apps Script responda.
+
+   En ese entorno aparece además un **botón flotante en la esquina inferior derecha** que enciende y apaga la visibilidad al momento, sin recargar, por si quieres comprobar cómo queda la web tal y como la ve el alumnado. Lo que elijas se recuerda en ese navegador.
+
+   Ese botón **solo existe en local**. En la web publicada no se crea nunca, así que el alumnado no puede verlo ni usarlo.
+
 ---
 
 ## 🛠️ PASO 1: Crear la Hoja de Cálculo
