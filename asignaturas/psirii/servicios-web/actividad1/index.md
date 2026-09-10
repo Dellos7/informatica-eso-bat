@@ -36,6 +36,10 @@ Antes de iniciar la instalación técnica, es fundamental aplicar buenas prácti
 ---
 
 ### Paso 2: Virtualización con Linux Mint en VirtualBox
+
+> Si necesitas repasar los conceptos teóricos y la arquitectura de máquinas virtuales, consulta los [Apuntes de Virtualización con VirtualBox](../virtualizacion).
+{: .alert-info}
+
 1. **Descargar Linux Mint**: [Descargar Linux Mint](https://linuxmint.com/download.php)
 2. Abre **VirtualBox** en tu ordenador del aula.
 3. Crea una nueva máquina virtual con las siguientes características recomendadas:
