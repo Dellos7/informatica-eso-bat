@@ -71,31 +71,69 @@ Antes de iniciar la instalación técnica, es fundamental aplicar buenas prácti
    sudo /opt/lampp/lampp start
    ```
 6. Abre el navegador y accede a `http://localhost` para verificar que Apache está en funcionamiento, y a `http://localhost/phpmyadmin` para comprobar la gestión de bases de datos.
+7. Crear un lanzador en el escritorio para el *Manager* de XAMPP (comando `sudo /opt/lampp/manager-linux-x64.run`)
+8. Ajustar los permisos de la carpeta `htdocs`:
+
+```bash
+# 1. Añadir al usuario actual al grupo daemon
+   sudo usermod -a -G daemon $USER
+# 2. Cambiar la propiedad de htdocs al usuario daemon
+   sudo chown -R root:daemon /opt/lampp/htdocs/
+# 3. Dar permisos de lectura, escritura y ejecución al grupo
+   sudo chmod -R g+rwX /opt/lampp/htdocs/
+# 4. Hacer que los nuevos archivos hereden el grupo del directorio padre
+   sudo find /opt/lampp/htdocs/ -type d -exec chmod g+s {} \;
+```
 
 ---
 
 ### Paso 4: Descarga e instalación de WordPress en local
 1. Descarga el paquete de WordPress en español desde [WordPress.org](https://es.wordpress.org/download/).
 2. Descomprime el archivo comprimido `.tar.gz` o `.zip`.
-3. Mueve la carpeta `wordpress` al directorio público del servidor XAMPP:
+```bash
+unzip wordpress-*.zip
+```
+3. Mueve la carpeta `wordpress` al directorio público del servidor XAMPP (carpeta `htdocs`):
    ```bash
    sudo mv wordpress /opt/lampp/htdocs/
    ```
-4. Otorga permisos de escritura a la carpeta de WordPress para permitir la subida de medios y temas:
+> Revisar los permisos de la carpeta `wordpress` ya que probablemente no tenga los permisos adecuados:
    ```bash
-   sudo chmod -R 777 /opt/lampp/htdocs/wordpress
+   sudo chown -R $USER:daemon /opt/lampp/htdocs/wordpress
+   sudo chmod -R g+rwX /opt/lampp/htdocs/wordpress
    ```
-5. Accede a **phpMyAdmin** (`http://localhost/phpmyadmin`) y crea una nueva base de datos llamada `wordpress_db`.
-6. Entra en el navegador a `http://localhost/wordpress` para iniciar el asistente de WordPress:
+{: .alert-warning}
+4. Accede a **phpMyAdmin** (`http://localhost/phpmyadmin`) y crea una nueva base de datos llamada `wordpress_db`.
+{:start="4"}
+5. Entra en el navegador a `http://localhost/wordpress` para iniciar el asistente de WordPress:
    - **Base de datos:** `wordpress_db`
    - **Usuario MySQL:** `root`
    - **Contraseña:** *(la configurada en XAMPP o en blanco por defecto)*
    - **Servidor:** `localhost`
-7. Configura el título de tu sitio y crea el usuario Administrador de WordPress (recuerda guardar estas credenciales en Bitwarden).
-
+{:start="5"}
+6. Configura el título de tu sitio y crea el usuario Administrador de WordPress (recuerda guardar estas credenciales en Bitwarden).
+{:start="6"}
 ---
 
-### Paso 5: Personalización con el tema Blocksy, maquetación web y exportación
+### Paso 5: Ajustes generales
+1. Cambiar el idioma de WordPress a español.
+   - Ve a **Ajustes > Generales**.
+   - Cambia el **Idioma del sitio** a **Español**.
+   - Guarda los cambios.
+> Si no deja cambiar el idioma, deberemos abrir `wp-config.php` y añadir, justo antes de la línea `/* That's all, stop editing! */`:
+   ```php
+   define('FS_METHOD', 'direct');
+   ```
+> Después, guardar los cambios y reiniciar el servidor web.
+{: .alert-warning}
+
+2. Cambiar la zona horaria de WordPress a la de Madrid.
+   - Ve a **Ajustes > Generales**.
+   - Cambia la **Zona horaria** a **Madrid**.
+   - Guarda los cambios.
+{:start="2"}
+
+### Paso 6: Personalización con el tema Blocksy, maquetación web y exportación
 1. Accede al panel de administración de WordPress (`http://localhost/wordpress/wp-admin`).
 2. Ve a **Apariencia > Temas > Añadir nuevo**, busca e instala el tema **Blocksy**. Actívalo.
 3. Instala el plugin **Blocksy Companion** si el sistema lo requiere para acceder al catálogo de plantillas preconfiguradas (*Starter Sites*).
@@ -105,7 +143,7 @@ Antes de iniciar la instalación técnica, es fundamental aplicar buenas prácti
 5. *(Opcional)* Si decides utilizar Elementor y no se ha instalado automáticamente al importar la plantilla, ve a **Plugins > Añadir nuevo** e instala y activa **Elementor**. Si eliges Gutenberg, no es necesario instalar ningún maquetador adicional.
 {:start="5"}
 6. Edita y personaliza la página principal utilizando el editor seleccionado (Gutenberg o Elementor):
-   
+{:start="6"}
    Accede a **Páginas > Todas las páginas**, localiza la página de inicio (habitualmente llamada *Home* o *Inicio*) y pulsa en **Editar** (o **Editar con Elementor** si optaste por dicho maquetador). Adapta el contenido para que funcione como tu carta de presentación profesional o currículum digital:
    
    - **Cabecera principal (Hero Section):**
@@ -126,14 +164,19 @@ Antes de iniciar la instalación técnica, es fundamental aplicar buenas prácti
      - Para cada tarjeta, incluye un título descriptivo, las tecnologías utilizadas y una imagen o captura ilustrativa.
    
    - **Sección o datos de contacto:**
-     - Adapta los enlaces a redes o repositorios de código (enlace a tu GitHub, LinkedIn o correo electrónico ficticio/educativo).
+     - Adapta los enlaces a redes o repositorios de código (enlace a tu GitHub, LinkedIn o correo electrónico ficticio/educativo).ç
+     
+<!--
 
    > 👁️ **Ejemplo visual de referencia:**  
    > A continuación se muestra un ejemplo orientativo de cómo puede quedar la distribución de secciones en la página principal:
    > 
    > ![Ejemplo de maquetación de web personal CV](./ejemplo_web_cv.jpg)
    {: .alert-info}
-{:start="6"}
+   
+   -->
+
+
 7. Ve a **Plugins > Añadir nuevo**, busca e instala el plugin **All-in-One WP Migration**. Actívalo.
 {:start="7"}
 8. Ve a **All-in-One WP Migration > Exportar**, selecciona **Exportar a > Archivo** y descarga la copia de seguridad de tu sitio web (archivo con extensión `.wpress`).

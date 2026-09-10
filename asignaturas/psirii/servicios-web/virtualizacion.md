@@ -62,19 +62,23 @@ Son las máquinas virtuales creadas por el usuario. Como se observa en la imagen
 El software encargado de crear y gestionar máquinas virtuales se denomina **hipervisor** (*hypervisor*) o **VMM** (*Virtual Machine Monitor*). Existen dos arquitecturas principales:
 
 ```mermaid
-graph TD
-    subgraph "Hipervisor Tipo 1 (Nativo / Bare-metal)"
+flowchart LR
+    subgraph S1 ["Hipervisor Tipo 1 (Nativo / Bare-metal)"]
+        direction TB
         H1["Hardware Físico"] --> HYP1["Hipervisor Tipo 1 (Proxmox, ESXi)"]
         HYP1 --> VM1A["SO Invitado 1"]
         HYP1 --> VM1B["SO Invitado 2"]
     end
 
-    subgraph "Hipervisor Tipo 2 (Alojado / Hosted)"
+    subgraph S2 ["Hipervisor Tipo 2 (Alojado / Hosted)"]
+        direction TB
         H2["Hardware Físico"] --> OS2["Sistema Anfitrión (Lliurex / Windows)"]
         OS2 --> HYP2["Hipervisor Tipo 2 (VirtualBox)"]
         HYP2 --> VM2A["SO Invitado 1 (Linux Mint)"]
         HYP2 --> VM2B["SO Invitado 2 (Windows XP)"]
     end
+
+    S1 ~~~ S2
 ```
 
 | Característica | Hipervisor Tipo 1 (Bare-Metal) | Hipervisor Tipo 2 (Hosted) |
@@ -116,8 +120,6 @@ En el mundo profesional, antes de la virtualización cada servicio (servidor web
 
 ## 5. Conceptos clave en VirtualBox para Servicios Web
 
-Al configurar nuestra máquina virtual en la [Actividad 1](./actividad1), debemos prestar especial atención a varios parámetros técnicos:
-
 ### Asignación de Recursos de Hardware
 - **Memoria RAM:** Se debe reservar memoria suficiente para el sistema invitado (por ejemplo, 3072 MB o 4096 MB para Linux Mint), pero **nunca superar el 50% de la RAM física del anfitrión** para evitar que el equipo del aula se bloquee por falta de memoria.
 - **Disco duro virtual (Reserva Dinámica):** VirtualBox crea un disco `.vdi`. Con la opción de **reserva dinámica**, el archivo solo ocupará en el disco físico el espacio que los datos de Linux Mint vayan llenando realmente, en lugar de reservar los 25 GB de golpe desde el primer instante.
@@ -146,12 +148,3 @@ Son un paquete de controladores y aplicaciones del sistema que se instalan dentr
 - Ajustar automáticamente la resolución de pantalla al cambiar el tamaño de la ventana de VirtualBox.
 - Compartir el portapapeles (copiar y pegar texto entre el anfitrión y la MV).
 - Arrastrar y soltar archivos y carpetas compartidas bidireccionales.
-
----
-
-## 6. Próximos pasos en la asignatura
-
-Ahora que comprendes qué es la virtualización y cómo funciona la arquitectura de VirtualBox, pondremos estos conceptos en práctica:
-
-1. [👉 Actividad 1: Instalación de Linux Mint, XAMPP y WordPress](./actividad1): Montarás tu propio servidor local sobre una máquina virtual en VirtualBox.
-2. [👉 Tema 2: Contenerización con Docker](../docker): En el siguiente tema daremos un paso más allá, descubriendo cómo los contenedores Docker optimizan aún más la virtualización compartiendo el núcleo del sistema operativo.
