@@ -16,7 +16,7 @@ description: Programación, Sistemas Informáticos y Redes II (2º BACH)
 
 [🔒 Bitwarden (gestor de contraseñas)](https://bitwarden.com/es-la/)
 
-[🎮 EduWordle](https://theeduwordle.vercel.app/)
+[🎮 EduWordle](https://dlopezcastellote.dev/eduwordle/)
 
 ## Temas
 

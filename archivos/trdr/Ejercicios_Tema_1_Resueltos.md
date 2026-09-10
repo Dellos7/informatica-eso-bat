@@ -315,7 +315,7 @@
 
 ## 9.º) Juego de Ordenar Palabras (ByteChallenge - Código: `SO101`)
 
-* **Enlace:** `https://bytechallenge.vercel.app/`
+* **Enlace:** `https://dlopezcastellote.dev/bytechallenge/`
 * **Código de actividad:** `SO101`
 * **Instrucción:** Ordenar las palabras de cada frase y adjuntar la imagen de resultado obtenida al completar el juego.
 
