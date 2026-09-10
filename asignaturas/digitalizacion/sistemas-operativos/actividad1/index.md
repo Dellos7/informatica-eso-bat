@@ -46,7 +46,7 @@ Todas las respuestas y datos que se te soliciten a lo largo de esta actividad de
    * ¿Qué modelo de procesador (CPU) tiene tu ordenador?
    * ¿Cuánta memoria RAM tiene instalada?
    * ¿En qué sistema operativo GNU/Linux (distribución base) se apoya la versión actual de LliureX que utilizas?
-   * ¿Qué versión exacta de LliureX estás utilizando en este momento?
+   * ¿Qué versión exacta de LliureX estás utilizando en este momento? (*pista*: puedes ver la versión exacta en la pantalla de inicio de sesión)
    * Anota la marca y modelo del ordenador (Fabricante y Nombre del producto).
    * Anota el número de serie del ordenador que estás utilizando.
    * Busca en internet: ¿qué es y para qué sirve un número de serie?
@@ -89,7 +89,7 @@ Antes de pedirle tareas complejas a la Inteligencia Artificial, vamos a realizar
 ### 5. Generar un mapa mental del S.O. con Freeplane e Inteligencia Artificial
 Vamos a crear un mapa mental sobre qué compone un Sistema Operativo. El mapa debe incluir cinco ramas principales: **Qué es**, **Hardware**, **Software**, **Ejemplos** y **Funciones principales**. 
 
-Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local y segura en LliureX) e interactuaremos con una Inteligencia Artificial (como ChatGPT) para que nos ahorre el trabajo de diseñar el archivo que importaremos directamente en Freeplane.
+Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local en LliureX) e interactuaremos con una Inteligencia Artificial (como ChatGPT) para que nos ahorre el trabajo de diseñar el archivo que importaremos directamente en Freeplane.
 
 1. Abre de nuevo tu chat de Inteligencia Artificial.
 2. Pídele que te ayude a crear tu mapa mental proporcionándole un ejemplo de cómo es la estructura de un archivo `.mm` (que en realidad es un código tipo XML) para que imite su estructura. 
@@ -117,11 +117,12 @@ Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local
 5. En tu ordenador, abre un editor de texto plano (como **KWrite** o **Kate**, que vienen preinstalados en LliureX).
 6. Pega el código XML de la IA y guárdalo en tu carpeta de la `Actividad_1` como `mapa_sistema_operativo.mm` (¡asegúrate de que la extensión del archivo sea `.mm` y no `.txt`!).
 7. Abre **Freeplane** en LliureX, ve a *Archivo -> Abrir* y selecciona tu archivo `mapa_sistema_operativo.mm`, o bien haz doble clic directamente sobre él.
-8. Organiza visualmente el mapa si es necesario y **añade tu nombre y apellidos**.
-9. Guarda el mapa editado.
-10. Expórtalo como imagen (*Archivo -> Exportar mapa -> JPG*) con el nombre `mapa_sistema_operativo.jpg`.
-11. Haz una captura de pantalla de la conversación que has tenido con la IA y pégala dentro de tu documento de respuestas (`actividad1_respuestas.odt`) bajo el título **«Ejercicio 5: Mapa mental e IA»**, junto a una breve reflexión de qué te ha parecido este método.
-12. Pega también la imagen del mapa mental en tu documento de respuestas.
+8. Organiza visualmente el mapa si es necesario, despliega los nodos y **añade tu nombre y apellidos**. Para ello, selecciona el nodo principal y pulsa la tecla *Enter*. Anota tu nombre y apellidos en el nuevo nodo.
+9. **Dale un poco de color** al mapa: selecciona cada nodo y ve a menú --> Formato --> Node core --> Color del node... . Con cambiar el color de algunos de los nodos es suficiente.
+10. Guarda el mapa editado.
+11. Expórtalo como imagen (*Archivo -> Exportar mapa -> JPG*) con el nombre `mapa_sistema_operativo.jpg`.
+12. Haz una captura de pantalla de la conversación que has tenido con la IA y pégala dentro de tu documento de respuestas (`actividad1_respuestas.odt`) bajo el título **«Ejercicio 5: Mapa mental e IA»**, junto a una breve reflexión de qué te ha parecido este método.
+13. Pega también la imagen del mapa mental en tu documento de respuestas.
 
 ---
 
