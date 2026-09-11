@@ -40,13 +40,13 @@ Antes de iniciar la instalación técnica, es fundamental aplicar buenas prácti
 > Si necesitas repasar los conceptos teóricos y la arquitectura de máquinas virtuales, consulta los [Apuntes de Virtualización con VirtualBox](../virtualizacion).
 {: .alert-info}
 
-1. **Descargar Linux Mint**: [Descargar Linux Mint](https://linuxmint.com/download.php)
+1. **Descargar Linux Mint**: [Descargar Linux Mint](https://linuxmint.com/download.php) o copiar el archivo **.iso** de la *Carpeta compartida* del aula (pregunta al profesor).
 2. Abre **VirtualBox** en tu ordenador del aula.
 3. Crea una nueva máquina virtual con las siguientes características recomendadas:
    - **Nombre:** `LinuxMint-PSIR2`
    - **Tipo:** Linux
    - **Versión:** Ubuntu (64-bit)
-   - **Memoria RAM:** Mínimo 3072 MB.
+   - **Memoria RAM:** 4096 MB.
    - **Disco duro:** VDI con reserva dinámica de unos 25 GB.
 4. Selecciona la imagen ISO de **Linux Mint** como disco de arranque en la unidad óptica virtual.
 5. Inicia la máquina virtual y completa la instalación de Linux Mint.
