@@ -1,168 +1,183 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "es-ES" }}">
-  <head>
-    <meta charset="UTF-8">
+<html lang="{{ site.lang | default: " es-ES" }}">
 
-    {% seo %}
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#157878">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/custom.css?v=' | append: site.github.build_revision | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/breadcrumbs.css?v=' | append: site.github.build_revision | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/visibility.css?v=' | append: site.github.build_revision | relative_url }}">
-    {% include head-custom.html %}
-    <script>
-      window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
-    </script>
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- Carga y renderizado dinámico de diagramas Mermaid.js desde bloques ```mermaid de Markdown -->
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      document.addEventListener("DOMContentLoaded", function() {
-        // Seleccionar los bloques de código generados por el procesador Markdown (Kramdown) con la clase 'language-mermaid'
-        const mermaidBlocks = document.querySelectorAll("pre code.language-mermaid, div.language-mermaid pre code, div.language-mermaid pre, .language-mermaid");
-        
-        mermaidBlocks.forEach(function(block) {
-          if (block.classList.contains('mermaid')) return;
-          
-          // Crear un contenedor <div class="mermaid"> con el contenido plano del diagrama
-          const div = document.createElement("div");
-          div.className = "mermaid";
-          div.textContent = block.textContent;
-          
-          // Reemplazar el elemento de código HTML original por el nuevo contenedor de Mermaid
-          const container = block.closest(".language-mermaid") || block;
-          if (container && container.parentNode) {
-            container.parentNode.replaceChild(div, container);
-          }
-        });
-        
-        // Inicializar la librería Mermaid para dibujar los gráficos vectoriales (SVG)
-        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+<head>
+  <meta charset="UTF-8">
+
+  {% seo %}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style"
+    type="text/css" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css?v=' | append: site.github.build_revision | relative_url }}">
+  <link rel="stylesheet"
+    href="{{ '/assets/css/breadcrumbs.css?v=' | append: site.github.build_revision | relative_url }}">
+  <link rel="stylesheet"
+    href="{{ '/assets/css/visibility.css?v=' | append: site.github.build_revision | relative_url }}">
+  <link rel="stylesheet"
+    href="{{ '/assets/css/collapsible.css?v=' | append: site.github.build_revision | relative_url }}">
+  {% include head-custom.html %}
+  <script>
+    window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- Carga y renderizado dinámico de diagramas Mermaid.js desde bloques ```mermaid de Markdown -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    document.addEventListener("DOMContentLoaded", function () {
+      // Seleccionar los bloques de código generados por el procesador Markdown (Kramdown) con la clase 'language-mermaid'
+      const mermaidBlocks = document.querySelectorAll("pre code.language-mermaid, div.language-mermaid pre code, div.language-mermaid pre, .language-mermaid");
+
+      mermaidBlocks.forEach(function (block) {
+        if (block.classList.contains('mermaid')) return;
+
+        // Crear un contenedor <div class="mermaid"> con el contenido plano del diagrama
+        const div = document.createElement("div");
+        div.className = "mermaid";
+        div.textContent = block.textContent;
+
+        // Reemplazar el elemento de código HTML original por el nuevo contenedor de Mermaid
+        const container = block.closest(".language-mermaid") || block;
+        if (container && container.parentNode) {
+          container.parentNode.replaceChild(div, container);
+        }
       });
-    </script>
-  </head>
-  <body>
-    <a id="skip-to-content" href="#content">Skip to the content.</a>
 
-    <header class="page-header" role="banner">
-        {% if site.volver_pagina_principal %}
-            <a href="/{{ site.github.repository_name }}" class="btn">Volver a página principal</a>
-        {% endif %}
-      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
-      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      {% if site.github.is_project_page %}
-        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
-      {% endif %}
-      {% if site.show_menu %}
-        <a href="/{{ site.github.repository_name }}/asignaturas/trdr" class="btn">1º ESO</a>
-        <a href="/{{ site.github.repository_name }}/asignaturas/piari" class="btn">2º ESO</a>
-        <a href="/{{ site.github.repository_name }}/asignaturas/piari_3eso" class="btn">3º ESO</a>
-        <a href="/{{ site.github.repository_name }}/asignaturas/digitalizacion" class="btn">4º ESO</a>
-        <a href="/{{ site.github.repository_name }}/asignaturas/psiri" class="btn">1º BACH</a>
-        <a href="/{{ site.github.repository_name }}/asignaturas/psirii" class="btn">2º BACH</a>
-      {% endif %}
-      {% if site.autor.mostrar %}
-        <p>Profesor: {{ site.autor.nombre }}</p>
-      {% endif %}
-    </header>
+      // Inicializar la librería Mermaid para dibujar los gráficos vectoriales (SVG)
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    });
+  </script>
+</head>
 
-    <main id="content" class="main-content" role="main">
-      <div class="content-body-wrapper">
-        <div class="page-content-main">
-          {% include breadcrumbs.html %}
-          {{ content }}
+<body>
+  <a id="skip-to-content" href="#content">Skip to the content.</a>
 
-          <footer class="site-footer">
-            {% if site.github.is_project_page %}
-              <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
-            {% endif %}
-            <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
-          </footer>
-        </div>
-        <aside class="page-toc" id="page-toc" aria-label="Navegación de la página">
-          <h4 class="toc-title">En esta página</h4>
-          <nav id="toc-nav">
-            <ul id="toc-list"></ul>
-          </nav>
-        </aside>
+  <header class="page-header" role="banner">
+    {% if site.volver_pagina_principal %}
+    <a href="/{{ site.github.repository_name }}" class="btn">Volver a página principal</a>
+    {% endif %}
+    <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+    <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline
+      }}</h2>
+    {% if site.github.is_project_page %}
+    <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+    {% endif %}
+    {% if site.show_menu %}
+    <a href="/{{ site.github.repository_name }}/asignaturas/trdr" class="btn">1º ESO</a>
+    <a href="/{{ site.github.repository_name }}/asignaturas/piari" class="btn">2º ESO</a>
+    <a href="/{{ site.github.repository_name }}/asignaturas/piari_3eso" class="btn">3º ESO</a>
+    <a href="/{{ site.github.repository_name }}/asignaturas/digitalizacion" class="btn">4º ESO</a>
+    <a href="/{{ site.github.repository_name }}/asignaturas/psiri" class="btn">1º BACH</a>
+    <a href="/{{ site.github.repository_name }}/asignaturas/psirii" class="btn">2º BACH</a>
+    {% endif %}
+    {% if site.autor.mostrar %}
+    <p>Profesor: {{ site.autor.nombre }}</p>
+    <a href="mailto:d.lopezcastellote@edu.gva.es" class="btn">✉️ Escríbeme (d.lopezcastellote@edu.gva.es)</a>
+    {% endif %}
+  </header>
+
+  <main id="content" class="main-content" role="main">
+    <div class="content-body-wrapper">
+      <div class="page-content-main">
+        {% include breadcrumbs.html %}
+        {{ content }}
+
+        <footer class="site-footer">
+          {% if site.github.is_project_page %}
+          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name
+              }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
+          {% endif %}
+          <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub
+              Pages</a>.</span>
+        </footer>
       </div>
-    </main>
+      <aside class="page-toc" id="page-toc" aria-label="Navegación de la página">
+        <h4 class="toc-title">En esta página</h4>
+        <nav id="toc-nav">
+          <ul id="toc-list"></ul>
+        </nav>
+      </aside>
+    </div>
+  </main>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const content = document.querySelector(".page-content-main");
-        const tocList = document.getElementById("toc-list");
-        const tocAside = document.getElementById("page-toc");
-        
-        if (!content || !tocList || !tocAside) return;
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const content = document.querySelector(".page-content-main");
+      const tocList = document.getElementById("toc-list");
+      const tocAside = document.getElementById("page-toc");
 
-        const headings = content.querySelectorAll("h2, h3");
-        
-        if (headings.length <= 1) {
-          tocAside.style.display = "none";
-          return;
+      if (!content || !tocList || !tocAside) return;
+
+      const headings = content.querySelectorAll("h2, h3");
+
+      if (headings.length <= 1) {
+        tocAside.style.display = "none";
+        return;
+      }
+
+      const tocLinks = [];
+      headings.forEach((heading, index) => {
+        if (!heading.id) {
+          heading.id = heading.textContent
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
         }
 
-        const tocLinks = [];
-        headings.forEach((heading, index) => {
-          if (!heading.id) {
-            heading.id = heading.textContent
-              .toLowerCase()
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '')
-              .replace(/[^a-z0-9]+/g, '-')
-              .replace(/(^-|-$)/g, '');
-          }
+        const li = document.createElement("li");
+        if (heading.tagName.toLowerCase() === "h3") {
+          li.className = "toc-item toc-h3";
+        } else {
+          li.className = "toc-item toc-h2";
+        }
 
-          const li = document.createElement("li");
-          if (heading.tagName.toLowerCase() === "h3") {
-            li.className = "toc-item toc-h3";
-          } else {
-            li.className = "toc-item toc-h2";
-          }
-          
-          const a = document.createElement("a");
-          a.href = "#" + heading.id;
-          a.className = "toc-link";
-          a.textContent = heading.textContent;
-          
-          li.appendChild(a);
-          tocList.appendChild(li);
-          
-          tocLinks.push({
-            link: a,
-            heading: heading
-          });
+        const a = document.createElement("a");
+        a.href = "#" + heading.id;
+        a.className = "toc-link";
+        a.textContent = heading.textContent;
+
+        li.appendChild(a);
+        tocList.appendChild(li);
+
+        tocLinks.push({
+          link: a,
+          heading: heading
         });
+      });
 
-        function updateActiveLink() {
-          const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-          let activeIndex = -1;
-          
-          for (let i = 0; i < tocLinks.length; i++) {
-            const offsetTop = tocLinks[i].heading.getBoundingClientRect().top + window.scrollY;
-            if (scrollPosition >= offsetTop - 120) {
-              activeIndex = i;
-            }
+      function updateActiveLink() {
+        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+        let activeIndex = -1;
+
+        for (let i = 0; i < tocLinks.length; i++) {
+          // Un título dentro de una sección plegada no está en pantalla: se ignora
+          if (tocLinks[i].heading.offsetParent === null) continue;
+          const offsetTop = tocLinks[i].heading.getBoundingClientRect().top + window.scrollY;
+          if (scrollPosition >= offsetTop - 120) {
+            activeIndex = i;
           }
-
-          tocLinks.forEach((item, index) => {
-            if (index === activeIndex) {
-              item.link.classList.add("active");
-            } else {
-              item.link.classList.remove("active");
-            }
-          });
         }
 
-        window.addEventListener("scroll", updateActiveLink);
-        updateActiveLink();
-      });
-    </script>
-    <script src="{{ '/assets/js/visibility.js?v=' | append: site.github.build_revision | relative_url }}"></script>
-  </body>
+        tocLinks.forEach((item, index) => {
+          if (index === activeIndex) {
+            item.link.classList.add("active");
+          } else {
+            item.link.classList.remove("active");
+          }
+        });
+      }
+
+      window.addEventListener("scroll", updateActiveLink);
+      updateActiveLink();
+    });
+  </script>
+  <script src="{{ '/assets/js/collapsible.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+  <script src="{{ '/assets/js/visibility.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+</body>
+
 </html>

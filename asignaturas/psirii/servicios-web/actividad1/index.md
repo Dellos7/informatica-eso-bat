@@ -17,6 +17,7 @@ En esta actividad aprenderás a montar un entorno de servidor web completo parti
 3. **Servidor Web Local:** Instalar y administrar el stack **XAMPP** (servidor web Apache, base de datos MariaDB/MySQL y PHP) sobre Linux.
 4. **Despliegue de CMS:** Instalar y configurar **WordPress** sobre el servidor local XAMPP.
 5. **Diseño y Maquetación Web:** Instalar el tema **Blocksy**, seleccionar e importar una plantilla para web personal/currículum y editarla utilizando el editor de bloques **Gutenberg** o el maquetador **Elementor**.
+6. **Plugins y Seguridad:** Ampliar las funcionalidades y la protección del sitio mediante plugins esenciales (**CookieYes**, **Limit Login Attempts Reloaded**, **WPForms Lite** y **All-in-One WP Migration**) y exportar una copia completa en formato `.wpress`.
 
 ---
 
@@ -28,6 +29,7 @@ Antes de iniciar la instalación técnica, es fundamental aplicar buenas prácti
 - Guarda en Bitwarden todas las contraseñas que utilices a lo largo de esta actividad:
   - Usuario de acceso al sistema operativo Linux Mint.
   - Usuario `root` / contraseña de la base de datos MySQL en XAMPP.
+  - Usuario de la base de datos MySQL para WordPress (`wp_user`).
   - Usuario administrador de WordPress.
 
 > **Consejo de seguridad:** No utilices contraseñas sencillas o repetidas. Genera contraseñas seguras y guárdalas en tu bóveda de Bitwarden.
@@ -103,13 +105,38 @@ unzip wordpress-*.zip
    sudo chmod -R g+rwX /opt/lampp/htdocs/wordpress
    ```
 {: .alert-warning}
-4. Accede a **phpMyAdmin** (`http://localhost/phpmyadmin`) y crea una nueva base de datos llamada `wordpress_db`.
+4. Accede a **phpMyAdmin** (`http://localhost/phpmyadmin`) para configurar la base de datos y un usuario exclusivo con permisos restringidos:
+   - **a) Crear el usuario primero:**
+     - Haz clic en la pestaña superior **Cuentas de usuarios** y luego en **Agregar cuenta de usuario**.
+     - En **Nombre de usuario**, introduce un nombre de usuario.
+     - En **Nombre de host**, selecciona **Local** (`localhost`).
+     - En **Contraseña**, genera o introduce una contraseña segura y **guárdala en Bitwarden**.
+     - En *Base de datos para la cuenta de usuario*, déjalo desmarcado.
+     - En *Privilegios globales*, déjalo todo desmarcado (principio de mínimo privilegio: no debe ser administrador general del servidor).
+     - Desplázate hacia abajo y pulsa en el botón **Continuar** para crear el usuario.
+   - **b) Crear la base de datos:**
+     - Haz clic en la pestaña superior **Bases de datos**.
+     - En el apartado **Crear base de datos**, introduce el nombre `wordpress`.
+     - En el desplegable de cotejamiento (*Collation*), selecciona `utf8mb4_unicode_ci` (o `utf8mb4_general_ci`).
+     - Haz clic en **Crear**.
+   - **c) Otorgar permisos completos al usuario sobre esa base de datos:**
+     - Vuelve a la pestaña **Cuentas de usuarios**.
+     - En la fila del usuario `wp_user`, haz clic en **Editar privilegios**.
+     - Haz clic en la pestaña superior **Base de datos** (privilegios específicos de bases de datos).
+     - En el desplegable "Añadir privilegios a la siguiente base de datos", selecciona `wordpress` y pulsa **Continuar**.
+     - En la sección de privilegios para `wordpress`, marca la casilla **Marcar todos** (*Check all*) para asignarle todos los permisos (Estructura, Datos y Administración sobre esta base de datos).
+     - Pulsa en **Continuar** al final de la página para guardar los cambios.
 {:start="4"}
-5. Entra en el navegador a `http://localhost/wordpress` para iniciar el asistente de WordPress:
-   - **Base de datos:** `wordpress_db`
-   - **Usuario MySQL:** `root`
-   - **Contraseña:** *(la configurada en XAMPP o en blanco por defecto)*
+
+> **Buenas prácticas de seguridad:** Nunca se debe utilizar el superusuario `root` para conectar aplicaciones web como WordPress. Al crear un usuario dedicado únicamente con permisos sobre su base de datos, protegemos el resto de servicios y bases de datos del servidor local en caso de vulnerabilidad.
+{: .alert-info}
+
+5. Entra en el navegador a `http://localhost/wordpress` para iniciar el asistente de WordPress con las credenciales que acabas de configurar:
+   - **Base de datos:** `wordpress`
+   - **Usuario MySQL:** *(el que hayas creado en PhpMyAdmin)*
+   - **Contraseña:** *(la contraseña definida para el usuario y guardada en Bitwarden)*
    - **Servidor:** `localhost`
+   - **Prefijo de tabla:** `wp_` *(por defecto)*
 {:start="5"}
 6. Configura el título de tu sitio y crea el usuario Administrador de WordPress (recuerda guardar estas credenciales en Bitwarden).
 {:start="6"}
@@ -133,7 +160,7 @@ unzip wordpress-*.zip
    - Guarda los cambios.
 {:start="2"}
 
-### Paso 6: Personalización con el tema Blocksy, maquetación web y exportación
+### Paso 6: Personalización con el tema Blocksy y maquetación web
 1. Accede al panel de administración de WordPress (`http://localhost/wordpress/wp-admin`).
 2. Ve a **Apariencia > Temas > Añadir nuevo**, busca e instala el tema **Blocksy**. Actívalo.
 3. Instala el plugin **Blocksy Companion** si el sistema lo requiere para acceder al catálogo de plantillas preconfiguradas (*Starter Sites*).
@@ -144,43 +171,58 @@ unzip wordpress-*.zip
 {:start="5"}
 6. Edita y personaliza la página principal utilizando el editor seleccionado (Gutenberg o Elementor):
 {:start="6"}
-   Accede a **Páginas > Todas las páginas**, localiza la página de inicio (habitualmente llamada *Home* o *Inicio*) y pulsa en **Editar** (o **Editar con Elementor** si optaste por dicho maquetador). Adapta el contenido para que funcione como tu carta de presentación profesional o currículum digital:
+   Accede a **Páginas > Todas las páginas**, localiza la página de inicio (habitualmente llamada *Home* o *Inicio*) y pulsa en **Editar** (o **Editar con Elementor** si optaste por dicho maquetador). Adapta el contenido para que funcione como tu carta de presentación académica y personal (estilo currículum formativo):
    
    - **Cabecera principal (Hero Section):**
-     - Sustituye los textos de ejemplo por tu **nombre y apellidos** y un titular de perfil técnico (ej.: *Estudiante de 2º Bachillerato / Entusiasta de Sistemas, Redes y Desarrollo Web*).
-     - Redacta una breve presentación o biografía personal (2-3 líneas resumiendo tus intereses formativos y tecnológicos).
-     - Sustituye la foto de la plantilla por tu fotografía o un avatar/ilustración profesional representativa.
-     - Configura los botones de acción (*Call to Action*), por ejemplo: *"Ver proyectos"* y *"Contactar"*.
+     - Sustituye los textos de ejemplo por tu **nombre y apellidos** y un titular adecuado a tu etapa (ej.: *Estudiante de 2º de Bachillerato / Interesado en Tecnología y Ciencias*).
+     - Redacta una breve presentación o biografía personal (2-3 líneas resumiendo tus motivaciones, intereses formativos y curiosidad por el aprendizaje).
+     - Sustituye la foto de la plantilla por tu fotografía o un avatar/ilustración que te represente. Puedes crear el avatar con alguna herramienta de IA o utilizando webs como [https://www.creartuavatar.com/](https://www.creartuavatar.com/)
+     - Configura los botones de acción (*Call to Action*), por ejemplo: *"Sobre mí"* y *"Contactar"*.
    
    - **Competencias técnicas e informáticas (Skills):**
      - Adapta las etiquetas (*badges*), barras de progreso o tarjetas para destacar las tecnologías que trabajamos en la materia o de tu interés: **Linux Mint (terminal y administración)**, **WordPress y diseño web**, **Programación en Python**, **Redes y protocolos**, **Docker**, **HTML/CSS**, etc.
    
-   - **Proyectos desarrollados (Portfolio):**
-     - Crea o personaliza al menos **2 o 3 tarjetas de proyectos** trabajados en la asignatura o de ámbito personal.
-     - *Ejemplos sugeridos:*
-       1. *Despliegue de Servidor LAMP en entorno local Linux Mint.*
-       2. *Instalación y personalización de CMS WordPress.*
-       3. *Simulación de redes locales o contenedores Docker.*
-     - Para cada tarjeta, incluye un título descriptivo, las tecnologías utilizadas y una imagen o captura ilustrativa.
+   - **Habilidades personales, idiomas o aficiones:**
+     - Adapta al menos **2 o 3 tarjetas o bloques** con facetas que te definan. Puedes elegir entre las siguientes sugerencias o incluir cualquier otra:
+       - **Idiomas:** (ej.: inglés, valenciano, francés...).
+       - **Música o arte:** (ej.: tocar un instrumento, conservatorio, dibujo, diseño...).
+       - **Deporte:** (ej.: baloncesto, fútbol, natación, artes marciales...).
+       - **Otras aficiones o talentos:** (ej.: robótica, ajedrez, lectura, voluntariado...).
+     - En cada tarjeta incluye un título, una breve descripción y una imagen o icono representativo.
    
    - **Sección o datos de contacto:**
-     - Adapta los enlaces a redes o repositorios de código (enlace a tu GitHub, LinkedIn o correo electrónico ficticio/educativo).ç
+     - Adapta los datos de contacto y enlaces (correo electrónico educativo o ficticio, enlace a GitHub si tienes cuenta, o un formulario de contacto sencillo).
      
-<!--
+  
+   > A continuación se muestra un **ejemplo orientativo** de cómo puede quedar la distribución de secciones en la página principal:
 
-   > 👁️ **Ejemplo visual de referencia:**  
-   > A continuación se muestra un ejemplo orientativo de cómo puede quedar la distribución de secciones en la página principal:
-   > 
-   > ![Ejemplo de maquetación de web personal CV](./ejemplo_web_cv.jpg)
+   ![Ejemplo de maquetación de web personal CV](./ejemplo_web_cv.jpg)
    {: .alert-info}
-   
-   -->
 
 
-7. Ve a **Plugins > Añadir nuevo**, busca e instala el plugin **All-in-One WP Migration**. Actívalo.
-{:start="7"}
-8. Ve a **All-in-One WP Migration > Exportar**, selecciona **Exportar a > Archivo** y descarga la copia de seguridad de tu sitio web (archivo con extensión `.wpress`).
-{:start="8"}
+---
+
+### Paso 7: Instalación de plugins
+Los plugins permiten añadir funcionalidades clave, garantizar el cumplimiento normativo y reforzar la seguridad de un sitio WordPress.
+1. Ve a **Plugins > Añadir nuevo** en el panel de administración de WordPress.
+2. Busca, instala y activa los siguientes plugins esenciales:
+   - **CookieYes (Cookie Banner / RGPD):** Muestra un aviso de cookies configurable para cumplir con las normativas de privacidad y consentimiento de los usuarios.
+   - **Limit Login Attempts Reloaded:** Protege el sitio web frente a ataques de fuerza bruta en el acceso de administración (`wp-login.php`), bloqueando la dirección IP tras varios intentos fallidos.
+   - **WPForms Lite:** Permite crear formularios de contacto interactivos y personalizados de forma muy visual (mediante arrastrar y soltar) para integrarlos fácilmente en la web.
+   - **All-in-One WP Migration:** Permite realizar copias de seguridad completas y exportar todo el sitio web (base de datos, medios, temas y plugins) en un único archivo.
+3. Comprueba el funcionamiento de los plugins instalados:
+   - Abre la web en una ventana de incógnito del navegador para verificar que el banner de cookies de **CookieYes** se muestra correctamente.
+   - Entra en los ajustes de **Limit Login Attempts Reloaded** para comprobar el panel de monitorización de intentos de inicio de sesión.
+   - Con **WPForms Lite**, crea un formulario de contacto básico (Nombre, Correo electrónico y Mensaje) e intégralo en la sección de contacto de tu página de inicio utilizando su bloque o shortcode correspondiente.
+
+---
+
+### Paso 8: Exportación y copia de seguridad del sitio web
+1. Ve a **All-in-One WP Migration > Exportar** en el menú de administración.
+2. Selecciona **Exportar a > Archivo**.
+3. Espera a que termine de empaquetar el sitio y descarga la copia de seguridad generada (archivo con extensión `.wpress`).
+> Guarda este archivo `.wpress`, ya que deberás subirlo a Aules como parte de la entrega obligatoria de la actividad.
+{: .alert-info}
 
 ---
 
@@ -202,13 +244,12 @@ Una vez realizada la entrega en Aules, **enseña el trabajo al profesor en clase
 
 ## 📊 Rúbrica de Evaluación (máx. 10 puntos)
 
-| Criterio | Insuficiente (0 pts) | Básico (0.5 pts) | Adecuado (1 pt) | Excelente (2 pts) |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
 | :--- | :--- | :--- | :--- | :--- |
-| **Gestión de Seguridad (Bitwarden)** | No utiliza gestor de contraseñas ni almacena las credenciales requeridas. | Registra credenciales de forma incompleta o poco organizada. | Utiliza Bitwarden registrando la mayoría de claves del entorno local. | Registra y organiza adecuadamente en Bitwarden todos los usuarios y claves creados. |
-| **Virtualización y Sistema Operativo** | No consigue instalar la máquina virtual o presenta errores insalvables. | Instala Linux Mint con ayuda continua y problemas de configuración. | Linux Mint instalado y operativo en VirtualBox con los parámetros adecuados. | Máquina virtual perfectamente configurada, optimizada y fluida en su funcionamiento. |
-| **Stack XAMPP y Servidor Web Local** | No consigue instalar XAMPP ni iniciar los servicios web/base de datos. | Instala XAMPP pero requiere asistencia para arrancar Apache o MySQL. | Instala y arranca XAMPP, permitiendo el acceso correcto a localhost y phpMyAdmin. | Stack XAMPP instalado y gestionado autónomamente, creando las BD sin incidencias. |
-| **Despliegue y Maquetación WordPress** | WordPress no instalado o inaccesible en el entorno local. | WordPress instalado pero sin adaptar, utilizar plantilla ni editar contenidos. | WordPress instalado con tema Blocksy y personalización básica mediante Gutenberg o Elementor. | Sitio web personal estilo CV maquetado con criterio (Blocksy con Gutenberg/Elementor) y exportado con All-in-One WP Migration (.wpress). |
-| **Entrega en plazo y verificación** | No entrega la actividad o presenta un retraso injustificado. | Entrega con retraso importante o faltan entregables en Aules. | Entrega con un pequeño retraso o entrega incompleta (falta documento o .wpress). | Entrega puntual en Aules del documento con capturas de la web en XAMPP y el archivo .wpress, y comprobada en el aula. |
+| **Gestión de Seguridad (Bitwarden)**<br>*(máx. 1 pt)* | **0 pts:** No utiliza gestor de contraseñas ni almacena las credenciales requeridas. | **0,25 pts:** Registra credenciales de forma incompleta o poco organizada. | **0,5 pts:** Utiliza Bitwarden registrando la mayoría de claves del entorno local. | **1 pt:** Registra y organiza adecuadamente en Bitwarden todos los usuarios y claves creados (Linux Mint, MySQL, wp_user y WordPress). |
+| **Virtualización y Sistema Operativo**<br>*(máx. 1,5 pts)* | **0 pts:** No consigue instalar la máquina virtual o presenta errores insalvables. | **0,5 pts:** Instala Linux Mint con ayuda continua y problemas de configuración. | **1 pt:** Linux Mint instalado y operativo en VirtualBox con los parámetros adecuados. | **1,5 pts:** Máquina virtual perfectamente configurada, optimizada y fluida en su funcionamiento. |
+| **Stack XAMPP y Servidor Web Local**<br>*(máx. 1,5 pts)* | **0 pts:** No consigue instalar XAMPP ni iniciar los servicios web/base de datos. | **0,5 pts:** Instala XAMPP pero requiere asistencia para arrancar Apache o MySQL. | **1 pt:** Instala y arranca XAMPP, permitiendo el acceso correcto a localhost y phpMyAdmin. | **1,5 pts:** Stack XAMPP instalado y gestionado autónomamente, creando la base de datos y el usuario con privilegios sin incidencias. |
+| **Despliegue y Maquetación WordPress**<br>*(máx. 6 pts)* | **0 pts:** WordPress no instalado o inaccesible en el entorno local. | **2 pts:** WordPress instalado y conectado a la BD, pero sin adaptar contenidos (mantiene plantilla de ejemplo), sin formulario ni plugins. | **4 pts:** Web maquetada con tema Blocksy adaptando las secciones principales (Hero, competencias y aficiones), pero con elementos incompletos o plugins sin verificar. | **6 pts:** Sitio web personal estilo CV completamente maquetado con criterio (Hero, competencias TIC, aficiones/idiomas y formulario WPForms Lite), plugins configurados (CookieYes, Limit Login) y exportación exitosa (.wpress). |
 
 ---
 

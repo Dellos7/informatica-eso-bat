@@ -6,7 +6,7 @@ description: Programación, Sistemas Informáticos y Redes II (2º BACH)
 
 # Programación, Sistemas Informáticos y Redes II
 
-✉️ Mi correo: [dlopezcastellote.alumnos@gmail.com](mailto:dlopezcastellote.alumnos@gmail.com)
+✉️ Mi correo: [d.lopezcastellote@edu.gva.es](mailto:d.lopezcastellote@edu.gva.es)
 
 👉 [Criterios de calificación](/{{ site.github.repository_name }}/archivos/Criterios-de-calificación-Bachillerato.pdf)
 

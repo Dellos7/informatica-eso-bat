@@ -12,8 +12,8 @@ description: Programación, Sistemas Informáticos y Redes I (1º BACH)
 
 ⏯️ [Evaluación Inicial](https://forms.office.com/e/zMLnp156BK)
 
-✉️ Mi correo: [dlopezcastellote.alumnos@gmail.com
-](mailto:dlopezcastellote.alumnos@gmail.com
+✉️ Mi correo: [d.lopezcastellote@edu.gva.es
+](mailto:d.lopezcastellote@edu.gva.es
 )
 
 ## Temas

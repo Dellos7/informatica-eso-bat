@@ -1,0 +1,142 @@
+/* --- Plegado y desplegado de secciones (h2..h6) --- */
+
+/* Contenido de una sección plegada.
+   Se usa una clase propia, distinta de .visibility-hidden, para que los dos
+   sistemas puedan ocultar el mismo elemento sin pisarse el uno al otro. */
+.seccion-plegada-oculta {
+  display: none !important;
+}
+
+/* Flecha delante del título */
+.seccion-toggle {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  width: 0.5em;
+  height: 0.6em;
+  padding: 0.35em;
+  margin-left: -0.35em; /* La flecha cuelga hacia fuera: el texto no se descoloca */
+  margin-right: 0.1em;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #159957; /* Verde Cayman */
+  cursor: pointer;
+  vertical-align: baseline;
+  transform: rotate(90deg); /* Desplegado: la flecha apunta hacia abajo */
+  transition: transform 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+}
+
+.seccion-toggle::before {
+  content: "";
+  border-left: 0.5em solid currentColor;
+  border-top: 0.3em solid transparent;
+  border-bottom: 0.3em solid transparent;
+}
+
+.seccion-toggle[aria-expanded="false"] {
+  transform: rotate(0deg); /* Plegado: la flecha apunta hacia la derecha */
+  color: #64748b;
+}
+
+.seccion-toggle:hover {
+  background-color: rgba(21, 153, 87, 0.12);
+  color: #159957;
+}
+
+.seccion-toggle:focus-visible {
+  outline: 2px solid #159957;
+  outline-offset: 2px;
+}
+
+/* Marca discreta para recordar que debajo hay contenido plegado */
+.seccion-titulo.seccion-plegada::after {
+  content: "…";
+  margin-left: 0.35em;
+  font-weight: 400;
+  opacity: 0.45;
+}
+
+/* --- Botón para plegar o desplegar toda la página ---
+   Va a la izquierda: el borde del botón arranca en el mismo punto que el
+   primer carácter del h1, así queda alineado con la columna de texto. */
+.seccion-acciones {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 0.5rem;
+}
+
+.seccion-todo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.seccion-todo:hover {
+  color: #159957; /* Verde Cayman */
+  border-color: #159957;
+  background: rgba(21, 153, 87, 0.06);
+}
+
+.seccion-todo:focus-visible {
+  outline: 2px solid #159957;
+  outline-offset: 2px;
+}
+
+/* Misma flecha que la de los títulos, algo más pequeña */
+.seccion-todo-flecha {
+  display: inline-flex;
+  width: 0.45em;
+  height: 0.55em;
+  transform: rotate(90deg); /* Hay secciones abiertas: el botón las plegará */
+  transition: transform 0.18s ease;
+}
+
+.seccion-todo-flecha::before {
+  content: "";
+  border-left: 0.45em solid currentColor;
+  border-top: 0.28em solid transparent;
+  border-bottom: 0.28em solid transparent;
+}
+
+.seccion-todo[data-estado="plegado"] .seccion-todo-flecha {
+  transform: rotate(0deg); /* Está todo plegado: el botón lo abrirá */
+}
+
+/* En pantallas táctiles se agranda algo la zona de pulsación */
+@media (pointer: coarse) {
+  .seccion-toggle {
+    padding: 0.5em;
+    margin-left: -0.5em;
+  }
+}
+
+/* Al imprimir o guardar en PDF se muestra todo y desaparecen las flechas */
+@media print {
+  .seccion-plegada-oculta {
+    display: revert !important;
+  }
+
+  .seccion-toggle,
+  .seccion-acciones {
+    display: none !important;
+  }
+
+  .seccion-titulo.seccion-plegada::after {
+    content: none;
+  }
+}
