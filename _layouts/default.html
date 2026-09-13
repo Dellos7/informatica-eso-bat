@@ -57,27 +57,41 @@
 <body>
   <a id="skip-to-content" href="#content">Skip to the content.</a>
 
+  {% assign repo = site.github.repository_name %}
+  {% assign cursos = "trdr:1º ESO|piari:2º ESO|piari_3eso:3º ESO|digitalizacion:4º ESO|psiri:1º BACH|psirii:2º BACH" | split: "|" %}
+  {% assign tramos = page.url | split: "/asignaturas/" %}
+  {% assign curso_actual = "" %}
+  {% if tramos.size > 1 %}{% assign curso_actual = tramos[1] | split: "/" | first %}{% endif %}
+
+  <div class="site-nav">
+    <div class="site-nav__inner">
+      {% if site.volver_pagina_principal %}
+      <a href="/{{ repo }}" class="site-nav__item site-nav__home">🏠 Inicio</a>
+      <span class="site-nav__sep" aria-hidden="true"></span>
+      {% endif %}
+      {% if site.show_menu %}
+      <nav class="site-nav__links" aria-label="Asignaturas">
+        {% for curso in cursos %}
+        {% assign partes = curso | split: ":" %}
+        <a href="/{{ repo }}/asignaturas/{{ partes[0] }}"
+          class="site-nav__item{% if curso_actual == partes[0] %} is-active{% endif %}"
+          {% if curso_actual == partes[0] %}aria-current="page"{% endif %}>{{ partes[1] }}</a>
+        {% endfor %}
+      </nav>
+      {% endif %}
+      {% if site.autor.mostrar %}
+      <a href="mailto:d.lopezcastellote@edu.gva.es" class="site-nav__item site-nav__mail"
+        title="Escríbeme a d.lopezcastellote@edu.gva.es">✉️ Contacto</a>
+      {% endif %}
+    </div>
+  </div>
+
   <header class="page-header" role="banner">
-    {% if site.volver_pagina_principal %}
-    <a href="/{{ site.github.repository_name }}" class="btn">Volver a página principal</a>
-    {% endif %}
     <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
     <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline
       }}</h2>
     {% if site.github.is_project_page %}
     <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
-    {% endif %}
-    {% if site.show_menu %}
-    <a href="/{{ site.github.repository_name }}/asignaturas/trdr" class="btn">1º ESO</a>
-    <a href="/{{ site.github.repository_name }}/asignaturas/piari" class="btn">2º ESO</a>
-    <a href="/{{ site.github.repository_name }}/asignaturas/piari_3eso" class="btn">3º ESO</a>
-    <a href="/{{ site.github.repository_name }}/asignaturas/digitalizacion" class="btn">4º ESO</a>
-    <a href="/{{ site.github.repository_name }}/asignaturas/psiri" class="btn">1º BACH</a>
-    <a href="/{{ site.github.repository_name }}/asignaturas/psirii" class="btn">2º BACH</a>
-    {% endif %}
-    {% if site.autor.mostrar %}
-    <p>Profesor: {{ site.autor.nombre }}</p>
-    <a href="mailto:d.lopezcastellote@edu.gva.es" class="btn">✉️ Escríbeme (d.lopezcastellote@edu.gva.es)</a>
     {% endif %}
   </header>
 
@@ -88,6 +102,10 @@
         {{ content }}
 
         <footer class="site-footer">
+          {% if site.autor.mostrar %}
+          <span class="site-footer-owner">Profesor: {{ site.autor.nombre }} · <a
+              href="mailto:d.lopezcastellote@edu.gva.es">d.lopezcastellote@edu.gva.es</a></span>
+          {% endif %}
           {% if site.github.is_project_page %}
           <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name
               }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>

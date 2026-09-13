@@ -33,8 +33,7 @@ En la tarea anterior, el ratón fue entrenado por los científicos para seguir s
 
 Si prestamos atención al algoritmo, vemos que tiene 3 **instrucciones que presentan una a continuación de otra** y se expresan por medio de un lenguaje imperativo (es decir, como órdenes).
 
-El **siguiente ejemplo** es un algoritmo de más instrucciones, que puede ser utilizado para **cambiar una bombilla fundida**:
-
+> El **siguiente ejemplo** es un algoritmo de más instrucciones, que puede ser utilizado para **cambiar una bombilla fundida**:
 1. Buscar una escalera y situarla en posición de alcanzar la bombilla rota.
 2. Buscar una bombilla nueva.
 3. Cortar la energía eléctrica.
