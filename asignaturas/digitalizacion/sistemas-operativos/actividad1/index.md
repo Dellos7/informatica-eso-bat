@@ -53,7 +53,7 @@ Todas las respuestas y datos que se te soliciten a lo largo de esta actividad de
 
 ---
 
-### 3. Resolver «Tipos de archivos y extensiones» (Asociación de archivos)
+### 3. Tipos de archivos y extensiones
 
 A partir de un **archivo comprimido**, deberás resolver las siguientes cuestiones acerca de los **tipos de archivos y extensiones** del sistema operativo.
 
@@ -93,7 +93,7 @@ Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local
 
 1. Abre de nuevo tu chat de Inteligencia Artificial.
 2. Pídele que te ayude a crear tu mapa mental proporcionándole un ejemplo de cómo es la estructura de un archivo `.mm` (que en realidad es un código tipo XML) para que imite su estructura. 
-3. Para ello, **copia y pega el siguiente prompt ADAPTÁNDOLO a tu chat:**
+3. Para ello, **copia y pega el siguiente prompt** **ADAPTÁNDOLO**{: .rojo} **a tu chat:**
 
 > Quiero crear un mapa mental en Freeplane que resuma qué es un ...... . Necesito que me generes el código XML estructurado y limpio para poder guardarlo como un archivo de extensión `.mm` e importarlo directamente en el programa. El mapa debe tener como nodo central "Sistemas Operativos" y debe dividirse en: ...... (con subnodos detallados para cada uno). Para ayudarte a entender el formato que lee Freeplane, aquí tienes un ejemplo corto de cómo estructurar los nodos:
 > 
@@ -114,15 +114,25 @@ Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local
 > Por favor, genera el código completo con todos los apartados requeridos usando este mismo formato exacto.
 
 4. Copia la respuesta en formato de código que te devuelva la IA (similar al que ves arriba pero más extenso).
+{:start="4"}
 5. En tu ordenador, abre un editor de texto plano (como **KWrite** o **Kate**, que vienen preinstalados en LliureX).
+{:start="5"}
 6. Pega el código XML de la IA y guárdalo en tu carpeta de la `Actividad_1` como `mapa_sistema_operativo.mm` (¡asegúrate de que la extensión del archivo sea `.mm` y no `.txt`!).
+{:start="6"}
 7. Abre **Freeplane** en LliureX, ve a *Archivo -> Abrir* y selecciona tu archivo `mapa_sistema_operativo.mm`, o bien haz doble clic directamente sobre él.
+{:start="7"}
 8. Organiza visualmente el mapa si es necesario, despliega los nodos y **añade tu nombre y apellidos**. Para ello, selecciona el nodo principal y pulsa la tecla *Enter*. Anota tu nombre y apellidos en el nuevo nodo.
+{:start="8"}
 9. **Dale un poco de color** al mapa: selecciona cada nodo y ve a menú --> Formato --> Node core --> Color del node... . Con cambiar el color de algunos de los nodos es suficiente.
+{:start="9"}
 10. Guarda el mapa editado.
+{:start="10"}
 11. Expórtalo como imagen (*Archivo -> Exportar mapa -> JPG*) con el nombre `mapa_sistema_operativo.jpg`.
+{:start="11"}
 12. Haz una captura de pantalla de la conversación que has tenido con la IA y pégala dentro de tu documento de respuestas (`actividad1_respuestas.odt`) bajo el título **«Ejercicio 5: Mapa mental e IA»**, junto a una breve reflexión de qué te ha parecido este método.
+{:start="12"}
 13. Pega también la imagen del mapa mental en tu documento de respuestas.
+{:start="13"}
 
 ---
 
@@ -162,6 +172,8 @@ Dentro del `.zip`, el profesor comprobará que la estructura de carpetas es corr
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}
 
-**Criterio de evaluación de la programación:**
-* **CE2 – 2.2.** Organizar y gestionar el entorno personal de aprendizaje mediante la integración de recursos digitales de manera autónoma (Digitalización 4º ESO - Comunidad Valenciana).
+**Criterios de evaluación de la programación:**
+* **CE2 – 2.1.** Buscar y seleccionar información en función de sus necesidades a partir de diversas fuentes con sentido crítico, contrastando su veracidad, haciendo uso de las herramientas del entorno personal de aprendizaje (IA generativa) y siguiendo las normas básicas de seguridad en la red.
+* **CE2 – 2.2.** Organizar y gestionar el entorno personal de aprendizaje mediante la integración de recursos digitales de manera autónoma (gestión del sistema de archivos y diagramación conceptual).
+* **CE5 – 5.1.** Gestionar situaciones de incertidumbre en entornos digitales con una actitud positiva, y afrontarlas utilizando el conocimiento adquirido y sintiéndose competente (uso de prompts estructurados e importación de código XML en software nuevo).
 

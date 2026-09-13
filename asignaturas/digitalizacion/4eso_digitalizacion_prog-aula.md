@@ -29,7 +29,7 @@ Contribuye a la capacitación técnica y la adaptabilidad en entornos cambiantes
 
 **Competencias Específicas y Criterios de Evaluación vinculados:**
 - **Competencia Específica 1:** Diseñar equipos y redes de comunicación de uso personal y doméstico, administrarlos y utilizarlos de manera segura y sostenible.
-  - Criterios de evaluación: 1.4, 1.5, 1.6
+  - Criterios de evaluación: 1.4
 - **Competencia Específica 2:** Buscar, seleccionar y organizar la información en el entorno personal de aprendizaje, y utilizarla para la creación, edición, publicación y difusión de contenidos digitales.
   - Criterios de evaluación: 2.1, 2.2
 - **Competencia Específica 5:** Afrontar los desafíos informáticos y digitales que la sociedad de la información plantea en los ámbitos personal, doméstico y educativo, y formular posibles soluciones.
@@ -288,8 +288,8 @@ Práctica de firma digital, comparativa de seguridad en e-commerce y campaña de
 | Criterio 1.2 | | | | | | | | |
 | Criterio 1.3 | | | ✓ | | | | | |
 | Criterio 1.4 | ✓ | | | | | | | |
-| Criterio 1.5 | ✓ | | ✓ | | | | | |
-| Criterio 1.6 | ✓ | | ✓ | | | | | |
+| Criterio 1.5 | | | ✓ | | | | | |
+| Criterio 1.6 | | | ✓ | | | | | |
 | **Competencia Específica 2** | | | | | | | | |
 | Criterio 2.1 | ✓ | ✓ | | ✓ | | ✓ | | |
 | Criterio 2.2 | ✓ | ✓ | | | | | | |

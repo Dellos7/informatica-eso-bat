@@ -29,7 +29,7 @@ Antes de iniciar la instalación técnica, es fundamental aplicar buenas prácti
 - Guarda en Bitwarden todas las contraseñas que utilices a lo largo de esta actividad:
   - Usuario de acceso al sistema operativo Linux Mint.
   - Usuario `root` / contraseña de la base de datos MySQL en XAMPP.
-  - Usuario de la base de datos MySQL para WordPress (`wp_user`).
+  - Usuario de la base de datos MySQL para WordPress.
   - Usuario administrador de WordPress.
 
 > **Consejo de seguridad:** No utilices contraseñas sencillas o repetidas. Genera contraseñas seguras y guárdalas en tu bóveda de Bitwarden.
@@ -76,10 +76,15 @@ Antes de iniciar la instalación técnica, es fundamental aplicar buenas prácti
 7. Crear un lanzador en el escritorio para el *Manager* de XAMPP (comando `sudo /opt/lampp/manager-linux-x64.run`)
 8. Ajustar los permisos de la carpeta `htdocs`:
 
+> Por defecto, la carpeta `htdocs` tiene permisos restrictivos, lo que impide que el usuario actual pueda modificarla. En este paso, es importante **tener en cuenta la seguridad**, por lo que **NO** se recomienda dar permisos totales a la carpeta `htdocs`, sino solo a los usuarios que lo necesiten.
+{: .alert-info}
+> El grupo `daemon` es el grupo que utiliza Apache para servir archivos web, por lo que es necesario añadir el usuario actual a este grupo para que pueda modificar la carpeta `htdocs`.
+{: .alert-success}
+
 ```bash
-# 1. Añadir al usuario actual al grupo daemon
+# 1. Añadir al usuario actual al grupo daemon (reiniciar la máquina virtual para que tenga efecto)
    sudo usermod -a -G daemon $USER
-# 2. Cambiar la propiedad de htdocs al usuario daemon
+# 2. Cambiar la propiedad de htdocs al usuario root y grupo daemon
    sudo chown -R root:daemon /opt/lampp/htdocs/
 # 3. Dar permisos de lectura, escritura y ejecución al grupo
    sudo chmod -R g+rwX /opt/lampp/htdocs/
@@ -121,7 +126,7 @@ unzip wordpress-*.zip
      - Haz clic en **Crear**.
    - **c) Otorgar permisos completos al usuario sobre esa base de datos:**
      - Vuelve a la pestaña **Cuentas de usuarios**.
-     - En la fila del usuario `wp_user`, haz clic en **Editar privilegios**.
+     - En la fila del usuario, haz clic en **Editar privilegios**.
      - Haz clic en la pestaña superior **Base de datos** (privilegios específicos de bases de datos).
      - En el desplegable "Añadir privilegios a la siguiente base de datos", selecciona `wordpress` y pulsa **Continuar**.
      - En la sección de privilegios para `wordpress`, marca la casilla **Marcar todos** (*Check all*) para asignarle todos los permisos (Estructura, Datos y Administración sobre esta base de datos).
@@ -246,7 +251,7 @@ Una vez realizada la entrega en Aules, **enseña el trabajo al profesor en clase
 
 | Criterio | Insuficiente | Básico | Adecuado | Excelente |
 | :--- | :--- | :--- | :--- | :--- |
-| **Gestión de Seguridad (Bitwarden)**<br>*(máx. 1 pt)* | **0 pts:** No utiliza gestor de contraseñas ni almacena las credenciales requeridas. | **0,25 pts:** Registra credenciales de forma incompleta o poco organizada. | **0,5 pts:** Utiliza Bitwarden registrando la mayoría de claves del entorno local. | **1 pt:** Registra y organiza adecuadamente en Bitwarden todos los usuarios y claves creados (Linux Mint, MySQL, wp_user y WordPress). |
+| **Gestión de Seguridad (Bitwarden)**<br>*(máx. 1 pt)* | **0 pts:** No utiliza gestor de contraseñas ni almacena las credenciales requeridas. | **0,25 pts:** Registra credenciales de forma incompleta o poco organizada. | **0,5 pts:** Utiliza Bitwarden registrando la mayoría de claves del entorno local. | **1 pt:** Registra y organiza adecuadamente en Bitwarden todos los usuarios y claves creados (Linux Mint, MySQL y WordPress). |
 | **Virtualización y Sistema Operativo**<br>*(máx. 1,5 pts)* | **0 pts:** No consigue instalar la máquina virtual o presenta errores insalvables. | **0,5 pts:** Instala Linux Mint con ayuda continua y problemas de configuración. | **1 pt:** Linux Mint instalado y operativo en VirtualBox con los parámetros adecuados. | **1,5 pts:** Máquina virtual perfectamente configurada, optimizada y fluida en su funcionamiento. |
 | **Stack XAMPP y Servidor Web Local**<br>*(máx. 1,5 pts)* | **0 pts:** No consigue instalar XAMPP ni iniciar los servicios web/base de datos. | **0,5 pts:** Instala XAMPP pero requiere asistencia para arrancar Apache o MySQL. | **1 pt:** Instala y arranca XAMPP, permitiendo el acceso correcto a localhost y phpMyAdmin. | **1,5 pts:** Stack XAMPP instalado y gestionado autónomamente, creando la base de datos y el usuario con privilegios sin incidencias. |
 | **Despliegue y Maquetación WordPress**<br>*(máx. 6 pts)* | **0 pts:** WordPress no instalado o inaccesible en el entorno local. | **2 pts:** WordPress instalado y conectado a la BD, pero sin adaptar contenidos (mantiene plantilla de ejemplo), sin formulario ni plugins. | **4 pts:** Web maquetada con tema Blocksy adaptando las secciones principales (Hero, competencias y aficiones), pero con elementos incompletos o plugins sin verificar. | **6 pts:** Sitio web personal estilo CV completamente maquetado con criterio (Hero, competencias TIC, aficiones/idiomas y formulario WPForms Lite), plugins configurados (CookieYes, Limit Login) y exportación exitosa (.wpress). |

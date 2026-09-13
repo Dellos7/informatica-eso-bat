@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 3 – Uso de SSH y SCP en Linux
+title: Actividad 4 – Uso de SSH y SCP en Linux
 description: Tema 1
 ---
 
-# Actividad 3 – Uso de SSH y SCP en Linux
+# Actividad 4 – Uso de SSH y SCP en Linux
 
 Antes de realizar las tareas, **lee atentamente**:
 
@@ -94,7 +94,7 @@ En esta tarea de **Aules** debes subir:
 - **Captura de pantalla** del comando `history` mostrando todos los comandos y tu usuario.  
 - El archivo **actividad-3.zip** que hayas descargado con SCP desde el servidor. *(El profesor comprobará que dicho archivo existe y está creado en el servidor).*
 
-## Rúbrica – Actividad 3 – Uso de SSH y SCP en Linux
+## Rúbrica – Actividad 4 – Uso de SSH y SCP en Linux
 
 | Criterio | 0 pts | 0.5 pts | 1 pt | 2 pts | 4 pts |
 |----------|-------|---------|------|-------|-------|
@@ -104,3 +104,8 @@ En esta tarea de **Aules** debes subir:
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}
+
+**Criterios de evaluación de la programación:**
+* **CE1 – 1.4.** Instalar, utilizar y mantener sistemas operativos y aplicaciones, configurando sus características en función de las necesidades personales (administración y operaciones de archivos en servidor remoto).
+* **CE1 – 1.5.** Administrar dispositivos y redes de manera segura y sostenible, según el uso al que están destinados (conexión remota cifrada por SSH y transferencia segura de archivos con SCP).
+* **CE5 – 5.1.** Gestionar situaciones de incertidumbre en entornos digitales con una actitud positiva, y afrontarlas utilizando el conocimiento adquirido y sintiéndose competente (gestión remota cliente-servidor).

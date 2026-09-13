@@ -10,7 +10,7 @@ description: Actividad 1 del Tema 1
 2. Dentro, crea otra carpeta llamada **Tema 1**.
 3. Dentro de _Tema 1_, crea la carpeta **Actividad 1**
 
-Ahora, en un documento de LibreOffice Writer, **responde con tus propias palabras y de forma breve**, y en base a los vídeos que hemos visto (puedes volverlos a ver si quieres), a las siguientes preguntas. También puedes apoyarte de **Google** para responder, pero _**NO puedes**_ copiar directamente las respuestas.
+Ahora, en un documento de LibreOffice Writer, **responde con tus propias palabras y de forma breve**, y en base a los vídeos que hemos visto (puedes volverlos a ver si quieres), a las siguientes preguntas. También puedes apoyarte de **Google** para responder, pero _**NO puedes**_ copiar directamente las respuestas y utilizar una IA, como ChatGPT u otros, que las redacte por ti.
 
 1. ¿Qué es el **pensamiento computacional**?
 2. ¿Qué es la **programación**?
