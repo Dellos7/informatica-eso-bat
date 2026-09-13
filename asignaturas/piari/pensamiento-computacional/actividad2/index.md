@@ -77,6 +77,8 @@ Los científicos están buscando la manera de **entrenar de nuevo al ratón** pa
 | **Entrega de documentos y formato adecuado** | No entrega los documentos o están en un formato incorrecto. | Entrega los documentos incompletos o con formato poco adecuado. | Entrega los documentos completos y en el formato indicado. | – | – |
 | **Entrega en plazo** | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – | – |
 
+> ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
+{: .alert-error}
 
 
 ## 📌 Criterios de evaluación asociados a la Actividad 2

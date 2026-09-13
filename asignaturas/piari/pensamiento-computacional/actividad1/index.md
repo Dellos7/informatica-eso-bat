@@ -35,6 +35,9 @@ Asegúrate de que tu documento **se vea más o menos así** (con las respuestas)
 | **Claridad y presentación del documento** (máx. 3) | Documento desordenado o con formato incorrecto. | Documento con muchos problemas de formato o difícil de leer. | Documento aceptable pero con errores de formato o faltas frecuentes. | Documento bien estructurado, claro, sin faltas y siguiendo las indicaciones dadas. | – | – |
 | **Entrega en plazo** (máx. 2) | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – | – | – |
 
+> ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
+{: .alert-error}
+
 
 ## Criterios de evaluación relacionados
 

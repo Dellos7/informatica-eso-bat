@@ -77,7 +77,8 @@ Las instrucciones que puedes dar al robot son las siguientes:
 | **Creatividad y eficiencia (Tarea 3)** | Laberinto incorrecto o sin solución. | Laberinto funcional pero sencillo/poco optimizado. | Laberinto original y algoritmo eficiente. | – |
 | **Entrega en plazo** | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – |
 
-
+> ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
+{: .alert-error}
 
 ## 📌 Criterios de evaluación asociados a la Actividad 3
 
