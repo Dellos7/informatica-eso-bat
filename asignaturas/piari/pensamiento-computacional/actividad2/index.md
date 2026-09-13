@@ -44,7 +44,6 @@ Si prestamos atención al algoritmo, vemos que tiene 3 **instrucciones que prese
 8. Volver a conectar la energía eléctrica.
 9. Comprobar que la bombilla nueva funcione.
 10. Si funciona, fin del proceso; sino,volver al paso 2.
-
   
 Como puede observarse en el algoritmo anterior:
 - las instrucciones son claras y precisas
