@@ -5,11 +5,12 @@ description: Tema 1
 ---
 
 # Funcionamiento de Laby
+<!--
 {: .no_toc }
 
 * TOC
 {:toc}
-
+-->
 ## ¿Qué es Laby y cómo abrirlo?
 
 En LliureX disponemos de un juego que nos permite practicar el pensamiento computacional en términos de algoritmia; es decir, las instrucciones que debemos especificar para resolver un problema concreto.

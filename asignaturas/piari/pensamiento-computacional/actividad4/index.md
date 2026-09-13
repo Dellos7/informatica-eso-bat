@@ -18,11 +18,8 @@ En LliureX tenemos un juego que nos permite practicar el pensamiento computacion
 
 En esta actividad tienes el reto de superar los **3 primeros niveles (1a, 1b y 1c).** 
 
-> 👉 **Para cada nivel debes hacer una captura de pantalla** y escribir en ella tu **nombre y apellidos** con la herramienta de edición.
+> 👉 **Para cada nivel debes hacer una captura de pantalla** y escribir en ella tu **nombre y apellidos** con la herramienta de edición. Para hacer capturas de pantalla puedes utilizar el programa **Spectacle** de Lliurex.
 {: .alert-info}
-
-> Para hacer capturas de pantalla puedes utilizar el programa **Spectacle**.
-{: .alert-success}
 
 ---
 
