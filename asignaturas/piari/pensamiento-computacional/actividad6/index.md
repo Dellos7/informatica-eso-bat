@@ -38,17 +38,16 @@ Abre el juego **Laby** en LliureX y supera los siguientes cuatro niveles selecci
 
 Una vez que has aprendido a resolver problemas utilizando bucles y condicionales, ahora te convertirás en diseñador/a de niveles.
 
-Para ello utilizaremos la aplicación **Laby Level Editor**, desarrollada por el profesor:  
-👉 Repositorio oficial del proyecto: [https://github.com/Dellos7/laby-levels](https://github.com/Dellos7/laby-levels)
+Para ello utilizaremos la aplicación [**Laby Level Editor**](https://github.com/Dellos7/laby-levels/releases/download/v1.1.0/laby-level-editor-x86_64.AppImage)
 
 ### ¿Cómo funciona el editor?
 
 El editor te permite crear tableros personalizados para Laby de forma visual:
 
 <!-- ESPACIO PARA CAPTURA DE PANTALLA DEL EDITOR LABY-LEVELS -->
-> 🖼️ **Captura del programa Laby Level Editor:**  
+> 🖼️ **POR HACER - Captura del programa Laby Level Editor:**  
 > *(Aquí se añadirá la captura general de la interfaz de laby-levels)*
-{: .alert-info}
+{: .alert-error}
 
 - **Rejilla interactiva**: haz clic en las casillas para pintar los elementos del laberinto.
 - **Herramientas de casillas**:
@@ -61,9 +60,9 @@ El editor te permite crear tableros personalizados para Laby de forma visual:
   - **Hormiga (`↑`, `→`, `↓`, `←`)**: define la posición y dirección en la que comenzará la hormiga.
 
 <!-- ESPACIO PARA CAPTURA DE PANTALLA: HERRAMIENTAS Y PALETA DE ELEMENTOS -->
-> 🖼️ **Captura de las herramientas y elementos del editor:**  
+> 🖼️ **POR HACER -Captura de las herramientas y elementos del editor:**  
 > *(Aquí se añadirá la captura del selector de herramientas y casillas del editor)*
-{: .alert-info}
+{: .alert-error}
 
 ### ⚠️ Requisitos obligatorios de tu nivel:
 
