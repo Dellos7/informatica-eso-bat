@@ -1,12 +1,12 @@
 ---
 layout: default
 title: Actividad 2. Despliegue en hosting remoto con InfinityFree
-description: Registro en InfinityFree e instalación de 2 aplicaciones web autónomas (WordPress y otra app a elección mediante Softaculous)
+description: Registro en InfinityFree e instalación manual de 2 aplicaciones web autónomas (WordPress y otra app a elección) mediante el gestor de archivos
 ---
 
 # Actividad 2. Despliegue en hosting remoto (InfinityFree) e instalación de aplicaciones web
 
-En esta actividad darás el salto del entorno local a la publicación real en la nube. Te darás de alta en el proveedor de hosting gratuito **InfinityFree** y utilizarás el autoinstalador **Softaculous** para desplegar y administrar 2 aplicaciones web con sus respectivos subdominios públicos.
+En esta actividad darás el salto del entorno local a la publicación real en la nube. Te darás de alta en el proveedor de hosting gratuito **InfinityFree** y desplegarás manualmente 2 aplicaciones web utilizando el **gestor de archivos** del panel de control (accesible a través de [filemanager.ai](https://filemanager.ai)), que permite subir archivos comprimidos y descomprimirlos directamente en el servidor.
 
 ---
 
@@ -15,7 +15,7 @@ En esta actividad darás el salto del entorno local a la publicación real en la
 1. **Gestión de Hosting Web:** Registrarse y configurar una cuenta de alojamiento remoto en **InfinityFree**.
 2. **Administración de Subdominios y DNS:** Crear subdominios gratuitos para publicar servicios web accesibles desde Internet.
 3. **Despliegue de CMS (App 1):** Instalar y personalizar un **WordPress básico** accesible mediante URL pública.
-4. **Exploración e Implementación de Servicios Web (App 2):** Seleccionar, instalar y configurar una **segunda aplicación web libre** (como Moodle, Joomla, phpBB, PrestaShop, DokuWiki...) utilizando el instalador **Softaculous**.
+4. **Exploración e Implementación de Servicios Web (App 2):** Seleccionar, instalar y configurar una **segunda aplicación web libre** (como Joomla, phpBB, PrestaShop, DokuWiki...) mediante el **gestor de archivos** del hosting.
 5. **Configuración funcional:** Demostrar la utilidad práctica de la segunda aplicación mediante un escenario básico de uso real (crear un curso, un foro, un producto, una entrada de wiki, etc.).
 6. **Gestión de Seguridad:** Registrar en **Bitwarden** todos los usuarios y claves del panel de control de InfinityFree, FTP, bases de datos y paneles de administración web.
 
@@ -38,28 +38,42 @@ En esta actividad darás el salto del entorno local a la publicación real en la
 
 ---
 
-### Paso 3: Instalación de la Aplicación 1 (WordPress básico)
-1. En el cPanel de InfinityFree, busca y abre la herramienta **Softaculous Apps Installer**.
-2. Selecciona **WordPress** y pulsa en **Install Now**.
-3. Configura los parámetros de instalación:
-   - **URL de instalación:** Selecciona el subdominio gratuito creado (ejemplo: `http://tunombre-wp.infinityfreeapp.com`).
-   - **Título y descripción del sitio:** Personalízalos con tu nombre.
-   - **Cuenta de administrador:** Define un usuario y contraseña seguros (guárdalos en Bitwarden).
-   - **Lenguaje:** Español.
-4. Haz clic en **Install** y espera a que finalice el proceso.
-5. Accede a la URL pública de tu WordPress y a su panel de administración (`/wp-admin`) para comprobar que funciona correctamente y que el sitio está visible desde Internet.
+### Paso 3: Instalación de la Aplicación 1 (WordPress) mediante el gestor de archivos
+1. Descarga el paquete de **WordPress** en español desde [wordpress.org](https://es.wordpress.org/download/) (archivo `.zip`).
+2. En el **Control Panel** de InfinityFree, busca la sección **MySQL Databases** y crea una nueva base de datos para WordPress.
+3. Anota y guarda en **Bitwarden** todos los datos de conexión que se muestran:
+   - **Nombre de la base de datos**
+   - **Usuario de la base de datos**
+   - **Contraseña de la base de datos**
+   - **Servidor de la base de datos** (ejemplo: `sql123.infinityfree.com`)
+4. Accede al **gestor de archivos** del hosting a través de [filemanager.ai](https://filemanager.ai) desde el panel de control de InfinityFree.
+5. Navega hasta la carpeta `htdocs` de tu subdominio.
+6. Sube el archivo `.zip` de WordPress utilizando la opción de subida del gestor de archivos.
+7. Una vez subido, selecciona el archivo `.zip` y utiliza la opción **Extraer** (*Extract*) para descomprimirlo directamente en el servidor.
+8. Asegúrate de que los archivos de WordPress quedan en la raíz del subdominio (dentro de `htdocs`) o en la subcarpeta deseada.
+9. Accede a la URL pública de tu subdominio (ejemplo: `http://tunombre-wp.infinityfreeapp.com`) para iniciar el **asistente de instalación de WordPress**.
+10. Introduce los datos de conexión a la base de datos creada en el paso 2:
+    - **Nombre de la base de datos:** *(el generado por InfinityFree)*
+    - **Usuario:** *(el asignado por InfinityFree)*
+    - **Contraseña:** *(la contraseña de la base de datos)*
+    - **Servidor de la base de datos:** *(el host proporcionado, ejemplo: `sql123.infinityfree.com`)*
+    - **Prefijo de tabla:** `wp_` *(por defecto)*
+11. Configura el **título del sitio**, el **usuario administrador** y la **contraseña** de WordPress (guárdalos en **Bitwarden**). Selecciona **Español** como idioma.
+12. Accede a la URL pública de tu WordPress y a su panel de administración (`/wp-admin`) para comprobar que funciona correctamente y que el sitio está visible desde Internet.
 
 ---
 
-### Paso 4: Selección e instalación de la Aplicación 2 (Softaculous)
-1. Vuelve al instalador **Softaculous** en el cPanel de InfinityFree.
-2. Explora el catálogo de aplicaciones disponibles por categorías:
+### Paso 4: Selección e instalación de la Aplicación 2 mediante el gestor de archivos
+1. Elige una segunda aplicación web del siguiente catálogo:
    - **Educación / LMS:** Moodle, Chamilo.
    - **Comercio Electrónico / Tiendas:** PrestaShop, OpenCart.
    - **Wikis y Conocimiento:** MediaWiki, DokuWiki.
-3. Selecciona la aplicación que te resulte más interesante de instalar.
-4. Asigna un subdominio o directorio de instalación independiente para esta segunda aplicación (ejemplo: `http://tunombre-app.infinityfreeapp.com` o dentro de un subdirectorio).
-5. Completa la instalación definiendo el usuario administrador y contraseña (registra los datos en Bitwarden).
+2. Descarga el paquete oficial de la aplicación elegida (archivo `.zip` o `.tar.gz`) desde su web oficial.
+3. Crea una **nueva base de datos** en el Control Panel de InfinityFree (sección **MySQL Databases**) para esta segunda aplicación. Guarda los datos de conexión en **Bitwarden**.
+4. Accede al **gestor de archivos** ([filemanager.ai](https://filemanager.ai)) y sube el archivo comprimido a la carpeta `htdocs`, dentro de un subdirectorio con nombre identificativo (ejemplo: `htdocs/moodle` o `htdocs/wiki`).
+5. Extrae el contenido del archivo comprimido directamente en el servidor.
+6. Accede a la URL correspondiente (ejemplo: `http://tunombre-app.infinityfreeapp.com/moodle`) para completar el **asistente de instalación web** de la aplicación, introduciendo los datos de conexión a la base de datos.
+7. Crea el usuario administrador y guarda las credenciales en **Bitwarden**.
 
 ---
 
@@ -76,7 +90,8 @@ Para demostrar que la segunda aplicación web está operativa y comprende su uti
 ## 📽️ Recursos y material de apoyo
 
 👉 [Documentación oficial de InfinityFree](https://forum.infinityfree.com/)  
-👉 [Guía de uso del instalador Softaculous](https://softaculous.com/docs/)
+👉 [Gestor de archivos de InfinityFree (filemanager.ai)](https://filemanager.ai)  
+👉 [Guía de instalación de WordPress](https://developer.wordpress.org/advanced-administration/before-install/howto-install/)
 
 ---
 
@@ -84,7 +99,7 @@ Para demostrar que la segunda aplicación web está operativa y comprende su uti
 
 Deberás entregar en **Aules** los siguientes elementos:
 1. **Documento (PDF o Word)** con un informe de la actividad que contenga:
-   - Captura del panel de control (*Control Panel* / *Softaculous*) de InfinityFree donde se vean las 2 aplicaciones instaladas.
+   - Captura del panel de control (*Control Panel*) y del **gestor de archivos** de InfinityFree donde se vean las carpetas de las 2 aplicaciones instaladas.
    - **Aplicación 1 (WordPress):** Enlace URL público del sitio y capturas de la portada y del panel de administración.
    - **Aplicación 2 (App elegida):** Enlace URL público, nombre de la aplicación elegida, explicación breve de su utilidad y capturas de pantalla que demuestren la configuración mínima funcional realizada.
    - Captura de la bóveda de **Bitwarden** registrando los accesos al hosting y a las aplicaciones.
@@ -98,8 +113,8 @@ Una vez realizada la entrega en Aules, **enseña el trabajo al profesor en clase
 | Criterio | Insuficiente (0 pts) | Básico (0.5 pts) | Adecuado (1 pt) | Excelente (2 pts) |
 | :--- | :--- | :--- | :--- | :--- |
 | **Registro y Gestión de Hosting (InfinityFree)** | No crea la cuenta en InfinityFree ni configura subdominios. | Crea la cuenta con ayuda pero con errores en la gestión de subdominios o accesos. | Configura la cuenta de hosting y subdominios funcionales en InfinityFree. | Gestiona con soltura el panel de InfinityFree, subdominios y credenciales en Bitwarden. |
-| **Despliegue de Aplicación 1 (WordPress)** | WordPress no instalado o inaccesible desde su URL pública. | WordPress instalado pero con fallos de acceso o datos por defecto sin personalizar. | WordPress instalado vía Softaculous y accesible públicamente con configuración básica. | WordPress desplegado correctamente en hosting remoto, plenamente accesible y administrado. |
-| **Despliegue de Aplicación 2 (Softaculous)** | No instala la segunda aplicación web en el hosting. | Instala la segunda app pero esta resulta inaccesible o con errores de instalación. | Segunda aplicación instalada vía Softaculous y accesible desde su correspondiente URL pública. | Segunda aplicación seleccionada e instalada con éxito, integrada correctamente en el hosting. |
+| **Despliegue de Aplicación 1 (WordPress)** | WordPress no instalado o inaccesible desde su URL pública. | WordPress instalado pero con fallos de acceso o datos por defecto sin personalizar. | WordPress instalado y accesible públicamente con configuración básica. | WordPress desplegado correctamente en hosting remoto, plenamente accesible y administrado. |
+| **Despliegue de Aplicación 2** | No instala la segunda aplicación web en el hosting. | Instala la segunda app pero esta resulta inaccesible o con errores de instalación. | Segunda aplicación instalada y accesible desde su correspondiente URL pública. | Segunda aplicación seleccionada e instalada con éxito, integrada correctamente en el hosting. |
 | **Configuración mínima y utilidad práctica (App 2)** | Sin configuración o aplicación vacía e inoperativa. | Configuración insuficiente donde no se aprecia la utilidad de la aplicación. | Configuración inicial realizada donde se observa el funcionamiento básico de la app. | Configuración completa y funcional que demuestra de forma clara la utilidad de la app (curso, foro, producto, wiki...). |
 | **Entrega en plazo y verificación** | No entrega la actividad o presenta un retraso injustificado. | Entrega con retraso importante o informe incompleto sin enlaces/capturas. | Entrega con pequeño retraso o faltan capturas/verificación de enlaces públicos. | Entrega puntual en Aules con documento bien estructurado, enlaces públicos funcionales y comprobación en clase. |
 
