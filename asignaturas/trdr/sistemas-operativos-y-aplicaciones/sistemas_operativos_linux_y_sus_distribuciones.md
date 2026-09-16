@@ -4,9 +4,7 @@ title: Tema 1
 description: Sistemas Operativos. Linux y sus distribuciones
 ---
 
-# Sistemas Operativos: LINUX y sus Distribuciones
-
-## Linux y sus distribuciones
+# Sistemas Operativos: Linux y sus Distribuciones
 
 Linux es un núcleo de Sistema Operativo **libre** basado en **Unix**. Al ser libre su uso es **gratuito**.
 
@@ -25,7 +23,7 @@ Ejemplos de distribuciones más utilizadas:
 * **Lliurex:** Una distribución educativa en la que el núcleo de Linux viene acompañado con aplicaciones de utilidad educativa
 * **Wifislax:** Una distribución con herramientas de monitorización de red. Muy utilizada por hackers por sus herramientas de hackeo de redes.
 
-### Ubuntu
+## Ubuntu
 
 Es una distribución GNU/Linux que ofrece un **interesante sistema operativo para equipos de escritorio y servidores en el ámbito educativo**. Es una distribución basada en **[Debian](http://es.wikipedia.org/wiki/Debian)** cuyas principales características son:
 
@@ -61,10 +59,9 @@ Entre las **aplicaciones de usuario**, Ubuntu cuenta por ejemplo con:
 * Reproductor de música: Rythembox
 * Reproductor de vídeo: VLC
 
-
 Algunas **aplicaciones de Windows no son desarrolladas para los sistemas Linux (Adobe Photoshop, Microsoft Word...)**. Sin embargo, existe una **alternativa** **libre** a cada uno de estos programas. A poco que investigues en la web encontrarás cada una de ellas. Debido a que la mayoría de programas son libres y que estos se encuentran en continuo desarrollo, **el número de aplicaciones existentes bajo Linux es impresionante**.
 
-### Lliurex
+## Lliurex
 
 **Distribución** educativa **realizada por** la **Conselleria d'Educació de la Generalitat Valenciana**.
 

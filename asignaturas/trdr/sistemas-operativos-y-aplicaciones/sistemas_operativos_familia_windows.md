@@ -6,32 +6,7 @@ description: Sistemas Operativos. Familia Windows
 
 # Sistemas Operativos: Familia Windows
 
-## ¿QUÉ ES UN SISTEMA OPERATIVO?
-
-> Un **Sistema Operativo (S.O. en adelante) es un programa que se utiliza como capa intermedia entre los programas que usa un usuario y un ordenador** (o sistema informático de diversa índole). De esta forma, el S.O. permite al usuario trabajar con las aplicaciones sin necesidad de conocer las cuestiones técnicas del funcionamiento de un ordenador por dentro. 
-{: .alert-info}
-
-Ejemplos de S.O. ampliamente utilizados son:
-
-* Windows
-* Linux (y sus distribuciones, entre ellas LliureX que está basada en la distribución de Ubuntu)
-* Mac OS
-* Android
-* iOs
-
-Sobre el Sistema Operativo se pueden instalar programas de usuario. Estos junto con los programas de usuario que vienen preinstalados forman el conjunto de programas de usuario. Veamos algunos ejemplos:
-
-
-* Si uso un programa ofimático como Word de Microsoft, estaré utilizando un programa que se ha instalado sobre el S.O.
-* Si uso un navegador como Mozilla Firefox sobre Linux, probablemente estaré utilizando un programa de usuario que viene preinstalado sobre el S.O.
-
-
-Nótese en ambos casos que no trabajamos directamente sobre el S.O., sino que lo hacemos sobre **aplicaciones de usuario** que están instaladas sobre un S.O.
-
-### WINDOWS
-
 La **primera versión de Microsoft Windows**, **versión 1.0**, presentada en diciembre de 1985, compitió con el sistema operativo de Apple. Carecía de un cierto grado de funcionalidad y **logró muy poca popularidad**. Windows 1.0 no era un sistema operativo completo; más bien era una extensión gráfica de MS-DOS:
-
 
 <img src="./images/Primer_logo_de_Windows.png" alt="Primer logo Windows" height="80" class="img-centrada"/>
 

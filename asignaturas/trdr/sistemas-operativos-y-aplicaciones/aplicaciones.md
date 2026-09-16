@@ -6,6 +6,8 @@ description: Aplicaciones
 
 # Aplicaciones
 
+## ¿Qué son las aplicaciones o programas?
+
 Las **aplicaciones** son **programas que se ejecutan sobre un Sistema Operativo** y que son manejadas directamente por los usuarios. Suelen tener propósitos específicos orientados a las necesidades de las personas que usan un ordenador.
 
 ¿Habéis realizado alguna de estas actividades?
@@ -43,12 +45,12 @@ Todo videojuego es un programa informático. Existen multitud de **plataformas**
 **Vídeojuego Manic Digger (clon de Minecraft pero de código abierto)**
 {: .centrado}
 
-## Actividad
+### Actividad
 
 > **EJERCICIO 6:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
 {: .alert-success}
 
-# Ejemplos de aplicaciones de Linux
+## Ejemplos de aplicaciones de Linux
 
 Como hemos comentado anteriormente, Linux es un S.O. sobre el que se construyen las distribuciones para incorporarle aplicaciones de usuario. Cada distribución suele tener un enfoque: unas van **enfocadas al usuario medio** que necesita **aplicaciones ofimáticas, soluciones web y herramientas sociales**. Otras van enfocadas hacía las **tareas de administración**. Otras van enfocadas hacia **la comunidad educativa**, como por ejemplo en el caso de Lliurex y que vamos a utilizar para ver qué aplicaciones contiene.
 
@@ -75,7 +77,7 @@ Como hemos comentado anteriormente, Linux es un S.O. sobre el que se construyen 
 **SciTE es un editor de textos multiplataforma escrito por Neil Hodgson**
 {: .centrado}
 
-# Ejemplos de aplicaciones de Windows
+## Ejemplos de aplicaciones de Windows
 
 **Windows es un Sistema Operativo de pago** que incluye con su licencia aplicaciones como **editores de texto, un navegador web (Internet Explorer)  o un programa básico de dibujo, el paint**. Para herramientas más completas como suites ofimáticas o programas de dibujo avanzados debemos complementar el sistema con nuevas instalaciones. Veamos, por ejemplo, la **comparación entre el programa de dibujo que incorpora (Paint) y un programa de dibujo y edición de imagen más profesional como es el GIMP**.
 
@@ -103,7 +105,7 @@ Como hemos comentado anteriormente, Linux es un S.O. sobre el que se construyen 
 
 **Foto original de Newton2**
 
-# Ejemplos de aplicaciones de Mac OS
+## Ejemplos de aplicaciones de Mac OS
 
 **Mac OS tiene que ejecutar su propio software, que suele ser accesible a través de** paquetes descargables o directamente desde **la tienda App Store**. Otro **software** que está **incluido con la adquisición del Sistema Operativo es:**
 
@@ -119,7 +121,7 @@ Como hemos comentado anteriormente, Linux es un S.O. sobre el que se construyen 
 
 **Programa Quick Time**
 
-# Aplicaciones Web
+## Aplicaciones Web
 
 Las aplicaciones web **tienen la ventaja de que son accesibles a través de un navegador**. Por lo tanto, **da igual de que el  navegador esté instalado sobre un S.O. Windows, Linux o Mac OS**, están diseñadas para funcionar en cualquier caso.
 
@@ -129,7 +131,7 @@ Las aplicaciones web **tienen la ventaja de que son accesibles a través de un n
 
 **Entorno web multiplataforma de GMail**
 
-## Actividad
+### Actividad
 
 > **EJERCICIOS 7 y 8:** Realiza estos ejercicios en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.**
 {: .alert-success}

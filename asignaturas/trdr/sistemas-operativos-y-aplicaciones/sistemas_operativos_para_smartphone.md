@@ -15,7 +15,7 @@ Sistemas como **Android o iOS** son una maravilla, y en este punto los estudiare
 **Móviles de hace más de 10 años: en esa época no se podían considerar smartphones**
 {: .centrado}
 
-### **Apple iOS**
+## **Apple iOS**
 
 El sistema operativo **Apple iOS** es el usado en todos los móviles **iPhone**, además de versiones antiguas de **iPad**(ahora usan la variante **iPad OS**) y los **iPod Touch.**
 
@@ -33,18 +33,16 @@ Este sistema **apareció por primera vez con el primer iPhone, lanzado en 2007*
 
 Cuando comenzó el desarrollo del iPhone por primera vez,**Steve Jobs**tenía en sus manos dos opciones: partir del sistema de los Mac (Mac OS) haciéndolo más pequeño, o partir del sistema de los iPod, haciéndolo más grande. Para decidirlo enfrentó a los equipos de Mac y iPod, y al final ganaron los primeros. Por ello, una curiosidad que muchos no saben es que **iOS está basado en Mac OS X**. **Tiene**, por tanto, **un núcleo (mayormente) Unix**.
 
-## Vídeo: Historia de iOS
+### Historia de iOS
 
-Mira este vídeo donde se explica **la historia de iOS**, junto a **las mejoras que ha ido incorporando sus distintas versiones** de este S.O. Más adelante se propone una actividad con lo que habrás aprendido en este vídeo:
+➡️ **Descubre la [🍏 Historia de iOS](./historia-de-ios)** y realiza la siguiente actividad.
 
-[🎥 Vídeo](https://youtu.be/iuWITy1IHSM?si=I3vhS3TwYBQBagYf)
-
-## Actividad
+### Actividad
 
 > **EJERCICIO 4** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.**
 {: .alert-success}
 
-### Android
+## Android
 
 **El gran competidor de iOS, sin lugar a dudas, es Android**. Estos dos son los sistemas operativos móviles más importantes de la historia y, sin ellos, el mundo de los smartphones estaría mucho más mermado.
 
@@ -71,7 +69,7 @@ Su **interfaz** es muy **intuitiva** y **se basa en el uso de pantallas táctile
 
 Una de las características más importantes de **Android es que está basado en el núcleo (kernel) de Linux** y es un sistema de **código abierto** (*open source*). A diferencia de iOS (que es exclusivo de Apple), cualquier fabricante como Samsung, Xiaomi o Motorola puede utilizar Android y adaptarlo a sus propios dispositivos. Además, destaca por su **gran capacidad de personalización**: permite a los usuarios modificar la interfaz, organizar el escritorio con **widgets interactivos**, cambiar los temas e incluso instalar aplicaciones directamente desde archivos **APK**.
 
-## Actividad
+### Actividad
 
 > **EJERCICIO 5:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.**
 {: .alert-success}

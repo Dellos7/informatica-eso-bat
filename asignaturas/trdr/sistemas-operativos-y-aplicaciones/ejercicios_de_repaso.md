@@ -16,8 +16,6 @@ En esta actividad se te ofrecen varias **frases con sus palabras desordenadas y 
 
 [🎮 Juego](https://dlopezcastellote.dev/bytechallenge/){:target="_blank"}
 
-## Actividad
-
 > **EJERCICIO 9:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
 {: .alert-success}
 
