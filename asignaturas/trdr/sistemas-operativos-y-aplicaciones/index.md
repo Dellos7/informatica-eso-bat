@@ -4,8 +4,10 @@ title: Tema 1
 description: Sistemas operativos y aplicaciones
 ---
 
+<!--
 > **⚠️DEBES TRAER UNOS AURICULARES DE CABLE A CLASE, NECESARIOS PARA HACER ALGUNOS EJERCICIOS⚠️**
 {: .alert-warning}
+-->
 
 # Tema 1. Sistemas operativos y aplicaciones
 
