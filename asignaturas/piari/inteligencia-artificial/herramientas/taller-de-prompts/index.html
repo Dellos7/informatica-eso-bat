@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller de prompts // Tema 2 IA</title>
+  <link rel="stylesheet" href="../css/tema2.css">
+  <link rel="stylesheet" href="css/taller.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+</head>
+
+<body>
+
+  <header class="top-header">
+    <a href="../../" class="brand-badge">
+      <span>⚡</span><span>TEMA 2 // INTELIGENCIA ARTIFICIAL</span>
+    </a>
+    <div class="tool-badge">Actividad 4</div>
+  </header>
+
+  <main>
+    <h1 class="tool-title">Taller de <span class="accent">prompts</span></h1>
+    <p class="tool-sub">
+      El prompt es lo único que controlas. Rellena las cuatro piezas y monta una petición
+      que la IA no pueda malinterpretar.
+    </p>
+
+    <div class="notice bad">
+      ⚠️ <strong>Aquí no se escriben datos personales.</strong> Ni tu nombre completo, ni el de nadie,
+      ni tu centro, ni direcciones, ni teléfonos.
+    </div>
+
+    <div class="pestanas">
+      <button class="pestana activa" data-panel="constructor">🛠️ Constructor</button>
+      <button class="pestana" data-panel="galeria">📚 Antes y después</button>
+    </div>
+
+    <!-- ============ CONSTRUCTOR ============ -->
+    <section id="panel-constructor">
+
+      <div class="card">
+        <h2>Monta tu prompt</h2>
+        <div id="campos"></div>
+      </div>
+
+      <div class="card">
+        <h2>📋 Tu prompt montado</h2>
+        <div class="prompt-salida" id="salida">
+          <span class="dim">Ve rellenando los campos y aparecerá aquí…</span>
+        </div>
+
+        <div id="avisos"></div>
+
+        <div class="btn-row mt">
+          <button class="btn btn-primary" id="btn-copiar" disabled>📋 Copiar</button>
+          <a class="btn btn-blue" href="https://duck.ai/" target="_blank" rel="noopener">🦆 Abrir duck.ai</a>
+          <button class="btn btn-ghost" id="btn-guardar" disabled>💾 Guardar en mi chuleta</button>
+          <button class="btn btn-ghost" id="btn-limpiar">🗑️ Limpiar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📒 Mi chuleta <span class="counter" id="chuleta-contador">0 guardados</span></h2>
+        <p class="muted mb">Guarda aquí tus mejores prompts y descárgalos al final para la entrega.</p>
+        <div id="chuleta"></div>
+        <button class="btn btn-blue mt" id="btn-descargar" disabled>⬇️ Descargar mi chuleta</button>
+      </div>
+
+    </section>
+
+    <!-- ============ GALERÍA ============ -->
+    <section id="panel-galeria" class="hidden">
+      <div class="card">
+        <h2>El mismo encargo, pedido de dos formas</h2>
+        <p class="muted">
+          Fíjate en lo que cambia. No es que el segundo sea «más largo»:
+          es que <strong>no deja huecos que la IA tenga que rellenar por su cuenta</strong>.
+        </p>
+      </div>
+      <div id="galeria"></div>
+    </section>
+
+  </main>
+
+  <script src="../js/comun.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

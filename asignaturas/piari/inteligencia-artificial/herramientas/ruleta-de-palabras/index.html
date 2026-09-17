@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La ruleta de palabras // Tema 2 IA</title>
+  <link rel="stylesheet" href="../css/tema2.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
+</head>
+
+<body>
+
+  <header class="top-header">
+    <a href="../../" class="brand-badge">
+      <span>⚡</span><span>TEMA 2 // INTELIGENCIA ARTIFICIAL</span>
+    </a>
+    <div class="tool-badge">Actividad 3</div>
+  </header>
+
+  <main>
+    <h1 class="tool-title">La ruleta de <span class="accent">palabras</span></h1>
+    <p class="tool-sub">
+      Una IA que escribe no busca la respuesta correcta: calcula qué palabra es <strong>más probable</strong>
+      que venga a continuación, y la escribe. Aquí vas a hacer tú lo mismo, a mano, para ver cómo funciona.
+    </p>
+
+    <!-- ============ PANTALLA DE INICIO ============ -->
+    <section id="pantalla-inicio" class="card">
+      <h2>👤 Antes de empezar</h2>
+      <div class="field">
+        <label class="field-label" for="input-nombre">
+          Nombre y apellidos <span class="hint">— aparecerán en el resumen que entregas</span>
+        </label>
+        <input type="text" id="input-nombre" placeholder="Ej. Marta Ferrándiz Soler" autocomplete="off">
+      </div>
+      <button class="btn btn-primary btn-lg" id="btn-empezar" disabled>Empezar →</button>
+    </section>
+
+    <!-- ============ SELECTOR DE MODO ============ -->
+    <section id="selector-modo" class="card hidden">
+      <h2>Elige el modo</h2>
+      <div class="btn-row">
+        <button class="btn btn-primary" data-modo="cadena">🔗 Modo cadena</button>
+        <button class="btn btn-ghost" data-modo="probabilidad">📊 Modo probabilidad</button>
+      </div>
+      <p class="dim mt">Empieza por el <strong>modo cadena</strong>. Después pasa al de probabilidad.</p>
+    </section>
+
+    <!-- ============ MODO CADENA ============ -->
+    <section id="modo-cadena" class="card hidden">
+      <h2>🔗 Modo cadena <span class="counter" id="cadena-contador">0 / 15</span></h2>
+
+      <div class="notice info">
+        Pulsa <strong>15 veces</strong> la palabra que te sugiere el programa. <strong>Sin pensar.</strong>
+        Acepta siempre lo que te ofrece, como cuando escribes en el móvil aceptando la primera sugerencia.
+      </div>
+
+      <div class="progress-bar"><div class="progress-fill" id="cadena-progreso" style="width:0%"></div></div>
+
+      <div class="sentence" id="cadena-frase"></div>
+
+      <div class="center mt">
+        <button class="btn btn-primary btn-lg" id="cadena-sugerencia"></button>
+        <p class="dim mt">↑ Esta es la palabra más probable según el programa</p>
+      </div>
+
+      <div id="cadena-final" class="hidden">
+        <div class="notice good mt">
+          <strong>Ya está. Mira lo que has escrito.</strong><br>
+          ¿Tiene sentido gramatical? ¿Dice algo? ¿Quién ha decidido lo que pone ahí, tú o el programa?
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-ghost" id="cadena-copiar">📋 Copiar mi frase</button>
+          <button class="btn btn-ghost" id="cadena-otra">🔄 Otra vez</button>
+          <button class="btn btn-blue" id="cadena-siguiente">Ir al modo probabilidad →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MODO PROBABILIDAD ============ -->
+    <section id="modo-probabilidad" class="card hidden">
+      <h2>📊 Modo probabilidad</h2>
+
+      <div class="notice info">
+        Ahora ves lo que ve la máquina: <strong>todas las continuaciones posibles y su probabilidad</strong>.
+        Mueve la temperatura y observa cómo cambian las barras <em>antes</em> de generar.
+      </div>
+
+      <h3>Frase de partida</h3>
+      <div class="sentence" id="prob-frase"></div>
+
+      <h3>🌡️ Temperatura: <span class="mono" id="prob-temp-valor">0,0</span></h3>
+      <input type="range" id="prob-temp" min="0" max="100" value="0" step="5">
+      <p class="dim" id="prob-temp-texto"></p>
+
+      <h3>Continuaciones posibles</h3>
+      <div id="prob-barras"></div>
+
+      <div class="btn-row mt">
+        <button class="btn btn-primary" id="prob-generar">🎲 Generar</button>
+        <button class="btn btn-ghost" id="prob-generar3">🎲🎲🎲 Generar 3 veces</button>
+        <button class="btn btn-ghost" id="prob-otra">🔄 Otra frase</button>
+      </div>
+
+      <h3 class="mt">Resultados de esta sesión</h3>
+      <table class="data">
+        <thead>
+          <tr><th>#</th><th>Temperatura</th><th>Frase generada</th></tr>
+        </thead>
+        <tbody id="prob-historial">
+          <tr><td colspan="3" class="dim">Todavía no has generado nada.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="btn-row mt">
+        <button class="btn btn-blue" id="btn-descargar">⬇️ Descargar mi resumen</button>
+        <button class="btn btn-ghost" id="btn-volver">← Volver al modo cadena</button>
+      </div>
+      <p class="dim mt">Descarga el resumen y súbelo a Aules junto con tu documento de la Actividad 3.</p>
+    </section>
+
+  </main>
+
+  <script src="../js/comun.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

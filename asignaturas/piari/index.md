@@ -19,3 +19,4 @@ description: Programación, Inteligencia Artificial y Robótica I (2º ESO)
 ## Temas
 
 - [Tema 1](./pensamiento-computacional/)
+- [Tema 2](./inteligencia-artificial/)

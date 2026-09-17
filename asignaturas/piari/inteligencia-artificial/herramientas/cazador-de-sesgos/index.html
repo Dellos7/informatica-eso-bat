@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cazador de sesgos // Tema 2 IA</title>
+  <link rel="stylesheet" href="../css/tema2.css">
+  <link rel="stylesheet" href="css/sesgos.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+</head>
+
+<body>
+
+  <header class="top-header">
+    <a href="../../" class="brand-badge">
+      <span>⚡</span><span>TEMA 2 // INTELIGENCIA ARTIFICIAL</span>
+    </a>
+    <div class="tool-badge">Actividad 6</div>
+  </header>
+
+  <main>
+    <h1 class="tool-title">Cazador de <span class="accent">sesgos</span></h1>
+    <p class="tool-sub">
+      No vamos a opinar sobre si una IA tiene prejuicios. <strong>Los vamos a contar.</strong>
+      Todas estas imágenes salen de peticiones donde <em>no se dice</em> ni el género, ni la edad, ni el aspecto.
+    </p>
+
+    <!-- ============ INICIO ============ -->
+    <section id="pantalla-inicio" class="card">
+      <h2>👤 Antes de empezar</h2>
+      <div class="notice info">
+        Vas a ver <strong id="inicio-total">varias</strong> imágenes. Para cada una, marca lo que ves.
+        No hay respuestas correctas ni incorrectas: <strong>esto es un recuento, no un examen</strong>.
+      </div>
+      <div class="field">
+        <label class="field-label" for="input-nombre">
+          Nombre y apellidos <span class="hint">— aparecerán en el resumen que entregas</span>
+        </label>
+        <input type="text" id="input-nombre" placeholder="Ej. Marta Ferrándiz Soler" autocomplete="off">
+      </div>
+      <button class="btn btn-primary btn-lg" id="btn-empezar" disabled>Empezar el recuento →</button>
+    </section>
+
+    <!-- ============ RECUENTO ============ -->
+    <section id="pantalla-recuento" class="card hidden">
+      <h2>🔎 Recuento <span class="counter" id="contador"></span></h2>
+      <div class="progress-bar"><div class="progress-fill" id="progreso" style="width:0%"></div></div>
+
+      <div class="prompt-actual">
+        <span class="dim">Petición exacta a la IA:</span>
+        <div class="prompt-texto" id="prompt-texto"></div>
+      </div>
+
+      <div class="imagen-box" id="imagen-box"></div>
+
+      <div id="formulario-recuento"></div>
+
+      <div class="btn-row mt">
+        <button class="btn btn-ghost" id="btn-atras">← Anterior</button>
+        <button class="btn btn-primary" id="btn-siguiente" disabled>Siguiente →</button>
+      </div>
+    </section>
+
+    <!-- ============ RESULTADOS ============ -->
+    <section id="pantalla-resultados" class="hidden">
+
+      <div class="card">
+        <h2>📊 Totales de toda la serie</h2>
+        <p class="muted mb">Así ha repartido la IA las <span id="res-n-imagenes"></span> imágenes.</p>
+        <div id="grafico-global"></div>
+      </div>
+
+      <div class="card">
+        <h2>🎯 Prompt a prompt</h2>
+        <p class="muted mb">
+          Busca los repartos más desiguales. Y compara con el prompt de <strong>control</strong>:
+          si ahí el reparto es equilibrado, el sesgo no está en la herramienta, <strong>está en el tema</strong>.
+        </p>
+        <div id="grafico-prompts"></div>
+      </div>
+
+      <div class="card">
+        <h2>💡 Ahora piénsalo</h2>
+        <div class="notice warn">
+          En <strong>ninguna</strong> de esas peticiones se decía el género, la edad ni el aspecto de la persona.
+          Nadie ha programado esto: no hay una línea de código que diga «los jefes son hombres».
+          El modelo aprendió de millones de imágenes de internet, y <strong>en esas imágenes el mundo ya venía
+          repartido así</strong>. La IA no ha inventado el prejuicio: lo ha copiado y lo repite como si fuera lo normal.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>⬇️ Entrega</h2>
+        <div class="btn-row">
+          <button class="btn btn-blue btn-lg" id="btn-descargar">⬇️ Descargar mi recuento</button>
+          <button class="btn btn-ghost" id="btn-repetir">🔄 Empezar de nuevo</button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../js/comun.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detector de IA // Tema 2 IA</title>
+  <link rel="stylesheet" href="../css/tema2.css">
+  <link rel="stylesheet" href="css/detector.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕵️</text></svg>">
+</head>
+
+<body>
+
+  <header class="top-header">
+    <a href="../../" class="brand-badge">
+      <span>⚡</span><span>TEMA 2 // INTELIGENCIA ARTIFICIAL</span>
+    </a>
+    <div class="tool-badge">Actividad 1</div>
+  </header>
+
+  <main>
+    <h1 class="tool-title">Detector de <span class="accent">IA</span></h1>
+    <p class="tool-sub">
+      ¿Eres capaz de distinguir lo real de lo que ha fabricado una máquina?
+      Casi todo el mundo cree que sí. Vamos a comprobarlo.
+    </p>
+
+    <!-- ============ INICIO ============ -->
+    <section id="pantalla-inicio" class="card">
+      <h2>👤 Antes de empezar</h2>
+      <div class="notice warn">
+        Hazlo <strong>en silencio y sin ayuda</strong>. No vale preguntar al de al lado:
+        lo interesante es saber cuánto aciertas <em>tú</em>.
+      </div>
+      <div class="field">
+        <label class="field-label" for="input-nombre">
+          Nombre y apellidos <span class="hint">— aparecerán en el resumen que entregas</span>
+        </label>
+        <input type="text" id="input-nombre" placeholder="Ej. Marta Ferrándiz Soler" autocomplete="off">
+      </div>
+      <button class="btn btn-primary btn-lg" id="btn-empezar" disabled>Empezar el test →</button>
+    </section>
+
+    <!-- ============ TEST ============ -->
+    <section id="pantalla-test" class="card hidden">
+      <h2>
+        <span id="test-tipo-icono">🖼️</span>
+        <span id="test-tipo-texto">Imagen</span>
+        <span class="counter" id="test-contador"></span>
+      </h2>
+
+      <div class="progress-bar"><div class="progress-fill" id="test-progreso" style="width:0%"></div></div>
+
+      <div id="test-contenido" class="item-box"></div>
+
+      <p class="center muted mt mb">¿Esto lo ha hecho una persona o una IA?</p>
+
+      <div class="opciones">
+        <button class="btn btn-ghost btn-lg opcion" data-respuesta="humano">🧑 Lo ha hecho una persona</button>
+        <button class="btn btn-ghost btn-lg opcion" data-respuesta="ia">🤖 Lo ha hecho una IA</button>
+      </div>
+    </section>
+
+    <!-- ============ RESULTADOS ============ -->
+    <section id="pantalla-resultados" class="hidden">
+
+      <div class="card center">
+        <h2 style="justify-content:center">Tu resultado</h2>
+        <div class="score-big" id="res-puntuacion">0/15</div>
+        <p class="mono" id="res-porcentaje"></p>
+        <p id="res-mensaje" class="mt"></p>
+      </div>
+
+      <div class="card">
+        <h2>🔍 Revisa cada uno</h2>
+        <p class="muted mb">Aquí está la respuesta de cada ítem y <strong>qué lo delataba</strong>.</p>
+        <div id="res-revision"></div>
+      </div>
+
+      <div class="card">
+        <h2>💡 Las pistas que funcionan</h2>
+        <div id="res-pistas" class="grid-2"></div>
+      </div>
+
+      <div class="card">
+        <h2>⬇️ Entrega</h2>
+        <p class="muted mb">Descarga tu resumen y súbelo a Aules junto con el documento de la Actividad 1.</p>
+        <div class="btn-row">
+          <button class="btn btn-blue btn-lg" id="btn-descargar">⬇️ Descargar mi resumen</button>
+          <button class="btn btn-ghost" id="btn-repetir">🔄 Repetir el test</button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../js/comun.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

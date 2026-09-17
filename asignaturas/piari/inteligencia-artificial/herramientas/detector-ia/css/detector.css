@@ -1,0 +1,72 @@
+/* Estilos propios de "Detector de IA" */
+
+.item-box {
+  background: rgba(10, 14, 23, .6);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-box img {
+  max-width: 100%;
+  max-height: 420px;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.item-box .texto-item {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 62ch;
+}
+
+.item-box audio { width: 100%; max-width: 480px; }
+
+.item-falta {
+  text-align: center;
+  color: var(--accent-yellow);
+  font-family: var(--font-mono);
+  font-size: .9rem;
+  line-height: 1.8;
+}
+
+.opciones { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.opciones .opcion { width: 100%; }
+@media (max-width: 620px) { .opciones { grid-template-columns: 1fr; } }
+
+/* ---------- Revisión ---------- */
+.revision-item {
+  border-left: 3px solid;
+  border-radius: var(--radius-sm);
+  padding: .85rem 1rem;
+  margin-bottom: .8rem;
+  background: rgba(255, 255, 255, .02);
+}
+.revision-item.acierto { border-color: var(--accent-green); }
+.revision-item.fallo   { border-color: var(--accent-red); }
+
+.revision-cabecera {
+  display: flex; align-items: center; gap: .6rem;
+  flex-wrap: wrap; margin-bottom: .45rem;
+  font-family: var(--font-mono); font-size: .82rem;
+}
+.revision-extracto {
+  color: var(--text-muted); font-size: .9rem; font-style: italic;
+  margin-bottom: .4rem;
+}
+.revision-pista { font-size: .92rem; }
+.revision-pista strong { color: var(--accent-cyan); }
+
+/* ---------- Pistas generales ---------- */
+.bloque-pistas h3 { margin-top: 0; color: var(--accent-cyan); }
+.bloque-pistas ul { list-style: none; padding: 0; }
+.bloque-pistas li {
+  padding: .4rem 0 .4rem 1.4rem; position: relative; font-size: .92rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .04);
+}
+.bloque-pistas li:last-child { border-bottom: none; }
+.bloque-pistas li::before { content: '▸'; position: absolute; left: 0; color: var(--accent-cyan); }

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El semáforo de los datos // Tema 2 IA</title>
+  <link rel="stylesheet" href="../css/tema2.css">
+  <link rel="stylesheet" href="css/semaforo.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚦</text></svg>">
+</head>
+
+<body>
+
+  <header class="top-header">
+    <a href="../../" class="brand-badge">
+      <span>⚡</span><span>TEMA 2 // INTELIGENCIA ARTIFICIAL</span>
+    </a>
+    <div class="tool-badge">Actividad 5</div>
+  </header>
+
+  <main>
+    <h1 class="tool-title">El semáforo de los <span class="accent">datos</span></h1>
+    <p class="tool-sub">
+      A una IA no le cuentas nada que no le contarías a un desconocido en el autobús.
+      Pero, ¿dónde está exactamente la línea? Vamos a colocar 20 cosas en su sitio.
+    </p>
+
+    <!-- ============ INICIO ============ -->
+    <section id="pantalla-inicio" class="card">
+      <h2>👤 Antes de empezar</h2>
+      <div class="notice info">
+        <strong>Dos formas de jugar:</strong> arrastra la tarjeta a su zona,
+        o <strong>pulsa la tarjeta y luego pulsa la zona</strong>. Lo que te resulte más cómodo.
+      </div>
+      <div class="field">
+        <label class="field-label" for="input-nombre">
+          Nombre y apellidos <span class="hint">— aparecerán en el resumen que entregas</span>
+        </label>
+        <input type="text" id="input-nombre" placeholder="Ej. Marta Ferrándiz Soler" autocomplete="off">
+      </div>
+      <button class="btn btn-primary btn-lg" id="btn-empezar" disabled>Empezar →</button>
+    </section>
+
+    <!-- ============ JUEGO ============ -->
+    <section id="pantalla-juego" class="hidden">
+
+      <div class="card">
+        <h2>🗂️ Clasifica esta información <span class="counter" id="contador"></span></h2>
+        <div class="progress-bar"><div class="progress-fill" id="progreso" style="width:0%"></div></div>
+        <div id="carta-actual" class="carta-actual"></div>
+        <p class="dim center">Arrástrala a una zona, o pulsa una zona de abajo 👇</p>
+      </div>
+
+      <div class="zonas" id="zonas"></div>
+
+      <div class="card">
+        <button class="btn btn-ghost" id="btn-deshacer" disabled>↩️ Deshacer la última</button>
+      </div>
+
+    </section>
+
+    <!-- ============ RESULTADOS ============ -->
+    <section id="pantalla-resultados" class="hidden">
+
+      <div class="card center">
+        <h2 style="justify-content:center">Tu resultado</h2>
+        <div class="score-big" id="res-puntuacion">0/20</div>
+        <p class="mono" id="res-detalle"></p>
+        <p id="res-mensaje" class="mt"></p>
+      </div>
+
+      <div class="card">
+        <h2>🔍 Repaso de las 20</h2>
+        <div id="res-revision"></div>
+      </div>
+
+      <div class="card">
+        <h2>💬 Para debatir en clase</h2>
+        <p class="muted mb">
+          Estas no tienen una respuesta única. Son las interesantes:
+          <strong>no puntúan como fallo</strong>, pero hay que hablarlas.
+        </p>
+        <div id="res-debate"></div>
+      </div>
+
+      <div class="card">
+        <h2>⬇️ Entrega</h2>
+        <div class="btn-row">
+          <button class="btn btn-blue btn-lg" id="btn-descargar">⬇️ Descargar mi resumen</button>
+          <button class="btn btn-ghost" id="btn-repetir">🔄 Repetir</button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../js/comun.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
