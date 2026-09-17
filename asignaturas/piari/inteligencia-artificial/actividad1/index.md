@@ -25,6 +25,13 @@ Son **15 rondas**. En cada una verás una cara, un texto, una imagen o escuchar�
 - No te preocupes por acertar poco: **la media está entre el 50 % y el 60 %**, que es casi lo mismo que responder al azar.
 - Al terminar, la web te enseñará **las pistas de cada ítem** y te dejará **descargar tu resultado**. Guárdalo, porque lo tienes que entregar.
 
+<!-->
+
+https://www.whichfaceisreal.com/
+https://thispersondoesnotexist.com/
+
+-->
+
 ---
 
 ## Tarea 2. ¿En qué te has fijado?
