@@ -6,7 +6,7 @@ description: Actividad 1 del Tema 1
 
 # Actividad 1
 
-1. Antes de nada, en la carpeta **Documentos** del ordenador, crea una carpeta llamada **PSIR**.
+1. Antes de nada, en la carpeta **Documentos** del ordenador, crea una carpeta llamada **PIARI**.
 2. Dentro, crea otra carpeta llamada **Tema 1**.
 3. Dentro de _Tema 1_, crea la carpeta **Actividad 1**
 

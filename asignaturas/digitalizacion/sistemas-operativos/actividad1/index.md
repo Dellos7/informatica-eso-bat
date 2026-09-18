@@ -95,7 +95,7 @@ Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local
 2. Pídele que te ayude a crear tu mapa mental proporcionándole un ejemplo de cómo es la estructura de un archivo `.mm` (que en realidad es un código tipo XML) para que imite su estructura. 
 3. Para ello, **copia y pega el siguiente prompt** **ADAPTÁNDOLO**{: .rojo} **a tu chat:**
 
-> Quiero crear un mapa mental en Freeplane que resuma qué es un ...... . Necesito que me generes el código XML estructurado y limpio para poder guardarlo como un archivo de extensión `.mm` e importarlo directamente en el programa. El mapa debe tener como nodo central "Sistemas Operativos" y debe dividirse en: ...... (con subnodos detallados para cada uno). Para ayudarte a entender el formato que lee Freeplane, aquí tienes un ejemplo corto de cómo estructurar los nodos:
+> Quiero crear un mapa mental en Freeplane que resuma qué es un ...... . Necesito que me generes el código XML estructurado y limpio para poder guardarlo como un archivo de extensión `.mm` e importarlo directamente en el programa. El mapa debe tener como nodo central ...... y debe dividirse en: ...... (con subnodos detallados para cada uno). Para ayudarte a entender el formato que lee Freeplane, aquí tienes un ejemplo corto de cómo estructurar los nodos:
 > 
 > ```xml
 > <map version="freeplane 1.9.13">
