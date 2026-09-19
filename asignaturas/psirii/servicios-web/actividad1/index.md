@@ -106,25 +106,33 @@ unzip wordpress-*.zip
    ```
 > Revisar los permisos de la carpeta `wordpress` ya que probablemente no tenga los permisos adecuados:
    ```bash
-   sudo chown -R $USER:daemon /opt/lampp/htdocs/wordpress
+   sudo chown -R root:daemon /opt/lampp/htdocs/wordpress
    sudo chmod -R g+rwX /opt/lampp/htdocs/wordpress
+   sudo find /opt/lampp/htdocs/wordpress -type d -exec chmod g+s {} \;
    ```
 {: .alert-warning}
 4. Accede a **phpMyAdmin** (`http://localhost/phpmyadmin`) para configurar la base de datos y un usuario exclusivo con permisos restringidos:
-   - **a) Crear el usuario primero:**
-     - Haz clic en la pestaña superior **Cuentas de usuarios** y luego en **Agregar cuenta de usuario**.
+   - **a) Eliminar los usuarios sin contraseña:**
+     - Haz clic en la pestaña superior **Cuentas de usuarios**.
+     - En la tabla de cuentas de usuarios, localiza aquellos que no tienen contraseña (en la columna **¿Tiene contraseña?** aparece **No**, habitualmente cuentas anónimas o con el usuario en blanco/`Cualquiera`).
+     - Marca la casilla de selección de dichos usuarios sin contraseña.
+       > ⚠️ **Importante:** No marques ni elimines el usuario `root` si aún no tiene contraseña, ya que es el superusuario necesario para administrar phpMyAdmin.
+     - Al final de la tabla, en el apartado **Eliminar las cuentas de usuario seleccionadas**, pulsa en el botón **Continuar** (o **Ir**) para borrarlos.
+       > **¿Por qué es necesario este paso?** Si dejamos cuentas anónimas o sin contraseña en MySQL/MariaDB, la resolución de nombres de host prioriza estas cuentas vacías locales y provocará un error de conexión (*Access denied*) al intentar autenticar nuestro nuevo usuario durante la instalación de WordPress.
+   - **b) Crear el usuario exclusivo:**
+     - En la misma pestaña **Cuentas de usuarios**, haz clic en **Agregar cuenta de usuario**.
      - En **Nombre de usuario**, introduce un nombre de usuario.
      - En **Nombre de host**, selecciona **Local** (`localhost`).
      - En **Contraseña**, genera o introduce una contraseña segura y **guárdala en Bitwarden**.
      - En *Base de datos para la cuenta de usuario*, déjalo desmarcado.
      - En *Privilegios globales*, déjalo todo desmarcado (principio de mínimo privilegio: no debe ser administrador general del servidor).
      - Desplázate hacia abajo y pulsa en el botón **Continuar** para crear el usuario.
-   - **b) Crear la base de datos:**
+   - **c) Crear la base de datos:**
      - Haz clic en la pestaña superior **Bases de datos**.
      - En el apartado **Crear base de datos**, introduce el nombre `wordpress`.
      - En el desplegable de cotejamiento (*Collation*), selecciona `utf8mb4_unicode_ci` (o `utf8mb4_general_ci`).
      - Haz clic en **Crear**.
-   - **c) Otorgar permisos completos al usuario sobre esa base de datos:**
+   - **d) Otorgar permisos completos al usuario sobre esa base de datos:**
      - Vuelve a la pestaña **Cuentas de usuarios**.
      - En la fila del usuario, haz clic en **Editar privilegios**.
      - Haz clic en la pestaña superior **Base de datos** (privilegios específicos de bases de datos).
