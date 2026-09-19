@@ -41,7 +41,7 @@ Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad
    - **Imagen ISO**: el archivo **.iso** descargado de Windows XP
    - **Tipo:** Microsoft Windows
    - **Versión:** Windows XP (64-bit)
-   - **Proceed with Unattended Installation**: ❌ No Marcar
+   - **Proceed with Unattended Installation**: ❌ No Marcar *o bien* **Skip Unattended Installation**: ✅ Marcar
    - **Memoria RAM (Hardware):** 2048 MB (2 GB)
    - **Disco duro virtual (Hard Disk):** 10 GB
 
@@ -104,7 +104,7 @@ Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad
    - **Imagen ISO**: el archivo **.iso** descargado de Linux Lite
    - **Tipo:** Linux
    - **Versión:** Ubuntu (64-bit)
-   - **Proceed with Unattended Installation**: ❌ No Marcar
+   - **Proceed with Unattended Installation**: ❌ No Marcar *o bien* **Skip Unattended Installation**: ✅ Marcar
    - **Memoria RAM (Hardware):** 3072 MB (3 GB)
    - **Disco duro virtual (Hard Disk):** 25 GB
 
@@ -154,7 +154,7 @@ Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad
    - **Imagen ISO**: el archivo **.iso** descargado de Windows 11
    - **Tipo:** Microsoft Windows
    - **Versión:** Windows 11 (64-bit)
-   - **Proceed with Unattended Installation**: ❌ No Marcar
+   - **Proceed with Unattended Installation**: ❌ No Marcar *o bien* **Skip Unattended Installation**: ✅ Marcar
    - **Memoria RAM (Hardware):** 8192 MB (8 GB)
    - **Disco duro virtual (Hard Disk):** 80 GB
 
@@ -173,7 +173,12 @@ Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad
 > **NOTA**: Debe verse la extensión del archivo. Por defecto no aparece, así que deberás buscar en las opciones del sistema de archivos cómo **mostrar las Extensiones de nombre de archivo**
 {: .alert-warning}
 
-   - Instala alguna aplicación desde **Microsoft Store**
+   - **Instala LibreOffice** descargándolo desde el navegador web:
+     1. Abre el navegador (**Microsoft Edge**).
+     2. Accede a la página web oficial: [es.libreoffice.org](https://es.libreoffice.org/) y dirígete a la sección **Descargar** > **Descargar LibreOffice**.
+     3. Descarga la versión para Windows (archivo instalador con extensión `.msi`).
+     4. Abre el archivo descargado y sigue los pasos del asistente de instalación (puedes dejar marcada la opción *Típica*).
+     5. Una vez finalizada la instalación, abre **LibreOffice Writer** (o el acceso general a LibreOffice) para comprobar que funciona correctamente.
 
 4. Haz una **captura de pantalla** en la que se vea:
 {:start="4"}
@@ -187,9 +192,9 @@ Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad
 ![Archivo .txt en Windows 11](./capt_win11_vbox_1.png)
 {: .img .img-500}
 
-   - La aplicación instalada con Microsoft Store.
+   - El programa **LibreOffice** abierto o visible en el sistema.
 
-👉 Explora las nuevas aplicaciones que incluye Windows 11 (Bloc de notas, Fotos, Microsoft Store, etc.).
+👉 Explora las nuevas aplicaciones que incluye Windows 11 (Bloc de notas, Fotos, etc.).
 
 ---
 
@@ -197,7 +202,7 @@ Esto nos permite probar y utilizar distintos sistemas operativos **sin necesidad
 Deberás subir en Aules:
 - **Captura/s de pantalla de Windows XP** (usuario, foto, archivo Actividad 1.txt y juegos Pinball, Buscaminas, Solitario...)
 - **Captura/s de pantalla de Linux Lite** (usuario y archivo Actividad 1.txt y juego SuperTuxKart).  
-- **Captura/s de pantalla de Windows 11** (usuario y archivo Actividad 1.txt y programa/aplicación instalada de Microsoft Store).
+- **Captura/s de pantalla de Windows 11** (usuario, archivo Actividad 1.txt y LibreOffice instalado o abierto).
 - **Crear un documento** con LibreOffice Writer en Lliurex y **responde a las siguientes preguntas**:
    1. ¿Qué diferencias aprecias entre los 3 sistemas operativos?
    2. A nivel de hardware y recursos, ¿cuál de todos consume menos recursos? ¿Y cuál más?
@@ -210,7 +215,7 @@ Deberás subir en Aules:
 |----------|-------|-------|-------|-------|
 | **Windows XP (2 pts)** | No consigue instalar ni configurar Windows XP correctamente, ni entregar las capturas solicitadas. | Instala el sistema y hace alguna configuración básica, pero faltan varios elementos solicitados. | Configura correctamente la máquina virtual, instala Windows XP, cambia idioma, crea usuario con foto de perfil, crea el archivo `Actividad 1.txt` completo y muestra las capturas de usuario, archivo y juegos clásicos (Pinball, Buscaminas, Solitario). | – |
 | **Linux Lite (2 pts)** | No consigue instalar ni configurar Linux Lite correctamente, ni entregar las capturas solicitadas. | Instala el sistema y realiza solo una parte de lo solicitado (ej. usuario o archivo sin completar). | Configura correctamente la máquina virtual, instala Linux Lite en español, crea usuario, crea el archivo `Actividad 1.txt` completo y muestra capturas de usuario, archivo y juego **SuperTuxKart** funcionando. | – |
-| **Windows 11 (3 pts)** | No consigue instalar ni configurar Windows 11 correctamente, ni entregar las capturas solicitadas. | Instala el sistema y realiza solo una parte de lo solicitado. | Realiza la instalación y configuraciones principales, pero falta algún elemento (ej. archivo incompleto o sin programa instalado de la Store). | Configura correctamente la máquina virtual, instala Windows 11, cambia idioma, crea usuario con foto de perfil, crea el archivo `Actividad 1.txt` completo y muestra capturas de usuario, archivo y un programa/aplicación instalada desde Microsoft Store. |
+| **Windows 11 (3 pts)** | No consigue instalar ni configurar Windows 11 correctamente, ni entregar las capturas solicitadas. | Instala el sistema y realiza solo una parte de lo solicitado. | Realiza la instalación y configuraciones principales, pero falta algún elemento (ej. archivo incompleto o sin LibreOffice instalado). | Configura correctamente la máquina virtual, instala Windows 11, cambia idioma, crea usuario con foto de perfil, crea el archivo `Actividad 1.txt` completo y muestra capturas de usuario, archivo y LibreOffice instalado tras descargarlo desde el navegador. |
 | **Documento en LibreOffice (1 pt)** | No entrega el documento, está en blanco, es copia o se genera con una IA (ChatGPT, etc). | Entrega el documento en LibreOffice con respuestas completas y bien razonadas a las 3 preguntas. | – | – |
 | **Plazo de entrega (2 pts)** | No entrega o entrega con retraso de más de una semana. | Entrega con un ligero retraso (máx. 2 días). | Entrega la actividad dentro del plazo establecido. | – |
 
