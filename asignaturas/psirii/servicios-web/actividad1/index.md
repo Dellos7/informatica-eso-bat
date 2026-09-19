@@ -16,8 +16,8 @@ En esta actividad aprenderás a montar un entorno de servidor web completo parti
 2. **Virtualización:** Crear y configurar una máquina virtual con **Linux Mint** en **VirtualBox**.
 3. **Servidor Web Local:** Instalar y administrar el stack **XAMPP** (servidor web Apache, base de datos MariaDB/MySQL y PHP) sobre Linux.
 4. **Despliegue de CMS:** Instalar y configurar **WordPress** sobre el servidor local XAMPP.
-5. **Diseño y Maquetación Web:** Instalar el tema **Blocksy**, seleccionar e importar una plantilla para web personal/currículum y editarla utilizando el editor de bloques **Gutenberg** o el maquetador **Elementor**.
-6. **Plugins y Seguridad:** Ampliar las funcionalidades y la protección del sitio mediante plugins esenciales (**CookieYes**, **Limit Login Attempts Reloaded**, **WPForms Lite** y **All-in-One WP Migration**) y exportar una copia completa en formato `.wpress`.
+5. **Plugins y Seguridad:** Ampliar las funcionalidades y la protección del sitio mediante plugins esenciales (**CookieYes**, **Limit Login Attempts Reloaded**, **WPForms Lite** y **All-in-One WP Migration**) y exportar una copia completa en formato `.wpress`.
+6. **Diseño y Maquetación Web:** Instalar el tema **Blocksy**, seleccionar e importar una plantilla para web personal/currículum y editarla utilizando el editor de bloques **Gutenberg** o el maquetador **Elementor**.
 
 ---
 
@@ -165,7 +165,22 @@ unzip wordpress-*.zip
    - Guarda los cambios.
 {:start="2"}
 
-### Paso 6: Personalización con el tema Blocksy y maquetación web
+### Paso 6: Instalación de plugins
+Los plugins permiten añadir funcionalidades clave, garantizar el cumplimiento normativo y reforzar la seguridad de un sitio WordPress.
+1. Ve a **Plugins > Añadir nuevo** en el panel de administración de WordPress.
+2. Busca, instala y activa los siguientes plugins esenciales:
+   - **CookieYes (Cookie Banner / RGPD):** Muestra un aviso de cookies configurable para cumplir con las normativas de privacidad y consentimiento de los usuarios.
+   - **Limit Login Attempts Reloaded:** Protege el sitio web frente a ataques de fuerza bruta en el acceso de administración (`wp-login.php`), bloqueando la dirección IP tras varios intentos fallidos.
+   - **WPForms Lite:** Permite crear formularios de contacto interactivos y personalizados de forma muy visual (mediante arrastrar y soltar) para integrarlos fácilmente en la web.
+   - **All-in-One WP Migration:** Permite realizar copias de seguridad completas y exportar todo el sitio web (base de datos, medios, temas y plugins) en un único archivo.
+3. Comprueba el funcionamiento de los plugins instalados:
+   - Abre la web en una ventana de incógnito del navegador para verificar que el banner de cookies de **CookieYes** se muestra correctamente.
+   - Entra en los ajustes de **Limit Login Attempts Reloaded** para comprobar el panel de monitorización de intentos de inicio de sesión.
+   - Con **WPForms Lite**, crea un formulario de contacto básico (Nombre, Correo electrónico y Mensaje) e intégralo en la sección de contacto de tu página de inicio utilizando su bloque o shortcode correspondiente.
+
+---
+
+### Paso 7: Personalización con el tema Blocksy y maquetación web
 1. Accede al panel de administración de WordPress (`http://localhost/wordpress/wp-admin`).
 2. Ve a **Apariencia > Temas > Añadir nuevo**, busca e instala el tema **Blocksy**. Actívalo.
 3. Instala el plugin **Blocksy Companion** si el sistema lo requiere para acceder al catálogo de plantillas preconfiguradas (*Starter Sites*).
@@ -203,22 +218,6 @@ unzip wordpress-*.zip
 
    ![Ejemplo de maquetación de web personal CV](./ejemplo_web_cv.jpg)
    {: .alert-info}
-
-
----
-
-### Paso 7: Instalación de plugins
-Los plugins permiten añadir funcionalidades clave, garantizar el cumplimiento normativo y reforzar la seguridad de un sitio WordPress.
-1. Ve a **Plugins > Añadir nuevo** en el panel de administración de WordPress.
-2. Busca, instala y activa los siguientes plugins esenciales:
-   - **CookieYes (Cookie Banner / RGPD):** Muestra un aviso de cookies configurable para cumplir con las normativas de privacidad y consentimiento de los usuarios.
-   - **Limit Login Attempts Reloaded:** Protege el sitio web frente a ataques de fuerza bruta en el acceso de administración (`wp-login.php`), bloqueando la dirección IP tras varios intentos fallidos.
-   - **WPForms Lite:** Permite crear formularios de contacto interactivos y personalizados de forma muy visual (mediante arrastrar y soltar) para integrarlos fácilmente en la web.
-   - **All-in-One WP Migration:** Permite realizar copias de seguridad completas y exportar todo el sitio web (base de datos, medios, temas y plugins) en un único archivo.
-3. Comprueba el funcionamiento de los plugins instalados:
-   - Abre la web en una ventana de incógnito del navegador para verificar que el banner de cookies de **CookieYes** se muestra correctamente.
-   - Entra en los ajustes de **Limit Login Attempts Reloaded** para comprobar el panel de monitorización de intentos de inicio de sesión.
-   - Con **WPForms Lite**, crea un formulario de contacto básico (Nombre, Correo electrónico y Mensaje) e intégralo en la sección de contacto de tu página de inicio utilizando su bloque o shortcode correspondiente.
 
 ---
 
