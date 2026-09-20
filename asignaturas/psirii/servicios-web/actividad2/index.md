@@ -4,6 +4,9 @@ title: Actividad 2. Despliegue en hosting remoto con InfinityFree
 description: Registro en InfinityFree e instalación manual de 2 aplicaciones web autónomas (WordPress y otra app a elección) mediante el gestor de archivos
 ---
 
+> **PENDIENTE**: ANTES DE ACT. 2: PENSAR SI HACEMOS UNA ACTIVIDAD DE GESTIÓN DE LA WEB DE WORDPRESS A TRAVÉS DE NOVAMIRA MCP CON ANTIGRAVITY. SERÍA INSTALAR ANTIGRAVITY IDE EN LLIUREX, CONFIGURAR LA MV PARA QUE SEA ADAPTADOR PUENTE, INSTALAR NOVAMIRA EN WP Y PROBAR. INFINITYFREE TIENE BLOQUEADO EL ACCESO POR MCP Y NO SE PUEDE UTILIZAR. **PENSAR SI UTILIZAMOS HOSTING WORDPRESS.COM SOLICITÁNDOLO**
+{: .alert-error}
+
 # Actividad 2. Despliegue en hosting remoto (InfinityFree) e instalación de aplicaciones web
 
 En esta actividad darás el salto del entorno local a la publicación real en la nube. Te darás de alta en el proveedor de hosting gratuito **InfinityFree** y desplegarás manualmente 2 aplicaciones web utilizando el **gestor de archivos** del panel de control (accesible a través de [filemanager.ai](https://filemanager.ai)), que permite subir archivos comprimidos y descomprimirlos directamente en el servidor.
