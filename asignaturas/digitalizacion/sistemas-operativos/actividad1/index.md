@@ -121,13 +121,13 @@ Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local
 {:start="6"}
 7. Abre **Freeplane** en LliureX, ve a *Archivo -> Abrir* y selecciona tu archivo `mapa_sistema_operativo.mm`, o bien haz doble clic directamente sobre él.
 {:start="7"}
-8. Organiza visualmente el mapa si es necesario, despliega los nodos y **añade tu nombre y apellidos**. Para ello, selecciona el nodo principal y pulsa la tecla *Enter*. Anota tu nombre y apellidos en el nuevo nodo.
+8. Organiza visualmente el mapa si es necesario: **despliega bien todos los nodos y ramas** (para que todo el contenido sea visible y no quede contraído u oculto) y **añade tu nombre y apellidos**. Para ello, selecciona el nodo principal y pulsa la tecla *Enter*. Anota tu nombre y apellidos en el nuevo nodo.
 {:start="8"}
 9. **Dale un poco de color** al mapa: selecciona cada nodo y ve a menú --> Formato --> Node core --> Color del node... . Con cambiar el color de algunos de los nodos es suficiente.
 {:start="9"}
 10. Guarda el mapa editado.
 {:start="10"}
-11. Expórtalo como imagen (*Archivo -> Exportar mapa -> JPG*) con el nombre `mapa_sistema_operativo.jpg`.
+11. Asegúrate de que el esquema esté bien desplegado, con color y con tu nombre visible, y expórtalo como imagen (*Archivo -> Exportar mapa -> JPG*) con el nombre `mapa_sistema_operativo.jpg`.
 {:start="11"}
 12. Haz una captura de pantalla de la conversación que has tenido con la IA y pégala dentro de tu documento de respuestas (`actividad1_respuestas.odt`) bajo el título **«Ejercicio 5: Mapa mental e IA»**, junto a una breve reflexión de qué te ha parecido este método.
 {:start="12"}
@@ -154,7 +154,7 @@ Deberás subir a la tarea de Aules únicamente:
 Dentro del `.zip`, el profesor comprobará que la estructura de carpetas es correcta y que dentro de la carpeta `Actividad_1` se encuentran:
 * Tu documento de respuestas finalizado: **`actividad1_respuestas.odt`** (con las Especificaciones del Ejercicio 2, la tabla de Tipos de archivos y extensiones del Ejercicio 3, la captura de pantalla, texto y reflexiones sobre la IA del Ejercicio 4, y las capturas e imágenes del Ejercicio 5).
 * El archivo editable del mapa mental: **`mapa_sistema_operativo.mm`**.
-* La exportación del mapa mental en imagen: **`mapa_sistema_operativo.jpg`**.
+* La exportación del mapa mental en imagen: **`mapa_sistema_operativo.jpg`** (mostrando el esquema bien desplegado, con color y tu nombre y apellidos).
 
 ---
 
@@ -166,7 +166,7 @@ Dentro del `.zip`, el profesor comprobará que la estructura de carpetas es corr
 | **2. Especificaciones e Info de LliureX (ODT)** (máx. 1.5 pts) | No identifica las especificaciones técnicas ni entrega el archivo `.odt`. | Entrega el `.odt` muy incompleto, o faltan la mayoría de los datos técnicos solicitados. | Entrega el `.odt` con la información técnica de su máquina, pero le faltan algunos datos o no responde a la pregunta sobre el número de serie. | Identifica perfectamente la CPU, RAM, número de serie, fabricante, versión de LliureX y su distribución base en el `.odt`. | |
 | **3. Asociación y Tipos de archivos (ODT)** (máx. 1.5 pts) | No realiza la clasificación de los archivos descomprimidos. | Clasifica muy pocos archivos de prueba o comete errores graves al identificar sus extensiones. | Clasifica la mayoría de los archivos de prueba, pero no asocia correctamente todos los programas por defecto de LliureX. | Identifica con precisión todas las extensiones, tipos de archivo y programas asociados por defecto en una tabla limpia. | |
 | **4. Primeros pasos con la IA** (máx. 1.5 pts) | No utiliza la IA o no entrega las evidencias en el documento. | Usa la IA pero falta la captura del chat o no incluye la respuesta de texto completa. | Presenta la captura y el texto, pero la reflexión sobre el aprendizaje (conceptos sabidos/nuevos) es muy escasa. | Presenta la captura del chat, el texto copiado y elabora una reflexión clara diferenciando conceptos conocidos y nuevos conocimientos. | |
-| **5. Mapa Mental (Freeplane & IA)** (máx. 2 pts) | No genera el mapa mental o no presenta evidencias de la IA. | Genera el mapa mental en Freeplane pero no muestra evidencias del chat de IA o el archivo no se abre. | Importa el XML generado por la IA en Freeplane pero no exporta la imagen `.jpg` o no incluye la reflexión en el documento `.odt`. | | Proceso excelente de uso de IA, importación impecable del XML en Freeplane, mapa exportado en `.jpg` e integrado en el `.odt` con su captura. |
+| **5. Mapa Mental (Freeplane & IA)** (máx. 2 pts) | No genera el mapa mental o no presenta evidencias de la IA. | Genera el mapa mental en Freeplane pero no muestra evidencias del chat de IA o el archivo no se abre. | Importa el XML generado por la IA en Freeplane pero no exporta la imagen `.jpg`, no incluye su nombre y apellidos en el mapa o falta la reflexión en el `.odt`. | Importa el XML y exporta la imagen en `.jpg` con su nombre y apellidos, pero falta añadir color o desplegar alguna rama del esquema. | Proceso excelente de uso de IA e importación en Freeplane: esquema bien desplegado, con color, nombre y apellidos, exportado en `.jpg` e integrado en el `.odt` con su captura y reflexión. |
 | **6. Entrega en plazo** (máx. 2 pts) | No entrega o entrega con retraso de más de una semana. | Entrega con un retraso importante de hasta una semana. | Entrega con un pequeño retraso de máximo 2 días. | | Entrega la actividad a tiempo dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
