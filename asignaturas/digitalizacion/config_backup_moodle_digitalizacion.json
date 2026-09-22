@@ -1,0 +1,40 @@
+{
+  "course": {
+    "fullname": "4ESO - Digitalización",
+    "shortname": "4ESO-DIG",
+    "idnumber": "4ESO_DIG_2025_26",
+    "summary": "Curso de Digitalización para 4º de la ESO"
+  },
+  "web_base_url": "https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion",
+  "groups": [
+    {
+      "id": 88658,
+      "name": "DIG1"
+    },
+    {
+      "id": 88659,
+      "name": "DIG2"
+    }
+  ],
+  "duplicate_activities_per_group": true,
+  "topic_button": {
+    "style": "display: inline-block; padding: 14px 28px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; background-color: #0076ff; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 118, 255, 0.2); transition: background-color 0.2s ease;"
+  },
+  "topics": [
+    {
+      "folder": "sistemas-operativos",
+      "title": "Tema 1: Sistemas Operativos",
+      "button_text": "TEMA 1 (WEB)"
+    },
+    {
+      "folder": "documentos-digitales",
+      "title": "Tema 2: Documentos digitales",
+      "button_text": "TEMA 2 (WEB)"
+    },
+    {
+      "folder": "html",
+      "title": "Tema 3: Creando webs con HTML",
+      "button_text": "TEMA 3 (WEB)"
+    }
+  ]
+}
