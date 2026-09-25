@@ -20,6 +20,52 @@
   "topic_button": {
     "style": "display: inline-block; padding: 14px 28px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; background-color: #0076ff; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 118, 255, 0.2); transition: background-color 0.2s ease;"
   },
+  "general_section": {
+    "activities": [
+      {
+        "type": "label",
+        "name": "Banner Asignatura",
+        "content": "<h3 style=\"text-align: center; color: blue\"><strong><img src=\"https://dlopezcastellote.dev/informatica-eso-bat/archivos/imagenes/4ESO-DIGITALIZACION.png\" alt=\"4ESO DIGITALIZACIÓN\" width=\"999\" height=\"333\" role=\"presentation\" class=\"img-fluid atto_image_button_text-bottom\"></strong></h3>"
+      },
+      {
+        "type": "label",
+        "name": "Profesor y Contacto",
+        "content": "<table style=\"border-collapse: collapse; margin: 0 auto\">\n    <caption></caption>\n    <tbody>\n        <tr>\n            <td style=\"font-weight: bold; padding: 10px; border: 1px solid black;\">Profesor:</td>\n            <td style=\"text-align: center; padding: 10px; border: 1px solid black;\">David López Castellote</td>\n        </tr>\n        <tr>\n            <td style=\"font-weight: bold; padding: 10px; border: 1px solid black;\">Email:</td>\n            <td style=\"text-align: center; padding: 10px; border: 1px solid black;\">dlopezcastellote.alumnos@gmail.com</td>\n        </tr>\n    </tbody>\n</table>"
+      },
+      {
+        "type": "forum",
+        "name": "Avisos y noticias",
+        "intro": "Anuncis i notícies generals",
+        "forum_type": "news"
+      },
+      {
+        "type": "url",
+        "name": "Criterios de calificación",
+        "external_url": "https://dlopezcastellote.dev/informatica-eso-bat/archivos/Criterios-de-calificaci%C3%B3n-ESO-y-Bachillerato.pdf"
+      },
+      {
+        "type": "url",
+        "name": "Normas de clase",
+        "external_url": "https://dlopezcastellote.dev/informatica-eso-bat/archivos/Normas-aula-inform%C3%A1tica.pdf"
+      },
+      {
+        "type": "url",
+        "name": "Evaluación inicial",
+        "external_url": "https://forms.office.com/e/rPu4EFsWTq",
+        "visible": 0
+      },
+      {
+        "type": "label",
+        "name": "Recordatorio correo electrónico",
+        "content": "<h5 style=\"text-align: center;\"><span class=\"\" style=\"background-color: rgb(255, 207, 53); color: rgb(51, 51, 51);\">⚠️ </span><strong><span class=\"\" style=\"background-color: rgb(255, 207, 53); color: rgb(51, 51, 51);\">Recordatorio</span></strong><span class=\"\" style=\"background-color: rgb(255, 207, 53); color: rgb(255, 207, 53);\"><span class=\"\" style=\"color: rgb(51, 51, 51);\">: </span>\n    <span class=\"\" style=\"color: rgb(51, 51, 51);\">&nbsp;actualizad </span><span class=\"\" style=\"color: rgb(51, 51, 51);\">el correo electrónico en vuestro perfil de Aules&nbsp;⚠️&nbsp;</span></span>\n</h5>"
+      },
+      {
+        "type": "label",
+        "name": "Enlace Web Asignatura",
+        "content": "<p style=\"text-align: center;\"><a style=\"display: inline-block; padding: 14px 28px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; background-color: #0076ff; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 118, 255, 0.2); transition: background-color 0.2s ease;\" href=\"https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/\" target=\"_blank\" rel=\"noopener noreferrer\"> WEB ASIGNATURA </a></p>"
+      }
+    ]
+  },
   "topics": [
     {
       "folder": "sistemas-operativos",

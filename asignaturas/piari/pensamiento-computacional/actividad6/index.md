@@ -66,7 +66,7 @@ El editor te permite crear tableros personalizados para Laby de forma visual:
 
 ### ⚠️ Requisitos obligatorios de tu nivel:
 
-1. **Obligatoriedad de `while` e `if`**: El nivel debe estar diseñado de forma que **sea estrictamente necesario utilizar al menos un bucle (`while`) y al menos un condicional (`if`)** para resolverlo. No se aceptarán niveles que puedan resolverse simplemente mediante una secuencia fija de instrucciones manuales.
+1. **Obligatoriedad de `while` e `if`**: Diseña un nivel y resuélvelo utilizando **al menos un bucle (`while`) y un condicional (`if`) con una función justificada**. Explica qué repetición y qué decisión resuelven; no basta con añadir bloques que no influyan en el resultado.
 2. **Solucionable**: El nivel debe tener una solución clara y sin errores.
 3. **Guardado del archivo**: Guarda tu nivel desde la aplicación con el formato `.laby` y nómbralo con tus apellidos y nombre: `apellido_nombre_nivel.laby`.
 4. **Código de solución**: Debes programar y comprobar en Laby la solución completa en Python que resuelve tu nivel.
@@ -90,7 +90,7 @@ Debes entregar en la tarea correspondiente de Aules los siguientes elementos:
 |---|---|---|---|---|---|
 | **Superación de niveles (Tarea 1)** | No supera los niveles o faltan capturas. | Supera 1 nivel correctamente. | Supera 2 niveles correctamente. | Supera 3 niveles correctamente. | Supera los 4 niveles (2a, 2b, 2c y 3a) con soluciones óptimas. |
 | **Diseño del nivel en laby-levels (Tarea 2)** | No entrega nivel o el archivo `.laby` no es válido. | Nivel muy simple que no cumple las pautas de diseño. | Nivel funcional, original y bien estructurado en la rejilla. | – | – |
-| **Requisito algorítmico (While + If)** | El nivel se resuelve sin bucle ni condicional. | Solo requiere bucle o solo condicional, pero no ambos. | El nivel exige obligatoriamente combinar `while` e `if` para llegar a la salida. | – | – |
+| **Requisito algorítmico (While + If)** | La solución entregada no utiliza bucle ni condicional. | La solución utiliza solo una estructura, o alguna no cumple una función útil. | La solución combina `while` e `if` de manera útil y justificada. | – | – |
 | **Código de solución del nivel propio** | Sin código o no resuelve el reto. | Código en Python correcto, limpio, funcional y que resuelve el nivel. | – | – | – |
 | **Presentación y formato de entrega** | Nombres incorrectos, capturas ilegibles o entrega tardía. | Entrega puntual, completa con archivos identificados (`.laby`, capturas y código). | – | – | – |
 

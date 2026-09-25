@@ -104,14 +104,14 @@ Documento **`apellido_nombre_act7.odt`** y **`.pdf`** con las respuestas 1 a 13 
 
 ## 📊 Rúbrica – Actividad 7: Agentes, AGI y mi futuro (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
-|---|---|---|---|---|
-| **Comprensión de los agentes** (Tarea 1) | No responde. | Distingue los dos conceptos sin analizar las consecuencias. | Distingue los conceptos y explica por qué el error de un agente es más grave. | Además argumenta con criterio la cuestión de la responsabilidad. |
-| **ANI / AGI / ASI** (Tarea 2) | Tabla sin completar. | Tabla completada con errores conceptuales. | Tabla correcta y situación actual bien identificada. | Además explica con acierto por qué un modelo de lenguaje sigue siendo ANI. |
-| **Participación en el debate** (Tarea 3) | No participa o no respeta las reglas. | Participa pero repite argumentos sin elaborar. | Defiende su postura con tres argumentos propios y respeta los turnos. | Además reconoce con honestidad el mejor argumento rival y revisa su propia opinión. |
-| **Análisis de una profesión** (Tarea 4) | No lo realiza. | Lista de tareas sin clasificar o clasificada sin criterio. | Clasifica las tareas con criterio e identifica qué tienen en común las humanas. | – |
-| **Carta a 2035** (Tarea 5) | No la escribe. | Carta muy breve o que no responde a los tres puntos. | Carta que responde a los tres puntos con reflexión personal y honesta. | – |
-| **Presentación y entrega en plazo** | Documento desordenado, sin identificar o entregado tarde sin justificación. | Entrega con pequeño retraso. | Documento claro, en plazo y en los dos formatos. | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Comprensión de los agentes (Tarea 1)** (máx. 2 puntos) | **0 puntos:** No responde. | **0.5 puntos:** Distingue los dos conceptos sin analizar las consecuencias. | **1 puntos:** Distingue los conceptos y explica por qué el error de un agente es más grave. | **2 puntos:** Además argumenta con criterio la cuestión de la responsabilidad. |
+| **ANI / AGI / ASI (Tarea 2)** (máx. 2 puntos) | **0 puntos:** Tabla sin completar. | **0.5 puntos:** Tabla completada con errores conceptuales. | **1 puntos:** Tabla correcta y situación actual bien identificada. | **2 puntos:** Distingue capacidades observadas de hipótesis sobre AGI y ASI, justificando sus afirmaciones con fuentes y límites claros. |
+| **Participación en el debate (Tarea 3)** (máx. 2 puntos) | **0 puntos:** No participa o no respeta las reglas. | **0.5 puntos:** Participa pero repite argumentos sin elaborar. | **1 puntos:** Defiende su postura con tres argumentos propios y respeta los turnos. | **2 puntos:** Además reconoce con honestidad el mejor argumento rival y revisa su propia opinión. |
+| **Análisis de una profesión (Tarea 4)** (máx. 1 puntos) | **0 puntos:** No lo realiza. | **0.25 puntos:** Lista de tareas sin clasificar o clasificada sin criterio. | **0.5 puntos:** Clasifica la mayor parte de las tareas con una justificación comprensible. | **1 puntos:** Clasifica las tareas con criterio e identifica qué tienen en común las humanas. |
+| **Carta a 2035 (Tarea 5)** (máx. 1 puntos) | **0 puntos:** No la escribe. | **0.25 puntos:** Carta muy breve o que no responde a los tres puntos. | **0.5 puntos:** Responde a los tres puntos de la carta, aunque alguna reflexión es poco desarrollada. | **1 puntos:** Carta que responde a los tres puntos con reflexión personal y honesta. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** No entrega la actividad. | **0.5 puntos:** Entrega con retraso importante respecto al plazo comunicado. | **1 puntos:** Entrega con pequeño retraso respecto al plazo comunicado. | **2 puntos:** Entrega dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}

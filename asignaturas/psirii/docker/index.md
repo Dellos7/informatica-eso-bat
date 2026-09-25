@@ -13,3 +13,4 @@ description: Conceptos básicos de Docker, comparativa con Máquinas Virtuales y
 ## Actividades
 
 - [Actividad 1. Orquestación multiservicio con Docker Compose (Nextcloud + MariaDB)](./actividad1)
+- [Actividad 2. Servidor de correo de laboratorio](./actividad2)

@@ -140,9 +140,24 @@ Para verificar el poder de los volúmenes en Docker:
    docker compose up -d
    ```
 3. Vuelve a acceder a `http://localhost:8080`.
-4. Comprueba que la sesión sigue activa y que **el archivo que habías subido sigue intacto**. ¡Los datos han persistido gracias a los volúmenes!
+4. Inicia sesión de nuevo si es necesario y comprueba que **el archivo que habías subido sigue intacto**. ¡Los datos han persistido gracias a los volúmenes!
 
 ---
+
+### Paso 6 bis: Usuarios, permisos y base de datos
+
+1. Crea dos usuarios de prueba en Nextcloud y comparte un archivo desde uno con el otro. Prueba primero permiso de lectura y después edición; comprueba el resultado iniciando sesión con cada usuario.
+2. Consulta la base de datos desde su contenedor, sin publicarla en Internet:
+
+   ```bash
+   docker compose exec db mariadb -u nextcloud_user -p nextcloud_db
+   ```
+
+   Introduce la contraseña cuando se solicite y ejecuta `SHOW TABLES;`. Identifica las tablas del servicio sin modificar ni borrar sus datos. Sal con `exit`.
+3. Añade al informe capturas de los permisos y de la consulta. Compara brevemente los recursos y la administración de este despliegue con la máquina virtual del tema anterior.
+
+**Hitos de seguimiento:** Docker verificado; YAML y servicios operativos; usuarios y base de datos comprobados; persistencia e incidencias; documentación y demostración. Se mantiene una sola entrega de esta actividad.
+
 
 ## 📽️ Recursos y material de apoyo
 
@@ -157,10 +172,10 @@ Para verificar el poder de los volúmenes en Docker:
 Deberás entregar en **Aules** los siguientes elementos:
 1. **Documento (PDF o Word)** con un informe de la actividad que contenga:
    - Captura de la terminal mostrando la ejecución correcta del comando `docker ps` con los contenedores activos.
-   - Captura de la bóveda de **Bitwarden** registrando las credenciales de la base de datos y de la cuenta de administrador de Nextcloud.
+   - Captura de los nombres de las entradas de **Bitwarden** de la base de datos y Nextcloud, manteniendo ocultas contraseñas y códigos.
    - Capturas de la interfaz de **Nextcloud** funcionando en `http://localhost:8080` con el archivo de prueba subido.
    - Breve reflexión contestando: ¿Por qué la información no se perdió tras ejecutar `docker compose down` y volver a arrancar?
-2. **El archivo `docker-compose.yml`** utilizado para el despliegue.
+2. **Una copia del archivo `docker-compose.yml`** utilizado, sustituyendo las contraseñas por `REDACTADO`. Conserva la versión operativa en tu equipo para la comprobación del profesor.
 
 Una vez realizada la entrega en Aules, **enseña el trabajo al profesor en clase** para su comprobación directa en el terminal.
 
@@ -173,5 +188,5 @@ Una vez realizada la entrega en Aules, **enseña el trabajo al profesor en clase
 | **Gestión de Seguridad (Bitwarden)** | No utiliza Bitwarden para registrar las credenciales del entorno Docker. | Registra credenciales de forma incompleta o poco organizada. | Utiliza Bitwarden registrando la mayoría de claves (BD y admin Nextcloud). | Registra y organiza adecuadamente en Bitwarden todas las claves generadas en el stack. |
 | **Verificación e Instalación de Docker en Lliurex** | No consigue ejecutar Docker ni configurar permisos en la máquina de clase. | Ejecuta Docker únicamente utilizando `sudo` o con errores de permisos. | Verifica la instalación de Docker Engine y ejecuta contenedores básicos correctamente. | Configura el grupo `docker` sin necesidad de `sudo`, probando la instalación de forma autónoma. |
 | **Orquestación con Docker Compose** | No crea el archivo `docker-compose.yml` o contiene errores sintácticos graves. | Crea el archivo `docker-compose.yml` con ayuda continua o problemas en la indentación YAML. | Estructura correctamente el archivo `docker-compose.yml` desplegando los dos servicios (db y app). | Configuración limpia e impecable del archivo YAML, personalizando variables y volúmenes con criterio. |
-| **Funcionamiento y Prueba de Persistencia** | Los servicios no arrancan o la información se pierde al reiniciar los contenedores. | Arranca los contenedores pero presenta fallos de conexión entre Nextcloud y MariaDB. | Despliega Nextcloud en `localhost:8080`, completa el asistente y verifica el servicio. | Verifica con éxito la persistencia de datos comprobando la conservación de los archivos tras un `docker compose down`. |
+| **Funcionamiento y Prueba de Persistencia** | Los servicios no arrancan o la información se pierde al reiniciar los contenedores. | Arranca los contenedores pero presenta fallos de conexión entre Nextcloud y MariaDB. | Despliega Nextcloud en `localhost:8080`, completa el asistente y verifica el servicio. | Verifica la persistencia tras `docker compose down`, los permisos de compartición y la consulta guiada de tablas de MariaDB. |
 | **Entrega en plazo y documentación** | No entrega la actividad o presenta un retraso injustificado. | Entrega con retraso importante o faltan entregables en Aules. | Entrega con un pequeño retraso o entrega incompleta (falta documento o YAML). | Entrega puntual en Aules del informe con capturas del proceso, el archivo YAML y comprobación en el aula. |

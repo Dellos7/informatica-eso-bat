@@ -21,6 +21,8 @@ En esta actividad aprenderás a montar un entorno de servidor web completo parti
 
 ---
 
+**Hitos de seguimiento:** máquina virtual y servicios operativos; base de datos, usuario y WordPress; web y plugins comprobados; copia exportada y documentación. Explica brevemente por qué has asignado esos recursos a la máquina virtual. Los hitos se revisan durante las clases y no añaden entregas calificables independientes.
+
 ## 📌 Paso a paso detallado
 
 ### Paso 1: Gestión de contraseñas con Bitwarden
@@ -273,4 +275,4 @@ Una vez realizada la entrega en Aules, **enseña el trabajo al profesor en clase
 - **CE 5.2.1:** Razonar el diseño de sistemas informáticos y la sostenibilidad.
 - **CE 5.2.2:** Instalar y configurar sistemas operativos sobre máquinas virtuales y físicas.
 - **CE 5.2.3:** Administrar aplicaciones y servicios en grupos de trabajo.
-- **CE 5.5.1:** Integrar recursos digitales de manera autónoma y responsable.
+- **CE 5.1:** Integrar recursos digitales de manera autónoma y responsable.

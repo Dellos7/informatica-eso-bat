@@ -13,8 +13,8 @@ En esta actividad debes jugar al juego [🎮Compute IT.](https://compute-it.toxi
 > ¿Hasta dónde serás capaz de llegar?
 {: .alert-info}
 
-> 💡 **Información sobre el juego y sus niveles:**  
-> En **Compute IT** no se escribe código: el juego muestra en pantalla fragmentos de código visuales y el objetivo es **actuar como la CPU del ordenador**, interpretando mentalmente el flujo de ejecución en tiempo real y pulsando la tecla de dirección adecuada según corresponda.  
+> 💡 **Información sobre el juego y sus niveles:**
+> En **Compute IT** no se escribe código: el juego muestra en pantalla fragmentos de código visuales y el objetivo es **actuar como la CPU del ordenador**, interpretando mentalmente el flujo de ejecución en tiempo real y pulsando la tecla de dirección adecuada según corresponda.
 > Cuenta con un total de **62 niveles** en los que la dificultad progresa con conceptos clave de programación:
 > - **Niveles iniciales (1 – 20):** Instrucciones secuenciales directas y condiciones simples `if`.
 > - **Niveles intermedios (21 – 35):** Bifurcaciones condicionales completas con estructuras `if`, `elif` y `else` basadas en colores o estados.
@@ -48,6 +48,5 @@ Sube una **captura de pantalla** donde se vea el **último nivel** al que has ll
 
 - **CE2.1**: Analizar problemas elementales significativos para el alumnado, mediante la abstracción y modelización de la realidad.
 - **CE2.3**: Resolver de forma guiada problemas elementales utilizando los algoritmos y las estructuras de datos necesarias.
-- **CE2.4**: Programar aplicaciones sencillas de forma guiada para resolver problemas elementales (lectura, interpretación y ejecución mental de flujos de control algorítmicos en tiempo real).
 - **CE4.3**: Describir y valorar la adecuación de las tecnologías, entornos de desarrollo, dispositivos y componentes para resolver los retos planteados.
-
+

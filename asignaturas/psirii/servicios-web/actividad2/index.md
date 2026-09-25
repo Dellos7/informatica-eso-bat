@@ -24,6 +24,8 @@ En esta actividad darás el salto del entorno local a la publicación real en la
 
 ---
 
+**Hitos de seguimiento:** hosting y accesos; dos aplicaciones instaladas; segunda aplicación con su escenario funcional; enlaces y documentación comprobados. Los hitos se revisan durante las clases y no añaden entregas calificables independientes.
+
 ## 📌 Paso a paso detallado
 
 ### Paso 1: Registro en InfinityFree y almacenamiento de credenciales en Bitwarden
@@ -105,7 +107,7 @@ Deberás entregar en **Aules** los siguientes elementos:
    - Captura del panel de control (*Control Panel*) y del **gestor de archivos** de InfinityFree donde se vean las carpetas de las 2 aplicaciones instaladas.
    - **Aplicación 1 (WordPress):** Enlace URL público del sitio y capturas de la portada y del panel de administración.
    - **Aplicación 2 (App elegida):** Enlace URL público, nombre de la aplicación elegida, explicación breve de su utilidad y capturas de pantalla que demuestren la configuración mínima funcional realizada.
-   - Captura de la bóveda de **Bitwarden** registrando los accesos al hosting y a las aplicaciones.
+   - Captura de los nombres de las entradas de **Bitwarden** correspondientes al hosting y las aplicaciones, con contraseñas y códigos ocultos.
 
 Una vez realizada la entrega en Aules, **enseña el trabajo al profesor en clase** para su verificación y comprobación de los enlaces públicos.
 
@@ -125,10 +127,8 @@ Una vez realizada la entrega en Aules, **enseña el trabajo al profesor en clase
 
 ## 📌 Criterios de Evaluación vinculados (2º Bachillerato - PSIR II)
 
-- **CE 4.2:** Instalar y configurar un servidor web de forma segura en entornos remotos.
 - **CE 4.3:** Añadir complementos y gestionar gestores de contenidos (CMS).
-- **CE 4.5:** Desplegar servicios compartidos y aplicaciones web (LMS, CMS, foros, tiendas) en red.
 - **CE 5.2.1:** Razonar el diseño de sistemas informáticos y evaluar la eficiencia de servicios en la nube.
 - **CE 5.2.3:** Administrar aplicaciones y servicios web en entornos de trabajo.
-- **CE 5.5.1:** Integrar recursos digitales de manera autónoma y responsable.
-- **CE 5.5.2:** Crear y difundir documentación técnica sobre el despliegue de sistemas.
+- **CE 5.1:** Integrar recursos digitales de manera autónoma y responsable.
+- **CE 5.2:** Crear y difundir documentación técnica sobre el despliegue de sistemas.

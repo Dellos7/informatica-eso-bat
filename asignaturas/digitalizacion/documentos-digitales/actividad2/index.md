@@ -62,7 +62,7 @@ Para realizar cálculos automáticos que se actualicen si cambian las condicione
  > **Nota:** Para calcular el precio con IVA de un producto, suma al subtotal el resultado de multiplicar el subtotal por el tipo de IVA. Es decir, la fórmula quedaría: `=F6+F6*$B$2`, ya que la celda `B2` es la celda donde tenemos anotado el IVA que se debe aplicar.
  {: .alert-info}
 
-> 💡 **¿Por qué usamos `$B$2`?** El signo `$` puesto delante de la letra fija la fila y puesto delante del número fija la columna para que al arrastrar la fórmula hacia abajo, la celda del IVA no cambie a B3, B4, etc.
+> 💡 **¿Por qué usamos `$B$2`?** El signo `$` puesto delante de la letra fija la columna y puesto delante del número fija la fila para que al arrastrar la fórmula hacia abajo, la celda del IVA no cambie a B3, B4, etc.
 {: .alert-warning}
    * Copia la fórmula desde `G6` hasta `G15`. Comprueba que todas las filas calculan el IVA correctamente sobre la celda `B2`.
 
@@ -223,10 +223,10 @@ Sube a la tarea de Aules los siguientes **dos archivos**:
 
 | Criterio | 0 pts | 0.5 pts | 1 pt | 1.5 pts | 2 pts |
 |----------|-------|---------|------|---------|-------|
-| **1. Estructura y formato de celda** (máx. 1 pt) | No aplica formatos de celda ni estructura adecuada. | Diseña la tabla pero no aplica formatos de moneda (€), porcentaje (%), series completas o alineaciones. | Aplica formatos de celda correctos y autorrelleno, pero comete errores en la cabecera fija de parámetros o en la estética general. | Estructura perfecta: parámetros fijos (IVA/Dto), serie `COMP-001` a `010`, formatos de moneda (€) y porcentaje (%), cabecera azul y anchos óptimos. | |
+| **1. Estructura y formato de celda** (máx. 1 pt) | No aplica formatos de celda ni estructura adecuada. | Diseña la tabla pero no aplica formatos de moneda (€), porcentaje (%), series completas o alineaciones. Aplica formatos de celda correctos y autorrelleno, pero comete errores en la cabecera fija de parámetros o en la estética general. | Estructura perfecta: parámetros fijos (IVA/Dto), serie `COMP-001` a `010`, formatos de moneda (€) y porcentaje (%), cabecera azul y anchos óptimos. |  |  |
 | **2. Referencias Relativas y Absolutas ($)** (máx. 1.5 pts) | Escribe valores numéricos a mano sin usar fórmulas. | Usa fórmulas pero no aplica referencias absolutas (`$`), provocando errores al arrastrar la fórmula del IVA. | Calcula subtotales e IVA con fórmulas, pero comete algún fallo menor en la sintaxis de fijación de celdas (`$B$2` / `$B$3`). | Domina las referencias relativas y absolutas fijando correctamente las celdas `$B$2` (IVA) y `$B$3` (Descuento) sin errores al copiar. | |
 | **3. Listas Desplegables, Funciones Matemáticas y Lógicas** (máx. 2 pts) | No utiliza funciones automáticas ni listas desplegables. | Usa solo la función SUMA pero omite las funciones estadísticas (`PROMEDIO`, `MAX`, `MIN`), la lista desplegable de categorías o la función `SI`. | Configura la lista desplegable y usa funciones pero comete errores en la sintaxis de `CONTAR.SI`, `SUMAR.SI` o en la condición de la función `SI`. | | Configura correctamente la lista desplegable desde la pestaña `Listas` y aplica `=SUMA`, `=PROMEDIO`, `=MAX`, `=MIN`, `=CONTAR.SI`, `=SUMAR.SI` y `=SI(C6="Servicio";0;10)` impecablemente. |
-| **4. Formato Condicional y Alertas** (máx. 1 pt) | No aplica formato condicional. | Aplica color manual a las celdas en lugar de usar reglas de formato condicional automático. | Configura formato condicional pero solo con 1 regla o sin códigos de color bien contrastados. | Reglas de formato condicional automáticas perfectamente aplicadas por categorías ("Servicio", "Procesador") y barras de datos en subtotales. | | |
+| **4. Formato Condicional y Alertas** (máx. 1 pt) | No aplica formato condicional. | Aplica color manual a las celdas en lugar de usar reglas de formato condicional automático. Configura formato condicional pero solo con 1 regla o sin códigos de color bien contrastados. | Reglas de formato condicional automáticas perfectamente aplicadas por categorías ("Servicio", "Procesador") y barras de datos en subtotales. |  |  |
 | **5. Representación Gráfica y Tablas Dinámicas** (máx. 1.5 pts) | No genera gráficos ni tablas dinámicas o son ilegibles. | Genera 1 solo gráfico sin tabla dinámica o sin títulos/leyendas. | Crea gráficos pero omite la generación previa de las tablas dinámicas o las etiquetas de porcentaje. | Construye 2 tablas dinámicas agrupadas y genera sus 2 gráficos correspondientes (Columnas y Tarta en %) impecablemente. | |
 | **6. Encabezado, Pie e Impresión PDF** (máx. 1 pt) | No configura la página ni exporta a PDF. | Exporta a PDF pero las tablas/gráficos quedan cortados en varias páginas, carecen de encabezado/pie dinámico o no incluyen marca de agua. | Configuración de página horizontal impecable, encabezado/pie dinámicos, marca de agua con su nombre y exportación PDF ajustada a 1 página por pestaña. | | |
 | **7. Entrega en plazo** (máx. 2 pts) | No entrega o entrega con un retraso de más de una semana. | Entrega con un retraso importante de hasta una semana. | Entrega con un pequeño retraso de máximo 2 días. | | Entrega la actividad a tiempo dentro del plazo establecido. |
@@ -236,8 +236,5 @@ Sube a la tarea de Aules los siguientes **dos archivos**:
 
 
 **Criterios de evaluación de la programación:**
-* **CE2 – 2.1.** Buscar, seleccionar y organizar la información en el entorno personal de aprendizaje.
-* **CE2 – 2.2.** Evaluar la fiabilidad y calidad de la información.
-* **CE2 – 2.3.** Crear, integrar y editar contenidos digitales con sentido estético de manera individual o colectiva.
-* **CE2 – 2.5.** Organizar y almacenar la información de forma estructurada.
-* **CE2 – 2.6.** Publicar y difundir contenidos digitales respetando las normas de propiedad intelectual.
+* **CE2 – 2.2.** Organizar la información y los archivos en el entorno personal de aprendizaje.
+* **CE2 – 2.3.** Crear y editar contenidos digitales con sentido estético, respetando los derechos de autor.

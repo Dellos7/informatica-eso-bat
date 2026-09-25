@@ -95,14 +95,14 @@ Documento **`apellido_nombre_act6.odt`** y **`.pdf`** con la captura del gráfic
 
 ## 📊 Rúbrica – Actividad 6: Cazadores de sesgos (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
-|---|---|---|---|---|
-| **Recuento y lectura de los datos** (Tarea 1) | No realiza el recuento. | Realiza el recuento pero no interpreta el gráfico. | Identifica correctamente los repartos más desequilibrados y aporta la captura. | Además explica con precisión que el sesgo procede de los datos de entrenamiento y no de una regla programada. |
-| **Conexión con su propia experiencia** (Tarea 2) | No responde. | Recuerda el experimento sin relacionarlo. | Relaciona correctamente el desequilibrio de su modelo con el sesgo del generador de imágenes. | – |
-| **Análisis de Survival of the Best Fit** (Tarea 3) | No juega o no responde. | Describe el juego sin identificar el origen del sesgo. | Identifica que el algoritmo aprendió de sus propias decisiones y señala el momento en que se introdujo el sesgo. | Además razona con criterio sobre quién ostenta la responsabilidad. |
-| **Aplicación a un caso real** (Tarea 4) | No aporta ningún caso. | Aporta un caso vago o inventado. | Describe un caso real y plausible e identifica a quién perjudicaría. | – |
-| **Propuesta de mejora y postura argumentada** (Tarea 5) | No la elabora. | Propone medidas genéricas ("usar más datos"). | Propone tres medidas concretas sobre los datos y argumenta una postura propia en la pregunta 14. | – |
-| **Presentación y entrega en plazo** | Documento desordenado, sin identificar o entregado tarde sin justificación. | Entrega con pequeño retraso o con problemas de formato. | Documento claro, en plazo y en los dos formatos. | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Recuento y lectura de los datos (Tarea 1)** (máx. 2 puntos) | **0 puntos:** No realiza el recuento. | **0.5 puntos:** Realiza el recuento pero no interpreta el gráfico. | **1 puntos:** Identifica correctamente los repartos más desequilibrados y aporta la captura. | **2 puntos:** Interpreta el reparto y razona posibles causas del sesgo, diferenciando lo observado de lo que requeriría investigar los datos y el sistema. |
+| **Conexión con su propia experiencia (Tarea 2)** (máx. 1 puntos) | **0 puntos:** No responde. | **0.25 puntos:** Recuerda el experimento sin relacionarlo. | **0.5 puntos:** Relaciona ambos experimentos e identifica un desequilibrio, aunque la explicación es parcial. | **1 puntos:** Relaciona correctamente el desequilibrio de su modelo con el sesgo del generador de imágenes. |
+| **Análisis de Survival of the Best Fit (Tarea 3)** (máx. 2 puntos) | **0 puntos:** No juega o no responde. | **0.5 puntos:** Describe el juego sin identificar el origen del sesgo. | **1 puntos:** Identifica que el algoritmo aprendió de sus propias decisiones y señala el momento en que se introdujo el sesgo. | **2 puntos:** Además razona con criterio sobre quién ostenta la responsabilidad. |
+| **Aplicación a un caso real (Tarea 4)** (máx. 1 puntos) | **0 puntos:** No aporta ningún caso. | **0.25 puntos:** Aporta un caso vago o inventado. | **0.5 puntos:** Describe un caso pertinente y quién puede resultar perjudicado, con alguna falta de concreción. | **1 puntos:** Describe un caso real y plausible e identifica a quién perjudicaría. |
+| **Propuesta de mejora y postura argumentada (Tarea 5)** (máx. 2 puntos) | **0 puntos:** No la elabora. | **0.5 puntos:** Propone medidas genéricas ("usar más datos"). | **1 puntos:** Propone mejoras concretas y una postura propia, aunque alguna medida o argumento queda poco desarrollado. | **2 puntos:** Propone tres medidas concretas sobre los datos y argumenta una postura propia en la pregunta 14. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** No entrega la actividad. | **0.5 puntos:** Entrega con retraso importante respecto al plazo comunicado. | **1 puntos:** Entrega con pequeño retraso respecto al plazo comunicado. | **2 puntos:** Entrega dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}

@@ -142,13 +142,13 @@ Documento **`apellido_nombre_act3.odt`** y **`.pdf`** con: tu frase del modo cad
 
 ## 📊 Rúbrica – Actividad 3: La máquina que predice (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
-|---|---|---|---|---|
-| **Comprensión del mecanismo de predicción** (Tareas 1 y 2) | No realiza las pruebas. | Realiza las pruebas pero no interpreta los resultados. | Explica correctamente el efecto de la temperatura y qué son los tokens. | Relaciona con claridad los tokens con el fallo al contar letras, y la temperatura con el hecho de que la IA elige lo probable y no lo verdadero. |
-| **Tabla del duelo de modelos** (Tarea 3) | No la realiza o la deja incompleta. | Completa menos de la mitad de las filas. | Completa la tabla con los dos modelos en casi todas las filas. | Tabla completa, con las respuestas resumidas con precisión y con la valoración de quién acierta en cada caso. |
-| **La prueba de la adulación** (Tarea 4) | No la realiza. | Aporta la captura sin interpretarla. | Describe correctamente lo ocurrido y lo compara entre los dos modelos. | Además extrae la consecuencia práctica: que no se le puede pedir a una IA una opinión sincera sobre lo propio. |
-| **Conclusión crítica final** (Tareas 5 y 6) | No responde. | Responde con una generalidad ("no hay que fiarse"). | Distingue en qué casos es fiable y en cuáles no, y propone alguna forma de comprobarlo. | Propone un criterio de verificación propio, claro y aplicable, apoyado en lo que ha observado. |
-| **Presentación y entrega en plazo** | Documento desordenado, sin identificar o entregado tarde sin justificación. | Entrega con pequeño retraso o con capturas ilegibles. | Documento claro, con capturas legibles, en plazo y en los dos formatos. | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Comprensión del mecanismo de predicción (Tareas 1 y 2)** (máx. 2 puntos) | **0 puntos:** No realiza las pruebas. | **0.5 puntos:** Realiza las pruebas pero no interpreta los resultados. | **1 puntos:** Explica correctamente el efecto de la temperatura y qué son los tokens. | **2 puntos:** Interpreta tokens y temperatura, relaciona los resultados con el funcionamiento del modelo y distingue probabilidad de veracidad. |
+| **Tabla del duelo de modelos (Tarea 3)** (máx. 2 puntos) | **0 puntos:** No la realiza o la deja incompleta. | **0.5 puntos:** Completa menos de la mitad de las filas. | **1 puntos:** Completa la tabla con los dos modelos en casi todas las filas. | **2 puntos:** Tabla completa, con las respuestas resumidas con precisión y con la valoración de quién acierta en cada caso. |
+| **La prueba de la adulación (Tarea 4)** (máx. 2 puntos) | **0 puntos:** No la realiza. | **0.5 puntos:** Aporta la captura sin interpretarla. | **1 puntos:** Describe correctamente lo ocurrido y lo compara entre los dos modelos. | **2 puntos:** Compara los resultados, identifica si hubo cambio por presión y justifica cómo verificar la respuesta sin atribuir sinceridad al modelo. |
+| **Conclusión crítica final (Tareas 5 y 6)** (máx. 2 puntos) | **0 puntos:** No responde. | **0.5 puntos:** Responde con una generalidad ("no hay que fiarse"). | **1 puntos:** Distingue en qué casos es fiable y en cuáles no, y propone alguna forma de comprobarlo. | **2 puntos:** Propone un criterio de verificación propio, claro y aplicable, apoyado en lo que ha observado. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** No entrega la actividad. | **0.5 puntos:** Entrega con retraso importante respecto al plazo comunicado. | **1 puntos:** Entrega con pequeño retraso respecto al plazo comunicado. | **2 puntos:** Entrega dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}

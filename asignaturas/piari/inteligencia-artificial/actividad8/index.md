@@ -123,14 +123,14 @@ Tienes que entregar **todas las versiones** por las que has pasado. Para cada el
 | 2 | | | |
 | 3 | | | |
 
-> 🎯 **Esto es lo que se evalúa.** Un producto perfecto que salió al primer intento vale menos que uno normal con cinco iteraciones bien razonadas. Porque lo primero es suerte y lo segundo es **saber trabajar**.
+> **Documenta el proceso:** se valoran las pruebas, las decisiones justificadas y las mejoras, además de la calidad del producto. No es necesario inventar errores para acreditar aprendizaje.
 {: .alert-warning}
 
 ### Requisitos obligatorios
 - **Mínimo 3 iteraciones** documentadas en el elemento principal.
 - **Algo tuyo que no haya hecho la IA**: el guion, el montaje, el texto final, la selección... Y tienes que señalar qué es.
 - **Ningún dato personal** ni imágenes de personas reales.
-- Si el producto se va a enseñar a otros, debe indicar que **se ha usado IA** (lo exige la ley europea, ¿recuerdas?).
+- Si el producto se va a enseñar a otros, debe indicar que **se ha usado IA**, como requisito de transparencia de esta actividad.
 
 ### Entrega del itinerario C
 - El producto final.
@@ -139,6 +139,8 @@ Tienes que entregar **todas las versiones** por las que has pasado. Para cada el
 
 ---
 
+**En los tres itinerarios:** registra al menos tres pruebas o iteraciones y sus resultados. Incluye las fuentes, autoría y licencia o condiciones de reutilización de imágenes, datos, sonidos, código y otros recursos empleados. Explica qué puedes reutilizar y con qué condiciones.
+
 # 📋 Ficha de transparencia (obligatoria en los tres itinerarios)
 
 Cópiala en tu documento y respóndela con sinceridad. **Se puntúa la honestidad, no la perfección.**
@@ -146,27 +148,27 @@ Cópiala en tu documento y respóndela con sinceridad. **Se puntúa la honestida
 | Pregunta | Tu respuesta |
 | :--- | :--- |
 | ¿Qué herramientas de IA he usado y para qué exactamente? | |
-| ¿Cuál fue mi mejor prompt? (cópialo literal) | |
+| ¿Cuál fue mi mejor prompt, ejemplo de entrenamiento o ajuste? Explica cuál corresponde a tu itinerario. | |
 | ¿Qué me dio mal, se inventó o no me servía? | |
 | ¿Qué he cambiado yo a mano sobre lo que me dio la IA? | |
 | ¿Qué parte de este trabajo es mérito mío? | |
 | ¿Qué he aprendido haciéndolo que no sabía antes? | |
 
-> ⚠️ Una ficha que diga «no me falló nada y lo hice todo yo» **no es creíble** y puntúa menos que una que reconozca dos fallos y explique cómo se resolvieron.
+> **Describe resultados reales:** se valoran las comprobaciones y las explicaciones, no la cantidad de fallos. Si no detectas errores, indica las pruebas realizadas y sus límites; no inventes incidencias.
 {: .alert-error}
 
 ---
 
 ## 📊 Rúbrica – Actividad 8: Proyecto final (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
-|---|---|---|---|---|
-| **Producto final funcional** | No entrega producto o no funciona. | Producto incompleto o que solo funciona parcialmente. | Producto terminado y funcional, que cumple los requisitos mínimos del itinerario. | Producto terminado, funcional y con ambición: añade elementos propios más allá de lo pedido. |
-| **Proceso documentado** (cuaderno de prompts / iteraciones / reentrenamiento) | Sin documentar. | Documenta el resultado final pero no el camino. | Documenta al menos 3 iteraciones reales con qué falló y qué cambió. | Documenta el proceso completo y justifica cada decisión tomada. |
-| **Espíritu crítico: detectar y corregir fallos** | No identifica ningún fallo. | Menciona algún fallo sin corregirlo. | Identifica fallos concretos del sistema y actúa para corregirlos. | Además explica **por qué** fallaba, conectándolo con lo aprendido en el tema (datos, tokens, sesgo, probabilidad). |
-| **Ficha de transparencia** | No la entrega. | La entrega incompleta o poco creíble. | Ficha completa, honesta y concreta, que distingue con claridad su aportación de la de la IA. | – |
-| **Trabajo en equipo y autonomía** | No colabora o depende por completo del profesor. | Colabora de forma desigual o necesita apoyo constante. | Reparto de trabajo equilibrado, resuelve los bloqueos con autonomía y pide ayuda de forma pertinente. | – |
-| **Presentación y entrega en plazo** | Entrega incompleta, sin identificar o tarde sin justificación. | Entrega con pequeño retraso o faltando algún archivo. | Todos los archivos, bien nombrados, en plazo. | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Producto final funcional** (máx. 2 puntos) | **0 puntos:** No entrega producto o no funciona. | **0.5 puntos:** Producto incompleto o que solo funciona parcialmente. | **1 puntos:** Producto terminado y funcional, que cumple los requisitos mínimos del itinerario. | **2 puntos:** Producto terminado, funcional y con ambición: añade elementos propios más allá de lo pedido. |
+| **Proceso documentado (cuaderno de prompts / iteraciones / reentrenamiento)** (máx. 2 puntos) | **0 puntos:** Sin documentar. | **0.5 puntos:** Documenta el resultado final pero no el camino. | **1 puntos:** Documenta al menos tres pruebas o iteraciones, sus resultados y los cambios o decisiones adoptados. | **2 puntos:** Documenta el proceso completo y justifica cada decisión tomada. |
+| **Espíritu crítico: detectar y corregir fallos** (máx. 2 puntos) | **0 puntos:** No aporta pruebas del funcionamiento ni analiza resultados. | **0.5 puntos:** Aporta alguna prueba pero no interpreta el resultado ni propone comprobaciones adicionales. | **1 puntos:** Realiza pruebas pertinentes, explica los límites observados y corrige los fallos detectados o justifica el resultado obtenido. | **2 puntos:** Justifica las pruebas y las correcciones, relaciona sus resultados con lo aprendido y explica qué limitaciones siguen sin comprobarse. |
+| **Ficha de transparencia** (máx. 1 puntos) | **0 puntos:** No la entrega. | **0.25 puntos:** La entrega incompleta o sin evidencias de lo que afirma. | **0.5 puntos:** Identifica herramientas y aportaciones propias con evidencias, aunque falta algún detalle del proceso. | **1 puntos:** Ficha completa, honesta y concreta, que distingue con claridad su aportación de la de la IA. |
+| **Trabajo en equipo y autonomía** (máx. 1 puntos) | **0 puntos:** No colabora o depende por completo del profesor. | **0.25 puntos:** Colabora de forma desigual o necesita apoyo constante. | **0.5 puntos:** Participa en las tareas asignadas y afronta los bloqueos, con alguna ayuda para coordinar o planificar. | **1 puntos:** Reparto de trabajo equilibrado, resuelve los bloqueos con autonomía y pide ayuda de forma pertinente. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** No entrega la actividad. | **0.5 puntos:** Entrega con retraso importante respecto al plazo comunicado. | **1 puntos:** Entrega con pequeño retraso respecto al plazo comunicado. | **2 puntos:** Entrega dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}
@@ -176,7 +178,9 @@ Cópiala en tu documento y respóndela con sinceridad. **Se puntúa la honestida
 ## 📌 Criterios de evaluación asociados
 
 - **CE1.4**: Emplear funciones de IA en aplicaciones sencillas de forma guiada para buscar soluciones a problemas básicos.
-- **CE2.4**: Programar aplicaciones sencillas de forma guiada para resolver problemas elementales.
+- **CE2.4 (itinerarios A y B)**: Programar aplicaciones sencillas de forma guiada para resolver problemas elementales. El itinerario C no acredita por sí solo este criterio, que se trabaja de forma común en el tema 1.
 - **CE4.1**: Participar activamente en equipos de trabajo para desarrollar soluciones digitales y tecnológicas demostrando empatía y respetando los roles asignados.
 - **CE4.3**: Describir y valorar la adecuación de las tecnologías, entornos de desarrollo, dispositivos y componentes para resolver los retos planteados.
 - **CE4.4**: Resolver problemas técnicos sencillos surgidos en el análisis, desarrollo y uso de software y módulos de inteligencia artificial, reformulando el procedimiento utilizado en caso necesario.
+
+- **CE2.5**: Describir y valorar autoría, licencias y condiciones de reutilización.

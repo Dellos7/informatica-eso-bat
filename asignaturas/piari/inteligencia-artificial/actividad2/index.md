@@ -10,15 +10,15 @@ En la actividad anterior comprobaste que ya no distingues lo real de lo generado
 
 Vas a entrenar un modelo que reconozca los gestos de **piedra, papel o tijera**.
 
-> 💡 Ojo a un detalle importante: **no vas a programar ninguna regla**. No le vas a decir «si tiene el puño cerrado es piedra». Le vas a dar **ejemplos** y él solo tendrá que descubrir el patrón. Esa es toda la idea de la inteligencia artificial.
+> 💡 Ojo a un detalle importante: **no vas a programar ninguna regla**. No le vas a decir «si tiene el puño cerrado es piedra». Le vas a dar **ejemplos** y él solo tendrá que descubrir el patrón. Esta es la idea del aprendizaje automático supervisado que vamos a practicar.
 {: .alert-tip}
 
 ---
 
 ## Antes de empezar
 
-1. Crea la carpeta **Documentos/PSIR/Tema 2/Actividad 2**.
-2. Descarga el conjunto de imágenes de la práctica y descomprímelo ahí. Verás tres carpetas: `piedra`, `papel` y `tijera`, y una cuarta carpeta `pruebas`.
+1. Crea la carpeta **Documentos/PIARI/Tema 2/Actividad 2**.
+2. Descarga de Aules el conjunto de imágenes que facilitará el profesor y descomprímelo ahí: `piedra`, `papel`, `tijera`, `pruebas` y `pruebas_dificiles`. No utilices las imágenes de prueba para entrenar. Si el paquete todavía no está disponible, solicítalo al profesor antes de comenzar.
 3. Abre **[Teachable Machine](https://teachablemachine.withgoogle.com/)** → *Get Started* → **Proyecto de imágenes** → **Modelo de imagen estándar**.
 
 > ⚠️ **MUY IMPORTANTE:** si no inicias sesión, **Teachable Machine pierde todo tu trabajo al cerrar o refrescar la pestaña**. Haz las capturas según vayas avanzando y no cierres el navegador hasta terminar.
@@ -49,7 +49,7 @@ Y ahora responde con mucha atención:
 2. ¿Qué porcentajes ha dado? ¿Cuánto suman entre los tres?
 3. **¿Por qué crees que hace eso?**
 
-> 🔑 Esto es lo más importante que vas a aprender hoy. El modelo **solo conoce tres posibilidades** y está obligado a repartir el 100 % entre ellas. **No puede dudar. No puede decir que no sabe.** Una IA no te avisa de que se está saliendo de lo que conoce: simplemente sigue respondiendo con total normalidad.
+> 🔑 Esto es lo más importante que vas a aprender hoy. El modelo **solo conoce tres posibilidades** y está obligado a repartir el 100 % entre ellas. Este clasificador no incorpora una salida «no lo sé»: asigna puntuaciones a las tres clases incluso para entradas inadecuadas. Eso no demuestra que su respuesta sea correcta. Otros sistemas pueden incorporar mecanismos de rechazo o expresar incertidumbre.
 {: .alert-warning}
 
 ---
@@ -99,13 +99,13 @@ Documento **`apellido_nombre_act2.odt`** y su **`.pdf`**, con las capturas de lo
 
 ## 📊 Rúbrica – Actividad 2: Entrena tu propia IA (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
-|---|---|---|---|---|
-| **Entrenamiento correcto del modelo** (Tarea 1) | No consigue entrenar el modelo o no aporta capturas. | Entrena el modelo pero no documenta la prueba con el porcentaje de confianza. | Modelo entrenado con las tres clases, probado correctamente y documentado con captura legible. | – |
-| **Comprensión del reparto de probabilidad** (Tarea 2) | No realiza el experimento. | Aporta la captura pero no explica por qué el modelo no puede decir "no lo sé". | Explica correctamente que el modelo reparte el 100 % entre las clases que conoce. | Explica además qué implica eso al usar una IA real: que no avisa cuando se sale de lo que conoce. |
-| **Experimentos de ruptura** (Tarea 3) | No realiza ninguno. | Realiza uno de los tres con su explicación. | Realiza dos de los tres con sus capturas y explicaciones correctas. | Realiza los tres, documentados y correctamente interpretados. |
-| **Conclusión sobre el papel de los datos** (Tarea 4) | No responde o responde sin relación con lo experimentado. | Concluye que "hacen falta muchos datos", sin más. | Concluye que la calidad del modelo depende de la **cantidad, el equilibrio y la variedad** de los datos, apoyándose en sus propios experimentos. | – |
-| **Presentación y entrega en plazo** | Documento desordenado, sin identificar o entregado tarde sin justificación. | Entrega con pequeño retraso o con problemas de formato. | Documento claro, con capturas legibles y bien rotuladas, en plazo y en los dos formatos. | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Entrenamiento correcto del modelo (Tarea 1)** (máx. 2 puntos) | **0 puntos:** No consigue entrenar el modelo o no aporta capturas. | **0.5 puntos:** Entrena el modelo pero no documenta la prueba con el porcentaje de confianza. | **1 puntos:** Entrena las tres clases y prueba el modelo, pero falta alguna evidencia o explicación del resultado. | **2 puntos:** Modelo entrenado con las tres clases, probado correctamente y documentado con captura legible. |
+| **Comprensión del reparto de probabilidad (Tarea 2)** (máx. 2 puntos) | **0 puntos:** No realiza el experimento. | **0.5 puntos:** Aporta la captura pero no explica por qué el modelo no puede decir "no lo sé". | **1 puntos:** Explica correctamente que el modelo reparte el 100 % entre las clases que conoce. | **2 puntos:** Explica el reparto entre clases y por qué una entrada ajena a ellas puede recibir una puntuación alta sin ser una clasificación válida. |
+| **Experimentos de ruptura (Tarea 3)** (máx. 2.5 puntos) | **0 puntos:** No realiza ninguno. | **0.625 puntos:** Realiza uno de los tres con su explicación. | **1.25 puntos:** Realiza dos de los tres con sus capturas y explicaciones correctas. | **2.5 puntos:** Realiza los tres, documentados y correctamente interpretados. |
+| **Conclusión sobre el papel de los datos (Tarea 4)** (máx. 1.5 puntos) | **0 puntos:** No responde o responde sin relación con lo experimentado. | **0.375 puntos:** Concluye que "hacen falta muchos datos", sin más. | **0.75 puntos:** Relaciona el resultado con dos aspectos de los datos y utiliza algún ejemplo de sus pruebas. | **1.5 puntos:** Concluye que la calidad del modelo depende de la cantidad, el equilibrio y la variedad de los datos, apoyándose en sus propios experimentos. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** No entrega la actividad. | **0.5 puntos:** Entrega con retraso importante respecto al plazo comunicado. | **1 puntos:** Entrega con pequeño retraso respecto al plazo comunicado. | **2 puntos:** Entrega dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}

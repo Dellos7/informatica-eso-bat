@@ -82,8 +82,7 @@ Las instrucciones que puedes dar al robot son las siguientes:
 
 ## 📌 Criterios de evaluación asociados a la Actividad 3
 
-- **CE2.1**: Analizar problemas elementales significativos para el alumnado, mediante la abstracción y modelización de la realidad.  
-- **CE2.3**: Resolver de forma guiada problemas elementales utilizando los algoritmos y las estructuras de datos necesarias.  
-- **CE2.4**: Programar aplicaciones sencillas de forma guiada para resolver problemas elementales.  
-- **CE4.1**: Participar activamente en equipos de trabajo para desarrollar soluciones digitales y tecnológicas, demostrando empatía y respetando los roles asignados y las aportaciones del resto de personas integrantes.  
-- **CE4.3**: Describir y valorar la adecuación de las tecnologías, entornos de desarrollo, dispositivos y componentes para resolver los retos planteados, analizando sus características y especificaciones.  
+- **CE2.1**: Analizar problemas elementales significativos para el alumnado, mediante la abstracción y modelización de la realidad.
+- **CE2.3**: Resolver de forma guiada problemas elementales utilizando los algoritmos y las estructuras de datos necesarias.
+- **CE4.1**: Participar activamente en equipos de trabajo para desarrollar soluciones digitales y tecnológicas, demostrando empatía y respetando los roles asignados y las aportaciones del resto de personas integrantes.
+- **CE4.3**: Describir y valorar la adecuación de las tecnologías, entornos de desarrollo, dispositivos y componentes para resolver los retos planteados, analizando sus características y especificaciones.

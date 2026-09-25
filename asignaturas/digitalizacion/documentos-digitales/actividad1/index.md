@@ -227,4 +227,6 @@ Sube a la tarea de Aules los siguientes **dos archivos**:
 {: .alert-error}
 
 **Criterios de evaluación de la programación:**
-* **CE2 – 2.3.** Crear, integrar y editar contenidos digitales con sentido estético de manera individual o colectiva, seleccionando las herramientas más apropiadas para generar un nuevo conocimiento y contenidos digitales de manera creativa, y respectando los derechos de autoría.
+* **CE2 – 2.2.** Organizar la información y los archivos en el entorno personal de aprendizaje.
+* **CE2 – 2.3.** Crear y editar contenidos digitales con sentido estético, respetando los derechos de autor.
+* **CE2 – 2.1.** Buscar y seleccionar información contrastando fuentes y comprobando su validez.

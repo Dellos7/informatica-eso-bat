@@ -131,13 +131,14 @@ Documento **`apellido_nombre_act4.odt`** y **`.pdf`** con las 3 capturas de la T
 
 ## 📊 Rúbrica – Actividad 4: El reto del prompt perfecto (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
-|---|---|---|---|---|
-| **Construcción del prompt R.O.C.F.** (Tarea 1) | No realiza la comparación o falta alguna captura. | El prompt "mejorado" solo añade alguna palabra; no se distinguen las cuatro piezas. | El prompt incluye las cuatro piezas de forma clara y pertinente. | Además analiza con acierto qué rellenó la IA por su cuenta en el primer intento. |
-| **Iteración** (Tarea 2) | No itera. | Hace una sola corrección o corrige de forma vaga. | Realiza al menos dos correcciones concretas y documenta la mejora. | – |
-| **Participación en el torneo y análisis** (Tarea 3) | No participa. | Participa pero no analiza el prompt ganador. | Identifica tres elementos concretos del prompt ganador y reconoce qué faltaba en el suyo. | – |
-| **Prompt a ciegas** (Tarea 4) | No participa. | Participa sin aportar el análisis. | Aporta ambas imágenes y ambos prompts, e identifica qué parte era imposible de deducir. | Explica además por qué esa información se "pierde" entre el prompt y la imagen. |
-| **Chuleta personal y presentación** (Tarea 5) | No la elabora. | Copia la plantilla sin adaptarla. | Plantilla propia, reutilizable y bien pensada, en un documento claro y entregado en plazo en los dos formatos. | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Construcción del prompt R.O.C.F. (Tarea 1)** (máx. 2 puntos) | **0 puntos:** No realiza la comparación o falta alguna captura. | **0.5 puntos:** El prompt "mejorado" solo añade alguna palabra, no se distinguen las cuatro piezas. | **1 puntos:** El prompt incluye las cuatro piezas de forma clara y pertinente. | **2 puntos:** Además analiza con acierto qué rellenó la IA por su cuenta en el primer intento. |
+| **Iteración (Tarea 2)** (máx. 1.5 puntos) | **0 puntos:** No itera. | **0.375 puntos:** Hace una sola corrección o corrige de forma vaga. | **0.75 puntos:** Documenta dos correcciones, aunque la justificación de una mejora es incompleta. | **1.5 puntos:** Realiza al menos dos correcciones concretas y documenta la mejora. |
+| **Participación en el torneo y análisis (Tarea 3)** (máx. 1.5 puntos) | **0 puntos:** No participa. | **0.375 puntos:** Participa pero no analiza el prompt ganador. | **0.75 puntos:** Analiza elementos del prompt ganador y compara su propuesta, con alguna observación poco precisa. | **1.5 puntos:** Identifica tres elementos concretos del prompt ganador y reconoce qué faltaba en el suyo. |
+| **Prompt a ciegas (Tarea 4)** (máx. 2 puntos) | **0 puntos:** No participa. | **0.5 puntos:** Participa sin aportar el análisis. | **1 puntos:** Aporta ambas imágenes y ambos prompts, e identifica qué parte era imposible de deducir. | **2 puntos:** Explica además por qué esa información se "pierde" entre el prompt y la imagen. |
+| **Chuleta personal y presentación** (máx. 1 puntos) | **0 puntos:** No la elabora. | **0.25 puntos:** Copia la plantilla sin adaptarla. | **0.5 puntos:** Adapta la plantilla a su trabajo, aunque falta concretar alguna pauta para reutilizarla. | **1 puntos:** Plantilla propia, reutilizable y bien pensada, presentada con claridad en los dos formatos. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** No entrega la actividad. | **0.5 puntos:** Entrega con retraso importante respecto al plazo comunicado. | **1 puntos:** Entrega con pequeño retraso respecto al plazo comunicado. | **2 puntos:** Entrega dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}

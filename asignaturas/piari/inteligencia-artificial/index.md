@@ -34,7 +34,7 @@ description: Inteligencia Artificial
 > 🚦 **La regla de oro:** a una IA **no le cuentas nada que no le contarías a un desconocido en el autobús**.
 {: .alert-warning}
 
-1. Las herramientas de IA se usan **solo cuando el profesor lo indique** y para la tarea que se ha pedido.
+1. La IA está prohibida salvo autorización expresa del profesor o del enunciado. Solo se utiliza para las partes expresamente indicadas; las reflexiones personales se redactan sin IA salvo que se autorice esa parte.
 2. **Nunca** escribas en una IA tu nombre completo, tu dirección, tu teléfono, tus contraseñas, datos de tu familia ni fotos de personas.
 3. **Nunca** copies datos personales de otra persona (conversaciones, fotos, notas) para dárselos a una IA. Esa información **no es tuya**.
 4. Todo lo que entregues llevará una **ficha de transparencia**: qué IA has usado, para qué, y qué has hecho tú.

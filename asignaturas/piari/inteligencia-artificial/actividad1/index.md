@@ -71,13 +71,13 @@ Nombra los archivos como **`apellido_nombre_act1.odt`** y **`apellido_nombre_act
 
 ## 📊 Rúbrica – Actividad 1: ¿Esto lo ha hecho una IA? (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
-|---|---|---|---|---|
-| **Realización del test e identificación de pistas** (Tareas 1 y 2) | No realiza el test o no aporta el resumen descargado. | Realiza el test pero las pistas son genéricas ("se nota que es falso"). | Identifica 3 pistas concretas y las explica correctamente. | Identifica 3 pistas concretas, las explica y analiza con lucidez el caso en el que se equivocó estando seguro. |
-| **Reflexión sobre el impacto personal** (pregunta 4) | No responde o responde con una generalidad. | Menciona una situación vaga o copiada de la teoría. | Describe una situación concreta, propia y bien razonada. | – |
-| **Análisis de las consecuencias de un deepfake** (preguntas 5 y 6) | No responde o banaliza el asunto. | Menciona consecuencias superficiales y no resuelve si es delito. | Identifica consecuencias reales a corto y medio plazo y responde correctamente sobre el delito. | Además distingue con claridad la responsabilidad de quien lo crea y de quien lo reenvía. |
-| **Plan de actuación** (pregunta 7) | No responde. | Propone una reacción sin pasos claros. | Propone pasos concretos y ordenados que incluyen no reenviar, conservar pruebas y avisar a un adulto. | – |
-| **Presentación y entrega en plazo** | Documento desordenado, sin identificar o entregado tarde sin justificación. | Entrega con pequeño retraso o con errores de formato y ortografía. | Documento claro, bien estructurado, sin faltas, con los dos formatos y entregado en plazo. | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Realización del test e identificación de pistas (Tareas 1 y 2)** (máx. 2.5 puntos) | **0 puntos:** No realiza el test o no aporta el resumen descargado. | **0.625 puntos:** Realiza el test pero las pistas son genéricas ("se nota que es falso"). | **1.25 puntos:** Identifica 3 pistas concretas y las explica correctamente. | **2.5 puntos:** Identifica 3 pistas concretas, las explica y analiza con lucidez el caso en el que se equivocó estando seguro. |
+| **Reflexión sobre el impacto personal (pregunta 4)** (máx. 1.5 puntos) | **0 puntos:** No responde o responde con una generalidad. | **0.375 puntos:** Menciona una situación vaga o copiada de la teoría. | **0.75 puntos:** Describe una situación personal pertinente, aunque la relación con su impacto necesita más explicación. | **1.5 puntos:** Describe una situación concreta, propia y bien razonada. |
+| **Análisis de las consecuencias de un deepfake (preguntas 5 y 6)** (máx. 2.5 puntos) | **0 puntos:** No responde o banaliza el asunto. | **0.625 puntos:** Menciona consecuencias superficiales y no resuelve si es delito. | **1.25 puntos:** Identifica consecuencias reales a corto y medio plazo y responde correctamente sobre el delito. | **2.5 puntos:** Además distingue con claridad la responsabilidad de quien lo crea y de quien lo reenvía. |
+| **Plan de actuación (pregunta 7)** (máx. 1.5 puntos) | **0 puntos:** No responde. | **0.375 puntos:** Propone una reacción sin pasos claros. | **0.75 puntos:** Propone medidas adecuadas, pero omite alguna comprobación o no ordena completamente los pasos. | **1.5 puntos:** Propone pasos concretos y ordenados que incluyen no reenviar, conservar pruebas y avisar a un adulto. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** No entrega la actividad. | **0.5 puntos:** Entrega con retraso importante respecto al plazo comunicado. | **1 puntos:** Entrega con pequeño retraso respecto al plazo comunicado. | **2 puntos:** Entrega dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}

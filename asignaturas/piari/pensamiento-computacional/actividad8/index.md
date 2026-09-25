@@ -112,6 +112,13 @@ Una vez completado el juego base, debes aplicar tu creatividad y los conceptos a
 
 ---
 
+## Prueba, autoría y reutilización
+
+Trabajad por parejas para probar los juegos: cada persona conserva su proyecto individual y asume alternativamente los papeles de autor y revisor. Anota una observación recibida, la comprobación que haces y la mejora o decisión resultante.
+
+Añade a la explicación de entrega un apartado «Créditos y reutilización»: identifica qué has creado, de dónde proceden los recursos o fragmentos reutilizados, su autoría y su licencia o condiciones de uso. Explica brevemente qué permiten esas condiciones. Si un recurso no permite su reutilización, sustitúyelo. Compara también Scratch con Laby: qué facilita cada entorno para resolver el reto.
+
+
 ## 📤 Entrega en Aules
 
 Debes enviar a través de Aules:
@@ -143,3 +150,8 @@ Debes enviar a través de Aules:
 - **CE2.3**: Resolver de forma guiada problemas elementales utilizando los algoritmos y las estructuras de datos necesarias.
 - **CE2.4**: Programar aplicaciones sencillas de forma guiada para resolver problemas elementales.
 - **CE4.1**: Participar activamente en el diseño y desarrollo de soluciones digitales colaborativas y creativas.
+
+- **CE2.2**: Analizar y validar el funcionamiento de aplicaciones sencillas.
+- **CE2.5**: Describir y valorar los derechos de autor y las licencias de los recursos y del software.
+- **CE4.3**: Valorar la adecuación de los entornos utilizados al reto.
+- **CE4.4**: Resolver problemas técnicos sencillos, revisando el procedimiento cuando sea necesario.

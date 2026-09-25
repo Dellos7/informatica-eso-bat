@@ -83,4 +83,3 @@ Los científicos están buscando la manera de **entrenar de nuevo al ratón** pa
 
 - **CE2.1**: Analizar problemas elementales significativos para el alumnado, mediante la abstracción y modelización de la realidad.  
 - **CE2.3**: Resolver de forma guiada problemas elementales utilizando los algoritmos y las estructuras de datos necesarias.  
-- **CE2.4**: Programar aplicaciones sencillas de forma guiada para resolver problemas elementales.  
