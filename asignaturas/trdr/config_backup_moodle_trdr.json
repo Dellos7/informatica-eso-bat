@@ -1,23 +1,23 @@
 {
   "course": {
-    "fullname": "4ESO - Digitalización",
-    "shortname": "4ESO-DIG",
-    "idnumber": "4ESO_DIG_2025_26",
-    "summary": "Curso de Digitalización para 4º de la ESO",
-    "course_image": "https://dlopezcastellote.dev/informatica-eso-bat/archivos/imagenes/4ESO-DIGITALIZACION.png"
+    "fullname": "1ESO - Taller de Relaciones Digitales Responsables",
+    "shortname": "1ESO-TRDR",
+    "idnumber": "1ESO_TRDR_2025_26",
+    "summary": "Curso de Taller de Relaciones Digitales Responsables para 1º de la ESO",
+    "course_image": "https://dlopezcastellote.dev/informatica-eso-bat/archivos/imagenes/1ESO-TRDR.png"
   },
-  "web_base_url": "https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion",
+  "web_base_url": "https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/trdr",
   "groups": [
     {
-      "id": 88658,
-      "name": "DIG1"
+      "id": 1,
+      "name": "TRDR1"
     },
     {
-      "id": 88659,
-      "name": "DIG2"
+      "id": 2,
+      "name": "TRDR2"
     }
   ],
-  "duplicate_activities_per_group": true,
+  "duplicate_activities_per_group": false,
   "topic_button": {
     "style": "display: inline-block; padding: 14px 28px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; background-color: #0076ff; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 118, 255, 0.2); transition: background-color 0.2s ease;"
   },
@@ -26,7 +26,7 @@
       {
         "type": "label",
         "name": "Banner Asignatura",
-        "content": "<h3 style=\"text-align: center; color: blue\"><strong><img src=\"https://dlopezcastellote.dev/informatica-eso-bat/archivos/imagenes/4ESO-DIGITALIZACION.png\" alt=\"4ESO DIGITALIZACIÓN\" width=\"999\" height=\"333\" role=\"presentation\" class=\"img-fluid atto_image_button_text-bottom\"></strong></h3>"
+        "content": "<h3 style=\"text-align: center; color: blue\"><strong><img src=\"https://dlopezcastellote.dev/informatica-eso-bat/archivos/imagenes/1ESO-TRDR.png\" alt=\"1ESO TRDR\" width=\"999\" height=\"333\" role=\"presentation\" class=\"img-fluid atto_image_button_text-bottom\"></strong></h3>"
       },
       {
         "type": "label",
@@ -57,22 +57,22 @@
       {
         "type": "label",
         "name": "Enlace Web Asignatura",
-        "content": "<p style=\"text-align: center;\"><a style=\"display: inline-block; padding: 14px 28px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; background-color: #0076ff; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 118, 255, 0.2); transition: background-color 0.2s ease;\" href=\"https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/\" target=\"_blank\" rel=\"noopener noreferrer\"> WEB ASIGNATURA </a></p>"
+        "content": "<p style=\"text-align: center;\"><a style=\"display: inline-block; padding: 14px 28px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; background-color: #0076ff; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 118, 255, 0.2); transition: background-color 0.2s ease;\" href=\"https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/trdr/\" target=\"_blank\" rel=\"noopener noreferrer\"> WEB ASIGNATURA </a></p>"
       }
     ]
   },
   "topics": [
     {
-      "folder": "sistemas-operativos",
-      "title": "Tema 1: Sistemas Operativos",
+      "folder": "sistemas-operativos-y-aplicaciones",
+      "title": "Tema 1: Sistemas operativos y aplicaciones",
       "button_text": "TEMA 1 (WEB)",
       "show_activity_description": true,
       "visible": true,
       "activities_visible": false
     },
     {
-      "folder": "documentos-digitales",
-      "title": "Tema 2: Documentos digitales",
+      "folder": "organizacion-de-la-informacion",
+      "title": "Tema 2: Organización de la información",
       "button_text": "TEMA 2 (WEB)",
       "show_activity_description": true,
       "visible": false,

@@ -1,23 +1,19 @@
 {
   "course": {
-    "fullname": "4ESO - Digitalización",
-    "shortname": "4ESO-DIG",
-    "idnumber": "4ESO_DIG_2025_26",
-    "summary": "Curso de Digitalización para 4º de la ESO",
-    "course_image": "https://dlopezcastellote.dev/informatica-eso-bat/archivos/imagenes/4ESO-DIGITALIZACION.png"
+    "fullname": "2BAT - Programación, Sistemas Informáticos y Redes II",
+    "shortname": "2BAT-PSIR-II",
+    "idnumber": "2BAT_PSIRII_2025_26",
+    "summary": "Curso de Programación, Sistemas Informáticos y Redes II para 2º de Bachillerato",
+    "course_image": "https://dlopezcastellote.dev/informatica-eso-bat/archivos/imagenes/2BAT-PSIR-II.png"
   },
-  "web_base_url": "https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion",
+  "web_base_url": "https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/psirii",
   "groups": [
     {
-      "id": 88658,
-      "name": "DIG1"
-    },
-    {
-      "id": 88659,
-      "name": "DIG2"
+      "id": 1,
+      "name": "PSIR2"
     }
   ],
-  "duplicate_activities_per_group": true,
+  "duplicate_activities_per_group": false,
   "topic_button": {
     "style": "display: inline-block; padding: 14px 28px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; background-color: #0076ff; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 118, 255, 0.2); transition: background-color 0.2s ease;"
   },
@@ -26,7 +22,7 @@
       {
         "type": "label",
         "name": "Banner Asignatura",
-        "content": "<h3 style=\"text-align: center; color: blue\"><strong><img src=\"https://dlopezcastellote.dev/informatica-eso-bat/archivos/imagenes/4ESO-DIGITALIZACION.png\" alt=\"4ESO DIGITALIZACIÓN\" width=\"999\" height=\"333\" role=\"presentation\" class=\"img-fluid atto_image_button_text-bottom\"></strong></h3>"
+        "content": "<h3 style=\"text-align: center; color: blue\"><strong><img src=\"https://dlopezcastellote.dev/informatica-eso-bat/archivos/imagenes/2BAT-PSIR-II.png\" alt=\"2BAT PSIR II\" width=\"999\" height=\"333\" role=\"presentation\" class=\"img-fluid atto_image_button_text-bottom\"></strong></h3>"
       },
       {
         "type": "label",
@@ -42,7 +38,7 @@
       {
         "type": "url",
         "name": "Criterios de calificación",
-        "external_url": "https://dlopezcastellote.dev/informatica-eso-bat/archivos/Criterios-de-calificaci%C3%B3n-ESO-y-Bachillerato.pdf"
+        "external_url": "https://dlopezcastellote.dev/informatica-eso-bat/archivos/Criterios-de-calificaci%C3%B3n-Bachillerato.pdf"
       },
       {
         "type": "url",
@@ -57,22 +53,22 @@
       {
         "type": "label",
         "name": "Enlace Web Asignatura",
-        "content": "<p style=\"text-align: center;\"><a style=\"display: inline-block; padding: 14px 28px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; background-color: #0076ff; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 118, 255, 0.2); transition: background-color 0.2s ease;\" href=\"https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/digitalizacion/\" target=\"_blank\" rel=\"noopener noreferrer\"> WEB ASIGNATURA </a></p>"
+        "content": "<p style=\"text-align: center;\"><a style=\"display: inline-block; padding: 14px 28px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; background-color: #0076ff; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 118, 255, 0.2); transition: background-color 0.2s ease;\" href=\"https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/psirii/\" target=\"_blank\" rel=\"noopener noreferrer\"> WEB ASIGNATURA </a></p>"
       }
     ]
   },
   "topics": [
     {
-      "folder": "sistemas-operativos",
-      "title": "Tema 1: Sistemas Operativos",
+      "folder": "servicios-web",
+      "title": "Tema 1: Servicios web",
       "button_text": "TEMA 1 (WEB)",
       "show_activity_description": true,
       "visible": true,
       "activities_visible": false
     },
     {
-      "folder": "documentos-digitales",
-      "title": "Tema 2: Documentos digitales",
+      "folder": "docker",
+      "title": "Tema 2: Contenerización con Docker",
       "button_text": "TEMA 2 (WEB)",
       "show_activity_description": true,
       "visible": false,
