@@ -32,8 +32,12 @@ Debes enviarme **una captura de pantalla de cada nivel**, donde se vea cómo lo 
 
 ## 📊 Rúbrica – Actividad 4: Entrenando hormigas (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 3.5 puntos | 5.5 puntos | 7 puntos |
-|---|---|---|---|---|---|---|---|
-| **Resolución de niveles (1a, 1b, 1c)** | No supera ningún nivel. |  | Supera 1 nivel. | Supera 2 niveles pero sobran instrucciones que no son necesarias. | Supera 2 niveles. | Supera los 3 niveles pero sobran instrucciones que no son necesarias. | Supera los 3 niveles. |
-| **Presentación de capturas** | Sin capturas o capturas ilegibles. | Capturas correctas y legibles, con los archivos renombrados **1a.png**, **1b.png**, **1c.png**. |  |  |  | | |
-| **Entrega en plazo** | No entrega o lo hace muy tarde. | Entrega con pequeño retraso. | Entrega en plazo. |  |  | | |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Resolución de niveles (1a, 1b, 1c)** (máx. 7 puntos) | **0 puntos:** No supera ningún nivel o el código no es funcional. | **1,75 puntos:** Supera solo 1 nivel correctamente o presenta soluciones incompletas con instrucciones erróneas. | **3,5 puntos:** Supera 2 niveles correctamente, o supera los 3 niveles pero con instrucciones redundantes o sin optimizar. | **7 puntos:** Supera con éxito los 3 niveles (1a, 1b y 1c) con algoritmos claros, directos y sin instrucciones innecesarias. |
+| **Presentación de capturas** (máx. 1 punto) | **0 puntos:** Sin capturas o las imágenes son completamente ilegibles o no corresponden a la actividad. | **0,25 puntos:** Aporta solo alguna captura o faltan datos esenciales (no se aprecian las instrucciones o los archivos están mal nombrados). | **0,5 puntos:** Aporta las capturas de los 3 niveles legibles, pero falta rotular el nombre y apellidos o algún archivo no sigue el formato indicado. | **1 punto:** Capturas de pantalla nítidas y completas de los 3 niveles, con instrucciones visibles, nombre rotulado y archivos nombrados como 1a.png, 1b.png y 1c.png. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** Entrega tarde sin justificación o no entrega. | **0,5 puntos:** Entrega con retraso importante (más de 2 días). | **1 punto:** Entrega con pequeño retraso (hasta 2 días). | **2 puntos:** Entrega puntual dentro del plazo establecido. |
+
+> ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
+{: .alert-error}
+

@@ -66,14 +66,14 @@ Los científicos están buscando la manera de **entrenar de nuevo al ratón** pa
 > Deberás entregar en Aules **el documento** de LibreOffice Writer con el algoritmo y la imagen insertada.
 {: .alert-warning}
 
-# 📊 Rúbrica – Actividad 2: Entrenando Ratones (máx. 10 puntos)
+## 📊 Rúbrica – Actividad 2: Entrenando Ratones (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 4 puntos |
-|----------|----------|----------|----------|----------|----------|
-| **Representación del recorrido (Tarea 1)** | No representa el recorrido o es incoherente. | Representación incompleta o con errores relevantes. | Representación clara y correcta del recorrido del ratón. | – | – |
-| **Aplicación del pensamiento computacional (Tarea 2 – Reto)** | No aplica pensamiento computacional o el algoritmo es incoherente. | Aplica pensamiento computacional de forma muy básica, con errores relevantes. | Aplica pensamiento computacional con un algoritmo comprensible aunque mejorable. | Aplica pensamiento computacional de forma clara y eficaz, resolviendo el reto con corrección. | Aplica pensamiento computacional de forma clara, eficaz y optimizada, resolviendo el reto sin errores. |
-| **Entrega de documentos y formato adecuado** | No entrega los documentos o están en un formato incorrecto. | Entrega los documentos incompletos o con formato poco adecuado. | Entrega los documentos completos y en el formato indicado. | – | – |
-| **Entrega en plazo** | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Representación del recorrido (Tarea 1)** (máx. 2 puntos) | **0 puntos:** No representa el recorrido o la imagen está vacía o es incoherente. | **0,5 puntos:** Representación muy incompleta o con errores graves en el camino seguido. | **1 punto:** Representación comprensible del recorrido, pero con algún error menor o trazado poco preciso. | **2 puntos:** Representación clara, precisa y correcta del recorrido del ratón hasta el queso en GIMP. |
+| **Aplicación del pensamiento computacional (Tarea 2 – Reto)** (máx. 4 puntos) | **0 puntos:** No aplica pensamiento computacional o el algoritmo propuesto es incoherente o está en blanco. | **1 punto:** Aplica pensamiento computacional de forma muy básica, con errores conceptuales relevantes en la formulación del algoritmo. | **2 puntos:** Aplica pensamiento computacional con un algoritmo comprensible y funcional, aunque mejorable en precisión o estructura. | **4 puntos:** Aplica pensamiento computacional de forma clara, eficaz y optimizada, resolviendo el reto sin errores y con una secuencia lógica impecable. |
+| **Entrega de documentos y formato adecuado** (máx. 2 puntos) | **0 puntos:** No entrega los documentos solicitados o se entregan en formatos incompatibles o vacíos. | **0,5 puntos:** Entrega incompleta (falta la imagen o el documento .odt) o con problemas graves de formato y presentación. | **1 punto:** Entrega los documentos solicitados (.odt e imágenes), pero con fallos menores en el formato o en la inserción de las imágenes con dos colores. | **2 puntos:** Entrega todos los documentos requeridos (.odt e imágenes) correctamente estructurados, con formato adecuado y siguiendo todas las indicaciones. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** Entrega tarde sin justificación o no entrega. | **0,5 puntos:** Entrega con retraso importante (más de 2 días). | **1 punto:** Entrega con pequeño retraso (hasta 2 días). | **2 puntos:** Entrega puntual dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}

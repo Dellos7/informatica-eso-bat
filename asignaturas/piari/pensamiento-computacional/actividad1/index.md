@@ -29,11 +29,11 @@ Asegúrate de que tu documento **se vea más o menos así** (con las respuestas)
 
 ## 📊 Rúbrica – Actividad 1: Conceptos básicos (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 4 puntos | 5 puntos |
-|----------|----------|----------|----------|----------|----------|----------|
-| **Respuestas a las preguntas** (máx. 5) | No responde o las respuestas son copiadas literalmente de internet o ChatGPT. | Responde de forma muy incompleta o incorrecta. | Responde de forma comprensible pero con errores conceptuales relevantes. | Responde correctamente a la mayoría de las preguntas, con explicaciones claras. | Responde a casi todas las preguntas con corrección y ejemplos adecuados. | Responde a todas las preguntas con claridad, corrección y ejemplos pertinentes y bien desarrollados. |
-| **Claridad y presentación del documento** (máx. 3) | Documento desordenado o con formato incorrecto. | Documento con muchos problemas de formato o difícil de leer. | Documento aceptable pero con errores de formato o faltas frecuentes. | Documento bien estructurado, claro, sin faltas y siguiendo las indicaciones dadas. | – | – |
-| **Entrega en plazo** (máx. 2) | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – | – | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Respuestas a las preguntas** (máx. 5 puntos) | **0 puntos:** No responde a las preguntas o las respuestas son copiadas literalmente de internet o de una IA (como ChatGPT). | **1,25 puntos:** Responde de forma muy incompleta o con errores conceptuales relevantes en la mayoría de preguntas. | **2,5 puntos:** Responde correctamente a la mayoría de las preguntas, con explicaciones claras y ejemplos adecuados. | **5 puntos:** Responde a todas las preguntas con claridad, corrección y ejemplos pertinentes y bien desarrollados. |
+| **Claridad y presentación del documento** (máx. 3 puntos) | **0 puntos:** Documento desordenado o con formato incorrecto. | **1 punto:** Documento con muchos problemas de formato o difícil de leer. | **2 puntos:** Documento aceptable pero con errores de formato o faltas frecuentes. | **3 puntos:** Documento bien estructurado, claro, sin faltas y siguiendo las indicaciones dadas. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** Entrega tarde sin justificación o no entrega. | **0,5 puntos:** Entrega con retraso importante (más de 2 días). | **1 punto:** Entrega con pequeño retraso (hasta 2 días). | **2 puntos:** Entrega puntual dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}

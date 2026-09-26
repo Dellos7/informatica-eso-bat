@@ -41,11 +41,6 @@
       },
       {
         "type": "label",
-        "name": "Recordatorio correo electrónico",
-        "content": "<h5 style=\"text-align: center;\"><span class=\"\" style=\"background-color: rgb(255, 207, 53); color: rgb(51, 51, 51);\">⚠️ </span><strong><span class=\"\" style=\"background-color: rgb(255, 207, 53); color: rgb(51, 51, 51);\">Recordatorio</span></strong><span class=\"\" style=\"background-color: rgb(255, 207, 53); color: rgb(255, 207, 53);\"><span class=\"\" style=\"color: rgb(51, 51, 51);\">: </span>\n    <span class=\"\" style=\"color: rgb(51, 51, 51);\">&nbsp;actualizad </span><span class=\"\" style=\"color: rgb(51, 51, 51);\">el correo electrónico en vuestro perfil de Aules&nbsp;⚠️&nbsp;</span></span>\n</h5>"
-      },
-      {
-        "type": "label",
         "name": "Enlace Web Asignatura",
         "content": "<p style=\"text-align: center;\"><a style=\"display: inline-block; padding: 14px 28px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: #ffffff; background-color: #0076ff; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 118, 255, 0.2); transition: background-color 0.2s ease;\" href=\"https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/piari/\" target=\"_blank\" rel=\"noopener noreferrer\"> WEB ASIGNATURA </a></p>"
       }

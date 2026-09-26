@@ -67,15 +67,15 @@ Las instrucciones que puedes dar al robot son las siguientes:
 - A continuación, **define una nueva posición de salida (S)** y **dos nuevas posiciones X e Y** para los tesoros, dibujando estas letras en la propia imagen.
 - Finalmente, **indica los algoritmos** necesarios para que, saliendo de la nueva posición S, el robot sea capaz de llegar a las nuevas posiciones X e Y.
 
-# 📊 Rúbrica – Actividad 3: Camino a casa (máx. 10 puntos)
+## 📊 Rúbrica – Actividad 3: Camino a casa (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
-|----------|----------|----------|----------|----------|
-| **Precisión del algoritmo (Tarea 1)** | Algoritmo incorrecto o incoherente. | Algoritmo correcto en la tarea. | – | – |
-| **Precisión del algoritmo (Tarea 2)** | Algoritmo incorrecto o incoherente. | Algoritmo incompleto o con varios errores. | Algoritmo casi correcto, con 1 error menor. | Algoritmo correcto en la tarea. |
-| **Claridad y orden en la presentación** | Instrucciones poco comprensibles o mal planteadas. | Instrucciones comprensibles pero con desorden/confusión. | Instrucciones claras, bien secuenciadas y fáciles de seguir. | – |
-| **Creatividad y eficiencia (Tarea 3)** | Laberinto incorrecto o sin solución. | Laberinto funcional pero sencillo/poco optimizado. | Laberinto original y algoritmo eficiente. | – |
-| **Entrega en plazo** | Entrega tarde sin justificación. | Entrega con pequeño retraso. | Entrega puntual. | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+| :--- | :--- | :--- | :--- | :--- |
+| **Precisión del algoritmo (Tarea 1)** (máx. 1 punto) | **0 puntos:** No presenta el algoritmo o es completamente incorrecto e incoherente. | **0,25 puntos:** Algoritmo incompleto o con errores que impiden que el coche llegue a la casa. | **0,5 puntos:** El algoritmo guía el coche hasta la casa, pero no emplea el camino más corto o contiene algún paso redundante. | **1 punto:** Algoritmo impecable y óptimo que guía al coche a su casa siguiendo el camino más corto con las instrucciones exactas. |
+| **Precisión del algoritmo (Tarea 2)** (máx. 3 puntos) | **0 puntos:** No resuelve los algoritmos o ambos son incorrectos e incoherentes. | **1 punto:** Resuelve solo uno de los dos retos (X o Y) con errores, o ambos algoritmos presentan fallos importantes en giros o distancias. | **2 puntos:** Resuelve la recogida de ambos tesoros (X e Y), pero con algún error menor en la secuencia o sin incluir la orden de recogida (T). | **3 puntos:** Algoritmos correctos, precisos y completos para recoger ambos tesoros (X e Y) respetando la posición inicial y todas las reglas. |
+| **Claridad y orden en la presentación** (máx. 2 puntos) | **0 puntos:** Documento desordenado, sin identificar las tareas o con instrucciones confusas e incomprensibles. | **0,5 puntos:** Documento con problemas de formato, instrucciones poco ordenadas o imágenes mal insertadas. | **1 punto:** Documento comprensible y estructurado, con las imágenes de apoyo insertadas, aunque con algún detalle de formato mejorable. | **2 puntos:** Presentación impecable en LibreOffice Writer, con instrucciones claras, perfectamente secuenciadas, estructuradas e imágenes nítidas. |
+| **Creatividad y eficiencia (Tarea 3)** (máx. 2 puntos) | **0 puntos:** No realiza la tarea de edición del laberinto o las nuevas posiciones no tienen solución viable. | **0,5 puntos:** Edita el laberinto situando las nuevas letras, pero los algoritmos propuestos son erróneos o incompletos. | **1 punto:** Laberinto correctamente modificado y algoritmos funcionales, aunque sencillos o con margen de optimización en el recorrido. | **2 puntos:** Laberinto original con nueva salida y tesoros bien ubicados, acompañado de algoritmos eficientes, correctos y optimizados. |
+| **Entrega en plazo** (máx. 2 puntos) | **0 puntos:** Entrega tarde sin justificación o no entrega. | **0,5 puntos:** Entrega con retraso importante (más de 2 días). | **1 punto:** Entrega con pequeño retraso (hasta 2 días). | **2 puntos:** Entrega puntual dentro del plazo establecido. |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}
