@@ -25,7 +25,7 @@
     "numberOfSAs": 6,
     "saDetails": [
       {
-        "idea": "SITUACIÓN DE APRENDIZAJE 1: El cerebro de la máquina: Sistemas Operativos al descubierto",
+        "idea": "SITUACIÓN DE APRENDIZAJE 1: Sistemas operativos y aplicaciones",
         "sessions": "10",
         "competencies": [
           "CE1: Utilizar dispositivos digitales de uso personal en el entorno doméstico y educativo de manera saludable, segura y sostenible.",
@@ -37,7 +37,7 @@
         ]
       },
       {
-        "idea": "SITUACIÓN DE APRENDIZAJE 2: Arquitectos digitales: Dominando archivos y extensiones",
+        "idea": "SITUACIÓN DE APRENDIZAJE 2: Organización de la información",
         "sessions": "10",
         "competencies": [
           "CE1: Utilizar dispositivos digitales de uso personal en el entorno doméstico y educativo de manera saludable, segura y sostenible.",
@@ -86,6 +86,7 @@
         "idea": "SITUACIÓN DE APRENDIZAJE 6: Creadores con impacto: Bienestar y creatividad digital",
         "sessions": "12",
         "competencies": [
+          "CE1: Utilizar dispositivos digitales de uso personal en el entorno doméstico y educativo de manera saludable, segura y sostenible.",
           "CE2: Buscar y seleccionar críticamente información digital de diferentes fuentes, interpretarla, organizarla en el entorno personal de aprendizaje y crear contenidos digitales.",
           "CE4: Mostrar hábitos básicos que fomenten el bienestar en las relaciones a través de entornos digitales."
         ],

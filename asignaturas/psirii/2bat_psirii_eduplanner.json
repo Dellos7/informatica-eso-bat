@@ -5,37 +5,90 @@
     "subject": "Programación, Redes y Sistemas Informáticos II",
     "gradeLevel": "2º Bachiller",
     "academicYear": "2026-27",
-    "weeklyHours": "4",
+    "weeklyHours": 4,
     "language": "Castellano",
-    "selectedNeeds": [],
+    "selectedNeeds": [
+      "TDAH",
+      "Dislexia / DEA",
+      "Medidas Nivel III (Apoyo específico)"
+    ],
     "otherNeeds": "",
     "methodologyPreference": [
       "Aprendizaje Basado en Proyectos (ABP)",
       "Instrucción Directa y Práctica",
       "Aprendizaje Basado en Retos"
     ],
-    "methodologyDescription": "",
+    "methodologyDescription": "La principal metodología utilizada es el aprendizaje a través de actividades prácticas en el aula de informática. El alumnado asimila los conceptos tecnológicos y de administración de sistemas y redes mediante la resolución de ejercicios guiados, despliegue de servicios, retos de programación y configuraciones reales en máquinas virtuales y contenedores que entrega a través de la plataforma Aules para su evaluación continua.",
     "generateFullCourse": true,
     "fullCourseIdeas": "Este curso es 2º de Bachillerato. Me gustaría que aprendan a configurar sistemas informáticos (servidores web, bases de datos, etc), que aprendan a utilizar Docker, que aprendan conceptos básicos y útiles de redes. En 1º vimos algo de programación; en este curso quiero hacer un repaso de Python + enseñarles el manejo de matrices con Python. Me gustaría también ver algo de desarrollo web potenciado por herramientas de IA.",
-    "numberOfSAs": 2,
+    "numberOfSAs": 5,
     "saDetails": [
       {
-        "idea": "",
-        "sessions": "",
-        "competencies": [],
-        "blocks": []
+        "idea": "SdA 1: Despliegue de servicios web: De la máquina virtual a la nube",
+        "sessions": "30",
+        "competencies": [
+          "CE2: Diseñar, instalar, configurar y administrar sistemas informáticos en el entorno personal y de pequeños grupos de trabajo utilizándolos de manera segura y sostenible.",
+          "CE4: Aprovechar y utilizar de manera eficiente sistemas de información conectados en red para pequeños grupos de trabajo.",
+          "CE5: Ejercer una ciudadanía digital crítica, responsable y solidaria frente a los principales retos de una sociedad digitalizada."
+        ],
+        "blocks": [
+          "Bloque 2: Sistemas informáticos",
+          "Bloque 4: Servicios en red"
+        ]
       },
       {
-        "idea": "",
-        "sessions": "",
-        "competencies": [],
-        "blocks": []
+        "idea": "SdA 2: Docker: nube privada y correo de laboratorio",
+        "sessions": "30",
+        "competencies": [
+          "CE2: Diseñar, instalar, configurar y administrar sistemas informáticos en el entorno personal y de pequeños grupos de trabajo utilizándolos de manera segura y sostenible.",
+          "CE4: Aprovechar y utilizar de manera eficiente sistemas de información conectados en red para pequeños grupos de trabajo.",
+          "CE5: Ejercer una ciudadanía digital crítica, responsable y solidaria frente a los principales retos de una sociedad digitalizada."
+        ],
+        "blocks": [
+          "Bloque 2: Sistemas informáticos",
+          "Bloque 4: Servicios en red"
+        ]
+      },
+      {
+        "idea": "SdA 3: Redes básicas: conexión y diagnóstico",
+        "sessions": "10",
+        "competencies": [
+          "CE3: Diseñar, configurar y administrar redes informáticas seguras para pequeños grupos de trabajo.",
+          "CE5: Ejercer una ciudadanía digital crítica, responsable y solidaria frente a los principales retos de una sociedad digitalizada."
+        ],
+        "blocks": [
+          "Bloque 3: Redes"
+        ]
+      },
+      {
+        "idea": "SdA 4: Programación con Python y desarrollo web",
+        "sessions": "30",
+        "competencies": [
+          "CE1: Analizar problemas de diferentes contextos y tipos y afrontar su resolución mediante el desarrollo de software, aplicando el pensamiento computacional.",
+          "CE4: Aprovechar y utilizar de manera eficiente sistemas de información conectados en red para pequeños grupos de trabajo.",
+          "CE5: Ejercer una ciudadanía digital crítica, responsable y solidaria frente a los principales retos de una sociedad digitalizada."
+        ],
+        "blocks": [
+          "Bloque 1: Programación"
+        ]
+      },
+      {
+        "idea": "SdA 5: Ciberseguridad y ética: Los desafíos de la sociedad digital",
+        "sessions": "12",
+        "competencies": [
+          "CE5: Ejercer una ciudadanía digital crítica, responsable y solidaria frente a los principales retos de una sociedad digitalizada."
+        ],
+        "blocks": [
+          "Bloque 1: Programación",
+          "Bloque 2: Sistemas informáticos",
+          "Bloque 4: Servicios en red"
+        ]
       }
     ]
   },
   "analysisData": {
     "subject": "Programación, Redes y Sistemas Informáticos",
-    "grade": "",
+    "grade": "2º Bachiller",
     "competencies": [
       "CE1: Analizar problemas de diferentes contextos y tipos y afrontar su resolución mediante el desarrollo de software, aplicando el pensamiento computacional.",
       "CE2: Diseñar, instalar, configurar y administrar sistemas informáticos en el entorno personal y de pequeños grupos de trabajo utilizándolos de manera segura y sostenible.",

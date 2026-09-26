@@ -5,7 +5,7 @@
     "subject": "Programació, Intel·ligència Artificial i Robòtica",
     "gradeLevel": "2ºESO",
     "academicYear": "2026-27",
-    "weeklyHours": "2",
+    "weeklyHours": 2,
     "language": "Castellano",
     "selectedNeeds": [
       "Alumnado TDAH",
@@ -23,25 +23,48 @@
     "methodologyDescription": "Aprendizaje basado en actividades y prácticas que deben realizar en clase de informática (aula de ordenadores).",
     "generateFullCourse": true,
     "fullCourseIdeas": "El curso se distribuirá en 3 SdAs (1 por trimestre). \n\nLa SdA1 será dedicada al pensamiento computacional y programación, la SdA2 será dedicada a la Inteligencia Artificial y la SdA3 será dedicada a la robótica. \n\nLa SdA1 se dividirá en una serie de actividades y retos que pueden consultarse en: https://dlopezcastellote.dev/informatica-eso-bat/asignaturas/piari/pensamiento-computacional/ \n\nMe gustaría en la SdA2 enseñarles acerca de IA, pasando por conceptos básicos pero explicados de forma simple y sencilla para adolescentes de 13-14 años, y siguiendo con actividades muy prácticas donde puedan ver la utilidad y el potencial de la IA. También quiero tratar de hacerles ver los peligros de la IA, por qué no debe sustituir el pensamiento natural humano (y por qué debemos seguir aprendiendo cosas que la IA ya sabe resolver de forma fácil) y los sesgos. \n\nPara la SdA3 quisiera hacer algo con robótica, en principio con placas microbit y robots Maqueen para microbit. \n\nTambién quiero que, de forma transversal, manejen de forma adecuada el ordenador (navegador, sistema de archivos, algún programa de procesador de textos y dibujo para hacer algunas actividades, etc) ",
-    "numberOfSAs": 2,
+    "numberOfSAs": 3,
     "saDetails": [
       {
-        "idea": "",
-        "sessions": "",
-        "competencies": [],
-        "blocks": []
+        "idea": "SdA 1: Pensamiento computacional: de los algoritmos al videojuego",
+        "sessions": "24",
+        "competencies": [
+          "CE2: Aplicar el pensament computacional en l'anàlisi i resolució de problemes bàsics significatius per a l'alumnat mitjançant el desenvolupament de programari.",
+          "CE4: Afrontar reptes tecnològics senzills i proposar solucions mitjançant la programació, la Intel·ligència Artificial i la robòtica, analitzant les possibilitats i valorant críticament les implicacions ètiques i ecosocials."
+        ],
+        "blocks": [
+          "Bloque 2: Programació"
+        ]
       },
       {
-        "idea": "",
-        "sessions": "",
-        "competencies": [],
-        "blocks": []
+        "idea": "SdA 2: Inteligencia artificial: experimentación, límites y creación",
+        "sessions": "23",
+        "competencies": [
+          "CE1: Identificar, investigar i emprar tècniques d'intel·ligència artificial i virtualització de la realitat en l'abordatge i la cerca de solucions a problemes bàsics de la societat valorant els principis ètics i inclusius aplicats.",
+          "CE2: Aplicar el pensament computacional en l'anàlisi i resolució de problemes bàsics significatius per a l'alumnat mitjançant el desenvolupament de programari.",
+          "CE4: Afrontar reptes tecnològics senzills i proposar solucions mitjançant la programació, la Intel·ligència Artificial i la robòtica, analitzant les possibilitats i valorant críticament les implicacions ètiques i ecosocials."
+        ],
+        "blocks": [
+          "Bloque 1: Intel·ligència Artificial"
+        ]
+      },
+      {
+        "idea": "SdA 3: Dando vida al código: Misión Micro:bit y Maqueen",
+        "sessions": "23",
+        "competencies": [
+          "CE3: Muntar sistemes robòtics senzills, analitzant les respostes que proporcionen en la seua interacció amb l'entorn i valorant l'eficàcia d'aquestes davant dels reptes plantejats.",
+          "CE4: Afrontar reptes tecnològics senzills i proposar solucions mitjançant la programació, la Intel·ligència Artificial i la robòtica, analitzant les possibilitats i valorant críticament les implicacions ètiques i ecosocials."
+        ],
+        "blocks": [
+          "Bloque 1: Intel·ligència Artificial",
+          "Bloque 3: Robòtica"
+        ]
       }
     ]
   },
   "analysisData": {
     "subject": "Intel·ligència Artificial, Programació i Robòtica",
-    "grade": "",
+    "grade": "2ºESO",
     "competencies": [
       "CE1: Identificar, investigar i emprar tècniques d'intel·ligència artificial i virtualització de la realitat en l'abordatge i la cerca de solucions a problemes bàsics de la societat valorant els principis ètics i inclusius aplicats.",
       "CE2: Aplicar el pensament computacional en l'anàlisi i resolució de problemes bàsics significatius per a l'alumnat mitjançant el desenvolupament de programari.",
