@@ -49,12 +49,6 @@
         "external_url": "https://dlopezcastellote.dev/informatica-eso-bat/archivos/Normas-aula-inform%C3%A1tica.pdf"
       },
       {
-        "type": "url",
-        "name": "Evaluación inicial",
-        "external_url": "https://forms.office.com/e/rPu4EFsWTq",
-        "visible": 0
-      },
-      {
         "type": "label",
         "name": "Recordatorio correo electrónico",
         "content": "<h5 style=\"text-align: center;\"><span class=\"\" style=\"background-color: rgb(255, 207, 53); color: rgb(51, 51, 51);\">⚠️ </span><strong><span class=\"\" style=\"background-color: rgb(255, 207, 53); color: rgb(51, 51, 51);\">Recordatorio</span></strong><span class=\"\" style=\"background-color: rgb(255, 207, 53); color: rgb(255, 207, 53);\"><span class=\"\" style=\"color: rgb(51, 51, 51);\">: </span>\n    <span class=\"\" style=\"color: rgb(51, 51, 51);\">&nbsp;actualizad </span><span class=\"\" style=\"color: rgb(51, 51, 51);\">el correo electrónico en vuestro perfil de Aules&nbsp;⚠️&nbsp;</span></span>\n</h5>"
@@ -70,12 +64,14 @@
     {
       "folder": "sistemas-operativos",
       "title": "Tema 1: Sistemas Operativos",
-      "button_text": "TEMA 1 (WEB)"
+      "button_text": "TEMA 1 (WEB)",
+      "show_activity_description": true
     },
     {
       "folder": "documentos-digitales",
       "title": "Tema 2: Documentos digitales",
-      "button_text": "TEMA 2 (WEB)"
+      "button_text": "TEMA 2 (WEB)",
+      "show_activity_description": true
     }
   ]
 }

@@ -46,11 +46,11 @@ Sube en esta tarea de **Aules**:
 
 ## Rúbrica – Actividad: Uso básico de la terminal en Linux
 
-| Criterio | 0 pts | 0.5 pts | 1 pt | 2 pts | 3 pts | 4 pts |
-|----------|-------|---------|------|-------|-------|-------|
-| **Ejecución en terminal** (4 pts) | No se usan comandos de terminal para la actividad o no se han entregado las capturas de pantalla. || Solo algunos pasos se hacen en terminal, o bien la mayoría de comandos son erróneos. | Se aprecian distintos comandos, pero faltan unos cuantos en las capturas de pantalla o hay bastantes errores. | La mayoría de pasos se hacen en terminal, pero hay algún error menor o falta algún comando que no se ve en las capturas. | Todos los pasos se realizan correctamente con comandos de terminal, sin errores. |
-| **Resultado final** (4 pts) | No entrega un resultado válido. || El resultado es incompleto (faltan bastantes partes). | El resultado final tiene fallos (faltan varios archivos y/o carpetas) | El resultado final tiene fallos menores y/o falta algún archivo. | La estructura de carpetas está bien hecha, las fotos bien organizadas y el archivo `recetas.zip` es correcto y completo. |
-| **Entrega** (2 pts) | Entrega muy tarde, incompleta o no entrega. | Entrega con retraso moderado (hasta 1 semana). | Entrega con un ligero retraso (máx. 2 días). | Entrega en plazo `recetas.zip` y las capturas de pantalla son claras y completas (se ven comandos y usuario). | – | - |
+| Criterio | 0 pts | 0.5 pts | 1 pt | 2 pts | 4 pts |
+|----------|-------|---------|------|-------|-------|
+| **1. Ejecución en terminal** (máx. 4 pts) | No se usan comandos de terminal para la actividad o no se han entregado las capturas de pantalla. | – | Solo algunos pasos se hacen en terminal, o bien la mayoría de comandos son erróneos. | La mayoría de pasos se hacen en terminal, pero hay algún error menor o faltan comandos en las capturas de pantalla. | Todos los pasos se realizan correctamente con comandos de terminal, sin errores. |
+| **2. Resultado final** (máx. 4 pts) | No entrega un resultado válido. | – | El resultado es incompleto (faltan bastantes partes o archivos). | El resultado final tiene fallos menores (alguna carpeta mal ubicada o falta algún archivo). | La estructura de carpetas está bien hecha, las fotos bien organizadas y el archivo `recetas.zip` es correcto y completo. |
+| **3. Entrega en plazo** (máx. 2 pts) | No entrega o entrega con retraso de más de una semana. | Entrega con un retraso importante (hasta 1 semana). | Entrega con un ligero retraso (máx. 2 días). | Entrega en plazo `recetas.zip` y las capturas de pantalla son claras y completas (se ven comandos y usuario). | – |
 
 > ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
 {: .alert-error}
