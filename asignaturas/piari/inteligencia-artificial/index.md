@@ -12,6 +12,9 @@ description: Inteligencia Artificial
 
 ## Teoría
 
+> trivia IA: https://dayofai.org/games/trivia
+{: .alert-error}
+
 - [¿Qué es la Inteligencia Artificial?](./que-es-la-inteligencia-artificial)
 - [Cómo funciona un LLM](./como-funciona-un-llm)
 - [Prompts: cómo pedirle las cosas a una IA](./prompts)

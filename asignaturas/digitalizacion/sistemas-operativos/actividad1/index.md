@@ -139,9 +139,11 @@ Para ayudarnos, utilizaremos el programa **Freeplane** (instalado de forma local
 ### 6. Empaquetar y comprimir la entrega
 Para enviar el trabajo de forma limpia y profesional, utilizaremos el compresor del sistema operativo.
 
-1. En el gestor de archivos, ve a la carpeta `Tema_1`.
-2. Haz clic derecho sobre la carpeta `Actividad_1` y selecciona **Comprimir...**
-3. Elige el formato `.zip` y nómbralo como `actividad1_tuapellido_tunombre.zip`.
+1. Elimina, si no lo has hecho ya, el archivo `act1_ej3.zip` que tendrás dentro de la carpeta de la actividad.
+2. En el gestor de archivos, ve a la carpeta `Tema_1`.
+3. Haz clic derecho sobre la carpeta `Actividad_1` y selecciona **Comprimir...**
+4. Elige el formato `.zip` y nómbralo como `actividad1_tuapellido_tunombre.zip`.
+5. Asegúrate de que el archivo ocupa menos de `50MB` para evitar problemas con el límite de subida de Aules.
 
 ---
 
