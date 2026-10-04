@@ -94,15 +94,15 @@ En esta tarea de **Aules** debes subir:
 - **Captura de pantalla** del comando `history` mostrando todos los comandos y tu usuario.  
 - El archivo **actividad-3.zip** que hayas descargado con SCP desde el servidor. *(El profesor comprobará que dicho archivo existe y está creado en el servidor).*
 
-## Rúbrica – Actividad 4 – Uso de SSH y SCP en Linux
+## Rúbrica – Actividad 4 – Uso de SSH y SCP en Linux (máx. 10 puntos)
 
-| Criterio | 0 pts | 0.5 pts | 1 pt | 2 pts | 4 pts |
-|----------|-------|---------|------|-------|-------|
-| **Ejecución en terminal (SSH y comandos). Capturas de pantalla** (4 pts) | No utiliza la terminal o no se conecta por SSH. | – | Ejecuta algunos comandos en terminal pero de forma incorrecta (ej. en local en lugar de dentro del servidor SSH). | Se conecta al servidor por SSH y la mayoría de comandos los ejecuta en el servidor, aunque hay algún error menor o confusión con comandos en local. | Se conecta correctamente por SSH y ejecuta todos los comandos en el servidor remoto de forma adecuada (clasificación, compresión, etc.). |
-| **Resultado final. Archivo comprimido** (4 pts) | No entrega un resultado válido. | – | El resultado es incompleto (faltan carpetas, archivos de texto o las imágenes no están bien clasificadas). | El resultado final tiene pequeños fallos (alguna carpeta mal, algún archivo mal nombrado, o el `.zip` incompleto). | La estructura de carpetas es correcta, las imágenes están bien organizadas, los archivos de texto creados en cada carpeta final son correctos y el archivo `actividad-3.zip` es completo. |
-| **Entrega** (2 pts) | Entrega muy tarde, incompleta o no entrega. | Entrega con retraso moderado (hasta 1 semana). | Entrega con un ligero retraso (máx. 2 días). | Entrega en plazo el archivo `actividad-3.zip` descargado con SCP y las capturas pantalla son claras y completas (se ven todos los comandos y el usuario en el servidor). | – |
+| Criterio | 0 pts | Nivel intermedio bajo | Nivel intermedio alto | Nivel excelente |
+|----------|-------|-----------------------|-----------------------|-----------------|
+| **Ejecución en terminal (SSH y comandos). Capturas de pantalla** (5 pts) | No utiliza la terminal o no se conecta por SSH. | Ejecuta algunos comandos en terminal pero de forma incorrecta (ej. en local en lugar de dentro del servidor SSH) (1,5 pts). | Se conecta al servidor por SSH y la mayoría de comandos los ejecuta en el servidor, aunque hay algún error menor (3 pts). | Se conecta correctamente por SSH y ejecuta todos los comandos en el servidor remoto de forma adecuada (5 pts). |
+| **Resultado final. Archivo comprimido** (5 pts) | No entrega un resultado válido. | El resultado es incompleto (faltan carpetas, archivos de texto o las imágenes no están bien clasificadas) (1,5 pts). | El resultado final tiene pequeños fallos (alguna carpeta mal, algún archivo mal nombrado, o el `.zip` incompleto) (3 pts). | La estructura de carpetas es correcta, las imágenes están bien organizadas, los archivos de texto creados son correctos y el archivo `actividad-3.zip` es completo (5 pts). |
+| **Entrega en plazo** (máx. 0 pts) | **-2 pts:** Entrega muy tarde, incompleta o no entrega. | **-1.5 pts:** Entrega con retraso moderado (hasta 1 semana). | **-1 pt:** Entrega con un ligero retraso (máx. 2 días). | **0 pts:** Entrega en plazo el archivo `actividad-3.zip` descargado con SCP y las capturas son claras y completas. |
 
-> ⚠️ **Nota importante sobre la puntuación de entrega:** Los 2 puntos asignados al criterio de entrega en plazo solo se contabilizarán si el alumno/a ha realizado un esfuerzo real y significativo por completar la actividad. En ningún caso se otorgará esta puntuación por entregas simbólicas, archivos vacíos, o contenidos sin sentido o sin intencionalidad de resolver la tarea.
+> ⚠️ **Nota sobre la entrega en plazo:** La entrega dentro del plazo establecido no resta puntuación (0 pts). Las entregas con retraso supondrán una penalización de hasta 2 puntos sobre la calificación de la actividad.
 {: .alert-error}
 
 **Criterios de evaluación de la programación:**

@@ -83,6 +83,10 @@ Durante la comprobación en clase, explica el recorrido del mensaje y demuestra 
 | Pruebas | No aporta pruebas. | Prueba un sentido o no comprueba el adjunto. | Comprueba ambos sentidos y el adjunto con evidencias claras. |
 | Diagnóstico | No identifica el problema. | Corrige con ayuda y explicación parcial. | Relaciona síntoma, causa, corrección y comprobación. |
 | Documentación y explicación individual | No documenta ni explica. | Informe o explicación incompletos. | Informe claro y explicación propia del funcionamiento y los límites del laboratorio. |
+| Entrega en plazo (máx. 0 puntos) | -2 puntos: No entrega o retraso grave sin justificación. | -1 punto: Entrega con pequeño retraso respecto al plazo. | 0 puntos: Entrega puntual dentro del plazo establecido. |
+
+> ⚠️ **Nota sobre la entrega en plazo:** La entrega dentro del plazo establecido no resta puntuación (0 pts). Las entregas con retraso supondrán una penalización de hasta 2 puntos sobre la calificación de la actividad.
+{: .alert-error}
 
 ## Criterios de evaluación relacionados
 
