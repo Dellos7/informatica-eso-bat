@@ -32,6 +32,7 @@ Antes de empezar a trabajar, vamos a preparar tu espacio de trabajo para este cu
    * `Tema_5`
 4. Dentro de la carpeta `Tema_1`, crea una subcarpeta llamada `Actividad_1`. 
 *(Nota: Evita usar espacios en los nombres de las carpetas; acostúmbrate a usar guiones bajos `_` en informática).*
+5. **Haz una captura de pantalla** del gestor de archivos donde se aprecie claramente esta estructura de carpetas creada (la pegarás en el documento principal `.odt` en el siguiente paso).
 
 ---
 
@@ -41,8 +42,9 @@ Todas las respuestas y datos que se te soliciten a lo largo de esta actividad de
 1. Abre **LibreOffice Writer** (el procesador de textos de LliureX).
 2. Crea un documento nuevo y escribe como título de portada o cabecera: **Actividad 1: Uso del sistema operativo LliureX - [Tu Nombre y Apellidos]**.
 3. Guarda inmediatamente este documento vacío en la carpeta que acabas de crear: `Digitalizacion_4ESO/Tema_1/Actividad_1/` con el nombre `actividad1_respuestas.odt`. **Ve guardando (Ctrl+S) constantemente**.
-4. Ahora, abre el menú de inicio de LliureX (abajo a la izquierda) y busca la aplicación **Centro de información** (en valenciano: *Centre d'informació*).
-5. En tu documento `actividad1_respuestas.odt`, bajo un apartado llamado **«Ejercicio 2: Especificaciones del ordenador»**, anota los siguientes datos técnicos de tu máquina de clase (busca en el **Centro de información** del sistema):
+4. En tu documento `actividad1_respuestas.odt`, crea un primer apartado llamado **«Ejercicio 1: Estructura de carpetas»** y **pega la captura de pantalla** de las carpetas creadas en el sistema de archivos que has realizado en el paso anterior.
+5. Ahora, abre el menú de inicio de LliureX (abajo a la izquierda) y busca la aplicación **Centro de información** (en valenciano: *Centre d'informació*).
+6. En tu documento `actividad1_respuestas.odt`, bajo un apartado llamado **«Ejercicio 2: Especificaciones del ordenador»**, anota los siguientes datos técnicos de tu máquina de clase (busca en el **Centro de información** del sistema):
    * ¿Qué modelo de procesador (CPU) tiene tu ordenador?
    * ¿Cuánta memoria RAM tiene instalada?
    * ¿En qué sistema operativo GNU/Linux (distribución base) se apoya la versión actual de LliureX que utilizas?
@@ -154,7 +156,7 @@ Deberás subir a la tarea de Aules únicamente:
 1. El archivo comprimido **`actividad1_tuapellido_tunombre.zip`**. 
 
 Dentro del `.zip`, el profesor comprobará que la estructura de carpetas es correcta y que dentro de la carpeta `Actividad_1` se encuentran:
-* Tu documento de respuestas finalizado: **`actividad1_respuestas.odt`** (con las Especificaciones del Ejercicio 2, la tabla de Tipos de archivos y extensiones del Ejercicio 3, la captura de pantalla, texto y reflexiones sobre la IA del Ejercicio 4, y las capturas e imágenes del Ejercicio 5).
+* Tu documento de respuestas finalizado: **`actividad1_respuestas.odt`** (con la captura de la estructura de carpetas del Ejercicio 1, las Especificaciones del Ejercicio 2, la tabla de Tipos de archivos y extensiones del Ejercicio 3, la captura de pantalla, texto y reflexiones sobre la IA del Ejercicio 4, y las capturas e imágenes del Ejercicio 5).
 * El archivo editable del mapa mental: **`mapa_sistema_operativo.mm`**.
 * La exportación del mapa mental en imagen: **`mapa_sistema_operativo.jpg`** (mostrando el esquema bien desplegado, con color y tu nombre y apellidos).
 
@@ -164,7 +166,7 @@ Dentro del `.zip`, el profesor comprobará que la estructura de carpetas es corr
 
 | Criterio | 0 pts | 0.5 pts | 1 pt | 1.5 pts | 2 pts |
 |----------|-------|---------|------|---------|-------|
-| **1.    Estructura de carpetas y Compresión** (máx. 1.5 pts) | No crea la estructura o entrega carpetas sueltas sin comprimir. | Estructura de carpetas incorrecta o el archivo comprimido está dañado o mal nombrado. | Estructura de carpetas correcta, pero comete errores en los nombres de las carpetas o la ubicación de los archivos. | Estructura perfecta (`Digitalizacion_4ESO/Tema_1/Actividad_1`), archivos organizados y entrega en un único `.zip` bien nombrado. | |
+| **1.    Estructura de carpetas y Compresión** (máx. 1.5 pts) | No crea la estructura o entrega carpetas sueltas sin comprimir. | Estructura de carpetas incorrecta o el archivo comprimido está dañado o mal nombrado. | Estructura de carpetas correcta, pero no incluye la captura en el .odt o comete errores en los nombres o ubicación. | Estructura perfecta (`Digitalizacion_4ESO/Tema_1/Actividad_1`), incluye la captura en el `.odt`, archivos organizados y entrega en un único `.zip` bien nombrado. | |
 | **2. Especificaciones e Info de LliureX (ODT)** (máx. 1.5 pts) | No identifica las especificaciones técnicas ni entrega el archivo `.odt`. | Entrega el `.odt` muy incompleto, o faltan la mayoría de los datos técnicos solicitados. | Entrega el `.odt` con la información técnica de su máquina, pero le faltan algunos datos o no responde a la pregunta sobre el número de serie. | Identifica perfectamente la CPU, RAM, número de serie, fabricante, versión de LliureX y su distribución base en el `.odt`. | |
 | **3. Asociación y Tipos de archivos (ODT)** (máx. 1.5 pts) | No realiza la clasificación de los archivos descomprimidos. | Clasifica muy pocos archivos de prueba o comete errores graves al identificar sus extensiones. | Clasifica la mayoría de los archivos de prueba, pero no asocia correctamente todos los programas por defecto de LliureX. | Identifica con precisión todas las extensiones, tipos de archivo y programas asociados por defecto en una tabla limpia. | |
 | **4. Primeros pasos con la IA** (máx. 1.5 pts) | No utiliza la IA o no entrega las evidencias en el documento. | Usa la IA pero falta la captura del chat o no incluye la respuesta de texto completa. | Presenta la captura y el texto, pero la reflexión sobre el aprendizaje (conceptos sabidos/nuevos) es muy escasa. | Presenta la captura del chat, el texto copiado y elabora una reflexión clara diferenciando conceptos conocidos y nuevos conocimientos. | |
