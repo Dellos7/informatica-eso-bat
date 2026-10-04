@@ -6,9 +6,15 @@ description: Configuración de hosting cloud profesional en WordPress.com Busine
 
 # Actividad 2. Despliegue Cloud en WordPress.com, Entornos Staging y Desarrollo con IA
 
+> **ANTES**: Intentar darnos de alta en [Github Education](https://github.com/education/)
+{: .alert-error}
+
 En esta actividad darás el salto del servidor local (montado en la Actividad 1 con XAMPP en Linux Mint) a una infraestructura **Cloud profesional** gracias a las licencias educativas del **Plan Business de WordPress.com**.
 
 Aprenderás la metodología de trabajo empleada en empresas tecnológicas: **nunca modificar una web directamente en producción**. Implementaremos un flujo estricto donde todo el trabajo de migración, la instalación del plugin de comercio electrónico **WooCommerce**, la configuración de una tienda de **infoproductos técnicos descargables (ebooks y recursos)** y la automatización mediante Inteligencia Artificial con **Novamira MCP y Antigravity IDE** se realizarán **íntegramente en un entorno de pruebas aislado (Staging)**. Solo cuando el sistema y el proceso de compra estén plenamente verificados, publicaremos los cambios al sitio público mediante un despliegue controlado (*Push* a Producción).
+
+> [➡️ Página de ejemplo](https://staging-0669-cervezasbrancaltest1.wpcomstaging.com/)
+{: .alert-info}
 
 > ⚠️ **Regla de oro profesional:** Todo el trabajo técnico, instalación de plugins, configuración de la tienda, integración con la IA y pruebas de compra se realiza **EXCLUSIVAMENTE en el entorno de Staging (Pruebas)**. La web de Producción no se edita directamente; únicamente recibirá el proyecto final terminado mediante la herramienta de sincronización (*Push*).
 {: .alert-warning}
@@ -36,7 +42,7 @@ El plan **WordPress.com Business** ofrece un entorno gestionado de alto rendimie
    - Utiliza el enlace [https://wordpress.com/setup/education/es?code=EDUINVIMODlPSI26](https://wordpress.com/setup/education/es?code=EDUINVIMODlPSI26) para registrarte en **Wordpress.com**. 
 
 > Este enlace permite obtener un plan **Business** gratuito durante un año a través de una licencia educativa. Solo podrás gastarlo una vez.
-{: .alert-info}
+{: .alert-warning}
 
 2. Registra de inmediato en tu bóveda de **Bitwarden** la URL del panel, el usuario/correo y la contraseña asignada.
 {:start="2"}
