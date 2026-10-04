@@ -17,4 +17,4 @@ description: Servicios web - Programación, Sistemas Informáticos y Redes II (2
 ## Actividades
 
 - [Actividad 1. Instalación de Mint, XAMPP y Wordpress](./actividad1)
-- [Actividad 2. Despliegue Cloud en WordPress.com Business, Staging, Tienda de Infoproductos (WooCommerce) y Creación con IA](./actividad2)
+- [Actividad 2. Despliegue Cloud en WordPress.com, Entornos Staging y Desarrollo con IA](./actividad2)

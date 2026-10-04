@@ -198,26 +198,28 @@
 
 ### 4.5. Tabla resuelta de versiones y novedades de iOS
 
-| VERSIÓN DEL S.O. | CARACTERÍSTICAS NOVEDOSAS | ORIGEN / OPCIÓN |
+| VERSIÓN DEL S.O. | CARACTERÍSTICAS NOVEDOSAS | PROCEDENCIA / OPCIÓN |
 | :--- | :--- | :--- |
-| **iPhone OS (1.0)** | Gestos multitouch.<br>Aplicación de YouTube para ver vídeos. | Opción `c)` |
-| **iPhone OS 2.0** *(b)* | Incorporación de la App Store. | *Texto enunciado* |
-| **iPhone OS 3.0** | Se presentó en el 2009.<br>Control por voz.<br>Mensajes multimedia (MMS).<br>Copiar, cortar y pegar.<br>Poner el smartphone en modo horizontal. | Opción `f)` |
-| **iOS 4** *(a)* | Fondos de pantalla en el menú de inicio.<br>Multitarea.<br>Video-llamadas por medio de FaceTime. | Opción `a)` |
-| **iOS 5** | Se incorpora Siri, el asistente virtual de Apple.<br>Aplicación de recordatorios.<br>Servicio de nube de iCloud. | Opción `h)` |
-| **iOS 6** | Separación de los servicios de Google de los dispositivos de Apple (lanzamiento de Apple Maps). | *Texto enunciado* |
-| **iOS 7** | Una de las actualizaciones más innovadoras de este S.O.<br>Su principal característica fue el rediseño plano (*flat design*).<br>Creación del Centro de Control.<br>Creación de AirDrop para compartir archivos.<br>Se agregó iTunes Radio. | Opción `b)` |
-| **iOS 8** *(e)* | No tuvo demasiados cambios. Más bien corregía ciertos errores de la versión anterior.<br>Agregó Apple Music (en iOS 8.4). | *Texto enunciado* |
-| **iOS 9** *(c)* | Permitió reproducir cualquier vídeo sobre la aplicación que estuviéramos utilizando (*Picture in Picture*) para así aprovechar más la pantalla. | Opción `e)` |
-| **iOS 10** | Se caracterizó por abrirse a los desarrolladores.<br>En la aplicación de mensajes se agregaron los stickers.<br>Posibilidad de eliminar las aplicaciones nativas de iOS que no utilizáramos. | Opción `g)` |
-| **iOS 11** *(d)* | Siri con pronunciación más natural.<br>En la cámara se incorporó el modo retrato.<br>Se agregó la posibilidad de escanear códigos QR. | *Texto enunciado* |
-| **iOS 12** | Se incorporan los famosos Animojis que se movían con las facciones del rostro.<br>Agrega las llamadas FaceTime en grupo de hasta 32 personas.<br>Agrega atajos de Siri y funciones de No Molestar / Tiempo de Uso. | Opción `d)` |
-| **iOS 13** | Incorpora el modo oscuro nativo.<br>Incorpora Apple Arcade (servicio de suscripción de videojuegos). | Opción `i)` |
-| **iOS 14** | 1. **Widgets personalizables** directamente en la pantalla de inicio.<br>2. **Biblioteca de aplicaciones (*App Library*)** para organizar automáticamente todas las apps.<br>3. Modo **Picture in Picture (PiP)** en iPhone y clips de apps (*App Clips*). | 🌐 *Investigación (3 características)* |
-| **iOS 15** | 1. **Modos de Concentración (*Focus*)** para filtrar notificaciones según la actividad.<br>2. **Texto en Vivo (*Live Text*)** para interactuar con texto dentro de imágenes.<br>3. Mejoras en FaceTime (enlaces compartibles, audio espacial y SharePlay). | 🌐 *Investigación (3 características)* |
-| **iOS 16** | 1. **Pantalla de bloqueo rediseñada** con widgets, fuentes y estilos personalizables.<br>2. Capacidad de **editar o cancelar mensajes recién enviados** en iMessage.<br>3. Fototeca compartida de iCloud y separación de sujetos en fotos. | 🌐 *Investigación (3 características)* |
-| **iOS 17** | 1. **Modo En Reposo (*StandBy*)** como pantalla informativa inteligente mientras carga en horizontal.<br>2. **Pósteres de contacto** y función *NameDrop* para compartir datos acercando iPhones.<br>3. Transcripción de mensajes de voz en tiempo real (*Live Voicemail*). | 🌐 *Investigación (3 características)* |
-| **iOS 18** | 1. Integración de **Apple Intelligence** (IA generativa en sistema y Siri).<br>2. **Personalización libre** de iconos en la pantalla de inicio (colocación en cualquier hueco y tintado).<br>3. **Centro de control modular** con múltiples pantallas y bloqueo de apps con Face ID. | 🌐 *Investigación (3 características)* |
+| **iPhone OS** | **Gestos multitouch.<br>Aplicación de Youtube para ver vídeos.** | Características `c)` |
+| **f) iPhone OS 2.0** | Incorporación de la Appstore | Versión `f)` *(Características en enunciado)* |
+| **iPhone OS 3.0** | **Se presentó en el 2009.<br>Control por voz.<br>Mensajes multimedia.<br>Copiar, cortar y pegar.<br>Poner el smartphone en modo horizontal.** | Características `f)` |
+| **a) iOS4** | **Fondos de pantalla en el menú de inicio.<br>Multitarea.<br>Video-llamadas por medio de FaceTime.** | Versión `a)`<br>Características `a)` |
+| **iOS5** | **Se incorpora Siri, el asistente virtual de Apple.<br>Aplicación de recordatorios.<br>Servicio de nube de iCloud.** | Características `j)` |
+| **iOS6** | Separación de los servicios de Google de los dispositivos de Apple. | *(Ambos datos presentes en enunciado)* |
+| **iOS7** | **Una de las actualizaciones más innovadoras de este S.O.<br>Su principal característica fue el diseño.<br>Creación del centro de control.<br>Creación de AirDrop para compartir archivos de forma muy sencilla entre dispositivos Apple.<br>Se agregó iTunes Radio.** | Características `b)` |
+| **i) iOS8** | No tuvo demasiados cambios. Más bien corregía ciertos errores de la versión anterior.<br>Agregó Apple Music. | Versión `i)` *(Características en enunciado)* |
+| **c) iOS9** | **Permitió reproducir cualquier vídeo sobre la aplicación que estuviéramos utilizando para así aprovechar más la pantalla.** | Versión `c)`<br>Características `e)` |
+| **iOS10** | **Se caracterizó por abrirse a los desarrolladores.<br>En la aplicación de mensajes se agregaron los stickers.<br>Posibilidad de eliminar las aplicaciones nativas de iOS que no utilizáramos.** | Características `h)` |
+| **d) iOS11** | Se estrenó en el 2017 y Siri ya no hablaba como un robot sino que su pronunciación era más natural.<br>En la cámara se incorporó el modo retrato.<br>Se agregó la posibilidad de escanear códigos QR. | Versión `d)` *(Características en enunciado)* |
+| **iOS12** | **Se incorporan los famosos Animojis que se movían con las facciones de nuestro rostro.<br>Agrega las llamadas FaceTime en grupos de hasta 32 personas.<br>Agrega atajos a Siri como no molestar.** | Características `d)` |
+| **iOS13** | **Incorpora el modo oscuro.<br>Incorpora Apple Arcade (suscripción de juegos premium)** | Características `l)` |
+| **e) iOS14** | Widgets en la pantalla de inicio<br>Biblioteca de aplicaciones<br>Imagen dentro de imagen ya en el iPhone | Versión `e)` *(Características en enunciado)* |
+| **iOS15** | **Modos de concentración<br>Texto en vivo (copiar el texto de una foto)<br>SharePlay y enlaces de FaceTime** | Características `i)` |
+| **iOS16** | **Pantalla de bloqueo personalizable con widgets<br>Editar o retirar mensajes enviados<br>Actividades en vivo e isla dinámica** | Características `g)` |
+| **b) iOS17** | Modo escritorio (StandBy)<br>Pósters de contacto<br>NameDrop entre dos iPhone | Versión `b)` *(Características en enunciado)* |
+| **iOS18** | **Colocar y teñir libremente iconos y widgets<br>Centro de control rediseñado<br>Apple Intelligence** | Características `k)` |
+| **g) iOS26** | Rediseño «cristal líquido» (Liquid Glass)<br>Traducción en directo en mensajes y llamadas<br>Filtrado de llamadas desconocidas | Versión `g)` *(Características en enunciado)* |
+| **h) iOS27** | Siri reconstruido con IA conversacional<br>Inteligencia visual desde la cámara<br>Mejoras de rendimiento (apps, fotos, AirDrop) | Versión `h)` *(Características en enunciado)* |
 
 ---
 

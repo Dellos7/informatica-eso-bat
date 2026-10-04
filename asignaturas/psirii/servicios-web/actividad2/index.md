@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Actividad 2. Despliegue Cloud en WordPress.com Business, Entornos Staging, Tienda de Infoproductos (WooCommerce) y Creación con IA (Novamira MCP y Antigravity)
+title: Actividad 2. Despliegue Cloud en WordPress.com, Entornos Staging y Desarrollo con IA
 description: Configuración de hosting cloud profesional en WordPress.com Business, flujo de trabajo estricto en Staging, migración de la web personal, despliegue de una tienda online de infoproductos digitales con WooCommerce e integración de IA mediante Novamira MCP y Antigravity IDE.
 ---
 
@@ -210,6 +210,9 @@ Una vez configurado y guardado el servidor MCP en Antigravity IDE, es fundamenta
    - El tema activo (**Blocksy**).
    - Los plugins instalados y activos (WooCommerce, Novamira, All-in-One WP Migration, etc.).
 
+> 📸 **Evidencia de auditoría con IA:** Toma una captura de pantalla clara de **Antigravity IDE** donde se aprecie el prompt de comprobación enviado y el bloque de respuesta generado por el agente con los datos del servidor (versión, tema Blocksy y plugins activos). Esta captura formará parte de tu informe técnico.
+{: .alert-info}
+
 > **¿Qué demuestra este paso?** Que tu entorno de desarrollo local (Antigravity IDE) y tu servidor cloud en WordPress.com están conectados de forma bidireccional mediante APIs seguras. El agente de IA ya no es un simple generador de texto: ahora tiene "manos" para inspeccionar y administrar tu servidor web.
 {: .alert-success}
 
@@ -219,39 +222,79 @@ Una vez configurado y guardado el servidor MCP en Antigravity IDE, es fundamenta
 
 Este es el **núcleo central de la actividad**. En este bloque conectarás la arquitectura de tu gestor de contenidos, el motor de comercio electrónico **WooCommerce**, el diseño visual del tema **Blocksy** y la automatización mediante el agente de IA en **Antigravity IDE** para construir una tienda online técnica, funcional y profesional.
 
+> 📸 **Obligatorio para la memoria técnica: Documentación de Prompts con Capturas de Pantalla**  
+> Durante todo el proceso de interacción con el agente de IA (**diagnóstico de estado, creación de categorías temáticas, generación de fichas de infoproductos y ajustes de catálogo**), **el alumnado deberá documentar obligatoriamente los prompts que va indicando a la IA mediante capturas de pantalla de Antigravity IDE**.  
+> En las capturas debe apreciarse con nitidez tanto el texto exacto del prompt introducido como la respuesta del agente y las herramientas MCP invocadas. No se admitirá una memoria técnica con capturas exclusivas de WordPress: la trazabilidad y calidad de la interacción mediante IA forma parte esencial de la evaluación.
+{: .alert-warning}
+
 ---
 
 #### 1. Arquitectura de la tienda: Creación de Categorías Temáticas
-Para que un e-commerce ofrezca una buena experiencia de usuario (UX), el catálogo debe estructurarse en categorías lógicas. Definiremos al menos **3 categorías temáticas** acordes al perfil tecnológico y académico de la web personal:
+Para que un e-commerce ofrezca una excelente experiencia de usuario (UX) y un catálogo estructurado, la tienda debe organizarse en categorías lógicas. Definiremos **al menos 3 categorías temáticas** (puedes crear las 4 si deseas una tienda técnica aún más completa) acordes al perfil profesional de la asignatura (administración de sistemas, desarrollo web, redes y seguridad):
 
-- 📚 **Ebooks y Manuales Técnicos** (slug: `ebooks-manuales`): Guías en profundidad sobre sistemas operativos, terminal y redes.
-- ⚙️ **Scripts y Automatización** (slug: `scripts-automatizacion`): Herramientas en Python y scripts Bash para administración de sistemas.
-- 📋 **Plantillas y Recursos TIC** (slug: `plantillas-recursos`): Chuletarios de comandos (*cheat sheets*), diagramas y plantillas de desarrollo.
+1. 📚 **Ebooks, Manuales y Guías Técnicas** (slug: `ebooks-manuales`):
+   - **En qué consiste:** Documentos extensos en formato digital (PDF o EPUB) orientados al aprendizaje guiado, laboratorios paso a paso y manuales de referencia técnica.
+   - **Ejemplos reales que se pueden ofrecer:**
+     - *«Guía Práctica de Administración y Hardening en Linux Mint y Ubuntu»* (manual de configuración de cortafuegos UFW, políticas SSH con claves públicas y gestión granular de permisos con sudo).
+     - *«Manual de Despliegue de Servidores Web LAMP desde Cero»* (instalación paso a paso de Apache, MariaDB/MySQL, PHP y configuración de VirtualHosts con certificados SSL).
+     - *«Fundamentos de Redes TCP/IP y Subnetting Práctico»* (manual de direccionamiento IPv4/IPv6, cálculo de máscaras de red, VLANs y resolución de incidencias con ping, traceroute y nmap).
+     - *«Manual de Iniciación a Contenedores Docker para Desarrolladores Web»* (conceptos de imágenes, volúmenes, redes de contenedores y despliegues reproducibles).
+
+2. ⚙️ **Scripts y Herramientas de Automatización** (slug: `scripts-automatizacion`):
+   - **En qué consiste:** Código ejecutable empaquetado en archivos comprimidos (`.zip` o `.tar.gz`) con scripts listos para usar en producción que solucionan tareas rutinarias de administración de sistemas.
+   - **Ejemplos reales que se pueden ofrecer:**
+     - *«Pack de Scripts Bash para Copias de Seguridad Automáticas»* (script que realiza el volcado de bases de datos MySQL, comprime el árbol web, verifica integridad MD5 y purga copias antiguas con cron).
+     - *«Bot en Python para Monitorización de Servidores y Alertas a Telegram/Discord»* (comprueba el uso de CPU, memoria RAM y almacenamiento cada 5 minutos y notifica al administrador si se supera el 85% de capacidad).
+     - *«Script de Aprovisionamiento Desatendido de Servidor Web»* (script que actualiza repositorios, instala la pila LAMP, configura usuarios y clona el proyecto con un solo comando).
+     - *«Parser de Logs de Acceso de Apache para Detección de Intrusiones»* (script en Python que analiza `access.log` y `error.log`, detecta intentos reiterados de inyección SQL o ataques de fuerza bruta contra `/wp-login.php` y bloquea IPs en iptables).
+
+3. 📋 **Chuletarios, Plantillas y Recursos TIC** (slug: `plantillas-recursos`):
+   - **En qué consiste:** Material visual de consulta rápida, hojas de referencia (*cheat sheets*) de alta resolución para imprimir o tener en pantalla, esquemas de arquitectura y plantillas técnicas de trabajo.
+   - **Ejemplos reales que se pueden ofrecer:**
+     - *«Chuletario Visual (Cheat Sheet) de Comandos de Consola Linux (PDF A4)»* (resumen visual a todo color con los comandos más utilizados organizados por bloques: gestión de ficheros, permisos octales/simbólicos, procesos en segundo plano y compresión).
+     - *«Póster de Arquitectura de Red y Mapa de Puertos Bien Conocidos»* (diagrama técnico de referencia para el laboratorio con puertos estandarizados: 21 FTP, 22 SSH, 25 SMTP, 53 DNS, 80 HTTP, 443 HTTPS, 3306 MySQL).
+     - *«Plantilla de Auditoría de Red e Inventario de Sistemas (Markdown / Hoja de cálculo)»* (documento estructurado para inventariar equipos, direcciones IP fijas, MACs, servicios expuestos y estado de parches).
+     - *«Plantilla Base de Dockerfile y Docker-Compose Optimizada»* (ficheros preconfigurados para levantar en segundos un entorno de desarrollo con WordPress, base de datos y phpMyAdmin).
+
+4. 🛡️ **Ciberseguridad, Auditoría y Buenas Prácticas** (slug: `ciberseguridad-auditoria`):
+   - **En qué consiste:** Listas de verificación (*checklists*), guías de buenas prácticas, políticas de seguridad corporativas y procedimientos de contingencia listos para aplicar en servidores web.
+   - **Ejemplos reales que se pueden ofrecer:**
+     - *«Checklist de Seguridad y Bastionado (Hardening) para Sitios WordPress»* (lista de control de 25 puntos críticos: permisos restrictivos de `wp-config.php`, desactivación de XML-RPC, ocultación de versiones de software y cabeceras de seguridad HTTP como CSP y HSTS).
+     - *«Plantilla de Política de Contraseñas y Gestión de Accesos para PYMEs»* (documento modelo para el cumplimiento normativo de seguridad, custodia en gestores de contraseñas como Bitwarden y doble factor 2FA).
+     - *«Guía Rápida de Identificación de Vulnerabilidades Web Básicas (OWASP Top 10)»* (resumen explicativo con casos reales de Cross-Site Scripting, SQL Injection y exposición de datos sensibles).
+     - *«Procedimiento Operativo de Respuesta ante Incidentes Web»* (diagrama de flujo y protocolo de actuación en caso de compromiso de credenciales o caída por ataque DDoS).
 
 **Creación mediante el Agente de IA:**  
-Abre el chat de **Antigravity IDE** y solicita al agente la creación automática de las taxonomías:
-> *"Crea en WooCommerce tres categorías de producto: 'Ebooks y Manuales Técnicos' (slug: ebooks-manuales), 'Scripts y Automatización' (slug: scripts-automatizacion) y 'Plantillas y Recursos TIC' (slug: plantillas-recursos), asignando a cada una una breve descripción orientada a formación y tecnología."*
+Abre el chat de **Antigravity IDE** y solicita al agente la creación automática de las taxonomías (puedes adaptar el prompt para seleccionar 3 de las 4 categorías anteriores o crear las 4):
 
-*(Comprobación opcional: accede a **Productos > Categorías** en el WP-Admin de Staging para verificar que se han creado correctamente con sus slugs y descripciones).*
+> *"Crea en WooCommerce cuatro categorías de producto: 'Ebooks y Manuales Técnicos' (slug: ebooks-manuales), 'Scripts y Automatización' (slug: scripts-automatizacion), 'Plantillas y Recursos TIC' (slug: plantillas-recursos) y 'Ciberseguridad y Buenas Prácticas' (slug: ciberseguridad-auditoria). Asigna a cada una una descripción profesional y atractiva orientada a la administración de sistemas y servicios web."*
+
+> 📸 **Captura obligatoria para la memoria:** Realiza una captura de pantalla del prompt que has introducido en Antigravity IDE para solicitar la creación de las categorías y de la respuesta del agente confirmando la llamada a las herramientas MCP.  
+> *(Comprobación adicional: puedes revisar en **Productos > Categorías** dentro del WP-Admin de Staging que se han dado de alta con sus slugs y descripciones correspondientes).*
+{: .alert-info}
 
 ---
 
 #### 2. Generación del Catálogo de Infoproductos con IA (Antigravity IDE)
-A continuación, solicitaremos a la IA la creación de un catálogo variado de **al menos 3 o 4 infoproductos digitales** repartidos en las categorías anteriores. 
+A continuación, solicitaremos a la IA la creación de un catálogo variado de **al menos 3 o 4 infoproductos digitales** repartidos en las categorías creadas (puedes inspirarte en los ejemplos específicos de la sección anterior o proponer tus propias creaciones técnicas). 
 
 Cada producto debe crearse con los atributos técnicos propios de un infoproducto descargable:
 - Atributos **Virtual** (desactiva costes y opciones de envío físico) y **Descargable** (habilita la entrega inmediata de archivos).
 - **Título comercial atractivo.**
-- **Precio fijado:** Precios realistas para infoproductos formativos (ej.: 3.99 €, 4.99 €, 7.99 €) e incluso un producto a **0.00 € (gratuito)** que funcione como recurso de captación (*lead magnet*).
+- **Precio fijado:** Precios realistas para infoproductos formativos (ej.: 3.99 €, 4.99 €, 7.99 €) e indispensablemente al menos un producto a **0.00 € (gratuito)** que funcione como recurso de captación (*lead magnet*).
 - **Descripción corta:** Gancho comercial de 2 líneas resaltando el beneficio principal.
-- **Descripción completa estructurada:** Sinopsis, a quién va dirigido, índice o temario por módulos y requisitos técnicos previos.
+- **Descripción completa estructurada:** Sinopsis, a quién va dirigido, temario o desglose de archivos incluidos y requisitos técnicos previos.
 
-**Prompt para Antigravity IDE:**
-> *"Crea en mi tienda WooCommerce los siguientes 3 infoproductos con los atributos 'virtual' y 'descargable' activados:
+**Prompt de ejemplo para Antigravity IDE:**
+> *"Crea en mi tienda WooCommerce los siguientes infoproductos con los atributos 'virtual' y 'descargable' activados:
 > 
-> 1. 'Guía Práctica de Comandos Linux Mint y Bash', asignado a la categoría 'Ebooks y Manuales Técnicos', precio 4.99 €. Descripción corta comercial resaltando el dominio de la terminal. Descripción completa estructurada con: Sinopsis, A quién va dirigido, Temario de 4 módulos (Fundamentos, Gestión de Archivos, Permisos y Procesos en segundo plano) y Requisitos previos.
-> 2. 'Pack de Scripts en Python para Automatización de Servidores', asignado a 'Scripts y Automatización', precio 7.99 €. Descripción corta atractiva y descripción larga detallando los scripts incluidos (copias de seguridad automáticas, monitorización de espacio en disco y parser de logs de Apache).
-> 3. 'Chuletario de Puertos de Red y Comandos de Diagnóstico', asignado a 'Plantillas y Recursos TIC', precio 0.00 € (gratuito). Descripción corta y desglose del contenido en formato tabla resumida."*
+> 1. 'Guía Práctica de Administración y Hardening en Linux Mint y Ubuntu', asignado a 'Ebooks y Manuales Técnicos', precio 4.99 €. Descripción corta comercial resaltando la seguridad del sistema y el dominio de la terminal. Descripción completa estructurada con: Sinopsis, A quién va dirigido, Temario de 4 módulos (Fundamentos de terminal, Gestión granular de permisos, Configuración del cortafuegos UFW y Hardening de SSH) y Requisitos previos.
+> 2. 'Pack de Scripts en Bash y Python para Automatización SysAdmin', asignado a 'Scripts y Automatización', precio 7.99 €. Descripción corta atractiva y descripción larga detallando los scripts incluidos en el paquete (copias de seguridad automáticas de MySQL, monitor de recursos con avisos a Telegram y script de comprobación de integridad).
+> 3. 'Chuletario Visual de Comandos Linux y Mapa de Puertos de Red', asignado a 'Plantillas y Recursos TIC', precio 0.00 € (gratuito - Recurso formativo de captación). Descripción corta y desglose detallado del contenido en formato de lista y tabla resumen de puertos.
+> 4. 'Checklist de Bastionado y Auditoría de Seguridad para WordPress', asignado a 'Ciberseguridad y Buenas Prácticas', precio 3.99 €. Descripción comercial enfocada en la protección contra ataques web, detallando los 25 puntos de control incluidos."*
+
+> 📸 **Captura obligatoria para la memoria:** Realiza una captura de pantalla legible del prompt (o prompts) que indiques a la IA para generar el catálogo y de la consola de Antigravity IDE donde se observe cómo el agente ejecuta las llamadas a herramientas (*tools*) del servidor MCP para crear los productos con todos sus metadatos.
+{: .alert-info}
 
 Observa en la consola de Antigravity IDE cómo el agente ejecuta las llamadas a herramientas (*tools*) del servidor MCP para dar de alta los productos con todos sus metadatos.
 
@@ -393,9 +436,10 @@ Deberás entregar en **Aules** los siguientes elementos:
    - **Migración a Staging:** Captura de la importación completada con All-in-One WP Migration en el entorno de pruebas.
    - **Tienda WooCommerce en Staging:** Captura de la configuración de WooCommerce para productos digitales y del icono del carrito integrado en la cabecera con Blocksy.
    - **Automatización con IA (Novamira MCP + Antigravity IDE):**
-     - Captura de la contraseña de aplicación generada en Staging.
-     - Captura de pantalla de **Antigravity IDE** mostrando tanto la verificación inicial de conexión (diagnóstico con versión, tema y plugins) como la generación del catálogo de infoproductos mediante herramientas MCP.
-     - Captura de las fichas de los infoproductos generados en la tienda de Staging.
+     - Captura de la contraseña de aplicación generada en Staging para el servidor MCP.
+     - **Documentación de los prompts indicados a la IA:** Capturas de pantalla claras y legibles de **todos los prompts introducidos en Antigravity IDE** (diagnóstico inicial de conexión, creación de categorías temáticas y generación de las fichas de infoproductos), mostrando además las respuestas del agente y las herramientas MCP ejecutadas.
+     - Captura de las categorías temáticas creadas en el panel de WordPress / WooCommerce.
+     - Captura de las fichas de los infoproductos generados en la tienda de Staging (tanto en WP-Admin como en la página pública de la tienda).
    - **Prueba de compra:** Captura de la pantalla de confirmación de pedido recibido en Staging con el enlace de descarga disponible.
    - **Sincronización a Producción:** Captura del momento del *Push* y de la tienda online definitiva funcionando en el dominio público de producción.
    - **Bóveda de Bitwarden:** Captura de las entradas registradas (credenciales de WordPress.com y contraseña de aplicación de Antigravity, con las contraseñas ocultas).
@@ -411,7 +455,7 @@ Una vez realizada la entrega en Aules, **realiza una breve demostración en el a
 | **Hosting Cloud y Gestión de Seguridad (Bitwarden)** | No accede a la cuenta educativa ni almacena credenciales. | Accede al sitio pero no activa las funciones de alojamiento ni la vista clásica. | Activa alojamiento y vista clásica, almacenando claves básicas en Bitwarden con alguna ayuda. | Configura con total autonomía WP-Admin clásico, funciones de alojamiento y registra de forma impecable credenciales y contraseñas de aplicación en Bitwarden. |
 | **Metodología de Staging y Migración (.wpress)** | Trabaja directamente sobre producción sin crear ni usar Staging. | Crea Staging pero comete errores en la importación o no comprende el aislamiento de entornos. | Restaura la copia `.wpress` en Staging y respeta el flujo de pruebas con pequeñas dificultades. | Aplica con rigor profesional la regla de oro: migra y valida en Staging de forma autónoma, justificando técnicamente el ciclo de vida del software. |
 | **Tienda WooCommerce de Infoproductos en Staging** | No instala WooCommerce o lo configura erróneamente para productos físicos. | Instala el plugin pero no ajusta moneda, pagos simulados ni integra el carrito en la cabecera. | Configura WooCommerce para productos virtuales/descargables e integra la tienda en el menú y cabecera de Blocksy. | Tienda de infoproductos perfectamente configurada en Staging: pagos simulados funcionales, carrito en Blocksy y prueba de compra/descarga completada con éxito. |
-| **Automatización con IA (Novamira MCP y Antigravity IDE)** | No conecta Antigravity ni utiliza el protocolo MCP. | Instala Novamira pero no logra la autenticación o genera contenido manualmente sin IA. | Conecta Antigravity por MCP en Staging y genera al menos un producto asistido por el agente. | Conexión MCP en Staging impecable, orquestando con prompts precisos la creación de categorías, descripciones comerciales persuasivas y fichas técnicas completas de infoproductos. |
+| **Automatización con IA (Novamira MCP y Antigravity IDE)** | No conecta Antigravity ni utiliza el protocolo MCP. | Instala Novamira pero no logra la autenticación o genera contenido manualmente sin IA. | Conecta Antigravity por MCP en Staging y genera al menos un producto asistido por el agente. | Conexión MCP en Staging impecable, orquestando con prompts precisos la creación de categorías, descripciones comerciales persuasivas y fichas técnicas completas de infoproductos. Documenta minuciosamente mediante capturas de pantalla legibles todos los prompts indicados a la IA y la ejecución de herramientas del agente. |
 | **Sincronización a Producción (Push) y Documentación** | No entrega la actividad o el sitio público no funciona. | Sincroniza con errores o entrega un informe con ausencia de capturas clave. | Sincroniza mediante *Push* a Producción correctamente y entrega informe técnico adecuado con pequeños detalles de formato. | Entrega puntual con informe técnico riguroso y detallado, web pública de producción 100% operativa con certificado SSL y demostración práctica fluida en clase. |
 
 ---

@@ -235,22 +235,14 @@ Los plugins permiten añadir funcionalidades clave, garantizar el cumplimiento n
 1. Ve a **All-in-One WP Migration > Exportar** en el menú de administración.
 2. Selecciona **Exportar a > Archivo**.
 3. Espera a que termine de empaquetar el sitio y descarga la copia de seguridad generada (archivo con extensión `.wpress`).
-> Guarda este archivo `.wpress`, ya que deberás subirlo a Aules como parte de la entrega obligatoria de la actividad.
-{: .alert-info}
-
----
-
-## 📽️ Recursos y material de apoyo
-
-👉 [Vídeo WordPress + Elementor](https://youtu.be/A_uNSJ8YucU?si=h8C9JyFxRz_ReCVj)
 
 ---
 
 ## 📤 Entrega y Evaluación
   
 Deberás entregar en **Aules** los siguientes elementos:
-1. **Documento con capturas de pantalla** de la web acabada donde se aprecie claramente que se ha instalado e implementado sobre WordPress y XAMPP en Linux Mint (incluyendo la web terminada, el panel de administración y el funcionamiento en `localhost`).
-2. **Copia de seguridad de la web**: el archivo exportado con el plugin **All-in-One WP Migration** (archivo con extensión `.wpress`).
+1. **Documento con capturas de pantalla** de la web acabada donde se aprecie claramente que se ha instalado e implementado sobre WordPress y XAMPP en Linux Mint (incluyendo la web terminada, el panel de administración y el funcionamiento en `localhost` o la `IP local`).
+2. **Copia de seguridad de la web**: el archivo exportado con el plugin **All-in-One WP Migration** (archivo con extensión `.wpress`). Para ello, **súbelo al OneDrive** con tu cuenta de Microsoft de centro y comparte el enlace en Aules, asegurándote de otorgar los permisos adecuados para que el profesor pueda descargarlo.
 
 Una vez realizada la entrega en Aules, **enseña el trabajo al profesor en clase** para su verificación y evaluación.
 
