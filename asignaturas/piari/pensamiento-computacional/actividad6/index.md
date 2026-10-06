@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Actividad 6. Laby avanzado y diseño de niveles
+title: Actividad 6. Laby avanzado
 description: Actividad 6 de la SA1
 ---
 
-# Actividad 6. Laby avanzado y diseño de niveles
+# Actividad 6. Laby avanzado
 
 > 🚀 **ANTES DE HACER LA ACTIVIDAD DEBES LEER**: 👉 [Funcionamiento de Laby](../funcionamiento-de-laby) 👈
 {: .alert-warning}
@@ -17,7 +17,7 @@ Para resolver estos retos necesitamos dos de las estructuras más importantes de
 
 ---
 
-## 📝 Tarea 1: Superar los niveles 2a, 2b, 2c y 3a de Laby
+## 📝 Tarea: Superar los niveles 2a, 2b, 2c y 3a de Laby
 
 Abre el juego **Laby** en LliureX y supera los siguientes cuatro niveles seleccionándolos desde el menú **"Nivell"**:
 
@@ -34,65 +34,23 @@ Abre el juego **Laby** en LliureX y supera los siguientes cuatro niveles selecci
 
 ---
 
-## 🛠️ Tarea 2: Diseña tu propio nivel con Laby Level Editor
-
-Una vez que has aprendido a resolver problemas utilizando bucles y condicionales, ahora te convertirás en diseñador/a de niveles.
-
-Para ello utilizaremos la aplicación [**Laby Level Editor**](https://github.com/Dellos7/laby-levels/releases/download/v1.1.0/laby-level-editor-x86_64.AppImage)
-
-### ¿Cómo funciona el editor?
-
-El editor te permite crear tableros personalizados para Laby de forma visual:
-
-<!-- ESPACIO PARA CAPTURA DE PANTALLA DEL EDITOR LABY-LEVELS -->
-> 🖼️ **POR HACER - Captura del programa Laby Level Editor:**  
-> *(Aquí se añadirá la captura general de la interfaz de laby-levels)*
-{: .alert-error}
-
-- **Rejilla interactiva**: haz clic en las casillas para pintar los elementos del laberinto.
-- **Herramientas de casillas**:
-  - `.` Suelo libre por el que puede caminar la hormiga.
-  - `o` Muro fijo intransitable.
-  - `x` Puerta de salida del laberinto.
-  - `r` Roca fija (bloquea el paso hasta que la hormiga la recoge con `tomar()`).
-  - `w` Telaraña (letal si se pisa sin antes haber soltado una roca sobre ella).
-  - `R` / `W` Rocas y telarañas aleatorias (para retos avanzados).
-  - **Hormiga (`↑`, `→`, `↓`, `←`)**: define la posición y dirección en la que comenzará la hormiga.
-
-<!-- ESPACIO PARA CAPTURA DE PANTALLA: HERRAMIENTAS Y PALETA DE ELEMENTOS -->
-> 🖼️ **POR HACER -Captura de las herramientas y elementos del editor:**  
-> *(Aquí se añadirá la captura del selector de herramientas y casillas del editor)*
-{: .alert-error}
-
-### ⚠️ Requisitos obligatorios de tu nivel:
-
-1. **Obligatoriedad de `while` e `if`**: Diseña un nivel y resuélvelo utilizando **al menos un bucle (`while`) y un condicional (`if`) con una función justificada**. Explica qué repetición y qué decisión resuelven; no basta con añadir bloques que no influyan en el resultado.
-2. **Solucionable**: El nivel debe tener una solución clara y sin errores.
-3. **Guardado del archivo**: Guarda tu nivel desde la aplicación con el formato `.laby` y nómbralo con tus apellidos y nombre: `apellido_nombre_nivel.laby`.
-4. **Código de solución**: Debes programar y comprobar en Laby la solución completa en Python que resuelve tu nivel.
-
----
-
 ## 📤 Entrega en Aules
 
-Debes entregar en la tarea correspondiente de Aules los siguientes elementos:
-
-1. Las **4 capturas de pantalla** de la Tarea 1 (`2a.png`, `2b.png`, `2c.png` y `3a.png`) con tu nombre rotulado.
-2. El archivo del nivel creado: `apellido_nombre_nivel.laby`.
-3. Una **captura de pantalla de tu nivel abierto en el editor** `laby-levels` (`captura_editor.png`).
-4. Un archivo de texto o script Python `solucion_nivel.py` con el **código que resuelve con éxito tu propio nivel**, demostrando el uso obligatorio de `while` e `if`.
+Debes entregar en la tarea correspondiente de Aules las **4 capturas de pantalla** (`2a.png`, `2b.png`, `2c.png` y `3a.png`) con tu nombre y apellidos rotulado en cada una de ellas.
 
 ---
 
-## 📊 Rúbrica – Actividad 6: Laby avanzado y diseño de niveles (máx. 10 puntos)
+## 📊 Rúbrica – Actividad 6: Laby avanzado (máx. 10 puntos)
 
-| Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos | 4 puntos |
-|---|---|---|---|---|---|
-| **Superación de niveles (Tarea 1)** | No supera los niveles o faltan capturas. | Supera 1 nivel correctamente. | Supera 2 niveles correctamente. | Supera 3 niveles correctamente. | Supera los 4 niveles (2a, 2b, 2c y 3a) con soluciones óptimas. |
-| **Diseño del nivel en laby-levels (Tarea 2)** | No entrega nivel o el archivo `.laby` no es válido. | Nivel muy simple que no cumple las pautas de diseño. | Nivel funcional, original y bien estructurado en la rejilla. | – | – |
-| **Requisito algorítmico (While + If)** | La solución entregada no utiliza bucle ni condicional. | La solución utiliza solo una estructura, o alguna no cumple una función útil. | La solución combina `while` e `if` de manera útil y justificada. | – | – |
-| **Código de solución del nivel propio** | Sin código o no resuelve el reto. | Código en Python correcto, limpio, funcional y que resuelve el nivel. | – | – | – |
-| **Presentación y formato de entrega** | Nombres incorrectos, capturas ilegibles o entrega tardía. | Entrega puntual, completa con archivos identificados (`.laby`, capturas y código). | – | – | – |
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+|---|---|---|---|---|
+| **Superación de niveles 2a y 2b (Bucles)** (máx. 4 puntos) | **0 puntos:** No supera los niveles o faltan las capturas. | **1 punto:** Supera 1 nivel con código básico o instrucciones repetitivas sin optimizar. | **2,5 puntos:** Supera ambos niveles pero con soluciones mejorables o solo un nivel optimizado con `while`. | **4 puntos:** Supera con éxito los niveles 2a y 2b aplicando bucles `while` de manera óptima. |
+| **Superación de niveles 2c y 3a (Bucles y condicionales)** (máx. 4 puntos) | **0 puntos:** No supera los niveles o el código no es funcional. | **1 punto:** Supera 1 nivel correctamente con bucles o condicionales. | **2,5 puntos:** Supera ambos niveles pero con soluciones poco óptimas en el uso de `if` o bucles. | **4 puntos:** Supera con éxito los niveles 2c y 3a combinando bucles y condicionales (`if`) de manera eficiente. |
+| **Presentación de capturas y formato** (máx. 2 puntos) | **0 puntos:** Capturas ilegibles, sin código visible o no corresponden a la actividad. | **0,5 puntos:** Aporta solo parte de las capturas o faltan nombres en los archivos. | **1 punto:** Capturas legibles con código visible pero falta rotular el nombre o algún archivo no sigue el formato. | **2 puntos:** Capturas nítidas y completas de los 4 niveles con código visible, archivos nombrados correctamente (`2a.png`, `2b.png`, `2c.png`, `3a.png`) y nombre rotulado. |
+| **Entrega en plazo** (máx. 0 puntos) | **-2 puntos:** No entrega o realiza una entrega vacía o fuera de plazo sin justificación. | **-1,5 puntos:** Entrega con retraso importante de más de dos días. | **-1 punto:** Entrega con pequeño retraso (hasta 2 días). | **0 puntos:** Entrega puntual dentro del plazo establecido. |
+
+> ⚠️ **Nota sobre la entrega en plazo:** La entrega dentro del plazo establecido no resta puntuación (0 pts). Las entregas con retraso supondrán una penalización de hasta 2 puntos sobre la calificación de la actividad.
+{: .alert-error}
 
 ---
 
