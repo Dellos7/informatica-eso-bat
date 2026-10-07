@@ -6,6 +6,9 @@ description: Hardware - Simulación de montaje, compatibilidad y resolución de 
 
 # 🖥️ Actividad 1– Monta un ordenador para un cliente
 
+> **⚠️ PENSAR SI AQUÍ INTRODUCIMOS EL TEMA DE OUTLOOK, ONEDRIVE, ETC PARA ENVIAR LOS TRABAJOS**
+{: .alert-error}
+
 ## Objetivo
 
 Elegir los componentes de un ordenador que responda a un encargo, comprobar su compatibilidad y explicar cómo resolver una avería. Aprenderás a relacionar la CPU, la placa base, la RAM, la caja, la fuente de alimentación y la pantalla.
