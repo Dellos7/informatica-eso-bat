@@ -1,0 +1,48 @@
+{
+  "format": "pcsim3d",
+  "version": 1,
+  "exportedAt": "2026-10-07T14:38:40.780Z",
+  "build": {
+    "items": [
+      {
+        "compId": "case-basic"
+      },
+      {
+        "compId": "mb-h610m"
+      },
+      {
+        "compId": "cpu-12400"
+      },
+      {
+        "compId": "ram-lpx8-3200"
+      },
+      {
+        "compId": "ram-lpx8-3200"
+      },
+      {
+        "compId": "psu-sp10-450"
+      },
+      {
+        "compId": "fan-p12"
+      },
+      {
+        "compId": "monitor-hdmi"
+      },
+      {
+        "compId": "ssd-980-500"
+      },
+      {
+        "compId": "exp-wifi6"
+      }
+    ],
+    "video": {
+      "source": "motherboard",
+      "port": "HDMI"
+    },
+    "notes": {
+      "purpose": "Ejemplo docente del encargo A3. No es una solución única.",
+      "reasoning": "Comprueba las fichas y el enunciado antes de utilizarlo para corregir.",
+      "correction": "E1: restaurar RAM compatible. E2: restaurar el cable correspondiente a la salida y a la pantalla."
+    }
+  }
+}

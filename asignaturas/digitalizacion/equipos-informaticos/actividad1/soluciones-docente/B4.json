@@ -1,0 +1,51 @@
+{
+  "format": "pcsim3d",
+  "version": 1,
+  "exportedAt": "2026-10-07T14:38:40.795Z",
+  "build": {
+    "items": [
+      {
+        "compId": "case-q300l"
+      },
+      {
+        "compId": "mb-b650m-k"
+      },
+      {
+        "compId": "cpu-7600x"
+      },
+      {
+        "compId": "cool-212"
+      },
+      {
+        "compId": "ram-fury16-5600"
+      },
+      {
+        "compId": "ram-fury16-5600"
+      },
+      {
+        "compId": "psu-sp10-450"
+      },
+      {
+        "compId": "fan-p12"
+      },
+      {
+        "compId": "monitor-vga"
+      },
+      {
+        "compId": "ssd-kc3000-1t"
+      },
+      {
+        "compId": "exp-wifi6"
+      }
+    ],
+    "video": {
+      "source": "motherboard",
+      "port": "VGA"
+    },
+    "notes": {
+      "purpose": "Ejemplo docente del encargo B4. No es una solución única.",
+      "reasoning": "Comprueba las fichas y el enunciado antes de utilizarlo para corregir.",
+      "correction": "E1: restaurar RAM compatible. E2: restaurar el cable correspondiente a la salida y a la pantalla."
+    }
+  }
+}

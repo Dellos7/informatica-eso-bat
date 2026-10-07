@@ -1,0 +1,45 @@
+{
+  "format": "pcsim3d",
+  "version": 1,
+  "exportedAt": "2026-10-07T14:38:40.813Z",
+  "build": {
+    "items": [
+      {
+        "compId": "case-nr200"
+      },
+      {
+        "compId": "mb-b760i"
+      },
+      {
+        "compId": "cpu-12400"
+      },
+      {
+        "compId": "ram-fury16-5600"
+      },
+      {
+        "compId": "ram-fury16-5600"
+      },
+      {
+        "compId": "psu-v850sfx"
+      },
+      {
+        "compId": "fan-p12"
+      },
+      {
+        "compId": "monitor-dp"
+      },
+      {
+        "compId": "ssd-980-500"
+      }
+    ],
+    "video": {
+      "source": "motherboard",
+      "port": "DisplayPort"
+    },
+    "notes": {
+      "purpose": "Ejemplo docente del encargo D3. No es una solución única.",
+      "reasoning": "Comprueba las fichas y el enunciado antes de utilizarlo para corregir.",
+      "correction": "E1: restaurar RAM compatible. E2: restaurar el cable correspondiente a la salida y a la pantalla."
+    }
+  }
+}
