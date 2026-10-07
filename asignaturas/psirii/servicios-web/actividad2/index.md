@@ -56,11 +56,11 @@ El plan **WordPress.com Business** ofrece un entorno gestionado de alto rendimie
    - Guarda los cambios. A partir de este momento dispondrás de la barra superior negra y el menú lateral característico de WordPress, idéntico al que utilizaste en el entorno local con XAMPP.
 
 2. **Activar funciones de desarrollador y alojamiento:**
-   - En el menú lateral de tu sitio en WordPress.com, dirígete a **Ajustes > Configuración de alojamiento** (o *Funciones de desarrollador*).
-   - Pulsa en el botón **Activar funciones de alojamiento** (*Activate hosting features*).
-   - Esta acción convierte el sitio en una instancia con acceso completo al sistema: habilita la instalación de cualquier plugin o tema externo sin restricciones, el acceso a bases de datos mediante phpMyAdmin, credenciales SFTP/SSH y la capacidad de crear entornos de pruebas (*staging*).
+   - En el menú lateral de tu sitio en WordPress.com, dirígete a **Ajustes > Configuración de alojamiento** (o *Funciones de desarrollador*) y pulsa en el botón **Activar funciones de alojamiento** (*Activate hosting features*).
+   - **Ruta alternativa:** Si no te aparece la opción anterior en el menú, dirígete a **Ajustes > Enlaces permanentes** (o *Permalinks*), donde verás un banner informativo con un botón de **Activar**.
+   - Esta acción convierte el sitio en una instancia con acceso completo al sistema: habilita la instalación de cualquier plugin o tema externo sin restricciones, el acceso a bases de datos mediante phpMyAdmin, credenciales SFTP/SSH y la capacidad de crear y utilizar entornos de pruebas (*staging*).
 
-> **¿Por qué activar las funciones de alojamiento?** Sin este paso, WordPress.com funciona como una plataforma cerrada (SaaS). Al activar las funciones de alojamiento, dispones de una máquina virtual/contenedor dedicado en la nube con acceso total a nivel de servidor web y base de datos.
+> **¿Por qué activar las funciones de alojamiento?** Sin este paso, WordPress.com funciona como una plataforma cerrada (SaaS). Al activar las funciones de alojamiento, dispones de una máquina virtual/contenedor dedicado en la nube con acceso total a nivel de servidor web y base de datos, requisito indispensable para poder desplegar y utilizar posteriormente los entornos de pruebas (*staging*).
 {: .alert-info}
 
 ---

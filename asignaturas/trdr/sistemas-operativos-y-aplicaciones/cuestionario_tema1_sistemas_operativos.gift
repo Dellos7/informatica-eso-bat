@@ -1,0 +1,218 @@
+// =============================================================================
+// Cuestionario del Tema 1: Sistemas operativos y aplicaciones
+// Asignatura: Taller de Relaciones Digitales Responsables (TRDR) - 1º ESO
+// Formato: GIFT (Moodle / Aules) - 100% Determinista y Autocorregible
+// Preguntas cerradas: Opción múltiple, Selección múltiple, Emparejamiento y V/F
+// Sin respuestas cortas de texto libre para evitar errores de mecanografía o tildes
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// P01: Función principal del Sistema Operativo
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P01 - Función de un Sistema Operativo:: ¿Cuál es la función fundamental de un sistema operativo (S.O.) en un ordenador o dispositivo digital? {
+	=Gestionar los recursos de hardware (memoria, disco, periféricos) y permitir la ejecución de las aplicaciones de usuario #¡Correcto! Sin el sistema operativo, los programas no pueden funcionar ni se pueden utilizar los componentes del equipo.
+	~Sustituir y reparar automáticamente los componentes físicos averiados como el ratón o el disco duro #Incorrecto. El sistema operativo es software (programas), por lo que no puede reparar piezas físicas estropeadas.
+	~Apagar el ordenador de forma obligatoria en cuanto se pierde la conexión a internet #Incorrecto. Un sistema operativo puede funcionar perfectamente sin conexión a internet.
+	~Diseñar y publicar páginas web en internet sin necesidad de ninguna intervención del usuario #Incorrecto. Esa tarea corresponde a programas o aplicaciones específicas de desarrollo web.
+}
+
+// -----------------------------------------------------------------------------
+// P02: Interfaz gráfica de Windows
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P02 - Interfaz gráfica de Windows:: ¿Cuál es el elemento gráfico rectangular característico de la interfaz de Windows que contiene elementos visuales y se puede redimensionar, minimizar y cerrar? {
+	=La ventana #¡Correcto! De ahí proviene precisamente el nombre del sistema (Windows significa ventanas en inglés).
+	~La consola de comandos de texto #Incorrecto. Windows se caracteriza por su interfaz visual y gráfica, no por consolas de texto.
+	~El microprocesador físico #Incorrecto. El microprocesador es una pieza física de hardware, no un elemento de la interfaz gráfica.
+	~El puerto HDMI del monitor #Incorrecto. Eso es un conector físico.
+}
+
+// -----------------------------------------------------------------------------
+// P03: Tipo de licencia de Windows
+// Tipo: Verdadero / Falso
+// -----------------------------------------------------------------------------
+::P03 - Licencia de Windows:: El sistema operativo Windows es de software libre, su código fuente está abierto a todo el mundo y no se necesita adquirir ninguna licencia de pago para utilizarlo legalmente. {
+	FALSE#¡Correcto, es Falso! Windows es un sistema operativo comercial de pago propiedad de Microsoft, su código fuente es privado y requiere la adquisición de una licencia de uso.
+}
+
+// -----------------------------------------------------------------------------
+// P04: Puntos débiles históricos de Windows
+// Tipo: Selección múltiple con varias respuestas correctas (Ponderación porcentual)
+// -----------------------------------------------------------------------------
+::P04 - Puntos débiles históricos de Windows:: ¿Cuáles han sido históricamente dos de los principales puntos débiles o problemas achacados al sistema operativo Windows? (Selecciona las DOS opciones correctas) {
+	~%50%Escasa estabilidad en sus primeras versiones, que provocaba fallos graves y la conocida pantalla azul (BSOD) #¡Correcto! La pantalla azul de error en Windows 95 es un claro ejemplo de su inestabilidad inicial.
+	~%50%Alta vulnerabilidad ante virus informáticos y amenazas de seguridad #¡Correcto! Debido a su gran cuota de mercado, Windows ha sido el objetivo principal de la mayoría de virus.
+	~%-100%Incompatibilidad absoluta con el ratón, teclado y cualquier pantalla gráfica #Incorrecto. Windows nació precisamente como un entorno gráfico para ratón y teclado.
+	~%-100%Imposibilidad total de conectarse a redes locales o reproducir sonido en el equipo #Incorrecto. Windows soporta redes y multimedia desde sus primeras versiones comerciales.
+}
+
+// -----------------------------------------------------------------------------
+// P05: Windows en telefonía móvil (Windows 10 Mobile)
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P05 - Windows en smartphones:: A pesar de sus esfuerzos con versiones como Windows 10 Mobile, Microsoft acabó abandonando el mercado de los smartphones. ¿Cuál fue el motivo determinante de este fracaso? {
+	=No consiguieron un ecosistema de aplicaciones comparable al de Android e iOS #¡Correcto! La falta de aplicaciones populares hizo que los usuarios y desarrolladores no apostaran por esta plataforma.
+	~Los teléfonos móviles con Windows consumían demasiada tinta de impresión al encenderse #Incorrecto. Los smartphones no utilizan tinta para funcionar.
+	~La justicia internacional prohibió terminantemente el uso de pantallas táctiles en dispositivos Microsoft #Incorrecto. No existió ninguna prohibición judicial de ese tipo.
+	~Los teléfonos eran incompatibles con conexiones wifi y auriculares convencionales #Incorrecto. Disponían de conectividad wifi, bluetooth y soporte habitual de audio.
+}
+
+// -----------------------------------------------------------------------------
+// P06: Naturaleza de Linux y origen Unix
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P06 - Naturaleza y origen de Linux:: ¿Qué es Linux y en qué sistema operativo clásico está basado su diseño? {
+	=Es un núcleo de sistema operativo libre y gratuito basado en Unix #¡Correcto! Linux es un kernel de código libre creado a partir de la filosofía y arquitectura de Unix.
+	~Es una suite ofimática comercial de pago basada en Microsoft Word #Incorrecto. Linux es un sistema operativo completo, no un procesador de textos.
+	~Es un navegador web exclusivo creado por la empresa Apple #Incorrecto. Apple desarrolla Safari; Linux es un núcleo de sistema operativo libre.
+	~Es un modelo de placa base diseñado por Microsoft en 1985 #Incorrecto. Linux es software libre, no un componente físico.
+}
+
+// -----------------------------------------------------------------------------
+// P07: Concepto de distribución de Linux
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P07 - Concepto de distribución Linux:: En el mundo del software libre, ¿qué es exactamente una "distribución de Linux" (o distro)? {
+	=Un software basado en el núcleo de Linux que incluye un conjunto empaquetado de aplicaciones de usuario #¡Correcto! Una distribución toma el núcleo Linux y le añade aplicaciones, entorno gráfico y herramientas listas para el usuario.
+	~Un cable especial de fibra óptica encargado de distribuir los paquetes de internet entre aulas #Incorrecto. Eso es un elemento físico de cableado de red, no un concepto de software.
+	~Un tipo de virus informático destructivo que infecta simultáneamente varios ordenadores en una red #Incorrecto. Las distribuciones no son virus, son sistemas operativos completos.
+	~El servicio postal o de mensajería encargado de transportar físicamente los ordenadores a los colegios #Incorrecto. Se refiere a la forma de empaquetar y distribuir el software.
+}
+
+// -----------------------------------------------------------------------------
+// P08: Procesador de textos vs Editor básico
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P08 - Procesador de textos frente a Editor básico:: ¿Cuál es la diferencia fundamental entre un procesador de textos (como LibreOffice Writer o Microsoft Word) y un editor de texto básico (como el Bloc de notas)? {
+	=El procesador permite dar formato al texto (cambiar fuentes, colores, tamaños) e insertar tablas o imágenes #¡Correcto! Los procesadores permiten diseñar documentos enriquecidos con estilos, imágenes y tablas, mientras que un editor básico solo maneja texto plano.
+	~El editor de textos básico incluye hojas de cálculo y fórmulas matemáticas avanzadas #Incorrecto. Las hojas de cálculo son otra clase de aplicación (como Calc o Excel).
+	~El procesador de textos solo admite escribir en blanco y negro sin posibilidad de guardar el archivo #Incorrecto. Los procesadores permiten guardar archivos y dar todo tipo de colores.
+	~El editor de textos básico funciona exclusivamente cuando el ordenador está conectado a internet #Incorrecto. Tanto el Bloc de notas como los procesadores funcionan perfectamente sin conexión.
+}
+
+// -----------------------------------------------------------------------------
+// P09: Modelos y licencias de Sistemas Operativos
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P09 - Licencias y modelos de Sistemas Operativos:: Relaciona cada Sistema Operativo con la descripción de su modelo y tipo de licencia\: {
+	=GNU/Linux -> Núcleo libre y gratuito cuyo código puede estudiarse, modificarse y distribuirse
+	=Microsoft Windows -> Sistema comercial de pago propiedad de Microsoft que requiere licencia de uso
+	=Apple macOS -> Sistema propietario comercial de Apple que solo puede usarse legalmente en sus equipos
+	=Android -> Sistema móvil abierto basado en Linux y adaptable por muchos fabricantes
+}
+
+// -----------------------------------------------------------------------------
+// P10: Distribuciones educativas autonómicas de Linux
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P10 - Distribuciones autonómicas de Linux:: Relaciona cada distribución educativa de GNU/Linux con su respectiva Comunidad Autónoma española\: {
+	=LliureX -> Comunidad Valenciana
+	=Guadalinex -> Andalucía
+	=Linex -> Extremadura
+	=MAX -> Madrid
+}
+
+// -----------------------------------------------------------------------------
+// P11: Exclusividad del hardware en macOS
+// Tipo: Verdadero / Falso
+// -----------------------------------------------------------------------------
+::P11 - Exclusividad de hardware en macOS:: El sistema operativo macOS de Apple puede ser instalado y utilizado de forma legal y oficial en ordenadores de cualquier marca del mercado, como HP, Lenovo o Dell. {
+	FALSE#¡Correcto, es Falso! macOS es un sistema propietario que únicamente puede utilizarse de manera legal sobre el hardware oficial de ordenadores de Apple.
+}
+
+// -----------------------------------------------------------------------------
+// P12: El Dock de macOS
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P12 - El Dock de macOS:: En la interfaz gráfica de macOS, ¿cómo se denomina el conjunto de iconos situado habitualmente en la parte inferior de la pantalla que sirve para abrir y administrar aplicaciones en ejecución? {
+	=Dock #¡Correcto! El Dock permite tener acceso a las aplicaciones preferidas y administrar cuáles están abiertas.
+	~Barra de tareas Metro #Incorrecto. La interfaz Metro fue introducida por Microsoft en Windows 8.
+	~Consola de control BIOS #Incorrecto. La BIOS es el firmware básico de la placa base.
+	~Menú Inicio de Windows #Incorrecto. El menú Inicio es característico de Windows, no de macOS.
+}
+
+// -----------------------------------------------------------------------------
+// P13: Incidencia de virus en macOS
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P13 - Menor incidencia de virus en macOS:: Se afirma comúnmente que en macOS hay una menor cantidad de virus en comparación con Windows. Según lo estudiado en el tema, ¿a qué se debe principalmente esta situación? {
+	=Al tener menor cuota de usuarios que Windows, es menos rentable para los ciberdelincuentes crear ataques específicos para él #¡Correcto! No se debe a una invulnerabilidad absoluta, sino a que los atacantes buscan infectar al mayor número posible de usuarios (Windows).
+	~A que el hardware de los ordenadores Mac dispone de un filtro físico que destruye cualquier virus que entre por wifi #Incorrecto. Ningún ordenador dispone de filtros físicos mágicos contra malware.
+	~A que existe un tratado legal que prohíbe terminantemente a los piratas informáticos programar virus para Apple #Incorrecto. Los ciberdelincuentes operan al margen de la ley.
+	~A que los ordenadores con macOS tienen desactivada para siempre la posibilidad de abrir páginas web #Incorrecto. Los ordenadores Mac navegan exactamente igual por internet.
+}
+
+// -----------------------------------------------------------------------------
+// P14: Año de presentación del primer iPhone
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P14 - Año de lanzamiento del iPhone:: ¿En qué año presentó Steve Jobs el primer iPhone, revolucionando la telefonía móvil con su pantalla multitáctil (multitouch)? {
+	=2007 #¡Correcto! El primer iPhone fue presentado por Steve Jobs en enero de 2007.
+	~1985 #Incorrecto. En 1985 se lanzó Windows 1.0.
+	~1995 #Incorrecto. En 1995 se lanzó Windows 95.
+	~2015 #Incorrecto. En 2015 ya existían muchas generaciones de smartphones avanzados.
+}
+
+// -----------------------------------------------------------------------------
+// P15: Sistema en el que se basa Apple iOS
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P15 - Base del sistema móvil iOS:: Cuando Steve Jobs puso en marcha el desarrollo del sistema operativo para el iPhone (iOS), decidió fundamentar su núcleo en\: {
+	=Mac OS X (con un núcleo mayormente Unix) adaptado a un dispositivo compacto #¡Correcto! Tras enfrentar al equipo de Mac y al de iPod, ganaron los ingenieros de Mac para adaptar su sistema de escritorio al teléfono.
+	~El sistema operativo clásico de los reproductores iPod de rueda mecánica #Incorrecto. Se descartó esa opción frente al sistema de los Mac.
+	~Una versión con licencia comercial de Windows 98 adaptada por Microsoft #Incorrecto. Apple no utilizó sistemas de su competidor Microsoft.
+	~El sistema operativo libre Android comprado a la empresa Google #Incorrecto. Android es el principal competidor de iOS y pertenece a Google.
+}
+
+// -----------------------------------------------------------------------------
+// P16: Núcleo de Android y modelo de código abierto
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P16 - Núcleo y modelo de Android:: ¿En qué núcleo (kernel) se basa el sistema operativo Android desarrollado por Google y cuál es su modelo de desarrollo? {
+	=En el núcleo de Linux y es un sistema de código abierto (open source) #¡Correcto! Android utiliza el kernel de Linux y permite a cualquier fabricante (Samsung, Xiaomi...) adaptarlo.
+	~En el núcleo cerrado de Windows 10 y requiere licencia de Microsoft #Incorrecto. Android no tiene relación con Microsoft Windows.
+	~En el sistema cerrado y exclusivo de Apple iOS #Incorrecto. iOS es exclusivo de Apple y competidor de Android.
+	~En el sistema de comandos de texto MS-DOS de 1981 #Incorrecto. MS-DOS es un sistema antiguo de línea de comandos.
+}
+
+// -----------------------------------------------------------------------------
+// P17: Instalación manual en Android (archivos APK)
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P17 - Extensión instalable en Android:: En los teléfonos y tabletas con sistema operativo Android, ¿qué formato de archivo con tres letras se utiliza para instalar aplicaciones directamente en el terminal? {
+	=APK #¡Correcto! APK son las siglas de Android Application Package.
+	~EXE #Incorrecto. EXE es la extensión típica de ejecutables en Microsoft Windows.
+	~DMG #Incorrecto. DMG es una imagen de disco utilizada habitualmente en macOS.
+	~DOCX #Incorrecto. DOCX es un archivo de documento de texto de Microsoft Word.
+}
+
+// -----------------------------------------------------------------------------
+// P18: Relación entre usuario, aplicaciones y Sistema Operativo
+// Tipo: Verdadero / Falso
+// -----------------------------------------------------------------------------
+::P18 - Relación usuario y Sistema Operativo:: Cuando utilizamos un procesador de textos como Word o navegamos por internet, estamos trabajando directamente sobre el Sistema Operativo sin que intervenga ninguna aplicación de usuario. {
+	FALSE#¡Correcto, es Falso! El usuario nunca trabaja directamente sobre el Sistema Operativo, sino que interactúa con aplicaciones (Word, Firefox...) que están instaladas y ejecutándose sobre el Sistema Operativo.
+}
+
+// -----------------------------------------------------------------------------
+// P19: Optimización de macOS sobre el hardware de Apple
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P19 - Optimización de macOS en el hardware:: ¿Por qué el sistema operativo macOS ofrece un rendimiento tan alto y fluido en tareas exigentes como diseño gráfico o edición de vídeo? {
+	=Porque está optimizado específicamente para la arquitectura y recursos del hardware de Apple #¡Correcto! Al comercializarse solo en los ordenadores de Apple, el S.O. está diseñado a medida para sus componentes físicos.
+	~Porque los ordenadores de Apple no utilizan memoria RAM ni almacenamiento físico #Incorrecto. Todos los ordenadores necesitan memoria RAM y almacenamiento.
+	~Porque la ley prohíbe que en macOS se puedan instalar aplicaciones de terceros #Incorrecto. Se pueden instalar multitud de aplicaciones desde la App Store o internet.
+	~Porque el sistema operativo únicamente funciona si el ordenador está desconectado de internet #Incorrecto. Los ordenadores con macOS navegan perfectamente por internet.
+}
+
+// -----------------------------------------------------------------------------
+// P20: Aplicaciones Web y alternativas libres
+// Tipo: Selección múltiple con varias respuestas correctas (Ponderación porcentual)
+// -----------------------------------------------------------------------------
+::P20 - Aplicaciones Web y software libre:: En relación con las aplicaciones web y el ecosistema de software libre, selecciona las DOS afirmaciones VERDADERAS\: {
+	~%50%Las aplicaciones web (como GMail) son accesibles desde un navegador web sin importar si el ordenador usa Windows, Linux o macOS #¡Correcto! Al ejecutarse en el navegador, son completamente multiplataforma.
+	~%50%Existen alternativas libres y gratuitas (como LibreOffice Writer o GIMP) frente a programas privativos de pago como Word o Photoshop #¡Correcto! En software libre siempre disponemos de alternativas abiertas a las aplicaciones comerciales más habituales.
+	~%-100%Las aplicaciones web requieren ser grabadas obligatoriamente en un CD o lápiz USB para poder utilizarse en clase #Incorrecto. Se accede a ellas directamente escribiendo su dirección en el navegador con conexión a la red.
+	~%-100%En las distribuciones GNU/Linux es totalmente imposible acceder al correo electrónico o escribir documentos de texto #Incorrecto. Linux cuenta con múltiples suites ofimáticas (LibreOffice) y navegadores web (Firefox, Chrome).
+}
