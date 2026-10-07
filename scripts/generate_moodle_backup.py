@@ -208,6 +208,209 @@ def parse_rubric_csv(csv_path):
 
     return criteria
 
+def parse_gift_questions(text):
+    """
+    Parsea preguntas en formato GIFT (soporta multichoice con respuestas simples o
+    múltiples ponderadas, truefalse, matching, shortanswer y essay).
+    """
+    lines = []
+    for line in text.splitlines():
+        if line.strip().startswith("//"):
+            continue
+        lines.append(line)
+    clean_text = "\n".join(lines)
+
+    questions = []
+    pos = 0
+    idx = 1
+    total_len = len(clean_text)
+
+    while pos < total_len:
+        brace_start = -1
+        i = pos
+        while i < total_len:
+            if clean_text[i] == '{' and (i == 0 or clean_text[i-1] != '\\'):
+                brace_start = i
+                break
+            i += 1
+
+        if brace_start == -1:
+            break
+
+        brace_end = -1
+        i = brace_start + 1
+        while i < total_len:
+            if clean_text[i] == '}' and (i == 0 or clean_text[i-1] != '\\'):
+                brace_end = i
+                break
+            i += 1
+
+        if brace_end == -1:
+            break
+
+        header_text = clean_text[pos:brace_start].strip()
+        answer_block = clean_text[brace_start + 1:brace_end].strip()
+        pos = brace_end + 1
+
+        if not header_text and not answer_block:
+            continue
+
+        title = ""
+        m_title = re.search(r'::(.*?)::\s*', header_text, re.DOTALL)
+        if m_title:
+            title = m_title.group(1).strip()
+            raw_qtext = (header_text[:m_title.start()] + header_text[m_title.end():]).strip()
+        else:
+            raw_qtext = header_text.strip()
+
+        title = re.sub(r'\\([:=~#{}])', r'\1', title)
+        qtext = re.sub(r'\\([:=~#{}])', r'\1', raw_qtext)
+
+        if not title:
+            clean_first = re.sub(r'[^\w\s]', '', qtext).split()
+            title = " ".join(clean_first[:6]) if clean_first else f"Pregunta {idx}"
+
+        general_feedback = ""
+        if "####" in answer_block:
+            parts = answer_block.split("####", 1)
+            answer_block = parts[0].strip()
+            general_feedback = re.sub(r'\\([:=~#{}])', r'\1', parts[1].strip())
+
+        if not re.search(r'<[a-z][\s\S]*>', qtext, re.IGNORECASE):
+            formatted_qtext = f"<p>{qtext}</p>"
+        else:
+            formatted_qtext = qtext
+
+        if not answer_block:
+            questions.append({
+                "idx": idx,
+                "name": title,
+                "questiontext": formatted_qtext,
+                "generalfeedback": general_feedback,
+                "qtype": "essay",
+                "defaultmark": 1.0,
+                "penalty": 0.0
+            })
+        elif "->" in answer_block and "=" in answer_block:
+            matches = []
+            raw_pairs = re.split(r'(?:^|\n)\s*=', answer_block)
+            for pair in raw_pairs:
+                pair = pair.strip()
+                if not pair or "->" not in pair:
+                    continue
+                left, right = pair.split("->", 1)
+                sub_q = re.sub(r'\\([:=~#{}])', r'\1', left.strip())
+                sub_a = re.sub(r'\\([:=~#{}])', r'\1', right.strip())
+                matches.append({"question": sub_q, "answer": sub_a})
+
+            questions.append({
+                "idx": idx,
+                "name": title,
+                "questiontext": formatted_qtext,
+                "generalfeedback": general_feedback,
+                "qtype": "match",
+                "defaultmark": 1.0,
+                "penalty": 0.3333333,
+                "matches": matches,
+                "shuffleanswers": True
+            })
+        elif re.match(r'^(?:TRUE|FALSE|T|F)(?:#.*)?$', answer_block, re.IGNORECASE):
+            tf_match = re.match(r'^(TRUE|FALSE|T|F)(?:#(.*))?$', answer_block, re.IGNORECASE)
+            val = tf_match.group(1).upper()
+            fb = tf_match.group(2) or ""
+            is_true = val in ("TRUE", "T")
+            questions.append({
+                "idx": idx,
+                "name": title,
+                "questiontext": formatted_qtext,
+                "generalfeedback": general_feedback,
+                "qtype": "truefalse",
+                "defaultmark": 1.0,
+                "penalty": 1.0,
+                "correctanswer": 1 if is_true else 0,
+                "feedbacktrue": fb if is_true else "",
+                "feedbackfalse": fb if not is_true else ""
+            })
+        elif "=" in answer_block or "~" in answer_block:
+            choice_chunks = re.findall(r'([=~][^=~]*)', answer_block)
+            answers = []
+            has_explicit_percentages = False
+            for ch in choice_chunks:
+                ch = ch.strip()
+                if not ch:
+                    continue
+                prefix = ch[0]
+                body = ch[1:].strip()
+                feedback = ""
+                if "#" in body:
+                    body_parts = body.split("#", 1)
+                    body = body_parts[0].strip()
+                    feedback = re.sub(r'\\([:=~#{}])', r'\1', body_parts[1].strip())
+
+                fraction = 0.0
+                weight_m = re.match(r'^%(-?\d+(?:\.\d+)?)%(.*)$', body)
+                if weight_m:
+                    has_explicit_percentages = True
+                    weight_val = float(weight_m.group(1))
+                    fraction = weight_val / 100.0
+                    body = weight_m.group(2).strip()
+                elif prefix == "=":
+                    fraction = 1.0
+                elif prefix == "~":
+                    fraction = 0.0
+
+                ans_text = re.sub(r'\\([:=~#{}])', r'\1', body)
+                answers.append({
+                    "text": ans_text,
+                    "fraction": fraction,
+                    "feedback": feedback
+                })
+
+            positive_fractions = [a["fraction"] for a in answers if a["fraction"] > 0]
+            is_single = (len(positive_fractions) == 1 and positive_fractions[0] >= 0.999 and not has_explicit_percentages)
+
+            questions.append({
+                "idx": idx,
+                "name": title,
+                "questiontext": formatted_qtext,
+                "generalfeedback": general_feedback,
+                "qtype": "multichoice",
+                "defaultmark": 1.0,
+                "penalty": 0.3333333,
+                "single": is_single,
+                "shuffleanswers": True,
+                "answers": answers
+            })
+        elif "=" in answer_block and "~" not in answer_block:
+            choice_chunks = re.findall(r'(=[^=]*)', answer_block)
+            answers = []
+            for ch in choice_chunks:
+                body = ch[1:].strip()
+                feedback = ""
+                if "#" in body:
+                    body_parts = body.split("#", 1)
+                    body = body_parts[0].strip()
+                    feedback = re.sub(r'\\([:=~#{}])', r'\1', body_parts[1].strip())
+                ans_text = re.sub(r'\\([:=~#{}])', r'\1', body)
+                answers.append({
+                    "text": ans_text,
+                    "fraction": 1.0,
+                    "feedback": feedback
+                })
+            questions.append({
+                "idx": idx,
+                "name": title,
+                "questiontext": formatted_qtext,
+                "generalfeedback": general_feedback,
+                "qtype": "shortanswer",
+                "defaultmark": 1.0,
+                "penalty": 0.3333333,
+                "answers": answers
+            })
+        idx += 1
+
+    return questions
+
 def discover_subject_data(subject_dir, config, web_base_url):
     """
     Descubre o combina los temas y actividades a partir de la configuración
@@ -356,6 +559,77 @@ def discover_subject_data(subject_dir, config, web_base_url):
                                           config.get("show_activity_description", False))))))
         )
 
+        # Cuestionarios del tema (.gift)
+        topic_quizzes_cfg = t.get("quizzes")
+        if topic_quizzes_cfg is None and t.get("quiz"):
+            topic_quizzes_cfg = [t.get("quiz")]
+
+        parsed_quizzes = []
+        if topic_quizzes_cfg:
+            for q_cfg in topic_quizzes_cfg:
+                if isinstance(q_cfg, str):
+                    q_cfg = {"gift_file": q_cfg}
+                gift_filename = q_cfg.get("gift_file") or q_cfg.get("file") or q_cfg.get("gift")
+                if not gift_filename:
+                    continue
+
+                # Buscar archivo GIFT
+                gift_path = None
+                candidates = []
+                if tdir and tdir.exists():
+                    candidates.append(tdir / gift_filename)
+                candidates.append(subject_dir / gift_filename)
+                if folder_name:
+                    candidates.append(subject_dir / folder_name / gift_filename)
+                candidates.append(Path(gift_filename))
+
+                for cand in candidates:
+                    if cand.exists() and cand.is_file():
+                        gift_path = cand
+                        break
+
+                if not gift_path:
+                    print(f"[-] Advertencia: No se encontró el archivo GIFT '{gift_filename}' para el tema '{sec_title}'", file=sys.stderr)
+                    continue
+
+                try:
+                    gift_content = gift_path.read_text(encoding="utf-8")
+                    parsed_qs = parse_gift_questions(gift_content)
+                    print(f"[*] Cuestionario '{gift_path.name}': {len(parsed_qs)} preguntas parseadas para '{sec_title}'.")
+                except Exception as ex:
+                    print(f"[-] Error al parsear {gift_path}: {ex}", file=sys.stderr)
+                    parsed_qs = []
+
+                if not parsed_qs:
+                    continue
+
+                q_defaults = config.get("quiz_defaults", {})
+                q_name = q_cfg.get("name") or q_cfg.get("title") or f"Cuestionario {sec_title}"
+                q_cat = q_cfg.get("category") or sec_title
+                q_timelimit = q_cfg.get("time_limit", q_cfg.get("timelimit", q_defaults.get("time_limit", 20)))
+                q_attempts = q_cfg.get("max_attempts", q_cfg.get("attempts", q_cfg.get("attempts_number", q_defaults.get("max_attempts", q_defaults.get("attempts", 1)))))
+                q_shuffle_q = q_cfg.get("shuffle_questions", q_defaults.get("shuffle_questions", True))
+                q_shuffle_a = q_cfg.get("shuffle_answers", q_defaults.get("shuffle_answers", True))
+                q_feedback_mode = q_cfg.get("feedback_mode", q_defaults.get("feedback_mode", "after_close"))
+                q_visible = q_cfg.get("visible", acts_vis)
+                q_grade = float(q_cfg.get("grade", q_defaults.get("grade", 10.0)))
+                q_intro = q_cfg.get("intro", f"<p>Cuestionario de autoevaluación: {clean_markdown_title(q_name)}</p>")
+
+                parsed_quizzes.append({
+                    "name": clean_markdown_title(q_name),
+                    "category": q_cat,
+                    "gift_file": str(gift_path),
+                    "questions": parsed_qs,
+                    "time_limit": q_timelimit,
+                    "max_attempts": int(q_attempts),
+                    "shuffle_questions": bool(q_shuffle_q),
+                    "shuffle_answers": bool(q_shuffle_a),
+                    "feedback_mode": q_feedback_mode,
+                    "visible": q_visible,
+                    "grade": q_grade,
+                    "intro": q_intro
+                })
+
         processed_topics.append({
             "section_number": sec_idx,
             "title": sec_title,
@@ -365,7 +639,8 @@ def discover_subject_data(subject_dir, config, web_base_url):
             "show_activity_description": bool(show_act_desc),
             "visible": sec_vis,
             "activities_visible": acts_vis,
-            "activities": topic_acts or []
+            "activities": topic_acts or [],
+            "quizzes": parsed_quizzes
         })
 
     return processed_topics
@@ -489,8 +764,19 @@ def generate_mbz(subject_dir, config_path=None, output_mbz_path=None, web_base_u
         next_criterion_id = 500001
         next_level_id = 2000001
         next_file_id = 6000001
+        next_category_id = 9000002
+        next_qbe_id = 7000001
+        next_qv_id = 7100001
+        next_q_id = 7200001
+        next_ans_id = 7300001
+        next_opt_id = 7400001
+        next_sub_id = 7500001
+        next_slot_id = 6000001
+        next_ref_id = 6100001
         course_id = 130792
         course_context_id = 5592653
+
+        question_categories = {}
 
         sections_data = []
         activities_data = []
@@ -653,6 +939,79 @@ def generate_mbz(subject_dir, config_path=None, output_mbz_path=None, web_base_u
                         "visible": act_vis_int
                     })
 
+            # 3. Crear los cuestionarios (recurso Quiz / Cuestionario)
+            for quiz in t.get("quizzes", []):
+                q_cat_name = quiz.get("category") or sec_title
+                if q_cat_name not in question_categories:
+                    cat_id = next_category_id; next_category_id += 1
+                    question_categories[q_cat_name] = {
+                        "id": cat_id,
+                        "name": q_cat_name,
+                        "entries": []
+                    }
+                cat_info = question_categories[q_cat_name]
+
+                # Asociar preguntas al banco de preguntas
+                quiz_slots = []
+                for q_item in quiz["questions"]:
+                    qbe_id = next_qbe_id; next_qbe_id += 1
+                    qv_id = next_qv_id; next_qv_id += 1
+                    q_id = next_q_id; next_q_id += 1
+                    cat_info["entries"].append({
+                        "qbe_id": qbe_id,
+                        "qv_id": qv_id,
+                        "q_id": q_id,
+                        "question": q_item
+                    })
+                    quiz_slots.append({
+                        "qbe_id": qbe_id,
+                        "question": q_item
+                    })
+
+                quiz_vis = quiz.get("visible", topic_acts_visible)
+                quiz_vis_int = 0 if quiz_vis in (0, False, "0", "false") else 1
+
+                for grp in target_groups:
+                    quiz_cmid = next_cmid; next_cmid += 1
+                    quiz_act_id = next_act_id; next_act_id += 1
+                    quiz_ctx_id = next_context_id; next_context_id += 1
+                    quiz_grade_item_id = next_grade_item_id; next_grade_item_id += 1
+
+                    sec_sequence.append(quiz_cmid)
+
+                    avail_xml = "$@NULL@$"
+                    if grp is not None:
+                        avail_json = json.dumps({
+                            "op": "&",
+                            "c": [{"type": "group", "id": grp["id"]}],
+                            "showc": [True]
+                        })
+                        avail_xml = escape_xml(avail_json)
+
+                    activities_data.append({
+                        "moduleid": quiz_cmid,
+                        "sectionid": sec_id,
+                        "sectionnumber": sec_idx,
+                        "modulename": "quiz",
+                        "title": quiz["name"],
+                        "directory": f"activities/quiz_{quiz_cmid}",
+                        "instance_id": quiz_act_id,
+                        "contextid": quiz_ctx_id,
+                        "grade_item_id": quiz_grade_item_id,
+                        "category_id": cat_info["id"],
+                        "intro": quiz.get("intro", f"<p>Cuestionario de autoevaluación: {escape_xml(quiz['name'])}</p>"),
+                        "availability": avail_xml,
+                        "group": grp,
+                        "time_limit": quiz.get("time_limit", 20),
+                        "max_attempts": quiz.get("max_attempts", 1),
+                        "shuffle_questions": quiz.get("shuffle_questions", True),
+                        "shuffle_answers": quiz.get("shuffle_answers", True),
+                        "feedback_mode": quiz.get("feedback_mode", "after_close"),
+                        "grade": quiz.get("grade", 10.0),
+                        "slots": quiz_slots,
+                        "visible": quiz_vis_int
+                    })
+
             sec_vis_int = 0 if t.get("visible", True) in (0, False, "0", "false") else 1
             sections_data.append({
                 "id": sec_id,
@@ -749,7 +1108,218 @@ def generate_mbz(subject_dir, config_path=None, output_mbz_path=None, web_base_u
         (temp_dir / "badges.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<badges>\n</badges>', encoding="utf-8")
         (temp_dir / "scales.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<scales_definition>\n</scales_definition>', encoding="utf-8")
         (temp_dir / "outcomes.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<outcomes_definition>\n</outcomes_definition>', encoding="utf-8")
-        (temp_dir / "questions.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<question_categories>\n</question_categories>', encoding="utf-8")
+
+        # questions.xml
+        if question_categories:
+            cat_xml_list = []
+            # 1. Categoría "top" obligatoria en Moodle
+            cat_xml_list.append(f'''  <question_category id="9000001">
+    <name>top</name>
+    <contextid>{course_context_id}</contextid>
+    <contextlevel>50</contextlevel>
+    <contextinstanceid>{course_id}</contextinstanceid>
+    <info></info>
+    <infoformat>0</infoformat>
+    <stamp>moodle+{now_ts}+top</stamp>
+    <parent>0</parent>
+    <sortorder>0</sortorder>
+    <idnumber>$@NULL@$</idnumber>
+  </question_category>''')
+
+            for cat in question_categories.values():
+                qbe_xml_list = []
+                for entry in cat["entries"]:
+                    qbe_id = entry["qbe_id"]
+                    qv_id = entry["qv_id"]
+                    q_id = entry["q_id"]
+                    q = entry["question"]
+                    stamp = f"moodle+{hashlib.sha1((q['name'] + '_' + q['questiontext']).encode('utf-8')).hexdigest()[:20]}"
+
+                    qtype_xml = ""
+                    if q["qtype"] == "multichoice":
+                        ans_xml_list = []
+                        for a in q["answers"]:
+                            ans_id = next_ans_id; next_ans_id += 1
+                            ans_xml_list.append(f'''                    <answer id="{ans_id}">
+                      <answertext>{escape_xml(a['text'])}</answertext>
+                      <answerformat>1</answerformat>
+                      <fraction>{a['fraction']:.7f}</fraction>
+                      <feedback>{escape_xml(a.get('feedback', ''))}</feedback>
+                      <feedbackformat>1</feedbackformat>
+                    </answer>''')
+                        ans_block = "\n".join(ans_xml_list)
+                        opt_id = next_opt_id; next_opt_id += 1
+                        qtype_xml = f'''                <plugin_qtype_multichoice_question>
+                  <answers>
+{ans_block}
+                  </answers>
+                  <multichoice id="{opt_id}">
+                    <layout>0</layout>
+                    <single>{1 if q['single'] else 0}</single>
+                    <shuffleanswers>{1 if q.get('shuffleanswers', True) else 0}</shuffleanswers>
+                    <correctfeedback></correctfeedback>
+                    <correctfeedbackformat>1</correctfeedbackformat>
+                    <partiallycorrectfeedback></partiallycorrectfeedback>
+                    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+                    <incorrectfeedback></incorrectfeedback>
+                    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+                    <answernumbering>abc</answernumbering>
+                    <shownumcorrect>1</shownumcorrect>
+                    <showstandardinstruction>0</showstandardinstruction>
+                  </multichoice>
+                </plugin_qtype_multichoice_question>'''
+
+                    elif q["qtype"] == "truefalse":
+                        ans_t_id = next_ans_id; next_ans_id += 1
+                        ans_f_id = next_ans_id; next_ans_id += 1
+                        opt_id = next_opt_id; next_opt_id += 1
+                        qtype_xml = f'''                <plugin_qtype_truefalse_question>
+                  <answers>
+                    <answer id="{ans_t_id}">
+                      <answertext>True</answertext>
+                      <answerformat>0</answerformat>
+                      <fraction>{1.0000000 if q['correctanswer'] == 1 else 0.0000000:.7f}</fraction>
+                      <feedback>{escape_xml(q.get('feedbacktrue', ''))}</feedback>
+                      <feedbackformat>1</feedbackformat>
+                    </answer>
+                    <answer id="{ans_f_id}">
+                      <answertext>False</answertext>
+                      <answerformat>0</answerformat>
+                      <fraction>{1.0000000 if q['correctanswer'] == 0 else 0.0000000:.7f}</fraction>
+                      <feedback>{escape_xml(q.get('feedbackfalse', ''))}</feedback>
+                      <feedbackformat>1</feedbackformat>
+                    </answer>
+                  </answers>
+                  <truefalse id="{opt_id}">
+                    <trueanswer>{ans_t_id}</trueanswer>
+                    <falseanswer>{ans_f_id}</falseanswer>
+                    <showstandardinstruction>0</showstandardinstruction>
+                  </truefalse>
+                </plugin_qtype_truefalse_question>'''
+
+                    elif q["qtype"] == "match":
+                        sub_xml_list = []
+                        for m in q["matches"]:
+                            sub_id = next_sub_id; next_sub_id += 1
+                            sub_xml_list.append(f'''                    <match id="{sub_id}">
+                      <questiontext>{escape_xml(m['question'])}</questiontext>
+                      <questiontextformat>1</questiontextformat>
+                      <answertext>{escape_xml(m['answer'])}</answertext>
+                    </match>''')
+                        sub_block = "\n".join(sub_xml_list)
+                        opt_id = next_opt_id; next_opt_id += 1
+                        qtype_xml = f'''                <plugin_qtype_match_question>
+                  <matchoptions id="{opt_id}">
+                    <shuffleanswers>{1 if q.get('shuffleanswers', True) else 0}</shuffleanswers>
+                    <correctfeedback></correctfeedback>
+                    <correctfeedbackformat>1</correctfeedbackformat>
+                    <partiallycorrectfeedback></partiallycorrectfeedback>
+                    <partiallycorrectfeedbackformat>1</partiallycorrectfeedbackformat>
+                    <incorrectfeedback></incorrectfeedback>
+                    <incorrectfeedbackformat>1</incorrectfeedbackformat>
+                    <shownumcorrect>1</shownumcorrect>
+                  </matchoptions>
+                  <matches>
+{sub_block}
+                  </matches>
+                </plugin_qtype_match_question>'''
+
+                    elif q["qtype"] == "shortanswer":
+                        ans_xml_list = []
+                        for a in q["answers"]:
+                            ans_id = next_ans_id; next_ans_id += 1
+                            ans_xml_list.append(f'''                    <answer id="{ans_id}">
+                      <answertext>{escape_xml(a['text'])}</answertext>
+                      <answerformat>1</answerformat>
+                      <fraction>{a['fraction']:.7f}</fraction>
+                      <feedback>{escape_xml(a.get('feedback', ''))}</feedback>
+                      <feedbackformat>1</feedbackformat>
+                    </answer>''')
+                        ans_block = "\n".join(ans_xml_list)
+                        opt_id = next_opt_id; next_opt_id += 1
+                        qtype_xml = f'''                <plugin_qtype_shortanswer_question>
+                  <answers>
+{ans_block}
+                  </answers>
+                  <shortanswer id="{opt_id}">
+                    <usecase>0</usecase>
+                  </shortanswer>
+                </plugin_qtype_shortanswer_question>'''
+
+                    elif q["qtype"] == "essay":
+                        opt_id = next_opt_id; next_opt_id += 1
+                        qtype_xml = f'''                <plugin_qtype_essay_question>
+                  <essay id="{opt_id}">
+                    <responseformat>editor</responseformat>
+                    <responserequired>1</responserequired>
+                    <responsefieldlines>15</responsefieldlines>
+                    <attachments>0</attachments>
+                    <attachmentsrequired>0</attachmentsrequired>
+                    <maxbytes>0</maxbytes>
+                    <filetypeslist></filetypeslist>
+                    <maxmark>1.0000000</maxmark>
+                    <minwordlimit></minwordlimit>
+                    <maxwordlimit></maxwordlimit>
+                  </essay>
+                </plugin_qtype_essay_question>'''
+
+                    qbe_xml_list.append(f'''      <question_bank_entry id="{qbe_id}">
+        <questioncategoryid>{cat['id']}</questioncategoryid>
+        <idnumber>$@NULL@$</idnumber>
+        <ownerid>108277</ownerid>
+        <question_version>
+          <question_versions id="{qv_id}">
+            <version>1</version>
+            <status>ready</status>
+            <questions>
+              <question id="{q_id}">
+                <parent>0</parent>
+                <name>{escape_xml(q['name'])}</name>
+                <questiontext>{escape_xml(q['questiontext'])}</questiontext>
+                <questiontextformat>1</questiontextformat>
+                <generalfeedback>{escape_xml(q.get('generalfeedback', ''))}</generalfeedback>
+                <generalfeedbackformat>1</generalfeedbackformat>
+                <defaultmark>{q.get('defaultmark', 1.0):.7f}</defaultmark>
+                <penalty>{q.get('penalty', 0.3333333):.7f}</penalty>
+                <qtype>{q['qtype']}</qtype>
+                <length>1</length>
+                <stamp>{stamp}</stamp>
+                <timecreated>{now_ts}</timecreated>
+                <timemodified>{now_ts}</timemodified>
+                <createdby>108277</createdby>
+                <modifiedby>108277</modifiedby>
+{qtype_xml}
+                <question_hints>
+                </question_hints>
+                <tags>
+                </tags>
+              </question>
+            </questions>
+          </question_versions>
+        </question_version>
+      </question_bank_entry>''')
+
+                qbe_block = "\n".join(qbe_xml_list)
+                cat_xml_list.append(f'''  <question_category id="{cat['id']}">
+    <name>{escape_xml(cat['name'])}</name>
+    <contextid>{course_context_id}</contextid>
+    <contextlevel>50</contextlevel>
+    <contextinstanceid>{course_id}</contextinstanceid>
+    <info></info>
+    <infoformat>0</infoformat>
+    <stamp>moodle+{now_ts}+{cat['id']}</stamp>
+    <parent>9000001</parent>
+    <sortorder>999</sortorder>
+    <idnumber>$@NULL@$</idnumber>
+    <question_bank_entries>
+{qbe_block}
+    </question_bank_entries>
+  </question_category>''')
+
+            cat_all_block = "\n".join(cat_xml_list)
+            (temp_dir / "questions.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<question_categories>\n{cat_all_block}\n</question_categories>', encoding="utf-8")
+        else:
+            (temp_dir / "questions.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<question_categories>\n</question_categories>', encoding="utf-8")
         if files_xml_entries:
             files_xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n<files>\n' + "\n".join(files_xml_entries) + "\n</files>"
         else:
@@ -830,6 +1400,12 @@ def generate_mbz(subject_dir, config_path=None, output_mbz_path=None, web_base_u
         cinf.append('  </groupref>\n  <roleref>\n    <role>\n      <id>5</id>\n    </role>\n  </roleref>')
         if course_fileref_entries:
             cinf.extend(course_fileref_entries)
+        if question_categories:
+            cinf.append('  <question_categoryref>')
+            cinf.append('    <question_category>\n      <id>9000001</id>\n    </question_category>')
+            for c in question_categories.values():
+                cinf.append(f'    <question_category>\n      <id>{c["id"]}</id>\n    </question_category>')
+            cinf.append('  </question_categoryref>')
         cinf.append('</inforef>')
         (temp_dir / "course" / "inforef.xml").write_text("\n".join(cinf), encoding="utf-8")
 
@@ -930,7 +1506,7 @@ def generate_mbz(subject_dir, config_path=None, output_mbz_path=None, web_base_u
   <visibleold>{act.get('visible', 1)}</visibleold>
   <groupmode>0</groupmode>
   <groupingid>0</groupingid>
-  <completion>{2 if act['modulename'] == 'assign' else 0}</completion>
+  <completion>{2 if act['modulename'] in ('assign', 'quiz') else 0}</completion>
   <completiongradeitemnumber>$@NULL@$</completiongradeitemnumber>
   <completionpassgrade>0</completionpassgrade>
   <completionview>0</completionview>
@@ -1266,6 +1842,177 @@ def generate_mbz(subject_dir, config_path=None, output_mbz_path=None, web_base_u
   </assign>
 </activity>''', encoding="utf-8")
 
+            elif act["modulename"] == "quiz":
+                # Review options bitmasks
+                fb_mode = act.get("feedback_mode", "after_close")
+                if fb_mode == "after_close":
+                    review_val = 16  # 0x00010: Solo tras cerrar el cuestionario
+                elif fb_mode == "immediate":
+                    review_val = 69904
+                elif fb_mode == "never":
+                    review_val = 0
+                elif isinstance(fb_mode, int):
+                    review_val = fb_mode
+                else:
+                    review_val = 16
+
+                time_limit_mins = act.get("time_limit", 20)
+                timelimit_secs = int(time_limit_mins * 60) if time_limit_mins else 0
+                max_attempts_val = int(act.get("max_attempts", 1))
+                shuffle_questions_val = 1 if act.get("shuffle_questions", True) else 0
+                shuffle_answers_val = 1 if act.get("shuffle_answers", True) else 0
+                sum_grades = sum(s["question"].get("defaultmark", 1.0) for s in act.get("slots", []))
+
+                slots_xml_list = []
+                for slot_idx, s in enumerate(act.get("slots", []), start=1):
+                    slot_id = next_slot_id; next_slot_id += 1
+                    ref_id = next_ref_id; next_ref_id += 1
+                    slots_xml_list.append(f'''      <question_instance id="{slot_id}">
+        <quizid>{act['instance_id']}</quizid>
+        <slot>{slot_idx}</slot>
+        <page>{slot_idx}</page>
+        <displaynumber>$@NULL@$</displaynumber>
+        <requireprevious>0</requireprevious>
+        <maxmark>{s['question'].get('defaultmark', 1.0):.7f}</maxmark>
+        <quizgradeitemid>$@NULL@$</quizgradeitemid>
+        <question_reference id="{ref_id}">
+          <usingcontextid>{act['contextid']}</usingcontextid>
+          <component>mod_quiz</component>
+          <questionarea>slot</questionarea>
+          <questionbankentryid>{s['qbe_id']}</questionbankentryid>
+          <version>$@NULL@$</version>
+        </question_reference>
+      </question_instance>''')
+
+                slots_block = "\n".join(slots_xml_list)
+
+                (adir / "inforef.xml").write_text(f'''<?xml version="1.0" encoding="UTF-8"?>
+<inforef>
+  <grade_itemref>
+    <grade_item>
+      <id>{act['grade_item_id']}</id>
+    </grade_item>
+  </grade_itemref>
+  <question_categoryref>
+    <question_category>
+      <id>{act['category_id']}</id>
+    </question_category>
+  </question_categoryref>
+</inforef>''', encoding="utf-8")
+
+                (adir / "grades.xml").write_text(f'''<?xml version="1.0" encoding="UTF-8"?>
+<activity_gradebook>
+  <grade_items>
+    <grade_item id="{act['grade_item_id']}">
+      <categoryid>1</categoryid>
+      <itemname>{escape_xml(act['title'])}</itemname>
+      <itemtype>mod</itemtype>
+      <itemmodule>quiz</itemmodule>
+      <iteminstance>{act['instance_id']}</iteminstance>
+      <itemnumber>0</itemnumber>
+      <iteminfo>$@NULL@$</iteminfo>
+      <idnumber></idnumber>
+      <calculation>$@NULL@$</calculation>
+      <gradetype>1</gradetype>
+      <grademax>{float(act.get('grade', 10.0)):.5f}</grademax>
+      <grademin>0.00000</grademin>
+      <scaleid>$@NULL@$</scaleid>
+      <outcomeid>$@NULL@$</outcomeid>
+      <gradepass>5.00000</gradepass>
+      <multfactor>1.00000</multfactor>
+      <plusfactor>0.00000</plusfactor>
+      <aggregationcoef>1.00000</aggregationcoef>
+      <aggregationcoef2>0.00000</aggregationcoef2>
+      <weightoverride>0</weightoverride>
+      <sortorder>1</sortorder>
+      <display>0</display>
+      <decimals>$@NULL@$</decimals>
+      <hidden>0</hidden>
+      <locked>0</locked>
+      <locktime>0</locktime>
+      <needsupdate>0</needsupdate>
+      <timecreated>{now_ts}</timecreated>
+      <timemodified>{now_ts}</timemodified>
+      <grade_grades>
+      </grade_grades>
+    </grade_item>
+  </grade_items>
+  <grade_letters>
+  </grade_letters>
+</activity_gradebook>''', encoding="utf-8")
+
+                (adir / "quiz.xml").write_text(f'''<?xml version="1.0" encoding="UTF-8"?>
+<activity id="{act['instance_id']}" moduleid="{act['moduleid']}" modulename="quiz" contextid="{act['contextid']}">
+  <quiz id="{act['instance_id']}">
+    <name>{escape_xml(act['title'])}</name>
+    <intro>{escape_xml(act['intro'])}</intro>
+    <introformat>1</introformat>
+    <timeopen>0</timeopen>
+    <timeclose>0</timeclose>
+    <timelimit>{timelimit_secs}</timelimit>
+    <overduehandling>autosubmit</overduehandling>
+    <graceperiod>0</graceperiod>
+    <preferredbehaviour>deferredfeedback</preferredbehaviour>
+    <canredoquestions>0</canredoquestions>
+    <attempts_number>{max_attempts_val}</attempts_number>
+    <attemptonlast>0</attemptonlast>
+    <grademethod>1</grademethod>
+    <decimalpoints>2</decimalpoints>
+    <questiondecimalpoints>-1</questiondecimalpoints>
+    <reviewattempt>{review_val}</reviewattempt>
+    <reviewcorrectness>{review_val}</reviewcorrectness>
+    <reviewmaxmarks>{review_val}</reviewmaxmarks>
+    <reviewmarks>{review_val}</reviewmarks>
+    <reviewspecificfeedback>{review_val}</reviewspecificfeedback>
+    <reviewgeneralfeedback>{review_val}</reviewgeneralfeedback>
+    <reviewrightanswer>{review_val}</reviewrightanswer>
+    <reviewoverallfeedback>{review_val}</reviewoverallfeedback>
+    <questionsperpage>1</questionsperpage>
+    <navmethod>free</navmethod>
+    <shuffleanswers>{shuffle_answers_val}</shuffleanswers>
+    <sumgrades>{sum_grades:.5f}</sumgrades>
+    <grade>{float(act.get('grade', 10.0)):.5f}</grade>
+    <timecreated>{now_ts}</timecreated>
+    <timemodified>{now_ts}</timemodified>
+    <password></password>
+    <subnet></subnet>
+    <browsersecurity>-</browsersecurity>
+    <delay1>0</delay1>
+    <delay2>0</delay2>
+    <showuserpicture>0</showuserpicture>
+    <showblocks>0</showblocks>
+    <completionattemptsexhausted>0</completionattemptsexhausted>
+    <completionminattempts>0</completionminattempts>
+    <allowofflineattempts>0</allowofflineattempts>
+    <quiz_grade_items>
+    </quiz_grade_items>
+    <question_instances>
+{slots_block}
+    </question_instances>
+    <sections>
+      <section id="1">
+        <firstslot>1</firstslot>
+        <heading></heading>
+        <shufflequestions>{shuffle_questions_val}</shufflequestions>
+      </section>
+    </sections>
+    <feedbacks>
+      <feedback id="1">
+        <feedbacktext></feedbacktext>
+        <feedbacktextformat>1</feedbacktextformat>
+        <mingrade>0.00000</mingrade>
+        <maxgrade>11.00000</maxgrade>
+      </feedback>
+    </feedbacks>
+    <overrides>
+    </overrides>
+    <grades>
+    </grades>
+    <attempts>
+    </attempts>
+  </quiz>
+</activity>''', encoding="utf-8")
+
         # moodle_backup.xml
         mb_xml = [
             '<?xml version="1.0" encoding="UTF-8"?>',
@@ -1362,6 +2109,11 @@ def generate_mbz(subject_dir, config_path=None, output_mbz_path=None, web_base_u
         <level>root</level>
         <name>activities</name>
         <value>1</value>
+      </setting>
+      <setting>
+        <level>root</level>
+        <name>questionbank</name>
+        <value>{1 if question_categories else 0}</value>
       </setting>
       <setting>
         <level>root</level>
@@ -1534,6 +2286,10 @@ def generate_mbz(subject_dir, config_path=None, output_mbz_path=None, web_base_u
         print(f"    Actividades creadas: {len(activities_data)}")
         rubrics_count = sum(1 for a in activities_data if a.get("rubric"))
         print(f"    Rúbricas aplicadas: {rubrics_count}")
+        quizzes_count = sum(1 for a in activities_data if a.get("modulename") == "quiz")
+        if quizzes_count > 0:
+            total_qs = sum(len(cat["entries"]) for cat in question_categories.values())
+            print(f"    Cuestionarios creados: {quizzes_count} ({total_qs} preguntas en el banco)")
         if overview_img_path and overview_img_path.is_file():
             print(f"    Imagen del curso (resumen): {overview_img_path.name}")
         return output_mbz_path

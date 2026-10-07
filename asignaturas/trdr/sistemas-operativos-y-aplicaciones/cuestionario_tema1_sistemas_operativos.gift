@@ -97,9 +97,9 @@
 // -----------------------------------------------------------------------------
 ::P09 - Licencias y modelos de Sistemas Operativos:: Relaciona cada Sistema Operativo con la descripción de su modelo y tipo de licencia\: {
 	=GNU/Linux -> Núcleo libre y gratuito cuyo código puede estudiarse, modificarse y distribuirse
-	=Microsoft Windows -> Sistema comercial de pago propiedad de Microsoft que requiere licencia de uso
-	=Apple macOS -> Sistema propietario comercial de Apple que solo puede usarse legalmente en sus equipos
-	=Android -> Sistema móvil abierto basado en Linux y adaptable por muchos fabricantes
+	=Microsoft Windows -> Sistema comercial de pago con gran aceptación que requiere licencia de uso
+	=Apple macOS -> Sistema propietario que solo puede usarse legalmente en los equipos de su misma marca
+	=Android -> Sistema operativo móvil abierto basado en Linux y adaptable por muchos fabricantes
 }
 
 // -----------------------------------------------------------------------------

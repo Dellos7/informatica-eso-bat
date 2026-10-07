@@ -21,7 +21,7 @@
       {
         "type": "label",
         "name": "Profesor y Contacto",
-        "content": "<table style=\"border-collapse: collapse; margin: 0 auto\">\n    <caption></caption>\n    <tbody>\n        <tr>\n            <td style=\"font-weight: bold; padding: 10px; border: 1px solid black;\">Profesor:</td>\n            <td style=\"text-align: center; padding: 10px; border: 1px solid black;\">David López Castellote</td>\n        </tr>\n        <tr>\n            <td style=\"font-weight: bold; padding: 10px; border: 1px solid black;\">Email:</td>\n            <td style=\"text-align: center; padding: 10px; border: 1px solid black;\">d.lopezcastellote@edu.gva.es@gmail.com</td>\n        </tr>\n    </tbody>\n</table>"
+        "content": "<table style=\"border-collapse: collapse; margin: 0 auto\">\n    <caption></caption>\n    <tbody>\n        <tr>\n            <td style=\"font-weight: bold; padding: 10px; border: 1px solid black;\">Profesor:</td>\n            <td style=\"text-align: center; padding: 10px; border: 1px solid black;\">David López Castellote</td>\n        </tr>\n        <tr>\n            <td style=\"font-weight: bold; padding: 10px; border: 1px solid black;\">Email:</td>\n            <td style=\"text-align: center; padding: 10px; border: 1px solid black;\">d.lopezcastellote@edu.gva.es</td>\n        </tr>\n    </tbody>\n</table>"
       },
       {
         "type": "forum",
@@ -53,7 +53,19 @@
       "button_text": "TEMA 1 (WEB)",
       "show_activity_description": true,
       "visible": true,
-      "activities_visible": false
+      "activities_visible": false,
+      "quizzes": [
+        {
+          "name": "Cuestionario Tema 1: Sistemas operativos y aplicaciones",
+          "gift_file": "cuestionario_tema1_sistemas_operativos.gift",
+          "category": "Tema 1: Sistemas operativos y aplicaciones",
+          "time_limit": 20,
+          "max_attempts": 1,
+          "shuffle_questions": true,
+          "shuffle_answers": true,
+          "feedback_mode": "after_close"
+        }
+      ]
     },
     {
       "folder": "organizacion-de-la-informacion",
