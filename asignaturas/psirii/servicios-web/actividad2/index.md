@@ -286,12 +286,15 @@ Cada producto debe crearse con los atributos técnicos propios de un infoproduct
 - **Descripción completa estructurada:** Sinopsis, a quién va dirigido, temario o desglose de archivos incluidos y requisitos técnicos previos.
 
 **Prompt de ejemplo para Antigravity IDE:**
-> *"Crea en mi tienda WooCommerce los siguientes infoproductos con los atributos 'virtual' y 'descargable' activados:
+> Crea en mi tienda WooCommerce los siguientes infoproductos con los atributos 'virtual' y 'descargable' activados:
 > 
 > 1. 'Guía Práctica de Administración y Hardening en Linux Mint y Ubuntu', asignado a 'Ebooks y Manuales Técnicos', precio 4.99 €. Descripción corta comercial resaltando la seguridad del sistema y el dominio de la terminal. Descripción completa estructurada con: Sinopsis, A quién va dirigido, Temario de 4 módulos (Fundamentos de terminal, Gestión granular de permisos, Configuración del cortafuegos UFW y Hardening de SSH) y Requisitos previos.
 > 2. 'Pack de Scripts en Bash y Python para Automatización SysAdmin', asignado a 'Scripts y Automatización', precio 7.99 €. Descripción corta atractiva y descripción larga detallando los scripts incluidos en el paquete (copias de seguridad automáticas de MySQL, monitor de recursos con avisos a Telegram y script de comprobación de integridad).
 > 3. 'Chuletario Visual de Comandos Linux y Mapa de Puertos de Red', asignado a 'Plantillas y Recursos TIC', precio 0.00 € (gratuito - Recurso formativo de captación). Descripción corta y desglose detallado del contenido en formato de lista y tabla resumen de puertos.
-> 4. 'Checklist de Bastionado y Auditoría de Seguridad para WordPress', asignado a 'Ciberseguridad y Buenas Prácticas', precio 3.99 €. Descripción comercial enfocada en la protección contra ataques web, detallando los 25 puntos de control incluidos."*
+> 4. 'Checklist de Bastionado y Auditoría de Seguridad para WordPress', asignado a 'Ciberseguridad y Buenas Prácticas', precio 3.99 €. Descripción comercial enfocada en la protección contra ataques web, detallando los 25 puntos de control incluidos.
+
+> **NOTA**: no puedes utilizar este mismo ejemplo. Piensa tú mismo qué productos te gustaría vender. Tienes que crear al menos 4 productos.
+{: .alert-error}
 
 > 📸 **Captura obligatoria para la memoria:** Realiza una captura de pantalla legible del prompt (o prompts) que indiques a la IA para generar el catálogo y de la consola de Antigravity IDE donde se observe cómo el agente ejecuta las llamadas a herramientas (*tools*) del servidor MCP para crear los productos con todos sus metadatos.
 {: .alert-info}
