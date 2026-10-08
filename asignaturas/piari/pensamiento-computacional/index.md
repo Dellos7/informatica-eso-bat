@@ -17,6 +17,13 @@ Ampliado:
 - [¿Qué es el Pensamiento Computacional? (ampliado)](https://youtu.be/O1gXdte5kIM)
 - [Algoritmos (ampliado)](https://youtu.be/dQ-j0Noadac)
 
+## Guías de referencia y programación
+
+- [Funcionamiento de Laby](./funcionamiento-de-laby)
+- [Bucles y condicionales en Laby](./bucles-y-condicionales-en-laby)
+- [Funcionamiento básico de Karel](./funcionamiento-basico-karel)
+- [Bucles y condicionales en Karel](./bucles-y-condicionales-en-karel)
+
 ## Actividades
 
 - [Actividad 1](./actividad1)

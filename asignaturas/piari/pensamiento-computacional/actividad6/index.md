@@ -6,7 +6,7 @@ description: Actividad 6 de la SA1
 
 # Actividad 6. Laby avanzado
 
-> 🚀 **ANTES DE HACER LA ACTIVIDAD DEBES LEER**: 👉 [Funcionamiento de Laby](../funcionamiento-de-laby) 👈
+> 🚀 **ANTES DE HACER LA ACTIVIDAD DEBES LEER**: 👉 [Bucles y condicionales en Laby](../bucles-y-condicionales-en-laby) 👈
 {: .alert-warning}
 
 En la actividad anterior de Laby aprendiste a controlar a la hormiga mediante secuencias básicas de instrucciones. Sin embargo, en problemas más complejos no siempre sabemos de antemano cuántos pasos exactos hay que dar o qué obstáculos aparecerán en el camino.

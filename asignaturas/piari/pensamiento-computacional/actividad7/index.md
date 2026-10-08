@@ -6,7 +6,7 @@ description: Actividad 7 de la SA1
 
 # Actividad 7. Diseña tu propio nivel con Laby Level Editor
 
-> 🚀 **ANTES DE HACER LA ACTIVIDAD DEBES LEER**: 👉 [Funcionamiento de Laby](../funcionamiento-de-laby) 👈
+> 🚀 **ANTES DE HACER LA ACTIVIDAD DEBES LEER**: 👉 [Funcionamiento de Laby](../funcionamiento-de-laby) y [Bucles y condicionales en Laby](../bucles-y-condicionales-en-laby) 👈
 {: .alert-warning}
 
 Una vez que has aprendido a resolver problemas utilizando bucles y condicionales en Laby, ahora te convertirás en diseñador/a de niveles.
