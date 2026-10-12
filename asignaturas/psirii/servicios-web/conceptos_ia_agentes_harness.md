@@ -54,7 +54,7 @@ description: Modelos, chatbots, agentes, harness y mucho más
 - **Claude Code:** **herramienta de programación agéntica** que se ejecuta en la terminal o navegador. Puede inspeccionar proyectos de código, editar archivos, ejecutar comandos del sistema y utilizar herramientas externas. Integra tanto la lógica del agente como funciones de harness.
 
 > **Ejemplo:** preguntar en la interfaz web de Claude «¿cómo centro una imagen con CSS?» o «¿qué es una clave primaria?» es una interacción de asistente convencional. En cambio, pedir a **Claude Code** que analice el código de nuestra tienda web, localice un fallo en el carrito de compra, modifique el archivo JavaScript correspondiente y ejecute pruebas en el servidor es una **tarea agéntica**.
-{: .alert-info}
+{: .alert-info} 
 
 ### Gemini, la aplicación Gemini y Google Antigravity
 
