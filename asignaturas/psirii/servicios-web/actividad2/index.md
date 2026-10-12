@@ -56,11 +56,11 @@ El plan **WordPress.com Business** ofrece un entorno gestionado de alto rendimie
    - Guarda los cambios. A partir de este momento dispondrás de la barra superior negra y el menú lateral característico de WordPress, idéntico al que utilizaste en el entorno local con XAMPP.
 
 2. **Activar funciones de desarrollador y alojamiento:**
-   - En el menú lateral de tu sitio en WordPress.com, dirígete a **Ajustes > Configuración de alojamiento** (o *Funciones de desarrollador*).
-   - Pulsa en el botón **Activar funciones de alojamiento** (*Activate hosting features*).
-   - Esta acción convierte el sitio en una instancia con acceso completo al sistema: habilita la instalación de cualquier plugin o tema externo sin restricciones, el acceso a bases de datos mediante phpMyAdmin, credenciales SFTP/SSH y la capacidad de crear entornos de pruebas (*staging*).
+   - En el menú lateral de tu sitio en WordPress.com, dirígete a **Ajustes > Configuración de alojamiento** (o *Funciones de desarrollador*) y pulsa en el botón **Activar funciones de alojamiento** (*Activate hosting features*).
+   - **Ruta alternativa:** Si no te aparece la opción anterior en el menú, dirígete a **Ajustes > Enlaces permanentes** (o *Permalinks*), donde verás un banner informativo con un botón de **Activar**.
+   - Esta acción convierte el sitio en una instancia con acceso completo al sistema: habilita la instalación de cualquier plugin o tema externo sin restricciones, el acceso a bases de datos mediante phpMyAdmin, credenciales SFTP/SSH y la capacidad de crear y utilizar entornos de pruebas (*staging*).
 
-> **¿Por qué activar las funciones de alojamiento?** Sin este paso, WordPress.com funciona como una plataforma cerrada (SaaS). Al activar las funciones de alojamiento, dispones de una máquina virtual/contenedor dedicado en la nube con acceso total a nivel de servidor web y base de datos.
+> **¿Por qué activar las funciones de alojamiento?** Sin este paso, WordPress.com funciona como una plataforma cerrada (SaaS). Al activar las funciones de alojamiento, dispones de una máquina virtual/contenedor dedicado en la nube con acceso total a nivel de servidor web y base de datos, requisito indispensable para poder desplegar y utilizar posteriormente los entornos de pruebas (*staging*).
 {: .alert-info}
 
 ---
@@ -286,12 +286,15 @@ Cada producto debe crearse con los atributos técnicos propios de un infoproduct
 - **Descripción completa estructurada:** Sinopsis, a quién va dirigido, temario o desglose de archivos incluidos y requisitos técnicos previos.
 
 **Prompt de ejemplo para Antigravity IDE:**
-> *"Crea en mi tienda WooCommerce los siguientes infoproductos con los atributos 'virtual' y 'descargable' activados:
+> Crea en mi tienda WooCommerce los siguientes infoproductos con los atributos 'virtual' y 'descargable' activados:
 > 
 > 1. 'Guía Práctica de Administración y Hardening en Linux Mint y Ubuntu', asignado a 'Ebooks y Manuales Técnicos', precio 4.99 €. Descripción corta comercial resaltando la seguridad del sistema y el dominio de la terminal. Descripción completa estructurada con: Sinopsis, A quién va dirigido, Temario de 4 módulos (Fundamentos de terminal, Gestión granular de permisos, Configuración del cortafuegos UFW y Hardening de SSH) y Requisitos previos.
 > 2. 'Pack de Scripts en Bash y Python para Automatización SysAdmin', asignado a 'Scripts y Automatización', precio 7.99 €. Descripción corta atractiva y descripción larga detallando los scripts incluidos en el paquete (copias de seguridad automáticas de MySQL, monitor de recursos con avisos a Telegram y script de comprobación de integridad).
 > 3. 'Chuletario Visual de Comandos Linux y Mapa de Puertos de Red', asignado a 'Plantillas y Recursos TIC', precio 0.00 € (gratuito - Recurso formativo de captación). Descripción corta y desglose detallado del contenido en formato de lista y tabla resumen de puertos.
-> 4. 'Checklist de Bastionado y Auditoría de Seguridad para WordPress', asignado a 'Ciberseguridad y Buenas Prácticas', precio 3.99 €. Descripción comercial enfocada en la protección contra ataques web, detallando los 25 puntos de control incluidos."*
+> 4. 'Checklist de Bastionado y Auditoría de Seguridad para WordPress', asignado a 'Ciberseguridad y Buenas Prácticas', precio 3.99 €. Descripción comercial enfocada en la protección contra ataques web, detallando los 25 puntos de control incluidos.
+
+> **NOTA**: no puedes utilizar este mismo ejemplo. Piensa tú mismo qué productos te gustaría vender. Tienes que crear al menos 4 productos.
+{: .alert-error}
 
 > 📸 **Captura obligatoria para la memoria:** Realiza una captura de pantalla legible del prompt (o prompts) que indiques a la IA para generar el catálogo y de la consola de Antigravity IDE donde se observe cómo el agente ejecuta las llamadas a herramientas (*tools*) del servidor MCP para crear los productos con todos sus metadatos.
 {: .alert-info}
