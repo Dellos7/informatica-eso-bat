@@ -6,61 +6,61 @@ description: Modelos, chatbots, agentes, harness y mucho más
 
 # Conceptos básicos de IA. Modelos, chatbots, agentes, harness y mucho más
 
-**Guía conceptual y comparativa de herramientas**  
-**Actualizado:** 12 de octubre de 2026 · **Enfoque:** desarrollo de servicios web, comercio electrónico (WooCommerce) y automatización con IA
+> **Actualizado:** 13 de octubre de 2026 · **Enfoque:** desarrollo de servicios web, comercio electrónico (WooCommerce) y automatización con IA
+{: .alert-success}
 
 > **Idea principal:** no debemos confundir el *modelo* que genera información con la *aplicación* que utilizamos, el *agente* que decide qué hacer, el *harness* que proporciona el entorno de ejecución o el *workflow* que fija una secuencia de tareas.
 
 ![Infografía: de un modelo de IA a una acción real](imagenes_ia/01_del_modelo_a_la_accion.png)
 
-*Esquema didáctico general. Los elementos no son necesariamente programas independientes ni funcionan siempre en una secuencia lineal.*
-
-## 1. Glosario rápido: qué es cada cosa
+## 1. Glosario
 
 | Concepto | Definición sencilla | Lo que lo distingue | Ejemplo |
 |---|---|---|---|
-| **Modelo de IA / LLM** | Modelo matemático capaz de procesar y generar lenguaje y otros contenidos, según sus capacidades. | Es la capacidad de cómputo e inteligencia, no la aplicación completa. | Un modelo GPT redacta la ficha técnica de unas zapatillas o responde a la duda de un cliente. |
+| **Modelo de IA / LLM** | Modelo matemático capaz de procesar y generar lenguaje y otros contenidos, según sus capacidades. | Es la capacidad de cómputo e inteligencia, no la aplicación completa. | Modelos específicos como **GPT-6 Astra / Sol** (OpenAI), **Claude Opus 5.5** (Anthropic) o **Gemini 3.8 Flash** (Google). |
 | **Aplicación de IA** | Producto de software que ofrece una interfaz, modelos y servicios al usuario. | Es el producto completo, no un modelo aislado. | ChatGPT, aplicación Claude o aplicación Gemini. |
 | **Chatbot** | Interfaz diseñada para conversar mediante mensajes de texto o voz. Puede usar reglas fijas o IA. | Describe **cómo se interactúa**, no cuánto decide el sistema internamente. | Chat de atención al cliente en una tienda online. |
-| **Asistente de IA** | Aplicación que ayuda a una persona con tareas concretas respondiendo a sus preguntas. | Es un término funcional amplio; puede o no actuar como agente. | Ayuda a redactar la descripción de un producto o a depurar una función de código CSS/JS. |
+| **Asistente de IA** | Aplicación que ayuda a una persona con tareas concretas respondiendo a sus preguntas. | Es un término funcional amplio; puede o no actuar como agente. | Herramientas como **GitHub Copilot** (asiste programando código), **Microsoft Copilot** o **Jetpack AI** en WordPress (redacción de fichas). |
 | **Agente de IA** | Sistema que utiliza un modelo para elegir pasos y herramientas de forma autónoma con el fin de cumplir un objetivo. | Tiene **capacidad de decisión sobre el proceso**, dentro de ciertos límites. | Comprueba las devoluciones pendientes, revisa el stock de la talla en la tienda, emite una etiqueta de mensajería y avisa al cliente. |
 | **Harness de IA / agent harness** | Software que proporciona y gestiona el entorno seguro de ejecución del agente. | Maneja llamadas al modelo, contexto, herramientas, permisos y resultados de ejecución. | Entorno (como Antigravity) que permite al agente leer archivos del proyecto, ejecutar comandos en la terminal y usar herramientas. |
-| **Automatización / workflow** | Secuencia de tareas y condiciones predefinidas e invariables. | El recorrido principal lo diseña de antemano una persona. | Make: formulario de soporte → Google Sheets → filtro con IA → aviso por Gmail si es urgente. |
-| **Herramienta / tool** | Función u operación concreta que un sistema o agente puede invocar. | Hace **algo específico**; no determina el objetivo general. | Consultar el stock de una talla o actualizar el precio de un producto en la base de datos. |
-| **API** | Interfaz programática que permite a dos programas comunicarse e intercambiar datos. | Mecanismo técnico estándar de integración entre aplicaciones. | API REST de WordPress o API de OpenAI. |
+| **Automatización / workflow** | Secuencia de tareas y condiciones predefinidas e invariables. | El recorrido principal lo diseña de antemano una persona. | Make o n8n: formulario de soporte → Google Sheets → filtro con IA → aviso por Gmail si es urgente. |
+| **Herramienta / tool** | Función u operación concreta que un sistema o agente puede invocar. | Hace **algo específico**; no determina el objetivo general. | El agente puede consultar el stock de una talla o actualizar el precio de un producto en la base de datos. |
+| **API** | Interfaz programática que permite a dos programas comunicarse e intercambiar datos. | Mecanismo técnico estándar de integración entre aplicaciones. | API REST de WordPress o API de OpenAI a la que un agente o aplicación puede conectarse. |
 | **MCP (Model Context Protocol)** | Protocolo estándar abierto para conectar aplicaciones de IA con herramientas y fuentes externas. | Estandariza cómo se exponen y utilizan esas capacidades para cualquier agente. | Servidor MCP de Novamira para conectar la IA con WordPress. |
 | **RAG (Retrieval-Augmented Generation)** | Técnica que busca información en documentos externos antes de que el LLM genere la respuesta. | Aporta conocimiento real y actualizado; **no equivale a un agente**. | Chatbot de la tienda que consulta la tabla oficial de tallas y la política de devoluciones antes de responder. |
 | **Embeddings** | Representaciones numéricas (vectores) de textos que permiten buscar por parecido de significado. | Son una forma matemática de representar datos, no el chatbot en sí. | Encontrar productos similares a «zapatillas cómodas de suela plana para skate o vestir». |
-| **Base de datos vectorial** | Base de datos especializada en almacenar y buscar vectores a gran velocidad. | Infraestructura de búsqueda semántica, no un modelo conversacional. | Qdrant. |
+| **Base de datos vectorial** | Base de datos especializada en almacenar y buscar vectores a gran velocidad. | Infraestructura de búsqueda semántica, no un modelo conversacional. | Qdrant o Pinecone. |
 | **Orquestador** | Software que coordina y encadena eventos, aplicaciones o agentes. | Se centra en la coordinación técnica; puede usar flujos fijos o dinámicos. | Make y n8n. |
 
-**Advertencia terminológica:** en el mercado comercial y publicitario de las empresas tecnológicas, palabras como *agente*, *asistente*, *copilot*, *harness* y *plataforma agéntica* se emplean a menudo como reclamos de ventas. En informática, la categoría técnica depende de la **función concreta y arquitectura** del sistema, no del eslogan comercial.
+> **Advertencia terminológica:** en el mercado comercial y publicitario de las empresas tecnológicas, palabras como *agente*, *asistente*, *copilot*, *harness* y *plataforma agéntica* se emplean a menudo de forma laxa y confusa y como reclamos de ventas. En informática, la categoría técnica depende de la **función concreta y arquitectura** del sistema, no del eslogan comercial.
+{: .alert-warning}
 
 ## 2. Diferencia esencial: GPT vs. ChatGPT, Claude vs. Claude Code y Gemini
 
 ### GPT y ChatGPT
 
-- **GPT:** nombre de una familia de modelos de lenguaje de OpenAI (por ejemplo, GPT-4o utilizado mediante API). Aporta capacidades de procesamiento del lenguaje natural, razonamiento y generación de texto o código.
+- **GPT:** nombre de una familia de modelos de lenguaje de OpenAI (por ejemplo, GPT-6 Sol o GPT-6 Astra utilizados mediante API). Aporta capacidades de procesamiento del lenguaje natural, razonamiento y generación de texto o código.
 - **ChatGPT:** aplicación web y móvil de OpenAI desde la que los usuarios conversan con esos modelos y acceden a herramientas (navegador web, análisis de datos, generador de imágenes, etc.).
 - **Un «GPT personalizado»:** una configuración predefinida dentro de ChatGPT con instrucciones específicas y archivos de conocimiento; **no** es un nuevo modelo entrenado desde cero.
+- **Codex**: herramienta de programación agéntica desarrollada por OpenAI que tiene la capacidad de comprender el lenguaje natural y generar código en diferentes lenguajes de programación utilizando los modelos GPT. Integra tanto la lógica del agente como funciones de harness.
 
-> **Ejemplo:** en una plataforma como Make o mediante un script en Python puedes conectar con un modelo GPT vía API para clasificar opiniones de clientes **sin abrir nunca la web de ChatGPT**. Si en cambio abres tu navegador y escribes una pregunta en el chat, estás utilizando la **aplicación ChatGPT**.
+> **Ejemplo:** mediante un script en Python puedes conectar con un modelo GPT vía API para clasificar opiniones de clientes **sin abrir nunca la web de ChatGPT**. Si por el contrario abres tu navegador o la aplicación de móvil de **ChatGPT** y escribes una pregunta en el chat, estás utilizando la **aplicación ChatGPT**.
 {: .alert-info}
 
 ### Claude y Claude Code
 
-- **Claude (familia de modelos):** modelos de Anthropic, como Claude 3.5 Sonnet o Claude 3 Opus.
+- **Claude (familia de modelos):** modelos de Anthropic, como Claude Sonnet 5.5, Claude Opus 5.5 o Claude Haiku 3.5.
 - **Claude (aplicación):** interfaz web y móvil de Anthropic para conversar y trabajar con su IA.
-- **Claude Code:** **herramienta de programación agéntica** que se ejecuta en la terminal o navegador. Puede inspeccionar proyectos de código, editar archivos, ejecutar comandos del sistema y utilizar herramientas externas. Integra tanto la lógica del agente como funciones de harness.
+- **Claude Code:** herramienta de programación agéntica que se ejecuta en la terminal o navegador. Puede inspeccionar proyectos de código, editar archivos, ejecutar comandos del sistema y utilizar herramientas externas. Integra tanto la lógica del agente como funciones de harness.
 
-> **Ejemplo:** preguntar en la interfaz web de Claude «¿cómo centro una imagen con CSS?» o «¿qué es una clave primaria?» es una interacción de asistente convencional. En cambio, pedir a **Claude Code** que analice el código de nuestra tienda web, localice un fallo en el carrito de compra, modifique el archivo JavaScript correspondiente y ejecute pruebas en el servidor es una **tarea agéntica**.
+> **Ejemplo:** preguntar en la interfaz web de Claude «¿cómo centro una imagen con CSS?» o «¿qué es una clave primaria?» es una interacción de asistente convencional (**aplicación Claude**). En cambio, pedir a **Claude Code** que analice el código de nuestra tienda web, localice un fallo en el carrito de compra, modifique el archivo JavaScript correspondiente y ejecute pruebas en el servidor es una **tarea agéntica**.
 {: .alert-info} 
 
 ### Gemini, la aplicación Gemini y Google Antigravity
 
-- **Gemini (modelos):** familia de modelos de Google (Gemini 1.5 Pro, Flash, Gemini 2.0).
-- **Gemini (aplicación):** interfaz web de Google para interactuar con los modelos Gemini y sus servicios integrados (Drive, Docs, etc.).
-- **Google Antigravity:** entorno de desarrollo orientado a agentes que combina editor de código, terminal, navegador y un sistema de control donde los agentes pueden planificar, ejecutar y comprobar tareas complejas. **No es simplemente un modelo, sino una plataforma agéntica completa.**
+- **Gemini (modelos):** familia de modelos de Google (Gemini 2.0, Gemini 3.8 Flash, Gemini 3.1 Pro).
+- **Gemini (aplicación):** interfaz web y aplicación de Google para interactuar con los modelos Gemini y sus servicios integrados (Drive, Docs, etc.).
+- **Google Antigravity:** entorno de desarrollo orientado a agentes que combina editor de código, terminal, navegador y un sistema de control donde los agentes pueden planificar, ejecutar y comprobar tareas complejas. No es simplemente un modelo, sino una plataforma agéntica completa: **actúa como harness y agente a la vez.**
 
 > **Ejemplo:** un modelo Gemini puede clasificar si la valoración de un cliente sobre unas zapatillas es positiva o negativa; mientras que un agente en **Google Antigravity** puede conectarse a un servidor WordPress mediante MCP, inspeccionar la tienda online, crear nuevas categorías de productos y verificar en el navegador que la interfaz se muestra correctamente.
 {: .alert-info}
@@ -91,9 +91,12 @@ description: Modelos, chatbots, agentes, harness y mucho más
 | ¿Cómo se aplica un cambio? | Decide qué cambio realizar y solicita su aplicación. | Ejecuta la operación real a través de APIs, terminal o conectores MCP. |
 | ¿Qué hago ante un error? | Analiza el fallo recibido y decide un camino alternativo. | Captura los errores del sistema, registra logs y aplica límites de seguridad. |
 
-**Matiz decisivo:** no son necesariamente dos programas independientes. Herramientas como **Claude Code, Codex o Google Antigravity** aúnan la lógica del agente y la infraestructura del harness en un mismo entorno de trabajo.
+> **Matiz decisivo:** no son necesariamente dos programas independientes. Herramientas como **Claude Code, Codex o Google Antigravity** aúnan la lógica del agente y la infraestructura del harness en un mismo entorno de trabajo.
+{: .alert-warning}
 
 También existe el concepto de **grado de autonomía**: un agente en un entorno profesional no tiene permisos ilimitados. Por ejemplo, en una tienda online real puede requerir confirmación humana antes de eliminar un producto, publicar un cambio en el sitio de producción o emitir un reembolso de dinero a un cliente.
+
+<!--
 
 ## 4. Workflow con IA vs. agente de IA
 
@@ -121,45 +124,45 @@ También existe el concepto de **grado de autonomía**: un agente en un entorno 
 
 La diferencia no radica en «usar IA frente a no usarla», sino en **quién decide el recorrido**: la persona que diseñó el flujo de antemano o el agente de forma autónoma durante su ejecución.
 
-## 5. Tabla de clasificación de nombres y herramientas conocidas
+-->
 
-> **Cómo leerla:** aparece la **categoría predominante**, aunque algunos productos combinan varias funciones. «Con agente» no significa que todas sus funciones sean completamente autónomas.
+## 4. Tabla de clasificación de nombres y herramientas conocidas
 
 | Nombre | Empresa / proyecto | Clasificación principal | Diferencia o ejemplo claro |
 |---|---|---|---|
 | **GPT** | OpenAI | **Familia de modelos** | Motor de IA utilizado por aplicaciones o mediante API. |
 | **ChatGPT** | OpenAI | **Aplicación de IA / asistente** | Producto para conversar, trabajar con archivos y usar capacidades adicionales. |
 | **GPT personalizado** | OpenAI | **Asistente configurado dentro de ChatGPT** | Instrucciones y recursos especializados; no es un nuevo modelo. |
-| **Codex** | OpenAI | **Producto de agente de programación + entorno de ejecución** | Trabaja sobre código fuente, realiza modificaciones y ejecuta tareas; dispone de app, web, IDE y CLI. |
-| **Codex CLI** | OpenAI | **Interfaz de terminal para el agente Codex** | Permite utilizar Codex directamente desde la consola de comandos. |
+| **Codex** | OpenAI | **Agente de programación + harness integrado** | Trabaja sobre código fuente, realiza modificaciones y ejecuta tareas; dispone de app, web, IDE y CLI. |
+| **Codex CLI** | OpenAI | **Interfaz CLI para agente con harness integrado** | Permite utilizar Codex directamente desde la consola de comandos. |
 | **Claude (modelos)** | Anthropic | **Familia de modelos** | Modelos Sonnet, Opus y Haiku de Anthropic. |
 | **Claude (aplicación)** | Anthropic | **Aplicación / asistente de IA** | Interfaz web para conversar y trabajar con la IA de Anthropic. |
-| **Claude Code** | Anthropic | **Agente de programación con funciones de harness** | Analiza proyectos de software, edita archivos, ejecuta comandos e integra herramientas. |
+| **Claude Code** | Anthropic | **Agente de programación con harness integrado** | Analiza proyectos de software, edita archivos, ejecuta comandos e integra herramientas. |
 | **Gemini (modelos)** | Google | **Familia de modelos** | Motores de IA de Google accesibles por API o integrados en sus productos. |
 | **Gemini (aplicación)** | Google | **Aplicación / asistente de IA** | Interfaz web y móvil para interactuar con los modelos Gemini. |
-| **Gemini CLI** | Google | **Herramienta / agente de terminal para desarrollo** | Trabaja sobre proyectos informáticos mediante comandos en lenguaje natural. |
-| **Google Antigravity** | Google | **Plataforma de desarrollo agéntico / IDE** | Orquesta agentes que trabajan de forma coordinada en editor de código, terminal y navegador. |
+| **Gemini CLI** | Google | **Agente de terminal con funciones de harness** | Trabaja sobre proyectos informáticos mediante comandos en lenguaje natural. |
+| **Google Antigravity** | Google | **Plataforma agéntica y harness de desarrollo (IDE)** | Orquesta agentes que trabajan de forma coordinada en editor de código, terminal y navegador. |
 | **Google AI Studio** | Google | **Entorno para experimentar con modelos y APIs** | Diseñar prompts, probar parámetros y obtener claves de API para desarrolladores. |
-| **Replit** | Replit | **Plataforma de desarrollo en la nube** | Entorno con servidor virtual, editor y ejecución de proyectos web. |
-| **Replit Agent** | Replit | **Agente de desarrollo integrado en Replit** | Genera, prueba y despliega aplicaciones web completas a partir de instrucciones en lenguaje natural. |
-| **Cursor** | Anysphere | **Editor de código (IDE) con agentes de IA** | Fork de VS Code con funciones avanzadas para editar y refactorizar código con IA. |
+| **Replit** | Replit | **Plataforma en la nube / entorno de ejecución (harness)** | Entorno con servidor virtual, editor y ejecución de proyectos web. |
+| **Replit Agent** | Replit | **Agente de desarrollo integrado sobre harness de Replit** | Genera, prueba y despliega aplicaciones web completas a partir de instrucciones en lenguaje natural. |
+| **Cursor** | Anysphere | **Editor de código (IDE) con agentes y funciones de harness** | Fork de VS Code con funciones avanzadas para editar y refactorizar código con IA. |
 | **GitHub Copilot** | GitHub / Microsoft | **Asistente y herramientas agénticas de desarrollo** | Autocompletado de código, chat técnico y automatizaciones en repositorios Git. |
 | **Make** | Make | **Automatización y orquestación** | Plataforma para conectar aplicaciones, datos y servicios mediante flujos visuales. |
 | **Make AI Toolkit** | Make | **Módulos de IA para workflows** | Clasificar textos, analizar sentimientos o resumir información dentro de una ruta prefijada. |
-| **Make AI Agents (New)** | Make | **Entorno de ejecución de agentes** | Agente que elige dinámicamente qué módulos de Make o herramientas MCP usar para lograr un fin. |
+| **Make AI Agents (New)** | Make | **Entorno de ejecución de agentes (harness)** | Agente que elige dinámicamente qué módulos de Make o herramientas MCP usar para lograr un fin. |
 | **n8n** | n8n | **Automatización y orquestación (código abierto)** | Similar a Make pero autoalojable en servidores propios, con soporte para nodos agénticos. |
 | **Zapier** | Zapier | **Automatización y orquestación** | Conector de aplicaciones en la nube con funciones añadidas de IA. |
 | **Novamira MCP (WordPress)** | Novamira | **Servidor / conector MCP** | Expone las funciones de WordPress (páginas, entradas, productos) a los agentes de IA. |
 | **WordPress REST API** | WordPress | **API web estándar** | Permite leer y modificar datos de WordPress desde aplicaciones externas mediante peticiones HTTP (JSON). |
 | **Qdrant** | Qdrant | **Base de datos vectorial** | Almacena y busca representaciones vectoriales para implementar búsquedas semánticas y RAG. |
-| **OpenAI Agents SDK** | OpenAI | **Librería de desarrollo para agentes** | Permite a los programadores crear agentes con código, definir herramientas y gestionar traspasos de tareas. |
+| **OpenAI Agents SDK** | OpenAI | **Librería para programar agentes y harnesses** | Permite a los programadores crear agentes con código, definir herramientas y gestionar traspasos de tareas. |
 
 ### Dos matices esenciales sobre la tabla
 
 1. **Claude, GPT y Gemini son nombres que pueden prestarse a confusión:** según el contexto se refieren a una familia de modelos matemáticos o a la aplicación web de cara al usuario. En informática es imprescindible distinguir entre el **modelo subyacente** y la **aplicación que lo implementa**.
 2. **Herramientas como Codex, Claude Code, Antigravity o Replit Agent son sistemas integrados:** la experiencia visible es la de un agente inteligente, pero por debajo cuentan con un harness que gestiona el contexto, ejecuta código real y maneja las herramientas. No son únicamente «un LLM» ni «un harness vacío».
 
-## 6. Dónde encajan API, MCP y RAG
+## 5. Dónde encajan API, MCP y RAG
 
 ```mermaid
 flowchart TD
@@ -178,7 +181,7 @@ flowchart TD
 - **API (Application Programming Interface):** interfaz técnica que permite a un software solicitar datos u operaciones a otro sistema. Es un canal de comunicación; por sí misma no contiene inteligencia ni capacidad de decisión.
 - **MCP (Model Context Protocol):** estándar abierto que normaliza cómo los agentes de IA descubren y ejecutan herramientas externas. No sustituye a las APIs, sino que las envuelve: un servidor MCP utiliza a menudo APIs internamente para interactuar con sistemas como WordPress o bases de datos.
 - **RAG (Retrieval-Augmented Generation):** técnica que consiste en buscar información en fuentes fiables (bases de datos, PDFs, documentación) e inyectarla en el prompt del LLM antes de que este genere la respuesta. Evita que la IA «alucine» o invente datos que no conoce.
-- **Embeddings + Base Vectorial (Qdrant):** método matemático para indexar textos por su significado semántico y recuperarlos velozmente en un sistema RAG.
+- **Embeddings + Base Vectorial (Qdrant o Pinecone):** método matemático para indexar textos por su significado semántico y recuperarlos velozmente en un sistema RAG.
 
 > **Ejemplo clarificador:**  
 > Un chatbot en una tienda de ropa y zapatillas puede responder a la duda «¿cómo sé si me quedará bien la talla 42 o si puedo devolverla?» consultando la tabla de medidas y las condiciones de compra mediante **RAG**.  
@@ -188,7 +191,7 @@ flowchart TD
 > La diferencia fundamental no es usar o no RAG, sino **si el sistema solo busca información para responder o si razona y ejecuta cambios reales en el servicio web**.
 {: .alert-info}
 
-## 7. Caso práctico completo: una tienda online de ropa urbana y zapatillas (Sneakers & Streetwear)
+## 6. Caso práctico completo: una tienda online de ropa urbana y zapatillas (Sneakers & Streetwear)
 
 Para comprender cuándo aplicar cada tecnología en un proyecto real de servicios web, analicemos las necesidades de una tienda de comercio electrónico basada en **WordPress y WooCommerce**:
 
@@ -202,12 +205,13 @@ Para comprender cuándo aplicar cada tecnología en un proyecto real de servicio
 | Crear o actualizar el catálogo de WordPress/WooCommerce con una nueva colección a partir de fotos y especificaciones del fabricante | **Agente de desarrollo** + herramientas MCP de WordPress | Debe explorar categorías existentes, crear productos con atributos variables (tallas, colores), subir imágenes y verificar que la web responde correctamente. |
 | Mantener sincronizada la base de conocimiento de la tienda (guía de tallas, manuales y fichas técnicas) con el motor de búsqueda vectorial | **Workflow / script programado** (WordPress → Make → Qdrant/RAG) | Proceso automatizado y determinista (ejecutado por un cron job) para recalcular y actualizar los embeddings periódicamente. |
 
-**Criterio práctico de ingeniería:**  
+> **Criterio práctico de ingeniería:**  
 En el desarrollo de servicios web y sistemas informáticos, cuanto más **repetible, estructurado y predecible** sea el proceso, más conveniente es resolverlo mediante un **workflow o algoritmo tradicional**.  
 Cuanto más **abierta y variable** sea la situación, y más requiera razonar sobre la marcha y elegir qué herramientas utilizar, mayor valor aportará un **agente de IA**.  
 Utilizar un agente de IA para una tarea que se resuelve con un flujo determinista no mejora el sistema: introduce latencia innecesaria, incrementa el coste económico en consumo de tokens y añade incertidumbre en tareas que deberían ser 100% exactas.
+{: .alert-success}
 
-## 8. Errores frecuentes que conviene evitar
+## 7. Errores frecuentes que conviene evitar
 
 - **«ChatGPT es GPT».** No: ChatGPT es la aplicación web/móvil con su interfaz; GPT es la familia de modelos matemáticos que procesan el lenguaje.
 - **«Si un programa usa IA, ya es un agente».** No: puede tratarse simplemente de una llamada puntual a un modelo para clasificar un texto o traducir una frase dentro de un código convencional.
@@ -215,10 +219,9 @@ Utilizar un agente de IA para una tarea que se resuelve con un flujo determinist
 - **«Un harness y un agente son lo mismo».** No: el agente aporta la capacidad de razonamiento y toma de decisiones; el harness proporciona el entorno seguro de ejecución y los conectores con el mundo real.
 - **«El protocolo MCP dota a la IA de autonomía por sí mismo».** No: MCP es un protocolo de conexión técnica estándar para exponer herramientas; es el agente quien debe decidir cuándo y cómo utilizarlas.
 - **«RAG es un chatbot».** No: RAG es una técnica de recuperación de datos externos para complementar las respuestas de un modelo; un chatbot es una de las muchas interfaces que pueden beneficiarse de RAG.
-- **«Make AI Toolkit es un agente».** No: son módulos individuales de IA que se intercalan dentro de un flujo lineal diseñado previamente por una persona.
 - **«Los agentes de IA actúan siempre sin supervisión humana».** No: en entornos profesionales y de producción se establecen políticas de seguridad (*human-in-the-loop*), donde acciones críticas (borrar datos, publicar en vivo o realizar cobros) exigen la confirmación explícita de un administrador.
 
-## 9. Fórmula de repaso para clase
+## 8. Resumen rápido
 
 > **Modelo (LLM):** procesa y genera la información (el motor de razonamiento).  
 > **Aplicación o chatbot:** proporciona la interfaz para que el usuario interactúe.  
@@ -228,13 +231,15 @@ Utilizar un agente de IA para una tarea que se resuelve con un flujo determinist
 > **API / MCP:** conecta programas entre sí y estandariza el acceso a herramientas.  
 > **RAG:** busca y suministra información verídica de fuentes externas antes de generar la respuesta.
 
-**Frase para recordar:** «El modelo aporta el razonamiento; el agente utiliza ese razonamiento para tomar decisiones; el harness proporciona el entorno de trabajo seguro; las herramientas permiten actuar sobre los sistemas reales; y el chatbot o la aplicación es la puerta de entrada para el usuario».
+> **Frase para recordar:** «El modelo aporta el razonamiento; el agente utiliza ese razonamiento para tomar decisiones; el harness proporciona el entorno de trabajo seguro; las herramientas permiten actuar sobre los sistemas reales; y el chatbot o la aplicación es la puerta de entrada para el usuario».
+{: .alert-success}
 
 ---
 
 ## Fuentes y referencias de consulta
 
-Se han priorizado fuentes oficiales para clasificar los productos. Sus funciones comerciales, modelos disponibles, precios y condiciones de acceso pueden cambiar con el tiempo.
+> Se han priorizado fuentes oficiales para clasificar los productos. Sus funciones comerciales, modelos disponibles, precios y condiciones de acceso pueden cambiar con el tiempo.
+{: .alert-error}
 
 1. [OpenAI — Catálogo de modelos de la API](https://developers.openai.com/api/docs/models).
 2. [OpenAI — Codex](https://openai.com/codex/).
