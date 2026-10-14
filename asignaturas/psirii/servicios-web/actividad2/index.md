@@ -148,6 +148,8 @@ En lugar de rellenar tediosos formularios para dar de alta los productos, utiliz
 > En lugar de un chat convencional donde la IA solo genera texto y tú debes copiarlo y pegarlo a mano en WordPress, un asistente conectado mediante MCP se convierte en un **agente activo**: el modelo dispone de un catálogo de *herramientas* (*tools*) que le permiten consultar la base de datos de tu web, leer o crear páginas, subir archivos, gestionar usuarios, dar de alta categorías o productos en WooCommerce de manera totalmente automatizada.
 {: .alert-info}
 
+![¿Qué es MCP?](que_es_mcp.png)
+
 #### 1. Instalación de Novamira en Staging
 > El plugin **Novamira** no está disponible en la tienda de plugins de Wordpress. Deberás descargarlo de la web oficial.
 {: .alert-info}
