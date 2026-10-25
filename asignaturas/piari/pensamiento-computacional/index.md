@@ -26,12 +26,12 @@ Ampliado:
 
 ## Actividades
 
-- [Actividad 1](./actividad1)
-- [Actividad 2](./actividad2)
-- [Actividad 3](./actividad3)
-- [Actividad 4](./actividad4)
-- [Actividad 5](./actividad5)
-- [Actividad 6](./actividad6)
-- [Actividad 7](./actividad7)
-- [Actividad 8](./actividad8)
-- [Actividad 9](./actividad9)
+- [Actividad 1. Conceptos básicos](./actividad1)
+- [Actividad 2. Entrenando Ratones](./actividad2)
+- [Actividad 3. Camino a casa](./actividad3)
+- [Actividad 4. Entrenando hormigas. 3 primeros niveles de Laby](./actividad4)
+- [Actividad 5. ¿Cómo de lejos llegarás en Compute IT?](./actividad5)
+- [Actividad 6. Laby avanzado](./actividad6)
+- [Actividad 7. Diseña tu propio nivel con Laby Level Editor](./actividad7)
+- [Actividad 8. Code.org - Aventurero de Minecraft](./actividad8)
+- [Actividad 9. Creando nuestro primer videojuego en Scratch](./actividad9)

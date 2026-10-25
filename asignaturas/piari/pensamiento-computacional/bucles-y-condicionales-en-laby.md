@@ -5,95 +5,93 @@ description: Tema 1
 ---
 
 # Bucles y condicionales en Laby
+
+<!--
 {: .no_toc }
 
 * TOC
 {:toc}
 
+-->
+
 ---
 
 ## Introducción
 
-En la actividad inicial de Laby aprendiste a controlar la hormiga mediante **secuencias de instrucciones directas** (`avanzar()`, `derecha()`, `izquierda()`, `tomar()`, `dejar()`, `escapar()`).
+En retos más avanzados de **Laby**, no resulta eficiente escribir decenas de instrucciones manuales o no sabemos de antemano cuántos pasos dar. Para resolver estos problemas empleamos dos estructuras fundamentales de programación:
 
-Sin embargo, en retos más avanzados nos encontramos con dos situaciones muy habituales:
-1. **Caminos largos o repetitivos**: no resulta eficiente escribir `avanzar()` decenas de veces cuando podemos ordenar que la hormiga avance de forma automática.
-2. **Entornos dinámicos o desconocidos**: hay laberintos donde los obstáculos cambian de posición aleatoriamente o no sabemos cuántos pasos faltan para la salida.
-
-Para resolver estos problemas con algoritmos inteligentes y limpios, en programación empleamos dos estructuras esenciales:
 - **Bucles (`while`)**: repiten una o más instrucciones mientras se cumpla una condición.
 - **Condicionales (`if` / `else`)**: toman decisiones y ejecutan instrucciones solo si ocurre una circunstancia concreta.
 
-> 💡 **Recuerda:** el funcionamiento básico de la interfaz y las instrucciones de movimiento se explican en la guía de [Funcionamiento de Laby](../funcionamiento-de-laby).
+> 💡 **Recuerda:** las instrucciones básicas de movimiento se explican en la guía de [Funcionamiento de Laby](../funcionamiento-de-laby).
 {: .alert-info}
 
 ---
 
-## La función para detectar el entorno: `mirar()` {#laby-mirar}
+## Detectar el entorno: `mirar()` / `look()` {#laby-mirar}
 
-Para que un bucle o un condicional funcione, la hormiga necesita **saber qué tiene delante**. En Laby disponemos de la función `mirar()` (o `look()` en inglés).
+Para tomar decisiones o repetir acciones de forma inteligente, la hormiga necesita inspeccionar su entorno mediante la función **`mirar()` (o `look()` en inglés)**.
 
-> ⚠️ **IMPORTANTE:** la función `mirar()` **solo comprueba la casilla situada inmediatamente delante** de la hormiga (en la dirección hacia donde apunta su cabeza). No detecta lo que hay a los lados ni detrás.
+> ⚠️ **IMPORTANTE:** `mirar()` / `look()` **solo comprueba la casilla inmediatamente delante** de la hormiga (hacia donde apunta su cabeza). No detecta lo que hay a los lados ni detrás.
 {: .alert-warning}
 
-### Constantes devueltas por `mirar()`
+### ¿Para qué sirve? Ejemplo rápido
 
-Cuando ejecutamos `mirar()`, la función nos devuelve el tipo de elemento presente en la casilla frontal. Las constantes disponibles según el idioma configurado en el juego son:
+En lugar de mover a la hormiga a ciegas contando casillas, usamos `mirar()` / `look()` para «preguntarle» qué tiene justo enfrente antes de actuar:
 
-| Elemento del laberinto | Castellano | Valenciano | Inglés | Descripción |
-|:---|:---|:---|:---|:---|
-| **Casilla vacía / suelo libre** | `Void` | `Buit` | `Void` | Espacio despejado por el que la hormiga puede caminar. |
-| **Muro** | `Pared` | `Paret` | `Wall` | Muro fijo que la hormiga no puede atravesar. |
-| **Piedra / roca** | `Piedra` | `Pedra` | `Rock` | Bloquea el paso. Se puede recoger con `tomar()`. |
-| **Telaraña mortal** | `Telarana` | `Web` | `Web` | Telaraña grande que atrapa y mata a la hormiga si la pisa. |
-| **Puerta de salida** | `Salir` | `Sortir` | `Exit` | Meta del laberinto. Al estar frente a ella se usa `escapar()`. |
-| **Desconocido** | `Desconocido` | `Desconegut` | `Unknown` | Casilla fuera del mapa o no reconocida. |
+```python
+# Ejemplo en castellano:
+if mirar() == Pared:      # Si justo delante hay una pared...
+    derecha()             # ...gira a la derecha para no chocarte
 
-> 📌 **Detalles clave de escritura en Laby:**
-> - Las constantes **empiezan siempre con mayúscula inicial**: `Void`, `Pared`, `Piedra`, `Telarana`, `Salir`.
-> - **En castellano:** la casilla vacía se nombra en inglés (`Void`) y la telaraña se escribe sin virgulilla (`Telarana`), para garantizar la compatibilidad con el intérprete de Python.
-> - **En valenciano:** la telaraña mantiene el término `Web`.
+while mirar() == Void:    # Mientras delante haya camino libre (casilla vacía)...
+    avanzar()             # ...sigue avanzando automáticamente
+```
+
+```python
+# Mismo ejemplo en inglés:
+if look() == Wall:
+    right()
+
+while look() == Void:
+    forward()
+```
+
+Para poder escribir estas comprobaciones, necesitamos saber **cómo llamar a cada elemento** que la hormiga puede encontrarse delante (`Pared`, `Void`, etc.). Esas palabras son las **constantes** que devuelve la función:
+
+### Constantes devueltas por `mirar()` / `look()`
+
+Al llamar a `mirar()` / `look()`, la función devuelve el elemento situado en la casilla frontal. Es obligatorio escribirlas con **mayúscula inicial**:
+
+| Elemento | Castellano | Valenciano | Inglés | Descripción |
+| :--- | :--- | :--- | :--- | :--- |
+| **Casilla vacía / suelo libre** | `Void` | `Buit` | `Void` | Espacio despejado para caminar. |
+| **Muro** | `Pared` | `Paret` | `Wall` | Muro que la hormiga no puede atravesar. |
+| **Piedra / roca** | `Piedra` | `Pedra` | `Rock` | Bloquea el paso. Se recoge con `tomar()` / `take()`. |
+| **Telaraña** | `Telarana` | `Web` | `Web` | Trampa que atrapa y elimina a la hormiga. |
+| **Puerta de salida** | `Salir` | `Sortir` | `Exit` | Meta. Frente a ella se usa `escapar()` / `escape()`. |
+
+> 📌 **Detalles de escritura:**
+> - Si el juego está en **inglés**, debes usar tanto la función `look()` como las constantes en inglés (`Wall`, `Rock`, `Web`, `Exit`, `Void`).
+> - En **castellano**, casilla vacía se escribe en inglés (`Void`) y telaraña se escribe sin virgulilla (`Telarana`).
 {: .alert-tip}
 
 ---
 
 ## Reglas de sintaxis en Python {#laby-sintaxis-python}
 
-Antes de escribir bucles y condicionales, debes tener en cuenta tres normas fundamentales del lenguaje Python:
-
-### 1. Operadores de comparación
-
-Para comparar lo que devuelve `mirar()` utilizamos los siguientes operadores:
-
-- `==` (**igual a**): comprueba si lo que hay delante coincide exactamente con el elemento indicado.
-  ```python
-  mirar() == Void       # ¿La casilla de enfrente está vacía?
-  ```
-- `!=` (**distinto de**): comprueba si lo que hay delante es diferente del elemento indicado.
-  ```python
-  mirar() != Salir      # ¿La casilla de enfrente todavía no es la salida?
-  ```
-
-> ⚠️ **¡No confundas `=` con `==`!**  
-> Un solo igual (`=`) se usa para asignar valores a variables. Para hacer comprobaciones y comparaciones lógicas en un `while` o `if`, **siempre se utiliza el doble igual (`==`)**.
-{: .alert-error}
-
-### 2. Los dos puntos (`:`)
-
-Toda línea que comience con `while`, `if` o `else` debe terminar obligatoriamente con el carácter de **dos puntos (`:`)**.
-
-### 3. La sangría o indentación (Regla de oro de Python)
-
-A diferencia de otros lenguajes o bloques donde se usa `inicio` / `fin`, en Python **la pertenencia de las instrucciones se define mediante la sangría (espacios a la derecha)**:
-
-- Todo el código que deba ejecutarse **dentro** del bucle o condicional tiene que estar desplazado hacia la derecha (normalmente **4 espacios** o **1 pulsación de la tecla Tabulador**).
-- Si olvidas sangrar las instrucciones o mezclas espacios de forma irregular, el juego mostrará un error: `IndentationError`.
+1. **Operadores de comparación:**
+   - `==` (**igual a**): comprueba si lo que hay delante coincide (`mirar() == Void` o `look() == Void`).
+   - `!=` (**distinto de**): comprueba si es diferente (`mirar() != Salir` o `look() != Exit`).
+   - *Nunca uses un solo igual (`=`), ya que se reserva para asignar variables.*
+2. **Los dos puntos (`:`):** toda línea que inicie una estructura (`while`, `if`, `else`, `def`) debe finalizar con `:`.
+3. **Sangría o indentación:** las instrucciones pertenecientes al bloque deben estar desplazadas a la derecha (**4 espacios** o **1 tabulador**). Si no se sangran, Python dará `IndentationError`.
 
 ---
 
 ## Bucles con `while` {#laby-bucles-while}
 
-Un bucle `while` ejecuta de forma repetitiva un bloque de código **mientras su condición sea verdadera**.
+Un bucle `while` ejecuta de forma repetida el código sangrado **mientras la condición sea verdadera**:
 
 ```python
 while condicion:
@@ -101,192 +99,137 @@ while condicion:
     instruccion_2
 ```
 
-El flujo funciona de la siguiente manera:
-1. Comprueba la condición.
-2. Si se cumple (`True`), ejecuta las instrucciones con sangría.
-3. Vuelve a comprobar la condición.
-4. En cuanto la condición deja de cumplirse (`False`), el bucle finaliza y continúa con la siguiente línea sin sangría.
+### Ejemplo conceptual: avanzar mientras haya camino despejado
 
-### Ejemplo 1: Avanzar hasta la salida (Nivel 2a)
-
-En lugar de contar casillas y escribir `avanzar()` muchas veces, le indicamos a la hormiga que avance mientras la casilla de enfrente esté libre:
+En lugar de contar casillas y escribir muchas veces `avanzar()` / `forward()`, indicamos a la hormiga que avance continuamente mientras el suelo esté libre:
 
 ```python
-# Avanza automáticamente mientras el camino esté despejado
+# En castellano:
 while mirar() == Void:
     avanzar()
 
-# Cuando ya no hay casilla vacía delante (ha llegado a la puerta), salimos
-escapar()
+# En inglés:
+while look() == Void:
+    forward()
 ```
 
-También podemos expresar la condición con el operador distinto de (`!=`):
-
-```python
-# Avanza mientras no tengamos la puerta de salida delante
-while mirar() != Salir:
-    avanzar()
-
-escapar()
-```
-
-*(En Valenciano: `while mirar() == Buit: endavant()` y `escapar()`)*
-
----
-
-### Ejemplo 2: Despejar obstáculos en bucle (Nivel 2b - El pasillo de rocas)
-
-En el nivel 2b encontramos un pasillo bloqueado por una hilera continua de piedras. La hormiga debe retirar cada piedra para poder seguir avanzando:
-
-```plaintext
-o o o o o o o o o o o o o o
-o → . r r r r r r r r r . x
-o o o o o o o o o o o o o o
-```
-
-**Algoritmo a seguir en cada repetición:**
-1. Coger la piedra situada delante con `tomar()`.
-2. Girar 180º (dos giros a la derecha o a la izquierda) para mirar hacia atrás.
-3. Soltar la piedra en el espacio vacío que dejamos atrás con `dejar()`.
-4. Volver a girar 180º para mirar nuevamente hacia el frente del pasillo.
-5. Avanzar un paso a la casilla recién liberada con `avanzar()`.
-
-**Código de la solución:**
-
-```python
-# Mientras haya una piedra delante, la retiramos hacia atrás y avanzamos
-while mirar() == Piedra:
-    tomar()
-    derecha()
-    derecha()
-    dejar()
-    derecha()
-    derecha()
-    avanzar()
-
-# Al terminar el bucle de piedras, avanzamos hasta la puerta y escapamos
-while mirar() == Void:
-    avanzar()
-
-escapar()
-```
+Cuando la hormiga encuentra un obstáculo o la salida delante, la condición deja de cumplirse y el bucle finaliza.
 
 ---
 
 ## Condicionales con `if` y `else` {#laby-condicionales-if}
 
-Un condicional permite que el robot **tome decisiones**: analiza el estado de su entorno y ejecuta un conjunto de instrucciones u otro según el resultado.
+Permiten que la hormiga evalúe una condición antes de actuar y tome un camino u otro según el resultado:
 
 ```python
 if condicion:
-    # Se ejecuta solo si la condición es VERDADERA
+    # Se ejecuta si la condición es VERDADERA
 else:
     # Se ejecuta si la condición es FALSA (opcional)
 ```
 
-### Ejemplo: El dilema de las telarañas (Nivel 3a)
+### Ejemplo conceptual: comprobar el camino ante una telaraña
 
-En el nivel 3a hay dos pasillos paralelos que conducen a la meta. Sin embargo, en cada partida **una telaraña grande y mortal (`Telarana` / `Web`) aparece de forma aleatoria en uno de los dos caminos**, mientras que el otro camino queda libre.
-
-Si la hormiga avanza a ciegas hacia la telaraña mortal, quedará atrapada y la partida terminará. Por ello, debemos inspeccionar primero:
+La telaraña (`Telarana` / `Web`) es una trampa peligrosa que atrapa a la hormiga si la pisa. Antes de dar un paso, podemos comprobar con `mirar()` / `look()` si la casilla frontal tiene peligro:
 
 ```python
-# Colocamos a la hormiga mirando hacia el pasillo izquierdo
-izquierda()
-
-# Comprobamos si ese pasillo tiene la telaraña mortal
+# En castellano:
 if mirar() == Telarana:
-    # Si hay telaraña peligrosa a la izquierda, nos damos la vuelta hacia el pasillo derecho
-    derecha()
-    derecha()
-    avanzar()
+    derecha()       # Si hay telaraña delante, cambiamos de dirección
 else:
-    # Si no hay telaraña (camino seguro), avanzamos por la izquierda
-    avanzar()
-```
+    avanzar()       # Si el camino está limpio, avanzamos seguros
 
-De esta forma, independientemente de en qué lado aparezca la trampa mortal, el programa siempre tomará la decisión correcta.
+# En inglés:
+if look() == Web:
+    right()         # Si hay telaraña (Web) delante, cambiamos de dirección
+else:
+    forward()       # Si el camino está limpio, avanzamos seguros
+```
 
 ---
 
 ## Combinar bucles y condicionales {#laby-combinar}
 
-En problemas complejos es muy común **anidar una estructura condicional (`if`) dentro de un bucle (`while`)**.
+En retos donde el laberinto presenta diferentes elementos a lo largo del trayecto, podemos **anidar un `if` dentro de un `while`** para tomar decisiones en cada paso del recorrido.
 
-Por ejemplo, si la hormiga debe recorrer un laberinto hasta encontrar la salida, pero a lo largo del trayecto pueden aparecer piedras aisladas en algunas casillas:
+### Ejemplo conceptual: avanzar esquivando telarañas en bucle
+
+Si la hormiga avanza por un camino hacia la salida y pueden aparecer telarañas (`Telarana` / `Web`), podemos inspeccionar con `mirar()` / `look()` en cada paso antes de movernos:
 
 ```python
+# En castellano:
 while mirar() != Salir:
-    if mirar() == Piedra:
-        tomar()
+    if mirar() == Telarana:
+        derecha()   # Si detecta telaraña enfrente, gira para evitarla
     else:
-        avanzar()
+        avanzar()   # Si el camino está despejado, continúa hacia la meta
 
-escapar()
-```
-
-En cada iteración del bucle, la hormiga comprueba si tiene una piedra delante:
-- Si hay una piedra, la recoge.
-- Si no hay piedra, avanza hacia la meta.
-
----
-
-## Procedimientos y funciones con `def` (Nivel 2c - Zig Zag) {#laby-funciones}
-
-En niveles extensos con pasillos repetitivos (como el nivel 2c), repetir el mismo bucle `while` varias veces hace que el código sea largo y difícil de leer.
-
-Para simplificarlo podemos **definir una función propia** con la palabra reservada `def`:
-
-```python
-# Definimos una función que hace que la hormiga avance todo lo que pueda en línea recta
-def avanzar_hasta_pared():
-    while mirar() == Void:
-        avanzar()
-```
-
-Una vez definida, podemos **llamar a nuestra función** siempre que la necesitemos como si fuera una instrucción más del juego:
-
-```python
-def avanzar_hasta_pared():
-    while mirar() == Void:
-        avanzar()
-
-# Recorremos el zig-zag llamando a la función y girando en cada esquina
-avanzar_hasta_pared()
-izquierda()
-avanzar_hasta_pared()
-derecha()
-avanzar_hasta_pared()
-izquierda()
-avanzar_hasta_pared()
-escapar()
+# En inglés:
+while look() != Exit:
+    if look() == Web:
+        right()     # Si detecta telaraña (Web) enfrente, gira para evitarla
+    else:
+        forward()   # Si el camino está despejado, continúa hacia la meta
 ```
 
 ---
 
-## Errores comunes y cómo evitarlos {#laby-errores-comunes}
+## Funciones propias con `def` {#laby-funciones}
+
+Si necesitas repetir un conjunto de pasos en varios puntos de tu programa, puedes **crear tu propia función** con `def` para no duplicar código y mantenerlo limpio y ordenado.
+
+### Ejemplo conceptual: crear una acción personalizada
+
+Por ejemplo, si necesitas dar media vuelta (girar 180º) varias veces en tu programa, puedes empaquetar los dos giros en una función:
+
+```python
+# Definición de la función (en castellano):
+def media_vuelta():
+    derecha()
+    derecha()
+
+# Uso posterior de la función:
+avanzar()
+media_vuelta()   # Llama a la función y gira 180º
+avanzar()
+```
+
+```python
+# Definición equivalente en inglés:
+def turn_around():
+    right()
+    right()
+
+forward()
+turn_around()
+forward()
+```
+
+---
+
+## Errores habituales {#laby-errores-comunes}
 
 | Error / Síntoma | Causa habitual | Solución |
-|:---|:---|:---|
-| **`IndentationError`** | Las líneas dentro del `while` o `if` no tienen sangría o tienen espacios desiguales. | Asegúrate de tabular con 4 espacios (o un tabulador) todas las líneas dentro del bloque. |
-| **Bucle infinito** (el juego no termina) | La condición del bucle siempre es verdadera porque no se realiza ninguna acción que modifique el entorno dentro del bucle. | Comprueba que dentro del `while` la hormiga avanza, gira o interactúa para cambiar su posición. |
-| **`NameError: name 'void' is not defined`** | Escribir las constantes en minúsculas (por ejemplo `void` o `pared`). | Recuerda escribir la primera letra en mayúscula: `Void`, `Pared`, `Piedra`, `Telarana`, `Salir`. |
-| **`SyntaxError` en la línea del `while` o `if`** | Olvidar los dos puntos `:` al final de la línea o usar un solo igual (`=`). | Termina siempre la línea con `:` y utiliza `==` para comparar. |
-| **Error al ejecutar `escapar()`** | La hormiga no está inmediatamente frente a la puerta, o está cargando una piedra. | Asegúrate de que `mirar() == Salir` antes de escapar y de haber soltado cualquier piedra con `dejar()`. |
+| :--- | :--- | :--- |
+| **`IndentationError`** | Líneas dentro del bloque sin sangría o con espacios desiguales. | Sangra con 4 espacios (o 1 tabulador) todas las instrucciones interiores. |
+| **`SyntaxError`** | Falta `:` al final de la línea o se ha usado `=` en lugar de `==`. | Termina las cabeceras con `:` y compara con `==`. |
+| **`NameError`** | Constantes escritas en minúsculas (ej. `void`, `wall`). | Escribe la primera letra en mayúscula (`Void`, `Pared`, `Wall`, etc.). |
+| **Bucle infinito** | La condición nunca cambia a falso porque no se avanza ni se interactúa. | Asegúrate de incluir dentro del `while` instrucciones que modifiquen la posición. |
+| **Error de idioma** | Usar `mirar()` en el juego en inglés o `look()` en castellano. | Utiliza `look()` si la interfaz está en inglés y `mirar()` si está en castellano. |
 
 ---
 
-## Resumen rápido de instrucciones
+## Resumen de instrucciones
 
-| Acción | Instrucción (Castellano) | Instrucción (Valenciano) | Instrucción (Inglés) |
-|:---|:---|:---|:---|
+| Acción | Castellano | Valenciano | Inglés |
+| :--- | :--- | :--- | :--- |
 | Avanzar 1 casilla | `avanzar()` | `endavant()` | `forward()` |
 | Girar 90º a la derecha | `derecha()` | `dreta()` | `right()` |
 | Girar 90º a la izquierda | `izquierda()` | `esquerra()` | `left()` |
-| Coger piedra frontal | `tomar()` | `agafar()` | `take()` |
-| Soltar piedra frontal | `dejar()` | `deixar()` | `drop()` |
-| Salir por la puerta frontal | `escapar()` | `escapar()` | `escape()` |
-| Inspeccionar casilla frontal | `mirar()` | `mirar()` | `look()` |
+| Recoger objeto frontal | `tomar()` | `agafar()` | `take()` |
+| Soltar objeto frontal | `dejar()` | `deixar()` | `drop()` |
+| Salir por la puerta | `escapar()` | `escapar()` | `escape()` |
+| **Inspeccionar casilla frontal** | **`mirar()`** | **`mirar()`** | **`look()`** |
 | Bucle condicional | `while condicion:` | `while condicion:` | `while condicion:` |
 | Condicional | `if condicion:` / `else:` | `if condicion:` / `else:` | `if condicion:` / `else:` |
 | Definir función propia | `def nombre():` | `def nombre():` | `def nombre():` |
