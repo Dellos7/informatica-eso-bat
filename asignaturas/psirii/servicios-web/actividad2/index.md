@@ -525,6 +525,11 @@ En el comercio electrónico es fundamental dominar las herramientas de fidelizac
 
 </details>
 
+> **Añadir Popup para el cupón de descuento**. Prompt: `Añade un popup con un diseño adaptado al diseño de mi web que aparezca al entrar en cualquier página. El cupón debe avisar al cliente que puede utilizar el cupón "ESTUDIANTE20" para obtener un 20% de descuento en su compra. Quiero poder desactivar, activar o cambiar el texto y cupón del popup desde el menú lateral de WP-Admin.`
+{: .alert-success}
+
+![Popup cupón descuento](./popup_cupon_dto.png)
+
 ---
 
 #### 6. Integración Visual y Maquetación con Blocksy (Menú, Cabecera y Escaparate en Portada)
