@@ -530,6 +530,7 @@ En el comercio electrónico es fundamental dominar las herramientas de fidelizac
 
 ![Popup cupón descuento](./popup_cupon_dto.png)
 
+
 ---
 
 #### 6. Integración Visual y Maquetación con Blocksy (Menú, Cabecera y Escaparate en Portada)
