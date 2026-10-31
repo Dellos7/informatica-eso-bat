@@ -106,6 +106,14 @@ docker compose version
 ---
 
 ### Paso B: Instalación de Docker en Lliurex (si no está instalado)
+
+**Desde Zero Center (recomendado)**
+
+1. Acceder a Zero Center
+2. Instalar Docker
+
+**Desde terminal (no recomendado)**
+
 Ejecuta los siguientes comandos en la terminal:
 
 1. **Actualizar el gestor de paquetes de Lliurex:**
@@ -128,16 +136,26 @@ Por defecto en Linux, el comando `docker` requiere permisos de administrador (`s
    sudo systemctl enable --now docker
    ```
 
-2. **Añadir tu usuario de Lliurex al grupo `docker`:**
+2. **Añadir el grupo `docker` (si no existe)**:
+   ```bash
+   sudo groupadd docker
+   ```
+
+3. **Añadir tu usuario de Lliurex al grupo `docker`:**
    ```bash
    sudo usermod -aG docker $USER
    ```
 
-3. **Aplicar los nuevos permisos de grupo:**
+4. **Aplicar los nuevos permisos de grupo:**
    ```bash
    newgrp docker
    ```
    *(También puedes simplemente cerrar sesión en Lliurex y volver a entrar para que se aplique).*
+
+5. **Comprobar que el usuario está en el grupo `docker`:**
+   ```bash
+   getent group docker
+   ```
 
 ---
 

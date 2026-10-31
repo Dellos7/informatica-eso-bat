@@ -12,6 +12,8 @@ description: Conceptos básicos de Docker, comparativa con Máquinas Virtuales y
 
 ## Actividades
 
-- [Actividad 1. Orquestación multiservicio con Docker Compose (Nextcloud + MariaDB)](./actividad1)
-- [Actividad 1 (Alternativa). Docker Compose y asistente IA para WordPress (n8n + Cloudflare Tunnel + Baserow)](./actividad1-n8n)
+<!--
+- [Actividad 1. Orquestación multiservicio con Docker Compose (Nextcloud + MariaDB)](./actividad1_nextcloud)
+-->
+- [Actividad 1. Docker Compose y asistente IA para WordPress (n8n + Cloudflare Tunnel + Baserow)](./actividad1)
 - [Actividad 2. Servidor de correo de laboratorio](./actividad2)
