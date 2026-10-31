@@ -12,19 +12,10 @@ Desplegarás **n8n Community** con **Docker Compose** y construirás el servicio
 
 Trabaja por hitos: **no pases al siguiente hasta que funcione la comprobación del anterior**. Así podrás localizar dónde falla una consulta.
 
-## 🗺️ Mapa de los siete pasos
-
-[![Mapa de los siete pasos: Docker, n8n, webhook local, túnel, IA, Baserow y WordPress.](./imagenes/01-mapa-actividad.svg)](./imagenes/01-mapa-actividad.svg)
-
-**Pulsa cualquier imagen para ampliarla.** Los esquemas de nodos son guías para construir el flujo, no capturas del editor.
-
 ## 💡 ¿Qué es n8n?
 
-**n8n** es una plataforma de automatización visual, con código fuente disponible y licencia *fair-code*. Cada nodo representa un disparador, una transformación o una acción. Los datos circulan normalmente en formato **JSON**. Un **webhook** es una dirección que recibe peticiones HTTP y puede iniciar un flujo.
-
-Usaremos **Basic LLM Chain** para enviar una consulta al modelo. **AI Agent** permite además decidir qué herramientas utilizar, requiere herramientas conectadas y quedará como ampliación.
-
-Autoalojar n8n permite controlar su instalación y sus datos locales. Aquí intervienen también WordPress, Cloudflare, el proveedor de IA y Baserow: **las consultas salen del equipo del aula**. Utiliza mensajes ficticios, sin datos personales ni contraseñas. Los servicios gratuitos tienen cuotas y sus condiciones pueden cambiar.
+> **n8n** es una plataforma de automatización visual, con código fuente disponible y licencia *fair-code*. Cada nodo representa un disparador, una transformación o una acción. Los datos circulan normalmente en formato **JSON**. Un **webhook** es una dirección que recibe peticiones HTTP y puede iniciar un flujo.
+{: .alert-info}
 
 ## 🎯 Objetivos
 
@@ -66,13 +57,13 @@ El modelo y Baserow son externos al contenedor n8n. **WordPress envía la petici
 
 #### A. Entender qué le vamos a pedir a la IA
 
-**Docker Compose lee una receta escrita en YAML**: qué aplicaciones arrancar, cómo conectarlas y qué datos conservar. No instala n8n directamente en LliureX; crea sus contenedores. Primero entiende los ingredientes del prompt y después pide el archivo.
+**Docker Compose lee un archivo escrito en YAML**: qué aplicaciones arrancar, cómo conectarlas y qué datos conservar. No instala n8n directamente en LliureX; crea sus contenedores.
 
 [![El archivo docker-compose.yml define el servicio n8n, el servicio tunnel, su red interna y el volumen persistente n8n_data.](./imagenes/03-compose.svg)](./imagenes/03-compose.svg)
 
 ##### 1. Los servicios, las imágenes y el reinicio
 
-| Parte de la receta | Qué significa en esta práctica |
+| Elemento | Qué significa |
 | :--- | :--- |
 | `services` | Agrupa las aplicaciones que gestionará Compose. Definimos dos servicios: `n8n` y `tunnel`. |
 | `image` | La plantilla descargable con el programa y sus dependencias. A partir de ella se crea un contenedor en ejecución. |
