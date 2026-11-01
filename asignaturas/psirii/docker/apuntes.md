@@ -184,3 +184,125 @@ Si todo ha ido bien, Docker descargará automáticamente la imagen ligera de pru
 | `docker rmi <Nombre_Imagen>` | Elimina una imagen local. |
 | `docker compose up -d` | Lee el archivo `docker-compose.yml` y arranca todo el stack multiservicio en segundo plano. |
 | `docker compose down` | Detiene y elimina todos los contenedores y redes creados por Docker Compose. |
+
+
+---
+
+## 🚀 5. Ejemplo Práctico con Docker Compose: Tu Suite de Herramientas Web Privada
+
+¿Cuántas veces has ido a unir dos PDFs, comprimir un trabajo para entregarlo en Aules, convertir una imagen o crear un código QR y te has encontrado con webs llenas de anuncios, que te obligan a registrarte o te bloquean con el mensaje *"Has alcanzado el límite gratuito de 2 archivos hoy"*? Además, al usar esas páginas estás subiendo tus documentos personales a servidores externos.
+
+Para comprobar el verdadero potencial de **Docker Compose**, vamos a desplegar en menos de un minuto nuestra propia **suite de herramientas web gratuitas, sin límites y 100 % privadas** (ningún archivo sale de tu ordenador), combinando tres aplicaciones reales en un solo archivo:
+
+1. 📄 **Stirling-PDF:** Tu propio *"iLovePDF"* privado. Permite unir, dividir, comprimir, rotar, pasar de imágenes/Word a PDF, añadir marcas de agua o proteger PDFs con contraseña sin ningún límite.
+2. 🛠️ **OmniTools:** Un panel todoterreno para el día a día: recortar, redimensionar y cambiar el formato de imágenes, generar códigos QR, editar audio/vídeo y manipular textos al instante.
+3. 🎨 **Excalidraw:** Una pizarra digital infinita para diseñar esquemas, mapas conceptuales y diagramas técnicos con aspecto de dibujo a mano, lista para exportar tus esquemas en PNG o SVG para los trabajos de clase.
+
+```mermaid
+graph LR
+    Nav["🌐 Tu Navegador (Lliurex)"]
+    subgraph "Docker Compose (mi-suite-docker)"
+        S1["📄 Stirling-PDF (Puerto interno: 8080)"]
+        S2["🛠️ OmniTools (Puerto interno: 80)"]
+        S3["🎨 Excalidraw (Puerto interno: 80)"]
+    end
+    V1[("💾 Volumen stirling_data")]
+
+    Nav -->|http://localhost:8081| S1
+    Nav -->|http://localhost:8082| S2
+    Nav -->|http://localhost:8083| S3
+    S1 --- V1
+```
+
+### Paso 1: Crear la carpeta del proyecto
+
+En Docker Compose, cada proyecto suele guardarse en su propia carpeta. Abre la terminal y ejecuta:
+
+```bash
+mkdir -p ~/mi-suite-docker
+cd ~/mi-suite-docker
+```
+
+### Paso 2: Crear el archivo `docker-compose.yml`
+
+Crea el archivo de configuración con el editor `nano`:
+
+```bash
+nano docker-compose.yml
+```
+
+Copia y pega la siguiente "receta" (en la terminal puedes pegar con `Ctrl + Shift + V`):
+
+```yaml
+services:
+  # 1. Editor y conversor completo de PDFs
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:latest
+    container_name: suite-pdf
+    ports:
+      - "127.0.0.1:8081:8080"
+    volumes:
+      - stirling_data:/configs
+    environment:
+      - SYSTEM_DEFAULTLOCALE=es-ES
+      - UI_APPNAME=Mi Suite PDF
+    restart: unless-stopped
+
+  # 2. Utilidades para imágenes, códigos QR, vídeo y texto
+  omnitools:
+    image: iib0011/omni-tools:latest
+    container_name: suite-omnitools
+    ports:
+      - "127.0.0.1:8082:80"
+    restart: unless-stopped
+
+  # 3. Pizarra para esquemas y diagramas
+  excalidraw:
+    image: excalidraw/excalidraw:latest
+    container_name: suite-pizarra
+    ports:
+      - "127.0.0.1:8083:80"
+    restart: unless-stopped
+
+volumes:
+  stirling_data:
+```
+
+Guarda los cambios pulsando `Ctrl + O`, confirma con `Enter` y sal de `nano` con `Ctrl + X`.
+
+> 💡 **Fíjate en los puertos (`ports`):** Tanto *OmniTools* como *Excalidraw* utilizan internamente el puerto `80` dentro de su contenedor. Si los instaláramos de forma tradicional en el mismo sistema operativo chocarían entre sí, pero gracias al **mapeo de puertos de Docker**, asignamos a cada uno una puerta distinta en nuestro ordenador (`8081`, `8082` y `8083`). Además, añadir `127.0.0.1:` delante asegura que solo tú puedas abrirlos desde tu equipo.
+
+### Paso 3: ¡Levantar toda la infraestructura con un solo comando!
+
+Asegúrate de estar dentro de `~/mi-suite-docker` y ejecuta:
+
+```bash
+docker compose up -d
+```
+
+La primera vez tardará unos segundos mientras descarga las imágenes desde *Docker Hub*. Cuando termine y muestre los tres contenedores como `Started`, abre el navegador de tu ordenador y entra en tus nuevos servicios:
+
+- 📄 **Stirling-PDF:** [http://localhost:8081](http://localhost:8081) *(Nota: al ser una aplicación Java muy completa, puede tardar unos 10-15 segundos en terminar de cargar la primera vez).*
+- 🛠️ **OmniTools:** [http://localhost:8082](http://localhost:8082)
+- 🎨 **Excalidraw:** [http://localhost:8083](http://localhost:8083)
+
+### Paso 4: Trastear y comprobar cómo funciona Docker
+
+Realiza estas pequeñas pruebas para ver en acción los conceptos del tema:
+
+1. **Pruébalas en directo:**
+   - Entra en **Stirling-PDF** (`localhost:8081`), busca la herramienta para unir, rotar o añadir marca de agua a un PDF y pruébala con cualquier documento de prueba.
+   - Entra en **OmniTools** (`localhost:8082`), genera un código QR con un enlace o convierte una imagen a otro formato.
+   - Entra en **Excalidraw** (`localhost:8083`), dibuja un esquema rápido y expórtalo como imagen.
+2. **Inspecciona los contenedores activos:**
+   Ejecuta en la terminal:
+   ```bash
+   docker compose ps
+   ```
+   Verás los tres contenedores corriendo simultáneamente, qué imagen usa cada uno y qué puertos tienen asignados.
+3. **Apaga y enciende al instante:**
+   Detén y elimina los contenedores ejecutando:
+   ```bash
+   docker compose down
+   ```
+   Comprueba que las tres páginas web dejan de funcionar inmediatamente. Ahora vuelve a escribir `docker compose up -d`: como las imágenes ya están descargadas en tu ordenador y el volumen `stirling_data` conserva tus ajustes, **los tres servidores vuelven a estar operativos en apenas 1 segundo**. ¡Compáralo con lo que tardábamos en el Tema 1 en arrancar la máquina virtual e instalar cada programa!

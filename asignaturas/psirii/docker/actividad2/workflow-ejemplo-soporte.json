@@ -1,0 +1,220 @@
+{
+  "name": "Ejemplo: Gestión de incidencias web",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## 🚀 Flujo de Ejemplo: Gestión de Incidencias Web\n\nEste flujo demuestra una automatización real y limpia:\n1. **Webhook:** Recibe datos de un formulario web en formato JSON.\n2. **Edit Fields:** Valida campos, añade timestamp y calcula prioridad.\n3. **Baserow:** Registra la fila en la base de datos persistente.\n4. **Telegram:** Alerta instantáneamente al canal de soporte.",
+        "height": 190,
+        "width": 780,
+        "color": 4
+      },
+      "id": "sticky-note-1",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "incidencias-soporte",
+        "responseMode": "onReceived",
+        "responseData": "allEntries",
+        "options": {}
+      },
+      "id": "c1f7b0a1-1234-4567-89ab-cdef01234567",
+      "name": "1. Webhook formulario (Trigger)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        260,
+        340
+      ],
+      "webhookId": "formulario-soporte-webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "field-nombre",
+              "name": "nombre",
+              "value": "={{ $json.body.nombre || 'Usuario anónimo' }}",
+              "type": "string"
+            },
+            {
+              "id": "field-email",
+              "name": "email",
+              "value": "={{ $json.body.email || 'sin-correo@ejemplo.com' }}",
+              "type": "string"
+            },
+            {
+              "id": "field-asunto",
+              "name": "asunto",
+              "value": "={{ $json.body.asunto || 'Consulta general' }}",
+              "type": "string"
+            },
+            {
+              "id": "field-mensaje",
+              "name": "mensaje",
+              "value": "={{ $json.body.mensaje || 'Sin detalles proporcionados' }}",
+              "type": "string"
+            },
+            {
+              "id": "field-timestamp",
+              "name": "fecha_registro",
+              "value": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}",
+              "type": "string"
+            },
+            {
+              "id": "field-prioridad",
+              "name": "prioridad",
+              "value": "={{ ($json.body.asunto && $json.body.asunto.toLowerCase().includes('urgente')) ? 'Alta' : 'Normal' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d2e8c1b2-2345-5678-90ab-cdef12345678",
+      "name": "2. Validar y formatear (Edit Fields)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "databaseId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "12345"
+        },
+        "tableId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "67890"
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "Nombre",
+              "fieldValue": "={{ $json.nombre }}"
+            },
+            {
+              "fieldId": "Email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "Asunto",
+              "fieldValue": "={{ $json.asunto }}"
+            },
+            {
+              "fieldId": "Mensaje",
+              "fieldValue": "={{ $json.mensaje }}"
+            },
+            {
+              "fieldId": "Prioridad",
+              "fieldValue": "={{ $json.prioridad }}"
+            },
+            {
+              "fieldId": "Fecha",
+              "fieldValue": "={{ $json.fecha_registro }}"
+            }
+          ]
+        }
+      },
+      "id": "e3f9d2c3-3456-6789-01ab-cdef23456789",
+      "name": "3. Guardar registro (Baserow / Sheets)",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        780,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-1001234567890",
+        "text": "={{ `🔔 *Nueva Incidencia Recibida*\n\n👤 *De:* ${$json.nombre} (${$json.email})\n📌 *Asunto:* ${$json.asunto}\n⚡ *Prioridad:* ${$json.prioridad}\n🕒 *Fecha:* ${$json.fecha_registro}\n\n💬 *Mensaje:*\n${$json.mensaje}` }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "f4a0e3d4-4567-7890-12ab-cdef34567890",
+      "name": "4. Notificar al equipo (Telegram / Discord)",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        780,
+        440
+      ]
+    }
+  ],
+  "pinData": {
+    "1. Webhook formulario (Trigger)": [
+      {
+        "json": {
+          "headers": {
+            "host": "localhost:5678",
+            "content-type": "application/json"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "nombre": "Lucía",
+            "email": "lucia@ejemplo.com",
+            "asunto": "Incidencia de acceso urgente",
+            "mensaje": "No puedo entrar al aula virtual con mi contraseña habitual"
+          }
+        }
+      }
+    ]
+  },
+  "connections": {
+    "1. Webhook formulario (Trigger)": {
+      "main": [
+        [
+          {
+            "node": "2. Validar y formatear (Edit Fields)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2. Validar y formatear (Edit Fields)": {
+      "main": [
+        [
+          {
+            "node": "3. Guardar registro (Baserow / Sheets)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "4. Notificar al equipo (Telegram / Discord)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b1a2c3d4-e5f6-7890-abcd-ef1234567890",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "local-instance"
+  },
+  "id": "ejemplo-gestion-incidencias",
+  "tags": []
+}
