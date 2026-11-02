@@ -8,14 +8,14 @@ description: Creación del flujo en n8n para el chatbot de tu web personal con t
 
 # Actividad 2. Agente de IA con Qdrant en n8n integrado con WordPress y Baserow
 
-> [📖 **Apuntes: Introducción a Docker y Contenerización**](../apuntes) · [⬅️ **Actividad 1: Despliegue de n8n y Cloudflare Tunnel**](../actividad1)
+> [📖 **Apuntes: Introducción a Docker y Contenerización**](../apuntes) · [⬅️ **Actividad 1: Despliegue de n8n y túnel con Pinggy**](../actividad1)
 {: .alert-info}
 
-Partiendo del entorno de **n8n** y **Cloudflare Tunnel** que desplegaste en la **[Actividad 1](../actividad1)**, en esta segunda actividad incorporarás un **asistente virtual con IA** en tu **web personal con tienda online (WooCommerce)** creada en el **[Tema 1 (Servicios Web)](../../servicios-web/)**. Para ello instalarás el widget de chat en tu WordPress, conectarás su webhook con n8n, ampliarás tu `docker-compose.yml` con la base de datos vectorial **Qdrant**, cargarás una base de conocimiento (**RAG**) adaptada a tu perfil profesional y a los productos de tu tienda, y registrarás todas las conversaciones en **Baserow**.
+Partiendo del entorno de **n8n** y el túnel inverso de **Pinggy** que desplegaste y automatizaste en la **[Actividad 1](../actividad1)**, en esta segunda actividad incorporarás un **asistente virtual con IA** en tu **web personal con tienda online (WooCommerce)** creada en el **[Tema 1 (Servicios Web)](../../servicios-web/)**. Para ello instalarás el widget de chat en tu WordPress, conectarás su webhook con n8n a través del túnel de Pinggy, ampliarás tu `docker-compose.yml` con la base de datos vectorial **Qdrant**, cargarás una base de conocimiento (**RAG**) adaptada a tu perfil profesional y a los productos de tu tienda, y registrarás todas las conversaciones en **Baserow**.
 
 ## 🎯 Objetivos
 
-1. Aplicar al comienzo de cada clase el protocolo de arranque para actualizar la URL temporal de **Cloudflare Tunnel** en `.env` antes de levantar `n8n`.
+1. Aplicar al comienzo de cada clase el protocolo de arranque para actualizar la URL temporal de **Pinggy** en `.env` antes de levantar `n8n` (y renovarla si se superan los 60 minutos de la sesión gratuita).
 2. Configurar el plugin de chat en tu **web con tienda en WordPress (Tema 1)**, analizar su arquitectura servidor a servidor y conectarlo con un webhook de prueba en n8n.
 3. Ampliar el archivo `docker-compose.yml` añadiendo el servicio vectorial **Qdrant** (`qdrant`) y su volumen persistente (`qdrant_data`).
 4. Diseñar e ingestar en **Qdrant** la base de conocimiento de tu web personal y tu tienda (perfil, catálogo de productos y precios, condiciones de entrega/pago y soporte) usando *embeddings* gratuitos (**Hugging Face** o **Gemini**).
@@ -24,34 +24,52 @@ Partiendo del entorno de **n8n** y **Cloudflare Tunnel** que desplegaste en la *
 
 ## 🧭 Recorrido de una consulta
 
-[![Arquitectura: el navegador consulta a WordPress, que contacta con n8n por Cloudflare; n8n consulta a Qdrant en la red de Docker y utiliza un modelo y Baserow externos.](./imagenes/02-arquitectura.svg)](./imagenes/02-arquitectura.svg)
+[![Arquitectura: el navegador consulta a WordPress, que contacta con n8n por el túnel de Pinggy; n8n consulta a Qdrant en la red de Docker y utiliza un modelo y Baserow externos.](./imagenes/02-arquitectura.svg)](./imagenes/02-arquitectura.svg)
 
-Tanto `n8n`, `qdrant` como `cloudflared` se ejecutan en tu red local de Docker, mientras que el proveedor del modelo de IA, los *embeddings* y Baserow son servicios externos. **WordPress envía la petición desde su servidor PHP**, no desde el navegador del visitante.
+Tanto `n8n`, `qdrant` como el contenedor `tunnel` (Pinggy SSH por el puerto `443`) se ejecutan en tu red local de Docker, mientras que el proveedor del modelo de IA, los *embeddings* y Baserow son servicios externos. **WordPress envía la petición desde su servidor PHP**, no desde el navegador del visitante.
+
+```mermaid
+flowchart LR
+    V["👤 Visitante<br/>(Navegador)"] -->|"1. Escribe en el widget"| WP["🌐 WordPress (PHP)<br/>Plugin Make Chatbot"]
+    WP -->|"2. POST HTTPS"| PG["☁️ Pinggy<br/>(https://...free.pinggy.net)"]
+    subgraph Docker["🐳 Tu equipo en el aula (Red interna de Docker)"]
+        TUN["🔑 Contenedor tunnel<br/>(SSH -p 443 -R0:n8n:5678)"]
+        N8N["⚙️ n8n (:5678)<br/>Webhook + AI Agent"]
+        QD[("🧠 Qdrant (:6333)<br/>Base vectorial RAG")]
+        TUN -->|"3. Red Docker"| N8N
+        N8N <-->|"4. Consulta vectores"| QD
+    end
+    PG -.->|"Túnel SSH inverso"| TUN
+    N8N <-->|"5. Razona y redacta"| LLM["🤖 Modelo IA + Embeddings<br/>(Groq / Gemini / HF)"]
+    N8N -->|"6. Guarda historial"| BR[("📊 Baserow<br/>Tabla Conversaciones")]
+```
 
 ---
 
 ## 🔄 Protocolo de inicio al comenzar cada clase
 
-Como vimos en la Actividad 1, cada vez que se arranca el contenedor `tunnel`, Cloudflare asigna un dominio `https://....trycloudflare.com` nuevo. **Al empezar cada sesión en el aula**, sigue siempre este orden en `~/docker-n8n`:
+Como vimos en la Actividad 1, cada vez que se arranca el contenedor `tunnel`, **Pinggy** asigna un dominio temporal nuevo (`https://....free.pinggy.net`, con una duración de **60 minutos** en su modalidad gratuita). **Al empezar cada sesión en el aula**, sigue siempre este orden en `~/docker-n8n`:
 
-1. **Levanta primero el túnel y copia la URL del día:**
+1. **Levanta primero el túnel de Pinggy y copia la URL del día:**
    ```bash
    cd ~/docker-n8n
    docker compose up -d tunnel
-   docker compose logs --tail=100 tunnel
+   sleep 4
+   docker compose logs --tail=30 tunnel
    ```
-2. **Actualiza el archivo `.env` con la nueva URL (terminada en `/`):**
+   *(Recuerda que también podrías abrirlo manualmente en otra terminal con `ssh -p 443 -R0:127.0.0.1:5678 free.pinggy.io`, aunque el servicio `tunnel` de Compose lo automatiza en segundo plano).*
+2. **Actualiza el archivo `.env` con la nueva URL de Pinggy (terminada en `/`):**
    ```bash
    nano .env
    ```
    ```dotenv
-   N8N_WEBHOOK_URL=https://ejemplo-palabras-aleatorias.trycloudflare.com/
+   N8N_WEBHOOK_URL=https://ejemplo-subdominio.free.pinggy.net/
    ```
 3. **Arranca `n8n` (y `qdrant` cuando lo hayas añadido en el Paso 3):**
    ```bash
    docker compose up -d n8n
    ```
-   *(Si `n8n` ya estaba encendido, aplica el nuevo `.env` ejecutando `docker compose up -d --no-deps n8n`).*
+   *(Si `n8n` ya estaba encendido o has tenido que renovar el túnel tras 60 minutos con `docker compose restart tunnel`, aplica el nuevo `.env` ejecutando `docker compose up -d --no-deps n8n`).*
 4. **Cuando ya tengas el plugin configurado en WordPress:** recuerda actualizar también el nuevo dominio en **WordPress → Ajustes → Make Chatbot**.
 
 ---
@@ -105,7 +123,7 @@ El plugin no añade una cabecera secreta al webhook. Por eso esta configuración
 
 [![Prueba inicial: el Webhook recibe la pregunta y el nodo Responder al chat devuelve un texto fijo con código 200.](./imagenes/05-webhook-local.svg)](./imagenes/05-webhook-local.svg)
 
-Antes de añadir la inteligencia artificial, vamos a construir el esqueleto del flujo en n8n y verificar que el widget de tu WordPress se comunica con él a través del túnel de Cloudflare.
+Antes de añadir la inteligencia artificial, vamos a construir el esqueleto del flujo en n8n y verificar que el widget de tu WordPress se comunica con él a través del túnel de Pinggy.
 
 #### A. Construir el webhook con respuesta fija en n8n
 
@@ -134,13 +152,13 @@ curl --max-time 50 -i -X POST http://localhost:5678/webhook-test/chat-asistente 
 
 Debes recibir un código HTTP `200 OK` y el texto `Hola. El webhook funciona correctamente.`. En el lienzo de n8n verás que el nodo Webhook se ilumina en verde: despliega `body` y comprueba que aparecen `message`, `thread_id` y `page_url`.
 
-#### C. Conectar WordPress con n8n a través del túnel y hacer la primera prueba real
+#### C. Conectar WordPress con n8n a través del túnel de Pinggy y hacer la primera prueba real
 
 Ha llegado el momento de conectar tu WordPress con n8n por primera vez:
 
-1. En el nodo **Webhook** de n8n, copia la **Test URL** pública (que muestra tu dominio de Cloudflare):
+1. En el nodo **Webhook** de n8n, copia la **Test URL** pública (que muestra tu dominio de Pinggy):
    ```text
-   https://ejemplo-palabras-aleatorias.trycloudflare.com/webhook-test/chat-asistente
+   https://ejemplo-subdominio.free.pinggy.net/webhook-test/chat-asistente
    ```
    *(Si mostrara `localhost`, revisa que hayas seguido el **Protocolo de inicio de clase** del principio de la página).*
 2. Entra en el panel de tu WordPress y ve a **Ajustes → Make Chatbot**.
@@ -151,7 +169,7 @@ Ha llegado el momento de conectar tu WordPress con n8n por primera vez:
    * En WordPress, la burbuja del chat responderá en directo con el texto fijo: **`Hola. El webhook funciona correctamente.`**
    * En n8n, la escucha se completa y muestra la petición real enviada por PHP desde WordPress.
 
-**Comprobación:** Tu web en WordPress y n8n ya se comunican en vivo mediante Cloudflare Tunnel devolviendo la respuesta fija inicial.
+**Comprobación:** Tu web en WordPress y n8n ya se comunican en vivo mediante el túnel de Pinggy devolviendo la respuesta fija inicial.
 
 ### Paso 3: Construir el Agente de IA con base de conocimiento de tu web y tienda en Qdrant
 
@@ -245,9 +263,11 @@ Para que nuestro **AI Agent** pueda consultar una base de conocimiento vectorial
          - qdrant_data:/qdrant/storage
 
      tunnel:
-       image: cloudflare/cloudflared:latest
+       image: alpine:latest
        restart: "no"
-       command: tunnel --no-autoupdate --url http://n8n:5678
+       command: >
+         sh -c "apk add --no-cache openssh-client >/dev/null &&
+         ssh -p 443 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 -R0:n8n:5678 free.pinggy.io"
 
    volumes:
      n8n_data:
@@ -431,7 +451,7 @@ Para comprobarlo, anota el Table ID correcto, sustituye temporalmente su valor p
 1. En n8n, guarda el flujo y pulsa el interruptor **Publish** (o **Active / Activar**).
 2. En el nodo Webhook, copia la **Production URL**:
    ```text
-   https://ejemplo-palabras-aleatorias.trycloudflare.com/webhook/chat-asistente
+   https://ejemplo-subdominio.free.pinggy.net/webhook/chat-asistente
    ```
 3. En tu WordPress, ve a **Ajustes → Make Chatbot**, sustituye la Test URL por la **Production URL** y guarda cambios.
 4. Abre la página de tu web o tienda en WordPress y envía **dos mensajes consecutivos sin necesidad de pulsar Listen for test event**. Ambos deben recibir respuesta del agente sobre tu tienda y registrarse en Baserow.
@@ -452,12 +472,13 @@ docker compose down
 
 Ahora levanta el entorno siguiendo el **orden de inicio de cada clase**:
 
-1. **Primero el túnel:**
+1. **Primero el túnel de Pinggy:**
    ```bash
    docker compose up -d tunnel
-   docker compose logs --tail=100 tunnel
+   sleep 4
+   docker compose logs --tail=30 tunnel
    ```
-2. **Segundo actualiza `.env`** con el nuevo dominio asignado por Cloudflare:
+2. **Segundo actualiza `.env`** con el nuevo dominio asignado por Pinggy:
    ```bash
    nano .env
    ```
@@ -488,7 +509,7 @@ Si también terminas el trabajo local, ejecuta `docker compose down` sin `-v`. G
 
 | Síntoma | Qué comprobar |
 | :--- | :--- |
-| Error de connection refused / timeout en WordPress al empezar otra clase | Recuerda que la URL de Cloudflare cambia en cada sesión: actualiza `.env`, aplica `docker compose up -d --no-deps n8n` y actualiza también la URL del webhook en **WordPress → Ajustes → Make Chatbot**. |
+| Error de connection refused / timeout en WordPress al empezar otra clase o tras 60 min | Recuerda que la URL gratuita de Pinggy dura 60 minutos y cambia en cada sesión: reinicia o levanta `tunnel`, copia la nueva URL de `docker compose logs --tail=30 tunnel` en `.env`, aplica `docker compose up -d --no-deps n8n` y actualiza la URL del webhook en **WordPress → Ajustes → Make Chatbot**. |
 | Error de conexión con Qdrant en n8n | La credencial en n8n debe usar `http://qdrant:6333` (red interna de Docker), nunca `http://localhost:6333`. |
 | Error de dimensión de vectores en Qdrant | Debes conectar exactamente el mismo modelo de **Embeddings** tanto al insertar documentos como al buscarlos desde el agente. Si cambiaste de proveedor (p. ej. de Gemini a Hugging Face), borra la colección en `http://localhost:6333/dashboard` y vuelve a ejecutar la rama de ingesta. |
 | Webhook con `404` | Revisa `POST`, ruta y dominio. Con `/webhook-test/`, activa escucha; con `/webhook/`, publica el flujo. |
