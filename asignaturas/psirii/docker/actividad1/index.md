@@ -11,7 +11,7 @@ description: Despliegue de n8n con Docker Compose, creación de un primer flujo 
 > [📖 **Apuntes: Introducción a Docker y Contenerización**](../apuntes)
 {: .alert-info}
 
-En esta primera actividad desplegarás **n8n Community** mediante **Docker Compose** y construirás tu primer flujo de automatización conectando un **Webhook** con la API pública de **PokéAPI**. Una vez que entiendas cómo funciona n8n en local, descubrirás qué es un **túnel inverso** y cómo permite publicar temporalmente tu servicio en Internet sin abrir puertos en el router del centro: primero lo probarás de forma manual por terminal con **Pinggy** y después lo automatizarás como un servicio más dentro de tu `docker-compose.yml`. Finalmente, verificarás la persistencia de datos del volumen **`n8n_data`**. En la **[Actividad 2](../actividad2)** conectaremos esta infraestructura con WordPress, Qdrant y un Agente de IA.
+En esta primera actividad desplegarás **n8n Community** mediante **Docker Compose** y construirás tu primer flujo de automatización conectando un **Webhook** con la API pública de **PokéAPI**. Una vez que entiendas cómo funciona n8n en local, descubrirás qué es un **túnel inverso** y cómo permite publicar temporalmente tu servicio en Internet sin abrir puertos en el router del centro: primero lo probarás de forma manual por terminal con **Pinggy** y después lo automatizarás como un servicio más dentro de tu `docker-compose.yml`. Finalmente, verificarás la persistencia de datos del volumen **`n8n_data`**. En la Actividad 2 conectaremos esta infraestructura con WordPress, Qdrant y un Agente de IA.
 
 ## 🎯 Objetivos
 
@@ -31,12 +31,7 @@ En esta primera actividad desplegarás **n8n Community** mediante **Docker Compo
 
 Para entender cómo opera n8n en entornos reales, veamos un caso habitual de automatización: la recepción y tramitación de un formulario de soporte o contacto desde una web.
 
-```mermaid
-flowchart LR
-    A["1. Webhook formulario<br/>(Trigger)"] --> B["2. Validar y formatear<br/>(Edit Fields)"]
-    B --> C["3. Guardar registro<br/>(Baserow / Sheets)"]
-    B --> D["4. Notificar al equipo<br/>(Telegram / Discord)"]
-```
+![Ejemplo incidencias web n8n](./ejemplo_workflow_n8n.png)
 
 En este flujo intervienen los tres tipos esenciales de nodos:
 
@@ -55,7 +50,6 @@ En este flujo intervienen los tres tipos esenciales de nodos:
    * **Notificación instantánea:** Lanza un mensaje al canal del equipo técnico en **Telegram** o **Discord** avisando del nuevo ticket:  
      *`🔔 Nueva incidencia de Lucía (lucia@ejemplo.com): "No puedo entrar al aula virtual"`*.
 
-![Ejemplo incidencias web n8n](./ejemplo_workflow_n8n.png)
 
 ---
 
@@ -223,6 +217,7 @@ curl -s -X POST http://localhost:5678/webhook-test/prueba \
 ```
 
 3. Verás que n8n recibe la petición, consulta la PokéAPI en Internet y te devuelve en la terminal el JSON limpio:
+{:start="3"}
 
 ```json
 {
@@ -235,12 +230,14 @@ curl -s -X POST http://localhost:5678/webhook-test/prueba \
 ```
 
 4. Ahora extrae automáticamente la URL del campo `imagen` desde `pokemon.json`, descarga el PNG y ábrelo en el visor de LliureX con un solo comando:
+{:start="4"}
 
 ```bash
 curl -sL "$(grep -o 'https://[^"]*' pokemon.json)" -o pokemon.png && xdg-open pokemon.png
 ```
 
 5. Regresa a la pestaña de n8n: verás los cuatro nodos marcados en verde y podrás hacer clic en **HTTP Request** y **Edit Fields** para comparar el JSON gigante que devolvió la API original con el resumen limpio que has generado.
+{:start="5"}
 
 ---
 
