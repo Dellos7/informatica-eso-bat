@@ -28,12 +28,12 @@ Antes de realizar las tareas, **lee atentamente**:
 
 1. Abre la terminal en tu ordenador de clase.
 2. **Conéctate por SSH** al servidor de la clase utilizando tus credenciales:
-   - **IP del servidor**: `10.2.5.50`
+   - **IP del servidor**: `10.2.5.166`
    - **Usuario**: tu usuario asignado de inicio de sesión en la clase
    - **Contraseña**: tu contraseña de inicio de sesión en la clase
    - Sintaxis del comando:  
      ```bash
-     ssh usuario@10.2.5.50
+     ssh usuario@10.2.5.166
      ```
      *(Sustituye `usuario` por tu nombre de usuario real).*
 3. **Recordatorios importantes sobre SSH**:
@@ -220,7 +220,7 @@ En cada una de las 5 carpetas finales donde se encuentran las imágenes, debes c
 1. En tu ordenador local, sitúate en la carpeta donde desees guardar la actividad (por ejemplo: `~/Documentos/Tema 1/` o tu carpeta personal).
 2. Descarga el archivo `actividad-4.zip` desde tu carpeta en el servidor remoto a tu equipo utilizando el comando **`scp`**:
    ```bash
-   scp usuario@10.2.5.50:~/actividad-4.zip .
+   scp usuario@10.2.5.166:~/actividad-4.zip .
    ```
    *(Sustituye `usuario` por tu nombre de usuario en el servidor. El punto `.` al final indica que el archivo se guardará en la carpeta local actual).*
 3. Introduce tu contraseña cuando el sistema la solicite (recuerda que tampoco se verán caracteres mientras escribes).
@@ -252,7 +252,7 @@ Sube en esta tarea de **Aules**:
 
 | Criterio | 0 pts | Nivel intermedio bajo | Nivel intermedio alto | Nivel excelente |
 |----------|-------|-----------------------|-----------------------|-----------------|
-| **Paso 1 – Conexión SSH al servidor** (máx. 1 pt) | No se conecta por SSH o no aporta captura. | Intenta conectarse pero comete errores de usuario/IP o no logra acceder (0,25 pts). | Se conecta por SSH pero la captura no muestra claramente el usuario o el prompt del servidor (0,5 pts). | Conexión correcta por SSH al servidor (`10.2.5.50`) con el usuario asignado y captura donde se aprecia el prompt del servidor y el usuario (1 pt). |
+| **Paso 1 – Conexión SSH al servidor** (máx. 1 pt) | No se conecta por SSH o no aporta captura. | Intenta conectarse pero comete errores de usuario/IP o no logra acceder (0,25 pts). | Se conecta por SSH pero la captura no muestra claramente el usuario o el prompt del servidor (0,5 pts). | Conexión correcta por SSH al servidor (`10.2.5.166`) con el usuario asignado y captura donde se aprecia el prompt del servidor y el usuario (1 pt). |
 | **Paso 2 – Preparación y descarga** (máx. 1 pt) | No crea la carpeta ni descarga el archivo en el servidor. | Crea la carpeta pero no descarga por terminal o la extracción es incompleta (0,25 pts). | Descarga y descomprime las 17 fotos, pero comete algún fallo menor en la ruta o falta la comprobación (0,5 pts). | Crea la carpeta `Actividad-4` en el servidor, descarga `frutas_y_verduras.zip` por terminal con `wget`, extrae las 17 fotos y aporta captura clara con usuario visible (1 pt). |
 | **Paso 3 – Estructura base de carpetas** (máx. 1,5 pts) | No crea la jerarquía de carpetas en el servidor o no entrega captura. | Crea menos de la mitad de las carpetas o con nombres y ubicaciones erróneas (0,4 pts). | Crea casi todas las carpetas, pero falta alguna subcarpeta o hay errores con los espacios o mayúsculas (0,8 pts). | Crea la jerarquía completa de carpetas según el esquema en el servidor de forma limpia (usando comillas para espacios) y aporta captura de comprobación con usuario (1,5 pts). |
 | **Paso 4 – Organización de fotos** (máx. 2 pts) | No clasifica las imágenes o no entrega captura. | Mueve menos de la mitad de las fotos, comete errores de categoría o quedan fotos sueltas fuera (0,5 pts). | Clasifica la mayoría de las 17 fotos en sus carpetas correctas, pero alguna foto queda suelta o mal ubicada (1 pt). | Mueve y clasifica correctamente las 17 imágenes en sus carpetas correspondientes mediante comandos `mv`, sin dejar ninguna foto suelta en la raíz, con captura clara (2 pts). |
