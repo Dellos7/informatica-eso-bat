@@ -16,4 +16,4 @@ description: Operaciones básicas con archivos y carpetas (1º ESO)
 ## 📤 Entregas
 
 > Deberás entregar en Aules:
-- **Actividad 1:** El documento de ejercicios del Tema 2 resuelto (`.odt`).
+- **Actividad 1:** El documento de ejercicios del Tema 2 resuelto (`.pdf`).

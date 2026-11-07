@@ -73,20 +73,14 @@ Para **abrir el explorador Dolphin desde LliureX** se ha de pulsar el **botón [
 
 Una vez que sabemos cómo abrir el explorador de ficheros Dolphin, vamos a estudiar su **entorno de trabajo**. La siguiente imagen muestra dicho entorno y las zonas más importantes vienen numeradas del 1 al 6:
 
-![](images/Entorno_de_trabajo_de_Dolphin.jpg)
+![](images/dolphin_llx23.png)
 
 1. **La barra [Títulos]:**Muestra el nombre de la carpeta activa.
 2. **La barra [Herramientas]:** Contiene una serie de botones que son Accesos Rápidos a las principales acciones del menú.
 3. **La barra [Direcciones]:** Muestra “entre otra información” el nombre de la carpeta activa.
 4. **El panel [Lugares]:** Por defecto muestra una serie de “enlaces” a determinadas carpetas.
 5. **El área [Ficheros y Carpetas]:** Muestra el contenido de la carpeta activa. Las carpetas se indican con una miniatura de una carpeta, los ficheros, utilizan diferentes miniaturas en función del contenido:
-
-![](images/Carpetas_y_Ficheros.jpg)
-{: .img}
-
-**6. La barra [Estado]:** Muestra información “variada”, dependiendo de la acción que esté realizando el usuario: espacio libre en el dispositivo de almacenamiento,...
-
-[🫱 Actividad](https://es.educaplay.com/juego/13429004-entorno_de_trabajo_de_dolphin.html)
+6. **La barra [Estado]:** Muestra información “variada”, dependiendo de la acción que esté realizando el usuario: espacio libre en el dispositivo de almacenamiento,...
 
 > **EJERCICIO 2:** Realiza este ejercicio en tu libreta digital que has descargado desde la plataforma Web. Recuerda que más tarde el profesor puede preguntarte.
 {: .alert-success}

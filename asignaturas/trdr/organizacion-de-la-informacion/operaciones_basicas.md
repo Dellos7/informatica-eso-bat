@@ -79,11 +79,11 @@ Los archivos de datos no se suelen crear vacíos en Dolphin; se originan en las 
 
 Es imprescindible distinguir entre estas dos operaciones para evitar pérdidas de archivos o copias duplicadas innecesarias:
 
-> [!IMPORTANT]
 > - **Copiar (`Ctrl + C` -> `Ctrl + V`):** Crea un **duplicado exacto**. El elemento original **permanece en su lugar de origen** y aparece una copia en la carpeta de destino.
 > - **Mover (`Ctrl + X` -> `Ctrl + V` o arrastrar):** **Traslada** el elemento. Desaparece de la carpeta de origen y se reubica únicamente en la carpeta de destino.
 >
 > *Nota:* Al mover o copiar una carpeta, **todas las subcarpetas y archivos que contiene en su interior viajan con ella**.
+{: .alert-error}
 
 ### Pasos para Mover (Cortar y Pegar):
 1. Selecciona el archivo o carpeta (o varios con `Ctrl` / `Shift`).
