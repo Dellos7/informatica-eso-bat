@@ -16,7 +16,7 @@ Antes de realizar las tareas, **lee atentamente**:
 
 * Realiza todas las tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}.
 * **DIFERENCIA ENTRE SERVIDOR Y LOCAL**{: .verde}: Presta mucha atención a en qué máquina estás ejecutando cada comando. Los pasos del 1 al 7 se ejecutan **DENTRO DEL SERVIDOR REMOTO** tras haberte conectado por SSH. El paso final de descarga con SCP se ejecuta **EN TU TERMINAL LOCAL** (en tu ordenador de clase).
-* **CONSULTA LOS APUNTES**{: .verde}: Revisa los apuntes de comandos y los apuntes de SSH y SCP para recordar la sintaxis, parámetros y funcionamiento de cada herramienta.
+* **CONSULTA LOS APUNTES**{: .verde}: Revisa los apuntes de comandos y los **[👉 apuntes de SSH y SCP 👈](../apuntes_ssh_scp.md)** para recordar la sintaxis, parámetros y funcionamiento de cada herramienta.
 * **ATENCIÓN A LOS NOMBRES CON ESPACIOS**{: .rojo}: En la terminal bash, cualquier carpeta o archivo cuyo nombre contenga espacios (como `"Alto contenido en grasa"`, `"Frutos secos"`, `"Sin cáscara"` o `"Crecen debajo de la tierra"`) debe escribirse **obligatoriamente entre comillas**.
 * **HAZ CAPTURAS DE PANTALLA DE LOS COMANDOS QUE VAS EJECUTANDO**{: .rojo}: A lo largo de la actividad debes ir haciendo las capturas de pantalla solicitadas donde se vean claramente los comandos introducidos y **tu nombre de usuario** (tanto en el servidor remoto como en local).
 
