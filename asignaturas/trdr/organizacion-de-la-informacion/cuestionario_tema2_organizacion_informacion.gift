@@ -1,0 +1,219 @@
+// =============================================================================
+// Cuestionario del Tema 2: Organización de la información
+// Asignatura: Taller de Relaciones Digitales Responsables (TRDR) - 1º ESO
+// Formato: GIFT (Moodle / Aules) - 100% Determinista y Autocorregible
+// Preguntas cerradas: Opción múltiple, Selección múltiple, Emparejamiento y V/F
+// Sin respuestas cortas de texto libre para evitar errores de mecanografía o tildes
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// P01: Concepto de fichero y carpeta
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P01 - Diferencia entre fichero y carpeta:: ¿Cuál es la diferencia fundamental entre un fichero (archivo) y una carpeta (directorio) en un sistema operativo? {
+	=El fichero empaqueta los datos de un trabajo concreto (texto, dibujo, audio...), mientras que la carpeta actúa como un contenedor para organizar ficheros y otras subcarpetas #¡Correcto! Los trabajos se guardan en ficheros y las carpetas sirven como cajones organizativos.
+	~Las carpetas solo pueden almacenar canciones y los ficheros solo pueden guardar fotografías #Incorrecto. Tanto los ficheros como las carpetas pueden utilizarse con cualquier tipo de información digital.
+	~Un fichero puede contener cientos de carpetas en su interior, pero una carpeta nunca puede contener otra carpeta dentro #Incorrecto. Es justo al revés\: las carpetas pueden contener tanto ficheros como otras subcarpetas.
+	~Los ficheros son componentes físicos del ordenador y las carpetas son cables de conexión a internet #Incorrecto. Ambos son elementos lógicos de organización de la información en el sistema operativo.
+}
+
+// -----------------------------------------------------------------------------
+// P02: Soportes de almacenamiento (HDD, SSD, USB y Nube)
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P02 - Soportes de almacenamiento:: Relaciona cada soporte o dispositivo de almacenamiento con su característica principal\: {
+	=Disco de estado sólido (SSD) -> Almacenamiento electrónico con memoria flash sin piezas móviles, muy rápido y silencioso
+	=Disco duro tradicional (HDD) -> Almacenamiento magnético con platos mecánicos giratorios, económico pero más lento
+	=Memoria USB (Pendrive) -> Dispositivo portátil y ligero ideal para transportar documentos de un equipo a otro
+	=Almacenamiento en la nube (Aules / Drive) -> Servidores remotos en internet accesibles desde cualquier lugar y dispositivo
+}
+
+// -----------------------------------------------------------------------------
+// P03: Explorador de ficheros frente a Navegador web
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P03 - Explorador de ficheros vs Navegador web:: ¿Cuál es la aplicación que se utiliza en LliureX como Explorador de Ficheros y por qué no debe confundirse con un Navegador Web? {
+	=Es Dolphin, y sirve para explorar los archivos y carpetas de nuestros dispositivos de almacenamiento, mientras que los navegadores (Chrome, Firefox) sirven para acceder a Internet #¡Correcto! Dolphin gestiona los archivos locales y de red del sistema, mientras que Firefox o Chrome son navegadores web.
+	~Es Google Chrome, y sirve únicamente para borrar carpetas del disco duro sin conexión #Incorrecto. Google Chrome es un navegador web para acceder a internet, no el explorador de archivos de LliureX.
+	~Es LibreOffice Writer, y sirve para escuchar música almacenada en un pendrive #Incorrecto. LibreOffice Writer es un procesador de textos.
+	~Es Okular, y se utiliza exclusivamente para programar videojuegos en red #Incorrecto. Okular es el visor de documentos PDF en LliureX.
+}
+
+// -----------------------------------------------------------------------------
+// P04: La carpeta Documentos en el aula de informática (LliureX)
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P04 - Importancia de la carpeta Documentos en clase:: En los ordenadores del aula con LliureX, ¿por qué es tan importante guardar todos los trabajos escolares dentro de la carpeta "Documentos" de tu Carpeta Personal? {
+	=Porque el contenido de la carpeta Documentos se almacena en el disco duro del servidor, permitiéndote encontrar tus trabajos aunque te sientes en otro ordenador del aula #¡Correcto! Al guardarse en el servidor del centro, tus archivos de Documentos te acompañan en cualquier equipo donde inicies sesión.
+	~Porque el resto de carpetas del ordenador se autodestruyen cada cinco minutos #Incorrecto. Las demás carpetas no se autodestruyen, pero se guardan solo en el disco local de ese ordenador concreto.
+	~Porque la carpeta Documentos traduce automáticamente los ejercicios al inglés #Incorrecto. Las carpetas no traducen el contenido de los archivos.
+	~Porque en LliureX está bloqueado por ley guardar archivos en subcarpetas #Incorrecto. Puedes y debes crear subcarpetas organizadas dentro de Documentos.
+}
+
+// -----------------------------------------------------------------------------
+// P05: Partes del entorno de trabajo de Dolphin
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P05 - Zonas del entorno de Dolphin:: Relaciona cada zona de la ventana del explorador de ficheros Dolphin con su función\: {
+	=Barra de Direcciones -> Muestra la ruta y el nombre de la carpeta activa permitiendo saltar a carpetas anteriores
+	=Panel Lugares -> Panel lateral que muestra enlaces directos a carpetas clave como Documentos, Descargas o Papelera
+	=Área de Ficheros y Carpetas -> Zona central donde se visualizan los iconos y miniaturas del contenido de la carpeta activa
+	=Barra de Estado -> Parte inferior que informa del número de elementos, control de zoom y espacio libre disponible
+}
+
+// -----------------------------------------------------------------------------
+// P06: Sintaxis de una ruta de acceso
+// Tipo: Verdadero / Falso
+// -----------------------------------------------------------------------------
+::P06 - Sintaxis de la ruta de acceso:: En una ruta de acceso como "Carpeta personal/Documentos/1ESO/TRDR/Tema_2/Notas.txt", los nombres de las carpetas que forman el camino se unen mediante el carácter barra inclinada ("/") y el último elemento corresponde al fichero o carpeta buscado. {
+	TRUE#¡Correcto, es Verdadero! La ruta indica paso a paso las carpetas que debemos recorrer separadas por "/" hasta llegar al elemento final.
+}
+
+// -----------------------------------------------------------------------------
+// P07: Creación de carpetas frente a creación de archivos
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P07 - Crear carpetas frente a crear archivos:: ¿Cuál es la diferencia práctica entre cómo se crea una carpeta nueva y cómo se suele crear un archivo de trabajo (como un dibujo o una redacción)? {
+	=Las carpetas se crean directamente en Dolphin (con F10 o Crear nuevo), mientras que los archivos se crean dentro de su aplicación (Writer, KWrite, GIMP...) al usar Archivo > Guardar #¡Correcto! Las carpetas son contenedores que creamos en el explorador, mientras que los archivos se originan al guardar nuestro trabajo desde un programa.
+	~Tanto las carpetas como los dibujos de GIMP se crean pulsando la tecla Supr en el escritorio #Incorrecto. La tecla Supr sirve para enviar elementos a la papelera de reciclaje.
+	~Los archivos de texto y dibujo solo se pueden descargar ya hechos desde internet #Incorrecto. Podemos crear nuestros propios archivos desde aplicaciones como KWrite, Writer o GIMP.
+	~Las carpetas solo se pueden crear desde el reproductor multimedia VLC #Incorrecto. VLC es un reproductor de audio y vídeo, no un gestor de carpetas.
+}
+
+// -----------------------------------------------------------------------------
+// P08: Diferencia entre Copiar y Mover
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P08 - Copiar frente a Mover:: ¿Qué diferencia exacta existe entre las operaciones de COPIAR (Ctrl + C y Ctrl + V) y MOVER (Ctrl + X y Ctrl + V) un archivo a otra carpeta? {
+	=Copiar crea un duplicado manteniendo el archivo original en la carpeta de origen, mientras que Mover traslada el archivo desapareciendo de la carpeta de origen #¡Correcto! Copiar duplica el elemento (tendrás dos iguales) y Mover lo cambia de ubicación (solo queda en el destino).
+	~Mover crea tres copias idénticas del archivo y Copiar lo envía a la papelera de reciclaje #Incorrecto. Ninguna de las dos operaciones envía archivos a la papelera.
+	~Copiar solo funciona con archivos de música y Mover solo funciona con carpetas vacías #Incorrecto. Ambas operaciones funcionan con cualquier tipo de archivo o carpeta (incluyendo todo su contenido).
+	~No existe ninguna diferencia, ambas combinaciones hacen exactamente lo mismo #Incorrecto. Una duplica el elemento y la otra lo traslada de sitio.
+}
+
+// -----------------------------------------------------------------------------
+// P09: Arrastrar y soltar una carpeta con contenido
+// Tipo: Verdadero / Falso
+// -----------------------------------------------------------------------------
+::P09 - Mover o copiar una carpeta con contenido:: Cuando movemos o copiamos una carpeta de un lugar a otro en Dolphin, únicamente se traslada la carpeta vacía y todos los archivos que tenía dentro se pierden. {
+	FALSE#¡Correcto, es Falso! Al mover o copiar una carpeta, todas las subcarpetas y archivos que contiene en su interior viajan automáticamente con ella.
+}
+
+// -----------------------------------------------------------------------------
+// P10: Renombrado inteligente con F2 en Dolphin
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P10 - Función inteligente de F2 al renombrar:: Cuando seleccionas un archivo llamado "Foto_Excursion.jpg" en Dolphin y pulsas la tecla rápida F2 para cambiarle el nombre, ¿qué parte del texto selecciona Dolphin automáticamente y por qué? {
+	=Selecciona únicamente el nombre ("Foto_Excursion") dejando sin seleccionar el punto y la extensión (".jpg") para evitar que borremos o estropeemos la extensión por error #¡Correcto! Así puedes escribir directamente el nuevo nombre sin riesgo de borrar el formato del archivo.
+	~Selecciona únicamente las tres letras de la extensión (".jpg") para obligarte a cambiar el formato #Incorrecto. Cambiar la extensión por error haría que el sistema no supiera con qué programa abrir el archivo.
+	~Borra el archivo inmediatamente y lo envía a la papelera de reciclaje #Incorrecto. F2 sirve para renombrar, no para eliminar archivos.
+	~Divide la ventana de Dolphin en cuatro pantallas distintas #Incorrecto. La tecla para dividir la vista en dos paneles es F3.
+}
+
+// -----------------------------------------------------------------------------
+// P11: Técnicas de selección múltiple en Dolphin
+// Tipo: Selección múltiple con varias respuestas correctas (Ponderación porcentual)
+// -----------------------------------------------------------------------------
+::P11 - Selección múltiple con Ctrl y Shift:: En relación con las formas de seleccionar varios archivos a la vez en Dolphin, selecciona las DOS afirmaciones VERDADERAS\: {
+	~%50%Para seleccionar elementos salteados (discontinuos) que no están juntos, mantenemos pulsada la tecla Ctrl mientras hacemos clic en cada uno #¡Correcto! Ctrl + Clic permite sumar o quitar archivos individuales salteados a la selección.
+	~%50%Para seleccionar un bloque continuo de archivos seguidos, hacemos clic en el primero, mantenemos pulsada la tecla Shift (Mayús) y hacemos clic en el último #¡Correcto! Shift + Clic selecciona de golpe todo el rango continuo entre el primero y el último.
+	~%-100%La combinación de teclas Ctrl + A sirve para apagar el monitor del ordenador #Incorrecto. Ctrl + A sirve para seleccionar TODOS los elementos de la carpeta activa de una sola vez.
+	~%-100%En Dolphin es imposible seleccionar más de un archivo al mismo tiempo #Incorrecto. Dolphin permite selección continua, discontinua, total o mediante recuadro con el ratón.
+}
+
+// -----------------------------------------------------------------------------
+// P12: Atajos de teclado imprescindibles en Dolphin
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P12 - Atajos de teclado en Dolphin:: Relaciona cada atajo de teclado de Dolphin con la acción que realiza\: {
+	=F2 -> Renombrar rápidamente el archivo o carpeta seleccionado
+	=F3 -> Dividir la ventana en dos paneles independientes para mover o copiar con comodidad
+	=F10 -> Crear una nueva carpeta al instante en el directorio actual
+	=Ctrl + A -> Seleccionar absolutamente todos los elementos de la carpeta activa
+}
+
+// -----------------------------------------------------------------------------
+// P13: Papelera de reciclaje vs Eliminación permanente
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P13 - Supr frente a Shift + Supr:: ¿Cuál es la diferencia entre eliminar un archivo pulsando la tecla "Supr" y hacerlo pulsando la combinación "Shift + Supr" (Mayús + Supr)? {
+	=Con "Supr" el archivo va a la Papelera de reciclaje y se puede restaurar, mientras que con "Shift + Supr" se elimina de forma permanente e irreversible sin pasar por la papelera #¡Correcto! Por eso debemos tener máxima precaución al utilizar Shift + Supr.
+	~Con "Shift + Supr" el archivo se guarda en la nube de Aules y con "Supr" se imprime en papel #Incorrecto. Ninguna de las dos combinaciones imprime ni sube archivos a internet.
+	~Ambas combinaciones envían el archivo a la carpeta Descargas para hacer una copia de seguridad #Incorrecto. Son comandos de borrado, no de copia en Descargas.
+	~"Supr" borra el sistema operativo completo y "Shift + Supr" cambia el fondo de pantalla #Incorrecto. Solo afectan a los archivos o carpetas que tengas seleccionados.
+}
+
+// -----------------------------------------------------------------------------
+// P14: Restaurar un archivo desde la Papelera
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P14 - Restaurar desde la Papelera:: Si eliminas por error un trabajo a la Papelera de reciclaje, entras en la Papelera desde el panel Lugares, haces clic derecho sobre tu archivo y eliges "Restaurar", ¿dónde reaparece el archivo? {
+	=Vuelve automáticamente a la misma carpeta exacta donde se encontraba antes de ser borrado #¡Correcto! La opción Restaurar devuelve cada elemento a su ubicación original.
+	~Se envía por correo electrónico al director del instituto #Incorrecto. Restaurar es una operación local del sistema de archivos.
+	~Aparece siempre mezclado dentro de la carpeta Música con otro nombre distinto #Incorrecto. Conserva su nombre y regresa a su carpeta de origen.
+	~Se convierte en un archivo comprimido .zip dentro del navegador web #Incorrecto. El archivo se recupera tal y como estaba originalmente.
+}
+
+// -----------------------------------------------------------------------------
+// P15: Qué es y para qué sirve la extensión de un archivo
+// Tipo: Selección múltiple con varias respuestas correctas (Ponderación porcentual)
+// -----------------------------------------------------------------------------
+::P15 - Funciones de la extensión de un archivo:: ¿Cuáles de las siguientes son funciones reales de la extensión de un archivo (las letras después del punto final, como .odt, .pdf o .png)? (Selecciona las DOS opciones correctas) {
+	~%50%Indicar al sistema operativo qué tipo de información contiene el archivo y qué icono visual debe mostrar en Dolphin #¡Correcto! La extensión actúa como el "apellido" del archivo para identificar su formato.
+	~%50%Asociar el archivo con su aplicación predeterminada para que se abra con el programa adecuado al hacer doble clic #¡Correcto! Gracias a la extensión, un .odt se abre con Writer y un .mp3 con VLC.
+	~%-100%Aumentar la memoria RAM física instalada dentro de la caja del ordenador #Incorrecto. La extensión es parte del nombre del archivo, no añade hardware físico.
+	~%-100%Impedir que el archivo pueda guardarse en un pendrive o memoria USB #Incorrecto. Los archivos con cualquier extensión válida pueden guardarse en memorias USB.
+}
+
+// -----------------------------------------------------------------------------
+// P16: Extensiones y sus programas predeterminados en LliureX (Parte 1)
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P16 - Extensiones y programas en LliureX I:: Relaciona cada extensión de archivo con la aplicación predeterminada que la abre en LliureX\: {
+	=.odt -> LibreOffice Writer (procesador de textos editable)
+	=.pdf -> Okular (visor de documentos de lectura e impresión)
+	=.txt -> KWrite o Kate (editor de texto plano sin formato)
+	=.zip -> Ark (gestor de archivos comprimidos)
+}
+
+// -----------------------------------------------------------------------------
+// P17: Extensiones y sus programas predeterminados en LliureX (Parte 2)
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P17 - Extensiones y programas en LliureX II:: Relaciona cada tipo de archivo multimedia o gráfico con su extensión y programa habitual en LliureX\: {
+	=.png y .jpg -> Imágenes y fotografías que se visualizan con Gwenview
+	=.mp3 y .ogg -> Archivos de audio y canciones que se reproducen con VLC
+	=.mp4 y .mkv -> Archivos de vídeo y películas que se reproducen con VLC
+	=.xcf -> Proyecto de dibujo o edición de imagen nativo del programa GIMP
+}
+
+// -----------------------------------------------------------------------------
+// P18: Consecuencia de cambiar la extensión de un archivo
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P18 - Experimento de cambiar la extensión:: ¿Qué ocurre realmente si tienes una imagen llamada "Mascota_Lliurex.png", la renombras cambiando su extensión a "Prueba.txt" y haces doble clic sobre ella? {
+	=La imagen interna no se destruye, pero el sistema operativo se confunde y la abre con el editor de textos (KWrite), mostrando símbolos ilegibles #¡Correcto! Al cambiar la extensión engañamos al sistema operativo sobre qué programa debe usar, pero si le devolvemos la extensión .png volverá a verse la imagen.
+	~La fotografía se transforma mágicamente en una redacción escrita en castellano describiendo el dibujo #Incorrecto. Cambiar el nombre de la extensión no convierte ni traduce los datos internos del archivo.
+	~El ordenador sufre un cortocircuito eléctrico y se estropea el disco duro para siempre #Incorrecto. Renombrar una extensión nunca daña físicamente el ordenador.
+	~El archivo se borra automáticamente de todas las carpetas y desaparece del equipo #Incorrecto. El archivo sigue estando ahí, solo que asociado al programa equivocado.
+}
+
+// -----------------------------------------------------------------------------
+// P19: Cambiar la aplicación predeterminada para una extensión en LliureX
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P19 - Cambiar programa predeterminado en LliureX:: Si quieres que todos los archivos con extensión ".txt" se abran siempre por defecto con el editor "Kate" en lugar de "KWrite" al hacer doble clic, ¿qué procedimiento debes seguir en Dolphin? {
+	=Hacer clic derecho sobre un archivo .txt > Propiedades (Alt + Enter) > Configurar las preferencias de tipo de archivo... y subir Kate a la primera posición de la lista #¡Correcto! Al situar Kate en primer lugar en las preferencias de ese tipo de archivo, todos los archivos .txt pasarán a abrirse con él por defecto.
+	~Renombrar todos los archivos del ordenador poniéndoles el nombre "Kate" delante del punto #Incorrecto. El nombre propio del archivo no influye en qué aplicación lo abre; lo que importa es la extensión.
+	~Pulsar Shift + Supr sobre el icono de KWrite en la barra de tareas #Incorrecto. Shift + Supr sirve para eliminar archivos de forma permanente.
+	~Desconectar el cable de red del ordenador y reiniciar el monitor #Incorrecto. Es un ajuste de asociación de archivos dentro de Propiedades en Dolphin.
+}
+
+// -----------------------------------------------------------------------------
+// P20: Árbol de ficheros y carpetas (relaciones jerárquicas)
+// Tipo: Verdadero / Falso
+// -----------------------------------------------------------------------------
+::P20 - Árbol jerárquico de carpetas y ficheros:: En la representación gráfica de un Árbol de Ficheros y Carpetas, la carpeta principal superior se denomina "carpeta raíz" y las subcarpetas que cuelgan directamente de ella al mismo nivel tienen una relación de "carpetas hijas" (y "hermanas" entre sí). {
+	TRUE#¡Correcto, es Verdadero! El árbol representa visualmente la jerarquía de parentesco entre la unidad de almacenamiento, la carpeta raíz, sus subcarpetas hijas y los ficheros.
+}
+
