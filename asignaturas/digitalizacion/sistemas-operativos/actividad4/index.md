@@ -16,8 +16,9 @@ Antes de realizar las tareas, **lee atentamente**:
 
 * Realiza todas las tareas **HACIENDO USO EXCLUSIVO DE LA TERMINAL**{: .rojo}.
 * **DIFERENCIA ENTRE SERVIDOR Y LOCAL**{: .verde}: Presta mucha atención a en qué máquina estás ejecutando cada comando. Los pasos del 1 al 7 se ejecutan **DENTRO DEL SERVIDOR REMOTO** tras haberte conectado por SSH. El paso final de descarga con SCP se ejecuta **EN TU TERMINAL LOCAL** (en tu ordenador de clase).
-* **CONSULTA LOS APUNTES**{: .verde}: Revisa los apuntes de comandos y los **[👉 apuntes de SSH y SCP 👈](../apuntes_ssh_scp.md)** para recordar la sintaxis, parámetros y funcionamiento de cada herramienta.
+* **CONSULTA LOS APUNTES**{: .verde}: Revisa los apuntes de comandos y los **[👉 apuntes de SSH y SCP 👈](../apuntes_ssh_scp)** para recordar la sintaxis, parámetros y funcionamiento de cada herramienta.
 * **ATENCIÓN A LOS NOMBRES CON ESPACIOS**{: .rojo}: En la terminal bash, cualquier carpeta o archivo cuyo nombre contenga espacios (como `"Alto contenido en grasa"`, `"Frutos secos"`, `"Sin cáscara"` o `"Crecen debajo de la tierra"`) debe escribirse **obligatoriamente entre comillas**.
+* **COMPRUEBA LA ESTRUCTURA CON `tree`**{: .verde}: Recuerda que en cualquier momento puedes ejecutar el comando **`tree`** en la terminal para ver un esquema visual en forma de árbol de las carpetas y archivos que vas creando (o **`tree -d`** si quieres ver únicamente el esquema de carpetas).
 * **HAZ CAPTURAS DE PANTALLA DE LOS COMANDOS QUE VAS EJECUTANDO**{: .rojo}: A lo largo de la actividad debes ir haciendo las capturas de pantalla solicitadas donde se vean claramente los comandos introducidos y **tu nombre de usuario** (tanto en el servidor remoto como en local).
 
 ---
@@ -77,6 +78,9 @@ Antes de realizar las tareas, **lee atentamente**:
 Partiendo desde **Actividad-4**, crea toda la jerarquía de carpetas que se muestra en el siguiente árbol:
 
 > 💡 **Atención a las comillas en nombres con espacios:** En los nombres compuestos como `"Alto contenido en grasa"`, `"Frutos secos"`, `"Con cáscara"`, `"Sin cáscara"`, `"Crecen debajo de la tierra"` y `"Crecen encima de la tierra"`, debes usar **siempre comillas** en el comando `mkdir` (o la opción `-p` para crear rutas anidadas de golpe, por ejemplo: `mkdir -p "Frutas/Carnosas/Alto contenido en grasa"`).
+>
+> 🌳 **Recordatorio – Uso del comando `tree`:** Para comprobar en la terminal un esquema en forma de árbol de las carpetas que vas creando, ejecuta el comando **`tree`** desde `Actividad-4` (o **`tree -d`** para mostrar solo las carpetas sin las fotos sueltas).
+{: .alert-info}
 
 > 📸 **Captura obligatoria del Paso 3:** Haz una captura de pantalla de la terminal con los comandos utilizados para crear el árbol de carpetas y el comando para verificar la estructura creada (`tree` o `ls -R`), donde se aprecie claramente tu **nombre de usuario**.
 {: .alert-error}
