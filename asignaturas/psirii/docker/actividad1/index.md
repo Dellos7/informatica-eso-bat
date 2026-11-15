@@ -332,8 +332,19 @@ https://ejemplo-aula.free.pinggy.net
 https://ejemplo-aula.run.pinggy-free.link
 ```
 
-4. **Comprueba que funciona:** copia cualquiera de las direcciones **`https://...`** que muestra la terminal y ábrela en el navegador (o pruébala con `curl` hacia `/webhook-test/prueba` pulsando antes *Listen for test event* en n8n). ¡Verás que responde a través de Internet y que en la terminal de Pinggy aparecen las peticiones en tiempo real!
+4. **Comprueba que funciona:** copia cualquiera de las direcciones **`https://...`** que muestra la terminal y ábrela en el navegador, o pruébala en otra terminal con `curl` (pulsando antes **Listen for test event** en tu flujo de n8n y sustituyendo la URL por la tuya):
+{:start="4"}
+
+   ```bash
+   curl -s -X POST https://ejemplo-aula.free.pinggy.net/webhook-test/prueba \
+     -H "Content-Type: application/json" \
+     -d '{"pokemon": "pikachu"}'
+   ```
+
+   ¡Verás que responde a través de Internet y que en la terminal de Pinggy aparecen las peticiones en tiempo real!
 5. Cuando lo hayas comprobado (haz una captura para el informe), **cierra el túnel manual pulsando `Ctrl + C`** en esa terminal.
+{:start="5"}
+
 
 ---
 
@@ -470,7 +481,7 @@ docker compose ps
 
 ¡Vamos a probar nuestro flujo de la PokéAPI a través del túnel público!
 
-1. Entra en `http://localhost:5678`, abre tu flujo **Primera práctica** y entra en el nodo **Webhook**.
+1. Entra en el navegador a **tu URL pública de Pinggy** (`https://ejemplo-subdominio.free.pinggy.net`) —así comprobarás además que tu n8n ya es accesible desde Internet por HTTPS—, abre tu flujo **Primera práctica** y entra en el nodo **Webhook**. *(Si lo prefieres, también puedes seguir entrando en local por `http://localhost:5678`).*
 2. Despliega **Webhook URLs**: comprobarás que ahora ya no dice `localhost`, sino que muestra tu dominio público de Pinggy (`https://ejemplo-subdominio.free.pinggy.net/webhook-test/prueba`).
 3. Pulsa **Listen for test event** y lanza desde la terminal el `curl` apuntando **a tu URL HTTPS de Pinggy** (puedes probar con otro Pokémon, por ejemplo `pikachu` o `charizard`):
 
@@ -481,6 +492,7 @@ curl -s -X POST https://ejemplo-subdominio.free.pinggy.net/webhook-test/prueba \
 ```
 
 4. Tu petición habrá salido a Internet hasta el servidor de Pinggy, habrá entrado por el túnel SSH hasta el contenedor `tunnel`, habrá pasado por la red interna de Docker hasta `n8n:5678` y te devolverá el JSON con los datos de Charizard.
+{:start="4"}
 
 ---
 
@@ -494,8 +506,8 @@ Para terminar esta actividad, vamos a simular que acaba la clase de hoy, se apag
    ```bash
    docker compose down
    ```
-   > **¡Atención!** Nunca añadas `-v` a `docker compose down`, porque `-v` borraría el volumen `n8n_data` con tu cuenta y tus flujos.
-   {: .alert-warning}
+   > **¡Atención!** NUNCA añadas `-v` a `docker compose down`, porque `-v` borraría el volumen `n8n_data` con tu cuenta y tus flujos.
+   {: .alert-error}
 
 2. Ahora aplica el **protocolo de inicio de clase** como harás al comenzar la siguiente sesión:
    * **1.º Arranca el túnel y obtén la nueva URL de Pinggy:**
@@ -547,22 +559,20 @@ Entrega en **Aules**:
    * Captura de la prueba manual del túnel de Pinggy en la terminal (`ssh -p 443 -R0:127.0.0.1:5678 free.pinggy.io`) mostrando las URLs asignadas.
    * `docker compose ps` mostrando los servicios `n8n` y `tunnel` en ejecución.
    * Captura de los logs del contenedor `tunnel` (`docker compose logs tunnel`) mostrando la URL temporal de Pinggy, del archivo `.env` configurado y de la prueba con `curl` a través de la URL pública HTTPS de Pinggy.
-   * Demostración del cambio de sesión (`docker compose down` → `up -d tunnel` → nuevo `.env` → `up -d n8n`) verificando que se conserva el flujo en `n8n_data` y se actualiza la URL del Webhook.
    * Respuestas breves:
      1. ¿Qué es un túnel inverso, por qué utilizamos el puerto `443` con Pinggy en la red del aula y qué significa `-R0`?
      2. ¿Por qué en el comando manual usamos `-R0:127.0.0.1:5678` mientras que en el servicio `tunnel` de Docker Compose usamos `-R0:n8n:5678`?
      3. ¿Por qué en cada clase debemos levantar primero `tunnel`, editar `.env` y después levantar `n8n`?
      4. ¿Qué ocurre si ejecutamos `docker compose down` frente a `docker compose down -v`?
-2. **`docker-compose.yml` utilizado** y el flujo **Primera práctica** exportado en formato `.json`.
+2. **`docker-compose.yml` utilizado** y el flujo **Poke API** exportado en formato `.json` desde N8N.
 
 ## 📊 Rúbrica de evaluación (máx. 10 puntos)
 
 | Criterio | Insuficiente | Básico | Adecuado | Excelente |
 | :--- | :--- | :--- | :--- | :--- |
 | **Docker Compose y seguridad local** (máx. 3 puntos) | **0 puntos:** El YAML no es válido o no arranca los contenedores. | **1 punto:** Arranca los contenedores, pero publica puertos en `0.0.0.0` o no comprende la red interna. | **2 puntos:** Configura `127.0.0.1:5678:5678`, la red interna y las variables, con explicaciones parciales. | **3 puntos:** Valida el YAML sin errores, enlaza puertos a `127.0.0.1`, guarda la cuenta en Bitwarden y explica con precisión puertos y red interna. |
-| **Flujo Webhook + PokéAPI con `curl`** (máx. 2,5 puntos) | **0 puntos:** No construye el flujo o no responde al webhook. | **1 punto:** El webhook responde, pero no consulta la API externa o no transforma los datos. | **1,75 puntos:** Consulta la PokéAPI y transforma los campos en local, pero no descarga la imagen o no lo prueba luego por el túnel. | **2,5 puntos:** Construye los 4 nodos, transforma las unidades con expresiones, descarga la imagen y lo prueba tanto en local como a través de Pinggy. |
-| **Túnel de Pinggy (manual y Docker) y protocolo `.env`** (máx. 2,5 puntos) | **0 puntos:** No consigue levantar el túnel de Pinggy o no obtiene URL pública. | **1 punto:** Abre el túnel manual, pero no lo integra en Compose o n8n sigue mostrando `localhost` en sus webhooks. | **1,75 puntos:** Prueba el túnel manual, integra `tunnel` en Compose y configura `.env`, pero no sigue el orden óptimo al cambiar de sesión. | **2,5 puntos:** Realiza la prueba manual por SSH, automatiza el servicio `tunnel` en Compose, aplica el orden `1.º tunnel → 2.º .env → 3.º n8n` y explica cómo funciona el túnel inverso. |
-| **Persistencia (`n8n_data`)** (máx. 2 puntos) | **0 puntos:** Pierde los datos al recrear contenedores o no configura el volumen. | **0,75 puntos:** Configura `n8n_data`, pero no demuestra la recuperación tras `docker compose down`. | **1,5 puntos:** Demuestra que el flujo persiste tras `down` y `up`, pero no actualiza la nueva URL del túnel. | **2 puntos:** Demuestra la persistencia completa de cuenta y flujo tras `docker compose down` y actualiza la nueva URL de Pinggy en la nueva sesión. |
+| **Flujo Webhook + PokéAPI con `curl`** (máx. 3 puntos) | **0 puntos:** No construye el flujo o no responde al webhook. | **1 punto:** El webhook responde, pero no consulta la API externa o no transforma los datos. | **2 puntos:** Consulta la PokéAPI y transforma los campos en local, pero no descarga la imagen o no lo prueba luego por el túnel. | **3 puntos:** Construye los 4 nodos, transforma las unidades con expresiones, descarga la imagen y lo prueba tanto en local como a través de Pinggy. |
+| **Túnel de Pinggy (manual y Docker) y protocolo `.env`** (máx. 4 puntos) | **0 puntos:** No consigue levantar el túnel de Pinggy o no obtiene URL pública. | **1,5 puntos:** Abre el túnel manual, pero no lo integra en Compose o n8n sigue mostrando `localhost` en sus webhooks. | **2,5 puntos:** Prueba el túnel manual, integra `tunnel` en Compose y configura `.env`, pero no sigue el orden óptimo al cambiar de sesión. | **4 puntos:** Realiza la prueba manual por SSH, automatiza el servicio `tunnel` en Compose, aplica el orden `1.º tunnel → 2.º .env → 3.º n8n` y explica cómo funciona el túnel inverso. |
 | **Entrega en plazo y documentación** (máx. 0 puntos) | **-2 puntos:** No entrega la actividad o realiza una entrega vacía o con retraso injustificado. | **-1,5 puntos:** Entrega con retraso importante o faltan evidencias clave. | **-1 punto:** Entrega con un pequeño retraso o documentación incompleta. | **0 puntos:** Entrega puntual en Aules con informe completo, `docker-compose.yml` y flujo `.json`. |
 
 > La entrega dentro del plazo no resta puntuación. Las entregas con retraso supondrán una penalización de hasta 2 puntos sobre la calificación.

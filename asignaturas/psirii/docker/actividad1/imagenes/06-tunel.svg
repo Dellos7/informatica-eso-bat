@@ -1,1 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 605" width="960" height="605" role="img" aria-labelledby="title desc"><title id="title">Orden de inicio: 1.º Túnel, 2.º .env, 3.º n8n</title><desc id="desc">En cada clase obtenemos primero la URL del túnel, la anotamos en .env y arrancamos n8n.</desc><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#475569"/></marker></defs><rect x="1" y="1" width="958" height="603" rx="22" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/><text x="32" y="48" font-family="Segoe UI, Arial, sans-serif" font-size="32" fill="#0f172a" font-weight="700" text-anchor="start">Orden de inicio: 1.º Túnel → 2.º .env → 3.º n8n</text><text x="32" y="85" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#0f172a" font-weight="400" text-anchor="start">En cada clase obtenemos primero la URL del túnel, la anotamos en .env y arrancamos n8n.</text><rect x="32" y="135" width="270" height="120" rx="18" fill="#fff" stroke="#6d28d9" stroke-width="2"/><rect x="32" y="153" width="6" height="84" rx="3" fill="#6d28d9"/><text x="54" y="171" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#6d28d9" font-weight="700" text-anchor="start">Dirección pública</text><text x="54" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">https://…free.pinggy.net</text><text x="54" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">Entrada desde Internet</text><rect x="345" y="135" width="270" height="120" rx="18" fill="#fff" stroke="#6d28d9" stroke-width="2"/><rect x="345" y="153" width="6" height="84" rx="3" fill="#6d28d9"/><text x="367" y="171" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#6d28d9" font-weight="700" text-anchor="start">1.º Túnel Pinggy</text><text x="367" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">up -d tunnel (SSH 443)</text><text x="367" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">Genera la URL (60 min)</text><rect x="658" y="135" width="270" height="120" rx="18" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><rect x="658" y="153" width="6" height="84" rx="3" fill="#1d4ed8"/><text x="680" y="171" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#1d4ed8" font-weight="700" text-anchor="start">n8n</text><text x="680" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">n8n:5678</text><text x="680" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">Recibe por red interna</text><path d="M302 195 H345" fill="none" stroke="#6d28d9" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/><path d="M615 195 H658" fill="none" stroke="#475569" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/><rect x="32" y="335" width="420" height="140" rx="18" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><rect x="32" y="353" width="6" height="104" rx="3" fill="#1d4ed8"/><text x="54" y="371" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#1d4ed8" font-weight="700" text-anchor="start">2.º Archivo .env</text><text x="54" y="405" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">Guarda la URL pública</text><text x="54" y="433" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">N8N_WEBHOOK_URL=https://…/</text><text x="54" y="461" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">Conserva la barra final.</text><rect x="510" y="335" width="418" height="140" rx="18" fill="#fff" stroke="#0f766e" stroke-width="2"/><rect x="510" y="353" width="6" height="104" rx="3" fill="#0f766e"/><text x="532" y="371" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#0f766e" font-weight="700" text-anchor="start">3.º Arrancar n8n</text><text x="532" y="405" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">up -d n8n</text><text x="532" y="433" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">Inicia ya con la URL pública</text><text x="532" y="461" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">lista en sus webhooks.</text><path d="M452 405 H510" fill="none" stroke="#0f766e" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/><rect x="32" y="515" width="896" height="56" rx="12" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/><text x="52" y="551" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1d4ed8" font-weight="700" text-anchor="start">En cada nueva sesión: 1.º up -d tunnel → 2.º editar .env → 3.º up -d n8n.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" width="960" height="660" role="img" aria-labelledby="title desc">
+  <title id="title">Arranque en cada sesión: 1.º Túnel, 2.º .env, 3.º n8n</title>
+  <desc id="desc">Pasos y comandos para levantar el túnel con Pinggy, anotar la URL en .env y arrancar n8n en cada sesión de clase.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect x="1" y="1" width="958" height="658" rx="22" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+
+  <text x="32" y="48" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#0f172a" font-weight="700">Arranque en cada sesión: 1.º Túnel → 2.º .env → 3.º n8n</text>
+  <text x="32" y="82" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#475569">Ejecuta estos 3 pasos en orden dentro de la carpeta ~/docker-n8n:</text>
+
+  <!-- Paso 1 -->
+  <rect x="32" y="108" width="896" height="136" rx="18" fill="#ffffff" stroke="#6d28d9" stroke-width="2"/>
+  <rect x="32" y="122" width="6" height="108" rx="3" fill="#6d28d9"/>
+  <text x="54" y="140" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#6d28d9" font-weight="700">1.º Levantar el túnel con Pinggy y obtener la URL</text>
+  <rect x="54" y="156" width="466" height="72" rx="10" fill="#0f172a"/>
+  <text x="70" y="185" font-family="Consolas, Monaco, monospace" font-size="16" fill="#e2e8f0">docker compose up -d tunnel</text>
+  <text x="70" y="213" font-family="Consolas, Monaco, monospace" font-size="16" fill="#e2e8f0">docker compose logs --tail=30 tunnel</text>
+  <text x="540" y="180" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#334155">Espera 3–5 s y copia la URL HTTPS</text>
+  <text x="540" y="204" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#334155">que aparece al final de los logs:</text>
+  <text x="540" y="228" font-family="Consolas, Monaco, monospace" font-size="16" fill="#6d28d9" font-weight="700">https://ejemplo.free.pinggy.net</text>
+
+  <path d="M480 244 V270" fill="none" stroke="#475569" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <!-- Paso 2 -->
+  <rect x="32" y="272" width="896" height="136" rx="18" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+  <rect x="32" y="286" width="6" height="108" rx="3" fill="#1d4ed8"/>
+  <text x="54" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1d4ed8" font-weight="700">2.º Anotar la URL pública en el archivo .env</text>
+  <rect x="54" y="320" width="466" height="72" rx="10" fill="#0f172a"/>
+  <text x="70" y="349" font-family="Consolas, Monaco, monospace" font-size="16" fill="#e2e8f0">nano .env</text>
+  <text x="70" y="377" font-family="Consolas, Monaco, monospace" font-size="15" fill="#7dd3fc">N8N_WEBHOOK_URL=https://ejemplo.free.pinggy.net/</text>
+  <text x="540" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#334155">Pega tu URL de hoy tras el igual.</text>
+  <text x="540" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#1d4ed8" font-weight="700">¡Conserva la barra / del final!</text>
+  <text x="540" y="392" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#475569">Guarda con Ctrl+O, Enter y sal con Ctrl+X.</text>
+
+  <path d="M480 408 V434" fill="none" stroke="#475569" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <!-- Paso 3 -->
+  <rect x="32" y="436" width="896" height="120" rx="18" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+  <rect x="32" y="450" width="6" height="92" rx="3" fill="#0f766e"/>
+  <text x="54" y="468" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#0f766e" font-weight="700">3.º Arrancar (o actualizar) n8n con esa URL</text>
+  <rect x="54" y="484" width="466" height="54" rx="10" fill="#0f172a"/>
+  <text x="70" y="517" font-family="Consolas, Monaco, monospace" font-size="16" fill="#e2e8f0">docker compose up -d n8n</text>
+  <text x="540" y="508" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#334155">n8n lee el archivo .env y ya muestra</text>
+  <text x="540" y="532" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#334155">la URL pública en sus Webhooks.</text>
+
+  <!-- Pie -->
+  <rect x="32" y="578" width="896" height="52" rx="12" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="52" y="610" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#1d4ed8" font-weight="700">Recuerda: el túnel gratuito dura 60 min. Al volver en otra clase, repite 1.º → 2.º → 3.º.</text>
+</svg>
