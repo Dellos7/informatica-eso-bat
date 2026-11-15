@@ -33,5 +33,5 @@ Ampliado:
 - [Actividad 5. ¿Cómo de lejos llegarás en Compute IT?](./actividad5)
 - [Actividad 6. Laby avanzado](./actividad6)
 - [Actividad 7. Diseña tu propio nivel con Laby Level Editor](./actividad7)
-- [Actividad 8. Code.org - Aventurero de Minecraft](./actividad8)
-- [Actividad 9. Creando nuestro primer videojuego en Scratch](./actividad9)
+- [Actividad 8. Creando nuestro primer videojuego en Scratch](./actividad8)
+- [Actividad 9. Code.org - Aventurero de Minecraft](./actividad9)

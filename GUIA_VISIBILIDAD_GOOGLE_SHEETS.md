@@ -262,8 +262,8 @@ function inicializarHoja() {
     ["Actividad", "piari", "pensamiento-computacional", "actividad5", "Actividad 5. Compute IT", true],
     ["Actividad", "piari", "pensamiento-computacional", "actividad6", "Actividad 6. Laby avanzado", true],
     ["Actividad", "piari", "pensamiento-computacional", "actividad7", "Actividad 7. Diseña tu propio nivel con Laby Level Editor", true],
-    ["Actividad", "piari", "pensamiento-computacional", "actividad8", "Actividad 8. Code.org - Aventurero de Minecraft", true],
-    ["Actividad", "piari", "pensamiento-computacional", "actividad9", "Actividad 9. Creando nuestro primer videojuego en Scratch", true],
+    ["Actividad", "piari", "pensamiento-computacional", "actividad8", "Actividad 8. Creando nuestro primer videojuego en Scratch", true],
+    ["Actividad", "piari", "pensamiento-computacional", "actividad9", "Actividad 9. Code.org - Aventurero de Minecraft", true],
 
     // 3º ESO - PIARI
     ["Asignatura", "piari_3eso", "", "", "3º ESO - Programación, Inteligencia Artificial y Robótica I (3º ESO)", true],
@@ -440,8 +440,8 @@ Para que el script reconozca automáticamente la ruta, mantén siempre la misma 
 | **Actividad** | `piari` | `pensamiento-computacional` | `actividad5` | Actividad 5. Compute IT |
 | **Actividad** | `piari` | `pensamiento-computacional` | `actividad6` | Actividad 6. Laby avanzado |
 | **Actividad** | `piari` | `pensamiento-computacional` | `actividad7` | Actividad 7. Diseña tu propio nivel con Laby Level Editor |
-| **Actividad** | `piari` | `pensamiento-computacional` | `actividad8` | Actividad 8. Code.org - Aventurero de Minecraft |
-| **Actividad** | `piari` | `pensamiento-computacional` | `actividad9` | Actividad 9. Creando nuestro primer videojuego en Scratch |
+| **Actividad** | `piari` | `pensamiento-computacional` | `actividad8` | Actividad 8. Creando nuestro primer videojuego en Scratch |
+| **Actividad** | `piari` | `pensamiento-computacional` | `actividad9` | Actividad 9. Code.org - Aventurero de Minecraft |
 | **Asignatura** | `piari_3eso` | | | 3º ESO - Programación, Inteligencia Artificial y Robótica I (3º ESO) |
 | **Tema** | `piari_3eso` | `pensamiento-computacional` | | Tema 1. Pensamiento Computacional |
 | **Actividad** | `piari_3eso` | `pensamiento-computacional` | `actividad1` | Actividad 1. Conceptos básicos |

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Guía Docente - Actividad 9. El Laberinto de Mario en Scratch
+title: Guía Docente - Actividad 8. El Laberinto de Mario en Scratch
 description: Guía paso a paso para el profesorado (GIMP + Scratch)
 ---
 
-# 👨‍🏫 Guía Docente: El Laberinto de Mario en Scratch (Actividad 9)
+# 👨‍🏫 Guía Docente: El Laberinto de Mario en Scratch (Actividad 8)
 
 Esta guía contiene las instrucciones detalladas paso a paso para que el profesorado pueda dirigir en el aula la creación del videojuego **"El Laberinto de Mario"**, desde la preparación opcional de los gráficos en GIMP hasta la programación completa del juego base y las soluciones del reto de ampliación.
 
