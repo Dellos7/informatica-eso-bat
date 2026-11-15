@@ -311,15 +311,17 @@ El laberinto necesita más vida. Abre de nuevo **`sprites.png`** en **GIMP**, re
 - **Opción B (Planta Piraña trampa en ubicaciones aleatorias)**: Recorta la **Planta Piraña** (`planta_pirana.xcf` / `planta_pirana.png`) y haz que vaya apareciendo (`mostrar`) durante 2 segundos y desapareciendo (`ocultar`) durante 2 segundos dentro de un bucle `por siempre`, cambiando aleatoriamente entre **varios sitios predefinidos** del laberinto mientras está oculta (por ejemplo, usando una variable `sitio_planta` con el bloque verde 🟢 `número aleatorio entre (1) y (4)` y condicionales `si <(sitio_planta) = (...)> entonces` para elegir entre 3 o 4 coordenadas estratégicas del camino).
 - **Opción C (Objetos de bonificación)**: Recorta la **Moneda** (`moneda.xcf` / `moneda.png`) o el **Champiñón** (`champinon.xcf` / `champinon.png`) y colócalos en los callejones sin salida del laberinto para premiar al jugador que se arriesgue a recogerlos.
 
-### ❤️ Misión 2: Implementar un Sistema de Vidas (`vidas`)
-Morir al primer roce es demasiado duro. Modifica el programa de Mario para que el jugador disponga de **3 vidas**:
+### ❤️ Misión 2: Implementar un Sistema de Vidas (`vidas`) y reposición en paredes
+Morir al primer roce es demasiado duro, pero tampoco podemos permitir que alguien atraviese las paredes. Modifica el programa de Mario para que el jugador disponga de **3 vidas**:
 1. Crea una variable llamada **`vidas`** y deja marcada su casilla para que el marcador se vea en una esquina del escenario.
 2. Al presionar la bandera verde (`⚑`), inicializa la variable con `dar a [vidas v] el valor (3)`.
-3. Modifica los condicionales de choque de Mario (pared negra y enemigos) para que, al chocar:
-   - Se reste 1 vida: `sumar a [vidas v] (-1)` **sin devolver a Mario al inicio del laberinto** (así podrá continuar desde donde estaba).
-   - **Solo si las vidas llegan a 0** (`si <(vidas) = (0)> entonces`), se envíe el mensaje `enviar [fin_juego v]`.
-   - Añade una breve pausa de inmunidad (`esperar (1) segundos`) justo después de comprobar las vidas para dar margen a apartarse de la pared o dejar pasar al enemigo sin perder las 3 vidas de golpe en el mismo choque.
-4. *(Idea extra)*: Si has recortado y añadido el **Champiñón** (`champinon.png`), haz que al tocarlo Mario gane 1 vida extra (`sumar a [vidas v] (1)`) y el champiñón se oculte.
+3. **Si Mario choca con la pared negra del laberinto (`¿tocando el color (#000000)?`)**:
+   - **No le restes vida**, pero haz que **vuelva inmediatamente al inicio** (`ir a x: (-205) y: (-145)`). Así nadie podrá hacer trampas atravesando las paredes para llegar al castillo.
+4. **Si Mario choca con cualquiera de los enemigos (`caparazon_verde`, `caparazon_rojo`, `goomba`, `planta_pirana`)**:
+   - Se resta 1 vida: `sumar a [vidas v] (-1)` **sin devolver a Mario al inicio del laberinto** (continúa desde donde estaba).
+   - **Solo si las vidas llegan a 0** (`si <(vidas) = (0)> entonces`), se envía el mensaje `enviar [fin_juego v]`.
+   - Añade una breve pausa de inmunidad (`esperar (1) segundos`) justo después de comprobar las vidas para que el enemigo pueda pasar sin quitarle las 3 vidas de golpe en el mismo choque.
+5. *(Idea extra)*: Si has recortado y añadido el **Champiñón** (`champinon.png`), haz que al tocarlo Mario gane 1 vida extra (`sumar a [vidas v] (1)`) y el champiñón se oculte.
 
 ### ⚡ Misión 3: Aumentar la dificultad del juego
 Elige e implementa **al menos una** de estas mecánicas para hacer la partida más emocionante:

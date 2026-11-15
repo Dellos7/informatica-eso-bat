@@ -368,9 +368,9 @@ ocultar
 
 ---
 
-### Solución Misión 2: Sistema de 3 Vidas (`vidas`) en `mario1` (sin volver al inicio + 1 s de inmunidad)
+### Solución Misión 2: Sistema de 3 Vidas (`vidas`) en `mario1` (paredes devuelven al inicio sin quitar vida; enemigos quitan 1 vida sin volver al inicio)
 
-*(Al chocar con una pared o un enemigo se resta `1` vida pero **no** se devuelve a Mario a la casilla de salida. Se añade `esperar (1) segundos` tras comprobar si `vidas = 0` para darle 1 segundo de inmunidad y que pueda apartarse sin perder las 3 vidas de golpe en el mismo roce).*
+*(Si Mario toca una **pared negra (`#000000`)**, vuelve inmediatamente a la casilla de salida `(-205, -145)` **sin restar vidas**, evitando así que un jugador pueda atravesar paredes aprovechando la inmunidad. En cambio, al chocar con un **enemigo**, se resta `1` vida **sin** devolver a Mario al inicio y se añade `esperar (1) segundos` tras comprobar si `vidas = 0` para darle 1 segundo de inmunidad y que el enemigo pase sin quitarle las 3 vidas de golpe).*
 
 ```plaintext
 al presionar ⚑
@@ -385,11 +385,7 @@ por siempre
     esperar (0.08) segundos
     siguiente disfraz
     si <¿tocando el color (#000000)?> entonces
-        sumar a [vidas v] (-1)
-        si <(vidas) = (0)> entonces
-            enviar [fin_juego v]
-        fin
-        esperar (1) segundos
+        ir a x: (-205) y: (-145)
     fin
     si <¿tocando (caparazon_verde v)?> entonces
         sumar a [vidas v] (-1)
