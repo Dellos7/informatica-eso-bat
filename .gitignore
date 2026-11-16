@@ -1,7 +1,8 @@
 .sass-cache/
 _site/
 asignaturas/piari/curso-ia-administracion/
+asignaturas/trdr/copias_secciones_aules_otros_cursos/
 archivos/*.mbz
 archivos/backups/
 __pycache__/
-*.pyc
+*.pyc
