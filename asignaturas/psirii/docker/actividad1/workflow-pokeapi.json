@@ -1,0 +1,145 @@
+{
+  "name": "Primera práctica",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "prueba",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "7b2e1c4a-1111-4b22-9c33-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "8c3f2d5b-1111-4b22-9c33-000000000001"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://pokeapi.co/api/v2/pokemon/{{ $json.body.pokemon.toLowerCase() }}",
+        "options": {}
+      },
+      "id": "7b2e1c4a-2222-4b22-9c33-000000000002",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "field-ficha",
+              "name": "ficha",
+              "value": "={{ $json.name.toUpperCase() }} (#{{ $json.id }})",
+              "type": "string"
+            },
+            {
+              "id": "field-altura",
+              "name": "altura",
+              "value": "={{ $json.height / 10 }} metros",
+              "type": "string"
+            },
+            {
+              "id": "field-peso",
+              "name": "peso",
+              "value": "={{ $json.weight / 10 }} kg",
+              "type": "string"
+            },
+            {
+              "id": "field-tipo-principal",
+              "name": "tipo_principal",
+              "value": "={{ $json.types[0].type.name }}",
+              "type": "string"
+            },
+            {
+              "id": "field-imagen",
+              "name": "imagen",
+              "value": "={{ $json.sprites.front_default }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7b2e1c4a-3333-4b22-9c33-000000000003",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "firstIncomingItem",
+        "options": {}
+      },
+      "id": "7b2e1c4a-4444-4b22-9c33-000000000004",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        900,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7b2e1c4a-0000-4b22-9c33-000000000000",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "local-instance"
+  },
+  "id": "primera-practica-pokeapi",
+  "tags": []
+}

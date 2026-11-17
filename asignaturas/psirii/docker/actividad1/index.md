@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividad 1. Despliegue de n8n y túnel público con Pinggy en Docker Compose
-description: Despliegue de n8n con Docker Compose, creación de un primer flujo con Webhook y PokéAPI, explicación sencilla de qué es un túnel inverso y cómo funciona Pinggy, automatización del túnel en Compose y gestión de la URL temporal entre sesiones.
+description: Despliegue de n8n con Docker Compose, creación de un primer flujo con Webhook y PokéAPI, túnel inverso con Pinggy automatizado en Compose y creación de una aplicación web tipo Pokédex conectada al Webhook de n8n.
 ---
 
 {% raw %}
@@ -11,7 +11,7 @@ description: Despliegue de n8n con Docker Compose, creación de un primer flujo 
 > [📖 **Apuntes: Introducción a Docker y Contenerización**](../apuntes)
 {: .alert-info}
 
-En esta primera actividad desplegarás **n8n Community** mediante **Docker Compose** y construirás tu primer flujo de automatización conectando un **Webhook** con la API pública de **PokéAPI**. Una vez que entiendas cómo funciona n8n en local, descubrirás qué es un **túnel inverso** y cómo permite publicar temporalmente tu servicio en Internet sin abrir puertos en el router del centro: primero lo probarás de forma manual por terminal con **Pinggy** y después lo automatizarás como un servicio más dentro de tu `docker-compose.yml`. Finalmente, verificarás la persistencia de datos del volumen **`n8n_data`**. En la Actividad 2 conectaremos esta infraestructura con WordPress, Qdrant y un Agente de IA.
+En esta primera actividad desplegarás **n8n Community** mediante **Docker Compose** y construirás tu primer flujo de automatización conectando un **Webhook** con la API pública de **PokéAPI**. Una vez que entiendas cómo funciona n8n en local, descubrirás qué es un **túnel inverso** y cómo permite publicar temporalmente tu servicio en Internet sin abrir puertos en el router del centro: primero lo probarás de forma manual por terminal con **Pinggy** y después lo automatizarás como un servicio más dentro de tu `docker-compose.yml`. Finalmente, crearás una aplicación web sencilla (HTML, CSS y JS) con aspecto de **Pokédex** conectada directamente al Webhook de tu flujo de n8n. En la Actividad 2 conectaremos esta infraestructura con WordPress, Qdrant y un Agente de IA.
 
 ## 🎯 Objetivos
 
@@ -20,7 +20,7 @@ En esta primera actividad desplegarás **n8n Community** mediante **Docker Compo
 3. Comprender de forma sencilla qué es un **túnel inverso**, por qué es necesario detrás del router/cortafuegos del aula y cómo funciona **Pinggy** sobre el puerto `443`.
 4. Probar primero el túnel de **Pinggy de forma manual** desde la terminal (`ssh -p 443 -R0:127.0.0.1:5678 free.pinggy.io`) y posteriormente **añadir el servicio `tunnel` en `docker-compose.yml`** conectado a la red interna de Docker (`n8n:5678`).
 5. Aplicar el protocolo de inicio de sesión: levantar primero el túnel de Pinggy, registrar su URL temporal en `.env`, actualizar `n8n` y probar el flujo desde Internet.
-6. Comprobar la persistencia del volumen Docker (`n8n_data`) al eliminar los contenedores y simular el cambio o caducidad de la URL temporal del túnel.
+6. Construir una aplicación web tipo **Pokédex** (HTML, CSS y JS) asistida por IA que envíe peticiones HTTP `POST` al Webhook de n8n (en local o a través de Pinggy) y muestre la ficha y la imagen del Pokémon devuelto.
 
 ## 💡 ¿Qué es n8n?
 
@@ -496,46 +496,95 @@ curl -s -X POST https://ejemplo-subdominio.free.pinggy.net/webhook-test/prueba \
 
 ---
 
-### Paso 7: Verificar la persistencia del volumen y simular el cambio de clase
+## 🖥️ Parte 3: Crear una aplicación web tipo Pokédex conectada a tu Webhook de n8n
 
-[![Tras down y up se conserva el mismo volumen y se crea un contenedor nuevo; recrear el túnel exige actualizar su dominio en .env antes de levantar n8n.](./imagenes/11-persistencia.svg)](./imagenes/11-persistencia.svg)
+Hasta ahora has probado tu flujo enviando peticiones `curl` desde la terminal. Para comprobar cómo se integra un flujo de n8n en un producto real, vas a construir una **aplicación web sencilla (HTML, CSS y JavaScript)** que funcione como una **Pokédex**: al escribir el nombre o número de un Pokémon en el buscador, la web enviará la petición HTTP a tu Webhook de n8n y mostrará en pantalla la ficha, las estadísticas y la imagen devuelta (o un aviso si no se encuentra).
 
-Para terminar esta actividad, vamos a simular que acaba la clase de hoy, se apagan los contenedores y volvemos el próximo día (o que han pasado los 60 minutos del túnel gratuito de Pinggy y necesitamos renovar su URL):
+### 1. Preparar el nodo Webhook en n8n (CORS y modo activo)
 
-1. En la terminal, dentro de `~/docker-n8n`, detén y elimina los contenedores actuales:
+1. **Permitir peticiones desde el navegador (`CORS`):**
+   * Por seguridad, los navegadores bloquean las peticiones `fetch` de JavaScript cuando la página web (`file://` o `http://localhost:8000`) tiene un origen distinto al del servidor de n8n.
+   * Abre tu flujo **Primera práctica** en n8n y entra en el nodo **Webhook**.
+   * En **Options**, pulsa **Add Option**, elige **Allowed Origins (CORS)** y escribe `*`.
+   * Pulsa **Save** arriba a la derecha.
+2. **Activar el flujo para usarlo sin pulsar *Listen* cada vez (recomendado):**
+   * Activa/publica el flujo desde el interruptor superior de n8n para que el webhook escuche de forma permanente en la **Production URL** (`/webhook/prueba`).
+   * *(Si prefieres seguir probando en la **Test URL** `/webhook-test/prueba`, recuerda pulsar **Listen for test event** antes de cada búsqueda en la web).*
+
+### 2. Contrato HTTP que debe usar tu aplicación
+
+Tu aplicación web se comunicará exclusivamente con tu workflow de n8n (no llamará directamente a `pokeapi.co`):
+
+* **Petición (`POST`):**
+  * URL local: `http://localhost:5678/webhook/prueba` (o `/webhook-test/prueba` en modo test).
+  * URL pública (Pinggy): `https://<tu-subdominio>.free.pinggy.net/webhook/prueba`.
+  * Cabecera: `Content-Type: application/json`.
+  * Cuerpo JSON: `{"pokemon": "pikachu"}`.
+* **Respuesta JSON devuelta por `Respond to Webhook`:**
+  ```json
+  {
+    "ficha": "PIKACHU (#25)",
+    "altura": "0.4 metros",
+    "peso": "6 kg",
+    "tipo_principal": "electric",
+    "imagen": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+  }
+  ```
+
+### 3. Generar la aplicación web con IA
+
+1. Crea una carpeta para la aplicación web fuera o junto a tu proyecto Docker:
    ```bash
+   mkdir -p ~/pokedex-n8n
+   cd ~/pokedex-n8n
+   ```
+2. Utiliza tu asistente de IA (por ejemplo en **Antigravity IDE** abriendo la carpeta `~/pokedex-n8n`) con el siguiente *prompt* para generar los archivos `index.html`, `styles.css` y `app.js`:
+
+<details markdown="1" style="cursor: pointer;">
+<summary style="cursor: pointer;">🤖 <strong>Ver prompt para generar la aplicación web Pokédex con IA (clic para desplegar)</strong></summary>
+
+> Copia y envía este prompt al agente en Antigravity IDE (o a tu asistente de IA):
+
+```text
+Crea una aplicación web sencilla en HTML, CSS y JavaScript puro (archivos index.html, styles.css y app.js) que funcione como una Pokédex real conectada a un webhook de n8n.
+
+Requisitos de diseño y funcionamiento:
+1. La interfaz debe parecer una Pokédex (carcasa o tarjeta visual limpia, buscador principal por nombre o número de Pokédex, botones de sugerencia rápida como pikachu, snorlax y charizard, y pantalla principal). No debe parecer una herramienta técnica para probar APIs ni mostrar paneles de cURL o JSON en bruto.
+2. Al enviar un Pokémon, la aplicación debe hacer una petición HTTP POST con fetch() a la URL del webhook de n8n enviando la cabecera "Content-Type: application/json" y el cuerpo {"pokemon": "<texto_buscado>"}.
+3. Mientras espera respuesta, debe mostrar un estado de carga en pantalla.
+4. La respuesta JSON del webhook tiene exactamente estos campos:
+   - ficha (ej. "SNORLAX (#143)")
+   - altura (ej. "2.1 metros")
+   - peso (ej. "460 kg")
+   - tipo_principal (ej. "normal")
+   - imagen (URL del sprite PNG)
+   Cuando llegue la respuesta válida, muestra en la pantalla de la Pokédex la imagen, el título (ficha), el tipo con un distintivo de color, la altura y el peso.
+5. Si el Pokémon no se encuentra (error HTTP 404/500 o datos inválidos) o no hay conexión con n8n, muestra un mensaje de error claro y amigable en la pantalla de la Pokédex.
+6. Incluye un historial visual compacto en la sesión con los últimos Pokémon consultados para poder volver a verlos haciendo clic.
+7. Añade un botón discreto de ajustes (⚙️) en una esquina que abra un modal para cambiar la URL base de n8n (por defecto http://localhost:5678, o una URL pública de Pinggy), el modo (Producción /webhook/ o Test /webhook-test/) y el path (por defecto "prueba"), guardando esta configuración en localStorage.
+```
+
+</details>
+
+### 4. Probar la Pokédex y finalizar la sesión
+
+1. Sirve la carpeta de la web en local con Python (o abre directamente `index.html` en tu navegador):
+   ```bash
+   cd ~/pokedex-n8n
+   python3 -m http.server 8000
+   ```
+   Abre **`http://localhost:8000`** en el navegador.
+2. Comprueba los siguientes casos (toma capturas para el informe):
+   * Busca al menos **dos Pokémon válidos** (por ejemplo, `snorlax` y `charizard`) y comprueba que aparecen sus datos y su imagen.
+   * Busca un **nombre inexistente** (por ejemplo, `noexiste`) y comprueba que la Pokédex muestra un mensaje de error claro.
+   * Abre los ajustes (`⚙️`) de la web y prueba también a conectar usando tu **URL pública HTTPS de Pinggy** (con el servicio `tunnel` encendido).
+3. Al terminar las pruebas y mostrárselo al profesor, detén el servidor web con `Ctrl + C` y apaga el túnel (o los contenedores sin `-v` para no perder tus datos de `n8n_data`):
+   ```bash
+   cd ~/docker-n8n
    docker compose down
    ```
-   > **¡Atención!** NUNCA añadas `-v` a `docker compose down`, porque `-v` borraría el volumen `n8n_data` con tu cuenta y tus flujos.
-   {: .alert-error}
-
-2. Ahora aplica el **protocolo de inicio de clase** como harás al comenzar la siguiente sesión:
-   * **1.º Arranca el túnel y obtén la nueva URL de Pinggy:**
-     ```bash
-     docker compose up -d tunnel
-     sleep 4
-     docker compose logs --tail=30 tunnel
-     ```
-     Comprueba que Pinggy te ha asignado un dominio `https://....free.pinggy.net` **distinto** al anterior.
-   * **2.º Actualiza `.env` con la nueva URL:**
-     ```bash
-     nano .env
-     ```
-     Sustituye el valor de `N8N_WEBHOOK_URL=` por la nueva URL de Pinggy (terminada en `/`) y guarda el archivo.
-   * **3.º Arranca `n8n`:**
-     ```bash
-     docker compose up -d n8n
-     ```
-     *(Nota: si en mitad de una clase caducan los 60 minutos de Pinggy con `n8n` ya encendido, basta con ejecutar `docker compose restart tunnel`, mirar la nueva URL en `docker compose logs --tail=30 tunnel`, actualizar `.env` y ejecutar `docker compose up -d --no-deps n8n`).*
-
-3. Entra en `http://localhost:5678` y verifica dos cosas:
-   * Tu **cuenta de usuario** y el flujo **Primera práctica** siguen intactos gracias al volumen **`n8n_data`**.
-   * Al abrir el nodo **Webhook**, la **Test URL** ya muestra el **nuevo dominio de Pinggy** y responde correctamente si vuelves a probarla con `curl`.
-
-4. Cuando termines las comprobaciones y se lo muestres al profesor, detén el túnel (o ejecuta `docker compose down` sin `-v` si finaliza la sesión):
-   ```bash
-   docker compose stop tunnel
-   ```
+   > **¡Atención!** No añadas `-v` a `docker compose down`, porque borraría el volumen `n8n_data` con tu cuenta y tus flujos.
+   {: .alert-warning}
 
 ## 🛠️ Diagnóstico de problemas
 
@@ -548,7 +597,8 @@ Para terminar esta actividad, vamos a simular que acaba la clase de hoy, se apag
 | n8n no abre | `docker compose ps` y `docker compose logs --tail=50 n8n`. Espera unos segundos al arranque y usa `http://localhost:5678`. |
 | Túnel con error de conexión o `502 Bad Gateway` | `n8n` debe estar en ejecución y listo; dentro del contenedor `tunnel` el destino debe ser `-R0:n8n:5678` (red interna de Docker), mientras que en la prueba manual desde LliureX es `-R0:127.0.0.1:5678`. |
 | Se sigue mostrando `http://localhost:5678` o la URL antigua en el Webhook | Revisa que `.env` tenga `N8N_WEBHOOK_URL=https://.../` con barra final, ejecuta `docker compose up -d --no-deps n8n` y recarga el navegador. |
-| Webhook devuelve `404` | Asegúrate de haber pulsado **Listen for test event** antes de lanzar el `curl` contra `/webhook-test/prueba` y de usar `-X POST`. |
+| Webhook devuelve `404` | Si usas `/webhook-test/prueba`, pulsa **Listen for test event** antes de lanzar la petición; si usas `/webhook/prueba`, asegúrate de que el flujo está activado/publicado y de usar `-X POST`. |
+| La web Pokédex da error de conexión o **CORS** | En el nodo **Webhook** de n8n abre **Options → Allowed Origins (CORS)** y escribe `*`, guarda y activa el flujo. Revisa también la URL y el modo en el icono `⚙️` de la Pokédex. |
 
 ## 📤 Entrega y evaluación
 
@@ -559,21 +609,22 @@ Entrega en **Aules**:
    * Captura de la prueba manual del túnel de Pinggy en la terminal (`ssh -p 443 -R0:127.0.0.1:5678 free.pinggy.io`) mostrando las URLs asignadas.
    * `docker compose ps` mostrando los servicios `n8n` y `tunnel` en ejecución.
    * Captura de los logs del contenedor `tunnel` (`docker compose logs tunnel`) mostrando la URL temporal de Pinggy, del archivo `.env` configurado y de la prueba con `curl` a través de la URL pública HTTPS de Pinggy.
+   * Capturas de la aplicación web **Pokédex** funcionando: al menos un Pokémon encontrado (con su imagen y datos) y un caso de error al buscar un Pokémon inexistente.
    * Respuestas breves:
      1. ¿Qué es un túnel inverso, por qué utilizamos el puerto `443` con Pinggy en la red del aula y qué significa `-R0`?
      2. ¿Por qué en el comando manual usamos `-R0:127.0.0.1:5678` mientras que en el servicio `tunnel` de Docker Compose usamos `-R0:n8n:5678`?
      3. ¿Por qué en cada clase debemos levantar primero `tunnel`, editar `.env` y después levantar `n8n`?
-     4. ¿Qué ocurre si ejecutamos `docker compose down` frente a `docker compose down -v`?
-2. **`docker-compose.yml` utilizado** y el flujo **Poke API** exportado en formato `.json` desde N8N.
+2. **`docker-compose.yml` utilizado**, el flujo **Primera práctica** exportado en formato `.json` desde n8n y un archivo `.zip` con tu aplicación web Pokédex (`index.html`, `styles.css` y `app.js`).
 
 ## 📊 Rúbrica de evaluación (máx. 10 puntos)
 
 | Criterio | Insuficiente | Básico | Adecuado | Excelente |
 | :--- | :--- | :--- | :--- | :--- |
-| **Docker Compose y seguridad local** (máx. 3 puntos) | **0 puntos:** El YAML no es válido o no arranca los contenedores. | **1 punto:** Arranca los contenedores, pero publica puertos en `0.0.0.0` o no comprende la red interna. | **2 puntos:** Configura `127.0.0.1:5678:5678`, la red interna y las variables, con explicaciones parciales. | **3 puntos:** Valida el YAML sin errores, enlaza puertos a `127.0.0.1`, guarda la cuenta en Bitwarden y explica con precisión puertos y red interna. |
-| **Flujo Webhook + PokéAPI con `curl`** (máx. 3 puntos) | **0 puntos:** No construye el flujo o no responde al webhook. | **1 punto:** El webhook responde, pero no consulta la API externa o no transforma los datos. | **2 puntos:** Consulta la PokéAPI y transforma los campos en local, pero no descarga la imagen o no lo prueba luego por el túnel. | **3 puntos:** Construye los 4 nodos, transforma las unidades con expresiones, descarga la imagen y lo prueba tanto en local como a través de Pinggy. |
-| **Túnel de Pinggy (manual y Docker) y protocolo `.env`** (máx. 4 puntos) | **0 puntos:** No consigue levantar el túnel de Pinggy o no obtiene URL pública. | **1,5 puntos:** Abre el túnel manual, pero no lo integra en Compose o n8n sigue mostrando `localhost` en sus webhooks. | **2,5 puntos:** Prueba el túnel manual, integra `tunnel` en Compose y configura `.env`, pero no sigue el orden óptimo al cambiar de sesión. | **4 puntos:** Realiza la prueba manual por SSH, automatiza el servicio `tunnel` en Compose, aplica el orden `1.º tunnel → 2.º .env → 3.º n8n` y explica cómo funciona el túnel inverso. |
-| **Entrega en plazo y documentación** (máx. 0 puntos) | **-2 puntos:** No entrega la actividad o realiza una entrega vacía o con retraso injustificado. | **-1,5 puntos:** Entrega con retraso importante o faltan evidencias clave. | **-1 punto:** Entrega con un pequeño retraso o documentación incompleta. | **0 puntos:** Entrega puntual en Aules con informe completo, `docker-compose.yml` y flujo `.json`. |
+| **Docker Compose y seguridad local** (máx. 2 puntos) | **0 puntos:** El YAML no es válido o no arranca los contenedores. | **0,5 puntos:** Arranca los contenedores, pero publica puertos en `0.0.0.0` o no comprende la red interna. | **1 punto:** Configura `127.0.0.1:5678:5678`, la red interna y las variables, con explicaciones parciales. | **2 puntos:** Valida el YAML sin errores, enlaza puertos a `127.0.0.1`, guarda la cuenta en Bitwarden y explica con precisión puertos y red interna. |
+| **Flujo Webhook + PokéAPI en n8n** (máx. 3 puntos) | **0 puntos:** No construye el flujo o no responde al webhook. | **1 punto:** El webhook responde, pero no consulta la API externa o no transforma los datos. | **2 puntos:** Consulta la PokéAPI y transforma los campos en local, pero no descarga la imagen o no lo prueba luego por el túnel. | **3 puntos:** Construye los 4 nodos, transforma las unidades con expresiones, descarga la imagen y prueba el flujo con `curl` en local y a través de Pinggy. |
+| **Túnel de Pinggy (manual y Docker) y protocolo `.env`** (máx. 2 puntos) | **0 puntos:** No consigue levantar el túnel de Pinggy o no obtiene URL pública. | **0,5 puntos:** Abre el túnel manual, pero no lo integra en Compose o n8n sigue mostrando `localhost` en sus webhooks. | **1 punto:** Prueba el túnel manual, integra `tunnel` en Compose y configura `.env`, pero no sigue el orden óptimo al cambiar de sesión. | **2 puntos:** Realiza la prueba manual por SSH, automatiza el servicio `tunnel` en Compose, aplica el orden `1.º tunnel → 2.º .env → 3.º n8n` y explica el túnel inverso. |
+| **Aplicación web Pokédex conectada a n8n** (máx. 3 puntos) | **0 puntos:** No crea la aplicación web o no realiza peticiones al Webhook de n8n. | **1 punto:** Crea una web básica, pero no conecta con el Webhook de n8n (o falla por CORS) o no muestra la imagen y los datos correctamente. | **2 puntos:** Conecta la web Pokédex al Webhook de n8n y muestra ficha e imagen en local, pero no gestiona errores o no permite cambiar la URL de Pinggy. | **3 puntos:** Implementa la Pokédex (HTML, CSS y JS) conectada al Webhook con CORS configurado, muestra ficha e imagen, gestiona errores y funciona tanto en local como vía Pinggy. |
+| **Entrega en plazo y documentación** (máx. 0 puntos) | **-2 puntos:** No entrega la actividad o realiza una entrega vacía o con retraso injustificado. | **-1,5 puntos:** Entrega con retraso importante o faltan evidencias clave. | **-1 punto:** Entrega con un pequeño retraso o documentación incompleta. | **0 puntos:** Entrega puntual en Aules con informe completo, `docker-compose.yml`, flujo `.json` y `.zip` de la web. |
 
 > La entrega dentro del plazo no resta puntuación. Las entregas con retraso supondrán una penalización de hasta 2 puntos sobre la calificación.
 {: .alert-error}

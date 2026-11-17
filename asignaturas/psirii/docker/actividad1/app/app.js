@@ -1,6 +1,9 @@
-const DEFAULT_BASE_URL = "http://localhost:5678";
-const DEFAULT_PATH = "prueba";
-const STORAGE_KEY = "n8n_pokedex_config_v1";
+const STORAGE_KEY = "pokedex_n8n_settings_v1";
+const DEFAULT_SETTINGS = {
+  baseUrl: "http://localhost:5678",
+  mode: "webhook-test",
+  path: "prueba",
+};
 
 const TYPE_COLORS = {
   normal: "#94a3b8",
@@ -23,220 +26,177 @@ const TYPE_COLORS = {
   fairy: "#f472b6",
 };
 
-const FALLBACK_IMAGE =
+const FALLBACK_SPRITE =
   "data:image/svg+xml," +
   encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><circle cx="48" cy="48" r="40" fill="#1e293b" stroke="#475569" stroke-width="4"/><path d="M8 48h80" stroke="#475569" stroke-width="4"/><circle cx="48" cy="48" r="10" fill="#0f172a" stroke="#475569" stroke-width="4"/></svg>'
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><circle cx="48" cy="48" r="40" fill="#e2e8f0" stroke="#475569" stroke-width="4"/><path d="M8 48h80" stroke="#475569" stroke-width="4"/><circle cx="48" cy="48" r="10" fill="#ffffff" stroke="#475569" stroke-width="4"/></svg>'
   );
 
 const elements = {
-  form: document.getElementById("pokemon-form"),
-  baseUrl: document.getElementById("base-url"),
-  webhookMode: document.getElementById("webhook-mode"),
-  webhookPath: document.getElementById("webhook-path"),
-  modePill: document.getElementById("mode-pill"),
-  fullUrlPreview: document.getElementById("full-url-preview"),
-  resetLocalBtn: document.getElementById("reset-local-btn"),
+  searchForm: document.getElementById("search-form"),
   pokemonInput: document.getElementById("pokemon-input"),
-  submitBtn: document.getElementById("submit-btn"),
-  statusBadge: document.getElementById("status-badge"),
-  emptyState: document.getElementById("empty-state"),
-  errorState: document.getElementById("error-state"),
+  searchBtn: document.getElementById("search-btn"),
+  pickChips: document.querySelectorAll(".pick-chip"),
+
+  stateIdle: document.getElementById("state-idle"),
+  stateLoading: document.getElementById("state-loading"),
+  loadingText: document.getElementById("loading-text"),
+  stateError: document.getElementById("state-error"),
   errorTitle: document.getElementById("error-title"),
-  errorMessage: document.getElementById("error-message"),
-  errorHint: document.getElementById("error-hint"),
-  pokemonResult: document.getElementById("pokemon-result"),
+  errorDesc: document.getElementById("error-desc"),
+  stateResult: document.getElementById("state-result"),
+
   pokeImage: document.getElementById("poke-image"),
   pokeFicha: document.getElementById("poke-ficha"),
   pokeType: document.getElementById("poke-type"),
   pokeAltura: document.getElementById("poke-altura"),
   pokePeso: document.getElementById("poke-peso"),
-  historySection: document.getElementById("history-section"),
+
+  historyBar: document.getElementById("history-bar"),
   historyList: document.getElementById("history-list"),
-  clearHistoryBtn: document.getElementById("clear-history-btn"),
-  rawResponse: document.getElementById("raw-response"),
-  curlPreview: document.getElementById("curl-preview"),
-  copyCurlBtn: document.getElementById("copy-curl-btn"),
-  tabButtons: document.querySelectorAll(".tab-btn"),
-  tabResponse: document.getElementById("tab-response"),
-  tabRequest: document.getElementById("tab-request"),
-  chips: document.querySelectorAll(".chip"),
+
+  settingsBtn: document.getElementById("settings-btn"),
+  settingsDialog: document.getElementById("settings-dialog"),
+  settingsForm: document.getElementById("settings-form"),
+  closeSettingsBtn: document.getElementById("close-settings-btn"),
+  resetSettingsBtn: document.getElementById("reset-settings-btn"),
+  baseUrlInput: document.getElementById("base-url"),
+  modeSelect: document.getElementById("webhook-mode"),
+  pathInput: document.getElementById("webhook-path"),
+  endpointPreview: document.getElementById("endpoint-preview"),
 };
 
-const sessionHistory = [];
+let settings = loadSettings();
+const recentPokemon = [];
 
-function loadSavedConfig() {
+function loadSettings() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
-    const saved = JSON.parse(raw);
-    if (saved.baseUrl) elements.baseUrl.value = saved.baseUrl;
-    if (saved.mode === "webhook" || saved.mode === "webhook-test") {
-      elements.webhookMode.value = saved.mode;
-    }
-    if (saved.path) elements.webhookPath.value = saved.path;
+    if (!raw) return { ...DEFAULT_SETTINGS };
+    const parsed = JSON.parse(raw);
+    return {
+      baseUrl: parsed.baseUrl || DEFAULT_SETTINGS.baseUrl,
+      mode: parsed.mode === "webhook" ? "webhook" : "webhook-test",
+      path: parsed.path || DEFAULT_SETTINGS.path,
+    };
   } catch {
-    // Ignorar errores de almacenamiento local
+    return { ...DEFAULT_SETTINGS };
   }
 }
 
-function saveConfig() {
+function saveSettings(nextSettings) {
+  settings = nextSettings;
   try {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        baseUrl: elements.baseUrl.value.trim(),
-        mode: elements.webhookMode.value,
-        path: elements.webhookPath.value.trim(),
-      })
-    );
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
   } catch {
     // Ignorar errores de almacenamiento local
   }
 }
 
-function buildWebhookUrl() {
-  const rawBase = elements.baseUrl.value.trim() || DEFAULT_BASE_URL;
-  const cleanBase = rawBase.replace(/\/+$/, "");
-  const mode = elements.webhookMode.value || "webhook-test";
-  const cleanPath = (elements.webhookPath.value.trim() || DEFAULT_PATH).replace(/^\/+/, "");
-  return `${cleanBase}/${mode}/${cleanPath}`;
+function getWebhookUrl(current = settings) {
+  const cleanBase = (current.baseUrl || DEFAULT_SETTINGS.baseUrl).trim().replace(/\/+$/, "");
+  const cleanPath = (current.path || DEFAULT_SETTINGS.path).trim().replace(/^\/+/, "");
+  return `${cleanBase}/${current.mode}/${cleanPath}`;
 }
 
-function buildCurlCommand(url, pokemonName) {
-  const safePokemon = (pokemonName || "snorlax").replace(/'/g, "");
-  return `curl -s -X POST ${url} \\\n  -H "Content-Type: application/json" \\\n  -d '{"pokemon": "${safePokemon}"}'`;
+function showScreenState(activeName) {
+  elements.stateIdle.classList.toggle("hidden", activeName !== "idle");
+  elements.stateLoading.classList.toggle("hidden", activeName !== "loading");
+  elements.stateError.classList.toggle("hidden", activeName !== "error");
+  elements.stateResult.classList.toggle("hidden", activeName !== "result");
 }
 
-function updatePreviews() {
-  const url = buildWebhookUrl();
-  const isProd = elements.webhookMode.value === "webhook";
-
-  elements.fullUrlPreview.textContent = url;
-  elements.modePill.textContent = isProd ? "Modo Producción" : "Modo Test";
-  elements.modePill.className = `pill ${isProd ? "pill-prod" : "pill-test"}`;
-
-  const currentPokemon = elements.pokemonInput.value.trim() || "snorlax";
-  elements.curlPreview.textContent = buildCurlCommand(url, currentPokemon);
-  saveConfig();
+function setLoading(isLoading, pokemonName = "") {
+  elements.searchBtn.disabled = isLoading;
+  elements.searchBtn.classList.toggle("loading", isLoading);
+  if (isLoading) {
+    elements.loadingText.textContent = `Buscando a «${pokemonName}»...`;
+    showScreenState("loading");
+  }
 }
 
-function setStatus(type, text) {
-  elements.statusBadge.className = `status-badge status-${type}`;
-  elements.statusBadge.textContent = text;
-}
-
-function setLoading(isLoading) {
-  elements.submitBtn.disabled = isLoading;
-  elements.submitBtn.classList.toggle("loading", isLoading);
-}
-
-function showError(title, message, hint) {
-  elements.emptyState.classList.add("hidden");
-  elements.pokemonResult.classList.add("hidden");
-  elements.errorState.classList.remove("hidden");
-
+function showError(title, description) {
   elements.errorTitle.textContent = title;
-  elements.errorMessage.textContent = message;
-  elements.errorHint.textContent = hint || "";
-  elements.errorHint.classList.toggle("hidden", !hint);
+  elements.errorDesc.textContent = description;
+  showScreenState("error");
 }
 
-function renderPokemonCard(data) {
-  elements.emptyState.classList.add("hidden");
-  elements.errorState.classList.add("hidden");
-  elements.pokemonResult.classList.remove("hidden");
-
+function renderPokemon(data) {
   const ficha = data.ficha || "Pokémon desconocido";
-  const altura = data.altura || "—";
-  const peso = data.peso || "—";
-  const tipo = (data.tipo_principal || "desconocido").toString().toLowerCase();
-  const imagen = data.imagen || FALLBACK_IMAGE;
+  const tipo = (data.tipo_principal || "normal").toString().toLowerCase();
+  const imagen = data.imagen || FALLBACK_SPRITE;
 
   elements.pokeFicha.textContent = ficha;
-  elements.pokeAltura.textContent = altura;
-  elements.pokePeso.textContent = peso;
+  elements.pokeAltura.textContent = data.altura || "—";
+  elements.pokePeso.textContent = data.peso || "—";
   elements.pokeType.textContent = tipo;
   elements.pokeType.style.backgroundColor = TYPE_COLORS[tipo] || "#64748b";
 
   elements.pokeImage.src = imagen;
   elements.pokeImage.alt = `Sprite de ${ficha}`;
   elements.pokeImage.onerror = () => {
-    elements.pokeImage.src = FALLBACK_IMAGE;
+    elements.pokeImage.src = FALLBACK_SPRITE;
   };
+
+  showScreenState("result");
 }
 
-function addToHistory(query, data) {
-  const normalizedQuery = query.toLowerCase();
-  const existingIndex = sessionHistory.findIndex((item) => item.query === normalizedQuery);
-  if (existingIndex !== -1) {
-    sessionHistory.splice(existingIndex, 1);
+function addRecent(query, data) {
+  const key = query.toLowerCase();
+  const existingIdx = recentPokemon.findIndex((item) => item.key === key);
+  if (existingIdx !== -1) {
+    recentPokemon.splice(existingIdx, 1);
   }
-  sessionHistory.unshift({ query: normalizedQuery, data });
-  if (sessionHistory.length > 6) {
-    sessionHistory.pop();
+  recentPokemon.unshift({ key, data });
+  if (recentPokemon.length > 5) {
+    recentPokemon.pop();
   }
-  renderHistory();
+  renderRecent();
 }
 
-function renderHistory() {
-  if (sessionHistory.length === 0) {
-    elements.historySection.classList.add("hidden");
+function renderRecent() {
+  if (recentPokemon.length === 0) {
+    elements.historyBar.classList.add("hidden");
     elements.historyList.innerHTML = "";
     return;
   }
 
-  elements.historySection.classList.remove("hidden");
+  elements.historyBar.classList.remove("hidden");
   elements.historyList.innerHTML = "";
 
-  sessionHistory.forEach((entry) => {
+  recentPokemon.forEach((entry) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "history-item";
-    btn.textContent = entry.data.ficha || entry.query;
+    btn.className = "history-chip";
+
+    const img = document.createElement("img");
+    img.src = entry.data.imagen || FALLBACK_SPRITE;
+    img.alt = "";
+
+    const span = document.createElement("span");
+    span.textContent = entry.data.ficha || entry.key;
+
+    btn.append(img, span);
     btn.addEventListener("click", () => {
-      elements.pokemonInput.value = entry.query;
-      updatePreviews();
-      renderPokemonCard(entry.data);
-      elements.rawResponse.textContent = JSON.stringify(entry.data, null, 2);
-      setStatus("ok", "Desde historial");
+      elements.pokemonInput.value = entry.key;
+      renderPokemon(entry.data);
     });
     elements.historyList.appendChild(btn);
   });
 }
 
-function getHttpErrorHint(status, mode) {
-  if (status === 404) {
-    return mode === "webhook-test"
-      ? "Error 404: En n8n recuerda pulsar «Listen for test event» dentro del nodo Webhook antes de enviar la petición, o cambia a Modo Producción si el flujo ya está activo."
-      : "Error 404: Comprueba que el workflow «Primera práctica» esté activo en n8n y que el path sea exactamente «prueba».";
-  }
-  if (status === 500) {
-    return "Error 500: El flujo de n8n falló al consultar la PokéAPI. Verifica que el nombre del Pokémon existe y está bien escrito (en inglés o número de Pokédex).";
-  }
-  if (status === 502 || status === 503) {
-    return "Error de puerta de enlace: n8n no responde detrás del túnel de Pinggy. Revisa que el contenedor «n8n» esté arrancado.";
-  }
-  return "Revisa la pestaña «Respuesta JSON» y la ejecución del flujo en n8n para ver el detalle.";
-}
-
-async function queryPokemon(pokemonRaw) {
-  const pokemon = pokemonRaw.trim();
+async function searchPokemon(rawName) {
+  const pokemon = rawName.trim();
   if (!pokemon) {
     elements.pokemonInput.focus();
     return;
   }
 
-  const url = buildWebhookUrl();
-  const mode = elements.webhookMode.value;
-  updatePreviews();
-
-  setLoading(true);
-  setStatus("loading", "Consultando n8n...");
-  const startTime = performance.now();
+  const webhookUrl = getWebhookUrl();
+  setLoading(true, pokemon);
 
   try {
-    const response = await fetch(url, {
+    const response = await fetch(webhookUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -244,126 +204,102 @@ async function queryPokemon(pokemonRaw) {
       body: JSON.stringify({ pokemon }),
     });
 
-    const elapsedMs = Math.round(performance.now() - startTime);
     const rawText = await response.text();
-
-    let parsedBody = null;
+    let payload = null;
     try {
-      parsedBody = rawText ? JSON.parse(rawText) : null;
+      payload = rawText ? JSON.parse(rawText) : null;
     } catch {
-      parsedBody = null;
+      payload = null;
     }
 
     if (!response.ok) {
-      elements.rawResponse.textContent = parsedBody
-        ? JSON.stringify(parsedBody, null, 2)
-        : rawText || `(Sin cuerpo de respuesta, HTTP ${response.status})`;
-      setStatus("err", `HTTP ${response.status} · ${elapsedMs} ms`);
-      showError(
-        `n8n devolvió el código HTTP ${response.status}`,
-        `No se pudo obtener la ficha para «${pokemon}».`,
-        getHttpErrorHint(response.status, mode)
-      );
+      if (response.status === 404) {
+        showError(
+          "Webhook no disponible (404)",
+          "En modo Test recuerda pulsar «Listen for test event» en n8n, o activa el flujo y selecciona Producción en ⚙️."
+        );
+      } else {
+        showError(
+          "Pokémon no encontrado",
+          `No se encontraron datos para «${pokemon}». Revisa el nombre o el número de Pokédex.`
+        );
+      }
       return;
     }
 
-    if (!parsedBody) {
-      elements.rawResponse.textContent = rawText || "(Respuesta vacía)";
-      setStatus("err", `Respuesta no JSON · ${elapsedMs} ms`);
-      showError(
-        "La respuesta recibida no es JSON válido",
-        "El servidor respondió con HTML o texto plano en lugar del JSON del nodo «Respond to Webhook».",
-        "Si usas Pinggy, abre primero la URL del túnel una vez en el navegador o revisa que el nodo «Respond to Webhook» esté configurado con «First Incoming Item»."
-      );
-      return;
-    }
-
-    const item = Array.isArray(parsedBody) ? parsedBody[0] : parsedBody;
-    elements.rawResponse.textContent = JSON.stringify(parsedBody, null, 2);
-
+    const item = Array.isArray(payload) ? payload[0] : payload;
     if (!item || (!item.ficha && !item.imagen)) {
-      setStatus("err", `Formato inesperado · ${elapsedMs} ms`);
       showError(
-        "El JSON no contiene los campos esperados",
-        "Se esperaban los campos ficha, altura, peso, tipo_principal e imagen.",
-        "Comprueba el nodo «Edit Fields» de tu workflow en n8n."
+        "Pokémon no encontrado",
+        `La respuesta para «${pokemon}» no contiene datos válidos.`
       );
       return;
     }
 
-    setStatus("ok", `HTTP ${response.status} · ${elapsedMs} ms`);
-    renderPokemonCard(item);
-    addToHistory(pokemon, item);
-  } catch (err) {
-    const elapsedMs = Math.round(performance.now() - startTime);
-    elements.rawResponse.textContent = `// Error de red o CORS:\n${err.message}`;
-    setStatus("err", `Error de conexión · ${elapsedMs} ms`);
+    renderPokemon(item);
+    addRecent(pokemon, item);
+  } catch {
     showError(
-      "No se pudo conectar con el Webhook de n8n",
-      `Detalle técnico: ${err.message}`,
-      "Comprueba que n8n está encendido, que la URL (localhost o Pinggy) es correcta y que el nodo Webhook de n8n permite CORS (Options → Allowed Origins (CORS) → *)."
+      "Sin conexión con la Pokédex",
+      "No se pudo conectar con n8n. Comprueba que está en marcha y revisa la URL en ⚙️ (y CORS en el nodo Webhook si aplica)."
     );
   } finally {
     setLoading(false);
   }
 }
 
-function initEvents() {
-  elements.baseUrl.addEventListener("input", updatePreviews);
-  elements.webhookMode.addEventListener("change", updatePreviews);
-  elements.webhookPath.addEventListener("input", updatePreviews);
-  elements.pokemonInput.addEventListener("input", updatePreviews);
+function syncSettingsForm() {
+  elements.baseUrlInput.value = settings.baseUrl;
+  elements.modeSelect.value = settings.mode;
+  elements.pathInput.value = settings.path;
+  updateEndpointPreview();
+}
 
-  elements.resetLocalBtn.addEventListener("click", () => {
-    elements.baseUrl.value = DEFAULT_BASE_URL;
-    updatePreviews();
-  });
-
-  elements.form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    queryPokemon(elements.pokemonInput.value);
-  });
-
-  elements.chips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      const value = chip.dataset.pokemon || "";
-      elements.pokemonInput.value = value;
-      updatePreviews();
-      queryPokemon(value);
-    });
-  });
-
-  elements.clearHistoryBtn.addEventListener("click", () => {
-    sessionHistory.length = 0;
-    renderHistory();
-  });
-
-  elements.tabButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const target = btn.dataset.tab;
-      elements.tabButtons.forEach((b) => {
-        const active = b === btn;
-        b.classList.toggle("active", active);
-        b.setAttribute("aria-selected", String(active));
-      });
-      elements.tabResponse.classList.toggle("hidden", target !== "response");
-      elements.tabRequest.classList.toggle("hidden", target !== "request");
-    });
-  });
-
-  elements.copyCurlBtn.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(elements.curlPreview.textContent);
-      elements.copyCurlBtn.textContent = "¡Copiado!";
-      setTimeout(() => {
-        elements.copyCurlBtn.textContent = "Copiar cURL";
-      }, 1600);
-    } catch {
-      elements.copyCurlBtn.textContent = "No disponible";
-    }
+function updateEndpointPreview() {
+  elements.endpointPreview.textContent = getWebhookUrl({
+    baseUrl: elements.baseUrlInput.value,
+    mode: elements.modeSelect.value,
+    path: elements.pathInput.value,
   });
 }
 
-loadSavedConfig();
-initEvents();
-updatePreviews();
+elements.searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  searchPokemon(elements.pokemonInput.value);
+});
+
+elements.pickChips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    const pokemon = chip.dataset.pokemon || "";
+    elements.pokemonInput.value = pokemon;
+    searchPokemon(pokemon);
+  });
+});
+
+elements.settingsBtn.addEventListener("click", () => {
+  syncSettingsForm();
+  elements.settingsDialog.showModal();
+});
+
+elements.closeSettingsBtn.addEventListener("click", () => {
+  elements.settingsDialog.close();
+});
+
+elements.baseUrlInput.addEventListener("input", updateEndpointPreview);
+elements.modeSelect.addEventListener("change", updateEndpointPreview);
+elements.pathInput.addEventListener("input", updateEndpointPreview);
+
+elements.resetSettingsBtn.addEventListener("click", () => {
+  elements.baseUrlInput.value = DEFAULT_SETTINGS.baseUrl;
+  elements.modeSelect.value = DEFAULT_SETTINGS.mode;
+  elements.pathInput.value = DEFAULT_SETTINGS.path;
+  updateEndpointPreview();
+});
+
+elements.settingsForm.addEventListener("submit", () => {
+  saveSettings({
+    baseUrl: elements.baseUrlInput.value.trim() || DEFAULT_SETTINGS.baseUrl,
+    mode: elements.modeSelect.value === "webhook" ? "webhook" : "webhook-test",
+    path: elements.pathInput.value.trim() || DEFAULT_SETTINGS.path,
+  });
+});
