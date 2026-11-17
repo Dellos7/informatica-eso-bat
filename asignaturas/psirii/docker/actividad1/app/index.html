@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex n8n — Cliente Webhook</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="app-header">
+      <div class="brand">
+        <span class="pokeball-dot" aria-hidden="true"></span>
+        <div>
+          <p class="eyebrow">PSIR II · Docker + n8n + Pinggy</p>
+          <h1>Cliente Web para Workflow n8n (PokéAPI)</h1>
+        </div>
+      </div>
+      <a class="back-link" href="../">← Volver a la Actividad 1</a>
+    </header>
+
+    <main class="layout-grid">
+      <!-- Panel izquierdo: Configuración y envío -->
+      <section class="card controls-card" aria-labelledby="config-title">
+        <div class="card-header">
+          <h2 id="config-title">1. Conexión al Webhook</h2>
+          <span id="mode-pill" class="pill pill-test">Modo Test</span>
+        </div>
+
+        <form id="pokemon-form" novalidate>
+          <div class="field-group">
+            <div class="label-row">
+              <label for="base-url">URL base de n8n (local o Pinggy)</label>
+              <button type="button" id="reset-local-btn" class="text-btn">Usar localhost</button>
+            </div>
+            <input
+              id="base-url"
+              name="baseUrl"
+              type="url"
+              placeholder="http://localhost:5678"
+              value="http://localhost:5678"
+              autocomplete="url"
+              required
+            >
+            <p class="help-text">
+              Ejemplo túnel Pinggy: <code>https://tu-subdominio.free.pinggy.net</code>
+            </p>
+          </div>
+
+          <div class="split-fields">
+            <div class="field-group">
+              <label for="webhook-mode">Entorno del Webhook</label>
+              <select id="webhook-mode" name="mode">
+                <option value="webhook-test" selected>Test (/webhook-test/...)</option>
+                <option value="webhook">Producción (/webhook/...)</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="webhook-path">Path del nodo</label>
+              <input
+                id="webhook-path"
+                name="path"
+                type="text"
+                value="prueba"
+                placeholder="prueba"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="endpoint-preview" aria-live="polite">
+            <span class="method-badge">POST</span>
+            <code id="full-url-preview">http://localhost:5678/webhook-test/prueba</code>
+          </div>
+
+          <hr class="divider">
+
+          <h2 class="section-subtitle">2. Consultar Pokémon</h2>
+
+          <div class="field-group">
+            <label for="pokemon-input">Nombre o número de Pokédex</label>
+            <div class="search-row">
+              <input
+                id="pokemon-input"
+                name="pokemon"
+                type="text"
+                placeholder="Ej. snorlax, pikachu, charizard, 25..."
+                autocomplete="off"
+                required
+              >
+              <button type="submit" id="submit-btn" class="primary-btn">
+                <span class="btn-label">Enviar petición</span>
+                <span class="spinner" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="quick-chips" aria-label="Ejemplos rápidos">
+            <span class="chips-label">Ejemplos:</span>
+            <button type="button" class="chip" data-pokemon="snorlax">snorlax</button>
+            <button type="button" class="chip" data-pokemon="pikachu">pikachu</button>
+            <button type="button" class="chip" data-pokemon="charizard">charizard</button>
+            <button type="button" class="chip" data-pokemon="bulbasaur">bulbasaur</button>
+            <button type="button" class="chip" data-pokemon="gengar">gengar</button>
+          </div>
+        </form>
+
+        <details class="cors-note">
+          <summary>ℹ️ Requisitos en n8n antes de pulsar «Enviar petición»</summary>
+          <ul>
+            <li><strong>Modo Test:</strong> En n8n abre el nodo <em>Webhook</em> y pulsa <strong>Listen for test event</strong> antes de cada envío.</li>
+            <li><strong>Modo Producción:</strong> Activa/publica el flujo en n8n para que escuche siempre en <code>/webhook/prueba</code>.</li>
+            <li><strong>Si el navegador da error CORS:</strong> En el nodo <em>Webhook</em> de n8n ve a <em>Options → Allowed Origins (CORS)</em> y escribe <code>*</code>.</li>
+          </ul>
+        </details>
+      </section>
+
+      <!-- Panel derecho: Resultado e inspector -->
+      <section class="card result-card" aria-labelledby="result-title">
+        <div class="card-header">
+          <h2 id="result-title">3. Ficha devuelta por n8n</h2>
+          <span id="status-badge" class="status-badge status-idle">En espera</span>
+        </div>
+
+        <!-- Estado inicial -->
+        <div id="empty-state" class="state-box">
+          <div class="empty-icon" aria-hidden="true">📡</div>
+          <p class="state-title">Todavía no se ha enviado ninguna petición</p>
+          <p class="state-desc">
+            Introduce el nombre de un Pokémon y pulsa <strong>Enviar petición</strong> para llamar al
+            Webhook de tu workflow <em>Primera práctica</em>.
+          </p>
+        </div>
+
+        <!-- Estado de error -->
+        <div id="error-state" class="state-box error-box hidden" role="alert">
+          <p class="state-title" id="error-title">No se pudo completar la petición</p>
+          <p class="state-desc" id="error-message"></p>
+          <p class="error-hint" id="error-hint"></p>
+        </div>
+
+        <!-- Ficha del Pokémon -->
+        <article id="pokemon-result" class="pokemon-card hidden" aria-live="polite">
+          <div class="sprite-frame">
+            <img id="poke-image" src="" alt="Sprite del Pokémon">
+          </div>
+          <div class="pokemon-info">
+            <div class="pokemon-title-row">
+              <h3 id="poke-ficha">—</h3>
+              <span id="poke-type" class="type-badge">—</span>
+            </div>
+            <dl class="stats-grid">
+              <div class="stat-item">
+                <dt>Altura</dt>
+                <dd id="poke-altura">—</dd>
+              </div>
+              <div class="stat-item">
+                <dt>Peso</dt>
+                <dd id="poke-peso">—</dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+
+        <!-- Historial de sesión -->
+        <div id="history-section" class="history-section hidden">
+          <div class="label-row">
+            <span class="section-mini-title">Consultas recientes</span>
+            <button type="button" id="clear-history-btn" class="text-btn">Limpiar</button>
+          </div>
+          <div id="history-list" class="history-list"></div>
+        </div>
+
+        <!-- Inspector HTTP -->
+        <div class="inspector">
+          <div class="inspector-tabs" role="tablist">
+            <button type="button" class="tab-btn active" data-tab="response" role="tab" aria-selected="true">
+              Respuesta JSON
+            </button>
+            <button type="button" class="tab-btn" data-tab="request" role="tab" aria-selected="false">
+              Petición HTTP / cURL
+            </button>
+          </div>
+
+          <div id="tab-response" class="tab-panel">
+            <pre><code id="raw-response">// Aquí aparecerá el JSON exacto que devuelve el nodo "Respond to Webhook"</code></pre>
+          </div>
+
+          <div id="tab-request" class="tab-panel hidden">
+            <div class="curl-header">
+              <span>Comando equivalente:</span>
+              <button type="button" id="copy-curl-btn" class="copy-btn">Copiar cURL</button>
+            </div>
+            <pre><code id="curl-preview"></code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
