@@ -151,11 +151,12 @@ Con todos los gráficos listos en tu carpeta, abre tu proyecto en **Scratch** y 
    - Selecciona la herramienta **Línea** (color negro `#000000` y grosor **`4`**) y dibuja los pasillos, recovecos y algún callejón sin salida guiándote por este ejemplo:
    - 💡 **Truco**: Si mantienes pulsada la tecla **`Shift` (Mayús)** mientras arrastras para dibujar una línea, te saldrá perfectamente recta (vertical u horizontal). Deja pasillos suficientemente anchos para que Mario pueda pasar y deja al menos un pasillo vertical despejado (para el caparazón verde) y uno horizontal despejado (para el caparazón rojo).
 
+> ⚠️ **¡Importante!**: Debes dibujar tu propio laberinto en el editor vectorial de Scratch. La imagen de debajo contiene una marca de agua y solo sirve como modelo visual de referencia.
+{: .alert .alert-error}
+
 ![Ejemplo de referencia para dibujar tu propio laberinto en Scratch](./imagenes_juego/laberinto_ejemplo.png)
 {: .img}
 
-> ⚠️ **¡Importante!**: Debes dibujar tu propio laberinto en el editor vectorial de Scratch. La imagen superior contiene una marca de agua y solo sirve como modelo visual de referencia.
-{: .alert .alert-warning}
 
 5. En el botón **Elige un fondo → Subir fondo** (abajo a la derecha), importa los archivos **`GAME_OVER.png`** y **`VICTORIA.png`** que has creado en GIMP. Comprueba que los 3 fondos del escenario se llamen exactamente `laberinto_1`, `GAME_OVER` y `VICTORIA`.
 6. En el panel de **Objetos → Subir objeto**, importa tus archivos PNG y colócalos en sus posiciones de partida:
