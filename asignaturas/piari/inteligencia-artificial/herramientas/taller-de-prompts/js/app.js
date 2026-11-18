@@ -1,5 +1,5 @@
 // ==========================================================================
-// TALLER DE PROMPTS — Actividad 4 del Tema 2
+// TALLER DE PROMPTS — Actividad 4 del Tema 3
 // ==========================================================================
 
 (function () {
@@ -119,14 +119,14 @@
       contenedor.appendChild(T2.el('div', {
         class: 'notice warn mt',
         html: '⚠️ Te falta <strong>' + faltan.map(function (c) { return c.nombre; }).join(', ') + '</strong>. ' +
-              'Recuerda: <strong>todo lo que no le digas, se lo inventará la IA por su cuenta.</strong>'
+          'Recuerda: <strong>todo lo que no le digas, se lo inventará la IA por su cuenta.</strong>'
       }));
     } else if (completo) {
       const palabras = montarPrompt().split(/\s+/).length;
       contenedor.appendChild(T2.el('div', {
         class: 'notice good mt',
         html: '✅ Prompt completo (' + palabras + ' palabras). Cópialo y pruébalo en duck.ai. ' +
-              'Después <strong>no te conformes</strong>: corrígele la respuesta al menos dos veces.'
+          'Después <strong>no te conformes</strong>: corrígele la respuesta al menos dos veces.'
       }));
     }
   }

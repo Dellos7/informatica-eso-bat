@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividad 7. Agentes, AGI y mi futuro
-description: Actividad 7 del Tema 2
+description: Actividad 7 del Tema 3
 ---
 
 # Actividad 7. Agentes, AGI y mi futuro

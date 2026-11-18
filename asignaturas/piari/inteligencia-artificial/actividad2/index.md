@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividad 2. Entrena tu propia IA
-description: Actividad 2 del Tema 2
+description: Actividad 2 del Tema 3
 ---
 
 # Actividad 2. Entrena tu propia IA
@@ -17,7 +17,7 @@ Vas a entrenar un modelo que reconozca los gestos de **piedra, papel o tijera**.
 
 ## Antes de empezar
 
-1. Crea la carpeta **Documentos/PIARI/Tema 2/Actividad 2**.
+1. Crea la carpeta **Documentos/PIARI/Tema 3/Actividad 2**.
 2. Descarga de Aules el conjunto de imágenes que facilitará el profesor y descomprímelo ahí: `piedra`, `papel`, `tijera`, `pruebas` y `pruebas_dificiles`. No utilices las imágenes de prueba para entrenar. Si el paquete todavía no está disponible, solicítalo al profesor antes de comenzar.
 3. Abre **[Teachable Machine](https://teachablemachine.withgoogle.com/)** → *Get Started* → **Proyecto de imágenes** → **Modelo de imagen estándar**.
 

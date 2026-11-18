@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Guía Docente - Actividad 8. El Laberinto de Mario en Scratch
+title: Guía Docente - Actividad 1. El Laberinto de Mario en Scratch
 description: Guía paso a paso y solucionario de pseudocódigo para el profesorado (GIMP + Scratch)
 ---
 
-# 👨‍🏫 Guía Docente: El Laberinto de Mario en Scratch (Actividad 8)
+# 👨‍🏫 Guía Docente: El Laberinto de Mario en Scratch (Actividad 1)
 
 Esta guía contiene las instrucciones detalladas paso a paso y todo el **pseudocódigo de bloques de Scratch resuelto** para que el profesorado pueda dirigir en el aula la creación del videojuego **"El Laberinto de Mario"**, estructurada exactamente en las **3 partes** que sigue el alumnado en su enunciado:
 - **Parte 1**: Preparación de *sprites*, objetos y fondos en **GIMP** (`.xcf` y `.png`) + dibujo del laberinto en **Scratch**.
@@ -12,7 +12,7 @@ Esta guía contiene las instrucciones detalladas paso a paso y todo el **pseudoc
 - **Parte 3**: Reto individual de ampliación *(nuevos personajes recortados en GIMP, sistema de 3 vidas y aumento de dificultad)*.
 
 > 📦 **Archivos `.sb3`, proyecto online, paquete `.zip` y vídeo de referencia para mostrar en clase**:
-> - **Paquete de recursos base del alumnado (`.zip`)**: [**Descargar `recursos_actividad8.zip`**](./recursos_actividad8.zip) *(contiene `sprites.png`, `castillo.png` y `SuperMario256.ttf`)*.
+> - **Paquete de recursos base del alumnado (`.zip`)**: [**Descargar `recursos_actividad1.zip`**](./recursos_actividad1.zip) *(contiene `sprites.png`, `castillo.png` y `SuperMario256.ttf`)*.
 > - **Proyecto Scratch resuelto — Parte 2 (Juego Base)**: [**Descargar `Laberinto-Mario.sb3`**](./Laberinto-Mario.sb3) | [**Abrir en Scratch Online (`scratch.mit.edu/projects/1440412974`)**](https://scratch.mit.edu/projects/1440412974)
 > - **Proyecto Scratch resuelto — Parte 3 (Juego Ampliado con 3 vidas, tiempo de 60 s, Goomba, Planta Piraña, Champiñón y Moneda)**: [**Descargar `Laberinto-Mario-Ampliado.sb3`**](./Laberinto-Mario-Ampliado.sb3)
 > - **Vídeo completo del juego base sin marcas de agua**: [**Ver/Descargar `juego_mario.mp4`**](./imagenes_juego/juego_mario.mp4)
@@ -47,8 +47,8 @@ Esta guía contiene las instrucciones detalladas paso a paso y todo el **pseudoc
 
 ## 🎨 2. Guía Docente de la Parte 1: Preparación de imágenes, *sprites*, fondos (GIMP) y laberinto (Scratch)
 
-### Paso 1.1: Carpeta de trabajo y descompresión de `recursos_actividad8.zip`
-- El alumnado crea la carpeta **`Documentos/PIARI/Tema 1/Actividad 8`**, descarga [`recursos_actividad8.zip`](./recursos_actividad8.zip) y lo descomprime allí con **clic derecho → Extraer aquí** (*Extreu ací*), obteniendo `sprites.png`, `castillo.png` y `SuperMario256.ttf`.
+### Paso 1.1: Carpeta de trabajo y descompresión de `recursos_actividad1.zip`
+- El alumnado crea la carpeta **`Documentos/PIARI/Tema 2/Actividad 1`**, descarga [`recursos_actividad1.zip`](./recursos_actividad1.zip) y lo descomprime allí con **clic derecho → Extraer aquí** (*Extreu ací*), obteniendo `sprites.png`, `castillo.png` y `SuperMario256.ttf`.
 - **Requisito clave de evaluación**: De cada imagen trabajada en GIMP deben guardar tanto el archivo editable **`.xcf`** (**Archivo → Guardar como...**) como la imagen exportada **`.png`** (**Archivo → Exportar como...**).
 
 ### Paso 1.2: Extraer los disfraces de Mario y el caparazón rojo desde `sprites.png`
@@ -444,7 +444,7 @@ fin
 ## 📤 5. Lista de verificación para la corrección en Aules
 
 Al corregir la entrega del alumnado en Aules, verificar que aportan:
-1. **`actividad8_apellido_nombre.zip`**: Carpeta comprimida con los archivos editables **`.xcf`** de GIMP (`mario1.xcf` a `mario4.xcf`, `caparazon_rojo.xcf`, `caparazon_verde.xcf`, `GAME_OVER.xcf` con capas, `VICTORIA.xcf` con capas y los `.xcf` de los nuevos objetos de la Parte 3) junto con los `.png` exportados.
+1. **`actividad1_apellido_nombre.zip`**: Carpeta comprimida con los archivos editables **`.xcf`** de GIMP (`mario1.xcf` a `mario4.xcf`, `caparazon_rojo.xcf`, `caparazon_verde.xcf`, `GAME_OVER.xcf` con capas, `VICTORIA.xcf` con capas y los `.xcf` de los nuevos objetos de la Parte 3) junto con los `.png` exportados.
 2. **`apellido_nombre_laberinto_mario.sb3`**: Proyecto de Scratch funcional con el laberinto dibujado en vectorial y las 3 partes completadas.
 3. **`captura_juego.png`**: Captura rotulada con su nombre y apellidos.
 4. **`explicacion.odt` / `.pdf`**: Explicación del trabajo en GIMP y Scratch, registro de la prueba por parejas y apartado de créditos, licencias y comparación con Laby.

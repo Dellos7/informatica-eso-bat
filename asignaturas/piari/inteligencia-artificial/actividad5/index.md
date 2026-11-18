@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividad 5. Lo que nunca le cuentas a una IA
-description: Actividad 5 del Tema 2
+description: Actividad 5 del Tema 3
 ---
 
 # Actividad 5. Lo que nunca le cuentas a una IA

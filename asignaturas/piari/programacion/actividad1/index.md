@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Actividad 8. Creando nuestro primer videojuego en Scratch
-description: Actividad 8 de la SA1
+title: Actividad 1. Creando nuestro primer videojuego en Scratch
+description: Actividad 1 del Tema 2
 ---
 
-# Actividad 8. Creando nuestro primer videojuego en Scratch: El Laberinto de Mario
+# Actividad 1. Creando nuestro primer videojuego en Scratch: El Laberinto de Mario
 
-¡Ha llegado el momento de poner en práctica todo lo aprendido a lo largo del tema! Durante las actividades anteriores has trabajado con secuencias de instrucciones, algoritmos, recorridos en laberintos, bucles (`while`) y condicionales (`if`). 
+¡Ha llegado el momento de poner en práctica todo lo aprendido en el tema anterior! Durante el Tema 1 has trabajado con secuencias de instrucciones, algoritmos, recorridos en laberintos, bucles (`while`) y condicionales (`if`). 
 
 Ahora utilizaremos **GIMP** (para recortar y diseñar nuestros propios *sprites*, objetos y pantallas de fin de juego) y **Scratch** (una plataforma visual de programación por bloques creada por el MIT) para diseñar y programar un videojuego completo de laberintos inspirado en **Super Mario Bros**.
 
@@ -57,18 +57,18 @@ En Scratch programamos encajando bloques de colores como si fueran piezas de puz
 En el desarrollo real de videojuegos 2D, primero se preparan todos los recursos gráficos (*assets*): se extraen los personajes desde una **hoja de *sprites* (*sprite sheet*)**, se diseñan las pantallas de victoria y derrota en un editor gráfico (**GIMP**) y se dibuja el mapa del nivel (**Scratch**).
 
 > ⚠️ **¡¡MUY IMPORTANTE SOBRE LOS ARCHIVOS DE GIMP (`.xcf` y `.png`)!!**
-> Para **cada disfraz, objeto y fondo** que elabores en GIMP durante esta Parte 1, deberás guardar **obligatoriamente las dos versiones** en tu carpeta **`Actividad 8`**:
+> Para **cada disfraz, objeto y fondo** que elabores en GIMP durante esta Parte 1, deberás guardar **obligatoriamente las dos versiones** en tu carpeta **`Actividad 1`**:
 > 1. **El archivo editable de GIMP (`.xcf`)** mediante **Archivo → Guardar como...** (necesario para entregar en Aules y demostrar tu autoría).
 > 2. **La imagen exportada (`.png`)** mediante **Archivo → Exportar como...** (necesaria para subirla a Scratch).
 {: .alert .alert-warning}
 
 ### Paso 1.1: Crear la carpeta de trabajo y descomprimir los archivos base
 
-1. Dentro de tu carpeta **`Documentos/PIARI/Tema 1`**, crea una carpeta nueva llamada **`Actividad 8`**.
-2. Descarga el paquete de recursos haciendo clic aquí: 📦 [**Descargar `recursos_actividad8.zip`**](./recursos_actividad8.zip) y guárdalo (o muévelo desde tu carpeta *Descargas*) dentro de tu carpeta **`Documentos/PIARI/Tema 1/Actividad 8`**.
+1. Dentro de tu carpeta **`Documentos/PIARI/Tema 2`**, crea una carpeta nueva llamada **`Actividad 1`**.
+2. Descarga el paquete de recursos haciendo clic aquí: 📦 [**Descargar `recursos_actividad1.zip`**](./recursos_actividad1.zip) y guárdalo (o muévelo desde tu carpeta *Descargas*) dentro de tu carpeta **`Documentos/PIARI/Tema 2/Actividad 1`**.
 3. **Descomprime el archivo `.zip`**:
-   - Entra en tu carpeta **`Actividad 8`**, haz **clic derecho** sobre el archivo **`recursos_actividad8.zip`** y selecciona **«Extraer aquí»** (*Extreu ací* en LliureX, o *Extraer todo...* en Windows).
-   - Comprueba que han aparecido directamente en tu carpeta **`Actividad 8`** estos tres archivos base (una vez descomprimido, puedes borrar el archivo `recursos_actividad8.zip`):
+   - Entra en tu carpeta **`Actividad 1`**, haz **clic derecho** sobre el archivo **`recursos_actividad1.zip`** y selecciona **«Extraer aquí»** (*Extreu ací* en LliureX, o *Extraer todo...* en Windows).
+   - Comprueba que han aparecido directamente en tu carpeta **`Actividad 1`** estos tres archivos base (una vez descomprimido, puedes borrar el archivo `recursos_actividad1.zip`):
      - 🎨 **`sprites.png`**: Hoja completa de *sprites* de Super Mario Bros (de aquí recortarás a Mario, el caparazón y los nuevos enemigos/objetos).
      - 🏰 **`castillo.png`**: Imagen del castillo final que servirá como meta del laberinto.
      - 🔤 **`SuperMario256.ttf`**: Fuente tipográfica oficial estilo Super Mario para diseñar tus pantallas de *GAME OVER* y *VICTORIA* en GIMP.
@@ -82,14 +82,14 @@ Sigue estos pasos en **GIMP** para extraer los disfraces de Mario y el caparazó
 1. Abre la imagen **`sprites.png`** en **GIMP**.
 2. Selecciona la herramienta de **Selección rectangular** (tecla `R`), haz una selección lo más ajustada posible alrededor del primer fotograma de Mario (de pie), ve al menú **Edita → Copiar** (`Ctrl + C`) y después a **Edita → Apega com a → Imatge nova** (*Editar → Pegar como → Imagen nueva* o `Ctrl + Shift + V`).
 3. Como en la hoja de *sprites* original Mario mira hacia la izquierda y en Scratch la dirección por defecto ($90^\circ$) apunta hacia la derecha, debemos voltear la imagen horizontalmente con la herramienta **Volteo / Eina Capgira** (`Shift + F`, asegurándote de marcar la opción **Horizontal** en las opciones de la herramienta y haciendo clic sobre Mario).
-4. Guarda y exporta este primer disfraz en tu carpeta **`Actividad 8`**:
+4. Guarda y exporta este primer disfraz en tu carpeta **`Actividad 1`**:
    - **Archivo → Guardar como...** → **`mario1.xcf`**
    - **Archivo → Exportar como...** → **`mario1.png`**
 5. Repite el mismo proceso con los dos fotogramas siguientes de Mario caminando (recuerda voltearlos horizontalmente) para guardar y exportar:
    - **`mario2.xcf`** y **`mario2.png`**
    - **`mario3.xcf`** y **`mario3.png`**
    - Para el cuarto disfraz (**`mario4.xcf`** y **`mario4.png`**), guarda y exporta una copia de `mario2` para que el ciclo de caminar sea fluido (`parado → paso → zancada → paso`).
-6. Ahora ve a la **fila inferior** de `sprites.png` y, usando el mismo procedimiento (**Selección rectangular → Copiar → Pegar como imagen nueva**), recorta el caparazón rojo y guárdalo en **`Actividad 8`** como:
+6. Ahora ve a la **fila inferior** de `sprites.png` y, usando el mismo procedimiento (**Selección rectangular → Copiar → Pegar como imagen nueva**), recorta el caparazón rojo y guárdalo en **`Actividad 1`** como:
    - **`caparazon_rojo.xcf`** (proyecto editable) y **`caparazon_rojo.png`** (imagen exportada).
 
 ---
@@ -103,7 +103,7 @@ En `sprites.png` el caparazón suelto solo aparece en color **rojo**, así que v
 3. Cambia las zonas rojas seleccionadas a color **verde** con cualquiera de estos dos métodos:
    - **Método A (Colorear conservando el sombreado)**: Ve al menú **Colores → Tono-Saturación...** (o **Colores → Colorear...**) y mueve el deslizador de **Tono (*To*)** hacia el verde (`+100` a `+120`) hasta conseguir un verde vivo. Pulsa **Aceptar**.
    - **Método B (Relleno con cubo de pintura)**: Elige un color de frente verde vivo, selecciona la **Herramienta de relleno** (`Shift + B`), marca en sus opciones *«Rellenar toda la selección»* y haz clic sobre las zonas seleccionadas.
-4. Ve a **Seleccionar → Nada** (`Ctrl + Shift + A`) y guarda las dos versiones en tu carpeta **`Actividad 8`**:
+4. Ve a **Seleccionar → Nada** (`Ctrl + Shift + A`) y guarda las dos versiones en tu carpeta **`Actividad 1`**:
    - **Archivo → Guardar como...** → **`caparazon_verde.xcf`**
    - **Archivo → Exportar como...** → **`caparazon_verde.png`**
 
@@ -117,17 +117,17 @@ Ahora vas a diseñar en **GIMP** las dos pantallas de fin de partida (`GAME_OVER
    - En GIMP, ve al menú superior **Editar → Preferencias** (*Edita → Preferències*).
    - En el menú lateral izquierdo de la ventana de preferencias, despliega **Carpetas** (*Carpetes*) y haz clic en **Tipografías** (*Tipografies* / *Fuentes*).
    - Selecciona en la lista la ruta de la carpeta **`fonts`** que está dentro de tu carpeta de usuario y pulsa el botón de arriba a la derecha para **abrir esa ubicación en el gestor de archivos**.
-   - **Copia y pega** ahí dentro el archivo **`SuperMario256.ttf`** que descomprimiste en tu carpeta `Actividad 8`.
+   - **Copia y pega** ahí dentro el archivo **`SuperMario256.ttf`** que descomprimiste en tu carpeta `Actividad 1`.
    - **Cierra y vuelve a abrir GIMP** (reinícialo) para que cargue la nueva tipografía.
 2. **Crea el lienzo con el tamaño de Scratch**: En GIMP, ve a **Archivo → Nuevo...** e introduce una anchura de **`480` px** y una altura de **`360` px** (con fondo blanco).
 3. **Escribe el texto con su color**: Selecciona la **Herramienta de texto** (`T`), elige en las opciones la fuente **`Super Mario 256`**, escoge un color **rojo vivo (`#e60012`)** y escribe en **MAYÚSCULAS** y tamaño grande el texto **`GAME OVER`** (centrado en dos líneas).
 4. **Aplica el efecto Super Mario en 2 pasos (en capas separadas)**:
    - **1. Contorno negro grueso**: En el panel de capas (derecha), haz clic derecho sobre la capa de texto → **Texto a selección** (o **Alfa a selección**). Ve al menú **Seleccionar → Agrandar...** e introduce `8` píxeles. Crea una **capa nueva transparente** llamada `"Borde Negro"`, colócala **debajo** de la capa de texto y rellena la selección de **Negro (`#000000`)** con la **Herramienta de relleno** (`Shift + B`). Después haz clic en **Seleccionar → Nada** (`Ctrl + Shift + A`).
    - **2. Sombra 3D desplazada y difuminada**: Haz clic derecho sobre la capa `"Borde Negro"` → **Duplicar la capa**, llámala `"Sombra 3D"` y colócala debajo de `"Borde Negro"`. Con la capa `"Sombra 3D"` seleccionada, ve al menú superior **Filtros → Difuminar** (o *Desenfoque*) **→ Desenfoque de movimiento lineal...** (*Filtres → Difumina → Desenfocament de moviment lineal...*), ajusta la **Longitud** a **`40`** y el **Ángulo** a **`40`**, y pulsa **Aceptar** (si lo necesitas, puedes terminar de ajustar su posición con la **Herramienta de mover** `M` y las flechas del teclado hacia abajo y a la derecha).
-5. **Guarda y exporta el fondo de derrota** en tu carpeta **`Actividad 8`**:
+5. **Guarda y exporta el fondo de derrota** en tu carpeta **`Actividad 1`**:
    - **Archivo → Guardar como...** → **`GAME_OVER.xcf`** (conservando todas las capas para su revisión).
    - **Archivo → Exportar como...** → **`GAME_OVER.png`**
-6. **Repite el procedimiento en un lienzo nuevo ($480 \times 360$ px) para la pantalla de victoria**: escribe **`VICTORIA`** en color **verde vivo (`#28dc3c`)** (y opcionalmente debajo **`NIVEL SUPERADO`** en color amarillo/dorado), añade su borde negro y sombra 3D, y guárdalo en **`Actividad 8`** como:
+6. **Repite el procedimiento en un lienzo nuevo ($480 \times 360$ px) para la pantalla de victoria**: escribe **`VICTORIA`** en color **verde vivo (`#28dc3c`)** (y opcionalmente debajo **`NIVEL SUPERADO`** en color amarillo/dorado), añade su borde negro y sombra 3D, y guárdalo en **`Actividad 1`** como:
    - **`VICTORIA.xcf`** y **`VICTORIA.png`**.
 
 ![Ejemplo de fondo GAME_OVER creado en GIMP](./imagenes_juego/GAME_OVER_ejemplo.png)
@@ -166,15 +166,15 @@ Con todos los gráficos listos en tu carpeta, abre tu proyecto en **Scratch** y 
 
 ---
 
-### 📂 Comprobación final de la Parte 1: Esquema visual de tu carpeta `Actividad 8`
+### 📂 Comprobación final de la Parte 1: Esquema visual de tu carpeta `Actividad 1`
 
-Antes de pasar a programar en la Parte 2, comprueba que dentro de tu carpeta **`Documentos/PIARI/Tema 1/Actividad 8`** tienes **exactamente estos archivos** (recuerda que los archivos editables **`.xcf`** deberás entregarlos al final de la actividad):
+Antes de pasar a programar en la Parte 2, comprueba que dentro de tu carpeta **`Documentos/PIARI/Tema 2/Actividad 1`** tienes **exactamente estos archivos** (recuerda que los archivos editables **`.xcf`** deberás entregarlos al final de la actividad):
 
 ```plaintext
 📁 Documentos
  └── 📁 PIARI
-      └── 📁 Tema 1
-           └── 📁 Actividad 8
+      └── 📁 Tema 2
+           └── 📁 Actividad 1
                 ├── 🖼️ sprites.png               (Archivo base descargado)
                 ├── 🏰 castillo.png              (Archivo base descargado)
                 ├── 🔤 SuperMario256.ttf         (Fuente tipográfica descargada)
@@ -306,7 +306,7 @@ Por último, ahora que los enemigos ya se mueven por sus pasillos, debemos progr
 Una vez que tu juego base funcione correctamente, debes demostrar lo que has aprendido superando **obligatoriamente las 3 misiones de este reto**:
 
 ### 👾 Misión 1: Recortar en GIMP y añadir nuevos personajes en el camino
-El laberinto necesita más vida. Abre de nuevo **`sprites.png`** en **GIMP**, recorta de la fila inferior los nuevos elementos que necesites (**guardando también sus archivos `.xcf` y `.png` en tu carpeta `Actividad 8`**) e incorpora **al menos un nuevo enemigo** (y opcionalmente objetos coleccionables):
+El laberinto necesita más vida. Abre de nuevo **`sprites.png`** en **GIMP**, recorta de la fila inferior los nuevos elementos que necesites (**guardando también sus archivos `.xcf` y `.png` en tu carpeta `Actividad 1`**) e incorpora **al menos un nuevo enemigo** (y opcionalmente objetos coleccionables):
 - **Opción A (Nuevo enemigo patrullero)**: Recorta a **Goomba** (`goomba.xcf` / `goomba.png`) o a la tortuga **Koopa** (`koopa.xcf` / `koopa.png`) y prográmalo patrullando el último pasillo horizontal antes de subir al castillo (creando su propia variable de velocidad, por ejemplo `x_goomba`).
 - **Opción B (Planta Piraña trampa en ubicaciones aleatorias)**: Recorta la **Planta Piraña** (`planta_pirana.xcf` / `planta_pirana.png`) y haz que vaya apareciendo (`mostrar`) durante 2 segundos y desapareciendo (`ocultar`) durante 2 segundos dentro de un bucle `por siempre`, cambiando aleatoriamente entre **varios sitios predefinidos** del laberinto mientras está oculta (por ejemplo, usando una variable `sitio_planta` con el bloque verde 🟢 `número aleatorio entre (1) y (4)` y condicionales `si <(sitio_planta) = (...)> entonces` para elegir entre 3 o 4 coordenadas estratégicas del camino).
 - **Opción C (Objetos de bonificación)**: Recorta la **Moneda** (`moneda.xcf` / `moneda.png`) o el **Champiñón** (`champinon.xcf` / `champinon.png`) y colócalos en los callejones sin salida del laberinto para premiar al jugador que se arriesgue a recogerlos.
@@ -343,7 +343,7 @@ Añade a la explicación de entrega un apartado **«Créditos y reutilización»
 
 Debes enviar a través de la tarea correspondiente en Aules:
 
-1. **Archivo comprimido (`.zip`) de tu carpeta `Actividad 8`** (llamado **`actividad8_apellido_nombre.zip`**) que contenga todos los **archivos editables `.xcf` de GIMP** de los disfraces, objetos y fondos (`mario1.xcf` a `mario4.xcf`, `caparazon_rojo.xcf`, `caparazon_verde.xcf`, `GAME_OVER.xcf`, `VICTORIA.xcf` y los nuevos objetos de la Parte 3), junto con sus correspondientes imágenes exportadas (`.png`).
+1. **Archivo comprimido (`.zip`) de tu carpeta `Actividad 1`** (llamado **`actividad1_apellido_nombre.zip`**) que contenga todos los **archivos editables `.xcf` de GIMP** de los disfraces, objetos y fondos (`mario1.xcf` a `mario4.xcf`, `caparazon_rojo.xcf`, `caparazon_verde.xcf`, `GAME_OVER.xcf`, `VICTORIA.xcf` y los nuevos objetos de la Parte 3), junto con sus correspondientes imágenes exportadas (`.png`).
 2. **El archivo de tu proyecto de Scratch (`.sb3`)**: En Scratch haz clic en **Archivo → Guardar en tu ordenador** para descargar el archivo y nómbralo como **`apellido_nombre_laberinto_mario.sb3`**.
 3. **Una captura de pantalla** (`captura_juego.png`) de tu juego en plena acción donde se vea tu laberinto completo, los personajes, el marcador de `vidas` (y `tiempo` o `monedas`) y tu **nombre y apellidos rotulados**.
 4. **Un breve documento de texto** (`explicacion.odt` o `.pdf`) explicando:
@@ -353,7 +353,7 @@ Debes enviar a través de la tarea correspondiente en Aules:
 
 ---
 
-## 📊 Rúbrica – Actividad 8: El Laberinto de Mario en Scratch (máx. 10 puntos)
+## 📊 Rúbrica – Actividad 1: El Laberinto de Mario en Scratch (máx. 10 puntos)
 
 | Criterio | 0 puntos | 1 punto | 2 puntos | 3 puntos |
 |---|---|---|---|---|

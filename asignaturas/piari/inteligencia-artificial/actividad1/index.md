@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividad 1. ¿Esto lo ha hecho una IA?
-description: Actividad 1 del Tema 2
+description: Actividad 1 del Tema 3
 ---
 
 # Actividad 1. ¿Esto lo ha hecho una IA?

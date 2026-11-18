@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividad 3. La máquina que predice
-description: Actividad 3 del Tema 2
+description: Actividad 3 del Tema 3
 ---
 
 # Actividad 3. La máquina que predice

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividad 4. El reto del prompt perfecto
-description: Actividad 4 del Tema 2
+description: Actividad 4 del Tema 3
 ---
 
 # Actividad 4. El reto del prompt perfecto

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividad 6. Cazadores de sesgos
-description: Actividad 6 del Tema 2
+description: Actividad 6 del Tema 3
 ---
 
 # Actividad 6. Cazadores de sesgos

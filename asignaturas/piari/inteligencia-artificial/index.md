@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Tema 2
+title: Tema 3
 description: Inteligencia Artificial
 ---
 
-# Tema 2. Inteligencia Artificial
+# Tema 3. Inteligencia Artificial
 
 > **Ni piensa, ni sabe, ni te conoce.**
 > Al acabar este tema tendrás que ser capaz de explicar, con tus propias palabras, por qué esa frase es cierta.

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: ¿Hacia dónde va la IA?
-description: Tema 2
+description: Tema 3
 ---
 
 # ¿Hacia dónde va la IA?

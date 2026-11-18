@@ -1,7 +1,7 @@
 ---
 layout: default
 title: ¿Qué es la Inteligencia Artificial?
-description: Tema 2
+description: Tema 3
 ---
 
 # ¿Qué es la Inteligencia Artificial?

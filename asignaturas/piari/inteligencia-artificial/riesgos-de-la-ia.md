@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Los riesgos de la IA
-description: Tema 2
+description: Tema 3
 ---
 
 # Los riesgos de la IA

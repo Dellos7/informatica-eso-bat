@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividad 8. Proyecto final
-description: Actividad 8 del Tema 2
+description: Actividad 8 del Tema 3
 ---
 
 # Actividad 8. Proyecto final

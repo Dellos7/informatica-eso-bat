@@ -28,5 +28,5 @@ description: Sistemas Operativos
 - [Actividad 2 – Máquinas virtuales en VirtualBox](./actividad2/)
 - [Actividad 3 – Uso básico de la terminal en Linux (bash)](./actividad3/)
 - [Actividad 4 – Uso de SSH y SCP en Linux](./actividad4/)
-- [Actividad 5 – Scripts que leen ficheros](./actividad5/)
-- [Actividad 6 – Scripts avanzados](./actividad6/)
+- [Actividad 5 – Creación de scripts en Bash](./actividad5/)
+- [Actividad 6 – Scripts que leen ficheros](./actividad6/)

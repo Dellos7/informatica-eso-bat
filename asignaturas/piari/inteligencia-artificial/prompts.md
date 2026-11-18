@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Prompts
-description: Tema 2
+description: Tema 3
 ---
 
 # Prompts: cómo pedirle las cosas a una IA
@@ -20,7 +20,7 @@ Y aquí está la trampa en la que cae casi todo el mundo:
 > ✅ *«Le he hecho una petición malísima.»*
 {: .alert-warning}
 
-En el [tema anterior](../pensamiento-computacional/) ya viste algo parecido: Karel hacía **exactamente** lo que le decías, no lo que tú querías que hiciera. Con una IA pasa lo mismo, pero peor, porque **la IA no te pregunta si algo no está claro: se lo inventa**.
+En el [Tema 1](../pensamiento-computacional/) ya viste algo parecido: Karel hacía **exactamente** lo que le decías, no lo que tú querías que hiciera. Con una IA pasa lo mismo, pero peor, porque **la IA no te pregunta si algo no está claro: se lo inventa**.
 
 Si no le dices la extensión, se inventa una. Si no le dices el tono, se inventa uno. Si no le dices para quién es, supone que es para un adulto cualquiera. **Todo lo que no le digas, lo rellenará ella.**
 

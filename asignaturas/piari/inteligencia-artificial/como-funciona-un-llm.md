@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Cómo funciona un LLM
-description: Tema 2
+description: Tema 3
 ---
 
 # Cómo funciona un LLM

@@ -1,5 +1,5 @@
 // ==========================================================================
-// UTILIDADES COMPARTIDAS — Herramientas del Tema 2 (Inteligencia Artificial)
+// UTILIDADES COMPARTIDAS — Herramientas del Tema 3 (Inteligencia Artificial)
 // ==========================================================================
 
 const T2 = {
@@ -97,7 +97,7 @@ const T2 = {
     return [
       linea,
       titulo.toUpperCase(),
-      'Tema 2 — Inteligencia Artificial · PIAR I (2º ESO)',
+      'Tema 3 — Inteligencia Artificial · PIAR I (2º ESO)',
       linea,
       `Alumno/a: ${nombre}`,
       `Fecha: ${this.ahora()}`,
