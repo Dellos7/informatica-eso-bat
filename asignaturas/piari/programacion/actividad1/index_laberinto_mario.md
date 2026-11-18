@@ -283,16 +283,19 @@ fin
 
 ## 🚀 4. Solucionario Docente para la Parte 3: Reto Individual (`Laberinto-Mario-Ampliado.sb3`)
 
-En la Parte 3 (disponible completamente resuelta en [**`Laberinto-Mario-Ampliado.sb3`**](./Laberinto-Mario-Ampliado.sb3)) el alumnado recorta en GIMP nuevos personajes/objetos desde `sprites.png` (guardando sus `.xcf` y `.png`) e implementa las 3 misiones:
+En la Parte 3 (disponible completamente resuelta en [**`Laberinto-Mario-Ampliado.sb3`**](./Laberinto-Mario-Ampliado.sb3)) el alumnado recorta en GIMP nuevos personajes/objetos desde `sprites.png` (guardando sus `.xcf` y `.png`) e implementa las 3 misiones. A continuación se detallan las soluciones **separadas en bloques visuales de Scratch y en pseudocódigo** según la misión y la opción aplicada:
 
-**Resumen visual de bloques de la Parte 3 (`goomba`, `planta_pirana`, `champinon`, sistema de `vidas` y temporizador `tiempo`):**
+---
 
-![Bloques visuales de las ampliaciones de la Parte 3](./imagenes_juego/bloques/parte3_bloques_ampliacion.png)
+### 4.1. Solución Misión 1: Nuevos personajes y objetos en el camino (`goomba`, `planta_pirana`, `champinon`, `moneda`)
+Clip mostrado al alumnado: [`clip_6_mision1_personajes.mp4`](./imagenes_juego/clip_6_mision1_personajes.mp4)
+
+#### Opción A — Nuevo enemigo patrullero: Objeto `goomba` (Patrulla horizontal en el Pasillo Inferior con variable `x_goomba`)
+
+**Bloques visuales y pseudocódigo en el objeto `goomba`:**
+
+![Bloques de movimiento y rebote en goomba](./imagenes_juego/bloques/parte3_mision1_goomba.png)
 {: .img}
-
-### Solución Misión 1: Nuevos personajes (`goomba`, `planta_pirana`, `champinon`, `moneda`)
-
-#### A) Objeto `goomba` (Patrulla horizontal en el Pasillo Inferior con variable `x_goomba`)
 
 ```plaintext
 al presionar ⚑
@@ -313,8 +316,16 @@ al recibir [victoria v]
 ocultar
 ```
 
-#### B) Objeto `planta_pirana` (Aparece y desaparece cada 2 s cambiando al azar entre 4 sitios predefinidos con `sitio_planta`)
+---
+
+#### Opción B — Planta Piraña trampa en 4 ubicaciones aleatorias: Objeto `planta_pirana` (con variable `sitio_planta`)
+
 *(Cuando un objeto ejecuta `ocultar` en Scratch, deja de activar colisiones con `¿tocando (planta_pirana)?`. Aprovechamos los 2 segundos en que está oculta para sortear con `número aleatorio entre (1) y (4)` en cuál de los 4 pasos clave del laberinto aparecerá a continuación).*
+
+**Bloques visuales y pseudocódigo en el objeto `planta_pirana`:**
+
+![Bloques de aparición aleatoria en 4 posiciones de planta_pirana](./imagenes_juego/bloques/parte3_mision1_planta_pirana.png)
+{: .img}
 
 ```plaintext
 al presionar ⚑
@@ -345,10 +356,18 @@ al recibir [victoria v]
 ocultar
 ```
 
-#### C) Objetos `champinon` (Vida extra en `x: 60, y: -80`) y `moneda` (Coleccionable en `x: -165, y: -145`)
+---
+
+#### Opción C — Objetos de bonificación: `champinon` (Vida extra en `x: 60, y: -80`) y `moneda` (Coleccionable en `x: -165, y: -145`)
+
+**Bloques visuales de `champinon` y `moneda`:**
+
+![Bloques de los objetos de bonificación champinon y moneda](./imagenes_juego/bloques/parte3_mision1_bonificaciones.png)
+{: .img}
+
+##### 1. Pseudocódigo en el objeto `champinon` (Suma `+1` a `vidas` y se oculta)
 
 ```plaintext
-// Código en champinon:
 al presionar ⚑
 mostrar
 ir a x: (60) y: (-80)
@@ -366,11 +385,59 @@ al recibir [victoria v]
 ocultar
 ```
 
+##### 2. Pseudocódigo en el objeto `moneda` (Suma `+1` a `monedas` y se oculta)
+
+```plaintext
+al presionar ⚑
+mostrar
+ir a x: (-165) y: (-145)
+por siempre
+    si <¿tocando (mario1 v)?> entonces
+        sumar a [monedas v] (1)
+        ocultar
+    fin
+fin
+
+al recibir [fin_juego v]
+ocultar
+
+al recibir [victoria v]
+ocultar
+```
+
 ---
 
-### Solución Misión 2: Sistema de 3 Vidas (`vidas`) en `mario1` (paredes devuelven al inicio sin quitar vida; enemigos quitan 1 vida sin volver al inicio)
+### 4.2. Solución Misión 2: Sistema de 3 Vidas (`vidas`) y reposición en paredes en `mario1`
+Clip mostrado al alumnado: [`clip_7_mision2_vidas_pared.mp4`](./imagenes_juego/clip_7_mision2_vidas_pared.mp4)
 
 *(Si Mario toca una **pared negra (`#000000`)**, vuelve inmediatamente a la casilla de salida `(-205, -145)` **sin restar vidas**, evitando así que un jugador pueda atravesar paredes aprovechando la inmunidad. En cambio, al chocar con un **enemigo**, se resta `1` vida **sin** devolver a Mario al inicio y se añade `esperar (1) segundos` tras comprobar si `vidas = 0` para darle 1 segundo de inmunidad y que el enemigo pase sin quitarle las 3 vidas de golpe).*
+
+**Bloques visuales en el objeto `mario1` (comparativa pared vs. enemigo y bucle principal completo):**
+
+![Bloques del sistema de 3 vidas y reposición en paredes en mario1](./imagenes_juego/bloques/parte3_mision2_vidas_mario.png)
+{: .img}
+
+#### 1. Bloque de colisión con la pared negra (en `mario1`: devuelve al inicio sin restar vidas)
+
+```plaintext
+si <¿tocando el color (#000000)?> entonces
+    ir a x: (-205) y: (-145)
+fin
+```
+
+#### 2. Bloque de colisión con cada enemigo (en `mario1`: resta 1 vida y aplica 1 s de inmunidad)
+
+```plaintext
+si <¿tocando (caparazon_verde v)?> entonces
+    sumar a [vidas v] (-1)
+    si <(vidas) = (0)> entonces
+        enviar [fin_juego v]
+    fin
+    esperar (1) segundos
+fin
+```
+
+#### 3. Programa principal completo de `mario1` con el sistema de 3 vidas y todos los enemigos integrados
 
 ```plaintext
 al presionar ⚑
@@ -423,9 +490,17 @@ fin
 
 ---
 
-### Solución Misión 3: Temporizador de cuenta atrás (`tiempo`)
+### 4.3. Solución Misión 3: Aumentar la dificultad del juego (según la opción aplicada)
+Clip mostrado al alumnado: [`clip_8_mision3_tiempo_dificultad.mp4`](./imagenes_juego/clip_8_mision3_tiempo_dificultad.mp4)
 
-En un segundo bloque `al presionar ⚑` independiente en `mario1` (para que la espera de `1` segundo no detenga la animación de caminar):
+#### Opción 1 — Temporizador de cuenta atrás contrarreloj (`tiempo`)
+
+En un segundo bloque `al presionar ⚑` independiente en `mario1` (para que la espera de `1` segundo no detenga la animación de caminar ni las detecciones de choque):
+
+**Bloques visuales y pseudocódigo del temporizador en `mario1`:**
+
+![Bloques del temporizador de cuenta atrás en mario1](./imagenes_juego/bloques/parte3_mision3_tiempo.png)
+{: .img}
 
 ```plaintext
 al presionar ⚑
@@ -436,6 +511,56 @@ por siempre
     si <(tiempo) = (0)> entonces
         enviar [fin_juego v]
     fin
+fin
+```
+
+---
+
+#### Opción 2 — Objeto obligatorio (`monedas`) para abrir el castillo
+
+Si el alumno/a elige exigir que Mario recoja primero la `moneda` (`monedas = 1`) antes de poder entrar en el `castillo`, basta con sustituir la condición de victoria dentro del bucle `por siempre` de `mario1` usando el operador lógico `y`:
+
+**Bloques visuales y pseudocódigo de la condición de victoria con moneda obligatoria en `mario1`:**
+
+![Bloques de condición de victoria con moneda obligatoria en mario1](./imagenes_juego/bloques/parte3_mision3_llave_castillo.png)
+{: .img}
+
+```plaintext
+si <<¿tocando (castillo v)?> y <(monedas) = (1)>> entonces
+    enviar [victoria v]
+fin
+```
+
+---
+
+#### Opción 3 — Aumento de velocidad en los últimos tramos y efectos de sonido
+
+Si el alumno/a opta por incrementar la velocidad de los enemigos de los últimos pasillos y añadir efectos sonoros al perder una vida o recoger bonificaciones:
+
+**Bloques visuales y pseudocódigo de aumento de velocidad y sonidos:**
+
+![Bloques de aumento de velocidad y efectos de sonido](./imagenes_juego/bloques/parte3_mision3_velocidad_sonidos.png)
+{: .img}
+
+##### 1. Pseudocódigo de mayor velocidad inicial (en `goomba` o `caparazon_rojo`)
+
+```plaintext
+al presionar ⚑
+mostrar
+dar a [x_goomba v] el valor (7)
+ir a x: (90) y: (-146)
+```
+
+##### 2. Pseudocódigo con efecto de sonido al perder una vida (en `mario1`)
+
+```plaintext
+si <¿tocando (caparazon_verde v)?> entonces
+    iniciar sonido [pop v]
+    sumar a [vidas v] (-1)
+    si <(vidas) = (0)> entonces
+        enviar [fin_juego v]
+    fin
+    esperar (1) segundos
 fin
 ```
 

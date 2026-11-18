@@ -304,16 +304,24 @@ Por último, ahora que los enemigos ya se mueven por sus pasillos, debemos progr
 
 ## 🚀 Parte 3: Reto Individual (Amplía el juego: nuevos personajes, vidas y más dificultad)
 
-Una vez que tu juego base funcione correctamente, debes demostrar lo que has aprendido superando **obligatoriamente las 3 misiones de este reto**:
+Una vez que tu juego base funcione correctamente, debes demostrar lo que has aprendido superando **obligatoriamente las 3 misiones de este reto**. Fíjate en los clips de vídeo de referencia de cada misión para ver cómo deben comportarse las ampliaciones en tu juego:
 
 ### 👾 Misión 1: Recortar en GIMP y añadir nuevos personajes en el camino
 El laberinto necesita más vida. Abre de nuevo **`sprites.png`** en **GIMP**, recorta de la fila inferior los nuevos elementos que necesites (**guardando también sus archivos `.xcf` y `.png` en tu carpeta `Actividad 1`**) e incorpora **al menos un nuevo enemigo** (y opcionalmente objetos coleccionables):
+
+<video src="./imagenes_juego/clip_6_mision1_personajes.mp4" width="520" autoplay loop muted playsinline controls></video>
+
 - **Opción A (Nuevo enemigo patrullero)**: Recorta a **Goomba** (`goomba.xcf` / `goomba.png`) o a la tortuga **Koopa** (`koopa.xcf` / `koopa.png`) y prográmalo patrullando el último pasillo horizontal antes de subir al castillo (creando su propia variable de velocidad, por ejemplo `x_goomba`).
 - **Opción B (Planta Piraña trampa en ubicaciones aleatorias)**: Recorta la **Planta Piraña** (`planta_pirana.xcf` / `planta_pirana.png`) y haz que vaya apareciendo (`mostrar`) durante 2 segundos y desapareciendo (`ocultar`) durante 2 segundos dentro de un bucle `por siempre`, cambiando aleatoriamente entre **varios sitios predefinidos** del laberinto mientras está oculta (por ejemplo, usando una variable `sitio_planta` con el bloque verde 🟢 `número aleatorio entre (1) y (4)` y condicionales `si <(sitio_planta) = (...)> entonces` para elegir entre 3 o 4 coordenadas estratégicas del camino).
 - **Opción C (Objetos de bonificación)**: Recorta la **Moneda** (`moneda.xcf` / `moneda.png`) o el **Champiñón** (`champinon.xcf` / `champinon.png`) y colócalos en los callejones sin salida del laberinto para premiar al jugador que se arriesgue a recogerlos.
 
+---
+
 ### ❤️ Misión 2: Implementar un Sistema de Vidas (`vidas`) y reposición en paredes
 Morir al primer roce es demasiado duro, pero tampoco podemos permitir que alguien atraviese las paredes. Modifica el programa de Mario para que el jugador disponga de **3 vidas**:
+
+<video src="./imagenes_juego/clip_7_mision2_vidas_pared.mp4" width="520" autoplay loop muted playsinline controls></video>
+
 1. Crea una variable llamada **`vidas`** y deja marcada su casilla para que el marcador se vea en una esquina del escenario.
 2. Al presionar la bandera verde (`⚑`), inicializa la variable con `dar a [vidas v] el valor (3)`.
 3. **Si Mario choca con la pared negra del laberinto (`¿tocando el color (#000000)?`)**:
@@ -324,8 +332,13 @@ Morir al primer roce es demasiado duro, pero tampoco podemos permitir que alguie
    - Añade una breve pausa de inmunidad (`esperar (1) segundos`) justo después de comprobar las vidas para que el enemigo pueda pasar sin quitarle las 3 vidas de golpe en el mismo choque.
 5. *(Idea extra)*: Si has recortado y añadido el **Champiñón** (`champinon.png`), haz que al tocarlo Mario gane 1 vida extra (`sumar a [vidas v] (1)`) y el champiñón se oculte.
 
+---
+
 ### ⚡ Misión 3: Aumentar la dificultad del juego
 Elige e implementa **al menos una** de estas mecánicas para hacer la partida más emocionante:
+
+<video src="./imagenes_juego/clip_8_mision3_tiempo_dificultad.mp4" width="520" autoplay loop muted playsinline controls></video>
+
 1. ⏱️ **Cuenta atrás contrarreloj**: Crea una variable visible llamada **`tiempo`** que empiece en `45` (o `60`) segundos al pulsar la bandera verde y baje de 1 en 1 cada segundo (`esperar (1) segundos` → `sumar a [tiempo v] (-1)`). Si `tiempo` llega a `0` antes de alcanzar el castillo, se envía `fin_juego`.
 2. 🔑 **Objeto obligatorio para abrir el castillo**: Coloca una moneda o llave en uno de los recovecos difíciles; Mario solo podrá ganar al tocar el castillo si antes ha recogido ese objeto (usando una variable `monedas` o `llave` que pase de `0` a `1`).
 3. 🔥 **Velocidad y sonidos**: Añade efectos de sonido al perder una vida, recoger objetos o ganar, y ajusta las velocidades de los enemigos en los últimos tramos para que el final del laberinto sea un verdadero reto.
