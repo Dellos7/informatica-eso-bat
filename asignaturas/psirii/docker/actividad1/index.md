@@ -386,7 +386,7 @@ services:
     restart: "no"
     command: >
       sh -c "apk add --no-cache openssh-client >/dev/null &&
-      ssh -p 443 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 -R0:n8n:5678 free.pinggy.io"
+      ssh -p 443 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 -R0:n8n:5678 free.pinggy.io x:passpreflight"
 
 volumes:
   n8n_data:
