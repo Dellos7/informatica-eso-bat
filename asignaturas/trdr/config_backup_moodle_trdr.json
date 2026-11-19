@@ -73,7 +73,39 @@
       "button_text": "TEMA 2 (WEB)",
       "show_activity_description": true,
       "visible": false,
-      "activities_visible": false
+      "activities_visible": false,
+      "quizzes": [
+        {
+          "name": "Cuestionario Tema 2: Organización de la información",
+          "gift_file": "cuestionario_tema2_organizacion_informacion.gift",
+          "category": "Tema 2: Organización de la información",
+          "time_limit": 20,
+          "max_attempts": 1,
+          "shuffle_questions": true,
+          "shuffle_answers": true,
+          "feedback_mode": "after_close"
+        }
+      ]
+    },
+    {
+      "folder": "equipos-y-documentos-digitales",
+      "title": "Tema 3: Equipos informáticos, sostenibilidad y documentos digitales",
+      "button_text": "TEMA 3 (WEB)",
+      "show_activity_description": true,
+      "visible": false,
+      "activities_visible": false,
+      "quizzes": [
+        {
+          "name": "Cuestionario Tema 3: Equipos informáticos y hardware",
+          "gift_file": "cuestionario_tema3_equipos_informaticos.gift",
+          "category": "Tema 3: Equipos informáticos, sostenibilidad y documentos digitales",
+          "time_limit": 20,
+          "max_attempts": 1,
+          "shuffle_questions": true,
+          "shuffle_answers": true,
+          "feedback_mode": "after_close"
+        }
+      ]
     }
   ]
 }

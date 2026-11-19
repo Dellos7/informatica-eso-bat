@@ -8,8 +8,8 @@ description: Documentos digitales
 
 ## Actividades
 
-- [Actividad 1](./actividad1/)
-- [Actividad 2](./actividad2/)
-- [Actividad 3](./actividad3/)
+- [Actividad 1. Creación de documentos con LibreOffice Writer](./actividad1/)
+- [Actividad 2. Gestión de datos y presupuestos con LibreOffice Calc](./actividad2/)
+- [Actividad 3. Automatización de documentos: Pases Oficiales de Festival con Combinación de Correspondencia (Writer + Calc)](./actividad3/)
 
 

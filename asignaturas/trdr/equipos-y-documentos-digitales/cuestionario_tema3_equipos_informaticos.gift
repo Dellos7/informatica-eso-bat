@@ -1,0 +1,221 @@
+// =============================================================================
+// Cuestionario del Tema 3: Equipos informáticos, hardware y documentos digitales
+// Asignatura: Taller de Relaciones Digitales Responsables (TRDR) - 1º ESO
+// Formato: GIFT (Moodle / Aules) - 100% Determinista y Autocorregible
+// Enfoque principal: Equipos informáticos, hardware, placa base, puertos,
+// periféricos, conectividad y sostenibilidad (17 preguntas) + Writer/Draw (3 preguntas)
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// P01: Hardware vs Software y ciclo de la información
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P01 - Hardware frente a Software:: ¿Cuál de las siguientes afirmaciones define correctamente qué es el Hardware de un equipo informático y cómo se diferencia del Software? {
+	=El Hardware es el conjunto de componentes físicos y tangibles del equipo (placa base, CPU, RAM, SSD, monitor, teclado...), mientras que el Software son los programas e instrucciones lógicas (como LliureX o LibreOffice Writer) #¡Correcto! El hardware es la parte física que podemos tocar y el software es la parte lógica formada por el sistema operativo y las aplicaciones.
+	~El Hardware son las páginas web de Internet y el Software son los cables que van enchufados a la pared #Incorrecto. Los cables y piezas físicas son hardware, mientras que las aplicaciones y sistemas son software.
+	~El Hardware se borra automáticamente al apagar el ordenador y el Software es la carcasa metálica de la torre #Incorrecto. Las piezas físicas no desaparecen al apagar el equipo.
+	~Solo los ordenadores de sobremesa tienen Hardware, mientras que los teléfonos móviles y tablets funcionan únicamente con Software sin piezas físicas #Incorrecto. Todo dispositivo digital (PC, portátil, móvil o tablet) tiene tanto hardware (pantalla, batería, procesador, memoria) como software.
+}
+
+// -----------------------------------------------------------------------------
+// P02: La Placa Base, el Chipset y la pila CMOS CR2032
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P02 - Placa base y pila CMOS:: Dentro de la torre del ordenador, todos los componentes se conectan a la gran tarjeta de circuito impreso llamada Placa Base (Motherboard). ¿Para qué sirven el Chipset y la pequeña pila plateada de botón (CR2032) que vemos en ella? {
+	=El Chipset coordina el tráfico de datos entre el procesador y el resto de componentes, mientras que la pila CR2032 mantiene guardada la fecha, la hora y la configuración de arranque (BIOS/UEFI) cuando el PC está desenchufado #¡Correcto! El chipset actúa como guardia de tráfico de la placa base y la pila CMOS evita que el reloj y la configuración básica se pierdan al cortar la corriente.
+	~La pila CR2032 sirve para alimentar el monitor durante ocho horas si hay un apagón eléctrico en el instituto #Incorrecto. Una pila de botón de 3 voltios solo alimenta la pequeña memoria CMOS de la placa base, no puede encender un monitor ni la fuente del PC.
+	~El Chipset es el altavoz por donde suena la música y la pila sirve para enfriar el procesador #Incorrecto. El componente que enfría el procesador es el disipador con ventilador.
+	~Ambos elementos son decorativos y pueden arrancarse de la placa base sin que afecte al funcionamiento del ordenador #Incorrecto. Sin el chipset la placa base no podría comunicar sus componentes, y sin la pila perdería la hora y los ajustes de arranque al desenchufarse.
+}
+
+// -----------------------------------------------------------------------------
+// P03: El Procesador (CPU) y su refrigeración
+// Tipo: Selección múltiple con varias respuestas correctas (Ponderación porcentual)
+// -----------------------------------------------------------------------------
+::P03 - Características del procesador (CPU):: En relación con el microprocesador o CPU (Central Processing Unit) que se instala en el zócalo (socket) de la placa base, selecciona las DOS afirmaciones VERDADERAS\: {
+	~%50%Actúa como el cerebro del ordenador interpretando las instrucciones de los programas, y su rendimiento depende entre otros factores de su número de núcleos (cores) y de su frecuencia en GHz #¡Correcto! Cuantos más núcleos y mayor eficiencia por ciclo (GHz), más tareas y cálculos por segundo puede ejecutar la CPU.
+	~%50%Al realizar miles de millones de operaciones por segundo genera mucho calor, por lo que siempre necesita pasta térmica y un disipador metálico con ventilador encima para refrigerarse #¡Correcto! Sin el disipador y el ventilador, el procesador alcanzaría temperaturas críticas en pocos segundos.
+	~%-100%Es el lugar donde quedan guardadas para siempre nuestras fotografías y películas cuando apagamos el ordenador #Incorrecto. Los archivos se guardan de forma permanente en la unidad de almacenamiento (SSD o HDD), no dentro de la CPU.
+	~%-100%Se conecta por fuera de la caja del ordenador en el conector Jack de color verde #Incorrecto. La CPU va instalada en el interior, encajada en el zócalo (socket) de la placa base.
+}
+
+// -----------------------------------------------------------------------------
+// P04: Memoria RAM y su carácter volátil
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P04 - Memoria RAM y volatilidad:: ¿Cuál es la función de la Memoria RAM (Random Access Memory) que se inserta en las ranuras DDR4/DDR5 de la placa base y qué significa exactamente que es una memoria "VOLÁTIL"? {
+	=Funciona como la mesa de trabajo temporal donde se cargan el sistema operativo y los programas abiertos en ese instante, y es volátil porque todo su contenido se vacía por completo al apagar el ordenador #¡Correcto! Por eso debemos guardar siempre nuestros documentos en el disco SSD o en OneDrive antes de apagar el equipo.
+	~Es el disco duro permanente donde se archivan los trabajos de todo el curso, y es volátil porque pesa muy pocos gramos #Incorrecto. Volátil no significa que pese poco, sino que pierde sus datos cuando deja de recibir corriente eléctrica.
+	~Sirve exclusivamente para enfriar la tarjeta gráfica mediante aire comprimido #Incorrecto. La RAM es memoria electrónica de acceso aleatorio, no un ventilador.
+	~Es una memoria externa que se enchufa en el puerto HDMI del monitor #Incorrecto. Los módulos de memoria RAM van pinchados dentro de la placa base, junto al zócalo de la CPU.
+}
+
+// -----------------------------------------------------------------------------
+// P05: Ranuras y conectores internos de la Placa Base
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P05 - Zonas internas de la placa base:: Relaciona cada conector o ranura interna de la placa base con el componente que se instala en él\: {
+	=Zócalo o Socket -> Microprocesador o CPU (el cerebro del ordenador)
+	=Ranuras verticales DDR4 o DDR5 -> Módulos de memoria RAM de trabajo temporal
+	=Ranura M.2 -> Unidad de estado sólido SSD NVMe ultrarrápida del tamaño de un chicle
+	=Ranura PCI Express x16 (PCIe x16) -> Tarjeta gráfica dedicada (GPU) para videojuegos 3D, vídeo o IA
+}
+
+// -----------------------------------------------------------------------------
+// P06: Evolución del almacenamiento (HDD vs SSD SATA vs SSD NVMe M.2)
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P06 - SSD NVMe M.2 frente a HDD mecánico:: ¿Por qué los ordenadores actuales de 2026 utilizan unidades de estado sólido SSD NVMe M.2 en lugar de los antiguos discos duros mecánicos (HDD)? {
+	=Porque las unidades SSD NVMe M.2 usan microchips de memoria flash sin piezas móviles, se conectan directamente a la placa base y son silenciosas, resistentes a golpes y hasta 35 veces más rápidas que un HDD mecánico #¡Correcto! Mientras que un HDD mecánico ronda los 150 MB/s con platos giratorios ruidosos, un SSD NVMe M.2 supera los 3.500 - 7.000 MB/s.
+	~Porque los discos mecánicos HDD solo permitían guardar archivos en blanco y negro #Incorrecto. Cualquier unidad de almacenamiento guarda bits (ceros y unos) independientemente de los colores de un documento.
+	~Porque las unidades SSD NVMe funcionan con gasolina y no necesitan electricidad #Incorrecto. Las unidades SSD son componentes electrónicos que se alimentan a través de la placa base.
+	~Porque un disco duro HDD se borra por completo cada vez que reiniciamos LliureX #Incorrecto. Tanto los HDD como los SSD son memorias permanentes (no volátiles); la diferencia está en su tecnología, velocidad y resistencia.
+}
+
+// -----------------------------------------------------------------------------
+// P07: Fuente de alimentación (PSU) y conector ATX
+// Tipo: Verdadero / Falso
+// -----------------------------------------------------------------------------
+::P07 - Función de la fuente de alimentación:: La Fuente de Alimentación (PSU) se encarga de transformar la corriente alterna del enchufe de la pared (230 V) en corriente continua de bajo voltaje segura para los componentes electrónicos del PC, alimentando la placa base a través del conector ATX de 24 pines. {
+	TRUE#¡Correcto, es Verdadero! Si los delicados microchips recibieran directamente los 230 V de corriente alterna de la pared sin pasar por la fuente de alimentación, se quemarían al instante.
+}
+
+// -----------------------------------------------------------------------------
+// P08: Tarjeta gráfica integrada frente a dedicada
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P08 - Gráfica integrada vs dedicada:: ¿Qué diferencia hay entre un ordenador con gráficos integrados (iGPU) y uno con tarjeta gráfica dedicada (GPU)? {
+	=La gráfica integrada viene dentro del propio procesador y basta para ofimática, estudio y vídeo, mientras que la dedicada es una tarjeta independiente con sus propios ventiladores y memoria que se pincha en la ranura PCIe x16 para tareas 3D exigentes #¡Correcto! Para un equipo de aula o de oficina basta la gráfica integrada en la CPU, pero para diseño 3D, edición 4K o videojuegos pesados se requiere una GPU dedicada.
+	~Con una gráfica integrada el monitor solo muestra texto sin imágenes ni iconos #Incorrecto. Las gráficas integradas actuales muestran escritorios completos, fotografías y vídeos en alta definición sin ningún problema.
+	~La tarjeta gráfica dedicada se conecta por fuera en el conector de micrófono rosa #Incorrecto. Se instala dentro de la torre, en la ranura PCI Express x16 de la placa base.
+	~No existe ninguna diferencia, son dos nombres distintos para referirse al ratón #Incorrecto. Son dos soluciones de procesamiento gráfico muy diferentes en potencia, consumo y precio.
+}
+
+// -----------------------------------------------------------------------------
+// P09: Puertos de vídeo modernos (HDMI y DisplayPort) frente a VGA
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P09 - HDMI y DisplayPort frente a VGA:: En el panel trasero de un ordenador moderno encontramos salidas de vídeo como HDMI y DisplayPort, mientras que el antiguo conector azul con tornillos llamado VGA se considera ya histórico. ¿Qué gran ventaja aportan HDMI y DisplayPort frente al antiguo VGA? {
+	=Transmiten señal digital de vídeo en alta definición (Full HD, 4K...) y además sonido por el mismo cable, mientras que el antiguo puerto VGA solo transmitía imagen analógica y nunca llevaba audio #¡Correcto! Con un solo cable HDMI o DisplayPort enviamos tanto imagen digital nítida como audio hacia el monitor, televisor o proyector.
+	~El cable HDMI permite imprimir folios de papel directamente por la pantalla #Incorrecto. HDMI es una interfaz multimedia de vídeo y audio, no una impresora.
+	~El antiguo puerto VGA azul servía para conectar auriculares inalámbricos por Bluetooth #Incorrecto. El puerto VGA era exclusivamente una salida de vídeo analógico por cable.
+	~Los puertos HDMI y DisplayPort solo sirven para enchufar el teclado y el ratón #Incorrecto. El teclado y el ratón con cable se conectan en puertos USB.
+}
+
+// -----------------------------------------------------------------------------
+// P10: El puerto USB-C en 2026
+// Tipo: Selección múltiple con varias respuestas correctas (Ponderación porcentual)
+// -----------------------------------------------------------------------------
+::P10 - Ventajas del conector USB-C:: ¿Por qué el puerto USB-C se ha convertido en 2026 en el conector estrella de ordenadores, portátiles, tablets y teléfonos móviles? (Selecciona las DOS opciones correctas) {
+	~%50%Porque es un conector pequeño, ovalado y reversible (se puede enchufar tanto del derecho como del revés) capaz de transmitir datos a altísima velocidad, cargar baterías e incluso enviar vídeo #¡Correcto! Su diseño simétrico reversible y su capacidad multifunción lo hacen mucho más cómodo y potente que los conectores antiguos.
+	~%50%Porque ha sido adoptado como estándar común en la Unión Europea para que un mismo cargador y cable sirva para múltiples dispositivos, reduciendo la basura electrónica #¡Correcto! Unificar el conector evita acumular decenas de cargadores incompatibles en casa.
+	~%-100%Porque tiene 15 agujeritos azules y hay que apretarlo con dos tornillos metálicos a los lados #Incorrecto. Ese conector grande de 15 pines con tornillos laterales es el antiguo puerto VGA de vídeo analógico.
+	~%-100%Porque solo permite conectar ratones fabricados antes del año 1995 #Incorrecto. Es el estándar moderno actual para todo tipo de periféricos y dispositivos móviles.
+}
+
+// -----------------------------------------------------------------------------
+// P11: Puertos del panel trasero del PC
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P11 - Identificación de puertos del panel trasero:: Relaciona cada puerto o conector del panel trasero con su función principal\: {
+	=Puerto RJ-45 (Ethernet / LAN) -> Conectar el ordenador por cable de red al router para tener Internet rápido y estable
+	=Puertos USB-A 3.2 (azules o rojos) -> Conectar pendrives, discos externos, webcams, teclados o ratones a alta velocidad
+	=Jack de audio de 3,5 mm color VERDE -> Salida de sonido analógico para conectar altavoces o auriculares con cable
+	=Jack de audio de 3,5 mm color ROSA -> Entrada de sonido para conectar un micrófono externo
+}
+
+// -----------------------------------------------------------------------------
+// P12: Periféricos de Entrada frente a Periféricos de Salida
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P12 - Clasificación de periféricos E y S:: Clasifica cada uno de los siguientes periféricos indicando si es de ENTRADA o de SALIDA según el sentido en que viaja la información\: {
+	=Teclado, ratón y micrófono -> Periféricos de ENTRADA (envían órdenes, texto o voz hacia el interior del PC)
+	=Webcam y escáner de documentos -> Periféricos de ENTRADA (capturan vídeo o digitalizan imágenes hacia el ordenador)
+	=Monitor tradicional (no táctil) y proyector -> Periféricos de SALIDA (muestran imágenes y vídeo desde el PC hacia el usuario)
+	=Altavoces e impresora simple -> Periféricos de SALIDA (sacan sonido o documentos en papel desde el ordenador)
+}
+
+// -----------------------------------------------------------------------------
+// P13: Periféricos de Entrada/Salida (Mixtos)
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P13 - Periféricos mixtos de Entrada/Salida:: ¿Por qué una pantalla táctil (como la de una tablet o pizarra digital) y una impresora multifunción se clasifican como periféricos de ENTRADA / SALIDA (Mixtos)? {
+	=Porque realizan ambas funciones a la vez\: la pantalla táctil muestra imagen (Salida) y detecta las pulsaciones de nuestros dedos (Entrada), y la multifunción imprime en papel (Salida) y escanea documentos (Entrada) #¡Correcto! La información fluye en ambos sentidos entre el usuario y el equipo.
+	~Porque no necesitan electricidad ni baterías para funcionar #Incorrecto. Todos ellos necesitan energía eléctrica para operar.
+	~Porque solo funcionan si los enchufamos en el antiguo puerto redondo PS/2 #Incorrecto. Ninguno de esos dispositivos se conecta por PS/2.
+	~Porque son componentes internos que van soldados debajo del ventilador de la CPU #Incorrecto. Son periféricos externos de Entrada/Salida.
+}
+
+// -----------------------------------------------------------------------------
+// P14: Elección razonada de dispositivo según necesidades (CE 1.2)
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P14 - Elección de equipo según el caso:: Como asesor/a tecnológico/a (Criterio 1.2), relaciona cada perfil de usuario con el dispositivo que mejor responde a sus necesidades\: {
+	=Estudio fijo de edición de vídeo 4K y diseño 3D que requiere máxima potencia, pantalla de 27 pulgadas y fácil ampliación -> PC de sobremesa (Torre + Monitor grande)
+	=Estudiante que necesita redactar informes en Writer y hacer trabajos tanto en el instituto como en la biblioteca y en casa -> Ordenador portátil (Laptop con teclado físico y batería)
+	=Repartidora en ruta que necesita consultar mapas GPS en la calle, hacer fotos de entregas y enviar avisos rápidos -> Smartphone o Tablet ligera con pantalla táctil
+	=Lector que viaja en tren y quiere tomar notas a mano con lápiz óptico sobre documentos PDF de forma ultraligera -> Tablet con lápiz digital
+}
+
+// -----------------------------------------------------------------------------
+// P15: Tecnologías de conexión a Internet y redes (Fibra/Ethernet, Wi-Fi, 5G, Bluetooth)
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P15 - Elección de conexión a Internet:: ¿Cuál es la diferencia práctica entre conectar un equipo mediante cable Ethernet (RJ-45 al router de Fibra), usar Wi-Fi, usar datos móviles 5G o usar Bluetooth? {
+	=El cable Ethernet (RJ-45) da la máxima velocidad y estabilidad para PCs fijos, el Wi-Fi da movilidad dentro de casa o del centro, el 5G conecta en la calle sin Wi-Fi, y el Bluetooth enlaza periféricos cercanos (auriculares, ratón) sin ser una conexión a Internet #¡Correcto! Elegir bien la tecnología de conexión en cada situación garantiza velocidad, ahorro de datos y estabilidad.
+	~El Bluetooth sirve para tener Internet por satélite a 50 kilómetros de distancia y el cable RJ-45 solo sirve para cargar la batería del móvil #Incorrecto. Bluetooth es una red personal de corto alcance (menos de 10 m) para periféricos, y el cable RJ-45 transmite datos de red Ethernet.
+	~Las redes móviles 5G solo funcionan si el teléfono tiene un cable HDMI enchufado al televisor #Incorrecto. El 5G es una tecnología inalámbrica de telefonía móvil mediante antenas y tarjeta SIM/eSIM.
+	~El Wi-Fi siempre es más rápido y estable que un cable directo de fibra y Ethernet RJ-45, incluso a través de cinco paredes gruesas #Incorrecto. Las paredes y la distancia reducen la señal Wi-Fi, mientras que el cable Ethernet RJ-45 mantiene la velocidad máxima sin interferencias.
+}
+
+// -----------------------------------------------------------------------------
+// P16: Obsolescencia programada y basura electrónica (e-waste) (CE 1.4)
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P16 - Obsolescencia y reciclaje de e-waste:: ¿Qué es la "obsolescencia programada" y dónde debemos depositar siempre un aparato electrónico o periférico cuando se estropea definitivamente? {
+	=Es el diseño artificial de un aparato para limitar su vida útil o dificultar su reparación, y cuando un dispositivo muere debe llevarse siempre al Punto Limpio (Ecoparque) o punto de recogida RAEE para recuperar sus metales y evitar que contamine #¡Correcto! Nunca debe tirarse basura electrónica (e-waste) al contenedor normal porque contiene tanto metales tóxicos (plomo, mercurio) como minerales valiosos reciclables (litio, cobre, oro).
+	~Es un programa gratuito de LliureX para limpiar el polvo de la pantalla, y los ordenadores viejos deben tirarse al contenedor amarillo de envases de plástico #Incorrecto. Los aparatos electrónicos nunca van al contenedor amarillo ni al gris, sino al Punto Limpio / Ecoparque.
+	~Es la velocidad a la que gira el ventilador de la CPU, y los móviles rotos deben enterrarse en el jardín para abonar las plantas #Incorrecto. Las baterías de litio y placas electrónicas son altamente contaminantes para la tierra y el agua.
+	~Significa programar videojuegos en Scratch y guardarlos en un pendrive USB #Incorrecto. La obsolescencia programada es la reducción deliberada de la duración de un producto industrial.
+}
+
+// -----------------------------------------------------------------------------
+// P17: Hábitos sostenibles (reparar/actualizar) y salud visual (Regla 20-20-20)
+// Tipo: Selección múltiple con varias respuestas correctas (Ponderación porcentual)
+// -----------------------------------------------------------------------------
+::P17 - Reparación sostenible y salud digital:: En relación con el consumo tecnológico responsable y el cuidado de nuestra salud frente a las pantallas (Criterio 1.4), selecciona las DOS afirmaciones VERDADERAS\: {
+	~%50%Si un ordenador de hace unos años va muy lento al arrancar porque aún tiene un disco mecánico HDD, cambiarlo por un disco sólido SSD (y ampliar la RAM) multiplica su velocidad y alarga su vida años sin generar basura electrónica #¡Correcto! Actualizar el almacenamiento a un SSD y ampliar la RAM es la forma más ecológica y económica de rejuvenecer un equipo.
+	~%50%Para evitar la fatiga visual debemos colocar el borde superior del monitor a la altura de los ojos (a unos 50-70 cm) y aplicar la regla 20-20-20 (cada 20 minutos, mirar 20 segundos a 6 metros de distancia) #¡Correcto! Una buena postura ergonómica y descansar el enfoque visual previene dolores cervicales y sequedad ocular.
+	~%-100%Para que la batería de un portátil dure más años conviene tapar sus rejillas de ventilación con una manta gruesa y dejarlo al sol #Incorrecto. El calor extremo y tapar la ventilación degradan gravemente las baterías de litio y pueden dañar la placa base.
+	~%-100%La postura saludable consiste en trabajar con la pantalla pegada a 10 centímetros de la nariz y con la luz totalmente apagada #Incorrecto. Trabajar tan cerca del monitor fuerza excesivamente la vista y el cuello.
+}
+
+// -----------------------------------------------------------------------------
+// P18: Formatos de archivo (.odg, .odt, .pdf) y copia en la nube OneDrive
+// Tipo: Emparejamiento (Matching)
+// -----------------------------------------------------------------------------
+::P18 - Extensiones de Visio, Writer, Word Online y PDF:: Relaciona cada herramienta o formato utilizado en las actividades prácticas del Tema 3 con su función exacta\: {
+	=Microsoft Visio Online (.vsdx) -> Creación de diagramas y mapas mentales con conectores anclados directamente desde OneDrive
+	=LibreOffice Writer (.odt) -> Procesador de textos local en LliureX para maquetar informes técnicos con estilos, tablas y columnas
+	=Microsoft Word Online (.docx) -> Coedición colaborativa en tiempo real en grupos de 2 o 3 personas con comentarios en OneDrive
+	=Formato .pdf -> Documento final exportado de lectura e impresión que conserva el diseño exacto en cualquier equipo
+}
+
+// -----------------------------------------------------------------------------
+// P19: Herramientas avanzadas de LibreOffice Writer (Portada, campos, tablas y columnas)
+// Tipo: Opción múltiple (Elección simple)
+// -----------------------------------------------------------------------------
+::P19 - Maquetación avanzada en LibreOffice Writer:: Al elaborar un manual técnico en LibreOffice Writer (como en la Actividad 2), ¿cómo conseguimos tener una portada sin número de página, numeración automática "Página X de Y" en el resto del documento y las capturas repartidas en 2 columnas? {
+	=Aplicando el estilo "Primera página" con salto manual en la portada, insertando en el pie los campos dinámicos "Número de página" y "Total de páginas", y usando Insertar > Sección con 2 columnas #¡Correcto! Así combinamos estilos de página independientes, campos automáticos y secciones multicolumna de forma profesional.
+	~Escribiendo "Página 2 de 4" con el teclado en el pie de página para que todas las hojas muestren siempre el número 2 fijo #Incorrecto. Si escribes un número a mano en el pie de página, ese mismo número se repetirá idéntico en todas las páginas del documento.
+	~Pulsando la barra espaciadora cien veces en cada línea para simular dos columnas #Incorrecto. Usar espacios para maquetar columnas descoloca todo el texto en cuanto cambias una palabra; siempre debe usarse una Sección de columnas o una Tabla.
+	~Cambiando la extensión del archivo en Dolphin de .odt a .mp3 #Incorrecto. Cambiar la extensión estropea la asociación del archivo y no aplica formatos de página.
+}
+
+// -----------------------------------------------------------------------------
+// P20: Licencias Creative Commons y atribución en documentos colaborativos
+// Tipo: Verdadero / Falso
+// -----------------------------------------------------------------------------
+::P20 - Licencias Creative Commons en documentos:: Cuando insertamos fotografías en un informe en Writer o Word Online, utilizar imágenes con licencia Creative Commons (como CC BY o CC BY-SA de Wikimedia Commons) e incluir su autoría, licencia y enlace a la fuente nos permite respetar legalmente la propiedad intelectual. {
+	TRUE#¡Correcto, es Verdadero! La condición BY (Atribución) de Creative Commons permite utilizar la obra gratuitamente siempre que reconozcamos al autor/a original e indiquemos la licencia.
+}

@@ -36,28 +36,31 @@ flowchart LR
   - **CE 1:** `1.1` (características básicas de dispositivos), `1.2` (elección de dispositivo y acceso a Internet), `1.4` (implicaciones en salud, sostenibilidad y obsolescencia).
   - **CE 2:** `2.1` (búsqueda y selección de información técnica), `2.5` (organización del entorno con OneDrive), `2.6` (creación y edición de documentos con sentido estético en Writer y Draw).
 - **Enfoque transversal:**
-  El alumnado descubre qué hay dentro del ordenador, cómo se conectan los periféricos y cómo elegir equipos de forma sostenible mientras aprende a dominar **LibreOffice Writer**, **LibreOffice Draw** y **OneDrive** creando documentos técnicos reales y bien maquetados (sin rellenar cuestionarios `.odt`).
+  El alumnado descubre qué hay dentro del ordenador, cómo se conectan los periféricos y cómo elegir equipos de forma sostenible mientras aprende a dominar **Microsoft Visio Online** (en OneDrive), **LibreOffice Writer** (maquetación completa en local) y **Microsoft Word Online** (trabajo colaborativo en equipo en OneDrive) creando documentos técnicos reales.
 
-#### 📖 Estructura de Apuntes (breves, visuales y con píldoras en vídeo)
-1. **`introduccion.md`**: Qué es el hardware y cómo trabajar sin perder nada gracias a la nube (**OneDrive** corporativo).
-2. **`componentes_y_placa_base.md`**: El interior del PC (Placa base, CPU, RAM, almacenamiento SSD/NVMe, tarjeta gráfica) apoyado en la imagen interactiva y esquema de la placa base de `UD2`.
-3. **`puertos_perifericos_y_redes.md`**: El panel trasero actualizado a 2026 (USB-A/C, HDMI, DisplayPort, RJ-45, audio), periféricos (Entrada, Salida, E/S) y formas de conexión a Internet (Fibra, Wi-Fi, 5G).
-4. **`sostenibilidad_y_obsolescencia.md`**: Impacto ambiental de la tecnología, basura electrónica (*e-waste*), obsolescencia programada y consejos de consumo responsable.
-5. **`guia_practica_writer.md`**: Chuleta visual de **LibreOffice Writer** (formato de carácter y párrafo, listas, tablas, imágenes, encabezados/pies y exportar a PDF) con los videotutoriales de `UD3` integrados.
-6. **`ejercicios_de_repaso.md`**: Retos rápidos interactivos de autoevaluación sobre componentes y conectores.
+#### 📖 Estructura de Apuntes (visuales, con fotos de componentes y ejercicios interactivos)
+1. **`introduccion.md`**: Hardware vs. Software, bloques del ordenador, **clasificación detallada de periféricos (Entrada, Salida y Entrada/Salida)** y acceso a la nube corporativa (**OneDrive** y **Visio Online**). *Desemboca en la Actividad 1.*
+2. **`componentes_y_placa_base.md`**: El interior del PC (Placa base, CPU con disipador, RAM DDR5, SSD NVMe vs HDD, GPU, PSU) con fotografías reales, lámina numerada y **2 ejercicios interactivos de arrastrar y soltar** con captura obligatoria.
+3. **`puertos_perifericos_y_redes.md`**: El panel trasero actualizado a 2026 (USB-A/C, HDMI, DisplayPort, RJ-45, audio), cables reales, formas de conexión a Internet (Fibra/Ethernet, Wi-Fi 6/7, 5G, Bluetooth) y **2 ejercicios interactivos de arrastrar y soltar** con captura obligatoria. *Al acabar los apartados 2 y 3 se realiza la Actividad 2.*
+4. **`sostenibilidad_y_obsolescencia.md`**: Obsolescencia programada/percibida, basura electrónica (*e-waste*), ergonomía y regla visual 20-20-20, licencias **Creative Commons** y **coedición en tiempo real con Word Online (OneDrive)**. *Desemboca en la Actividad 3.*
+5. **`guia_practica_writer.md`**: Chuleta visual paso a paso de **Visio Online** (Act. 1), **LibreOffice Writer completo** (Act. 2) y **Microsoft Word Online colaborativo** (Act. 3).
+6. **`ejercicios_de_repaso.md`**: Retos rápidos interactivos de repaso final antes de la Actividad 4.
 
 #### 🛠️ Actividades prácticas evaluables (con rúbrica en cada página)
-- **Actividad 1: "Radiografía del PC: Guía visual de puertos y componentes" (Writer: formato de carácter, párrafo, listas e imágenes + OneDrive · *5 sesiones*):**
-  - **Qué hacen:** A partir de las imágenes del panel trasero (`0001_panel-trasero-placa-base_edit.png`) y del interior de la placa base (`0003_panel-principal-placa-base_edit.jpg`) de `UD2`, crean desde cero un documento en **LibreOffice Writer** aplicando formato de título (versalitas, bordes/sombreado), párrafos justificados con sangría e interlineado 1,5, listas con viñetas personalizadas para clasificar qué periféricos de E/S se conectan en cada puerto e imágenes insertadas con ajuste de texto.
-  - **Cierre:** Exportan a `.pdf`, organizan su carpeta del tema en **OneDrive** y entregan en Aules.
-- **Actividad 2: "El cerebro de la máquina en un vistazo: Mapa mental del ordenador" (LibreOffice Draw · *4 sesiones*):**
-  - **Qué hacen:** Basándose en la guía `0012_Actividad 4 - Mapa mental ordenador.pdf` de `UD2`, diseñan en **LibreOffice Draw** un mapa mental jerárquico, visual y coloreado con distintas formas geométricas e iconos que sintetice Hardware (procesamiento, memoria, almacenamiento, periféricos) y Software.
-  - **Cierre:** Entregan el archivo editable `.odg` y su exportación a `.png` y `.pdf`.
-- **Actividad 3: "Asesores tecnológicos responsables: Comparativa de equipos y decálogo sostenible" (Writer: tablas, columnas, cabeceras/pies y licencias Creative Commons · *5 sesiones*):**
-  - **Qué hacen:** Elaboran un informe de asesoramiento en **Writer** con página configurada (márgenes, encabezado con su nombre y pie de página con `pág. X de Y`) que incluye:
-    1. Una **tabla formateada** (celdas combinadas, bordes, colores de fondo, texto centrado, adaptando la práctica de tablas de `UD3`) donde comparan 3 dispositivos (PC de aula, portátil familiar y smartphone/tablet) recomendando cuál elegir y cómo conectarlo a Internet según distintos casos cotidianos (Criterio 1.2).
-    2. Una sección maquetada a **2 columnas** con imágenes libres de derechos (Creative Commons) explicando qué es la obsolescencia programada y 5 hábitos para alargar la vida de nuestros dispositivos (Criterio 1.4).
-- **Actividad 4: "Cuestionario en Aules: Equipos y Edición de Documentos" (*2 sesiones*):** Test de afianzamiento en Aules.
+- **Actividad 1: "El cerebro de la máquina en un vistazo: Mapa mental del ordenador" (Microsoft Visio Online en OneDrive · *4 sesiones*):**
+  - **Cuándo se hace:** Justo al terminar el **Apartado 1 (`introduccion.md`)**.
+  - **Qué hacen:** Crean su carpeta `1ESO/TRDR/Tema_3` en **OneDrive (`@edu.gva.es`)** y diseñan directamente en la nube con **Microsoft Visio Online** un mapa mental jerárquico en horizontal (3 niveles, formas diferenciadas, conectores automáticos anclados, código de colores e iconos) sintetizando *Procesamiento y Memoria*, *Periféricos de Entrada*, *Periféricos de Salida y Mixtos (E/S)* y *Software y Nube*.
+  - **Cierre:** Entregan en Aules la copia editable `.vsdx`, la imagen `.png` y el documento `.pdf`.
+- **Actividad 2: "Radiografía completa del PC: Manual técnico guiado paso a paso" (LibreOffice Writer individual completo · *5 sesiones*):**
+  - **Cuándo se hace:** Al terminar los **Apartados 2 y 3**.
+  - **Qué hacen (pautado en 7 pasos):** Elaboran en **LibreOffice Writer** un manual técnico completo que integra: (1) **Portada limpia** con estilo *Primera página*, borde, fondo suave y subtítulo en **Versalitas**; (2) **Encabezado (`Fecha`) y Pie dinámico (`Página X de Y`)** sin numerar la portada; (3) **Formato de carácter y párrafo** (justificado, sangría `1 cm`, interlineado `1,5`, siglas resaltadas y títulos con borde/sombreado); (4) **Lámina muda de Placa Base** con **Leyenda automática** y lista numerada (`1..8`); (5) **Lámina muda del Panel Trasero** con **Leyenda automática** y **lista multinivel con viñetas personalizadas** clasificando periféricos `[E]`, `[S]` y `[E/S]`; (6) **Tabla avanzada resumen** (`4x7` con supertítulo combinado, fondos y centrado vertical); y (7) **Sección a 2 columnas** con las **4 capturas de pantalla** de los ejercicios interactivos resueltos en los Apartados 2 y 3.
+  - **Cierre:** Suben copia a OneDrive y entregan `.odt` y `.pdf` en Aules.
+- **Actividad 3: "Asesores tecnológicos sostenibles: Informe colaborativo en grupo de 2 o 3" (Microsoft Word Online en OneDrive · *5 sesiones*):**
+  - **Cuándo se hace:** Al terminar el **Apartado 4 (`sostenibilidad_y_obsolescencia.md`)**.
+  - **Qué hacen:** En **equipos de 2 o 3 personas**, comparten un único archivo `.docx` en **OneDrive** con permiso *Puede editar* para coeditarlo en tiempo real con **Word Online**, usando **Comentarios cruzados (`Revisar -> Nuevo comentario`)**, tabla de reparto de roles, tablas de asesoramiento a 3 clientes (CE 1.2), reportaje y decálogo destacado de sostenibilidad y regla 20-20-20 (CE 1.4) e imágenes **Creative Commons** con pie de foto e hiperenlace clicable (CE 2.6).
+  - **Apartado EXTRA obligatorio para grupos de 3 personas:** *Plan Renove Sostenible* (tabla de presupuesto comparando actualizar un PC antiguo con SSD + RAM frente a comprar uno nuevo) + *Guía propia de los 5 iconos Creative Commons*.
+  - **Cierre:** Descargan y entregan en Aules `.docx` (con comentarios visibles) y `.pdf`.
+- **Actividad 4: "Cuestionario en Aules: Equipos informáticos y hardware" (*2 sesiones*):** Test de afianzamiento en Aules (`cuestionario_tema3_equipos_informaticos.gift`) y repaso gamificado con Kahoot (`preguntas_kahoot_tema3_equipos_informaticos.xlsx`), centrados mayoritariamente en **equipos informáticos, hardware interno, placa base, puertos, periféricos, conectividad y sostenibilidad** (17-18 de 20 preguntas) junto con 2-3 preguntas sobre **Visio Online, Writer y Word Online en OneDrive**.
 
 ---
 

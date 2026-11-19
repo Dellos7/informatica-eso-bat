@@ -23,5 +23,6 @@ description: Taller de Relaciones Digitales Responsables (1º ESO)
 
 ## Temas
 
-- [Tema 1](./sistemas-operativos-y-aplicaciones/)
-- [Tema 2](./organizacion-de-la-informacion/)
+- [Tema 1. Sistemas Operativos y Aplicaciones](./sistemas-operativos-y-aplicaciones/)
+- [Tema 2. Organización de la información](./organizacion-de-la-informacion/)
+- [Tema 3. Equipos Informáticos, Sostenibilidad y Documentos Digitales](./equipos-y-documentos-digitales/)
