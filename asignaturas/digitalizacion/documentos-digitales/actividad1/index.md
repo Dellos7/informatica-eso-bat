@@ -23,15 +23,15 @@ Dominar de forma avanzada las herramientas de maquetación y diseño de **LibreO
 Una portada académica nunca debe llevar encabezado ni pie de página. Para lograr esto, utilizaremos los **Estilos de Página** (*Estils de pàgina*) de Writer.
 
 1. Abre **LibreOffice Writer**.
-2. Ve al panel lateral derecho, abre la pestaña de **Estilos** (*Estils*) ![Icono Estilos](./icono_estilos.png){: .no-border style="height: 1.25em; vertical-align: middle;"} (icono de la `A` con un pincel) y haz clic en el icono de **Estilos de página** (*Estils de pàgina*) ![Icono Estilos de página](./icono_estilos_pagina.png){: .no-border style="height: 1.25em; vertical-align: middle;"} (el cuarto icono).
+2. Ve al panel lateral derecho, abre la pestaña de **Estilos** (*Estils*) ![Icono Estilos](./imagenes/icono_estilos.png){: .no-border style="height: 1.25em; vertical-align: middle;"} (icono de la `A` con un pincel) y haz clic en el icono de **Estilos de página** (*Estils de pàgina*) ![Icono Estilos de página](./imagenes/icono_estilos_pagina.png){: .no-border style="height: 1.25em; vertical-align: middle;"} (el cuarto icono).
 
-![Panel lateral de estilos en LibreOffice Writer](./guia_panel_estilos.png)
+![Panel lateral de estilos en LibreOffice Writer](./imagenes/guia_panel_estilos.png)
 {: .img .img-250}
 
 3. Haz doble clic sobre el estilo **Primera página** (*Primera pàgina*). Verás que en la barra de estado de abajo ahora pone «Primera página» (*«Primera pàgina»*).
 {:start="3"}
 
-![Estilo de página Primera pàgina en la barra de estado](./guia_barra_estado.png)
+![Estilo de página Primera pàgina en la barra de estado](./imagenes/guia_barra_estado.png)
 {: .img}
 
 4. **Configuración de márgenes, borde y espaciado de la Portada:** ve a *Formato -> Estilo de página...* (*Format -> Estil de pàgina...*) y aplica:
@@ -46,7 +46,7 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
      - Color de fondo: muy claro (por ejemplo, azul pastel o gris claro) solo para esta primera hoja de portada.
 {:start="4"}
 
-5. Vuelve a **Estilos de párrafo** (*Estils de paràgraf*) ![Icono Estilos de párrafo](./icono_estilos_parrafo.png){: .no-border style="height: 1.25em; vertical-align: middle;"} (el primer icono de la pestaña de estilos lateral, marcado con el **3** en la primera captura).
+5. Vuelve a **Estilos de párrafo** (*Estils de paràgraf*) ![Icono Estilos de párrafo](./imagenes/icono_estilos_parrafo.png){: .no-border style="height: 1.25em; vertical-align: middle;"} (el primer icono de la pestaña de estilos lateral, marcado con el **3** en la primera captura).
 {:start="5"}
 
 6. Diseña tu portada utilizando **Estilos de Párrafo** (*Estils de paràgraf*):
@@ -57,7 +57,7 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
      - Estilo de letra: negrita (*Negreta*).
      - Alineación: centrado (*Centrat*).
      - Color: **Azul oscuro** (similar al del borde de la página).
-     - **Actualizar el estilo:** con el texto seleccionado, haz clic en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"} en la barra superior (justo a la derecha del selector de estilos) o desde el botón desplegable arriba a la derecha del panel lateral **Estilos** (*Estils*).
+     - **Actualizar el estilo:** con el texto seleccionado, haz clic en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./imagenes/icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"} en la barra superior (justo a la derecha del selector de estilos) o desde el botón desplegable arriba a la derecha del panel lateral **Estilos** (*Estils*).
    * **Subtítulo:** escribe *«Análisis de soportes físicos, de estado sólido y sistemas en la nube»* y configúralo así:
      - Estilo base: **Subtítulo** (*Subtítol*).
      - Fuente: **Liberation Sans**.
@@ -65,7 +65,7 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
      - Estilo de letra: cursiva (*Cursiva*).
      - Alineación: centrado (*Centrat*).
      - Color: gris oscuro.
-     - **Actualizar el estilo:** pulsa **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
+     - **Actualizar el estilo:** pulsa **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./imagenes/icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
    * **Datos del autor:** deja varios espacios vacíos hacia la parte inferior, escribe tu nombre, apellidos y fecha y configúralos así:
      - Estilo: **Estilo de párrafo predeterminado** (*Estil de paràgraf per defecte*) o **Cuerpo de texto** (*Cos del text*).
      - Fuente: **Liberation Sans**.
@@ -73,7 +73,7 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
      - Alineación: **derecha** (*Alinea a la dreta*).
 {:start="6"}
 
-![Cómo pulsar Actualizar estilo seleccionado en LibreOffice Writer](./guia_actualizar_estilo.png)
+![Cómo pulsar Actualizar estilo seleccionado en LibreOffice Writer](./imagenes/guia_actualizar_estilo.png)
 {: .img}
 
 7. Inserta un salto de página manual que cambie el estilo de la siguiente hoja a normal: ve a *Insertar -> Más saltos -> Salto manual...* (*Insereix -> Més salts -> Salt manual...*) y configura:
@@ -85,7 +85,7 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
 **Ejemplo de resultado esperado (Portada):**
 {: .centrado}
 
-![Ejemplo Portada](./captura_portada_writer_real.png)
+![Ejemplo Portada](./imagenes/captura_portada_writer_real.png)
 {: .no-border .img .img-450}
 
 > **Importante**: Sube a Aules el documento con el **ejercicio 1 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej1.odt`
@@ -97,7 +97,7 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
 En esta segunda página (que ahora tiene el *Estilo de página predeterminado* / *Estil de pàgina per defecte*), redactaremos la introducción aplicando formatos detallados y estructurando los encabezados mediante estilos para poder generar un índice automático en el futuro.
 
 > **Nota:** Utiliza el **pegado especial de texto sin formato** (*Pegado especial -> Texto sin formato* / *Enganxament especial -> Text sense format*) para evitar copiar estilos del navegador:
-![Pegar texto sin formato](./pegar_texto_sin_formato.png)
+![Pegar texto sin formato](./imagenes/pegar_texto_sin_formato.png)
 {: .img}
 {: .alert-info}
 
@@ -111,7 +111,7 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
      - Alineación: izquierda (*Alinea a l'esquerra*).
    * *Formato -> Párrafo...* (*Format -> Paràgraf...*) -> pestaña **Sangrías y espaciado** (*Sagnats i espaiat*):
      - **Bajo el párrafo** (*Sota el paràgraf*): **`0,50 cm`**.
-   * **Actualizar el estilo:** pulsa **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
+   * **Actualizar el estilo:** pulsa **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./imagenes/icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
 2. **Redacta dos párrafos de introducción** (de unas 5-6 líneas cada uno) sobre la evolución del almacenamiento desde los disquetes hasta el almacenamiento moderno. Puedes utilizar internet o alguna I.A. tipo ChatGPT para que te ayude. **Asegúrate de que entre ambos párrafos no haya espacios (líneas) en blanco**.
 3. Aplica los siguientes formatos a los párrafos que has redactado:
    * **Párrafo general (ambos párrafos):**
@@ -129,12 +129,12 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
      - **Espacio hasta el texto** (*Espai per al text*): `0,2 cm`.
    * **Sangría de primera línea (solo segundo párrafo):** selecciona el segundo párrafo y ve a *Formato -> Párrafo...* (*Format -> Paràgraf...*) -> pestaña **Sangrías y espaciado** (*Sagnats i espaiat*):
      - **Primera línea** (*Primera línia*): `1,25 cm`.
-     - Actualiza el estilo pulsando en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
+     - Actualiza el estilo pulsando en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./imagenes/icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
    * **Efectos de carácter:**
      - Al menos **3 palabras clave**: negrita (*Negreta*) + **color de letra azul** (*Color de la lletra*).
      - Un **término en inglés** (ej. *cloud computing*): cursiva (*Cursiva*) + **color de resalte de caracteres** (*Color de realçament dels caràcters*) amarillo suave.
 
-![Botones de formato de carácter y alineación justificada](./guia_formato_caracter.png)
+![Botones de formato de carácter y alineación justificada](./imagenes/guia_formato_caracter.png)
 {: .img}
 
 4. **Párrafo destacado:** inserta un tercer párrafo corto con una frase célebre o dato curioso, selecciónalo y ve a *Formato -> Párrafo...* (*Format -> Paràgraf...*):
@@ -154,7 +154,7 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 **Ejemplo de resultado esperado (Formato de carácter y párrafo):**
 {: .centrado}
 
-![Ejemplo Ejercicio 2](./captura_ejercicio2_writer_real.png)
+![Ejemplo Ejercicio 2](./imagenes/captura_ejercicio2_writer_real.png)
 {: .no-border .img .img-450}
 
 > **Importante**: Sube a Aules el documento con el **ejercicio 2 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej2.odt`
@@ -163,7 +163,7 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 ---
 
 ### 3. Secciones y columnas con personalización
-1. Sal del párrafo destacado e inserta un salto de página (*Insertar -> Salto de página* / *Insereix -> Salt de pàgina*) ![Icono Salto de página](./icono_salto_pagina.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
+1. Sal del párrafo destacado e inserta un salto de página (*Insertar -> Salto de página* / *Insereix -> Salt de pàgina*) ![Icono Salto de página](./imagenes/icono_salto_pagina.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
 2. Añade un título de nivel 2: **«1.1. Comparación de soportes magnéticos y ópticos»** y configúralo así:
    * Estilo base: **Título 2** (*Encapçalament 2*).
    * Fuente y aspecto:
@@ -174,7 +174,7 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
      - Alineación: izquierda (*Alinea a l'esquerra*).
    * *Formato -> Párrafo...* (*Format -> Paràgraf...*) -> pestaña **Sangrías y espaciado** (*Sagnats i espaiat*):
      - **Bajo el párrafo** (*Sota el paràgraf*): **`0,50 cm`**.
-   * **Actualizar el estilo:** pulsa **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
+   * **Actualizar el estilo:** pulsa **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./imagenes/icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
 3. Inserta una sección de dos columnas con fondo personalizado: ve a *Insertar -> Sección...* (*Insereix -> Secció...*) y configura:
    * Pestaña **Columnas** (*Columnes*):
      - Número de columnas: `2`.
@@ -192,7 +192,7 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 **Ejemplo de resultado esperado (Secciones y columnas con personalización):**
 {: .centrado}
 
-![Ejemplo Ejercicio 3](./captura_ejercicio3_writer_real.png)
+![Ejemplo Ejercicio 3](./imagenes/captura_ejercicio3_writer_real.png)
 {: .no-border .img .img-450}
 
 > **Importante**: Sube a Aules el documento con el **ejercicio 3 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej3.odt`
@@ -201,7 +201,7 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 ---
 
 ### 4. Inserción de imágenes con leyendas y tablas
-1. Sal de la sección haciendo doble clic abajo, añade un salto de página (*Insertar -> Salto de página* / *Insereix -> Salt de pàgina*) ![Icono Salto de página](./icono_salto_pagina.png){: .no-border style="height: 1.25em; vertical-align: middle;"} y escribe el título: **«2. Comparativa de rendimiento de unidades de estado sólido»**.
+1. Sal de la sección haciendo doble clic abajo, añade un salto de página (*Insertar -> Salto de página* / *Insereix -> Salt de pàgina*) ![Icono Salto de página](./imagenes/icono_salto_pagina.png){: .no-border style="height: 1.25em; vertical-align: middle;"} y escribe el título: **«2. Comparativa de rendimiento de unidades de estado sólido»**.
    * Selecciónalo y asígnale el estilo **Título 1** (*Encapçalament 1*). Verás que automáticamente adopta el formato (16 pt, negrita, azul oscuro) que definiste previamente al actualizar este estilo.
 2. Busca e inserta **dos imágenes** de discos de estado sólido (un **disco SSD SATA** de 2,5" y un **disco SSD M.2**):
    * Fondo transparente: asegúrate de que no tengan fondo o elimínalo con [remove.bg](https://www.remove.bg){:target="_blank"}.
@@ -212,7 +212,7 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
      - Segunda imagen: `Disco sólido M.2`.
    * Separación: ajusta ambos marcos con una separación inferior de `0,75 cm` para que no queden pegados al texto inferior.
 3. Escribe un **párrafo introductorio** explicando brevemente la evolución y ventajas de las unidades de estado sólido (SSD) respecto a interfaces y protocolos (SATA, M.2, NVMe PCIe 3.0 y 4.0). Utiliza el estilo **Cuerpo de texto** (*Cos del text*).
-4. **Tabla con formato avanzado y leyenda:** inserta una tabla de **4 columnas y 5 filas** (*Tabla -> Insertar tabla...* / *Taula -> Insereix una taula...*) ![Icono Tabla](./icono_tabla.png){: .no-border style="height: 1.25em; vertical-align: middle;"} para comparar tecnologías:
+4. **Tabla con formato avanzado y leyenda:** inserta una tabla de **4 columnas y 5 filas** (*Tabla -> Insertar tabla...* / *Taula -> Insereix una taula...*) ![Icono Tabla](./imagenes/icono_tabla.png){: .no-border style="height: 1.25em; vertical-align: middle;"} para comparar tecnologías:
    * **Contenido:** puedes consultar o pedir a ChatGPT/IA una tabla comparativa entre SATA SSD, M.2 SATA, NVMe PCIe 3.0 y NVMe PCIe 4.0 con datos de velocidad máxima teórica, interfaz utilizada, y latencia/rendimiento.
    * **Formato de la fila de cabecera:**
      - Color de fondo: azul oscuro.
@@ -229,7 +229,7 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 **Ejemplo de resultado esperado (Imágenes con leyenda, párrafo y tabla con formato):**
 {: .centrado}
 
-![Ejemplo Ejercicio 4](./captura_ejercicio4_writer_real.png)
+![Ejemplo Ejercicio 4](./imagenes/captura_ejercicio4_writer_real.png)
 {: .no-border .img .img-450}
 
 > **Importante**: Sube a Aules el documento con el **ejercicio 4 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej4.odt`
@@ -257,7 +257,7 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 **Ejemplo de resultado esperado (Secciones horizontales y saltos de página):**
 {: .centrado}
 
-![Ejemplo Ejercicio 5](./captura_ejercicio5_writer_real.png)
+![Ejemplo Ejercicio 5](./imagenes/captura_ejercicio5_writer_real.png)
 {: .no-border .img .img-450}
 
 > **Importante**: Sube a Aules el documento con el **ejercicio 5 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej5.odt`
@@ -288,7 +288,7 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 **Ejemplo de resultado esperado (Encabezados y pies de página):**
 {: .centrado}
 
-![Ejemplo Ejercicio 6](./captura_ejercicio6_writer_real.png)
+![Ejemplo Ejercicio 6](./imagenes/captura_ejercicio6_writer_real.png)
 {: .no-border .img .img-450}
 
 > **Importante**: Sube a Aules el documento con el **ejercicio 6 finalizado** y con el nombre: `actividad1_writer_tuapellido_tunombre_ej6.odt`
@@ -303,11 +303,11 @@ Sube a la tarea de Aules los siguientes **dos archivos**:
 * **`actividad1_writer_tuapellido_tunombre_final.pdf`** (versión exportada en formato PDF)
 
 > 💡 **¿Cómo exportar a PDF en LibreOffice Writer?**
-> 1. Ve al menú superior: *Archivo -> Exportar a -> Exportar a PDF...* (*Fitxer -> Exporta com a -> Exporta com a PDF...*), o haz clic en el botón directo **Exportar directamente a PDF** (*Exporta directament a PDF*) ![Icono Exportar a PDF](./icono_exportar_pdf.png){: .no-border style="height: 1.25em; vertical-align: middle;"} de la barra de herramientas superior.
+> 1. Ve al menú superior: *Archivo -> Exportar a -> Exportar a PDF...* (*Fitxer -> Exporta com a -> Exporta com a PDF...*), o haz clic en el botón directo **Exportar directamente a PDF** (*Exporta directament a PDF*) ![Icono Exportar a PDF](./imagenes/icono_exportar_pdf.png){: .no-border style="height: 1.25em; vertical-align: middle;"} de la barra de herramientas superior.
 > 2. En la ventana emergente de opciones de PDF, haz clic en **Exportar** (*Exporta*).
 > 3. Selecciona la carpeta de la actividad, asegúrate de nombrarlo como `actividad1_writer_tuapellido_tunombre_final.pdf` y haz clic en **Guardar** (*Desa*).
 >
-> ![Botón directo Exporta directament a PDF](./guia_exportar_pdf.png)
+> ![Botón directo Exporta directament a PDF](./imagenes/guia_exportar_pdf.png)
 > {: .img}
 {: .alert-info}
 
@@ -315,15 +315,15 @@ Sube a la tarea de Aules los siguientes **dos archivos**:
 
 ## Rúbrica de Evaluación (máx. 10 puntos)
 
-| Criterio | 0 pts | 0.5 pts | 1 pt | 2 pts |
-|----------|-------|---------|------|-------|
-| **1. Portada y Estilos de página** (máx. 2 pts) | No aplica estilos de página diferenciados. La portada incluye encabezado/pie de las demás páginas. | Aplica el estilo "Primera página" pero la portada carece de formatos visuales (borde, área) o datos del alumno. | Configura la portada sin encabezado/pie, pero comete errores en bordes (1,5 pt con 1,0 cm separación), fondo de área o personalización de Título/Subtítulo. | Portada impecable con estilo "Primera página" (sin cabecera/pie), borde azul de 1,5 pt con separación de 1,0 cm, área de fondo suave, estilos Título (38 pt) y Subtítulo (18 pt) actualizados y datos a la derecha. |
-| **2. Formato de carácter y párrafo avanzado** (máx. 2 pts) | No aplica sangrías, letras capitulares ni formatos avanzados de párrafo o carácter. | Aplica algún formato pero omite la letra capitular, la sangría de primera línea o el párrafo destacado. | Configura el texto principal (Justificado, 1,5 líneas, espaciado 0,35 cm) pero la letra capitular (3 líneas, 0,2 cm) o sangría (1,25 cm) son incorrectas. | Formato de párrafo impecable: Título 1 actualizado (16 pt azul), letra capitular exacta en 1er párrafo, sangría de 1,25 cm en 2º, efectos de carácter (negrita azul y resaltado amarillo) y estilo callout destacado perfecto. |
-| **3. Secciones y columnas con personalización** (máx. 1 pt) | No crea secciones ni divide el texto en columnas. | Divide en columnas pero no utiliza una sección con fondo personalizado ni línea de separación (0,35 pts). | Crea la sección de 2 columnas con fondo pastel, pero descuida la sangría de sección o línea de separación (0,7 pts). | Sección de dos columnas (8,25 cm ancho, 0,5 cm espaciado) perfectamente estructurada con línea de separación de 0,5 pt, fondo pastel y sangrías de sección laterales de 0,5 cm. |
-| **4. Imágenes con leyendas y tablas comparativas** (máx. 2 pts) | Inserta imágenes y tabla sin formato ni leyendas. | Inserta imágenes pero sin fondo transparente o sin leyendas automáticas de ilustración. | Tabla comparativa 4x5 insertada pero carece de centrado vertical de celdas, bordes personalizados o leyenda automática de tabla. | Dos imágenes transparentes con leyendas automáticas. Tabla 4x5 con cabecera azul/blanco centrada, texto centrado verticalmente, bordes personalizados y leyenda automática de tabla. |
-| **5. Secciones horizontales y tabla cronológica** (máx. 2 pts) | No alterna la orientación de página a horizontal ni crea la tabla cronológica. | Cambia la orientación pero sin utilizar saltos de página manuales con cambio de estilo de página. | Página horizontal correcta con la tabla, pero omite las imágenes representativas en la columna adicional, el párrafo introductorio o la leyenda automática. | Alternancia perfecta a página horizontal mediante saltos manuales ("Horizontal" y retorno a "Predeterminado"), tabla ancha de 6 columnas con imágenes, párrafo introductorio y leyenda automática. |
-| **6. Encabezados y pies de página dinámicos** (máx. 1 pt) | No añade encabezado ni pie de página, o escribe el texto manualmente sin campos. | Inserta encabezado y pie pero sin utilizar campos automáticos (0,35 pts). | Encabezado y pie dinámico aplicados pero con omisiones de formato o numeración (0,7 pts). | Encabezado (10pt, borde inferior azul 0,5pt con Fecha) y pie dinámico (`Página X de Y`) aplicados en todas las páginas (verticales y horizontales) manteniendo la Portada limpia. |
-| **7. Entrega en plazo** (máx. 0 pts) | **-2 pts:** No entrega o entrega con un retraso de más de una semana. | **-1.5 pts:** Entrega con un retraso importante de hasta una semana. | **-1 pt:** Entrega con un pequeño retraso de máximo 2 días. | **0 pts:** Entrega la actividad a tiempo dentro del plazo establecido. |
+| Criterio | 0 pts | 0.5 pts | 1 pt | 1.5 pts | 2 pts |
+|----------|-------|---------|------|---------|-------|
+| **1. Portada y Estilos de página** (máx. 2 pts) | No aplica estilos de página diferenciados. La portada incluye encabezado/pie de las demás páginas. | Aplica el estilo "Primera página" pero la portada carece de la mayoría de formatos visuales (borde, área) o datos del alumno. | Configura la portada sin encabezado/pie, pero comete varios errores en bordes (1,5 pt con 1,0 cm separación), fondo de área o estilos Título/Subtítulo. | Portada bien estructurada con estilo "Primera página" (sin cabecera/pie), borde, fondo y textos, pero con algún desajuste menor de medidas, tamaños (38/18 pt) o actualización de estilo. | Portada impecable con estilo "Primera página" (sin cabecera/pie), márgenes de 2,0 cm, borde azul de 1,5 pt con separación de 1,0 cm, área de fondo suave, estilos Título (38 pt) y Subtítulo (18 pt) actualizados y datos a la derecha. |
+| **2. Formato de carácter y párrafo avanzado** (máx. 2 pts) | No aplica sangrías, letras capitulares ni formatos avanzados de párrafo o carácter. | Aplica algún formato básico pero omite la letra capitular, la sangría de primera línea y el párrafo destacado. | Configura el texto principal (Justificado, 1,5 líneas, espaciado 0,35 cm) pero omite o configura mal varios elementos (capitular, sangría, efectos o párrafo destacado). | Aplica Título 1, párrafos con letra capitular y sangría de 1,25 cm, efectos de carácter y párrafo destacado, pero con algún fallo menor de medida, borde, sombra o espaciado. | Formato de párrafo impecable: Título 1 actualizado (16 pt azul), letra capitular exacta (3 líneas, 0,2 cm) en 1er párrafo, sangría de 1,25 cm en 2º, efectos de carácter (negrita azul y resaltado amarillo) y párrafo destacado completo. |
+| **3. Secciones y columnas con personalización** (máx. 1 pt) | No crea secciones ni divide el texto en columnas. | Divide en columnas pero no utiliza una sección con fondo personalizado ni sangrías laterales (0,25 pts). | Crea la sección de 2 columnas con fondo pastel, pero omite las sangrías laterales (0,5 cm) y la línea de separación o el espaciado (0,5 pts). | Crea la sección de 2 columnas (espaciado 0,5 cm) con fondo pastel y sangrías laterales de 0,5 cm, pero descuida algún detalle como la línea de separación de 0,5 pt o el Título 2 (0,75 pts). | Sección de dos columnas (8,25 cm ancho, 0,5 cm espaciado) perfectamente estructurada con Título 2 (14 pt azul), línea de separación de 0,5 pt, fondo pastel y sangrías laterales de 0,5 cm (1 pt). |
+| **4. Imágenes con leyendas y tablas comparativas** (máx. 2 pts) | No inserta las imágenes ni la tabla comparativa, o las inserta sin formato ni leyendas. | Inserta imágenes o tabla de forma muy incompleta, sin fondo transparente, sin leyendas automáticas y sin formato de tabla. | Inserta las dos imágenes y la tabla comparativa 4x5, pero faltan las leyendas automáticas, el fondo transparente o gran parte del formato de la tabla. | Inserta las dos imágenes transparentes con leyendas, el párrafo y la tabla 4x5 con cabecera azul y leyenda, pero con algún fallo menor (separación 0,75 cm, centrado vertical o bordes). | Dos imágenes transparentes con leyendas automáticas y separación de 0,75 cm, párrafo introductorio y tabla 4x5 con cabecera azul/blanco centrada, texto centrado verticalmente, bordes personalizados y leyenda automática. |
+| **5. Secciones horizontales y tabla cronológica** (máx. 2 pts) | No alterna la orientación de página a horizontal ni crea la tabla cronológica. | Crea la tabla cronológica pero sin cambiar la orientación a horizontal mediante saltos/estilos de página o la tabla está muy incompleta. | Página horizontal con la tabla cronológica, pero omite las imágenes representativas en las filas, el párrafo introductorio o la leyenda automática. | Alternancia a página horizontal con Título 1, párrafo introductorio, tabla ancha con imágenes y leyenda automática, pero con algún detalle menor de formato de tabla o salto de retorno. | Alternancia perfecta a página horizontal mediante saltos manuales ("Horizontal" y retorno a "Predeterminado"), Título 1, párrafo introductorio, tabla ancha con imágenes en cada fila y leyenda automática. |
+| **6. Encabezados y pies de página dinámicos** (máx. 1 pt) | No añade encabezado ni pie de página, o los incluye también en la portada. | Inserta encabezado o pie pero escribe la fecha o numeración manualmente sin campos automáticos (0,25 pts). | Utiliza algunos campos dinámicos pero omite el formato del encabezado (10 pt, borde inferior azul 0,5 pt) y no los aplica en las páginas horizontales (0,5 pts). | Encabezado (con Fecha) y pie dinámico (`Página X de Y`) en páginas verticales y horizontales con portada limpia, pero con algún descuido menor de borde o tamaño 10 pt (0,75 pts). | Encabezado (10 pt, borde inferior azul 0,5 pt con Fecha) y pie dinámico (`Página X de Y`) aplicados en todas las páginas (verticales y horizontales) manteniendo la Portada limpia (1 pt). |
+| **7. Entrega en plazo** (máx. 0 pts) | **-2 pts:** No entrega o entrega con un retraso de más de una semana. | **-1.5 pts:** Entrega con un retraso importante de hasta una semana. | **-1 pt:** Entrega con un pequeño retraso de máximo 2 días. | | **0 pts:** Entrega la actividad a tiempo dentro del plazo establecido. |
 
 > ⚠️ **Nota sobre la entrega en plazo:** La entrega dentro del plazo establecido no resta puntuación (0 pts). Las entregas con retraso supondrán una penalización de hasta 2 puntos sobre la calificación de la actividad.
 {: .alert-error}
