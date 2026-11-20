@@ -34,34 +34,52 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
 ![Estilo de página Primera pàgina en la barra de estado](./guia_barra_estado.png)
 {: .img}
 
-4. **Configuración de márgenes, borde y espaciado de la Portada:** 
-   * Ve a *Formato -> Estilo de página...* (*Format -> Estil de pàgina...*).
-   * En la pestaña **Página** (*Pàgina*), cambia los márgenes a `2,0 cm` en todos los lados (superior, inferior, izquierdo, derecho).
-   * En la pestaña **Bordes** (*Vores*), añade un borde completo de color azul oscuro con un grosor de `1,50 pt`. En la sección **Separación** (*Separació*, el espaciado de seguridad para separar el borde del texto), configúralo a `1,0 cm` en todos los lados.
-   * En la pestaña **Área** (*Àrea*), pon un color de fondo muy claro (por ejemplo, azul pastel o gris claro) solo para esta primera hoja de portada.
+4. **Configuración de márgenes, borde y espaciado de la Portada:** ve a *Formato -> Estilo de página...* (*Format -> Estil de pàgina...*) y aplica:
+   * Pestaña **Página** (*Pàgina*):
+     - Márgenes (superior, inferior, izquierdo y derecho): `2,0 cm`.
+   * Pestaña **Bordes** (*Vores*):
+     - Disposición: borde completo en los 4 lados.
+     - Color: azul oscuro.
+     - Grosor: `1,50 pt`.
+     - **Separación** (*Separació*, espacio entre el borde y el texto): `1,0 cm` en todos los lados.
+   * Pestaña **Área** (*Àrea*):
+     - Color de fondo: muy claro (por ejemplo, azul pastel o gris claro) solo para esta primera hoja de portada.
 {:start="4"}
 
 5. Vuelve a **Estilos de párrafo** (*Estils de paràgraf*) ![Icono Estilos de párrafo](./icono_estilos_parrafo.png){: .no-border style="height: 1.25em; vertical-align: middle;"} (el primer icono de la pestaña de estilos lateral, marcado con el **3** en la primera captura).
 {:start="5"}
 
 6. Diseña tu portada utilizando **Estilos de Párrafo** (*Estils de paràgraf*):
-   * Escribe el título: **«Informe Tecnológico: La evolución del almacenamiento digital»**.
-     * Con el cursor en esa línea, selecciona el estilo **Título** (*Títol*) de la lista de estilos (dentro de **Encabezado** / *Encapçalament*).
-     * Modifica el formato manualmente: fuente **Liberation Sans**, tamaño **38 pt**, negrita (*Negreta*), centrado (*Centrat*) y color **Azul oscuro** similar al del borde de la página.
-     * **Actualizar el estilo:** Con el texto seleccionado, haz clic en el botón directo **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"} de la barra superior (justo a la derecha del selector de estilos) o bien ve al panel lateral **Estilos** (*Estils*), despliega las opciones del botón de arriba a la derecha (icono con flecha) y haz clic en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*). Esto hará que el estilo «Título» (*«Títol»*) asuma de forma definitiva esta configuración.
-   * Escribe el subtítulo: *«Análisis de soportes físicos, de estado sólido y sistemas en la nube»*.
-     * Aplícale el estilo **Subtítulo** (*Subtítol*).
-     * Modifícalo a: fuente **Liberation Sans**, tamaño **18 pt**, cursiva (*Cursiva*), centrado (*Centrat*), color gris oscuro y actualiza el estilo con la opción **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
-   * Deja varios espacios vacíos para desplazar los datos del autor hacia la parte inferior.
-   * Escribe tu nombre, apellidos y fecha. Aplícales el estilo **Estilo de párrafo predeterminado** (*Estil de paràgraf per defecte*) o **Cuerpo de texto** (*Cos del text*). Aplica a estos datos la fuente **Liberation Sans**, tamaño de **11 pt**, y **alínealos a la derecha** (*Alinea a la dreta*).
+   * **Título:** escribe **«Informe Tecnológico: La evolución del almacenamiento digital»** y configúralo así:
+     - Estilo base: **Título** (*Títol*, dentro de **Encabezado** / *Encapçalament*).
+     - Fuente: **Liberation Sans**.
+     - Tamaño: **38 pt**.
+     - Estilo de letra: negrita (*Negreta*).
+     - Alineación: centrado (*Centrat*).
+     - Color: **Azul oscuro** (similar al del borde de la página).
+     - **Actualizar el estilo:** con el texto seleccionado, haz clic en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"} en la barra superior (justo a la derecha del selector de estilos) o desde el botón desplegable arriba a la derecha del panel lateral **Estilos** (*Estils*).
+   * **Subtítulo:** escribe *«Análisis de soportes físicos, de estado sólido y sistemas en la nube»* y configúralo así:
+     - Estilo base: **Subtítulo** (*Subtítol*).
+     - Fuente: **Liberation Sans**.
+     - Tamaño: **18 pt**.
+     - Estilo de letra: cursiva (*Cursiva*).
+     - Alineación: centrado (*Centrat*).
+     - Color: gris oscuro.
+     - **Actualizar el estilo:** pulsa **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
+   * **Datos del autor:** deja varios espacios vacíos hacia la parte inferior, escribe tu nombre, apellidos y fecha y configúralos así:
+     - Estilo: **Estilo de párrafo predeterminado** (*Estil de paràgraf per defecte*) o **Cuerpo de texto** (*Cos del text*).
+     - Fuente: **Liberation Sans**.
+     - Tamaño: **11 pt**.
+     - Alineación: **derecha** (*Alinea a la dreta*).
 {:start="6"}
 
 ![Cómo pulsar Actualizar estilo seleccionado en LibreOffice Writer](./guia_actualizar_estilo.png)
 {: .img}
 
-7. Inserta un salto de página manual que cambie el estilo de la siguiente hoja a normal:
-   * Ve a *Insertar -> Más saltos -> Salto manual...* (*Insereix -> Més salts -> Salt manual...*).
-   * En **Tipo** (*Tipus*), elige **Salto de página** (*Salt de pàgina*) y en **Estilo de página** (*Estil de pàgina*) selecciona **Estilo de página predeterminado** (*Estil de pàgina per defecte*). Haz clic en *Aceptar* (*D'acord*).
+7. Inserta un salto de página manual que cambie el estilo de la siguiente hoja a normal: ve a *Insertar -> Más saltos -> Salto manual...* (*Insereix -> Més salts -> Salt manual...*) y configura:
+   * **Tipo** (*Tipus*): **Salto de página** (*Salt de pàgina*).
+   * **Estilo de página** (*Estil de pàgina*): **Estilo de página predeterminado** (*Estil de pàgina per defecte*).
+   * Pulsa *Aceptar* (*D'acord*).
 {:start="7"}
 
 **Ejemplo de resultado esperado (Portada):**
@@ -83,29 +101,54 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 {: .img}
 {: .alert-info}
 
-1. Escribe el título: **«1. Introducción al almacenamiento digital»**.
-   * Selecciónalo y asígnale el estilo **Título 1** (*Encapçalament 1*).
-   * Modifícalo a: fuente **Liberation Sans**, tamaño **16 pt**, negrita (*Negreta*), color **Azul oscuro**, alineado a la izquierda (*Alinea a l'esquerra*).
-   * Ve a *Formato -> Párrafo...* (*Format -> Paràgraf...*), pestaña **Sangrías y espaciado** (*Sagnats i espaiat*), y añade un espaciado **Bajo el párrafo** (*Sota el paràgraf*) de **0,50 cm**.
-   * Por último, actualiza el estilo pulsando en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
+1. Escribe el título **«1. Introducción al almacenamiento digital»** y configúralo así:
+   * Estilo base: **Título 1** (*Encapçalament 1*).
+   * Fuente y aspecto:
+     - Fuente: **Liberation Sans**.
+     - Tamaño: **16 pt**.
+     - Estilo de letra: negrita (*Negreta*).
+     - Color: **Azul oscuro**.
+     - Alineación: izquierda (*Alinea a l'esquerra*).
+   * *Formato -> Párrafo...* (*Format -> Paràgraf...*) -> pestaña **Sangrías y espaciado** (*Sagnats i espaiat*):
+     - **Bajo el párrafo** (*Sota el paràgraf*): **`0,50 cm`**.
+   * **Actualizar el estilo:** pulsa **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
 2. **Redacta dos párrafos de introducción** (de unas 5-6 líneas cada uno) sobre la evolución del almacenamiento desde los disquetes hasta el almacenamiento moderno. Puedes utilizar internet o alguna I.A. tipo ChatGPT para que te ayude. **Asegúrate de que entre ambos párrafos no haya espacios (líneas) en blanco**.
 3. Aplica los siguientes formatos a los párrafos que has redactado:
-   * **Párrafo general:**
-      - *Formato -> Carácter...* (*Format -> Caràcter...*): Fuente *Liberation Serif*, 12 pt, **Justificado** (*Justificat*).
-      - *Formato -> Párrafo...* (*Format -> Paràgraf...*): **Interlineado** (*Interlineat*) de `1,5 líneas` (*1,5 línies*), con un espaciado de `0,35 cm` **Bajo el párrafo** (*Sota el paràgraf*).
-      - Asegúrate de que tienen seleccionado el estilo **Estilo de párrafo predeterminado** (*Estil de paràgraf per defecte*).
-   * **Letra Capitular:** Selecciona el primer párrafo, ve a *Formato -> Párrafo... -> pestaña Letras capitulares* (*Format -> Paràgraf... -> pestaña Caplletres*). Activa **«Mostrar letras capitulares»** (*«Mostra les caplletres»*), que ocupe `3 líneas` (*3 línies*) de alto y tenga una distancia al texto (*Espacio hasta el texto* / *Espai per al text*) de `0,2 cm`.
-   * **Sangría de primera línea:** En el segundo párrafo, añade una sangría de **Primera línea** (*Primera línia*) de `1,25 cm` (*Formato -> Párrafo... -> pestaña Sangrías y espaciado* / *Format -> Paràgraf... -> pestaña Sagnats i espaiat*).
-   * Actualiza el estilo pulsando en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
-   * **Efectos de carácter:** Destaca al menos 3 palabras clave del texto usando negrita (*Negreta*) y **color de letra azul** (*Color de la lletra*). Busca un término en inglés (ej. *cloud computing*), aplícale cursiva (*Cursiva*) y un **color de resalte de caracteres (resaltado) amarillo suave** (*Color de realçament dels caràcters*).
+   * **Párrafo general (ambos párrafos):**
+     - Estilo: asegúrate de que tienen seleccionado **Estilo de párrafo predeterminado** (*Estil de paràgraf per defecte*).
+     - *Formato -> Carácter...* (*Format -> Caràcter...*):
+       * Fuente: **Liberation Serif**.
+       * Tamaño: **`12 pt`**.
+     - *Formato -> Párrafo...* (*Format -> Paràgraf...*):
+       * Pestaña **Alineación** (*Alineació*): **Justificado** (*Justificat*, también disponible en la barra superior).
+       * Pestaña **Sangrías y espaciado** (*Sagnats i espaiat*) -> **Interlineado** (*Interlineat*): `1,5 líneas` (*1,5 línies*).
+       * Pestaña **Sangrías y espaciado** (*Sagnats i espaiat*) -> **Bajo el párrafo** (*Sota el paràgraf*): `0,35 cm`.
+   * **Letra Capitular (solo primer párrafo):** selecciona el primer párrafo y ve a *Formato -> Párrafo...* (*Format -> Paràgraf...*) -> pestaña **Letras capitulares** (*Caplletres*):
+     - Activa **«Mostrar letras capitulares»** (*«Mostra les caplletres»*).
+     - **Líneas** (*Línies*): `3`.
+     - **Espacio hasta el texto** (*Espai per al text*): `0,2 cm`.
+   * **Sangría de primera línea (solo segundo párrafo):** selecciona el segundo párrafo y ve a *Formato -> Párrafo...* (*Format -> Paràgraf...*) -> pestaña **Sangrías y espaciado** (*Sagnats i espaiat*):
+     - **Primera línea** (*Primera línia*): `1,25 cm`.
+     - Actualiza el estilo pulsando en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
+   * **Efectos de carácter:**
+     - Al menos **3 palabras clave**: negrita (*Negreta*) + **color de letra azul** (*Color de la lletra*).
+     - Un **término en inglés** (ej. *cloud computing*): cursiva (*Cursiva*) + **color de resalte de caracteres** (*Color de realçament dels caràcters*) amarillo suave.
 
 ![Botones de formato de carácter y alineación justificada](./guia_formato_caracter.png)
 {: .img}
 
-4. **Párrafo destacado:** Inserta un tercer párrafo corto con una frase célebre o dato curioso. Selecciónalo y aplícale (*Formato -> Párrafo...* / *Format -> Paràgraf...*):
-   * En la pestaña **Sangrías y espaciado** (*Sagnats i espaiat*): sangría izquierda (*Antes del texto* / *Abans del text*) y derecha (*Después del texto* / *Després del text*) de `1,5 cm` y sin sangría de primera línea (`0,0 cm`).
-   * En la pestaña **Bordes** (*Vores*): un borde izquierdo grueso (de `3,0 pt` en color azul) y ningún borde en los otros lados, con una **Separación** (*Separació*) al texto por izquierda y derecha de `0,5 cm` y por arriba y abajo de `0,1 cm`, y un **Estilo de sombra** (*Estil de l'ombra*) gris.
-   * En la pestaña **Área** (*Àrea*): un color de fondo gris muy claro.
+4. **Párrafo destacado:** inserta un tercer párrafo corto con una frase célebre o dato curioso, selecciónalo y ve a *Formato -> Párrafo...* (*Format -> Paràgraf...*):
+   * Pestaña **Sangrías y espaciado** (*Sagnats i espaiat*):
+     - **Antes del texto** (*Abans del text*, sangría izquierda): `1,5 cm`.
+     - **Después del texto** (*Després del text*, sangría derecha): `1,5 cm`.
+     - **Primera línea** (*Primera línia*): `0,0 cm` (sin sangría).
+   * Pestaña **Bordes** (*Vores*):
+     - Disposición: borde **izquierdo** únicamente (ningún borde en los otros lados).
+     - Grosor y color: `3,0 pt` en color azul.
+     - **Separación** (*Separació*): `0,5 cm` a izquierda y derecha; `0,1 cm` arriba y abajo.
+     - **Estilo de sombra** (*Estil de l'ombra*): gris.
+   * Pestaña **Área** (*Àrea*):
+     - Color de fondo: gris muy claro.
 {:start="4"}
 
 **Ejemplo de resultado esperado (Formato de carácter y párrafo):**
@@ -121,14 +164,28 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 
 ### 3. Secciones y columnas con personalización
 1. Sal del párrafo destacado e inserta un salto de página (*Insertar -> Salto de página* / *Insereix -> Salt de pàgina*) ![Icono Salto de página](./icono_salto_pagina.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
-2. Añade un título de nivel 2: **«1.1. Comparación de soportes magnéticos y ópticos»**.
-   * Selecciónalo y asígnale el estilo **Título 2** (*Encapçalament 2*).
-   * Modifícalo a: fuente **Liberation Sans**, tamaño **14 pt**, negrita (*Negreta*), color **Azul oscuro**, alineado a la izquierda (*Alinea a l'esquerra*), añade un espaciado **Bajo el párrafo** (*Sota el paràgraf*) de **0,50 cm** y pulsa en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
-3. Inserta una sección de dos columnas con fondo personalizado:
-   * Ve a *Insertar -> Sección...* (*Insereix -> Secció...*).
-   * En la pestaña **Columnas** (*Columnes*), selecciona `2` columnas, ponles una anchura de `8,25 cm` cada una y deja un **Espaciado** (*Espaiat*) de `0,5 cm` entre ellas. Añade también una **Línea de separación** (*Línia de separació*) entre ellas, sólida de color negro y de `0,5 pt`.
-   * En la pestaña **Área** (*Àrea*), selecciona un color de fondo muy suave (por ejemplo, verde pastel claro o amarillo pastel claro).
-   * En la pestaña **Sangrías** (*Sagnats*), aplica una **sangría de sección** de `0,5 cm` a la izquierda (*Antes de la sección* / *Abans de la secció*) y derecha (*Después de la sección* / *Després de la secció*) para que el color de fondo de la sección no quede pegado a los márgenes generales del papel (también puedes modificarlo después desde *Formato -> Secciones... -> Opciones...* / *Format -> Seccions... -> Opcions...*).
+2. Añade un título de nivel 2: **«1.1. Comparación de soportes magnéticos y ópticos»** y configúralo así:
+   * Estilo base: **Título 2** (*Encapçalament 2*).
+   * Fuente y aspecto:
+     - Fuente: **Liberation Sans**.
+     - Tamaño: **14 pt**.
+     - Estilo de letra: negrita (*Negreta*).
+     - Color: **Azul oscuro**.
+     - Alineación: izquierda (*Alinea a l'esquerra*).
+   * *Formato -> Párrafo...* (*Format -> Paràgraf...*) -> pestaña **Sangrías y espaciado** (*Sagnats i espaiat*):
+     - **Bajo el párrafo** (*Sota el paràgraf*): **`0,50 cm`**.
+   * **Actualizar el estilo:** pulsa **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"}.
+3. Inserta una sección de dos columnas con fondo personalizado: ve a *Insertar -> Sección...* (*Insereix -> Secció...*) y configura:
+   * Pestaña **Columnas** (*Columnes*):
+     - Número de columnas: `2`.
+     - Anchura de cada columna: `8,25 cm`.
+     - **Espaciado** (*Espaiat*) entre columnas: `0,5 cm`.
+     - **Línea de separación** (*Línia de separació*): sólida, color negro, grosor `0,5 pt`.
+   * Pestaña **Área** (*Àrea*):
+     - Color de fondo: muy suave (por ejemplo, verde pastel claro o amarillo pastel claro).
+   * Pestaña **Sangrías** (*Sagnats*):
+     - **Antes de la sección** (*Abans de la secció*): `0,5 cm`.
+     - **Después de la sección** (*Després de la secció*): `0,5 cm` *(para que el color de fondo no quede pegado a los márgenes del papel; también puedes modificarlo después desde Format -> Seccions... -> Opcions...)*.
    * Haz clic en *Insertar* (*Insereix*).
 4. Escribe en la columna de la izquierda el funcionamiento básico de un disco duro mecánico (HDD) y en la de la derecha el de un disco óptico (CD/DVD).
 
@@ -147,20 +204,27 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 1. Sal de la sección haciendo doble clic abajo, añade un salto de página (*Insertar -> Salto de página* / *Insereix -> Salt de pàgina*) ![Icono Salto de página](./icono_salto_pagina.png){: .no-border style="height: 1.25em; vertical-align: middle;"} y escribe el título: **«2. Comparativa de rendimiento de unidades de estado sólido»**.
    * Selecciónalo y asígnale el estilo **Título 1** (*Encapçalament 1*). Verás que automáticamente adopta el formato (16 pt, negrita, azul oscuro) que definiste previamente al actualizar este estilo.
 2. Busca e inserta **dos imágenes** de discos de estado sólido (un **disco SSD SATA** de 2,5" y un **disco SSD M.2**):
-   * Asegúrate de que ambas imágenes tengan **fondo transparente** o bien utiliza la web [remove.bg](https://www.remove.bg){:target="_blank"} para eliminar el fondo.
-   * Coloca ambas imágenes una al lado de la otra debajo del título de la sección.
-   * **Leyenda en cada imagen:** Haz clic derecho sobre cada imagen y selecciona **Insertar leyenda...** (*Insereix una llegenda...*):
-     * En la primera imagen añade como texto: `Disco sólido SATA` (categoría **Ilustración** / *Il·lustració*).
-     * En la segunda imagen añade como texto: `Disco sólido M.2` (categoría **Ilustración** / *Il·lustració*).
-   * Ajusta ambos marcos para que tengan un ajuste adecuado y una separación inferior (`0,75 cm`) para no quedar pegados al texto que irá debajo.
+   * Fondo transparente: asegúrate de que no tengan fondo o elimínalo con [remove.bg](https://www.remove.bg){:target="_blank"}.
+   * Posición: colócalas una al lado de la otra debajo del título de la sección.
+   * **Leyenda en cada imagen** (clic derecho sobre cada imagen -> **Insertar leyenda...** / *Insereix una llegenda...*):
+     - Categoría: **Ilustración** (*Il·lustració*).
+     - Primera imagen: `Disco sólido SATA`.
+     - Segunda imagen: `Disco sólido M.2`.
+   * Separación: ajusta ambos marcos con una separación inferior de `0,75 cm` para que no queden pegados al texto inferior.
 3. Escribe un **párrafo introductorio** explicando brevemente la evolución y ventajas de las unidades de estado sólido (SSD) respecto a interfaces y protocolos (SATA, M.2, NVMe PCIe 3.0 y 4.0). Utiliza el estilo **Cuerpo de texto** (*Cos del text*).
-4. **Tabla con formato avanzado y leyenda:** Inserta una tabla de **4 columnas y 5 filas** (*Tabla -> Insertar tabla...* / *Taula -> Insereix una taula...*) ![Icono Tabla](./icono_tabla.png){: .no-border style="height: 1.25em; vertical-align: middle;"} para comparar tecnologías:
-   * **Contenido:** Puedes consultar o pedir a ChatGPT/IA una tabla comparativa entre SATA SSD, M.2 SATA, NVMe PCIe 3.0 y NVMe PCIe 4.0 con datos de velocidad máxima teórica, interfaz utilizada, y latencia/rendimiento.
-   * **Formato de la tabla:**
-     * **Fila de cabecera:** Aplica un color de fondo azul oscuro, texto en blanco, negrita (*Negreta*) y centrado (*Centrat*).
-     * **Alineación vertical:** Selecciona toda la tabla, haz clic derecho y en *Propiedades de la tabla... -> pestaña Flujo del texto* (*Propietats de la taula... -> pestaña Flux del text*), asegúrate de que la **Alineación vertical** (*Alineació vertical*) de todas las celdas esté en **Centrado** (*Centrat*).
-     * **Bordes personalizados:** Configura los bordes internos de la tabla (clic derecho -> *Propiedades de la tabla... -> pestaña Borde* / *Propietats de la taula... -> pestaña Vores*) en color gris claro (`0,5 pt`) y el borde exterior en un color azul más grueso (`1,5 pt`).
-   * **Leyenda automática en la tabla:** Haz clic derecho sobre la tabla, selecciona **Insertar leyenda...** (*Insereix una llegenda...*), escoge como categoría **Tabla** (*Taula*) y añade el texto: `Comparativa de tecnologías de discos SSD`. Colócala debajo de la tabla y céntrala. Verás que aparece debajo como *"Tabla 1: Comparativa..."* (*"Taula 1: Comparativa..."*).
+4. **Tabla con formato avanzado y leyenda:** inserta una tabla de **4 columnas y 5 filas** (*Tabla -> Insertar tabla...* / *Taula -> Insereix una taula...*) ![Icono Tabla](./icono_tabla.png){: .no-border style="height: 1.25em; vertical-align: middle;"} para comparar tecnologías:
+   * **Contenido:** puedes consultar o pedir a ChatGPT/IA una tabla comparativa entre SATA SSD, M.2 SATA, NVMe PCIe 3.0 y NVMe PCIe 4.0 con datos de velocidad máxima teórica, interfaz utilizada, y latencia/rendimiento.
+   * **Formato de la fila de cabecera:**
+     - Color de fondo: azul oscuro.
+     - Texto: blanco, negrita (*Negreta*) y centrado (*Centrat*).
+   * **Propiedades de toda la tabla** (selecciona la tabla -> clic derecho -> *Propiedades de la tabla...* / *Propietats de la taula...*):
+     - Pestaña **Flujo del texto** (*Flux del text*) -> **Alineación vertical** (*Alineació vertical*): **Centrado** (*Centrat*).
+     - Pestaña **Borde** (*Vores*) -> bordes internos: gris claro de `0,5 pt`.
+     - Pestaña **Borde** (*Vores*) -> borde exterior: azul de `1,5 pt`.
+   * **Leyenda automática en la tabla** (clic derecho sobre la tabla -> **Insertar leyenda...** / *Insereix una llegenda...*):
+     - Categoría: **Tabla** (*Taula*).
+     - Texto: `Comparativa de tecnologías de discos SSD`.
+     - Posición: debajo de la tabla y centrada (verás *"Tabla 1: Comparativa..."* / *"Taula 1: Comparativa..."*).
 
 **Ejemplo de resultado esperado (Imágenes con leyenda, párrafo y tabla con formato):**
 {: .centrado}
@@ -174,19 +238,21 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 ---
 
 ### 5. Secciones horizontales y saltos de página
-1. Al final del documento, introduce un salto de página manual para cambiar la orientación de la hoja:
-   * Ve a *Insertar -> Más saltos -> Salto manual...* (*Insereix -> Més salts -> Salt manual...*).
-   * Escoge en **Tipo** (*Tipus*): *Salto de página* (*Salt de pàgina*).
-   * En **Estilo de página** (*Estil de pàgina*), selecciona **Horizontal** (*Horitzontal*). Haz clic en *Aceptar* (*D'acord*).
+1. Al final del documento, introduce un salto de página manual para cambiar la orientación de la hoja: ve a *Insertar -> Más saltos -> Salto manual...* (*Insereix -> Més salts -> Salt manual...*) y configura:
+   * **Tipo** (*Tipus*): **Salto de página** (*Salt de pàgina*).
+   * **Estilo de página** (*Estil de pàgina*): **Horizontal** (*Horitzontal*).
+   * Pulsa *Aceptar* (*D'acord*).
 2. En esta hoja horizontal, añade el título: **«3. Mapa de ruta y velocidades de transferencia del almacenamiento»**.
    * Selecciónalo y asígnale el estilo **Título 1** (*Encapçalament 1*).
-3. Inserta una tabla ancha de 6 columnas (*Tabla -> Insertar tabla...* / *Taula -> Insereix una taula...*) donde detalles una cronología del almacenamiento digital (desde 1980 hasta la actualidad) e inserta imágenes representativas de cada tecnología en una columna adicional.
-   * Al estar en página horizontal, aprovecha el espacio para hacer las columnas anchas.
-   * Utiliza el mismo estilo de tabla que en el ejercicio anterior.
-   * Inserta una leyenda debajo de la tabla (**Insertar leyenda...** / *Insereix una llegenda...*) con el texto: `Cronología del almacenamiento digital`.
+3. Inserta una tabla ancha de 6 columnas (*Tabla -> Insertar tabla...* / *Taula -> Insereix una taula...*) donde detalles una cronología del almacenamiento digital (desde 1980 hasta la actualidad) e inserta imágenes representativas de cada tecnología en una columna adicional:
+   * Aprovecha el espacio de la página horizontal para hacer las columnas anchas.
+   * Aplica el mismo estilo de tabla que en el ejercicio anterior.
    * Añade un párrafo introductorio antes de la tabla.
+   * Inserta una leyenda debajo de la tabla (**Insertar leyenda...** / *Insereix una llegenda...*) con el texto: `Cronología del almacenamiento digital`.
    * Si la tabla no cabe en una página, deja que fluya hasta la siguiente.
-4. Regresa al formato vertical: introduce otro **salto de página manual** (*Insertar -> Más saltos -> Salto manual...* / *Insereix -> Més salts -> Salt manual...*) y selecciona en **Estilo de página** (*Estil de pàgina*): **Estilo de página predeterminado** (*Estil de pàgina per defecte*).
+4. Regresa al formato vertical: introduce otro salto de página manual (*Insertar -> Más saltos -> Salto manual...* / *Insereix -> Més salts -> Salt manual...*) y selecciona:
+   * **Tipo** (*Tipus*): **Salto de página** (*Salt de pàgina*).
+   * **Estilo de página** (*Estil de pàgina*): **Estilo de página predeterminado** (*Estil de pàgina per defecte*).
 
 **Ejemplo de resultado esperado (Secciones horizontales y saltos de página):**
 {: .centrado}
@@ -200,18 +266,24 @@ En esta segunda página (que ahora tiene el *Estilo de página predeterminado* /
 ---
 
 ### 6. Encabezados y pies de página con campos dinámicos
-1. Haz clic en la parte superior de la página 2 (*Estilo de página predeterminado* / *Estil de pàgina per defecte*) y añade un **Encabezado / Cabecera** (*Capçalera*).
-2. Escribe a la izquierda: **«Tema 2: Documentos Digitales»**.
-3. Pulsa el tabulador para ir a la derecha e inserta un campo automático: *Insertar -> Campo -> Fecha* (*Insereix -> Camp -> Data*). Verás que se inserta la fecha de hoy de manera automática.
-4. Selecciona todo el texto de la cabecera y ponlo en tamaño **10 pt**.
-5. Ve a *Formato -> Estilo de página... -> pestaña Cabecera -> Más... -> Bordes* (*Format -> Estil de pàgina... -> pestaña Capçalera -> Més... -> Vores*) y añade un borde inferior de color azul y **0,5 pt**.
-6. En la parte inferior de la hoja, añade un **Pie de página** (*Peu de pàgina*).
-7. Escribe a la izquierda tu nombre completo, y a la derecha introduce la numeración en formato dinámico:
-   * Escribe la palabra `Página ` e inserta el campo **Número de página** (*Insertar -> Campo -> Número de página* / *Insereix -> Camp -> Número de pàgina*).
-   * Escribe ` de ` e inserta el campo **Recuento de páginas / Total de páginas** (*Insertar -> Campo -> Recuento de páginas* / *Insereix -> Camp -> Recompte de pàgines*).
-   * Debe quedar visualmente como: `Página 2 de 4` (y se actualizará solo).
-8. Añade el mismo pie y cabecera a las **páginas horizontales** (*Horitzontal*) si no lo tienen.
-9. **Verificación:** Comprueba que la página de la Portada (página 1, *Primera pàgina*) **no tiene** ni encabezado ni pie de página, gracias al uso de estilos de página independientes.
+1. **Encabezado / Cabecera** (*Capçalera*) en la página 2 (*Estilo de página predeterminado* / *Estil de pàgina per defecte*):
+   * Haz clic en la parte superior de la página 2 para añadir la **Cabecera** (*Capçalera*).
+   * Izquierda: escribe **«Tema 2: Documentos Digitales»**.
+   * Derecha (pulsa el tabulador): inserta el campo automático *Insertar -> Campo -> Fecha* (*Insereix -> Camp -> Data*).
+   * Tamaño del texto de la cabecera: **`10 pt`**.
+   * Borde inferior (*Formato -> Estilo de página... -> pestaña Cabecera -> Más... -> Bordes* / *Format -> Estil de pàgina... -> pestaña Capçalera -> Més... -> Vores*):
+     - Disposición: borde inferior.
+     - Color: azul.
+     - Grosor: **`0,5 pt`**.
+2. **Pie de página** (*Peu de pàgina*):
+   * Haz clic en la parte inferior de la hoja para añadir el **Pie de página** (*Peu de pàgina*).
+   * Izquierda: escribe tu nombre completo.
+   * Derecha (pulsa el tabulador): introduce la numeración dinámica:
+     - Escribe `Página ` e inserta *Insertar -> Campo -> Número de página* (*Insereix -> Camp -> Número de pàgina*).
+     - Escribe ` de ` e inserta *Insertar -> Campo -> Recuento de páginas* (*Insereix -> Camp -> Recompte de pàgines*).
+     - Resultado visual esperado: `Página 2 de 4` (se actualizará automáticamente).
+3. **Páginas horizontales:** añade el mismo pie y cabecera a las páginas con estilo **Horizontal** (*Horitzontal*) si no lo tienen.
+4. **Verificación:** comprueba que la Portada (página 1, *Primera pàgina*) **no tiene** ni encabezado ni pie de página, gracias al uso de estilos de página independientes.
 
 **Ejemplo de resultado esperado (Encabezados y pies de página):**
 {: .centrado}
