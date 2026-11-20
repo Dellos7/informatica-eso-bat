@@ -5,18 +5,21 @@ validar_entregas.py
 Validador automático de entregas (.odt) para la Actividad 1 (Creación de documentos
 con LibreOffice Writer) de Digitalización (Tema 2: Documentos digitales).
 
-Funcionamiento:
+Características principales:
 - Recorre una carpeta de entregas donde cada subcarpeta corresponde a un alumno/a.
-- Busca en cada subcarpeta los documentos .odt correspondientes a cada parte de la
-  actividad (ej1..ej6). Si un ejercicio no se ha entregado, otorga 0 puntos en ese criterio.
-- Opcionalmente (--modo flexible), si falta algún ejX.odt pero el alumno ha entregado
-  un documento final (final.odt) o posterior, puede evaluarlo sobre dicho documento.
-- También permite evaluar un único archivo .odt directamente pasando su ruta.
-- Analiza el XML interno de OpenDocument (styles.xml, content.xml e imágenes PNG en Pictures/)
-  resolviendo la herencia completa de estilos y formatos directos.
+- Busca en cada subcarpeta los documentos .odt de cada parte de la actividad (ej1..ej6).
+- Evalúa de forma determinista el XML interno de OpenDocument (styles.xml, content.xml,
+  meta.xml e imágenes en Pictures/) resolviendo la herencia completa de estilos.
 - Otorga la puntuación de la rúbrica en cada uno de los 6 criterios:
     * Criterios de 2 puntos (1, 2, 4, 5): niveles 0 | 0,5 | 1 | 1,5 | 2
     * Criterios de 1 punto  (3, 6):       niveles 0 | 0,25 | 0,5 | 0,75 | 1
+- Detecta anomalías de validación (p. ej., documentos con contenido, tablas, imágenes
+  o estilos que no encajan con la estructura esperada o no verifican casi ningún criterio)
+  marcando claramente en el informe: DIAGNÓSTICO: REVISIÓN MANUAL.
+- Realiza un análisis forense de autenticidad e IA sobre cada archivo .odt (generador en
+  meta.xml, tiempo real de edición, ciclos de guardado, sesiones interactivas rsid de
+  Writer, nombres hash de imágenes, restos de Markdown o estilos web pegados desde
+  ChatGPT/Claude/Gemini, y coincidencia de fecha de creación exacta entre alumnos).
 - Genera un informe detallado en Markdown (resultado_validacion.md) y una hoja de
   calificaciones en CSV compatible con Excel/Calc (resultado_validacion.csv).
 """
@@ -30,7 +33,7 @@ import sys
 import zipfile
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 import xml.etree.ElementTree as ET
 
 # Espacios de nombres estándar de OpenDocument (ODF)
@@ -44,6 +47,9 @@ NS = {
     "xlink": "http://www.w3.org/1999/xlink",
     "svg": "urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0",
     "loext": "urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0",
+    "meta": "urn:oasis:names:tc:opendocument:xmlns:meta:1.0",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "officeooo": "http://openoffice.org/2009/office",
 }
 
 
@@ -52,7 +58,7 @@ def qname(prefix: str, tag: str) -> str:
 
 
 # ==============================================================================
-# Utilidades de conversión de unidades y colores
+# Utilidades de conversión de unidades, tiempos y colores
 # ==============================================================================
 
 def parse_length_cm(val: Optional[str]) -> Optional[float]:
@@ -101,6 +107,36 @@ def parse_length_pt(val: Optional[str]) -> Optional[float]:
     return None
 
 
+def parse_iso_duration_seconds(dur_str: Optional[str]) -> Optional[float]:
+    """Convierte una duración ISO-8601 de ODF ('PT7H25M19S', 'P0DT0H5M12S') a segundos."""
+    if not dur_str or not isinstance(dur_str, str):
+        return None
+    m = re.match(
+        r"^P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?)?$",
+        dur_str.strip(),
+    )
+    if not m:
+        return None
+    days = int(m.group(3) or 0)
+    hours = int(m.group(4) or 0)
+    minutes = int(m.group(5) or 0)
+    seconds = float(m.group(6) or 0.0)
+    return days * 86400 + hours * 3600 + minutes * 60 + seconds
+
+
+def format_duration_human(seconds: Optional[float]) -> str:
+    if seconds is None:
+        return "desconocido"
+    s = int(round(seconds))
+    h, rem = divmod(s, 3600)
+    m, sec = divmod(rem, 60)
+    if h > 0:
+        return f"{h}h {m}m {sec}s"
+    if m > 0:
+        return f"{m}m {sec}s"
+    return f"{sec}s"
+
+
 def parse_hex_color(color_str: Optional[str]) -> Optional[Tuple[int, int, int]]:
     """Convierte '#rrggbb' a tupla (R, G, B)."""
     if not color_str or not isinstance(color_str, str):
@@ -119,7 +155,6 @@ def is_blue_color(color_str: Optional[str]) -> bool:
     if not rgb:
         return False
     r, g, b = rgb
-    # El componente azul debe ser dominante frente al rojo y mayor que el verde
     return b >= 80 and b > r + 25 and b >= g
 
 
@@ -133,7 +168,7 @@ def is_light_color(color_str: Optional[str]) -> bool:
     r, g, b = rgb
     if r == 255 and g == 255 and b == 255:
         return False
-    luminance = (0.299 * r + 0.587 * g + 0.114 * b)
+    luminance = 0.299 * r + 0.587 * g + 0.114 * b
     return luminance >= 150
 
 
@@ -176,7 +211,7 @@ def parse_border(border_str: Optional[str]) -> Optional[Dict]:
 
 
 # ==============================================================================
-# Representación y análisis de un documento ODT
+# Estructuras de datos de resultados, diagnóstico y análisis de IA
 # ==============================================================================
 
 @dataclass
@@ -197,38 +232,96 @@ class CriterionResult:
     level_description: str
     evaluated_file: str
     checks: List[CheckItem] = field(default_factory=list)
+    needs_manual_review: bool = False
+    manual_review_reasons: List[str] = field(default_factory=list)
 
+
+@dataclass
+class ForensicReport:
+    filename: str
+    ai_risk_level: str  # "BAJA", "MEDIA", "ALTA"
+    ai_reasons: List[str] = field(default_factory=list)
+    generator: str = ""
+    creation_date: str = ""
+    modification_date: str = ""
+    editing_seconds: Optional[float] = None
+    editing_cycles: Optional[int] = None
+    rsid_count: int = 0
+    word_count: int = 0
+    auto_style_count: int = 0
+
+
+@dataclass
+class StudentEvaluation:
+    student_name: str
+    criteria_results: List[CriterionResult]
+    needs_manual_review: bool = False
+    manual_review_reasons: List[str] = field(default_factory=list)
+    ai_risk_level: str = "BAJA"
+    ai_findings: List[str] = field(default_factory=list)
+    forensics_by_file: Dict[str, ForensicReport] = field(default_factory=dict)
+
+
+# ==============================================================================
+# Representación y análisis de un documento ODT
+# ==============================================================================
 
 class OdtDocument:
-    """Carga un archivo .odt y resuelve estilos, páginas maestras, párrafos, secciones y tablas."""
+    """Carga un archivo .odt y resuelve estilos, metadatos forenses, párrafos, secciones y tablas."""
 
     def __init__(self, path: Path):
         self.path = path
+        self.zip_namelist: List[str] = []
         self.styles_root: Optional[ET.Element] = None
         self.content_root: Optional[ET.Element] = None
+        self.meta_root: Optional[ET.Element] = None
         self.image_transparency: Dict[str, bool] = {}
+        self.picture_files: List[str] = []
 
-        # Diccionarios de estilos: (family, name) -> dict de propiedades y metadatos
+        # Diccionarios de estilos
         self.default_styles: Dict[str, Dict] = {}
         self.styles: Dict[Tuple[str, str], Dict] = {}
         self.page_layouts: Dict[str, Dict] = {}
         self.master_pages: Dict[str, Dict] = {}
 
+        # Inventario global y metadatos forenses del documento
+        self.meta_info: Dict[str, Optional[str]] = {}
+        self.rsid_set: Set[str] = set()
+        self.declared_fonts: Set[str] = set()
+        self.auto_style_count: int = 0
+        self.total_words: int = 0
+        self.total_chars: int = 0
+        self.non_empty_paragraphs: int = 0
+        self.total_tables: int = 0
+        self.total_images: int = 0
+        self.total_sections: int = 0
+        self.has_drop_cap_anywhere: bool = False
+        self.has_custom_borders_anywhere: bool = False
+        self.has_landscape_page_anywhere: bool = False
+        self.full_plain_text: str = ""
+
         self._load()
 
     def _load(self):
         with zipfile.ZipFile(self.path, "r") as z:
-            if "styles.xml" in z.namelist():
+            self.zip_namelist = z.namelist()
+            if "styles.xml" in self.zip_namelist:
                 self.styles_root = ET.fromstring(z.read("styles.xml"))
-            if "content.xml" in z.namelist():
+            if "content.xml" in self.zip_namelist:
                 self.content_root = ET.fromstring(z.read("content.xml"))
-            # Inspeccionar transparencia de imágenes PNG
-            for name in z.namelist():
-                if name.startswith("Pictures/") and name.lower().endswith(".png"):
-                    data = z.read(name)
-                    self.image_transparency[name] = self._check_png_alpha(data)
+            if "meta.xml" in self.zip_namelist:
+                self.meta_root = ET.fromstring(z.read("meta.xml"))
 
+            for name in self.zip_namelist:
+                if name.startswith("Pictures/") and not name.endswith("/"):
+                    self.picture_files.append(name)
+                    if name.lower().endswith(".png"):
+                        data = z.read(name)
+                        self.image_transparency[name] = self._check_png_alpha(data)
+
+        self._parse_meta()
         self._parse_all_styles()
+        self._compute_global_inventory()
 
     @staticmethod
     def _check_png_alpha(data: bytes) -> bool:
@@ -241,6 +334,34 @@ class OdtDocument:
         except Exception:
             return False
 
+    def _parse_meta(self):
+        self.meta_info = {
+            "generator": None,
+            "creation_date": None,
+            "date": None,
+            "editing_duration": None,
+            "editing_cycles": None,
+            "creator": None,
+            "initial_creator": None,
+        }
+        if self.meta_root is None:
+            return
+        m_elem = self.meta_root.find(qname("office", "meta"))
+        if m_elem is None:
+            return
+
+        def _get_txt(prefix: str, tag: str) -> Optional[str]:
+            el = m_elem.find(qname(prefix, tag))
+            return el.text.strip() if (el is not None and el.text) else None
+
+        self.meta_info["generator"] = _get_txt("meta", "generator")
+        self.meta_info["creation_date"] = _get_txt("meta", "creation-date")
+        self.meta_info["date"] = _get_txt("dc", "date")
+        self.meta_info["editing_duration"] = _get_txt("meta", "editing-duration")
+        self.meta_info["editing_cycles"] = _get_txt("meta", "editing-cycles")
+        self.meta_info["creator"] = _get_txt("dc", "creator")
+        self.meta_info["initial_creator"] = _get_txt("meta", "initial-creator")
+
     def _extract_style_dict(self, style_elem: ET.Element, source: str) -> Dict:
         """Extrae propiedades de un nodo <style:style> o <style:default-style>."""
         info = {
@@ -249,7 +370,7 @@ class OdtDocument:
             "family": style_elem.get(qname("style", "family"), ""),
             "parent": style_elem.get(qname("style", "parent-style-name")),
             "master_page_name": style_elem.get(qname("style", "master-page-name")),
-            "source": source,  # 'named' (styles.xml) o 'auto'
+            "source": source,
             "paragraph_props": {},
             "text_props": {},
             "table_props": {},
@@ -270,8 +391,16 @@ class OdtDocument:
                 dc = child.find(qname("style", "drop-cap"))
                 if dc is not None:
                     info["drop_cap"] = dict(dc.attrib)
+                    self.has_drop_cap_anywhere = True
+                for b_attr in ("border", "border-left", "border-right", "border-top", "border-bottom"):
+                    if parse_border(child.get(qname("fo", b_attr))):
+                        self.has_custom_borders_anywhere = True
             elif tag == qname("style", "text-properties"):
                 info["text_props"].update(child.attrib)
+                for rsid_tag in ("rsid", "paragraph-rsid"):
+                    val = child.get(qname("officeooo", rsid_tag))
+                    if val:
+                        self.rsid_set.add(val)
             elif tag == qname("style", "table-properties"):
                 info["table_props"].update(child.attrib)
             elif tag == qname("style", "table-cell-properties"):
@@ -297,7 +426,16 @@ class OdtDocument:
         return info
 
     def _parse_all_styles(self):
-        # 1. styles.xml: office:styles, office:automatic-styles, office:master-styles
+        for root in (self.styles_root, self.content_root):
+            if root is None:
+                continue
+            ffd = root.find(qname("office", "font-face-decls"))
+            if ffd is not None:
+                for ff in ffd.findall(qname("style", "font-face")):
+                    fn = ff.get(qname("style", "name"))
+                    if fn:
+                        self.declared_fonts.add(fn)
+
         if self.styles_root is not None:
             office_styles = self.styles_root.find(qname("office", "styles"))
             if office_styles is not None:
@@ -321,6 +459,11 @@ class OdtDocument:
                     p_elem = pl.find(qname("style", "page-layout-properties"))
                     if p_elem is not None:
                         pl_props.update(p_elem.attrib)
+                        orient = pl_props.get(qname("style", "print-orientation"), "")
+                        pw = parse_length_cm(pl_props.get(qname("fo", "page-width"))) or 0.0
+                        ph = parse_length_cm(pl_props.get(qname("fo", "page-height"))) or 0.0
+                        if orient == "landscape" or pw > ph:
+                            self.has_landscape_page_anywhere = True
                     h_elem = pl.find(qname("style", "header-style"))
                     if h_elem is not None:
                         hf = h_elem.find(qname("style", "header-footer-properties"))
@@ -351,13 +494,36 @@ class OdtDocument:
                         "footer_elem": mp.find(qname("style", "footer")),
                     }
 
-        # 2. content.xml: office:automatic-styles
         if self.content_root is not None:
             auto_styles = self.content_root.find(qname("office", "automatic-styles"))
             if auto_styles is not None:
                 for st in auto_styles.findall(qname("style", "style")):
                     d = self._extract_style_dict(st, "auto_content")
                     self.styles[(d["family"], d["name"])] = d
+                    self.auto_style_count += 1
+
+    def _compute_global_inventory(self):
+        tb = self.get_body_text_elem()
+        if tb is None:
+            return
+        all_texts = []
+        for el in tb.iter():
+            if el.tag in (qname("text", "p"), qname("text", "h")):
+                t = self.get_element_text(el).strip()
+                if t:
+                    self.non_empty_paragraphs += 1
+                    all_texts.append(t)
+            elif el.tag == qname("table", "table"):
+                self.total_tables += 1
+            elif el.tag == qname("draw", "image"):
+                self.total_images += 1
+            elif el.tag == qname("text", "section"):
+                self.total_sections += 1
+
+        self.full_plain_text = "\n".join(all_texts)
+        words = re.findall(r"\b\w+\b", self.full_plain_text)
+        self.total_words = len(words)
+        self.total_chars = len(self.full_plain_text)
 
     def resolve_style(self, family: str, name: Optional[str]) -> Dict:
         """
@@ -429,8 +595,6 @@ class OdtDocument:
         style_name = p_elem.get(qname("text", "style-name"), "")
         resolved = self.resolve_style("paragraph", style_name)
 
-        # Si el párrafo contiene un único span (o spans que cubren casi todo el texto),
-        # fusionar sus text_props para detectar tamaño, fuente o color aplicados como carácter.
         total_text = self.get_element_text(p_elem).strip()
         if total_text:
             for child in p_elem:
@@ -471,6 +635,223 @@ class OdtDocument:
 
 
 # ==============================================================================
+# Análisis Forense de IA y Autenticidad del Documento ODT
+# ==============================================================================
+
+def analyze_document_forensics(doc: OdtDocument) -> ForensicReport:
+    """
+    Analiza señales forenses en el archivo .odt para determinar si ha sido:
+    - Generado directamente mediante código/IA (ChatGPT Code Interpreter, Claude, odfpy, pandoc, script Python).
+    - Creado pegando directamente texto con formato desde un chat de IA sin usar 'Pegar texto sin formato'.
+    """
+    reasons: List[str] = []
+    risk_score = 0  # >=3: ALTA, 1-2: MEDIA, 0: BAJA
+
+    gen = doc.meta_info.get("generator") or ""
+    c_date = doc.meta_info.get("creation_date") or ""
+    m_date = doc.meta_info.get("date") or ""
+    dur_str = doc.meta_info.get("editing_duration")
+    cyc_str = doc.meta_info.get("editing_cycles")
+
+    dur_sec = parse_iso_duration_seconds(dur_str)
+    cycles = int(cyc_str) if (cyc_str and cyc_str.isdigit()) else None
+
+    # 1. Comprobación del generador (meta:generator)
+    if not gen:
+        risk_score += 3
+        reasons.append(
+            "El archivo carece de etiqueta <meta:generator> en meta.xml (típico de documentos .odt generados mediante scripts de Python/IA)."
+        )
+    elif not any(k in gen.lower() for k in ("libreoffice", "openoffice")):
+        risk_score += 3
+        reasons.append(
+            f"Generador del documento no es LibreOffice Writer ('{gen}'). Posible exportación desde herramienta externa o IA."
+        )
+
+    # 2. Comprobación de identificadores de sesión de edición interactiva de Writer (officeooo:rsid)
+    has_layout_cache = "layout-cache" in doc.zip_namelist or "Thumbnails/thumbnail.png" in doc.zip_namelist
+    if len(doc.rsid_set) == 0 and doc.total_words > 30:
+        risk_score += 3
+        reasons.append(
+            "El XML carece por completo de marcas de sesión interactiva de LibreOffice (officeooo:rsid = 0). Fuerte indicio de archivo generado por código/IA."
+        )
+    elif not has_layout_cache and doc.total_words > 30:
+        risk_score += 2
+        reasons.append(
+            "El paquete .odt no contiene 'layout-cache' ni miniatura de guardado de LibreOffice Writer."
+        )
+
+    # 3. Comprobación de tiempo de edición y ciclos de guardado vs volumen del documento
+    if dur_sec is not None:
+        if doc.total_words >= 250 and dur_sec < 120:
+            risk_score += 3
+            reasons.append(
+                f"Tiempo total de edición extremadamente bajo ({format_duration_human(dur_sec)}) para un documento de {doc.total_words} palabras, {doc.total_tables} tabla(s) y {doc.total_images} imagen(es)."
+            )
+        elif doc.total_words >= 150 and dur_sec < 240:
+            risk_score += 1
+            reasons.append(
+                f"Tiempo de edición muy reducido ({format_duration_human(dur_sec)}) para {doc.total_words} palabras."
+            )
+    elif doc.total_words > 50:
+        risk_score += 2
+        reasons.append("No figura tiempo de edición (<meta:editing-duration> ausente) en un documento con contenido.")
+
+    if cycles is not None and cycles <= 1 and doc.total_words >= 250:
+        risk_score += 1
+        reasons.append(
+            f"El documento solo registra {cycles} ciclo de guardado (<meta:editing-cycles>) pese a contener {doc.total_words} palabras."
+        )
+
+    # 4. Nombres internos de las imágenes en Pictures/
+    # LibreOffice nombra las imágenes insertadas con un hash hexadecimal de 32-48 caracteres (100000000000...)
+    non_lo_images = []
+    for pic in doc.picture_files:
+        pic_name = Path(pic).stem
+        if not re.match(r"^[0-9A-Fa-f]{24,64}$", pic_name):
+            non_lo_images.append(Path(pic).name)
+    if non_lo_images:
+        risk_score += 2
+        reasons.append(
+            f"Imágenes internas con nombres no nativos de LibreOffice ({', '.join(non_lo_images[:3])}): indica inyección por script o conversión desde Word/Docs/IA."
+        )
+
+    # 5. Restos de sintaxis Markdown o estilos CSS de interfaces web de IA (ChatGPT, Claude, Gemini)
+    md_patterns = re.findall(r"(\*\*[^*\n]{2,40}\*\*|^#{1,4}\s+\w+|```)", doc.full_plain_text, flags=re.MULTILINE)
+    if md_patterns:
+        risk_score += 2
+        reasons.append(
+            f"Se detectan marcas de formato Markdown sin limpiar en el texto ({', '.join(md_patterns[:3])}), indicio de copiado directo desde un chat de IA."
+        )
+
+    ai_web_fonts = {"segoe ui", "roboto", "inter", "söhne", "ui-sans-serif", "system-ui", "apple-system", "helvetica neue"}
+    detected_web_fonts = [f for f in doc.declared_fonts if f.lower() in ai_web_fonts]
+    # Comprobar si algún estilo automático de texto/párrafo usa esas fuentes o colores de fondo de chat IA
+    ai_chat_bgs = {"#f7f7f8", "#343541", "#444654", "#ececf1", "#202123", "#212121", "#f9f9f9"}
+    used_web_fonts = set()
+    used_chat_bgs = set()
+    for (fam, _), st in doc.styles.items():
+        if st["source"] == "auto_content":
+            fn = st["text_props"].get(qname("style", "font-name"), "")
+            if fn.lower() in ai_web_fonts:
+                used_web_fonts.add(fn)
+            bg_t = (st["text_props"].get(qname("fo", "background-color")) or "").lower()
+            bg_p = (st["paragraph_props"].get(qname("fo", "background-color")) or "").lower()
+            if bg_t in ai_chat_bgs:
+                used_chat_bgs.add(bg_t)
+            if bg_p in ai_chat_bgs:
+                used_chat_bgs.add(bg_p)
+
+    if used_web_fonts or used_chat_bgs:
+        risk_score += 1
+        det = []
+        if used_web_fonts:
+            det.append(f"fuentes web {', '.join(sorted(used_web_fonts))}")
+        if used_chat_bgs:
+            det.append(f"fondos web {', '.join(sorted(used_chat_bgs))}")
+        reasons.append(
+            f"Se detectan estilos heredados de navegador/chat de IA ({'; '.join(det)}): el alumno pegó desde el navegador sin usar 'Pegado especial -> Texto sin formato'."
+        )
+
+    if risk_score >= 3:
+        level = "ALTA"
+    elif risk_score >= 1:
+        level = "MEDIA"
+    else:
+        level = "BAJA"
+
+    return ForensicReport(
+        filename=doc.path.name,
+        ai_risk_level=level,
+        ai_reasons=reasons,
+        generator=gen or "No especificado",
+        creation_date=c_date,
+        modification_date=m_date,
+        editing_seconds=dur_sec,
+        editing_cycles=cycles,
+        rsid_count=len(doc.rsid_set),
+        word_count=doc.total_words,
+        auto_style_count=doc.auto_style_count,
+    )
+
+
+# ==============================================================================
+# Diagnóstico de anomalías de validación (DIAGNÓSTICO: REVISIÓN MANUAL)
+# ==============================================================================
+
+ACTIVITY_KEYWORDS = (
+    "almacenamiento", "emmagatzematge", "disquete", "disquet", "disco", "disc",
+    "ssd", "sata", "nvme", "pcie", "m.2", "soporte", "suport", "magnético",
+    "magnètic", "óptico", "òptic", "nube", "núvol", "cloud", "hdd",
+)
+
+
+def check_criterion_manual_review(doc: OdtDocument, res: CriterionResult) -> None:
+    """
+    Analiza si el resultado de un criterio presenta indicios de que el documento
+    NO se está pudiendo validar bien automáticamente (por ejemplo, tiene contenido,
+    estilos, tablas o imágenes, pero obtiene una puntuación nula o muy baja porque
+    los títulos, el idioma o la estructura no coinciden con los selectores esperados).
+    """
+    reasons: List[str] = []
+    cnum = res.criterion_num
+    score_ratio = res.awarded_score / res.max_score if res.max_score > 0 else 0.0
+
+    # Si el documento tiene palabras y estilos pero no contiene ninguna palabra clave de la temática
+    txt_lower = doc.full_plain_text.lower()
+    has_topic_kw = any(kw in txt_lower for kw in ACTIVITY_KEYWORDS)
+    if doc.total_words >= 30 and not has_topic_kw:
+        reasons.append(
+            f"El documento '{res.evaluated_file}' contiene {doc.total_words} palabras y {doc.auto_style_count} estilos automáticos, "
+            "pero no incluye ningún término clave de la actividad (posible entrega de otra práctica o temática distinta)."
+        )
+
+    # Caso general: el documento tiene contenido y estilos sustanciales pero obtiene 0 puntos
+    if res.awarded_score == 0.0 and (doc.total_words >= 40 or doc.auto_style_count >= 5):
+        reasons.append(
+            f"Puntuación de 0 pts en Criterio {cnum} pese a que '{res.evaluated_file}' contiene {doc.total_words} palabras, "
+            f"{doc.non_empty_paragraphs} párrafos y {doc.auto_style_count} estilos personalizados."
+        )
+
+    # Desajustes estructurales específicos por criterio
+    if cnum == 1 and score_ratio <= 0.25 and doc.non_empty_paragraphs >= 2 and doc.auto_style_count >= 2:
+        reasons.append(
+            "El documento tiene párrafos y estilos en las primeras páginas pero no se reconocieron los títulos de la portada ni el estilo 'Primera página'."
+        )
+    elif cnum == 2 and score_ratio <= 0.25:
+        if doc.has_drop_cap_anywhere or doc.has_custom_borders_anywhere or doc.total_words >= 100:
+            reasons.append(
+                f"El documento cuenta con elementos propios del Ejercicio 2 (palabras={doc.total_words}, capitular={doc.has_drop_cap_anywhere}, "
+                f"bordes={doc.has_custom_borders_anywhere}), pero no se localizaron bajo el encabezado esperado ('1. Introducción...')."
+            )
+    elif cnum == 3 and score_ratio <= 0.25 and doc.total_sections >= 1:
+        reasons.append(
+            f"El documento sí contiene {doc.total_sections} sección(es) (<text:section>), pero obtuvo una puntuación muy baja en el Criterio 3."
+        )
+    elif cnum == 4 and score_ratio <= 0.25 and (doc.total_tables >= 1 or doc.total_images >= 2):
+        reasons.append(
+            f"El documento contiene {doc.total_tables} tabla(s) y {doc.total_images} imagen(es), pero el validador no pudo asociarlas al apartado 2 ('2. Comparativa...')."
+        )
+    elif cnum == 5 and score_ratio <= 0.25 and (doc.total_tables >= 1 or doc.has_landscape_page_anywhere):
+        reasons.append(
+            f"El documento contiene tablas ({doc.total_tables}) o página horizontal ({doc.has_landscape_page_anywhere}), pero no se localizó el encabezado '3. Mapa de ruta...'."
+        )
+    elif cnum == 6 and score_ratio == 0.0:
+        any_hf = any(
+            (mp["header_elem"] is not None or mp["footer_elem"] is not None)
+            for mp in doc.master_pages.values()
+        )
+        if any_hf:
+            reasons.append(
+                "Existen encabezados o pies de página definidos en estilos de página personalizados que no coinciden con 'Standard'/'Landscape'."
+            )
+
+    if reasons:
+        res.needs_manual_review = True
+        res.manual_review_reasons.extend(reasons)
+
+
+# ==============================================================================
 # Validaciones específicas de los 6 criterios
 # ==============================================================================
 
@@ -495,7 +876,6 @@ def map_score_to_rubric(ratio: float, max_score: float, rubric_levels: List[Dict
         lvl = rubric_levels[idx]
         return lvl["score"], lvl["definition"]
 
-    # Fallback si la rúbrica tiene menos niveles
     scores_2 = [0.0, 0.5, 1.0, 1.5, 2.0]
     scores_1 = [0.0, 0.25, 0.5, 0.75, 1.0]
     score = scores_2[idx] if max_score == 2.0 else scores_1[idx]
@@ -503,14 +883,7 @@ def map_score_to_rubric(ratio: float, max_score: float, rubric_levels: List[Dict
 
 
 def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: str) -> CriterionResult:
-    """
-    Criterio 1: Portada y Estilos de página (máx. 2 pts)
-    - Estilo 'Primera página' (First_20_Page) sin encabezado ni pie.
-    - Márgenes 2,0 cm, borde azul 1,5 pt en los 4 lados, separación 1,0 cm y fondo suave.
-    - Título ('Informe Tecnológico...', 38 pt, Liberation Sans, negrita, centrado, azul)
-      y Subtítulo ('Análisis de soportes...', 18 pt, Liberation Sans, cursiva, centrado, gris).
-    - Datos del autor (Liberation Sans, 11 pt, alineado a la derecha) y salto de página a Predeterminado.
-    """
+    """Criterio 1: Portada y Estilos de página (máx. 2 pts)."""
     checks: List[CheckItem] = []
     text_body = doc.get_body_text_elem()
 
@@ -554,7 +927,6 @@ def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         pl = doc.page_layouts.get(first_mp["page_layout_name"], {}).get("props", {})
         dp_style = doc.resolve_style("drawing-page", first_mp.get("draw_style_name")).get("graphic_props", {})
 
-        # Márgenes 2,0 cm
         margins = [
             parse_length_cm(pl.get(qname("fo", "margin-top"))),
             parse_length_cm(pl.get(qname("fo", "margin-bottom"))),
@@ -567,7 +939,6 @@ def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         else:
             pl_details.append("márgenes != 2 cm")
 
-        # Borde 1,5 pt azul en 4 lados
         b_all = parse_border(pl.get(qname("fo", "border")))
         b_sides = [
             parse_border(pl.get(qname("fo", f"border-{s}")))
@@ -583,7 +954,6 @@ def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         else:
             pl_details.append("sin borde completo en portada")
 
-        # Separación (padding) 1,0 cm
         p_all = parse_length_cm(pl.get(qname("fo", "padding")))
         p_sides = [
             parse_length_cm(pl.get(qname("fo", f"padding-{s}")))
@@ -596,7 +966,6 @@ def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         else:
             pl_details.append(f"separación de borde != 1,0 cm ({pad_cm})")
 
-        # Fondo suave
         bg_color = (
             pl.get(qname("fo", "background-color"))
             or pl.get(qname("draw", "fill-color"))
@@ -631,7 +1000,6 @@ def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: 
             t_props = eff["text_props"]
             chain = eff["chain_names"]
 
-            # Detectar salto de página al terminar la portada
             if (
                 child.find(qname("text", "soft-page-break")) is not None
                 or p_props.get(qname("fo", "break-before")) == "page"
@@ -644,8 +1012,12 @@ def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: 
             if not txt:
                 continue
 
-            # Título de portada
-            if not title_found and ("informe tecnol" in txt.lower() or "almacenamiento digital" in txt.lower()):
+            if not title_found and (
+                "informe tecnol" in txt.lower()
+                or "almacenamiento digital" in txt.lower()
+                or "emmagatzematge digital" in txt.lower()
+                or any(s in ("Title", "Heading") for s in chain)
+            ):
                 title_found = True
                 f_name = t_props.get(qname("style", "font-name"), "")
                 f_size = parse_length_pt(t_props.get(qname("fo", "font-size")))
@@ -673,8 +1045,13 @@ def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: 
                 ts_details.append(f"Título ({f_name}, {f_size}pt, {f_weight}, {align}, {f_color})")
                 continue
 
-            # Subtítulo de portada
-            if not subtitle_found and ("soportes f" in txt.lower() or "estado s" in txt.lower() or "Subtitle" in chain):
+            if not subtitle_found and (
+                "soportes f" in txt.lower()
+                or "suports f" in txt.lower()
+                or "estado s" in txt.lower()
+                or "estat s" in txt.lower()
+                or "Subtitle" in chain
+            ):
                 subtitle_found = True
                 f_name = t_props.get(qname("style", "font-name"), "")
                 f_size = parse_length_pt(t_props.get(qname("fo", "font-size")))
@@ -702,14 +1079,10 @@ def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: 
                 ts_details.append(f"Subtítulo ({f_name}, {f_size}pt, {f_style}, {align}, {f_color})")
                 continue
 
-            # Datos del autor en portada (antes del encabezado 1)
             if title_found and not page_break_after_cover:
                 align = p_props.get(qname("fo", "text-align"), "")
-                f_name = t_props.get(qname("style", "font-name"), "")
-                f_size = parse_length_pt(t_props.get(qname("fo", "font-size")))
                 if align in ("end", "right"):
                     author_found = True
-                    author_ok = ("liberation sans" in f_name.lower()) and (f_size is not None and 10 <= f_size <= 12)
 
     checks.append(CheckItem(
         "Título (38 pt, negrita, azul, centrado) y Subtítulo (18 pt, cursiva, gris, centrado) con estilos",
@@ -738,18 +1111,13 @@ def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: 
 
     total_ratio = sum(c.weight * c.partial for c in checks)
     score, desc = map_score_to_rubric(total_ratio, 2.0, rubric_levels)
-    return CriterionResult(1, "1. Portada y Estilos de página", 2.0, score, desc, filename, checks)
+    res = CriterionResult(1, "1. Portada y Estilos de página", 2.0, score, desc, filename, checks)
+    check_criterion_manual_review(doc, res)
+    return res
 
 
 def evaluate_criterion_2(doc: OdtDocument, rubric_levels: List[Dict], filename: str) -> CriterionResult:
-    """
-    Criterio 2: Formato de carácter y párrafo avanzado (máx. 2 pts)
-    - Título 1 ('1. Introducción al almacenamiento digital', 16 pt, Liberation Sans, negrita, azul, 0,50 cm debajo).
-    - 2 párrafos de introducción sin líneas en blanco entre ellos (Liberation Serif, 12 pt, Justificado, 1,5 líneas, 0,35 cm debajo).
-    - Letra capitular (3 líneas, 0,2 cm) en el 1er párrafo y sangría de 1ª línea (1,25 cm) en el 2º párrafo.
-    - Efectos de carácter: palabras clave en negrita+azul y término en cursiva+resaltado amarillo/claro.
-    - Párrafo destacado (callout): sangría izq/der 1,5 cm, 1ª línea 0 cm, borde izq azul 3 pt, separación 0,5/0,1 cm, sombra gris y fondo gris claro.
-    """
+    """Criterio 2: Formato de carácter y párrafo avanzado (máx. 2 pts)."""
     checks: List[CheckItem] = []
     text_body = doc.get_body_text_elem()
 
@@ -772,7 +1140,6 @@ def evaluate_criterion_2(doc: OdtDocument, rubric_levels: List[Dict], filename: 
                     collecting = True
                 continue
             else:
-                # Detener al llegar al apartado 1.1 o 2
                 if "1.1" in txt or "comparaci" in txt.lower() or "Heading_20_2" in chain or (
                     child.tag == qname("text", "h") and txt
                 ):
@@ -822,7 +1189,7 @@ def evaluate_criterion_2(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         p1_eff = doc.get_paragraph_effective_style(intro_paras[0])
         p2_eff = doc.get_paragraph_effective_style(intro_paras[1])
         ok_count = 0
-        for idx, eff in enumerate((p1_eff, p2_eff), start=1):
+        for eff in (p1_eff, p2_eff):
             tp = eff["text_props"]
             pp = eff["paragraph_props"]
             f_name = tp.get(qname("style", "font-name"), "")
@@ -961,17 +1328,13 @@ def evaluate_criterion_2(doc: OdtDocument, rubric_levels: List[Dict], filename: 
 
     total_ratio = sum(c.weight * c.partial for c in checks)
     score, desc = map_score_to_rubric(total_ratio, 2.0, rubric_levels)
-    return CriterionResult(2, "2. Formato de carácter y párrafo avanzado", 2.0, score, desc, filename, checks)
+    res = CriterionResult(2, "2. Formato de carácter y párrafo avanzado", 2.0, score, desc, filename, checks)
+    check_criterion_manual_review(doc, res)
+    return res
 
 
 def evaluate_criterion_3(doc: OdtDocument, rubric_levels: List[Dict], filename: str) -> CriterionResult:
-    """
-    Criterio 3: Secciones y columnas con personalización (máx. 1 pt)
-    - Salto de página y Título 2 ('1.1. Comparación de soportes magnéticos y ópticos', 14 pt, Liberation Sans, negrita, azul, 0,50 cm debajo).
-    - Sección de 2 columnas con espaciado de 0,5 cm y contenido sobre HDD y CD/DVD.
-    - Fondo pastel suave y sangrías laterales de sección de 0,5 cm (antes y después).
-    - Línea de separación sólida de 0,5 pt color negro entre columnas.
-    """
+    """Criterio 3: Secciones y columnas con personalización (máx. 1 pt)."""
     checks: List[CheckItem] = []
     text_body = doc.get_body_text_elem()
 
@@ -981,7 +1344,7 @@ def evaluate_criterion_3(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         for child in text_body:
             if child.tag in (qname("text", "p"), qname("text", "h")):
                 txt = doc.get_element_text(child).strip()
-                if "1.1" in txt or "soportes magn" in txt.lower():
+                if "1.1" in txt or "soportes magn" in txt.lower() or "suports magn" in txt.lower():
                     h2_elem = child
             elif child.tag == qname("text", "section"):
                 sect_elem = child
@@ -1106,17 +1469,13 @@ def evaluate_criterion_3(doc: OdtDocument, rubric_levels: List[Dict], filename: 
 
     total_ratio = sum(c.weight * c.partial for c in checks)
     score, desc = map_score_to_rubric(total_ratio, 1.0, rubric_levels)
-    return CriterionResult(3, "3. Secciones y columnas con personalización", 1.0, score, desc, filename, checks)
+    res = CriterionResult(3, "3. Secciones y columnas con personalización", 1.0, score, desc, filename, checks)
+    check_criterion_manual_review(doc, res)
+    return res
 
 
 def evaluate_criterion_4(doc: OdtDocument, rubric_levels: List[Dict], filename: str) -> CriterionResult:
-    """
-    Criterio 4: Imágenes con leyendas y tablas comparativas (máx. 2 pts)
-    - Salto de página, Título 1 ('2. Comparativa de rendimiento...') y párrafo introductorio.
-    - 2 imágenes (SSD SATA y SSD M.2) con fondo transparente, separación inferior 0,75 cm y leyendas 'Ilustración'.
-    - Tabla comparativa de 4 columnas x 5 filas con cabecera azul oscuro y texto blanco/automático negrita centrado.
-    - Celdas centradas verticalmente, bordes internos gris claro 0,5 pt y borde exterior azul 1,5 pt, y leyenda automática 'Tabla 1'.
-    """
+    """Criterio 4: Imágenes con leyendas y tablas comparativas (máx. 2 pts)."""
     checks: List[CheckItem] = []
     text_body = doc.get_body_text_elem()
 
@@ -1129,13 +1488,13 @@ def evaluate_criterion_4(doc: OdtDocument, rubric_levels: List[Dict], filename: 
             is_heading_like = child.tag == qname("text", "h") or len(txt) < 120
             if not in_sec2:
                 if is_heading_like and (
-                    txt.startswith("2.") or ("comparativa de rendimiento" in txt.lower())
+                    txt.startswith("2.") or ("comparativa de rendimiento" in txt.lower()) or ("comparativa de rendiment" in txt.lower())
                 ):
                     h1_sec2 = child
                     in_sec2 = True
             else:
                 if is_heading_like and (
-                    txt.startswith("3.") or ("mapa de ruta" in txt.lower())
+                    txt.startswith("3.") or ("mapa de ruta" in txt.lower()) or ("full de ruta" in txt.lower())
                 ):
                     break
                 sec2_elements.append(child)
@@ -1169,7 +1528,6 @@ def evaluate_criterion_4(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         for fr in e.findall(qname("draw", "frame")):
             tb = fr.find(qname("draw", "text-box"))
             if tb is not None:
-                # Marco exterior de leyenda
                 fr_style = doc.resolve_style("graphic", fr.get(qname("draw", "style-name")))["graphic_props"]
                 mb = parse_length_cm(fr_style.get(qname("fo", "margin-bottom")))
                 cap_txt = "".join(tb.itertext()).strip()
@@ -1281,7 +1639,6 @@ def evaluate_criterion_4(doc: OdtDocument, rubric_levels: List[Dict], filename: 
             prop_score += 0.16
             prop_details.append("bordes personalizados parciales")
 
-    # Buscar leyenda automática de tabla
     has_tbl_caption = False
     for e in sec2_elements:
         if e.tag == qname("text", "p"):
@@ -1303,17 +1660,13 @@ def evaluate_criterion_4(doc: OdtDocument, rubric_levels: List[Dict], filename: 
 
     total_ratio = sum(c.weight * c.partial for c in checks)
     score, desc = map_score_to_rubric(total_ratio, 2.0, rubric_levels)
-    return CriterionResult(4, "4. Imágenes con leyendas y tablas comparativas", 2.0, score, desc, filename, checks)
+    res = CriterionResult(4, "4. Imágenes con leyendas y tablas comparativas", 2.0, score, desc, filename, checks)
+    check_criterion_manual_review(doc, res)
+    return res
 
 
 def evaluate_criterion_5(doc: OdtDocument, rubric_levels: List[Dict], filename: str) -> CriterionResult:
-    """
-    Criterio 5: Secciones horizontales y tabla cronológica (máx. 2 pts)
-    - Salto de página manual a estilo de página 'Horizontal' (Landscape) y Título 1 ('3. Mapa de ruta...').
-    - Párrafo introductorio y tabla ancha (6 o 7 columnas) con la cronología desde 1980 hasta la actualidad.
-    - Imágenes representativas en cada fila de la tabla y formato de tabla (cabecera azul, centrado vertical, bordes).
-    - Leyenda automática debajo de la tabla ('Cronología del almacenamiento digital').
-    """
+    """Criterio 5: Secciones horizontales y tabla cronológica (máx. 2 pts)."""
     checks: List[CheckItem] = []
     text_body = doc.get_body_text_elem()
 
@@ -1326,7 +1679,7 @@ def evaluate_criterion_5(doc: OdtDocument, rubric_levels: List[Dict], filename: 
             is_heading_like = child.tag == qname("text", "h") or len(txt) < 120
             if not in_sec3:
                 if is_heading_like and (
-                    txt.startswith("3.") or "mapa de ruta" in txt.lower()
+                    txt.startswith("3.") or "mapa de ruta" in txt.lower() or "full de ruta" in txt.lower()
                 ):
                     h1_sec3 = child
                     in_sec3 = True
@@ -1457,17 +1810,13 @@ def evaluate_criterion_5(doc: OdtDocument, rubric_levels: List[Dict], filename: 
 
     total_ratio = sum(c.weight * c.partial for c in checks)
     score, desc = map_score_to_rubric(total_ratio, 2.0, rubric_levels)
-    return CriterionResult(5, "5. Secciones horizontales y tabla cronológica", 2.0, score, desc, filename, checks)
+    res = CriterionResult(5, "5. Secciones horizontales y tabla cronológica", 2.0, score, desc, filename, checks)
+    check_criterion_manual_review(doc, res)
+    return res
 
 
 def evaluate_criterion_6(doc: OdtDocument, rubric_levels: List[Dict], filename: str) -> CriterionResult:
-    """
-    Criterio 6: Encabezados y pies de página dinámicos (máx. 1 pt)
-    - Portada ('Primera página') limpia sin encabezado ni pie de página.
-    - Encabezado en página predeterminada: 'Tema 2: Documentos Digitales', campo Fecha (<text:date>), 10 pt y borde inferior azul 0,5 pt.
-    - Pie de página con nombre del autor y campos dinámicos 'Página X de Y' (<text:page-number> y <text:page-count>).
-    - Aplicado también en páginas con estilo 'Horizontal' (Landscape).
-    """
+    """Criterio 6: Encabezados y pies de página dinámicos (máx. 1 pt)."""
     checks: List[CheckItem] = []
 
     first_mp = doc.master_pages.get("First_20_Page")
@@ -1494,7 +1843,7 @@ def evaluate_criterion_6(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         h_el = std_mp["header_elem"]
         h_txt = "".join(h_el.itertext()).strip()
         has_date = h_el.find(f".//{qname('text', 'date')}") is not None
-        if "tema 2" in h_txt.lower() or "documentos digitales" in h_txt.lower():
+        if "tema 2" in h_txt.lower() or "documentos digitales" in h_txt.lower() or "documents digitals" in h_txt.lower():
             hdr_score += 0.25
             hdr_details.append("texto 'Tema 2: Documentos Digitales' OK")
         if has_date:
@@ -1503,7 +1852,6 @@ def evaluate_criterion_6(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         else:
             hdr_details.append("falta campo dinámico Fecha (<text:date>)")
 
-        # Comprobar tamaño 10 pt en párrafo o spans del encabezado
         is_10pt = False
         for p in h_el.findall(qname("text", "p")):
             eff = doc.get_paragraph_effective_style(p)
@@ -1519,7 +1867,6 @@ def evaluate_criterion_6(doc: OdtDocument, rubric_levels: List[Dict], filename: 
             hdr_score += 0.20
             hdr_details.append("tamaño 10 pt OK")
 
-        # Comprobar borde inferior azul 0,5 pt en header-style o párrafo
         pl_hdr = doc.page_layouts.get(std_mp["page_layout_name"], {}).get("header_props", {})
         bb = parse_border(pl_hdr.get(qname("fo", "border-bottom")) or pl_hdr.get(qname("fo", "border")))
         if not bb:
@@ -1592,11 +1939,13 @@ def evaluate_criterion_6(doc: OdtDocument, rubric_levels: List[Dict], filename: 
 
     total_ratio = sum(c.weight * c.partial for c in checks)
     score, desc = map_score_to_rubric(total_ratio, 1.0, rubric_levels)
-    return CriterionResult(6, "6. Encabezados y pies de página dinámicos", 1.0, score, desc, filename, checks)
+    res = CriterionResult(6, "6. Encabezados y pies de página dinámicos", 1.0, score, desc, filename, checks)
+    check_criterion_manual_review(doc, res)
+    return res
 
 
 # ==============================================================================
-# Carga de rúbrica y descubrimiento de entregas por alumno
+# Carga de rúbrica y evaluación integral por alumno
 # ==============================================================================
 
 def load_rubric_csv(csv_path: Path) -> Dict[int, List[Dict]]:
@@ -1629,14 +1978,7 @@ def load_rubric_csv(csv_path: Path) -> Dict[int, List[Dict]]:
 
 
 def find_exercise_files(student_dir: Path, modo: str = "estricto") -> Dict[int, Optional[Path]]:
-    """
-    Localiza dentro de la carpeta del alumno los archivos .odt de cada parte (1..6).
-    Soporta nombres como:
-      - actividad1_writer_apellido_nombre_ej1.odt
-      - ej1.odt, ejercicio1.odt, parte1.odt, act1_ej1.odt
-    En modo 'flexible', si falta ejX.odt pero existe final.odt (o un ej posterior),
-    utiliza ese archivo como respaldo para evaluar la parte.
-    """
+    """Localiza dentro de la carpeta del alumno los archivos .odt de cada parte (1..6)."""
     odt_files = sorted(
         [p for p in student_dir.rglob("*.odt") if not p.name.startswith(".~")],
         key=lambda p: p.name.lower(),
@@ -1654,15 +1996,11 @@ def find_exercise_files(student_dir: Path, modo: str = "estricto") -> Dict[int, 
             if re.search(pat, stem):
                 found[i] = f
 
-    # Si no hay ej6 explícito pero el alumno subió *_final.odt (como indica la sección Entregables),
-    # o en modo flexible para ejercicios anteriores:
     if modo == "flexible":
-        # Si solo hay un único archivo .odt en la carpeta, usarlo para los 6 criterios
         if len(odt_files) == 1 and all(v is None for v in found.values()):
             for i in range(1, 7):
                 found[i] = odt_files[0]
         else:
-            # Si falta algún ejercicio, buscar el siguiente ejercicio disponible o final.odt
             for i in range(1, 7):
                 if found[i] is None:
                     for j in range(i + 1, 7):
@@ -1679,8 +2017,8 @@ def evaluate_student(
     student_name: str,
     exercise_files: Dict[int, Optional[Path]],
     rubric: Dict[int, List[Dict]],
-) -> List[CriterionResult]:
-    """Evalúa los 6 criterios de un alumno a partir de sus archivos .odt entregados."""
+) -> StudentEvaluation:
+    """Evalúa los 6 criterios de un alumno, diagnostica anomalías de validación y analiza indicios de IA."""
     evaluators = {
         1: (evaluate_criterion_1, "1. Portada y Estilos de página", 2.0),
         2: (evaluate_criterion_2, "2. Formato de carácter y párrafo avanzado", 2.0),
@@ -1691,7 +2029,9 @@ def evaluate_student(
     }
 
     doc_cache: Dict[Path, OdtDocument] = {}
+    forensics_by_file: Dict[str, ForensicReport] = {}
     results: List[CriterionResult] = []
+    manual_reasons: List[str] = []
 
     for i in range(1, 7):
         fn, cname, max_s = evaluators[i]
@@ -1716,10 +2056,18 @@ def evaluate_student(
         try:
             if f_path not in doc_cache:
                 doc_cache[f_path] = OdtDocument(f_path)
+                forensics_by_file[f_path.name] = analyze_document_forensics(doc_cache[f_path])
             doc = doc_cache[f_path]
             res = fn(doc, levels, f_path.name)
+            if res.needs_manual_review:
+                for mr in res.manual_review_reasons:
+                    msg = f"[Criterio {i} - {f_path.name}] {mr}"
+                    if msg not in manual_reasons:
+                        manual_reasons.append(msg)
             results.append(res)
         except Exception as e:
+            err_msg = f"[Criterio {i} - {f_path.name}] No se pudo procesar el archivo .odt ({e})."
+            manual_reasons.append(err_msg)
             results.append(
                 CriterionResult(
                     criterion_num=i,
@@ -1729,10 +2077,72 @@ def evaluate_student(
                     level_description=f"Error al abrir el archivo .odt: {e}",
                     evaluated_file=f_path.name,
                     checks=[CheckItem("Archivo .odt válido", False, 1.0, str(e), 0.0)],
+                    needs_manual_review=True,
+                    manual_review_reasons=[err_msg],
                 )
             )
 
-    return results
+    # Comprobación global: si el alumno entregó archivos con contenido pero casi ningún criterio entregado supera el 30%
+    delivered_results = [r for r in results if r.evaluated_file != "No entregado"]
+    if delivered_results:
+        deliv_max = sum(r.max_score for r in delivered_results)
+        deliv_awarded = sum(r.awarded_score for r in delivered_results)
+        any_substantial_doc = any(d.total_words >= 40 or d.auto_style_count >= 4 for d in doc_cache.values())
+        if any_substantial_doc and deliv_max > 0 and (deliv_awarded / deliv_max) <= 0.30:
+            global_msg = (
+                f"Los archivos entregados tienen contenido y estilos, pero la puntuación global en las partes entregadas "
+                f"es muy baja ({fmt_score(deliv_awarded)} / {fmt_score(deliv_max)} pts). Posible estructura o formato no estándar."
+            )
+            if global_msg not in manual_reasons:
+                manual_reasons.insert(0, global_msg)
+
+    # Agregar nivel de sospecha de IA del alumno
+    risk_order = {"BAJA": 0, "MEDIA": 1, "ALTA": 2}
+    max_risk = "BAJA"
+    ai_findings: List[str] = []
+    for fname, frep in forensics_by_file.items():
+        if risk_order[frep.ai_risk_level] > risk_order[max_risk]:
+            max_risk = frep.ai_risk_level
+        for reason in frep.ai_reasons:
+            ai_findings.append(f"[{fname}] {reason}")
+
+    return StudentEvaluation(
+        student_name=student_name,
+        criteria_results=results,
+        needs_manual_review=len(manual_reasons) > 0,
+        manual_review_reasons=manual_reasons,
+        ai_risk_level=max_risk,
+        ai_findings=ai_findings,
+        forensics_by_file=forensics_by_file,
+    )
+
+
+def cross_check_creation_dates(evaluations: Dict[str, StudentEvaluation]) -> None:
+    """
+    Compara la fecha de creación exacta (<meta:creation-date>) entre distintos alumnos
+    para detectar si dos alumnos han entregado variaciones del mismo archivo .odt base.
+    """
+    date_to_students: Dict[str, Set[str]] = {}
+    for student, ev in evaluations.items():
+        for frep in ev.forensics_by_file.values():
+            if frep.creation_date:
+                date_to_students.setdefault(frep.creation_date, set()).add(student)
+
+    for c_date, students in date_to_students.items():
+        if len(students) > 1:
+            sorted_st = sorted(students)
+            for st in sorted_st:
+                others = [s for s in sorted_st if s != st]
+                msg = (
+                    f"Coincidencia exacta de fecha de creación en meta.xml ({c_date}) con: {', '.join(others)} "
+                    "(posible archivo compartido o plantilla común entre alumnos)."
+                )
+                ev = evaluations[st]
+                ev.ai_findings.append(msg)
+                ev.needs_manual_review = True
+                ev.manual_review_reasons.append(msg)
+                if ev.ai_risk_level == "BAJA":
+                    ev.ai_risk_level = "MEDIA"
 
 
 # ==============================================================================
@@ -1746,43 +2156,88 @@ def fmt_score(val: float) -> str:
     return f"{val:.2f}".rstrip("0").rstrip(".").replace(".", ",")
 
 
+def fmt_ai_badge(level: str) -> str:
+    if level == "ALTA":
+        return "🔴 ALTA (Posible IA)"
+    if level == "MEDIA":
+        return "🟡 MEDIA (Revisar)"
+    return "🟢 Baja"
+
+
 def generate_reports(
-    all_results: Dict[str, List[CriterionResult]],
+    all_evaluations: Dict[str, StudentEvaluation],
     md_out: Path,
     csv_out: Path,
     modo: str,
 ):
+    manual_count = sum(1 for ev in all_evaluations.values() if ev.needs_manual_review)
+    ai_alert_count = sum(1 for ev in all_evaluations.values() if ev.ai_risk_level in ("MEDIA", "ALTA"))
+
     # 1. Generar informe Markdown
     lines = [
         "# 📊 Informe de Validación de Entregas – Actividad 1 (LibreOffice Writer)",
         "",
-        f"- **Alumnos evaluados:** {len(all_results)}",
+        f"- **Alumnos evaluados:** {len(all_evaluations)}",
         f"- **Modo de búsqueda de archivos:** `{modo}`",
+        f"- **Entregas que requieren revisión manual:** {manual_count}",
+        f"- **Entregas con indicios de IA / pegado directo / copia:** {ai_alert_count}",
         "",
-        "## Tabla Resumen de Calificaciones",
+        "## Tabla Resumen de Calificaciones y Diagnóstico",
         "",
-        "| Alumno/a | C1 Portada (2p) | C2 Párrafo (2p) | C3 Secciones (1p) | C4 Imágenes/Tabla (2p) | C5 Horizontal (2p) | C6 Cabecera/Pie (1p) | **TOTAL (10p)** |",
-        "|----------|:---------------:|:---------------:|:-----------------:|:----------------------:|:------------------:|:--------------------:|:---------------:|",
+        "| Alumno/a | C1 (2p) | C2 (2p) | C3 (1p) | C4 (2p) | C5 (2p) | C6 (1p) | **TOTAL (10p)** | Diagnóstico de Validación | Indicios IA / Autenticidad |",
+        "|----------|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:---------------:|:-------------------------:|:--------------------------:|",
     ]
 
-    for student, results in all_results.items():
-        scores = [fmt_score(r.awarded_score) for r in results]
-        total = sum(r.awarded_score for r in results)
+    for student, ev in all_evaluations.items():
+        scores = [fmt_score(r.awarded_score) for r in ev.criteria_results]
+        total = sum(r.awarded_score for r in ev.criteria_results)
+        diag_str = "⚠️ **DIAGNÓSTICO: REVISIÓN MANUAL**" if ev.needs_manual_review else "✅ Validación OK"
+        ai_str = fmt_ai_badge(ev.ai_risk_level)
         lines.append(
-            f"| **{student}** | {scores[0]} | {scores[1]} | {scores[2]} | {scores[3]} | {scores[4]} | {scores[5]} | **{fmt_score(total)}** |"
+            f"| **{student}** | {scores[0]} | {scores[1]} | {scores[2]} | {scores[3]} | {scores[4]} | {scores[5]} | **{fmt_score(total)}** | {diag_str} | {ai_str} |"
         )
 
     lines.extend(["", "---", "", "## Desglose Detallado por Alumno/a", ""])
 
-    for student, results in all_results.items():
-        total = sum(r.awarded_score for r in results)
+    for student, ev in all_evaluations.items():
+        total = sum(r.awarded_score for r in ev.criteria_results)
         lines.append(f"### 👤 {student} — **Nota Total: {fmt_score(total)} / 10 pts**")
         lines.append("")
-        for r in results:
+
+        # Bloque de DIAGNÓSTICO: REVISIÓN MANUAL si aplica
+        if ev.needs_manual_review:
+            lines.append("> 🚨 **DIAGNÓSTICO: REVISIÓN MANUAL**")
+            lines.append("> Se han detectado anomalías que impiden validar automáticamente parte de la entrega con fiabilidad:")
+            for reason in ev.manual_review_reasons:
+                lines.append(f"> - {reason}")
+            lines.append("")
+
+        # Bloque de análisis forense de IA y metadatos
+        lines.append(f"#### 🤖 Análisis de Autenticidad e IA: **{fmt_ai_badge(ev.ai_risk_level)}**")
+        if ev.forensics_by_file:
+            for fname, frep in ev.forensics_by_file.items():
+                dur_h = format_duration_human(frep.editing_seconds)
+                cyc_h = str(frep.editing_cycles) if frep.editing_cycles is not None else "?"
+                lines.append(
+                    f"- **Metadatos `{fname}`:** Generador: `{frep.generator}` | Tiempo de edición: `{dur_h}` | "
+                    f"Ciclos de guardado: `{cyc_h}` | Sesiones Writer (`rsid`): `{frep.rsid_count}` | Palabras: `{frep.word_count}`"
+                )
+        if ev.ai_findings:
+            for finding in ev.ai_findings:
+                lines.append(f"  - ⚠️ {finding}")
+        else:
+            lines.append("  - ✅ Metadatos de edición, sesiones interactivas y estructura XML coherentes con trabajo manual en LibreOffice Writer.")
+        lines.append("")
+
+        for r in ev.criteria_results:
+            mr_tag = " — ⚠️ **DIAGNÓSTICO: REVISIÓN MANUAL**" if r.needs_manual_review else ""
             lines.append(
-                f"#### {r.criterion_name} — **{fmt_score(r.awarded_score)} / {fmt_score(r.max_score)} pts** *(Archivo: `{r.evaluated_file}`)*"
+                f"#### {r.criterion_name} — **{fmt_score(r.awarded_score)} / {fmt_score(r.max_score)} pts** *(Archivo: `{r.evaluated_file}`)*{mr_tag}"
             )
             lines.append(f"- **Nivel asignado en rúbrica:** {r.level_description}")
+            if r.needs_manual_review:
+                for mr in r.manual_review_reasons:
+                    lines.append(f"  - 🚨 **Revisión manual requerida:** {mr}")
             for chk in r.checks:
                 icon = "✅" if chk.passed else ("⚠️" if chk.partial > 0 else "❌")
                 pct = int(round(chk.partial * 100))
@@ -1805,14 +2260,17 @@ def generate_reports(
             "Archivo_Ej5", "C5_Horizontal (2p)",
             "Archivo_Ej6", "C6_Encabezado_Pie (1p)",
             "Nota_Total (10p)",
+            "Diagnostico_Validacion",
+            "Sospecha_IA",
+            "Motivos_Revision_o_IA",
             "Comentarios_Retroalimentacion",
         ])
 
-        for student, results in all_results.items():
-            total = sum(r.awarded_score for r in results)
+        for student, ev in all_evaluations.items():
+            total = sum(r.awarded_score for r in ev.criteria_results)
             row = [student]
             feedback_parts = []
-            for r in results:
+            for r in ev.criteria_results:
                 row.append(r.evaluated_file)
                 row.append(fmt_score(r.awarded_score))
                 failed = [c.description for c in r.checks if not c.passed]
@@ -1823,6 +2281,10 @@ def generate_reports(
                 else:
                     feedback_parts.append(f"C{r.criterion_num} ({fmt_score(r.awarded_score)}p): Perfecto")
             row.append(fmt_score(total))
+            row.append("DIAGNÓSTICO: REVISIÓN MANUAL" if ev.needs_manual_review else "OK")
+            row.append(ev.ai_risk_level)
+            alerts_combined = ev.manual_review_reasons + ev.ai_findings
+            row.append(" | ".join(alerts_combined) if alerts_combined else "Sin incidencias")
             row.append(" | ".join(feedback_parts))
             writer.writerow(row)
 
@@ -1830,13 +2292,13 @@ def generate_reports(
 def main():
     script_dir = Path(__file__).resolve().parent
     parser = argparse.ArgumentParser(
-        description="Validador de entregas (.odt) para la Actividad 1 de LibreOffice Writer."
+        description="Validador de entregas (.odt) con diagnóstico de revisión manual y detección de IA."
     )
     parser.add_argument(
         "ruta",
         nargs="?",
         default=str(script_dir / "entregas"),
-        help="Ruta a la carpeta con las subcarpetas de entregas de los alumnos (o ruta directa a un archivo .odt para probarlo).",
+        help="Ruta a la carpeta con las subcarpetas de entregas de los alumnos (o ruta directa a un archivo .odt).",
     )
     parser.add_argument(
         "--rubrica",
@@ -1869,46 +2331,54 @@ def main():
     rubric_path = Path(args.rubrica).resolve()
     rubric = load_rubric_csv(rubric_path)
 
-    all_results: Dict[str, List[CriterionResult]] = {}
+    all_evaluations: Dict[str, StudentEvaluation] = {}
 
     if target_path.is_file() and target_path.suffix.lower() == ".odt":
-        # Evaluación directa de un único archivo .odt en los 6 criterios
         ex_files = {i: target_path for i in range(1, 7)}
-        all_results[target_path.stem] = evaluate_student(target_path.stem, ex_files, rubric)
+        all_evaluations[target_path.stem] = evaluate_student(target_path.stem, ex_files, rubric)
         out_dir = target_path.parent
     elif target_path.is_dir():
         student_dirs = sorted([d for d in target_path.iterdir() if d.is_dir() and not d.name.startswith(".")])
         if not student_dirs:
-            # Si la carpeta indicada contiene directamente archivos .odt de un solo alumno
             odt_in_root = list(target_path.glob("*.odt"))
             if odt_in_root:
                 ex_files = find_exercise_files(target_path, args.modo)
-                all_results[target_path.name] = evaluate_student(target_path.name, ex_files, rubric)
+                all_evaluations[target_path.name] = evaluate_student(target_path.name, ex_files, rubric)
             else:
                 print(f"[!] No se encontraron subcarpetas de alumnos ni archivos .odt en: {target_path}", file=sys.stderr)
                 sys.exit(1)
         else:
             for s_dir in student_dirs:
                 ex_files = find_exercise_files(s_dir, args.modo)
-                all_results[s_dir.name] = evaluate_student(s_dir.name, ex_files, rubric)
+                all_evaluations[s_dir.name] = evaluate_student(s_dir.name, ex_files, rubric)
         out_dir = target_path
     else:
         print(f"[!] La ruta especificada no existe: {target_path}", file=sys.stderr)
         sys.exit(1)
 
+    # Cruzar fechas de creación entre alumnos para detectar copias
+    if len(all_evaluations) > 1:
+        cross_check_creation_dates(all_evaluations)
+
     md_out = Path(args.salida_md).resolve() if args.salida_md else (out_dir / "resultado_validacion.md")
     csv_out = Path(args.salida_csv).resolve() if args.salida_csv else (out_dir / "resultado_validacion.csv")
 
-    generate_reports(all_results, md_out, csv_out, args.modo)
+    generate_reports(all_evaluations, md_out, csv_out, args.modo)
 
-    print(f"[+] Validación completada ({len(all_results)} entrega(s) evaluada(s)).")
+    print(f"[+] Validación completada ({len(all_evaluations)} entrega(s) evaluada(s)).")
     print(f"    - Informe detallado (Markdown): {md_out}")
     print(f"    - Calificaciones (CSV):         {csv_out}")
     print()
-    for student, results in all_results.items():
-        total = sum(r.awarded_score for r in results)
-        scores_str = " | ".join(f"C{r.criterion_num}: {fmt_score(r.awarded_score)}/{fmt_score(r.max_score)}" for r in results)
-        print(f"  * {student}: {fmt_score(total)} / 10 pts  ({scores_str})")
+    for student, ev in all_evaluations.items():
+        total = sum(r.awarded_score for r in ev.criteria_results)
+        scores_str = " | ".join(f"C{r.criterion_num}: {fmt_score(r.awarded_score)}/{fmt_score(r.max_score)}" for r in ev.criteria_results)
+        flags = []
+        if ev.needs_manual_review:
+            flags.append("DIAGNÓSTICO: REVISIÓN MANUAL")
+        if ev.ai_risk_level in ("MEDIA", "ALTA"):
+            flags.append(f"IA: {ev.ai_risk_level}")
+        flag_str = f"  [{', '.join(flags)}]" if flags else ""
+        print(f"  * {student}: {fmt_score(total)} / 10 pts  ({scores_str}){flag_str}")
 
 
 if __name__ == "__main__":
