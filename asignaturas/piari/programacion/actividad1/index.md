@@ -364,3 +364,28 @@ Debes enviar a través de la tarea correspondiente en Aules:
    - ¿Cómo has preparado los *sprites*, el caparazón verde y los fondos *GAME OVER* / *VICTORIA* en GIMP, y qué enemigos u objetos has añadido en el **Reto Individual**?
    - ¿Cómo has programado el **sistema de vidas** y el **aumento de dificultad**?
    - El registro de la **prueba por parejas** (observación recibida y mejora aplicada) y el apartado de **Créditos, licencias y comparación entre Scratch y Laby**.
+
+---
+
+## 📊 Rúbrica – Actividad 1: El Laberinto de Mario en Scratch (máx. 10 puntos)
+
+| Criterio | Insuficiente | Básico | Adecuado | Excelente |
+|---|---|---|---|---|
+| **Preparación de gráficos en GIMP y escenario en Scratch** (máx. 2 puntos) | **0 puntos:** No entrega los archivos gráficos editables (`.xcf`) o exportados (`.png`), o no dibuja el laberinto ni configura los fondos y objetos básicos. | **0,5 puntos:** Faltan varios archivos `.xcf` o `.png` obligatorios, el caparazón verde o los fondos `GAME_OVER` y `VICTORIA` están incompletos o sin capas, o el laberinto no es jugable. | **1 punto:** Prepara los disfraces de Mario, el caparazón verde y los fondos en GIMP (`.xcf` y `.png`) y dibuja el laberinto en Scratch, aunque con algún fallo menor en capas, orientación, tamaños o posiciones iniciales. | **2 puntos:** Prepara y entrega todos los archivos `.xcf` (con capas en `GAME_OVER` y `VICTORIA`) y `.png` correctamente recortados, volteados y recoloreados, junto con un laberinto vectorial propio (`#000000`) funcional y bien proporcionado. |
+| **Programación del juego base en Scratch** (máx. 3 puntos) | **0 puntos:** El proyecto `.sb3` no funciona, falta la lógica principal o no se mueve el personaje. | **1 punto:** Mario se mueve pero faltan colisiones, animación de disfraces, el rebote autónomo de los caparazones con variables o el cambio correcto a las pantallas de fin de juego y victoria. | **2 puntos:** El juego base es jugable (movimiento, colisiones con paredes, enemigos y castillo), pero presenta algún fallo puntual en el rebote, ocultación de personajes o reinicio de partida. | **3 puntos:** El juego base funciona de forma fluida y completa: movimiento en 4 direcciones con animación, colisión con paredes negras, rebote autónomo de caparazones mediante variables, llegada al castillo y gestión limpia de mensajes (`fin_juego` y `victoria`). |
+| **Reto Individual: ampliaciones y dificultad** (máx. 3 puntos) | **0 puntos:** No implementa ninguna de las misiones del Reto Individual. | **1 punto:** Implementa parcialmente solo 1 misión, o el código añadido provoca errores graves en el juego. | **2 puntos:** Completa 2 de las 3 misiones obligatorias correctamente, o incluye las 3 misiones con fallos menores en el sistema de vidas, reposición en paredes, nuevo personaje o mecánica de dificultad. | **3 puntos:** Supera las 3 misiones obligatorias con éxito: nuevo personaje/objeto recortado (`.xcf`/`.png`) e integrado en el juego, sistema de 3 vidas con reposición en paredes e inmunidad breve tras choque, y al menos una mecánica extra de dificultad funcional. |
+| **Entregables, pruebas por parejas y explicación** (máx. 2 puntos) | **0 puntos:** Faltan entregables esenciales (`.zip`, `.sb3`, captura o explicación) o la entrega está vacía o ilegible. | **0,5 puntos:** Entrega incompleta o con nombres incorrectos, captura sin rotular el nombre o explicación muy pobre que omite las pruebas por parejas, los créditos o la comparación con Laby. | **1 punto:** Aporta los 4 entregables solicitados, pero falta rotular la captura, algún archivo no sigue la nomenclatura o la explicación de las pruebas por parejas, licencias o comparación Scratch-Laby es superficial. | **2 puntos:** Entrega completa y bien nombrada (`.zip` con `.xcf`/`.png`, `.sb3`, `captura_juego.png` completa y rotulada, y `explicacion.odt`/`.pdf`) con explicación clara del proceso en GIMP y Scratch, registro de prueba por parejas, créditos con autoría/licencias y comparación Scratch vs. Laby. |
+| **Entrega en plazo** (máx. 0 puntos) | **-2 puntos:** No entrega o realiza una entrega vacía o fuera de plazo sin justificación. | **-1,5 puntos:** Entrega con retraso importante de más de dos días. | **-1 punto:** Entrega con pequeño retraso (hasta 2 días). | **0 puntos:** Entrega puntual dentro del plazo establecido. |
+
+> ⚠️ **Nota sobre la entrega en plazo:** La entrega dentro del plazo establecido no resta puntuación (0 pts). Las entregas con retraso supondrán una penalización de hasta 2 puntos sobre la calificación de la actividad.
+{: .alert-error}
+
+---
+
+## 📌 Criterios de evaluación asociados
+
+- **CE2.1**: Analizar problemas elementales significativos para el alumnado, mediante la abstracción y modelización de la realidad.
+- **CE2.3**: Resolver de forma guiada problemas elementales utilizando los algoritmos y las estructuras de datos necesarias.
+- **CE2.4**: Programar aplicaciones sencillas de forma guiada para resolver problemas elementales.
+- **CE4.1**: Participar activamente en el diseño y desarrollo de soluciones digitales colaborativas y creativas.
+- **CE4.3**: Describir y valorar la adecuación de las tecnologías, entornos de desarrollo, dispositivos y componentes para resolver los retos planteados.
