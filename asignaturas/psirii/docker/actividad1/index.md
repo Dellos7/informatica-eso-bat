@@ -501,6 +501,94 @@ curl -s -X POST https://ejemplo-subdominio.free.pinggy.net/webhook-test/prueba \
 
 ---
 
+### Paso 7: Automatizar el arranque con un script en Bash
+
+Repetir manualmente en cada clase los pasos de levantar `tunnel`, buscar la URL en los logs, editar `.env` y levantar `n8n` (o repetirlo cuando caduca el túnel gratuito a los 60 minutos) es lento y propenso a errores al copiar. Vamos a crear un script en **Bash** que realice todo el flujo automáticamente con un solo comando.
+
+#### A. Crear el script `arrancar.sh`
+
+Dentro de `~/docker-n8n`, crea el archivo `arrancar.sh`:
+
+```bash
+nano arrancar.sh
+```
+
+Pega el siguiente contenido:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+echo "1. Levantando el túnel de Pinggy..."
+docker compose up -d --force-recreate tunnel
+
+echo "2. Esperando la URL pública de Pinggy..."
+URL=""
+for _ in $(seq 1 15); do
+  URL=$(docker compose logs --no-color tunnel 2>/dev/null \
+    | grep -oE 'https://[a-zA-Z0-9.-]+\.(free\.pinggy\.(net|link)|run\.pinggy-free\.link)' \
+    | head -n 1 || true)
+  if [ -n "$URL" ]; then
+    break
+  fi
+  sleep 2
+done
+
+if [ -z "$URL" ]; then
+  echo "Error: no se pudo obtener la URL de Pinggy. Revisa los logs con: docker compose logs tunnel"
+  exit 1
+fi
+
+echo "   URL obtenida: $URL"
+
+echo "3. Actualizando el archivo .env..."
+touch .env
+if grep -q '^N8N_WEBHOOK_URL=' .env; then
+  sed -i "s|^N8N_WEBHOOK_URL=.*|N8N_WEBHOOK_URL=${URL}/|" .env
+else
+  echo "N8N_WEBHOOK_URL=${URL}/" >> .env
+fi
+
+echo "4. Levantando el servicio n8n..."
+docker compose up -d n8n
+
+echo ""
+echo "Listo. n8n está disponible en:"
+echo "  - Local:   http://localhost:5678"
+echo "  - Público: ${URL}"
+```
+
+*(Guarda con `Ctrl + O`, pulsa `Enter` y sal con `Ctrl + X`)*.
+
+#### B. Dar permisos de ejecución y probarlo
+
+Dale permiso de ejecución una sola vez y lánzalo:
+
+```bash
+chmod +x arrancar.sh
+./arrancar.sh
+```
+
+A partir de ahora, al iniciar la sesión en clase (o si pasados 60 minutos necesitas renovar el túnel de Pinggy), te bastará con ejecutar `./arrancar.sh` dentro de `~/docker-n8n`.
+
+<details markdown="1" style="cursor: pointer;">
+<summary style="cursor: pointer;">🔎 <strong>Cómo funciona cada parte del script</strong></summary>
+
+| Fragmento | Qué hace |
+| :--- | :--- |
+| **`cd "$(dirname "$0")"`** | Se sitúa automáticamente en la carpeta donde está guardado el script (`~/docker-n8n`), aunque lo lances desde otra ruta. |
+| **`docker compose up -d --force-recreate tunnel`** | Crea y arranca un contenedor `tunnel` limpio para obtener un túnel nuevo y evitar que queden URLs antiguas en los logs de ejecuciones anteriores. |
+| **Bucle `for` + `sleep 2`** | Comprueba los logs cada 2 segundos (hasta un máximo de 30 segundos) mientras Alpine instala `openssh-client` y Pinggy devuelve las URLs. |
+| **`grep -oE ... \| head -n 1`** | Extrae únicamente las URLs del túnel de Pinggy (ignorando `https://dashboard.pinggy.io` que aparece en el mensaje informativo) y se queda con la primera de las dos devueltas. |
+| **`grep` + `sed -i`** | Crea `.env` si no existe y actualiza solo la línea `N8N_WEBHOOK_URL=.../` (añadiendo la barra final `/`) sin borrar otras variables que pudieras tener en `.env`. |
+| **`docker compose up -d n8n`** | Detecta el nuevo valor de `N8N_WEBHOOK_URL` en `.env` y levanta o recrea `n8n` manteniendo tus flujos y usuario en el volumen `n8n_data`. |
+
+</details>
+
+---
+
 ## 🖥️ Parte 3: Crear una aplicación web tipo Pokédex conectada a tu Webhook de n8n
 
 Hasta ahora has probado tu flujo enviando peticiones `curl` desde la terminal. Para comprobar cómo se integra un flujo de n8n en un producto real, vas a construir una **aplicación web sencilla (HTML, CSS y JavaScript)** que funcione como una **Pokédex**: al escribir el nombre o número de un Pokémon en el buscador, la web enviará la petición HTTP a tu Webhook de n8n y mostrará en pantalla la ficha, las estadísticas y la imagen devuelta (o un aviso si no se encuentra).
