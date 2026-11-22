@@ -7,12 +7,12 @@ con LibreOffice Writer) de Digitalización (Tema 2: Documentos digitales).
 
 Características principales:
 - Recorre una carpeta de entregas donde cada subcarpeta corresponde a un alumno/a.
-- Busca en cada subcarpeta los documentos .odt de cada parte de la actividad (ej1..ej6).
+- Busca en cada subcarpeta los documentos .odt de cada parte de la actividad (ej1..ej7).
 - Evalúa de forma determinista el XML interno de OpenDocument (styles.xml, content.xml,
   meta.xml e imágenes en Pictures/) resolviendo la herencia completa de estilos.
-- Otorga la puntuación de la rúbrica en cada uno de los 6 criterios:
-    * Criterios de 2 puntos (1, 2, 4, 5): niveles 0 | 0,5 | 1 | 1,5 | 2
-    * Criterios de 1 punto  (3, 6):       niveles 0 | 0,25 | 0,5 | 0,75 | 1
+- Otorga la puntuación de la rúbrica en cada uno de los 7 criterios:
+    * Criterios de 2 puntos (2, 4, 5):    niveles 0 | 0,5 | 1 | 1,5 | 2
+    * Criterios de 1 punto  (1, 3, 6, 7): niveles 0 | 0,25 | 0,5 | 0,75 | 1
 - Detecta anomalías de validación (p. ej., documentos con contenido, tablas, imágenes
   o estilos que no encajan con la estructura esperada o no verifican casi ningún criterio)
   marcando claramente en el informe: DIAGNÓSTICO: REVISIÓN MANUAL.
@@ -30,6 +30,7 @@ import os
 import re
 import struct
 import sys
+import unicodedata
 import zipfile
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -247,8 +248,18 @@ class ForensicReport:
     editing_seconds: Optional[float] = None
     editing_cycles: Optional[int] = None
     rsid_count: int = 0
+    rsid_set: Set[str] = field(default_factory=set)
     word_count: int = 0
     auto_style_count: int = 0
+    meta_title: str = ""
+    meta_subject: str = ""
+    meta_keywords: str = ""
+    meta_description: str = ""
+    meta_user_defined: Dict[str, str] = field(default_factory=dict)
+    meta_initial_creator: str = ""
+    meta_creator: str = ""
+    hidden_markers_found: List[str] = field(default_factory=list)
+    metadata_warnings: List[str] = field(default_factory=list)
 
 
 @dataclass
@@ -286,6 +297,7 @@ class OdtDocument:
 
         # Inventario global y metadatos forenses del documento
         self.meta_info: Dict[str, Optional[str]] = {}
+        self.user_defined_meta: Dict[str, str] = {}
         self.rsid_set: Set[str] = set()
         self.declared_fonts: Set[str] = set()
         self.auto_style_count: int = 0
@@ -343,7 +355,12 @@ class OdtDocument:
             "editing_cycles": None,
             "creator": None,
             "initial_creator": None,
+            "title": None,
+            "subject": None,
+            "keywords": None,
+            "description": None,
         }
+        self.user_defined_meta = {}
         if self.meta_root is None:
             return
         m_elem = self.meta_root.find(qname("office", "meta"))
@@ -361,6 +378,23 @@ class OdtDocument:
         self.meta_info["editing_cycles"] = _get_txt("meta", "editing-cycles")
         self.meta_info["creator"] = _get_txt("dc", "creator")
         self.meta_info["initial_creator"] = _get_txt("meta", "initial-creator")
+        self.meta_info["title"] = _get_txt("dc", "title")
+        self.meta_info["subject"] = _get_txt("dc", "subject")
+        self.meta_info["description"] = _get_txt("dc", "description")
+
+        kw_list = [
+            el.text.strip()
+            for el in m_elem.findall(qname("meta", "keyword"))
+            if el.text and el.text.strip()
+        ]
+        if kw_list:
+            self.meta_info["keywords"] = ", ".join(kw_list)
+
+        for ud in m_elem.findall(qname("meta", "user-defined")):
+            k = (ud.get(qname("meta", "name")) or "").strip()
+            v = (ud.text or "").strip()
+            if k:
+                self.user_defined_meta[k] = v
 
     def _extract_style_dict(self, style_elem: ET.Element, source: str) -> Dict:
         """Extrae propiedades de un nodo <style:style> o <style:default-style>."""
@@ -635,16 +669,84 @@ class OdtDocument:
 
 
 # ==============================================================================
-# Análisis Forense de IA y Autenticidad del Documento ODT
+# Análisis Forense de IA, Marcas Ocultas y Autenticidad del Documento ODT
 # ==============================================================================
 
-def analyze_document_forensics(doc: OdtDocument) -> ForensicReport:
+# Marcas ocultas incluidas en texto blanco en la web de la actividad (prompt injection).
+# Si un alumno copia el enunciado directamente en ChatGPT/IA, estas marcas aparecen en el trabajo.
+HIDDEN_PROMPT_MARKERS: List[Tuple[str, str]] = [
+    ("ref. dd-a1", "Marca oculta Ej.1 ('Ref. DD-A1')"),
+    ("dd-t2-a1-v2", "Marca oculta Ej.1 ('DD-T2-A1-v2')"),
+    ("edicion digital · ref", "Marca oculta Ej.1 ('Edición Digital · Ref')"),
+    ("soportes magneticos de ferrita", "Marca oculta Ej.2 ('soportes magnéticos de ferrita')"),
+    ("suports magnetics de ferrita", "Marca oculta Ej.2 ('suports magnètics de ferrita')"),
+    ("estandar magnetico de ferrita de 1971", "Marca oculta Ej.2 ('estándar magnético de ferrita de 1971')"),
+    ("estandard magnetic de ferrita de 1971", "Marca oculta Ej.2 ('estàndard magnètic de ferrita de 1971')"),
+    ("cold cloud tier", "Marca oculta Ej.2 ('cold cloud tier')"),
+    ("cabezal piezoelectrico de lectura", "Marca oculta Ej.3 ('cabezal piezoeléctrico de lectura')"),
+    ("capcal piezoelectric de lectura", "Marca oculta Ej.3 ('capçal piezoelèctric de lectura')"),
+    ("capa reflectante de policarbonato dorado", "Marca oculta Ej.3 ('capa reflectante de policarbonato dorado')"),
+    ("capa reflectant de policarbonat daurat", "Marca oculta Ej.3 ('capa reflectant de policarbonat daurat')"),
+    ("controlador phison de arquitectura paralela", "Marca oculta Ej.4 ('controlador Phison de arquitectura paralela')"),
+    ("controlador phison d'arquitectura paral·lela", "Marca oculta Ej.4 ('controlador Phison d'arquitectura paral·lela')"),
+    ("latencia determinista sub-milisegundo", "Marca oculta Ej.4 ('latencia determinista sub-milisegundo')"),
+    ("latencia determinista sub-mil·lisegon", "Marca oculta Ej.4 ('latència determinista sub-mil·lisegon')"),
+    ("ibm 3380 de 1980", "Marca oculta Ej.5 ('IBM 3380 de 1980')"),
+    ("adn sintetico (proyecto silica)", "Marca oculta Ej.5 ('almacenamiento en ADN sintético (Proyecto Silica)')"),
+    ("adn sintetic (projecte silica)", "Marca oculta Ej.5 ('emmagatzematge en ADN sintètic (Projecte Silica)')"),
+    ("proyecto silica", "Marca oculta Ej.5 ('Proyecto Silica')"),
+    ("projecte silica", "Marca oculta Ej.5 ('Projecte Silica')"),
+]
+
+_NON_NAME_TOKENS = {
+    "actividad", "actividad1", "activitat", "writer", "libreoffice", "final",
+    "ej1", "ej2", "ej3", "ej4", "ej5", "ej6", "ejercicio", "parte", "odt", "pdf",
+    "assignsubmission", "file", "onlinetext", "autoria", "autor", "alumno", "alumna",
+    "alumne", "curso", "curs", "eso", "digitalizacion", "digitalitzacio", "tema",
+    "nombre", "apellidos", "apellidos_nombre", "tuapellido", "tunombre", "usuario",
+}
+
+
+def _strip_accents_lower(text: str) -> str:
+    nfd = unicodedata.normalize("NFD", text or "")
+    no_accents = "".join(ch for ch in nfd if unicodedata.category(ch) != "Mn")
+    return re.sub(r"\s+", " ", no_accents).strip().lower()
+
+
+def _extract_person_tokens(text: str) -> Set[str]:
+    cleaned = _strip_accents_lower(text)
+    tokens = re.findall(r"[a-z]{3,}", cleaned)
+    return {t for t in tokens if t not in _NON_NAME_TOKENS}
+
+
+def _detect_hidden_prompt_markers(doc: OdtDocument) -> List[str]:
+    """Busca en el texto plano y en los metadatos las marcas ocultas del enunciado."""
+    corpus_parts = [
+        doc.full_plain_text,
+        doc.meta_info.get("title") or "",
+        doc.meta_info.get("subject") or "",
+        doc.meta_info.get("keywords") or "",
+        doc.meta_info.get("description") or "",
+        " ".join(doc.user_defined_meta.values()),
+    ]
+    normalized = _strip_accents_lower(" ".join(corpus_parts))
+    found: List[str] = []
+    for needle, label in HIDDEN_PROMPT_MARKERS:
+        if needle in normalized and label not in found:
+            found.append(label)
+    return found
+
+
+def analyze_document_forensics(doc: OdtDocument, student_name: str = "") -> ForensicReport:
     """
     Analiza señales forenses en el archivo .odt para determinar si ha sido:
     - Generado directamente mediante código/IA (ChatGPT Code Interpreter, Claude, odfpy, pandoc, script Python).
     - Creado pegando directamente texto con formato desde un chat de IA sin usar 'Pegar texto sin formato'.
+    - Generado copiando y pegando el enunciado con las marcas ocultas de texto blanco en ChatGPT/IA.
+    - Cumplimentado con metadatos de autoría válidos o discordantes respecto al alumno/a.
     """
     reasons: List[str] = []
+    metadata_warnings: List[str] = []
     risk_score = 0  # >=3: ALTA, 1-2: MEDIA, 0: BAJA
 
     gen = doc.meta_info.get("generator") or ""
@@ -652,6 +754,13 @@ def analyze_document_forensics(doc: OdtDocument) -> ForensicReport:
     m_date = doc.meta_info.get("date") or ""
     dur_str = doc.meta_info.get("editing_duration")
     cyc_str = doc.meta_info.get("editing_cycles")
+    m_title = doc.meta_info.get("title") or ""
+    m_subject = doc.meta_info.get("subject") or ""
+    m_keywords = doc.meta_info.get("keywords") or ""
+    m_description = doc.meta_info.get("description") or ""
+    m_init_creator = doc.meta_info.get("initial_creator") or ""
+    m_creator = doc.meta_info.get("creator") or ""
+    m_user_def = dict(doc.user_defined_meta)
 
     dur_sec = parse_iso_duration_seconds(dur_str)
     cycles = int(cyc_str) if (cyc_str and cyc_str.isdigit()) else None
@@ -704,7 +813,6 @@ def analyze_document_forensics(doc: OdtDocument) -> ForensicReport:
         )
 
     # 4. Nombres internos de las imágenes en Pictures/
-    # LibreOffice nombra las imágenes insertadas con un hash hexadecimal de 32-48 caracteres (100000000000...)
     non_lo_images = []
     for pic in doc.picture_files:
         pic_name = Path(pic).stem
@@ -725,8 +833,6 @@ def analyze_document_forensics(doc: OdtDocument) -> ForensicReport:
         )
 
     ai_web_fonts = {"segoe ui", "roboto", "inter", "söhne", "ui-sans-serif", "system-ui", "apple-system", "helvetica neue"}
-    detected_web_fonts = [f for f in doc.declared_fonts if f.lower() in ai_web_fonts]
-    # Comprobar si algún estilo automático de texto/párrafo usa esas fuentes o colores de fondo de chat IA
     ai_chat_bgs = {"#f7f7f8", "#343541", "#444654", "#ececf1", "#202123", "#212121", "#f9f9f9"}
     used_web_fonts = set()
     used_chat_bgs = set()
@@ -753,6 +859,58 @@ def analyze_document_forensics(doc: OdtDocument) -> ForensicReport:
             f"Se detectan estilos heredados de navegador/chat de IA ({'; '.join(det)}): el alumno pegó desde el navegador sin usar 'Pegado especial -> Texto sin formato'."
         )
 
+    # 6. Detección de marcas ocultas (texto blanco anti-copia de IA en el enunciado web)
+    hidden_markers = _detect_hidden_prompt_markers(doc)
+    if hidden_markers:
+        risk_score += 4
+        reasons.append(
+            f"🚩 MARCA OCULTA DE IA DETECTADA (copia-pega del enunciado en ChatGPT/IA): {'; '.join(hidden_markers)}."
+        )
+
+    # 7. Comprobación de metadatos de autoría del alumno (Archivo -> Propiedades)
+    autor_prop_val = ""
+    for k, v in m_user_def.items():
+        if "autor" in k.lower() or "alumn" in k.lower() or "nom" in k.lower():
+            autor_prop_val = v
+            break
+    if not autor_prop_val and m_user_def:
+        autor_prop_val = next(iter(m_user_def.values()), "")
+
+    if doc.total_words >= 30:
+        missing_meta = []
+        if not m_title:
+            missing_meta.append("Título")
+        if not m_subject:
+            missing_meta.append("Asunto")
+        if not m_description:
+            missing_meta.append("Comentarios")
+        if not autor_prop_val:
+            missing_meta.append("Propiedad personalizada 'Autor_alumno'")
+        if missing_meta:
+            metadata_warnings.append(
+                f"Faltan metadatos solicitados en Archivo -> Propiedades: {', '.join(missing_meta)}."
+            )
+
+    # Coherencia entre nombre del alumno y metadatos de autoría
+    student_tokens = _extract_person_tokens(student_name)
+    if len(student_tokens) >= 2:
+        for src_label, src_val in (
+            ("Propiedad 'Autor_alumno'", autor_prop_val),
+            ("Comentarios (dc:description)", m_description),
+            ("Creador inicial (meta:initial-creator)", m_init_creator),
+        ):
+            if not src_val:
+                continue
+            val_tokens = _extract_person_tokens(src_val)
+            if len(val_tokens) >= 2 and not (student_tokens & val_tokens):
+                risk_score += 2
+                msg = (
+                    f"🚨 Discordancia de autoría en {src_label}: indica '{src_val}' "
+                    f"pero la entrega corresponde a '{student_name}'."
+                )
+                metadata_warnings.append(msg)
+                reasons.append(msg)
+
     if risk_score >= 3:
         level = "ALTA"
     elif risk_score >= 1:
@@ -770,8 +928,18 @@ def analyze_document_forensics(doc: OdtDocument) -> ForensicReport:
         editing_seconds=dur_sec,
         editing_cycles=cycles,
         rsid_count=len(doc.rsid_set),
+        rsid_set=set(doc.rsid_set),
         word_count=doc.total_words,
         auto_style_count=doc.auto_style_count,
+        meta_title=m_title,
+        meta_subject=m_subject,
+        meta_keywords=m_keywords,
+        meta_description=m_description,
+        meta_user_defined=m_user_def,
+        meta_initial_creator=m_init_creator,
+        meta_creator=m_creator,
+        hidden_markers_found=hidden_markers,
+        metadata_warnings=metadata_warnings,
     )
 
 
@@ -845,6 +1013,22 @@ def check_criterion_manual_review(doc: OdtDocument, res: CriterionResult) -> Non
             reasons.append(
                 "Existen encabezados o pies de página definidos en estilos de página personalizados que no coinciden con 'Standard'/'Landscape'."
             )
+    elif cnum == 7 and score_ratio <= 0.25 and doc.total_words >= 80:
+        # Comprobar si existe contenido tras el apartado 3 sin encabezado '4.' reconocible
+        tb = doc.get_body_text_elem()
+        if tb is not None:
+            after_sec3 = False
+            extra_paras = 0
+            for ch in tb:
+                t = doc.get_element_text(ch).strip()
+                if not after_sec3 and (t.startswith("3.") or "mapa de ruta" in t.lower()):
+                    after_sec3 = True
+                elif after_sec3 and ch.tag in (qname("text", "p"), qname("text", "h")) and len(t) >= 40:
+                    extra_paras += 1
+            if extra_paras >= 2:
+                reasons.append(
+                    "Existen párrafos tras el apartado 3, pero no se identificó un nuevo encabezado '4. ...' con estilo Título 1."
+                )
 
     if reasons:
         res.needs_manual_review = True
@@ -1110,8 +1294,8 @@ def evaluate_criterion_1(doc: OdtDocument, rubric_levels: List[Dict], filename: 
     ))
 
     total_ratio = sum(c.weight * c.partial for c in checks)
-    score, desc = map_score_to_rubric(total_ratio, 2.0, rubric_levels)
-    res = CriterionResult(1, "1. Portada y Estilos de página", 2.0, score, desc, filename, checks)
+    score, desc = map_score_to_rubric(total_ratio, 1.0, rubric_levels)
+    res = CriterionResult(1, "1. Portada y Estilos de página", 1.0, score, desc, filename, checks)
     check_criterion_manual_review(doc, res)
     return res
 
@@ -1164,15 +1348,24 @@ def evaluate_criterion_2(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         mb = parse_length_cm(pp.get(qname("fo", "margin-bottom")))
 
         if "Heading_20_1" in eff["chain_names"]:
-            h1_score += 0.2
+            h1_score += 0.15
+            # Comprobar si el estilo nombrado Heading_20_1 en styles.xml fue actualizado
+            named_h1 = doc.resolve_style("paragraph", "Heading_20_1")
+            nh1_sz = parse_length_pt(named_h1["text_props"].get(qname("fo", "font-size")))
+            nh1_mb = parse_length_cm(named_h1["paragraph_props"].get(qname("fo", "margin-bottom")))
+            if (nh1_sz and 15 <= nh1_sz <= 17) or (nh1_mb is not None and 0.40 <= nh1_mb <= 0.60):
+                h1_score += 0.15
+                h1_details.append("estilo Título 1 actualizado OK")
+            else:
+                h1_details.append("estilo Título 1 no actualizado en styles.xml")
         if "liberation sans" in f_name.lower():
-            h1_score += 0.2
+            h1_score += 0.15
         if f_size and 15 <= f_size <= 17:
-            h1_score += 0.2
+            h1_score += 0.20
         if f_weight == "bold" and is_blue_color(f_color):
-            h1_score += 0.2
+            h1_score += 0.20
         if mb is not None and 0.40 <= mb <= 0.60:
-            h1_score += 0.2
+            h1_score += 0.15
         h1_details.append(f"Título 1 ({f_name}, {f_size}pt, {f_color}, bajo={mb}cm)")
     else:
         h1_details.append("No se encontró el encabezado '1. Introducción al almacenamiento digital'")
@@ -1239,9 +1432,23 @@ def evaluate_criterion_2(doc: OdtDocument, rubric_levels: List[Dict], filename: 
     if len(intro_paras) >= 2:
         pp2 = doc.get_paragraph_effective_style(intro_paras[1])["paragraph_props"]
         t_ind = parse_length_cm(pp2.get(qname("fo", "text-indent")))
+        # Comprobar también si el estilo general (Text_20_body o Standard) fue actualizado en styles.xml
+        named_gen_updated = False
+        for g_name in ("Text_20_body", "Standard"):
+            gst = doc.resolve_style("paragraph", g_name)
+            g_ind = parse_length_cm(gst["paragraph_props"].get(qname("fo", "text-indent")))
+            g_lh = gst["paragraph_props"].get(qname("fo", "line-height"), "")
+            g_al = gst["paragraph_props"].get(qname("fo", "text-align"), "")
+            if (g_ind is not None and 1.15 <= g_ind <= 1.35) or (g_lh in ("150%", "1.5") and g_al == "justify"):
+                named_gen_updated = True
+                break
         if t_ind is not None and 1.15 <= t_ind <= 1.35:
-            cap_ind_score += 0.5
-            ci_details.append(f"sangría 1ª línea ({t_ind:.2f} cm) OK")
+            cap_ind_score += 0.40
+            if named_gen_updated:
+                cap_ind_score += 0.10
+                ci_details.append(f"sangría 1ª línea ({t_ind:.2f} cm) y estilo general actualizado OK")
+            else:
+                ci_details.append(f"sangría 1ª línea ({t_ind:.2f} cm) OK (estilo general sin actualizar en styles.xml)")
         elif t_ind and t_ind > 0.3:
             cap_ind_score += 0.25
             ci_details.append(f"sangría 1ª línea ({t_ind:.2f} cm != 1,25 cm)")
@@ -1367,9 +1574,17 @@ def evaluate_criterion_3(doc: OdtDocument, rubric_levels: List[Dict], filename: 
             or h2_elem.find(qname("text", "soft-page-break")) is not None
         )
         if "Heading_20_2" in eff["chain_names"]:
-            h2_score += 0.2
+            h2_score += 0.15
+            named_h2 = doc.resolve_style("paragraph", "Heading_20_2")
+            nh2_sz = parse_length_pt(named_h2["text_props"].get(qname("fo", "font-size")))
+            nh2_mb = parse_length_cm(named_h2["paragraph_props"].get(qname("fo", "margin-bottom")))
+            if (nh2_sz and 13 <= nh2_sz <= 15) or (nh2_mb is not None and 0.40 <= nh2_mb <= 0.60):
+                h2_score += 0.10
+                h2_details.append("estilo Título 2 actualizado OK")
+            else:
+                h2_details.append("estilo Título 2 no actualizado en styles.xml")
         if "liberation sans" in f_name.lower() and (f_size and 13 <= f_size <= 15):
-            h2_score += 0.3
+            h2_score += 0.25
         if f_weight == "bold" and is_blue_color(f_color):
             h2_score += 0.25
         if mb is not None and 0.40 <= mb <= 0.60:
@@ -1518,7 +1733,7 @@ def evaluate_criterion_4(doc: OdtDocument, rubric_levels: List[Dict], filename: 
         t1_details.append("falta párrafo introductorio en apartado 2")
 
     checks.append(CheckItem(
-        "Título 1 ('2. Comparativa de rendimiento...') y párrafo introductorio con Cuerpo de texto",
+        "Título 1 ('2. Comparativa de rendimiento...') y párrafo introductorio con Cuerpo de texto / Predeterminado",
         t1_intro_score >= 0.9, 0.15, ", ".join(t1_details), t1_intro_score
     ))
 
@@ -1684,6 +1899,15 @@ def evaluate_criterion_5(doc: OdtDocument, rubric_levels: List[Dict], filename: 
                     h1_sec3 = child
                     in_sec3 = True
             else:
+                if (
+                    (child.tag == qname("text", "h") and txt.startswith("4."))
+                    or (
+                        is_heading_like
+                        and txt.startswith("4.")
+                        and "Heading_20_1" in doc.get_paragraph_effective_style(child)["chain_names"]
+                    )
+                ):
+                    break
                 sec3_elements.append(child)
 
     # 5.1 Salto de página a estilo Horizontal y Título 1 (peso 0.25)
@@ -1944,6 +2168,152 @@ def evaluate_criterion_6(doc: OdtDocument, rubric_levels: List[Dict], filename: 
     return res
 
 
+def evaluate_criterion_7(doc: OdtDocument, rubric_levels: List[Dict], filename: str) -> CriterionResult:
+    """Criterio 7: Uso de IA: imagen de portada y nueva sección con estilos (máx. 1 pt)."""
+    checks: List[CheckItem] = []
+    text_body = doc.get_body_text_elem()
+
+    cover_images = 0
+    h1_sec4 = None
+    sec4_elements: List[ET.Element] = []
+
+    if text_body is not None:
+        in_cover = True
+        in_sec3 = False
+        in_sec4 = False
+        for child in text_body:
+            txt = doc.get_element_text(child).strip()
+            eff = (
+                doc.get_paragraph_effective_style(child)
+                if child.tag in (qname("text", "p"), qname("text", "h"))
+                else {"chain_names": [], "master_page_name": None, "paragraph_props": {}}
+            )
+            chain = eff["chain_names"]
+
+            if in_cover:
+                if (
+                    "1. introducci" in txt.lower()
+                    or ("introducci" in txt.lower() and "Heading_20_1" in chain)
+                    or eff.get("master_page_name") in ("Standard", "Default")
+                ):
+                    in_cover = False
+                else:
+                    cover_images += len(child.findall(f".//{qname('draw', 'image')}"))
+
+            if not in_sec3:
+                if txt.startswith("3.") or "mapa de ruta" in txt.lower() or "full de ruta" in txt.lower():
+                    in_sec3 = True
+                continue
+
+            if not in_sec4:
+                is_heading_like = child.tag == qname("text", "h") or len(txt) < 140
+                if is_heading_like and txt and (
+                    txt.startswith("4.")
+                    or ("Heading_20_1" in chain and not txt.startswith("3."))
+                ):
+                    h1_sec4 = child
+                    in_sec4 = True
+            else:
+                sec4_elements.append(child)
+
+    # 7.1 Imagen de portada generada con IA (peso 0.40)
+    img_score = 1.0 if cover_images >= 1 else 0.0
+    checks.append(CheckItem(
+        "Imagen generada con IA insertada en la portada",
+        cover_images >= 1, 0.40,
+        f"{cover_images} imagen(es) detectada(s) en la portada" if cover_images >= 1 else "No se detectó ninguna imagen en la portada",
+        img_score,
+    ))
+
+    # 7.2 Nueva sección (apartado 4) en página vertical (peso 0.30)
+    sec4_score = 0.0
+    sec4_details = []
+    sec4_paras = [
+        e for e in sec4_elements
+        if e.tag in (qname("text", "p"), qname("text", "h")) and len(doc.get_element_text(e).strip()) >= 30
+    ]
+    if h1_sec4 is not None:
+        sec4_score += 0.45
+        eff4 = doc.get_paragraph_effective_style(h1_sec4)
+        mp_name = eff4.get("master_page_name")
+        is_portrait = True
+        if mp_name and mp_name in doc.master_pages:
+            pl = doc.page_layouts.get(doc.master_pages[mp_name]["page_layout_name"], {}).get("props", {})
+            if pl.get(qname("style", "print-orientation")) == "landscape":
+                is_portrait = False
+        if is_portrait:
+            sec4_score += 0.25
+            sec4_details.append("encabezado apartado 4 en página vertical OK")
+        else:
+            sec4_details.append("apartado 4 sigue en página horizontal")
+        if len(sec4_paras) >= 1:
+            sec4_score += 0.30
+            sec4_details.append(f"{len(sec4_paras)} párrafo(s)/subapartado(s) redactado(s)")
+        else:
+            sec4_details.append("faltan párrafos de contenido en el apartado 4")
+    else:
+        sec4_details.append("No se encontró el apartado 4 tras la tabla cronológica")
+
+    checks.append(CheckItem(
+        "Nueva sección (apartado 4) al final del documento en página vertical",
+        sec4_score >= 0.85, 0.30, ", ".join(sec4_details), min(1.0, sec4_score),
+    ))
+
+    # 7.3 Reutilización de estilos del documento en la nueva sección (peso 0.30)
+    sty_score = 0.0
+    sty_details = []
+    if h1_sec4 is not None:
+        eff_h1 = doc.get_paragraph_effective_style(h1_sec4)
+        if "Heading_20_1" in eff_h1["chain_names"]:
+            sty_score += 0.40
+            sty_details.append("Título 1 aplicado OK")
+        else:
+            sty_details.append("encabezado sin estilo Título 1")
+
+        body_paras = [e for e in sec4_elements if e.tag == qname("text", "p") and len(doc.get_element_text(e).strip()) >= 40]
+        if body_paras:
+            styled_ok = 0
+            for p in body_paras:
+                peff = doc.get_paragraph_effective_style(p)
+                chain = peff["chain_names"]
+                tp = peff["text_props"]
+                pp = peff["paragraph_props"]
+                fn = (tp.get(qname("style", "font-name")) or "").lower()
+                uses_doc_style = (
+                    any(s in ("Text_20_body", "Standard") for s in chain)
+                    or "liberation serif" in fn
+                    or pp.get(qname("fo", "text-align")) == "justify"
+                )
+                if uses_doc_style:
+                    styled_ok += 1
+            if styled_ok > 0:
+                sty_score += 0.40
+                sty_details.append("estilo de párrafo general coherente OK")
+        has_h2_or_span = any(
+            "Heading_20_2" in doc.get_paragraph_effective_style(e)["chain_names"]
+            for e in sec4_elements if e.tag in (qname("text", "p"), qname("text", "h"))
+        ) or any(
+            e.find(f".//{qname('text', 'span')}") is not None
+            for e in body_paras
+        )
+        if has_h2_or_span:
+            sty_score += 0.20
+            sty_details.append("Título 2 o formato de carácter aplicado OK")
+    else:
+        sty_details.append("Sin apartado 4 que evaluar")
+
+    checks.append(CheckItem(
+        "Reutilización de estilos del documento (Título 1/2, párrafo general y formatos de carácter)",
+        sty_score >= 0.80, 0.30, ", ".join(sty_details), min(1.0, sty_score),
+    ))
+
+    total_ratio = sum(c.weight * c.partial for c in checks)
+    score, desc = map_score_to_rubric(total_ratio, 1.0, rubric_levels)
+    res = CriterionResult(7, "7. Uso de IA: imagen de portada y nueva sección con estilos", 1.0, score, desc, filename, checks)
+    check_criterion_manual_review(doc, res)
+    return res
+
+
 # ==============================================================================
 # Carga de rúbrica y evaluación integral por alumno
 # ==============================================================================
@@ -1978,32 +2348,32 @@ def load_rubric_csv(csv_path: Path) -> Dict[int, List[Dict]]:
 
 
 def find_exercise_files(student_dir: Path, modo: str = "estricto") -> Dict[int, Optional[Path]]:
-    """Localiza dentro de la carpeta del alumno los archivos .odt de cada parte (1..6)."""
+    """Localiza dentro de la carpeta del alumno los archivos .odt de cada parte (1..7)."""
     odt_files = sorted(
         [p for p in student_dir.rglob("*.odt") if not p.name.startswith(".~")],
         key=lambda p: p.name.lower(),
     )
 
-    found: Dict[int, Optional[Path]] = {i: None for i in range(1, 7)}
+    found: Dict[int, Optional[Path]] = {i: None for i in range(1, 8)}
     final_file: Optional[Path] = None
 
     for f in odt_files:
         stem = f.stem.lower()
         if "final" in stem:
             final_file = f
-        for i in range(1, 7):
+        for i in range(1, 8):
             pat = rf"(?:ej(?:ercicio)?|parte|p)[_\-\s]*0?{i}(?!\d)"
             if re.search(pat, stem):
                 found[i] = f
 
     if modo == "flexible":
         if len(odt_files) == 1 and all(v is None for v in found.values()):
-            for i in range(1, 7):
+            for i in range(1, 8):
                 found[i] = odt_files[0]
         else:
-            for i in range(1, 7):
+            for i in range(1, 8):
                 if found[i] is None:
-                    for j in range(i + 1, 7):
+                    for j in range(i + 1, 8):
                         if found[j] is not None:
                             found[i] = found[j]
                             break
@@ -2018,14 +2388,15 @@ def evaluate_student(
     exercise_files: Dict[int, Optional[Path]],
     rubric: Dict[int, List[Dict]],
 ) -> StudentEvaluation:
-    """Evalúa los 6 criterios de un alumno, diagnostica anomalías de validación y analiza indicios de IA."""
+    """Evalúa los 7 criterios de un alumno, diagnostica anomalías de validación y analiza indicios de IA."""
     evaluators = {
-        1: (evaluate_criterion_1, "1. Portada y Estilos de página", 2.0),
+        1: (evaluate_criterion_1, "1. Portada y Estilos de página", 1.0),
         2: (evaluate_criterion_2, "2. Formato de carácter y párrafo avanzado", 2.0),
         3: (evaluate_criterion_3, "3. Secciones y columnas con personalización", 1.0),
         4: (evaluate_criterion_4, "4. Imágenes con leyendas y tablas comparativas", 2.0),
         5: (evaluate_criterion_5, "5. Secciones horizontales y tabla cronológica", 2.0),
         6: (evaluate_criterion_6, "6. Encabezados y pies de página dinámicos", 1.0),
+        7: (evaluate_criterion_7, "7. Uso de IA: imagen de portada y nueva sección con estilos", 1.0),
     }
 
     doc_cache: Dict[Path, OdtDocument] = {}
@@ -2033,7 +2404,7 @@ def evaluate_student(
     results: List[CriterionResult] = []
     manual_reasons: List[str] = []
 
-    for i in range(1, 7):
+    for i in range(1, 8):
         fn, cname, max_s = evaluators[i]
         levels = rubric.get(i, [])
         f_path = exercise_files.get(i)
@@ -2056,7 +2427,7 @@ def evaluate_student(
         try:
             if f_path not in doc_cache:
                 doc_cache[f_path] = OdtDocument(f_path)
-                forensics_by_file[f_path.name] = analyze_document_forensics(doc_cache[f_path])
+                forensics_by_file[f_path.name] = analyze_document_forensics(doc_cache[f_path], student_name)
             doc = doc_cache[f_path]
             res = fn(doc, levels, f_path.name)
             if res.needs_manual_review:
@@ -2117,11 +2488,14 @@ def evaluate_student(
     )
 
 
-def cross_check_creation_dates(evaluations: Dict[str, StudentEvaluation]) -> None:
+def cross_check_plagiarism(evaluations: Dict[str, StudentEvaluation]) -> None:
     """
-    Compara la fecha de creación exacta (<meta:creation-date>) entre distintos alumnos
-    para detectar si dos alumnos han entregado variaciones del mismo archivo .odt base.
+    Compara entre distintos alumnos señales de archivo compartido o copia directa:
+    1. Fecha de creación exacta (<meta:creation-date>).
+    2. Coincidencia de sesiones de edición interactiva (officeooo:rsid).
+    3. Nombre de otro alumno/a presente en los metadatos internos (Propiedades/Comentarios/Creador).
     """
+    # 1. Fecha de creación exacta
     date_to_students: Dict[str, Set[str]] = {}
     for student, ev in evaluations.items():
         for frep in ev.forensics_by_file.values():
@@ -2138,11 +2512,79 @@ def cross_check_creation_dates(evaluations: Dict[str, StudentEvaluation]) -> Non
                     "(posible archivo compartido o plantilla común entre alumnos)."
                 )
                 ev = evaluations[st]
-                ev.ai_findings.append(msg)
+                if msg not in ev.ai_findings:
+                    ev.ai_findings.append(msg)
                 ev.needs_manual_review = True
-                ev.manual_review_reasons.append(msg)
+                if msg not in ev.manual_review_reasons:
+                    ev.manual_review_reasons.append(msg)
                 if ev.ai_risk_level == "BAJA":
                     ev.ai_risk_level = "MEDIA"
+
+    # 2. Solapamiento de identificadores de sesión (officeooo:rsid)
+    student_rsids: Dict[str, Set[str]] = {}
+    for student, ev in evaluations.items():
+        merged_rsids: Set[str] = set()
+        for frep in ev.forensics_by_file.values():
+            merged_rsids.update(frep.rsid_set)
+        if merged_rsids:
+            student_rsids[student] = merged_rsids
+
+    st_names = sorted(student_rsids.keys())
+    for idx_a in range(len(st_names)):
+        for idx_b in range(idx_a + 1, len(st_names)):
+            st_a, st_b = st_names[idx_a], st_names[idx_b]
+            r_a, r_b = student_rsids[st_a], student_rsids[st_b]
+            shared = r_a & r_b
+            min_len = min(len(r_a), len(r_b))
+            if len(shared) >= 2 and min_len > 0 and (len(shared) / min_len) >= 0.25:
+                pct = int(round((len(shared) / min_len) * 100))
+                for owner, other in ((st_a, st_b), (st_b, st_a)):
+                    msg = (
+                        f"🚨 Solapamiento de sesiones internas Writer (rsid) con {other}: "
+                        f"{len(shared)} identificadores compartidos ({pct}%), fuerte indicio de archivo copiado/modificado."
+                    )
+                    ev = evaluations[owner]
+                    if msg not in ev.ai_findings:
+                        ev.ai_findings.append(msg)
+                    ev.needs_manual_review = True
+                    if msg not in ev.manual_review_reasons:
+                        ev.manual_review_reasons.append(msg)
+                    ev.ai_risk_level = "ALTA"
+
+    # 3. Cruce de nombres en metadatos entre alumnos del grupo
+    student_tokens_map = {st: _extract_person_tokens(st) for st in evaluations}
+    for st_b, ev_b in evaluations.items():
+        own_tokens = student_tokens_map[st_b]
+        for fname, frep in ev_b.forensics_by_file.items():
+            meta_candidates = [
+                ("Comentarios", frep.meta_description),
+                ("Creador inicial", frep.meta_initial_creator),
+                ("Último modificador", frep.meta_creator),
+            ] + [(f"Propiedad '{k}'", v) for k, v in frep.meta_user_defined.items()]
+
+            for label, val in meta_candidates:
+                if not val:
+                    continue
+                val_tokens = _extract_person_tokens(val)
+                if len(val_tokens) < 2:
+                    continue
+                for st_a, tokens_a in student_tokens_map.items():
+                    if st_a == st_b or len(tokens_a) < 2:
+                        continue
+                    # Si los metadatos de st_b coinciden claramente con st_a (más tokens que con el propio st_b)
+                    shared_a = len(val_tokens & tokens_a)
+                    shared_b = len(val_tokens & own_tokens)
+                    if shared_a >= 2 and shared_a > shared_b:
+                        msg = (
+                            f"🚨 POSIBLE COPIA DIRECTA [{fname}]: el metadato {label} ('{val}') "
+                            f"pertenece al alumno/a '{st_a}'."
+                        )
+                        if msg not in ev_b.ai_findings:
+                            ev_b.ai_findings.append(msg)
+                        ev_b.needs_manual_review = True
+                        if msg not in ev_b.manual_review_reasons:
+                            ev_b.manual_review_reasons.append(msg)
+                        ev_b.ai_risk_level = "ALTA"
 
 
 # ==============================================================================
@@ -2184,8 +2626,8 @@ def generate_reports(
         "",
         "## Tabla Resumen de Calificaciones y Diagnóstico",
         "",
-        "| Alumno/a | C1 (2p) | C2 (2p) | C3 (1p) | C4 (2p) | C5 (2p) | C6 (1p) | **TOTAL (10p)** | Diagnóstico de Validación | Indicios IA / Autenticidad |",
-        "|----------|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:---------------:|:-------------------------:|:--------------------------:|",
+        "| Alumno/a | C1 (1p) | C2 (2p) | C3 (1p) | C4 (2p) | C5 (2p) | C6 (1p) | C7 (1p) | **TOTAL (10p)** | Diagnóstico de Validación | Indicios IA / Autenticidad |",
+        "|----------|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:---------------:|:-------------------------:|:--------------------------:|",
     ]
 
     for student, ev in all_evaluations.items():
@@ -2194,7 +2636,7 @@ def generate_reports(
         diag_str = "⚠️ **DIAGNÓSTICO: REVISIÓN MANUAL**" if ev.needs_manual_review else "✅ Validación OK"
         ai_str = fmt_ai_badge(ev.ai_risk_level)
         lines.append(
-            f"| **{student}** | {scores[0]} | {scores[1]} | {scores[2]} | {scores[3]} | {scores[4]} | {scores[5]} | **{fmt_score(total)}** | {diag_str} | {ai_str} |"
+            f"| **{student}** | {scores[0]} | {scores[1]} | {scores[2]} | {scores[3]} | {scores[4]} | {scores[5]} | {scores[6]} | **{fmt_score(total)}** | {diag_str} | {ai_str} |"
         )
 
     lines.extend(["", "---", "", "## Desglose Detallado por Alumno/a", ""])
@@ -2222,6 +2664,14 @@ def generate_reports(
                     f"- **Metadatos `{fname}`:** Generador: `{frep.generator}` | Tiempo de edición: `{dur_h}` | "
                     f"Ciclos de guardado: `{cyc_h}` | Sesiones Writer (`rsid`): `{frep.rsid_count}` | Palabras: `{frep.word_count}`"
                 )
+                ud_str = ", ".join(f"{k}={v}" for k, v in frep.meta_user_defined.items()) if frep.meta_user_defined else "—"
+                lines.append(
+                    f"  - **Propiedades del documento:** Título: `{frep.meta_title or '—'}` | Asunto: `{frep.meta_subject or '—'}` | "
+                    f"Comentarios: `{frep.meta_description or '—'}` | Personalizadas: `{ud_str}` | "
+                    f"Creador inicial: `{frep.meta_initial_creator or '—'}` | Fecha creación: `{frep.creation_date or '—'}`"
+                )
+                for mw in frep.metadata_warnings:
+                    lines.append(f"  - 📋 {mw}")
         if ev.ai_findings:
             for finding in ev.ai_findings:
                 lines.append(f"  - ⚠️ {finding}")
@@ -2253,15 +2703,18 @@ def generate_reports(
         writer = csv.writer(f, delimiter=";")
         writer.writerow([
             "Alumno",
-            "Archivo_Ej1", "C1_Portada (2p)",
+            "Archivo_Ej1", "C1_Portada (1p)",
             "Archivo_Ej2", "C2_Parrafo (2p)",
             "Archivo_Ej3", "C3_Secciones (1p)",
             "Archivo_Ej4", "C4_Imagenes_Tabla (2p)",
             "Archivo_Ej5", "C5_Horizontal (2p)",
             "Archivo_Ej6", "C6_Encabezado_Pie (1p)",
+            "Archivo_Ej7", "C7_IA (1p)",
             "Nota_Total (10p)",
             "Diagnostico_Validacion",
             "Sospecha_IA",
+            "Marcas_IA_Ocultas",
+            "Metadatos_Autor",
             "Motivos_Revision_o_IA",
             "Comentarios_Retroalimentacion",
         ])
@@ -2280,10 +2733,25 @@ def generate_reports(
                     feedback_parts.append(f"C{r.criterion_num} ({fmt_score(r.awarded_score)}p): Revisar {', '.join(failed)}")
                 else:
                     feedback_parts.append(f"C{r.criterion_num} ({fmt_score(r.awarded_score)}p): Perfecto")
+            hidden_all = sorted({m for frep in ev.forensics_by_file.values() for m in frep.hidden_markers_found})
+            meta_summaries = []
+            for fname, frep in ev.forensics_by_file.items():
+                parts = []
+                if frep.meta_description:
+                    parts.append(f"Comentarios={frep.meta_description}")
+                if frep.meta_user_defined:
+                    parts.append(" ".join(f"{k}={v}" for k, v in frep.meta_user_defined.items()))
+                if frep.meta_initial_creator:
+                    parts.append(f"Creador={frep.meta_initial_creator}")
+                if parts:
+                    meta_summaries.append(f"[{fname}] " + "; ".join(parts))
+
             row.append(fmt_score(total))
             row.append("DIAGNÓSTICO: REVISIÓN MANUAL" if ev.needs_manual_review else "OK")
             row.append(ev.ai_risk_level)
-            alerts_combined = ev.manual_review_reasons + ev.ai_findings
+            row.append(" | ".join(hidden_all) if hidden_all else "Ninguna")
+            row.append(" | ".join(meta_summaries) if meta_summaries else "Sin metadatos")
+            alerts_combined = list(dict.fromkeys(ev.manual_review_reasons + ev.ai_findings))
             row.append(" | ".join(alerts_combined) if alerts_combined else "Sin incidencias")
             row.append(" | ".join(feedback_parts))
             writer.writerow(row)
@@ -2320,7 +2788,7 @@ def main():
         choices=["estricto", "flexible"],
         default="estricto",
         help=(
-            "'estricto' (por defecto): exige el archivo específico de cada ejercicio (*ej1*.odt .. *ej6*.odt) "
+            "'estricto' (por defecto): exige el archivo específico de cada ejercicio (*ej1*.odt .. *ej7*.odt) "
             "y puntúa 0 si no se entregó esa parte. "
             "'flexible': si falta un ejX.odt pero el alumno entregó un ejercicio posterior o final.odt, evalúa el criterio sobre ese archivo."
         ),
@@ -2334,7 +2802,7 @@ def main():
     all_evaluations: Dict[str, StudentEvaluation] = {}
 
     if target_path.is_file() and target_path.suffix.lower() == ".odt":
-        ex_files = {i: target_path for i in range(1, 7)}
+        ex_files = {i: target_path for i in range(1, 8)}
         all_evaluations[target_path.stem] = evaluate_student(target_path.stem, ex_files, rubric)
         out_dir = target_path.parent
     elif target_path.is_dir():
@@ -2356,9 +2824,9 @@ def main():
         print(f"[!] La ruta especificada no existe: {target_path}", file=sys.stderr)
         sys.exit(1)
 
-    # Cruzar fechas de creación entre alumnos para detectar copias
+    # Cruzar fechas de creación, sesiones RSID y metadatos de autoría entre alumnos para detectar copias
     if len(all_evaluations) > 1:
-        cross_check_creation_dates(all_evaluations)
+        cross_check_plagiarism(all_evaluations)
 
     md_out = Path(args.salida_md).resolve() if args.salida_md else (out_dir / "resultado_validacion.md")
     csv_out = Path(args.salida_csv).resolve() if args.salida_csv else (out_dir / "resultado_validacion.csv")
