@@ -50,6 +50,7 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
 {:start="5"}
 
 6. Diseña tu portada utilizando **Estilos de Párrafo** (*Estils de paràgraf*):
+{:start="6"}
    * **Título:** escribe **«Informe Tecnológico: La evolución del almacenamiento digital»** y configúralo así:
      - Estilo base: **Título** (*Títol*, dentro de **Encabezado** / *Encapçalament*).
      - Fuente: **Liberation Sans**.
@@ -58,6 +59,9 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
      - Alineación: centrado (*Centrat*).
      - Color: **Azul oscuro** (similar al del borde de la página).
      - **Actualizar el estilo:** con el texto seleccionado, haz clic en **Actualizar estilo seleccionado** (*Actualitza l'estil seleccionat*) ![Icono Actualizar estilo seleccionado](./imagenes/icono_actualizar_estilo.png){: .no-border style="height: 1.25em; vertical-align: middle;"} en la barra superior (justo a la derecha del selector de estilos) o desde el botón desplegable arriba a la derecha del panel lateral **Estilos** (*Estils*).
+    ![Cómo pulsar Actualizar estilo seleccionado en LibreOffice Writer](./imagenes/guia_actualizar_estilo.png)
+    {: .img}
+
    * **Subtítulo:** escribe *«Análisis de soportes físicos, de estado sólido y sistemas en la nube»* y configúralo así:
      - Estilo base: **Subtítulo** (*Subtítol*).
      - Fuente: **Liberation Sans**.
@@ -72,9 +76,6 @@ Una portada académica nunca debe llevar encabezado ni pie de página. Para logr
      - Tamaño: **11 pt**.
      - Alineación: **derecha** (*Alinea a la dreta*).
 {:start="6"}
-
-![Cómo pulsar Actualizar estilo seleccionado en LibreOffice Writer](./imagenes/guia_actualizar_estilo.png)
-{: .img}
 
 7. Inserta un salto de página manual que cambie el estilo de la siguiente hoja a normal: ve a *Insertar -> Más saltos -> Salto manual...* (*Insereix -> Més salts -> Salt manual...*) y configura:
    * **Tipo** (*Tipus*): **Salto de página** (*Salt de pàgina*).

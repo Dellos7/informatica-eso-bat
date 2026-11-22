@@ -10,11 +10,11 @@ En este tema aprenderás a crear, calcular y automatizar documentos digitales co
 
 ## ¿Qué haremos en este tema?
 
-A lo largo de tres actividades prácticas construirás proyectos reales paso a paso:
+A lo largo del tema trabajarás tres bloques prácticos:
 
-- **Maquetación avanzada de documentos (LibreOffice Writer):** elaborarás un informe tecnológico sobre la evolución del almacenamiento digital utilizando estilos de página (portada sin encabezados ni pies y páginas horizontales), estilos de párrafo actualizables, secciones con columnas, tablas comparativas, imágenes con leyendas automáticas y campos dinámicos, hasta exportarlo a PDF.
-- **Cálculo y análisis de datos (LibreOffice Calc):** diseñarás un presupuesto de componentes informáticos aplicando formatos de celda, referencias relativas y absolutas (`$`), listas desplegables, funciones matemáticas, estadísticas y lógicas (`SUMA`, `PROMEDIO`, `MAX`, `MIN`, `SI`, `CONTAR.SI`, `SUMAR.SI`), formato condicional, tablas dinámicas y gráficos personalizados.
-- **Automatización documental (Combinación de correspondencia con Writer + Calc):** conectarás una base de datos de asistentes creada en Calc con una plantilla diseñada en Writer para generar de forma automática un lote completo de pases nominativos en PDF, aplicando campos dinámicos y reglas de texto condicional según el perfil de cada persona.
+- **Maquetación de documentos (LibreOffice Writer):** elaboración y diseño de un informe estructurado mediante estilos y acabado profesional en PDF.
+- **Cálculo y análisis de datos (LibreOffice Calc):** creación de un presupuesto automatizado mediante fórmulas, tablas dinámicas y gráficos.
+- **Automatización documental (Writer + Calc):** generación automática de documentos personalizados conectando una hoja de datos con una plantilla.
 
 ## ¿Por qué es importante?
 
