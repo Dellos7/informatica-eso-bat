@@ -11,12 +11,12 @@ description: Creación del flujo en n8n para el chatbot de tu web personal con t
 > [📖 **Apuntes: Introducción a Docker y Contenerización**](../apuntes) · [⬅️ **Actividad 1: Despliegue de n8n y túnel con Pinggy**](../actividad1)
 {: .alert-info}
 
-Partiendo del entorno de **n8n** y el túnel inverso de **Pinggy** que desplegaste y automatizaste en la **[Actividad 1](../actividad1)**, en esta segunda actividad incorporarás un **asistente virtual con IA** en tu **web personal con tienda online (WooCommerce)** creada en el **[Tema 1 (Servicios Web)](../../servicios-web/)**. Para ello instalarás el widget de chat en tu WordPress, conectarás su webhook con n8n a través del túnel de Pinggy, ampliarás tu `docker-compose.yml` con la base de datos vectorial **Qdrant**, cargarás una base de conocimiento (**RAG**) adaptada a tu perfil profesional y a los productos de tu tienda, y registrarás todas las conversaciones en **Baserow**.
+Partiendo del entorno de **n8n** y el túnel inverso de **Pinggy** que desplegaste y automatizaste en la **[Actividad 1](../actividad1)**, en esta segunda actividad incorporarás un **asistente virtual con IA** en tu **web personal con tienda online (WooCommerce)** creada en el **[Tema 1 (Servicios Web)](../../servicios-web/)**. Para ello crearás con ayuda del agente de IA un plugin de chat para tu WordPress, conectarás su webhook con n8n a través del túnel de Pinggy, ampliarás tu `docker-compose.yml` con la base de datos vectorial **Qdrant**, cargarás una base de conocimiento (**RAG**) adaptada a tu perfil profesional y a los productos de tu tienda, y registrarás todas las conversaciones en **Baserow**.
 
 ## 🎯 Objetivos
 
-1. Aplicar al comienzo de cada clase el protocolo de arranque para actualizar la URL temporal de **Pinggy** en `.env` antes de levantar `n8n` (y renovarla si se superan los 60 minutos de la sesión gratuita).
-2. Configurar el plugin de chat en tu **web con tienda en WordPress (Tema 1)**, analizar su arquitectura servidor a servidor y conectarlo con un webhook de prueba en n8n.
+1. Utilizar al comienzo de cada clase el script de arranque (`arrancar.sh`) creado en la Actividad 1 para renovar la URL temporal de **Pinggy** en `.env` y levantar los servicios (y ampliarlo para arrancar también `qdrant`).
+2. Desarrollar con ayuda del agente de IA, instalar y configurar un plugin de chat en tu **web con tienda en WordPress (Tema 1)**, analizar su arquitectura servidor a servidor y conectarlo con un webhook de prueba en n8n.
 3. Ampliar el archivo `docker-compose.yml` añadiendo el servicio vectorial **Qdrant** (`qdrant`) y su volumen persistente (`qdrant_data`).
 4. Diseñar e ingestar en **Qdrant** la base de conocimiento de tu web personal y tu tienda (perfil, catálogo de productos y precios, condiciones de entrega/pago y soporte) usando *embeddings* gratuitos (**Hugging Face** o **Gemini**).
 5. Construir un **Agente de IA (`AI Agent`)** personalizado para tu negocio, conectado a un modelo de conversación (**Groq**, **Gemini** u **OpenRouter**) y a la herramienta de búsqueda vectorial en **Qdrant**, con control de errores (`503`).
@@ -29,17 +29,17 @@ Partiendo del entorno de **n8n** y el túnel inverso de **Pinggy** que desplegas
 Tanto `n8n`, `qdrant` como el contenedor `tunnel` (Pinggy SSH por el puerto `443`) se ejecutan en tu red local de Docker, mientras que el proveedor del modelo de IA, los *embeddings* y Baserow son servicios externos. **WordPress envía la petición desde su servidor PHP**, no desde el navegador del visitante.
 
 ```mermaid
-flowchart LR
-    V["👤 Visitante<br/>(Navegador)"] -->|"1. Escribe en el widget"| WP["🌐 WordPress (PHP)<br/>Plugin Make Chatbot"]
+flowchart TD
+    V["👤 Visitante<br/>(Navegador)"] -->|"1. Escribe en el widget"| WP["🌐 WordPress (PHP)<br/>Plugin de Chatbot"]
     WP -->|"2. POST HTTPS"| PG["☁️ Pinggy<br/>(https://...free.pinggy.net)"]
-    subgraph Docker["🐳 Tu equipo en el aula (Red interna de Docker)"]
-        TUN["🔑 Contenedor tunnel<br/>(SSH -p 443 -R0:n8n:5678)"]
-        N8N["⚙️ n8n (:5678)<br/>Webhook + AI Agent"]
-        QD[("🧠 Qdrant (:6333)<br/>Base vectorial RAG")]
-        TUN -->|"3. Red Docker"| N8N
-        N8N <-->|"4. Consulta vectores"| QD
-    end
     PG -.->|"Túnel SSH inverso"| TUN
+
+    subgraph Docker["🐳 Tu equipo en el aula (Red interna de Docker)"]
+        direction TB
+        TUN["🔑 Contenedor tunnel<br/>(SSH -p 443 -R0:n8n:5678)"] -->|"3. Red Docker"| N8N["⚙️ n8n (:5678)<br/>Webhook + AI Agent"]
+        N8N <-->|"4. Consulta vectores"| QD[("🧠 Qdrant (:6333)<br/>Base vectorial RAG")]
+    end
+
     N8N <-->|"5. Razona y redacta"| LLM["🤖 Modelo IA + Embeddings<br/>(Groq / Gemini / HF)"]
     N8N -->|"6. Guarda historial"| BR[("📊 Baserow<br/>Tabla Conversaciones")]
 ```
@@ -48,45 +48,49 @@ flowchart LR
 
 ## 🔄 Protocolo de inicio al comenzar cada clase
 
-Como vimos en la Actividad 1, cada vez que se arranca el contenedor `tunnel`, **Pinggy** asigna un dominio temporal nuevo (`https://....free.pinggy.net`, con una duración de **60 minutos** en su modalidad gratuita). **Al empezar cada sesión en el aula**, sigue siempre este orden en `~/docker-n8n`:
+Como vimos en la **[Actividad 1](../actividad1)**, cada vez que se arranca el contenedor `tunnel`, **Pinggy** asigna un dominio temporal nuevo (`https://....free.pinggy.net`, con una duración de **60 minutos** en su modalidad gratuita). Como ya automatizamos el proceso con el script **`arrancar.sh`**, **al empezar cada sesión en el aula** (o cuando caduque el túnel tras 60 minutos) solo tienes que hacer lo siguiente:
 
-1. **Levanta primero el túnel de Pinggy y copia la URL del día:**
+1. **Ejecuta el script de arranque en `~/docker-n8n`:**
    ```bash
    cd ~/docker-n8n
-   docker compose up -d tunnel
-   sleep 4
-   docker compose logs --tail=30 tunnel
+   ./arrancar.sh
    ```
-   *(Recuerda que también podrías abrirlo manualmente en otra terminal con `ssh -p 443 -R0:127.0.0.1:5678 free.pinggy.io`, aunque el servicio `tunnel` de Compose lo automatiza en segundo plano).*
-2. **Actualiza el archivo `.env` con la nueva URL de Pinggy (terminada en `/`):**
-   ```bash
-   nano .env
-   ```
-   ```dotenv
-   N8N_WEBHOOK_URL=https://ejemplo-subdominio.free.pinggy.net/
-   ```
-3. **Arranca `n8n` (y `qdrant` cuando lo hayas añadido en el Paso 3):**
-   ```bash
-   docker compose up -d n8n
-   ```
-   *(Si `n8n` ya estaba encendido o has tenido que renovar el túnel tras 60 minutos con `docker compose restart tunnel`, aplica el nuevo `.env` ejecutando `docker compose up -d --no-deps n8n`).*
-4. **Cuando ya tengas el plugin configurado en WordPress:** recuerda actualizar también el nuevo dominio en **WordPress → Ajustes → Make Chatbot**.
+   El script se encarga automáticamente de recrear `tunnel`, esperar la nueva URL pública de Pinggy, actualizar `N8N_WEBHOOK_URL` en `.env` y levantar `n8n` *(y también `qdrant` en cuanto lo añadamos en el Paso 3)*.
+   *(Si todavía no tienes creado `arrancar.sh`, sigue antes el **Paso 7** de la **[Actividad 1](../actividad1)**).*
+2. **Cuando ya tengas el plugin configurado en WordPress:** copia la URL pública que te muestra el script al terminar y actualiza el dominio en los ajustes de tu plugin de chatbot en WordPress.
 
 ---
 
 ## 📌 Paso a paso
 
-### Paso 1: Preparar el chat en tu WordPress y entender el formato de los datos
+### Paso 1: Crear e instalar el plugin de chat en WordPress y entender el formato de los datos
 
-Antes de construir el flujo del asistente en n8n, vamos a instalar el widget de chat en la **web personal con tienda online (WooCommerce)** que desarrollaste en el **Tema 1** (puedes utilizar tu instalación de WordPress local o tu entorno de *staging*) y entender con precisión qué datos enviará y qué respuesta espera recibir.
+Antes de construir el flujo del asistente en n8n, vamos a crear e instalar un **plugin propio de chat** en la **web personal con tienda online (WooCommerce)** que desarrollaste en el **Tema 1** (puedes utilizar tu instalación de WordPress local o tu entorno de *staging*) y entender con precisión qué datos enviará y qué respuesta espera recibir.
 
-#### A. Instalar y configurar el plugin en WordPress
+#### A. Crear tu propio plugin de chat con el agente de IA e instalarlo en WordPress
 
-Asegúrate de tener tu sitio WordPress con tienda del Tema 1 activo y de contar con permisos de administrador para subir plugins.
+En lugar de instalar un plugin ya hecho, vas a pedirle al **agente de IA que utilizamos en clase** que cree un plugin de WordPress a medida para tu web con tienda. **Tú mismo deberás redactar el *prompt*** explicándole con tus palabras para qué lo quieres y cómo debe funcionar, sin necesidad de entrar en detalles de programación.
 
-1. [Descarga MKT con IA - Make Chatbot v3](./plugin_wp_mktia-make-chatbot-v3.zip).
-2. En el panel de administración de tu WordPress, accede a **Plugins → Añadir nuevo plugin → Subir plugin**, selecciona el archivo ZIP descargado, pulsa **Instalar ahora** y luego **Activar**.
-3. Accede a **Ajustes → Make Chatbot** y personaliza el título, mensaje de bienvenida y colores del chatbot para que encajen con el diseño de tu web y tu tienda. Inserta el *shortcode* `[make_chatbot]` en una página de tu web (o activa su visualización en la tienda/portada). En el campo **Webhook** añadiremos la dirección de n8n en el siguiente paso.
+Para poder describir bien lo que necesitas, ten claro **para qué sirve este plugin y qué debe hacer**:
+
+* **Objetivo del plugin:** añadir un **asistente de chat flotante** a tu web y tienda de WordPress que envíe las preguntas de los visitantes a tu flujo de **n8n** y muestre sus respuestas en la ventana del chat.
+* **Privacidad de la conexión:** el navegador del visitante no debe hablar directamente con n8n ni poder ver la dirección del webhook; es el propio WordPress quien recibe el mensaje, se lo reenvía a n8n y devuelve la respuesta al chat.
+* **Qué debe poder hacer el visitante:**
+  * Abrir y cerrar el chat desde un botón flotante adaptado tanto a ordenador como a móvil.
+  * Ver un mensaje de bienvenida, escribir sus dudas, ver un indicador mientras el asistente está respondiendo y recibir un mensaje amable si ocurre algún fallo.
+  * Mantener su conversación identificada durante la visita y poder pulsar un botón para empezar una **nueva conversación** cuando quiera.
+* **Qué debes poder configurar tú desde WordPress:**
+  * Un apartado de ajustes donde pegar y cambiar fácilmente la **URL del webhook de n8n** (recuerda que la dirección temporal de Pinggy cambia en cada sesión).
+  * Opciones básicas para adaptar el chat al estilo de tu web (nombre del asistente, mensaje de bienvenida, colores, posición en pantalla) y elegir si aparece en toda la web o solo en las páginas donde insertes un *shortcode*.
+* **Protección básica y compatibilidad con n8n:**
+  * Evitar envíos vacíos, demasiado largos o abusivos por parte de un mismo visitante, y dar margen suficiente para que la IA tarde unos segundos en contestar.
+  * Intercambiar los datos con n8n usando el formato que se explica en el apartado **B** (enviar `message`, `thread_id` y `page_url` en JSON y leer la respuesta de n8n como texto plano).
+
+**Pasos a seguir:**
+
+1. Crea una carpeta nueva para el proyecto del plugin (por ejemplo `~/plugin-chatbot-wp`), lee el apartado **B** para tener claro qué datos espera n8n y **redacta tu propio *prompt* para el agente de IA** explicándole de qué trata tu web y qué plugin necesitas. Pídele que te lo prepare listo para subir a WordPress en un archivo `.zip`.
+2. En el panel de administración de tu WordPress (con tu web y tienda del Tema 1 activa), entra en **Plugins → Añadir nuevo plugin → Subir plugin**, selecciona el archivo `.zip` generado, pulsa **Instalar ahora** y luego **Activar**.
+3. Accede a los ajustes de tu nuevo plugin, personaliza su aspecto para que encaje con el diseño de tu web y comprueba que el chat flotante se muestra correctamente. Deja el campo del webhook preparado para pegar la dirección de n8n en el siguiente paso.
 
 #### B. Comprender el intercambio de datos entre WordPress y n8n
 
@@ -94,21 +98,18 @@ Asegúrate de tener tu sitio WordPress con tienda del Tema 1 activo y de contar 
 
 El chat no se comunica directamente desde el navegador del visitante hasta n8n. Sigue una arquitectura **servidor a servidor**:
 
-1. **El navegador del visitante** envía el mensaje a la API REST interna de WordPress (`/wp-json/mktia-chatbot/v1/message`).
+1. **El navegador del visitante** envía el mensaje a la API REST interna de WordPress (por ejemplo, `/wp-json/mi-chatbot/v1/message`).
 2. **El servidor PHP de WordPress** procesa la petición y realiza una llamada HTTP `POST` hacia la URL del Webhook de n8n enviando el siguiente objeto **JSON**:
    ```json
    {
      "message": "¿Qué productos vendes en tu tienda y cómo se descargan?",
      "thread_id": "identificador-de-conversacion",
-     "page_url": "https://tu-wordpress.example/tienda/",
-     "lead_name": "",
-     "lead_email": ""
+     "page_url": "https://tu-wordpress.example/tienda/"
    }
    ```
    * **`message`:** La pregunta escrita por el visitante o cliente potencial de tu tienda.
    * **`thread_id`:** Un identificador único de sesión generado por el navegador para agrupar los mensajes de la misma conversación.
    * **`page_url`:** La URL de la página de tu web o tienda desde la que el visitante está escribiendo.
-   * *(Los campos `lead_name` y `lead_email` llegan vacíos y no se utilizan).*
 3. **Respuesta esperada por WordPress:** n8n debe responder con **código HTTP `200 OK`** y el contenido en **texto plano** (`text/plain; charset=utf-8`).
 4. **Presentación en el chat:** El servidor de WordPress recibe ese texto plano, lo empaqueta en un JSON interno con el campo `reply` y se lo entrega al widget para que lo muestre en pantalla.
    > ⚠️ **Atención:** Si n8n devolviera un JSON como `{"respuesta": "Hola"}`, WordPress no lo interpretará como objeto: mostrará ese JSON crudo como texto literal dentro de la burbuja del chat.
@@ -161,8 +162,8 @@ Ha llegado el momento de conectar tu WordPress con n8n por primera vez:
    https://ejemplo-subdominio.free.pinggy.net/webhook-test/chat-asistente
    ```
    *(Si mostrara `localhost`, revisa que hayas seguido el **Protocolo de inicio de clase** del principio de la página).*
-2. Entra en el panel de tu WordPress y ve a **Ajustes → Make Chatbot**.
-3. Pega la Test URL en el campo **Webhook de Make** y pulsa **Guardar cambios**.
+2. Entra en el panel de tu WordPress y ve a los ajustes de tu plugin de chatbot.
+3. Pega la Test URL en el campo del **Webhook** y pulsa **Guardar cambios**.
 4. En n8n, entra en el nodo Webhook y pulsa **Listen for test event**.
 5. Vuelve al navegador, abre la página de tu WordPress donde pusiste el chat, haz clic en la burbuja del widget y escribe una pregunta (por ejemplo: *"Hola, ¿estás conectado?"*).
 6. Observa el resultado:
@@ -282,7 +283,11 @@ Para que nuestro **AI Agent** pueda consultar una base de conocimiento vectorial
    docker compose up -d qdrant
    docker compose ps
    ```
-4. Abre **`http://localhost:6333/dashboard`** en tu navegador y comprueba que carga el panel web de Qdrant.
+4. **Actualiza tu script `arrancar.sh`** para que en futuras sesiones levante también `qdrant` junto a `n8n`: abre `nano arrancar.sh` y cambia la línea `docker compose up -d n8n` por:
+   ```bash
+   docker compose up -d n8n qdrant
+   ```
+5. Abre **`http://localhost:6333/dashboard`** en tu navegador y comprueba que carga el panel web de Qdrant.
 
 #### C. Poblar la base de conocimiento de tu web y tienda en Qdrant (flujo de ingesta)
 
@@ -453,7 +458,7 @@ Para comprobarlo, anota el Table ID correcto, sustituye temporalmente su valor p
    ```text
    https://ejemplo-subdominio.free.pinggy.net/webhook/chat-asistente
    ```
-3. En tu WordPress, ve a **Ajustes → Make Chatbot**, sustituye la Test URL por la **Production URL** y guarda cambios.
+3. En tu WordPress, ve a los ajustes de tu plugin de chatbot, sustituye la Test URL por la **Production URL** y guarda cambios.
 4. Abre la página de tu web o tienda en WordPress y envía **dos mensajes consecutivos sin necesidad de pulsar Listen for test event**. Ambos deben recibir respuesta del agente sobre tu tienda y registrarse en Baserow.
 5. Inspecciona las ejecuciones en el apartado **Executions** del menú lateral de n8n; verás cómo en cada ejecución el agente invoca la herramienta de Qdrant (`conocimiento_tienda`) y el modelo de chat.
 
@@ -470,25 +475,15 @@ Anota las filas actuales de Baserow, guarda el flujo y simula el reinicio comple
 docker compose down
 ```
 
-Ahora levanta el entorno siguiendo el **orden de inicio de cada clase**:
+Ahora levanta de nuevo el entorno con tu script de arranque (ya actualizado con `n8n qdrant` en el Paso 3):
 
-1. **Primero el túnel de Pinggy:**
+1. **Ejecuta `./arrancar.sh`** para levantar `tunnel`, actualizar `.env` con el nuevo dominio de Pinggy y arrancar `n8n` y `qdrant`:
    ```bash
-   docker compose up -d tunnel
-   sleep 4
-   docker compose logs --tail=30 tunnel
+   ./arrancar.sh
    ```
-2. **Segundo actualiza `.env`** con el nuevo dominio asignado por Pinggy:
-   ```bash
-   nano .env
-   ```
-3. **Tercero arranca `n8n` y `qdrant`:**
-   ```bash
-   docker compose up -d n8n qdrant
-   ```
-4. Entra en `http://localhost:5678` y en `http://localhost:6333/dashboard`: comprueba que tu cuenta de n8n, el flujo publicado, las credenciales y la colección `mi_web_tienda` de **Qdrant** se conservan intactos sin necesidad de volver a ejecutar la rama de ingesta.
-5. Copia la nueva **Production URL** y actualízala en **WordPress → Ajustes → Make Chatbot**.
-6. Envía otro mensaje desde el chat de tu tienda en WordPress: deben aparecer la respuesta del agente (consultando los vectores que persistieron en `qdrant_data`) y una nueva fila en Baserow.
+2. Entra en `http://localhost:5678` y en `http://localhost:6333/dashboard`: comprueba que tu cuenta de n8n, el flujo publicado, las credenciales y la colección `mi_web_tienda` de **Qdrant** se conservan intactos sin necesidad de volver a ejecutar la rama de ingesta.
+3. Copia la nueva **Production URL** y actualízala en los ajustes de tu plugin de chatbot en WordPress.
+4. Envía otro mensaje desde el chat de tu tienda en WordPress: deben aparecer la respuesta del agente (consultando los vectores que persistieron en `qdrant_data`) y una nueva fila en Baserow.
 
 > **No añadas `-v` a `docker compose down`: elimina los volúmenes `n8n_data` y `qdrant_data`.**
 {: .alert-warning}
@@ -509,7 +504,7 @@ Si también terminas el trabajo local, ejecuta `docker compose down` sin `-v`. G
 
 | Síntoma | Qué comprobar |
 | :--- | :--- |
-| Error de connection refused / timeout en WordPress al empezar otra clase o tras 60 min | Recuerda que la URL gratuita de Pinggy dura 60 minutos y cambia en cada sesión: reinicia o levanta `tunnel`, copia la nueva URL de `docker compose logs --tail=30 tunnel` en `.env`, aplica `docker compose up -d --no-deps n8n` y actualiza la URL del webhook en **WordPress → Ajustes → Make Chatbot**. |
+| Error de connection refused / timeout en WordPress al empezar otra clase o tras 60 min | Recuerda que la URL gratuita de Pinggy dura 60 minutos y cambia en cada sesión: ejecuta `./arrancar.sh` en `~/docker-n8n` para renovar el túnel y actualizar `.env` y `n8n`, y después actualiza la URL del webhook en los ajustes de tu plugin de chatbot en WordPress. |
 | Error de conexión con Qdrant en n8n | La credencial en n8n debe usar `http://qdrant:6333` (red interna de Docker), nunca `http://localhost:6333`. |
 | Error de dimensión de vectores en Qdrant | Debes conectar exactamente el mismo modelo de **Embeddings** tanto al insertar documentos como al buscarlos desde el agente. Si cambiaste de proveedor (p. ej. de Gemini a Hugging Face), borra la colección en `http://localhost:6333/dashboard` y vuelve a ejecutar la rama de ingesta. |
 | Webhook con `404` | Revisa `POST`, ruta y dominio. Con `/webhook-test/`, activa escucha; con `/webhook/`, publica el flujo. |
@@ -569,6 +564,5 @@ Muestra al profesor el chat funcionando en producción sobre tu web con tienda d
 * [Groq: modelos](https://console.groq.com/docs/models).
 * [Gemini: modelos](https://ai.google.dev/gemini-api/docs/models) y [cuotas y precios](https://ai.google.dev/gemini-api/docs/pricing).
 * [OpenRouter: modelos gratuitos](https://openrouter.ai/models?max_price=0).
-* [Plugin de WordPress utilizado](./plugin_wp_mktia-make-chatbot-v3.zip).
 
 {% endraw %}
