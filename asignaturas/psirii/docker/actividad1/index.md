@@ -729,9 +729,8 @@ Una ventaja muy potente de **n8n** es que todos sus flujos son archivos **JSON**
 ### 2. Ampliar la web Pokédex y finalizar la sesión
 
 1. Con tu nuevo workflow probado y activo en n8n, pide a la IA en tu proyecto `~/pokedex-n8n` que amplíe `index.html`, `styles.css` y `app.js` añadiendo la interfaz de tu nueva funcionalidad y conectándola mediante `fetch()` al nuevo Webhook (recuerda incluir siempre las cabeceras `"Content-Type": "application/json"` y `"X-Pinggy-No-Screen": "true"`).
-2. Comprueba que en tu Pokédex funcionan tanto el buscador original como la nueva funcionalidad que has creado, y toma capturas tanto de la web ampliada como del nuevo flujo de n8n en verde.
-3. **Descarga también el `.json` de tu nuevo workflow** desde n8n (**`⋯` → Download**) para incluirlo en la entrega.
-4. Al terminar las pruebas y mostrárselo al profesor, detén el servidor web con `Ctrl + C` y apaga los contenedores sin `-v` para no perder tus datos de `n8n_data`:
+2. Comprueba que en tu Pokédex funcionan tanto el buscador original como la nueva funcionalidad que has creado, graba la demostración en vídeo con **SimpleScreenRecorder** y toma una captura de los workflows con los nodos en verde desde la pestaña **Executions** (*Ejecuciones*).
+3. Al terminar las pruebas y mostrárselo al profesor, detén el servidor web con `Ctrl + C` y apaga los contenedores sin `-v` para no perder tus datos de `n8n_data`:
    ```bash
    cd ~/docker-n8n
    docker compose down
@@ -758,20 +757,11 @@ Una ventaja muy potente de **n8n** es que todos sus flujos son archivos **JSON**
 Entrega en **Aules**:
 
 1. **Informe PDF** con:
-   * Captura del flujo **Primera práctica** en n8n con los 4 nodos en verde y de la prueba en local con `curl` junto con la imagen descargada del Pokémon.
-   * Captura de la prueba manual del túnel de Pinggy en la terminal (`ssh -p 443 -R0:127.0.0.1:5678 -t free.pinggy.io x:passpreflight`) mostrando las URLs asignadas.
-   * `docker compose ps` mostrando los servicios `n8n` y `tunnel` en ejecución.
-   * Captura de los logs del contenedor `tunnel` (`docker compose logs tunnel`) mostrando la URL temporal de Pinggy, del archivo `.env` configurado y de la prueba con `curl` a través de la URL pública HTTPS de Pinggy.
-   * Capturas de la aplicación web **Pokédex base** funcionando: al menos un Pokémon encontrado (con su imagen y datos) y un caso de error al buscar un Pokémon inexistente.
-   * **Ampliación propia (Parte 4):** breve explicación de la nueva funcionalidad implementada, captura del **nuevo workflow en n8n** ejecutado en verde y capturas de la **aplicación web Pokédex ampliada** utilizando ese nuevo webhook.
-   * Respuestas breves:
-     1. ¿Qué es un túnel inverso, por qué utilizamos el puerto `443` con Pinggy en la red del aula y qué significa `-R0`?
-     2. ¿Por qué en el comando manual usamos `-R0:127.0.0.1:5678` mientras que en el servicio `tunnel` de Docker Compose usamos `-R0:n8n:5678`?
-     3. ¿Por qué en cada clase debemos levantar primero `tunnel`, editar `.env` y después levantar `n8n`?
-2. **Archivos entregables:**
-   * Tu archivo **`docker-compose.yml`** utilizado.
-   * Los **dos flujos exportados en formato `.json` desde n8n**: el flujo guiado (**Primera práctica**) y el **nuevo workflow de ampliación** creado en la Parte 4.
-   * Un archivo **`.zip` con tu aplicación web Pokédex ampliada** (`index.html`, `styles.css` y `app.js`).
+   * **Capturas de la web de n8n funcionando en la URL pública de Pinggy** (donde se aprecie la dirección `https://...free.pinggy.net` en la barra del navegador).
+   * **Capturas de los archivos de la carpeta de Docker** (`~/docker-n8n`: los archivos que contiene, como `docker-compose.yml`, `.env` y `arrancar.sh`).
+   * **Captura del workflow de n8n con los nodos en verde** desde la pestaña **Executions** (*Ejecuciones*).
+   * **Explicación de la nueva funcionalidad de la PokéAPI** implementada en la Parte 4 (qué hace, qué nuevo webhook has creado y cómo se usa desde tu web).
+2. **Vídeo grabado con SimpleScreenRecorder (LliureX)** en el que se aprecie la aplicación web de la **PokéAPI (Pokédex) funcionando** (mostrando la búsqueda de Pokémon y la nueva funcionalidad añadida).
 
 ## 📊 Rúbrica de evaluación (máx. 10 puntos)
 
@@ -781,8 +771,8 @@ Entrega en **Aules**:
 | **Flujo guiado Webhook + PokéAPI en n8n** (máx. 2 puntos) | **0 puntos:** No construye el flujo o no responde al webhook. | **0,5 puntos:** El webhook responde, pero no consulta la API externa o no transforma los datos. | **1 punto:** Consulta la PokéAPI y transforma los campos en local, pero no descarga la imagen o no lo prueba luego por el túnel. | **2 puntos:** Construye los 4 nodos, transforma las unidades con expresiones, descarga la imagen y prueba el flujo con `curl` en local y a través de Pinggy. |
 | **Túnel de Pinggy (manual y Docker) y protocolo `.env`** (máx. 2 puntos) | **0 puntos:** No consigue levantar el túnel de Pinggy o no obtiene URL pública. | **0,5 puntos:** Abre el túnel manual, pero no lo integra en Compose o n8n sigue mostrando `localhost` en sus webhooks. | **1 punto:** Prueba el túnel manual, integra `tunnel` en Compose y configura `.env`, pero olvida opciones (`-t` / `x:passpreflight`) o el orden de arranque. | **2 puntos:** Realiza la prueba manual por SSH, automatiza el servicio `tunnel` con `-t` y `x:passpreflight`, aplica el orden `1.º tunnel → 2.º .env → 3.º n8n` y explica el túnel inverso. |
 | **Aplicación web Pokédex base conectada a n8n** (máx. 2 puntos) | **0 puntos:** No crea la aplicación web o no realiza peticiones al Webhook de n8n. | **0,5 puntos:** Crea una web básica, pero falla por CORS/Pinggy o no muestra la imagen y los datos correctamente. | **1 punto:** Conecta la web Pokédex al Webhook de n8n y muestra ficha e imagen en local, pero no gestiona errores o no funciona vía Pinggy. | **2 puntos:** Implementa la Pokédex conectada al Webhook con CORS y cabecera `X-Pinggy-No-Screen`, muestra ficha e imagen, gestiona errores y funciona en local y vía Pinggy. |
-| **Reto de ampliación: nuevo workflow en n8n y nueva función en la Pokédex** (máx. 2 puntos) | **0 puntos:** No realiza la ampliación ni crea un segundo workflow en n8n. | **0,5 puntos:** Crea un segundo workflow o modifica la interfaz de la web, pero ambos no se comunican o la función falla. | **1 punto:** Crea el nuevo workflow en n8n y amplía la Pokédex consumiendo el nuevo webhook, pero con integración visual básica o sin exportar el `.json`. | **2 puntos:** Diseña y activa un nuevo workflow funcional en n8n, amplía la Pokédex integrando la nueva funcionalidad con buen diseño y manejo de errores, y entrega ambos flujos `.json` y evidencias. |
-| **Entrega en plazo y documentación** (máx. 0 puntos) | **-2 puntos:** No entrega la actividad o realiza una entrega vacía o con retraso injustificado. | **-1,5 puntos:** Entrega con retraso importante o faltan evidencias clave. | **-1 punto:** Entrega con un pequeño retraso o documentación incompleta. | **0 puntos:** Entrega puntual en Aules con informe completo, `docker-compose.yml`, los dos flujos `.json` y `.zip` de la web ampliada. |
+| **Reto de ampliación: nuevo workflow en n8n y nueva función en la Pokédex** (máx. 2 puntos) | **0 puntos:** No realiza la ampliación ni crea un segundo workflow en n8n. | **0,5 puntos:** Crea un segundo workflow o modifica la interfaz de la web, pero ambos no se comunican o la función falla. | **1 punto:** Crea el nuevo workflow en n8n y amplía la Pokédex consumiendo el nuevo webhook, pero con integración visual básica o explicación incompleta. | **2 puntos:** Diseña y activa un nuevo workflow funcional en n8n, amplía la Pokédex integrando la nueva funcionalidad con buen diseño y manejo de errores, y la explica y demuestra claramente. |
+| **Entrega en plazo y documentación** (máx. 0 puntos) | **-2 puntos:** No entrega la actividad o realiza una entrega vacía o con retraso injustificado. | **-1,5 puntos:** Entrega con retraso importante o faltan evidencias clave. | **-1 punto:** Entrega con un pequeño retraso o documentación incompleta. | **0 puntos:** Entrega puntual en Aules con el informe PDF (capturas de n8n en Pinggy, archivos Docker, ejecuciones en verde y explicación de la ampliación) y el vídeo con SimpleScreenRecorder. |
 
 > La entrega dentro del plazo no resta puntuación. Las entregas con retraso supondrán una penalización de hasta 2 puntos sobre la calificación.
 {: .alert-error}
