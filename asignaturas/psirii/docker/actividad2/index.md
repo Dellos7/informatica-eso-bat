@@ -30,7 +30,7 @@ Tanto `n8n`, `qdrant` como el contenedor `tunnel` (Pinggy SSH por el puerto `443
 
 ```mermaid
 flowchart TD
-    V["👤 Visitante<br/>(Navegador)"] -->|"1. Escribe en el widget"| WP["🌐 WordPress (PHP)<br/>Plugin de Chatbot"]
+    V["👤 Visitante<br/>(Navegador)"] -->|"1. Escribe en el widget"| WP["🌐 WordPress (PHP)<br/>Plugin Chatbot RAG"]
     WP -->|"2. POST HTTPS"| PG["☁️ Pinggy<br/>(https://...free.pinggy.net)"]
     PG -.->|"Túnel SSH inverso"| TUN
 
@@ -63,42 +63,17 @@ Como vimos en la **[Actividad 1](../actividad1)**, cada vez que se arranca el co
 
 ## 📌 Paso a paso
 
-### Paso 1: Crear e instalar el plugin de chat en WordPress y entender el formato de los datos
+### Paso 1: Entender el intercambio de datos y crear el plugin de chat en WordPress
 
-Antes de construir el flujo del asistente en n8n, vamos a crear e instalar un **plugin propio de chat** en la **web personal con tienda online (WooCommerce)** que desarrollaste en el **Tema 1** (puedes utilizar tu instalación de WordPress local o tu entorno de *staging*) y entender con precisión qué datos enviará y qué respuesta espera recibir.
+Antes de construir el flujo del asistente en n8n, vamos a entender con precisión **cómo se comunican WordPress y n8n** y, con esa idea clara, crearemos e instalaremos un **plugin propio de chat** en la **web personal con tienda online (WooCommerce)** que desarrollaste en el **Tema 1** (puedes utilizar tu instalación de WordPress local o tu entorno de *staging*).
 
-#### A. Crear tu propio plugin de chat con el agente de IA e instalarlo en WordPress
-
-En lugar de instalar un plugin ya hecho, vas a pedirle al **agente de IA que utilizamos en clase** que cree un plugin de WordPress a medida para tu web con tienda. **Tú mismo deberás redactar el *prompt*** explicándole con tus palabras para qué lo quieres y cómo debe funcionar, sin necesidad de entrar en detalles de programación.
-
-Para poder describir bien lo que necesitas, ten claro **para qué sirve este plugin y qué debe hacer**:
-
-* **Objetivo del plugin:** añadir un **asistente de chat flotante** a tu web y tienda de WordPress que envíe las preguntas de los visitantes a tu flujo de **n8n** y muestre sus respuestas en la ventana del chat.
-* **Privacidad de la conexión:** el navegador del visitante no debe hablar directamente con n8n ni poder ver la dirección del webhook; es el propio WordPress quien recibe el mensaje, se lo reenvía a n8n y devuelve la respuesta al chat.
-* **Qué debe poder hacer el visitante:**
-  * Abrir y cerrar el chat desde un botón flotante adaptado tanto a ordenador como a móvil.
-  * Ver un mensaje de bienvenida, escribir sus dudas, ver un indicador mientras el asistente está respondiendo y recibir un mensaje amable si ocurre algún fallo.
-  * Mantener su conversación identificada durante la visita y poder pulsar un botón para empezar una **nueva conversación** cuando quiera.
-* **Qué debes poder configurar tú desde WordPress:**
-  * Un apartado de ajustes donde pegar y cambiar fácilmente la **URL del webhook de n8n** (recuerda que la dirección temporal de Pinggy cambia en cada sesión).
-  * Opciones básicas para adaptar el chat al estilo de tu web (nombre del asistente, mensaje de bienvenida, colores, posición en pantalla) y elegir si aparece en toda la web o solo en las páginas donde insertes un *shortcode*.
-* **Protección básica y compatibilidad con n8n:**
-  * Evitar envíos vacíos, demasiado largos o abusivos por parte de un mismo visitante, y dar margen suficiente para que la IA tarde unos segundos en contestar.
-  * Intercambiar los datos con n8n usando el formato que se explica en el apartado **B** (enviar `message`, `thread_id` y `page_url` en JSON y leer la respuesta de n8n como texto plano).
-
-**Pasos a seguir:**
-
-1. Crea una carpeta nueva para el proyecto del plugin (por ejemplo `~/plugin-chatbot-wp`), lee el apartado **B** para tener claro qué datos espera n8n y **redacta tu propio *prompt* para el agente de IA** explicándole de qué trata tu web y qué plugin necesitas. Pídele que te lo prepare listo para subir a WordPress en un archivo `.zip`.
-2. En el panel de administración de tu WordPress (con tu web y tienda del Tema 1 activa), entra en **Plugins → Añadir nuevo plugin → Subir plugin**, selecciona el archivo `.zip` generado, pulsa **Instalar ahora** y luego **Activar**.
-3. Accede a los ajustes de tu nuevo plugin, personaliza su aspecto para que encaje con el diseño de tu web y comprueba que el chat flotante se muestra correctamente. Deja el campo del webhook preparado para pegar la dirección de n8n en el siguiente paso.
-
-#### B. Comprender el intercambio de datos entre WordPress y n8n
+#### A. Comprender cómo funciona el intercambio de datos entre WordPress y n8n
 
 [![Intercambio del plugin: WordPress envía JSON a n8n; n8n devuelve texto plano y WordPress lo convierte en reply para el widget.](./imagenes/09-wordpress.svg)](./imagenes/09-wordpress.svg)
 
-El chat no se comunica directamente desde el navegador del visitante hasta n8n. Sigue una arquitectura **servidor a servidor**:
+El chat no debe comunicarse directamente desde el navegador del visitante hasta n8n, sino seguir una arquitectura **servidor a servidor**:
 
-1. **El navegador del visitante** envía el mensaje a la API REST interna de WordPress (por ejemplo, `/wp-json/mi-chatbot/v1/message`).
+1. **El navegador del visitante** envía el mensaje a una ruta interna de tu propio WordPress (su API REST, por ejemplo `/wp-json/mi-chatbot/v1/message`).
 2. **El servidor PHP de WordPress** procesa la petición y realiza una llamada HTTP `POST` hacia la URL del Webhook de n8n enviando el siguiente objeto **JSON**:
    ```json
    {
@@ -110,15 +85,38 @@ El chat no se comunica directamente desde el navegador del visitante hasta n8n. 
    * **`message`:** La pregunta escrita por el visitante o cliente potencial de tu tienda.
    * **`thread_id`:** Un identificador único de sesión generado por el navegador para agrupar los mensajes de la misma conversación.
    * **`page_url`:** La URL de la página de tu web o tienda desde la que el visitante está escribiendo.
-3. **Respuesta esperada por WordPress:** n8n debe responder con **código HTTP `200 OK`** y el contenido en **texto plano** (`text/plain; charset=utf-8`).
-4. **Presentación en el chat:** El servidor de WordPress recibe ese texto plano, lo empaqueta en un JSON interno con el campo `reply` y se lo entrega al widget para que lo muestre en pantalla.
+3. **Respuesta esperada por WordPress:** n8n responderá con **código HTTP `200 OK`** y el contenido en **texto plano** (`text/plain; charset=utf-8`).
+4. **Presentación en el chat:** El servidor de WordPress recibe ese texto plano, lo empaqueta en un JSON interno con el campo `reply` y se lo entrega al widget del navegador para que lo muestre en pantalla.
    > ⚠️ **Atención:** Si n8n devolviera un JSON como `{"respuesta": "Hola"}`, WordPress no lo interpretará como objeto: mostrará ese JSON crudo como texto literal dentro de la burbuja del chat.
 
-Esta comunicación servidor a servidor tiene grandes ventajas: **no requiere configurar CORS en n8n** para el navegador del usuario y oculta la dirección directa del webhook a los visitantes. El plugin admite hasta **2.000 caracteres**, aplica un límite de **20 consultas por IP** (el contador caduca tras cinco minutos) y espera hasta **55 segundos** la respuesta del webhook.
+Esta comunicación servidor a servidor tiene grandes ventajas: **no requiere configurar CORS en n8n** para el navegador del usuario y oculta la dirección directa del webhook a los visitantes. Además, conviene que el plugin incluya protecciones básicas: limitar la longitud de los mensajes (por ejemplo, a **2.000 caracteres**), aplicar un límite de consultas por IP para evitar abusos (p. ej., **20 cada cinco minutos**) y dar margen suficiente de espera (unos **55 segundos**) para que la IA elabore su respuesta.
 
-El plugin no añade una cabecera secreta al webhook. Por eso esta configuración sin autenticación se limita a esta práctica. Para un servicio público en producción habría que adaptar PHP para enviar un token secreto, configurar **Header Auth** en n8n y revisar la seguridad perimetral.
+En esta práctica no añadiremos una cabecera secreta de autenticación al webhook para mantener el ejemplo sencillo. En un servicio público real en producción habría que enviar un token secreto desde PHP, configurar **Header Auth** en n8n y revisar la seguridad perimetral.
 
-**Comprobación:** Tienes el plugin instalado en tu WordPress con tienda, el widget visible y comprendes el contrato de datos (qué envía WordPress en `message`, `thread_id` y `page_url`, y que espera recibir texto plano con código 200).
+#### B. Pensar cómo pedir el plugin al agente de IA e instalarlo en WordPress
+
+Ahora que tienes claro cómo debe comunicarse WordPress con n8n, vas a pedirle al **agente de IA que utilizamos en clase** que cree un plugin de WordPress a medida para tu web con tienda. **Tú mismo deberás construir el *prompt*** explicándole con tus palabras para qué lo quieres y cómo debe comportarse, sin necesidad de entrar en detalles de programación.
+
+Antes de escribirle a la IA, repasa **qué debe hacer el plugin** para no dejarte nada importante fuera de tu petición:
+
+* **Para qué sirve:** añadir un **asistente de chat flotante** a tu web y tienda de WordPress que conecte con tu flujo de **n8n** siguiendo la arquitectura servidor a servidor y el formato de datos del apartado **A** (`message`, `thread_id` y `page_url` en JSON; respuesta de n8n en texto plano, sin exponer la URL del webhook en el navegador).
+* **Qué debe poder hacer el visitante:**
+  * Abrir y cerrar el chat desde un botón flotante adaptado tanto a ordenador como a móvil.
+  * Ver un mensaje de bienvenida, escribir sus dudas, ver un indicador mientras el asistente está respondiendo y recibir un mensaje amable si ocurre algún fallo.
+  * Mantener su conversación identificada durante la visita y poder pulsar un botón para empezar una **nueva conversación** cuando quiera.
+* **Qué debes poder configurar tú desde WordPress:**
+  * Un apartado de ajustes donde pegar y cambiar fácilmente la **URL del webhook de n8n** (recuerda que la dirección temporal de Pinggy cambia en cada sesión).
+  * Opciones básicas para adaptar el chat al estilo de tu web (nombre del asistente, mensaje de bienvenida, colores, posición en pantalla) y elegir si aparece en toda la web o solo en las páginas donde insertes un *shortcode*.
+* **Protección y tiempos de espera:**
+  * Evitar envíos vacíos, demasiado largos o abusivos por parte de un mismo visitante, y dar margen suficiente para que la IA tarde unos segundos en contestar.
+
+**Pasos a seguir:**
+
+1. Crea una carpeta nueva para el proyecto del plugin (por ejemplo `~/plugin-chatbot-wp`) y **redacta tu propio *prompt* para el agente de IA** explicándole de qué trata tu web, cómo se comunica con n8n y qué funciones necesitas. Pídele que te lo prepare listo para subir a WordPress en un archivo `.zip`.
+2. En el panel de administración de tu WordPress (con tu web y tienda del Tema 1 activa), entra en **Plugins → Añadir nuevo plugin → Subir plugin**, selecciona el archivo `.zip` generado, pulsa **Instalar ahora** y luego **Activar**.
+3. Accede a los ajustes de tu nuevo plugin, personaliza su aspecto para que encaje con el diseño de tu web y comprueba que el chat flotante se muestra correctamente. Deja el campo del webhook preparado para pegar la dirección de n8n en el siguiente paso.
+
+**Comprobación:** Comprendes el contrato de datos entre WordPress y n8n (`message`, `thread_id`, `page_url` → texto plano con código `200`), tienes tu plugin instalado y activado en WordPress y el widget de chat es visible en tu web con tienda.
 
 ### Paso 2: Crear el flujo en n8n con respuesta fija y conectarlo con WordPress
 
