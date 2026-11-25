@@ -293,7 +293,7 @@ Ahora que la colección `mi_web_tienda` ya está poblada en Qdrant, vamos a cons
 
 1. Entra en [Groq Cloud](https://console.groq.com/) y crea una cuenta o inicia sesión.
 2. Abre **API Keys → Create API Key**, nómbrala `n8n-actividad` y guárdala en Bitwarden como `API Key - Groq Cloud`.
-3. Selecciona un modelo con soporte de herramientas (*tool calling*) como **`llama-3.3-70b-versatile`** o **`openai/gpt-oss-20b`** (consulta los [modelos disponibles](https://console.groq.com/docs/models)). Es un modelo servido por Groq: no necesitas una clave de OpenAI.
+3. Selecciona un modelo con soporte de herramientas (*tool calling*) como **`openai/gpt-oss-120b`** *(recomendado)* o **`openai/gpt-oss-20b`** (consulta los [modelos disponibles](https://console.groq.com/docs/models)). Son modelos servidos por Groq: no necesitas una clave de OpenAI.
 
 **Opción C (alternativa): OpenRouter**
 
@@ -338,7 +338,7 @@ En la parte inferior del mismo lienzo de **Chat WordPress**, construimos ahora l
    | Proveedor | Nodo | Modelo |
    | :--- | :--- | :--- |
    | Gemini | **Google Gemini Chat Model** | `gemini-2.5-flash` o `gemini-2.5-flash-lite` |
-   | Groq | **Groq Chat Model** | `llama-3.3-70b-versatile` o `openai/gpt-oss-20b` |
+   | Groq | **Groq Chat Model** | `openai/gpt-oss-120b` o `openai/gpt-oss-20b` |
    | OpenRouter | **OpenRouter Chat Model** | Identificador completo del modelo `:free` elegido |
 
    Usa los nodos nativos para no mezclar claves y direcciones de proveedores. Las claves se guardan en **Credentials**, nunca en el prompt ni en el navegador de WordPress.
