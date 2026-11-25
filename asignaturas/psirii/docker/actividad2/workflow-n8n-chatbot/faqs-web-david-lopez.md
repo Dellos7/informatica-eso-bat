@@ -1,7 +1,7 @@
 # Base de conocimiento y FAQs para Qdrant — Web y tienda de David López Castellote
 
 > **Fuente:** `https://staging-0669-cervezasbrancaltest1.wpcomstaging.com/`
-> **Uso:** Estos textos ya están cargados directamente dentro del nodo **`Datos de mi web y tienda`** del archivo `workflow-chat-wordpress-definitivo.json` (en los 5 campos String: `sobre_mi`, `catalogo_productos`, `envio_y_pagos`, `contacto_y_soporte` y `faqs_web_y_tienda`), listos para vectorizarse en la colección `mi_web_tienda` de Qdrant con un solo clic. También puedes utilizar este documento como referencia o para ampliar la colección en el futuro.
+> **Uso:** Archivo listo para subir directamente desde el nodo **`Subir documento (Form)`** de `workflow-chat-wordpress-definitivo.json` y vectorizarlo en la colección `mi_web_tienda` de Qdrant (también puedes exportarlo a `.pdf`, `.txt` o `.docx` si lo prefieres).
 
 ---
 

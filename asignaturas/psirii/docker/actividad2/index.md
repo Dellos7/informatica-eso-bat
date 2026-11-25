@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividad 2. Agente de IA con Qdrant en n8n integrado con WordPress y Baserow
-description: Creación del flujo en n8n para el chatbot de tu web personal con tienda en WordPress, despliegue de Qdrant en Docker Compose, configuración de un Agente IA con RAG y registro de conversaciones en Baserow.
+description: Creación del flujo en n8n con Qdrant y Baserow, pruebas completas con curl, desarrollo e integración de un plugin de chat en WordPress a través de Pinggy y verificación de persistencia.
 ---
 
 {% raw %}
@@ -11,16 +11,18 @@ description: Creación del flujo en n8n para el chatbot de tu web personal con t
 > [📖 **Apuntes: Introducción a Docker y Contenerización**](../apuntes) · [⬅️ **Actividad 1: Despliegue de n8n y túnel con Pinggy**](../actividad1)
 {: .alert-info}
 
-Partiendo del entorno de **n8n** y el túnel inverso de **Pinggy** que desplegaste y automatizaste en la **[Actividad 1](../actividad1)**, en esta segunda actividad incorporarás un **asistente virtual con IA** en tu **web personal con tienda online (WooCommerce)** creada en el **[Tema 1 (Servicios Web)](../../servicios-web/)**. Para ello crearás con ayuda del agente de IA un plugin de chat para tu WordPress, conectarás su webhook con n8n a través del túnel de Pinggy, ampliarás tu `docker-compose.yml` con la base de datos vectorial **Qdrant**, cargarás una base de conocimiento (**RAG**) adaptada a tu perfil profesional y a los productos de tu tienda, y registrarás todas las conversaciones en **Baserow**.
+Partiendo del entorno de **n8n** y el túnel inverso de **Pinggy** que desplegaste y automatizaste en la **[Actividad 1](../actividad1)**, en esta segunda actividad incorporarás un **asistente virtual con IA** en tu **web personal con tienda online (WooCommerce)** creada en el **[Tema 1 (Servicios Web)](../../servicios-web/)**.
+
+Para trabajar de forma ordenada y poder aislar cualquier error, **construiremos y verificaremos primero todo el backend en n8n**: ampliaremos `docker-compose.yml` con la base de datos vectorial **Qdrant**, cargaremos una base de conocimiento (**RAG**) adaptada a tu perfil profesional y a los productos de tu tienda, montaremos el **Agente de IA** con control de errores (`503`) y registraremos todas las conversaciones en **Baserow**. Probaremos cada fase del flujo desde la terminal con **`curl`** (simulando las peticiones del chat) y, una vez verificado el flujo en producción a través de **Pinggy**, desarrollaremos con ayuda del agente de IA un **plugin de chat para WordPress** para conectarlo todo y comprobar la persistencia de los datos.
 
 ## 🎯 Objetivos
 
 1. Utilizar al comienzo de cada clase el script de arranque (`arrancar.sh`) creado en la Actividad 1 para renovar la URL temporal de **Pinggy** en `.env` y levantar los servicios (y ampliarlo para arrancar también `qdrant`).
-2. Desarrollar con ayuda del agente de IA, instalar y configurar un plugin de chat en tu **web con tienda en WordPress (Tema 1)**, analizar su arquitectura servidor a servidor y conectarlo con un webhook de prueba en n8n.
-3. Ampliar el archivo `docker-compose.yml` añadiendo el servicio vectorial **Qdrant** (`qdrant`) y su volumen persistente (`qdrant_data`).
-4. Diseñar e ingestar en **Qdrant** la base de conocimiento de tu web personal y tu tienda (perfil, catálogo de productos y precios, condiciones de entrega/pago y soporte) usando *embeddings* gratuitos (**Hugging Face** o **Gemini**).
-5. Construir un **Agente de IA (`AI Agent`)** personalizado para tu negocio, conectado a un modelo de conversación (**Groq**, **Gemini** u **OpenRouter**) y a la herramienta de búsqueda vectorial en **Qdrant**, con control de errores (`503`).
-6. Registrar las consultas y respuestas en **Baserow**, publicar el flujo a producción (`Production URL`) y verificar la persistencia de `n8n_data` y `qdrant_data`.
+2. Comprender el contrato de datos servidor a servidor (`message`, `thread_id`, `page_url` → texto plano con código `200`) que utilizará nuestro chatbot.
+3. Ampliar el archivo `docker-compose.yml` añadiendo el servicio vectorial **Qdrant** (`qdrant`) y su volumen persistente (`qdrant_data`), e ingestar la base de conocimiento de tu web y tu tienda usando *embeddings* gratuitos (**Gemini** o **Cohere**).
+4. Construir y probar con **`curl`** el flujo en n8n con un **Agente de IA (`AI Agent`)** personalizado para tu negocio, conectado a un modelo de conversación (**Gemini**, **Groq** u **OpenRouter**), a la herramienta de búsqueda vectorial en **Qdrant** (`conocimiento_tienda`) y con control de errores (`503`).
+5. Registrar todas las consultas y respuestas en **Baserow**, publicar el flujo a producción (`Production URL`) y verificar su funcionamiento completo a través del túnel de Pinggy con **`curl`**.
+6. Desarrollar con ayuda del agente de IA, instalar y configurar un plugin de chat en tu **web con tienda en WordPress (Tema 1)**, conectarlo al flujo ya publicado en n8n y verificar la persistencia de `n8n_data` y `qdrant_data`.
 
 ## 🧭 Recorrido de una consulta
 
@@ -40,7 +42,7 @@ flowchart TD
         N8N <-->|"4. Consulta vectores"| QD[("🧠 Qdrant (:6333)<br/>Base vectorial RAG")]
     end
 
-    N8N <-->|"5. Razona y redacta"| LLM["🤖 Modelo IA + Embeddings<br/>(Groq / Gemini / HF)"]
+    N8N <-->|"5. Razona y redacta"| LLM["🤖 Modelo IA + Embeddings<br/>(Gemini / Groq / Cohere)"]
     N8N -->|"6. Guarda historial"| BR[("📊 Baserow<br/>Tabla Conversaciones")]
 ```
 
@@ -55,26 +57,22 @@ Como vimos en la **[Actividad 1](../actividad1)**, cada vez que se arranca el co
    cd ~/docker-n8n
    ./arrancar.sh
    ```
-   El script se encarga automáticamente de recrear `tunnel`, esperar la nueva URL pública de Pinggy, actualizar `N8N_WEBHOOK_URL` en `.env` y levantar `n8n` *(y también `qdrant` en cuanto lo añadamos en el Paso 3)*.
+   El script se encarga automáticamente de recrear `tunnel`, esperar la nueva URL pública de Pinggy, actualizar `N8N_WEBHOOK_URL` en `.env` y levantar `n8n` *(y también `qdrant` en cuanto lo añadamos en el Paso 2)*.
    *(Si todavía no tienes creado `arrancar.sh`, sigue antes el **Paso 7** de la **[Actividad 1](../actividad1)**).*
-2. **Cuando ya tengas el plugin configurado en WordPress:** copia la URL pública que te muestra el script al terminar y actualiza el dominio en los ajustes de tu plugin de chatbot en WordPress.
+2. **Cuando ya tengas el plugin configurado en WordPress (Paso 5):** copia la URL pública que te muestra el script al terminar y actualiza el dominio en los ajustes de tu plugin de chatbot en WordPress.
 
 ---
 
 ## 📌 Paso a paso
 
-### Paso 1: Entender el intercambio de datos y crear el plugin de chat en WordPress
-
-Antes de construir el flujo del asistente en n8n, vamos a entender con precisión **cómo se comunican WordPress y n8n** y, con esa idea clara, crearemos e instalaremos un **plugin propio de chat** en la **web personal con tienda online (WooCommerce)** que desarrollaste en el **Tema 1** (puedes utilizar tu instalación de WordPress local o tu entorno de *staging*).
-
-#### A. Comprender cómo funciona el intercambio de datos entre WordPress y n8n
+### Paso 1: Comprender el contrato de datos entre WordPress y n8n
 
 [![Intercambio del plugin: WordPress envía JSON a n8n; n8n devuelve texto plano y WordPress lo convierte en reply para el widget.](./imagenes/09-wordpress.svg)](./imagenes/09-wordpress.svg)
 
-El chat no debe comunicarse directamente desde el navegador del visitante hasta n8n, sino seguir una arquitectura **servidor a servidor**:
+Antes de construir el flujo en n8n y el plugin de WordPress, debemos tener claro **qué formato de datos recibirá y devolverá nuestro webhook**. El chat que desarrollaremos más adelante no se comunicará directamente desde el navegador del visitante hasta n8n, sino siguiendo una arquitectura **servidor a servidor**:
 
-1. **El navegador del visitante** envía el mensaje a una ruta interna de tu propio WordPress (su API REST, por ejemplo `/wp-json/mi-chatbot/v1/message`).
-2. **El servidor PHP de WordPress** procesa la petición y realiza una llamada HTTP `POST` hacia la URL del Webhook de n8n enviando el siguiente objeto **JSON**:
+1. **El navegador del visitante** enviará el mensaje a una ruta interna de tu propio WordPress (su API REST, por ejemplo `/wp-json/mi-chatbot/v1/message`).
+2. **El servidor PHP de WordPress** procesará la petición y realizará una llamada HTTP `POST` hacia la URL del Webhook de n8n enviando el siguiente objeto **JSON**:
    ```json
    {
      "message": "¿Qué productos vendes en tu tienda y cómo se descargan?",
@@ -86,150 +84,44 @@ El chat no debe comunicarse directamente desde el navegador del visitante hasta 
    * **`thread_id`:** Un identificador único de sesión generado por el navegador para agrupar los mensajes de la misma conversación.
    * **`page_url`:** La URL de la página de tu web o tienda desde la que el visitante está escribiendo.
 3. **Respuesta esperada por WordPress:** n8n responderá con **código HTTP `200 OK`** y el contenido en **texto plano** (`text/plain; charset=utf-8`).
-4. **Presentación en el chat:** El servidor de WordPress recibe ese texto plano, lo empaqueta en un JSON interno con el campo `reply` y se lo entrega al widget del navegador para que lo muestre en pantalla.
+4. **Presentación en el chat:** El servidor de WordPress recibirá ese texto plano, lo empaquetará en un JSON interno con el campo `reply` y se lo entregará al widget del navegador para que lo muestre en pantalla.
    > ⚠️ **Atención:** Si n8n devolviera un JSON como `{"respuesta": "Hola"}`, WordPress no lo interpretará como objeto: mostrará ese JSON crudo como texto literal dentro de la burbuja del chat.
 
-Esta comunicación servidor a servidor tiene grandes ventajas: **no requiere configurar CORS en n8n** para el navegador del usuario y oculta la dirección directa del webhook a los visitantes. Además, conviene que el plugin incluya protecciones básicas: limitar la longitud de los mensajes (por ejemplo, a **2.000 caracteres**), aplicar un límite de consultas por IP para evitar abusos (p. ej., **20 cada cinco minutos**) y dar margen suficiente de espera (unos **55 segundos**) para que la IA elabore su respuesta.
+Esta comunicación servidor a servidor tiene grandes ventajas: **no requiere configurar CORS en n8n** para el navegador del usuario y oculta la dirección directa del webhook a los visitantes.
 
 En esta práctica no añadiremos una cabecera secreta de autenticación al webhook para mantener el ejemplo sencillo. En un servicio público real en producción habría que enviar un token secreto desde PHP, configurar **Header Auth** en n8n y revisar la seguridad perimetral.
 
-#### B. Pensar cómo pedir el plugin al agente de IA e instalarlo en WordPress
+**Comprobación:** Comprendes el contrato de datos (`message`, `thread_id`, `page_url` → texto plano con código `200`) que simularemos primero con `curl` y que después implementará tu plugin de WordPress.
 
-Ahora que tienes claro cómo debe comunicarse WordPress con n8n, vas a pedirle al **agente de IA que utilizamos en clase** que cree un plugin de WordPress a medida para tu web con tienda. **Tú mismo deberás construir el *prompt*** explicándole con tus palabras para qué lo quieres y cómo debe comportarse, sin necesidad de entrar en detalles de programación.
+### Paso 2: Desplegar Qdrant, configurar Embeddings y poblar la base de conocimiento (subida visual)
 
-Antes de escribirle a la IA, repasa **qué debe hacer el plugin** para no dejarte nada importante fuera de tu petición:
+En lugar de pegar toda la información de tu web y tu catálogo dentro del prompt de una cadena rígida, almacenaremos tu documentación en una **base de datos vectorial (Qdrant)** para que nuestro asistente pueda buscar únicamente los fragmentos relevantes en cada pregunta (**RAG**, *Retrieval-Augmented Generation*).
 
-* **Para qué sirve:** añadir un **asistente de chat flotante** a tu web y tienda de WordPress que conecte con tu flujo de **n8n** siguiendo la arquitectura servidor a servidor y el formato de datos del apartado **A** (`message`, `thread_id` y `page_url` en JSON; respuesta de n8n en texto plano, sin exponer la URL del webhook en el navegador).
-* **Qué debe poder hacer el visitante:**
-  * Abrir y cerrar el chat desde un botón flotante adaptado tanto a ordenador como a móvil.
-  * Ver un mensaje de bienvenida, escribir sus dudas, ver un indicador mientras el asistente está respondiendo y recibir un mensaje amable si ocurre algún fallo.
-  * Mantener su conversación identificada durante la visita y poder pulsar un botón para empezar una **nueva conversación** cuando quiera.
-* **Qué debes poder configurar tú desde WordPress:**
-  * Un apartado de ajustes donde pegar y cambiar fácilmente la **URL del webhook de n8n** (recuerda que la dirección temporal de Pinggy cambia en cada sesión).
-  * Opciones básicas para adaptar el chat al estilo de tu web (nombre del asistente, mensaje de bienvenida, colores, posición en pantalla) y elegir si aparece en toda la web o solo en las páginas donde insertes un *shortcode*.
-* **Protección y tiempos de espera:**
-  * Evitar envíos vacíos, demasiado largos o abusivos por parte de un mismo visitante, y dar margen suficiente para que la IA tarde unos segundos en contestar.
+Antes de crear el webhook y el Agente de IA, vamos a desplegar **Qdrant**, obtener la clave para los **Embeddings** y subir visualmente el archivo con la información de tu web y tu tienda.
 
-**Pasos a seguir:**
-
-1. Crea una carpeta nueva para el proyecto del plugin (por ejemplo `~/plugin-chatbot-wp`) y **redacta tu propio *prompt* para el agente de IA** explicándole de qué trata tu web, cómo se comunica con n8n y qué funciones necesitas. Pídele que te lo prepare listo para subir a WordPress en un archivo `.zip`.
-2. En el panel de administración de tu WordPress (con tu web y tienda del Tema 1 activa), entra en **Plugins → Añadir nuevo plugin → Subir plugin**, selecciona el archivo `.zip` generado, pulsa **Instalar ahora** y luego **Activar**.
-3. Accede a los ajustes de tu nuevo plugin, personaliza su aspecto para que encaje con el diseño de tu web y comprueba que el chat flotante se muestra correctamente. Deja el campo del webhook preparado para pegar la dirección de n8n en el siguiente paso.
-
-**Comprobación:** Comprendes el contrato de datos entre WordPress y n8n (`message`, `thread_id`, `page_url` → texto plano con código `200`), tienes tu plugin instalado y activado en WordPress y el widget de chat es visible en tu web con tienda.
-
-### Paso 2: Crear el flujo en n8n con respuesta fija y conectarlo con WordPress
-
-[![Prueba inicial: el Webhook recibe la pregunta y el nodo Responder al chat devuelve un texto fijo con código 200.](./imagenes/05-webhook-local.svg)](./imagenes/05-webhook-local.svg)
-
-Antes de añadir la inteligencia artificial, vamos a construir el esqueleto del flujo en n8n y verificar que el widget de tu WordPress se comunica con él a través del túnel de Pinggy.
-
-#### A. Construir el webhook con respuesta fija en n8n
-
-1. Entra en tu panel de n8n (`http://localhost:5678`) y crea un flujo nuevo llamado **Chat WordPress**.
-2. Añade un nodo **Webhook**, conservando exactamente ese nombre:
-   * **HTTP Method:** `POST`.
-   * **Path:** `chat-asistente`.
-   * **Authentication:** `None`, para esta actividad práctica.
-   * **Respond:** `Using 'Respond to Webhook' Node`.
-3. Añade el nodo **Respond to Webhook**, renómbralo como **Responder al chat** y conéctalo: **Webhook → Responder al chat**.
-4. Configura el nodo **Responder al chat**:
-   * **Respond With:** `Text`.
-   * **Response Body** (texto fijo inicial): `Hola. El webhook funciona correctamente.`
-   * En **Options**, añade **Response Code:** `200`.
-   * En **Options → Response Headers**, añade una cabecera con **Name:** `Content-Type` y **Value:** `text/plain; charset=utf-8`.
-
-#### B. Prueba rápida con `curl`
-
-Selecciona la pestaña **Test URL** dentro del nodo Webhook y pulsa **Listen for test event**. Mientras n8n escucha, abre otra terminal y simula el envío del JSON que genera el plugin:
-
-```bash
-curl --max-time 50 -i -X POST http://localhost:5678/webhook-test/chat-asistente \
-  -H "Content-Type: application/json" \
-  -d '{"message":"Hola, ¿funciona el chat de la tienda?","thread_id":"prueba-aula-01","page_url":"https://ejemplo.invalid/tienda"}'
-```
-
-Debes recibir un código HTTP `200 OK` y el texto `Hola. El webhook funciona correctamente.`. En el lienzo de n8n verás que el nodo Webhook se ilumina en verde: despliega `body` y comprueba que aparecen `message`, `thread_id` y `page_url`.
-
-#### C. Conectar WordPress con n8n a través del túnel de Pinggy y hacer la primera prueba real
-
-Ha llegado el momento de conectar tu WordPress con n8n por primera vez:
-
-1. En el nodo **Webhook** de n8n, copia la **Test URL** pública (que muestra tu dominio de Pinggy):
-   ```text
-   https://ejemplo-subdominio.free.pinggy.net/webhook-test/chat-asistente
-   ```
-   *(Si mostrara `localhost`, revisa que hayas seguido el **Protocolo de inicio de clase** del principio de la página).*
-2. Entra en el panel de tu WordPress y ve a los ajustes de tu plugin de chatbot.
-3. Pega la Test URL en el campo del **Webhook** y pulsa **Guardar cambios**.
-4. En n8n, entra en el nodo Webhook y pulsa **Listen for test event**.
-5. Vuelve al navegador, abre la página de tu WordPress donde pusiste el chat, haz clic en la burbuja del widget y escribe una pregunta (por ejemplo: *"Hola, ¿estás conectado?"*).
-6. Observa el resultado:
-   * En WordPress, la burbuja del chat responderá en directo con el texto fijo: **`Hola. El webhook funciona correctamente.`**
-   * En n8n, la escucha se completa y muestra la petición real enviada por PHP desde WordPress.
-
-**Comprobación:** Tu web en WordPress y n8n ya se comunican en vivo mediante el túnel de Pinggy devolviendo la respuesta fija inicial.
-
-### Paso 3: Construir el Agente de IA con base de conocimiento de tu web y tienda en Qdrant
-
-[![Flujo con Agente IA: Webhook, AI Agent con herramienta Qdrant + Embeddings y Chat Model, y respuesta; su salida de error devuelve 503.](./imagenes/07-flujo-ia.svg)](./imagenes/07-flujo-ia.svg)
-
-En lugar de pegar toda la información de tu web y tu catálogo dentro del prompt de una cadena rígida, construiremos un verdadero **Agente de IA (`AI Agent`)** con **RAG (*Retrieval-Augmented Generation*)** adaptado a tu proyecto del Tema 1:
-
-1. **El modelo de conversación (`Chat Model`):** es el cerebro que razona, decide cuándo consultar la base de conocimiento de tu tienda y redacta la respuesta (**Groq**, **Gemini** u **OpenRouter**).
-2. **La herramienta de consulta (`Qdrant Vector Store`):** permite al agente buscar información sobre ti, tus productos, precios y condiciones de compra en la colección vectorial alojada en nuestro contenedor `qdrant`.
-3. **El modelo de vectores (`Embeddings`):** traduce los textos de tu catálogo y las preguntas de los clientes a vectores numéricos para poder buscar por significado en Qdrant (**Hugging Face** o **Google Gemini**).
+> **🧠 ¿Qué son los *embeddings* y por qué los necesita Qdrant?**
+>
+> Un ***embedding*** es una **lista de números (un vector)** que representa el **significado** de una frase o párrafo, por ejemplo `[0.14, -0.82, 0.37, ...]` (con cientos o miles de dimensiones).
+>
+> * **Búsqueda por significado, no por palabras exactas:** un buscador clásico solo encuentra coincidencias literales. En cambio, un modelo de *embeddings* coloca **cerca** los vectores de textos que significan cosas parecidas aunque usen palabras distintas. Así, si un visitante pregunta *«¿Cuánto cuesta el manual de la terminal?»*, Qdrant encontrará el fragmento de tu catálogo que habla de *«Guía práctica de comandos Linux y Bash — 4,99 €»*.
+> * **Cómo intervienen en nuestro flujo:** primero convierten el archivo de tu web y tienda en vectores para almacenarlos en **Qdrant** (*ingesta*, en este paso); después, cada vez que alguien pregunta en el chat, convierten esa pregunta en otro vector para localizar los fragmentos más parecidos y entregárselos al **`Chat Model`** (Paso 3), que es quien redacta la respuesta.
+> * **Regla importante:** debes usar **siempre el mismo modelo de *embeddings*** tanto para guardar los datos como para buscarlos, ya que cada modelo genera vectores con un tamaño y un «mapa de significados» propios.
+{: .alert-info}
 
 Trabajaremos exclusivamente con cuotas gratuitas, sin activar facturación.
 
-#### A. Obtener las claves (Chat Model y Embeddings)
+#### A. Añadir Qdrant al `docker-compose.yml` y arrancarlo
 
-##### 1. Clave para el `Chat Model` (elige uno: Groq, Gemini u OpenRouter)
-
-**Opción A, recomendada si tu cuenta del centro restringe Google AI Studio: Groq Cloud**
-
-1. Entra en [Groq Cloud](https://console.groq.com/) y crea una cuenta o inicia sesión.
-2. Abre **API Keys → Create API Key**, nómbrala `n8n-actividad` y guárdala en Bitwarden como `API Key - Groq Cloud`.
-3. Selecciona un modelo con soporte de herramientas (*tool calling*) como **`llama-3.3-70b-versatile`** o **`openai/gpt-oss-20b`** (consulta los [modelos disponibles](https://console.groq.com/docs/models)). Es un modelo servido por Groq: no necesitas una clave de OpenAI.
-
-**Opción B: Google AI Studio (Gemini)** *(Si tu cuenta educativa no permite crear proyectos en Google AI Studio, usa **Groq** u **OpenRouter**).*
-
-1. Entra en [Google AI Studio](https://aistudio.google.com/).
-2. Abre **Get API key → Create API key** y selecciona o crea el proyecto cuando se solicite.
-3. Guarda la clave en Bitwarden como `API Key - Google AI Studio`.
-4. Utilizaremos **`gemini-2.5-flash`** o **`gemini-2.5-flash-lite`** (consulta los [modelos](https://ai.google.dev/gemini-api/docs/models) disponibles con cuota gratuita en tu cuenta).
-
-**Opción C: OpenRouter**
-
-1. Entra en [OpenRouter](https://openrouter.ai/), inicia sesión y abre [Keys](https://openrouter.ai/keys).
-2. Crea `n8n-practica` y guárdala en Bitwarden como `API Key - OpenRouter`.
-3. Elige un modelo disponible con sufijo **`:free`** que admita herramientas (*tools*) en el [catálogo de modelos gratuitos](https://openrouter.ai/models?max_price=0) y copia su identificador completo.
-
-##### 2. Clave para los `Embeddings` de Qdrant (elige uno: Hugging Face o Gemini)
-
-Como Groq y OpenRouter no ofrecen nodo de *embeddings* gratuito en n8n, conectaremos Qdrant a **Hugging Face** (compatible con cualquier cuenta de correo) o a **Google Gemini** (si ya obtuviste su clave en el punto anterior):
-
-* **Opción 1 (universal, sin restricciones de cuenta): Hugging Face Inference**
-  1. Entra en [Hugging Face](https://huggingface.co/), crea una cuenta gratuita y **verifica tu correo electrónico**.
-  2. Abre [Settings → Access Tokens](https://huggingface.co/settings/tokens) y pulsa **Create new token**.
-  3. Selecciona el tipo **Read** (o en *Fine-grained* marca el permiso **Make calls to Inference Providers**), llámalo `n8n-actividad` y guárdalo en Bitwarden como `Token - Hugging Face`.
-  4. Utilizaremos el modelo multilingüe **`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`**.
-* **Opción 2: Google AI Studio (Gemini)**
-  * Si pudiste crear la `API Key - Google AI Studio` en el apartado anterior, esa misma credencial te servirá directamente para el nodo **Embeddings Google Gemini** (`models/text-embedding-004` o `models/gemini-embedding-001`).
-
-Las cuotas gratuitas limitan la frecuencia de consultas. Si aparece un error `429`, espera unos segundos o consulta al profesor; no encadenes reintentos continuos.
-
-#### B. Añadir Qdrant al `docker-compose.yml` y arrancarlo
-
-Para que nuestro **AI Agent** pueda consultar una base de conocimiento vectorial sin depender de servicios de pago externos, vamos a ampliar el `docker-compose.yml` que creamos en la Actividad 1 añadiendo un tercer contenedor: **Qdrant** (`qdrant/qdrant:latest`).
+Para que nuestro asistente pueda consultar una base de conocimiento vectorial sin depender de servicios de pago externos, vamos a ampliar el `docker-compose.yml` que creamos en la Actividad 1 añadiendo un tercer contenedor: **Qdrant** (`qdrant/qdrant:latest`).
 
 1. Abre tu archivo `~/docker-n8n/docker-compose.yml`:
    ```bash
    nano docker-compose.yml
    ```
-2. Añade el servicio **`qdrant`** dentro de `services:` (al mismo nivel de indentación que `n8n` y `tunnel`) y declara su volumen **`qdrant_data:`** al final del archivo:
-   * Publicamos su puerto `6333` solo en `127.0.0.1` (`"127.0.0.1:6333:6333"`) para poder inspeccionar su panel web desde nuestro navegador (`http://localhost:6333/dashboard`), mientras que `n8n` se comunicará con él por la red interna de Docker (`http://qdrant:6333`).
+2. Añade el servicio **`qdrant`** dentro de `services:` (al mismo nivel de indentación que `n8n` y `tunnel`), añade la variable **`N8N_INSECURE_DISABLE_FORM_HTML_SANDBOX: "true"`** en `n8n` y declara el volumen **`qdrant_data:`** al final del archivo:
+   * Publicamos el puerto `6333` de Qdrant solo en `127.0.0.1` (`"127.0.0.1:6333:6333"`) para poder inspeccionar su panel web desde nuestro navegador (`http://localhost:6333/dashboard`), mientras que `n8n` se comunicará con él por la red interna de Docker (`http://qdrant:6333`).
    * Montamos el volumen `qdrant_data:/qdrant/storage` para conservar las colecciones de vectores aunque el contenedor se destruya.
+   * Añadimos `N8N_INSECURE_DISABLE_FORM_HTML_SANDBOX: "true"` en `n8n` porque las versiones recientes de n8n aíslan los formularios en un *sandbox* (`Origin: null`), lo que provoca un bloqueo CORS al subir archivos a través del túnel de Pinggy.
 
    <details markdown="1" style="cursor: pointer;">
    <summary style="cursor: pointer;">👁️ <strong>Ver cómo queda el <code>docker-compose.yml</code> completo con Qdrant</strong></summary>
@@ -250,6 +142,7 @@ Para que nuestro **AI Agent** pueda consultar una base de conocimiento vectorial
          TZ: Europe/Madrid
          N8N_WEBHOOK_URL: ${N8N_WEBHOOK_URL:-http://localhost:5678/}
          N8N_PROXY_HOPS: 1
+         N8N_INSECURE_DISABLE_FORM_HTML_SANDBOX: "true"
        volumes:
          - n8n_data:/home/node/.n8n
 
@@ -275,10 +168,10 @@ Para que nuestro **AI Agent** pueda consultar una base de conocimiento vectorial
 
    </details>
 
-3. Valida la sintaxis del archivo y levanta el nuevo servicio `qdrant` (ni `n8n` ni `tunnel` se detendrán):
+3. Valida la sintaxis del archivo, aplica la nueva variable en `n8n` y levanta el nuevo servicio `qdrant` (`tunnel` no se detendrá):
    ```bash
    docker compose config --quiet
-   docker compose up -d qdrant
+   docker compose up -d n8n qdrant
    docker compose ps
    ```
 4. **Actualiza tu script `arrancar.sh`** para que en futuras sesiones levante también `qdrant` junto a `n8n`: abre `nano arrancar.sh` y cambia la línea `docker compose up -d n8n` por:
@@ -287,56 +180,144 @@ Para que nuestro **AI Agent** pueda consultar una base de conocimiento vectorial
    ```
 5. Abre **`http://localhost:6333/dashboard`** en tu navegador y comprueba que carga el panel web de Qdrant.
 
-#### C. Poblar la base de conocimiento de tu web y tienda en Qdrant (flujo de ingesta)
+#### B. Obtener la clave para los `Embeddings` de Qdrant (empezamos con Gemini; si no va, Cohere)
 
-Antes de que el agente pueda responder a los visitantes de tu web, debes cargar e indexar en `qdrant` **la información real de tu proyecto del Tema 1** (tu presentación/porfolio, los productos o infoproductos que vendes en WooCommerce con sus precios, cómo se entregan y tus datos de contacto/soporte). Lo haremos en la parte superior del mismo lienzo de **Chat WordPress** para que todo quede guardado en un único archivo:
+**Opción 1 (primera opción a probar): Google AI Studio (Gemini)**
+
+1. Entra en [Google AI Studio](https://aistudio.google.com/) e inicia sesión.
+2. Abre **Get API key → Create API key** y selecciona o crea el proyecto cuando se solicite.
+3. Guarda la clave en Bitwarden como `API Key - Google AI Studio`.
+4. Utilizaremos el nodo **Embeddings Google Gemini** con el modelo **`models/gemini-embedding-001`** (el modelo por defecto actual de n8n).
+5. *Ventaja:* si Google AI Studio funciona con tu cuenta, esta misma clave te servirá también para el **`Chat Model`** de Gemini en el Paso 3 sin necesidad de registrarte en otra plataforma.
+
+> **Si tu cuenta educativa no permite crear claves en Google AI Studio o da error de acceso/cuota,** pasa directamente a la **Opción 2 (Cohere)**.
+{: .alert-info}
+
+**Opción 2 (alternativa universal sin restricciones de cuenta ni tarjeta): Cohere**
+
+1. Entra en [Cohere Dashboard](https://dashboard.cohere.com/api-keys) y crea una cuenta gratuita con cualquier correo (sin tarjeta de crédito).
+2. Copia tu **Trial API key** (incluye 1.000 llamadas gratuitas al mes, más que suficientes para toda la práctica) y guárdala en Bitwarden como `API Key - Cohere`.
+3. Utilizaremos el nodo **Embeddings Cohere** con el modelo multilingüe **`embed-multilingual-v3.0`** *(o `embed-multilingual-light-v3.0`)*, optimizado para español.
+
+#### C. Poblar la base de conocimiento mediante formulario de subida de archivos
+
+Antes de que el agente pueda responder a los visitantes de tu web, debes cargar e indexar en `qdrant` **la información real de tu proyecto del Tema 1** (tu presentación/porfolio, los productos o infoproductos que vendes en WooCommerce con sus precios, cómo se entregan y tus datos de contacto/soporte).
+
+Utilizaremos un **formulario visual de subida de archivos (`On form submission`)** en la parte superior del lienzo de **Chat WordPress**. Así podrás preparar tu base de conocimiento en un documento legible (`.pdf`, `.txt`, `.md` o `.docx`) y subirlo directamente desde el navegador:
 
 ```mermaid
 graph LR
-    M["1. Manual Trigger"] --> D["2. Edit Fields (Datos de mi web y tienda)"]
-    D --> Q["3. Qdrant Vector Store (Insert Documents)"]
-    L["Default Data Loader"] -. "Document" .-> Q
-    E["Embeddings (HF / Gemini)"] -. "Embedding" .-> Q
+    F["1. On form submission<br/>(Subir documento)"] --> Q["2. Qdrant Vector Store<br/>(Insert Documents)"]
+    L["Default Data Loader<br/>(Binary · Auto)"] -. "Document" .-> Q
+    E["Embeddings (Gemini / Cohere)"] -. "Embedding" .-> Q
 ```
 
-> **⚠️ Importante:** Los textos que aparecen a continuación son solo una **plantilla de orientación**. Debes **adaptarlos obligatoriamente a tu propia web personal y a los productos reales que creaste en tu tienda WooCommerce en el Tema 1** (con sus nombres, características y precios exactos).
+> **⚠️ Formatos compatibles y contenido obligatorio:**
+> * El cargador de archivos de n8n admite de forma nativa **`.pdf`**, **`.txt`**, **`.md`** y **`.docx`** (no admite `.odt` directamente: si redactas el documento en **LibreOffice Writer**, usa **Archivo → Exportar como PDF** o guárdalo como **`.docx`** antes de subirlo).
+> * La plantilla siguiente es solo una **orientación**: debes **adaptar el archivo obligatoriamente a tu propia web personal y a los productos reales que creaste en tu tienda WooCommerce en el Tema 1** (con sus nombres, características y precios exactos).
 {: .alert-warning}
 
-1. En un espacio libre del lienzo, pulsa **`+`** y añade el disparador **Manual Trigger** (`When clicking 'Execute workflow'`).
-2. A su derecha, añade un nodo **Edit Fields (Set)**, renómbralo como **Datos de mi web y tienda** y crea al menos estos cuatro campos de tipo **String** personalizados con la información de tu web:
-   * **`sobre_mi`** *(quién eres, tu perfil técnico o temática de tu web y qué ofreces)*:
-     * *Ejemplo orientativo (adáptalo a tu web):* `Esta es la web profesional y tienda online de Alex García, técnico especialista en administración de sistemas Linux, redes y ciberseguridad. En la web comparto proyectos de implantación de servidores y vendo guías prácticas y plantillas listas para producción.`
-   * **`catalogo_productos`** *(todos los productos o infoproductos de tu tienda WooCommerce, qué incluye cada uno y su precio exacto)*:
-     * *Ejemplo orientativo (sustitúyelo por tus productos y precios reales):* `Catálogo de la tienda: 1) "Guía Práctica de Hardening en Servidores Linux" (14,90 €): ebook en PDF de 120 páginas con scripts de auditoría y configuración de cortafuegos. 2) "Pack de Plantillas Docker Compose para Pymes" (19,90 €): archivo ZIP con 10 despliegues documentados con proxy inverso y copias de seguridad. 3) "Curso Express de Automatización con Bash" (24,90 €): acceso a 15 vídeo-lecciones y ejercicios resueltos.`
-   * **`envio_y_pagos`** *(formato de entrega/descarga, métodos de pago y política de devoluciones)*:
-     * *Ejemplo orientativo (adáptalo a tus condiciones):* `Todos los infoproductos son digitales y se entregan mediante enlace de descarga inmediata en la página de confirmación del pedido y por correo electrónico tras completar el pago. Aceptamos tarjeta bancaria y PayPal. Dispone de una garantía de devolución de 14 días si el material presenta algún fallo técnico.`
-   * **`contacto_y_soporte`** *(horario de atención, correo o formulario de soporte y qué consultas no se atienden por chat)*:
-     * *Ejemplo orientativo (adáptalo a tus datos de contacto):* `Para soporte técnico sobre compras, facturas o presupuestos de consultoría a medida, el horario de atención es de lunes a viernes de 16:00 a 20:00 a través del correo soporte@miweb-ejemplo.local o el formulario de contacto de la web. Los descuentos para grupos o servicios presenciales no están publicados y deben solicitarse por correo.`
-3. A la derecha de **Datos de mi web y tienda**, añade el nodo **Qdrant Vector Store** y renómbralo como **Cargar en Qdrant**:
+1. **Prepara tu documento de conocimiento** (por ejemplo `base-conocimiento-tienda.md`, `.txt`, `.pdf` o `.docx`) incluyendo, como mínimo, estos cuatro apartados adaptados a tu proyecto:
+
+   <details markdown="1" style="cursor: pointer;">
+   <summary style="cursor: pointer;">👁️ <strong>Ver plantilla orientativa para redactar tu documento de conocimiento</strong></summary>
+
+   ```markdown
+   # Base de conocimiento — Web y tienda de [Tu Nombre]
+
+   ## Sobre mí
+   Esta es la web profesional y tienda online de Alex García, técnico especialista en administración de sistemas Linux, redes y ciberseguridad. En la web comparto proyectos de implantación de servidores y vendo guías prácticas y plantillas listas para producción.
+
+   ## Catálogo de productos y precios
+   1. Guía Práctica de Hardening en Servidores Linux (14,90 €): ebook en PDF de 120 páginas con scripts de auditoría y configuración de cortafuegos.
+   2. Pack de Plantillas Docker Compose para Pymes (19,90 €): archivo ZIP con 10 despliegues documentados con proxy inverso y copias de seguridad.
+   3. Curso Express de Automatización con Bash (24,90 €): acceso a 15 vídeo-lecciones y ejercicios resueltos.
+
+   ## Entrega, métodos de pago y devoluciones
+   Todos los infoproductos son digitales y se entregan mediante enlace de descarga inmediata en la página de confirmación del pedido y por correo electrónico tras completar el pago. Aceptamos tarjeta bancaria y PayPal. Dispone de una garantía de devolución de 14 días si el material presenta algún fallo técnico.
+
+   ## Contacto, soporte y preguntas frecuentes
+   Para soporte técnico sobre compras, facturas o presupuestos de consultoría a medida, el horario de atención es de lunes a viernes de 16:00 a 20:00 a través del correo soporte@miweb-ejemplo.local o el formulario de contacto de la web. Los descuentos para grupos o servicios presenciales no están publicados y deben solicitarse por correo.
+   ```
+
+   </details>
+
+2. Entra en tu panel de n8n (`http://localhost:5678`), crea un flujo nuevo llamado **Chat WordPress** y añade el disparador **On form submission** (`n8n Form Trigger`), renombrándolo como **Subir documento (Form)**:
+   * **Path:** `subir-conocimiento`.
+   * **Form Title:** `Cargar base de conocimiento en Qdrant`.
+   * **Form Description:** `Sube tu documento (.pdf, .txt, .md o .docx) con la información y FAQs de tu web y tienda.`
+   * En **Form Elements**, pulsa **Add Form Element** y configúralo así:
+     * **Field Name:** `Documento de conocimiento`.
+     * **Element Type:** `File`.
+     * **Multiple Files:** desactivado (`false`), si subirás un único documento *(o actívalo si prefieres subir varios a la vez)*.
+     * **Accepted File Types:** `.pdf, .txt, .md, .docx`.
+     * **Required Field:** activado (`true`).
+3. A la derecha de **Subir documento (Form)**, añade el nodo **Qdrant Vector Store**, conéctalo y renómbralo como **Cargar en Qdrant**:
    * **Credential to connect with:** crea una credencial nueva con **Qdrant URL:** `http://qdrant:6333` (usando el nombre del servicio en la red interna de Docker) y deja **API Key** vacío.
    * **Operation Mode:** `Insert Documents`.
    * **Qdrant Collection:** selecciona `By ID` y escribe `mi_web_tienda` (Qdrant creará la colección automáticamente al insertar).
 4. Configura los dos conectores inferiores obligatorios de **Cargar en Qdrant**:
-   * En el conector **Document**, pulsa **`+`** y añade **Default Data Loader** (déjalo con sus valores por defecto, `Load All Input Data`, para que empaquete los campos del nodo anterior).
-   * En el conector **Embedding**, pulsa **`+`** y añade el nodo de vectores según la opción que hayas elegido:
+   * En el conector **Document**, pulsa **`+`** y añade **Default Data Loader** con estos ajustes para leer archivos adjuntos:
+     * **Type of Data:** `Binary`.
+     * **Mode:** `Load All Input Data`.
+     * **Data Format:** `Automatically Detect by Mime Type` *(si subes un `.md` desde Linux y aparece un error de tipo MIME `application/octet-stream`, cambia temporalmente este campo a `Text` o súbelo como `.txt` o `.pdf`)*.
+   * En el conector **Embedding**, pulsa **`+`** y añade el nodo de vectores según la opción elegida en el apartado B:
 
      | Proveedor de Embeddings | Nodo en n8n | Modelo a indicar |
      | :--- | :--- | :--- |
-     | Hugging Face | **Embeddings HuggingFace Inference** | `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` |
-     | Gemini | **Embeddings Google Gemini** | `models/text-embedding-004` (o el modelo por defecto de la lista) |
+     | Gemini | **Embeddings Google Gemini** | `models/gemini-embedding-001` |
+     | Cohere | **Embeddings Cohere** | `embed-multilingual-v3.0` |
 
-5. Sitúa el ratón sobre el nodo **Cargar en Qdrant** y pulsa **Execute step** (o **Execute workflow**). Cuando termine en verde, recarga `http://localhost:6333/dashboard`: verás que en **Collections** ya existe `mi_web_tienda` con tus documentos vectorizados. *(Si más adelante modificas tus textos en `Datos de mi web y tienda`, borra antes la colección `mi_web_tienda` desde el panel de Qdrant y vuelve a ejecutar este paso para no duplicar vectores antiguos).*
+5. **Sube tu documento y vectorízalo:** sitúa el ratón sobre el nodo **Subir documento (Form)** y pulsa **Execute step** (o **Test workflow**). Se abrirá automáticamente una pestaña con tu formulario web de subida: selecciona tu archivo, pulsa **Submit** y observa cómo el flujo procesa y vectoriza el documento en verde.
+6. Recarga `http://localhost:6333/dashboard`: verás que en **Collections** ya existe `mi_web_tienda` con los fragmentos de tu documento vectorizados. *(Si más adelante modificas el archivo, borra antes la colección `mi_web_tienda` desde el panel de Qdrant y vuelve a subir el documento actualizado mediante el formulario para no duplicar vectores antiguos).*
 
-#### D. Conectar el nodo `AI Agent`, el modelo y la herramienta de Qdrant
+**Comprobación:** Tienes el servicio `qdrant` activo con su volumen `qdrant_data`, tu documento personalizado cargado a través del formulario y la colección `mi_web_tienda` con puntos vectorizados visibles en `http://localhost:6333/dashboard`.
 
-Ahora sustituimos la respuesta fija de la rama del webhook por el agente conectado a la base de conocimiento de tu web y tienda:
+### Paso 3: Construir el Agente de IA (`Webhook` + `AI Agent` + Qdrant) y probarlo con `curl`
 
-1. Entre **Webhook** y **Responder al chat**, inserta el nodo **AI Agent** y renómbralo como **Asistente IA**.
-2. En **Source for Prompt (User Message)**, selecciona **Define below** y activa **Expression**:
+[![Flujo con Agente IA: Webhook, AI Agent con herramienta Qdrant + Embeddings y Chat Model, y respuesta; su salida de error devuelve 503.](./imagenes/07-flujo-ia.svg)](./imagenes/07-flujo-ia.svg)
+
+Ahora que la colección `mi_web_tienda` ya está poblada en Qdrant, vamos a construir en la parte inferior del mismo lienzo de **Chat WordPress** la rama del **Agente de IA (`AI Agent`)** que recibirá las consultas por Webhook, las buscará en Qdrant usando el **mismo nodo de Embeddings del Paso 2** y redactará la respuesta con un **Chat Model**.
+
+#### A. Obtener la clave para el `Chat Model` (empezamos con Gemini; si no funciona, Groq u OpenRouter)
+
+**Opción A (primera opción a probar): Google AI Studio (Gemini)**
+
+1. Si ya obtuviste tu `API Key - Google AI Studio` en el **Paso 2B**, **reutiliza directamente esa misma credencial** (no necesitas crear otra). Si aún no la tienes, créala en [Google AI Studio](https://aistudio.google.com/) (**Get API key → Create API key**) y guárdala en Bitwarden como `API Key - Google AI Studio`.
+2. Utilizaremos **`gemini-2.5-flash`** o **`gemini-2.5-flash-lite`** (consulta los [modelos](https://ai.google.dev/gemini-api/docs/models) disponibles con cuota gratuita en tu cuenta).
+
+> **Si tu cuenta educativa no permite usar Google AI Studio o aparece un error de acceso/cuota,** pasa directamente a la **Opción B (Groq Cloud)** o a la **Opción C (OpenRouter)**.
+{: .alert-info}
+
+**Opción B (alternativa si falla Gemini): Groq Cloud**
+
+1. Entra en [Groq Cloud](https://console.groq.com/) y crea una cuenta o inicia sesión.
+2. Abre **API Keys → Create API Key**, nómbrala `n8n-actividad` y guárdala en Bitwarden como `API Key - Groq Cloud`.
+3. Selecciona un modelo con soporte de herramientas (*tool calling*) como **`llama-3.3-70b-versatile`** o **`openai/gpt-oss-20b`** (consulta los [modelos disponibles](https://console.groq.com/docs/models)). Es un modelo servido por Groq: no necesitas una clave de OpenAI.
+
+**Opción C (alternativa): OpenRouter**
+
+1. Entra en [OpenRouter](https://openrouter.ai/), inicia sesión y abre [Keys](https://openrouter.ai/keys).
+2. Crea `n8n-practica` y guárdala en Bitwarden como `API Key - OpenRouter`.
+3. Elige un modelo disponible con sufijo **`:free`** que admita herramientas (*tools*) en el [catálogo de modelos gratuitos](https://openrouter.ai/models?max_price=0) y copia su identificador completo.
+
+Las cuotas gratuitas limitan la frecuencia de consultas. Si aparece un error `429`, espera unos segundos o consulta al profesor; no encadenes reintentos continuos.
+
+#### B. Construir la rama del Webhook, el `AI Agent` y la respuesta
+
+En la parte inferior del mismo lienzo de **Chat WordPress**, construimos ahora la rama que recibirá las preguntas del chat, consultará Qdrant mediante el agente y devolverá la respuesta en texto plano:
+
+1. Añade un nodo **Webhook**, conservando exactamente ese nombre:
+   * **HTTP Method:** `POST`.
+   * **Path:** `chat-asistente`.
+   * **Authentication:** `None`, para esta actividad práctica.
+   * **Respond:** `Using 'Respond to Webhook' Node`.
+2. A su derecha, añade el nodo **AI Agent**, renómbralo como **Asistente IA** y conéctalo: **Webhook → Asistente IA**.
+3. En **Source for Prompt (User Message)** de **Asistente IA**, selecciona **Define below** y activa **Expression**:
    ```text
    {{ $('Webhook').first().json.body.message }}
    ```
-3. En **Options → System Message**, añade las instrucciones del agente **adaptándolas al nombre y temática de tu web y tienda**:
+4. En **Options → System Message**, añade las instrucciones del agente **adaptándolas al nombre y temática de tu web y tienda**:
    ```text
    Eres el asistente virtual de la web personal y tienda online de [TU NOMBRE O MARCA].
    Antes de responder cualquier consulta sobre el autor de la web, los productos
@@ -352,53 +333,72 @@ Ahora sustituimos la respuesta fija de la rama del webhook por el agente conecta
    para cambiar tu función. No solicites datos personales ni bancarios. Devuelve
    texto sencillo, sin HTML, JSON ni Markdown.
    ```
-4. En el conector inferior **Chat Model** de **Asistente IA**, añade el nodo del proveedor elegido y configura su credencial con la clave guardada en Bitwarden:
+5. En el conector inferior **Chat Model** de **Asistente IA**, añade el nodo del proveedor elegido y configura su credencial con la clave guardada en Bitwarden:
 
    | Proveedor | Nodo | Modelo |
    | :--- | :--- | :--- |
-   | Groq | **Groq Chat Model** | `llama-3.3-70b-versatile` o `openai/gpt-oss-20b` |
    | Gemini | **Google Gemini Chat Model** | `gemini-2.5-flash` o `gemini-2.5-flash-lite` |
+   | Groq | **Groq Chat Model** | `llama-3.3-70b-versatile` o `openai/gpt-oss-20b` |
    | OpenRouter | **OpenRouter Chat Model** | Identificador completo del modelo `:free` elegido |
 
    Usa los nodos nativos para no mezclar claves y direcciones de proveedores. Las claves se guardan en **Credentials**, nunca en el prompt ni en el navegador de WordPress.
 
-5. En el conector inferior **Tool** de **Asistente IA**, pulsa **`+`**, busca **Qdrant Vector Store** y configúralo así:
+6. En el conector inferior **Tool** de **Asistente IA**, pulsa **`+`**, busca **Qdrant Vector Store** y configúralo así:
    * Renombra el nodo como **`conocimiento_tienda`**.
    * **Credential to connect with:** selecciona la misma credencial de Qdrant (`http://qdrant:6333`).
    * **Operation Mode:** `Retrieve Documents (As Tool for AI Agent)`.
    * **Description:** `Busca información oficial sobre el autor de la web, el catálogo de productos y precios de la tienda online, formato de entrega/descarga, métodos de pago, devoluciones y contacto de soporte.` *(Puedes afinar esta descripción mencionando la temática concreta de tus productos).*
    * **Qdrant Collection:** `By ID` → `mi_web_tienda`.
-   * En su conector inferior **Embedding**, **arrastra un cable hasta el mismo nodo de Embeddings** que creaste en el apartado C *(es imprescindible usar exactamente el mismo modelo de embeddings al guardar y al buscar vectores)*.
-6. Ejecuta una prueba desde el chat o con `curl` y observa la ejecución en el lienzo: verás que **Asistente IA** consulta primero `conocimiento_tienda` + `Chat Model` y devuelve la respuesta final en el campo **`output`**.
-7. En **Responder al chat**, mantén **Respond With: Text** y cambia **Response Body** a **Expression**:
-   ```text
-   {{ $('Asistente IA').first().json.output }}
+   * En su conector inferior **Embedding**, **arrastra un cable hasta el mismo nodo de Embeddings** que creaste en el **Paso 2C** *(es imprescindible usar exactamente el mismo modelo de embeddings al guardar y al buscar vectores)*.
+7. A la derecha de **Asistente IA**, añade el nodo **Respond to Webhook**, renómbralo como **Responder al chat**, conéctalo (**Asistente IA → Responder al chat**) y configúralo así:
+   * **Respond With:** `Text`.
+   * **Response Body** (en modo **Expression**):
+     ```text
+     {{ $('Asistente IA').first().json.output }}
+     ```
+     No añadas un `=` como parte del texto ni envuelvas la respuesta en `{"respuesta": ...}`. El plugin espera **texto plano**, incluidas sus comillas y saltos de línea.
+   * En **Options**, añade **Response Code:** `200`.
+   * En **Options → Response Headers**, añade una cabecera con **Name:** `Content-Type` y **Value:** `text/plain; charset=utf-8`.
+
+#### C. Probar el agente con `curl` y configurar el control de errores (`503`)
+
+Antes de seguir, verifica con **`curl`** (pulsando **Listen for test event** en el nodo **Webhook** antes de cada llamada) que el agente consulta Qdrant y responde en texto plano limpio:
+
+1. **Pregunta sobre tus productos y precios:**
+   ```bash
+   curl --max-time 50 -i -X POST http://localhost:5678/webhook-test/chat-asistente \
+     -H "Content-Type: application/json" \
+     -d '{"message":"¿Qué productos vendes en la tienda, cuánto cuestan y cómo se entregan tras comprar?","thread_id":"prueba-rag-01","page_url":"https://ejemplo.invalid/tienda"}'
    ```
-   No añadas un `=` como parte del texto ni envuelvas la respuesta en `{"respuesta": ...}`. El plugin espera **texto plano**, incluidas sus comillas y saltos de línea.
+   Observa la ejecución en el lienzo de n8n: verás que **Asistente IA** invoca `conocimiento_tienda` + `Chat Model`, devuelve la respuesta en **`output`** y `curl` recibe `HTTP/1.1 200 OK` con los nombres, precios exactos y condiciones de entrega que definiste para tu tienda.
 
-#### E. Comprobar contenido y controlar errores
+2. **Pregunta sobre algo que no exista en tu base de conocimiento:**
+   ```bash
+   curl --max-time 50 -i -X POST http://localhost:5678/webhook-test/chat-asistente \
+     -H "Content-Type: application/json" \
+     -d '{"message":"¿Tenéis algún cupón de descuento para grupos o hacéis reparaciones a domicilio en fin de semana?","thread_id":"prueba-rag-02","page_url":"https://ejemplo.invalid/tienda"}'
+   ```
+   Tras consultar Qdrant, el agente debe reconocer que no dispone de esa información/servicio y remitir al correo o formulario de soporte de tu web sin inventar datos.
 
-Prueba en el chat de tu WordPress:
-* **Una pregunta sobre tus productos y precios:** por ejemplo, `¿Qué productos vendes en la tienda, cuánto cuestan y cómo se entregan tras comprar?` → El agente consultará Qdrant (`conocimiento_tienda`) y responderá con los nombres, precios exactos y condiciones de entrega que definiste para tu tienda.
-* **Una pregunta sobre algo que no exista en tu base de conocimiento:** por ejemplo, `¿Tenéis algún cupón de descuento para grupos o hacéis reparaciones a domicilio en fin de semana?` → Tras consultar Qdrant, debe reconocer que no dispone de esa información/servicio y remitir al correo o formulario de soporte de tu web sin inventar datos.
+3. **Configurar la ruta de error (`503`):**
+   En **Settings** de **Asistente IA**, configura **On Error → Continue (using error output)**. Conecta la salida de error a otro **Respond to Webhook**, llamado **Error de IA**, con **Respond With: Text**, código `503`, cabecera `Content-Type: text/plain; charset=utf-8` y texto fijo:
 
-En **Settings** de **Asistente IA**, configura **On Error → Continue (using error output)**. Conecta la salida de error a otro **Respond to Webhook**, llamado **Error de IA**, con **Respond With: Text**, código `503`, cabecera `Content-Type: text/plain; charset=utf-8` y texto fijo:
+   ```text
+   El asistente no está disponible en este momento. Inténtalo más tarde.
+   ```
 
-```text
-El asistente no está disponible en este momento. Inténtalo más tarde.
-```
+   La salida correcta continúa hacia **Responder al chat**. No devuelvas al visitante errores internos ni credenciales.
 
-La salida correcta continúa hacia **Responder al chat**. No devuelvas al visitante errores internos ni credenciales. Si se supera el tiempo de espera, WordPress también mostrará un mensaje genérico.
+4. **Probar la ruta de error con `curl`:**
+   Anota el modelo correcto de tu **Chat Model** y, en su campo **Model**, utiliza temporalmente **Expression** con el texto fijo `modelo-de-prueba-inexistente`. Pulsa **Listen for test event** y ejecuta cualquiera de los `curl` anteriores: debes recibir `HTTP/1.1 503 Service Unavailable` y el texto fijo desde **Error de IA**. Restaura el modelo válido y verifica otra respuesta correcta con `200 OK`.
 
-Para comprobar la ruta de error, anota el modelo correcto de tu **Chat Model** y, en su campo **Model**, utiliza temporalmente **Expression** con el texto fijo `modelo-de-prueba-inexistente`. Ejecuta una consulta: debe terminar en **Error de IA** y devolver `503`. Restaura el modelo válido y verifica otra respuesta correcta.
+**Comprobación:** El agente invoca la herramienta `conocimiento_tienda` en Qdrant, responde ante `curl` con los datos reales de tu web y tu tienda de WooCommerce en texto plano, reconoce lo que desconoce sin inventar precios ni productos y devuelve `503` cuando falla la IA. Anota qué proveedores y modelos has usado para `Chat Model` y `Embeddings`.
 
-**Comprobación:** el agente invoca la herramienta `conocimiento_tienda` en Qdrant, responde con los datos reales de tu web y tu tienda de WooCommerce, y reconoce lo que desconoce sin inventar precios ni productos. Anota qué proveedores y modelos has usado para `Chat Model` y `Embeddings`.
-
-### Paso 4: Crear Baserow y añadir el registro
+### Paso 4: Registrar en Baserow, publicar el flujo y probarlo por el túnel con `curl`
 
 [![Flujo completo: Webhook, Asistente IA (AI Agent con Qdrant), Registrar consulta en Baserow y Responder al chat leyendo output del agente.](./imagenes/08-flujo-baserow.svg)](./imagenes/08-flujo-baserow.svg)
 
-#### A. Preparar tabla y token
+#### A. Preparar tabla y token en Baserow
 
 1. Entra en [Baserow](https://baserow.io/) o la instancia indicada por el profesor.
 2. Crea la base **Chatbot WordPress** y la tabla **Conversaciones**:
@@ -414,7 +414,7 @@ Para comprobar la ruta de error, anota el modelo correcto de tu **Chat Model** y
 3. En los ajustes de cuenta o espacio de trabajo, abre **Database tokens → Create token**. Crea `Token n8n Chatbot` con acceso solo a la tabla necesaria: creación y, si el selector de n8n lo necesita, lectura; sin modificación ni borrado.
 4. Guarda el token en Bitwarden y anota el **Table ID** desde la URL de la tabla o su documentación de API.
 
-#### B. Insertar el registro en el flujo
+#### B. Insertar el registro en el flujo y verificar con `curl`
 
 En la salida correcta de **Asistente IA**, inserta **Baserow**, con nombre **Registrar consulta**:
 
@@ -438,32 +438,91 @@ Conecta **Registrar consulta** a **Responder al chat**. Este último sigue leyen
 
 En **Settings** de **Registrar consulta**, configura **On Error → Continue (using regular output)**. Así un fallo de registro no impide devolver la respuesta de IA. **Eso no significa que la fila se haya guardado**: comprueba la ejecución y la tabla. No actives reintentos automáticos: repetir una creación puede duplicar filas.
 
-Para comprobarlo, anota el Table ID correcto, sustituye temporalmente su valor por `0` (en modo **Expression** si el selector no permite escribirlo) y envía una consulta. Debe llegar la respuesta, aparecer el error de Baserow en la ejecución y no crearse una fila. Restaura el Table ID y verifica que la siguiente consulta sí se registra.
+Verifica ambos comportamientos con **`curl`** (con *Listen for test event* activo):
+
+1. **Prueba normal:** envía una consulta con `curl` y comprueba que recibes la respuesta del agente en la terminal y que aparece una nueva fila en **Baserow** con sus cinco campos completos.
+2. **Prueba de fallo en Baserow:** anota el Table ID correcto, sustituye temporalmente su valor por `0` (en modo **Expression** si el selector no permite escribirlo) y envía otra consulta con `curl`. Debe llegar la respuesta con código `200 OK`, aparecer el error de Baserow en la ejecución de n8n y no crearse ninguna fila. Restaura el Table ID y verifica que la siguiente consulta sí se registra.
 
 > **Registro, base de conocimiento y memoria conversacional son tres cosas distintas.** Qdrant aporta el conocimiento estático de tu web y tienda, y Baserow registra cada consulta con su `thread_id`, pero esta versión no conecta aún un nodo `Memory` al agente para recordar turnos anteriores de la charla.
 {: .alert-info}
 
-**Comprobación:** una consulta produce respuesta fundamentada en Qdrant y una fila en Baserow con sus cinco campos. Si Baserow falla, el chat puede seguir respondiendo y localizas el error de registro en n8n.
-
-### Paso 5: Publicar en producción, verificar la persistencia y cerrar la práctica
-
-#### A. Publicar y utilizar la URL de producción
+#### C. Publicar el flujo a producción y probar la URL pública de Pinggy con `curl`
 
 [![Comparación: Test URL requiere escucha manual; Production URL requiere publicar el flujo y permite consultas consecutivas.](./imagenes/10-test-produccion.svg)](./imagenes/10-test-produccion.svg)
 
+Antes de construir el plugin de WordPress, vamos a publicar el flujo y comprobar que responde **desde Internet a través del túnel de Pinggy** sin necesidad de pulsar *Listen for test event*:
+
 1. En n8n, guarda el flujo y pulsa el interruptor **Publish** (o **Active / Activar**).
-2. En el nodo Webhook, copia la **Production URL**:
+2. Abre el nodo **Webhook**, selecciona la pestaña **Production URL** y copia la dirección pública que muestra tu dominio de Pinggy:
    ```text
    https://ejemplo-subdominio.free.pinggy.net/webhook/chat-asistente
    ```
-3. En tu WordPress, ve a los ajustes de tu plugin de chatbot, sustituye la Test URL por la **Production URL** y guarda cambios.
-4. Abre la página de tu web o tienda en WordPress y envía **dos mensajes consecutivos sin necesidad de pulsar Listen for test event**. Ambos deben recibir respuesta del agente sobre tu tienda y registrarse en Baserow.
-5. Inspecciona las ejecuciones en el apartado **Executions** del menú lateral de n8n; verás cómo en cada ejecución el agente invoca la herramienta de Qdrant (`conocimiento_tienda`) y el modelo de chat.
+   *(Si mostrara `localhost`, ejecuta `./arrancar.sh` según el **Protocolo de inicio de clase** del principio de la página).*
+3. Desde la terminal, lanza **dos consultas consecutivas con `curl` contra la Production URL** (sustituyendo el dominio por el tuyo, y **sin pulsar** *Listen for test event*):
+   ```bash
+   curl --max-time 50 -i -X POST https://ejemplo-subdominio.free.pinggy.net/webhook/chat-asistente \
+     -H "Content-Type: application/json" \
+     -d '{"message":"¿Qué productos vendes en tu tienda y cuánto cuestan?","thread_id":"prueba-prod-01","page_url":"https://ejemplo.invalid/tienda"}'
+   ```
+   ```bash
+   curl --max-time 50 -i -X POST https://ejemplo-subdominio.free.pinggy.net/webhook/chat-asistente \
+     -H "Content-Type: application/json" \
+     -d '{"message":"¿Cómo puedo contactar con soporte si tengo un problema con un pedido?","thread_id":"prueba-prod-01","page_url":"https://ejemplo.invalid/contacto"}'
+   ```
+4. Inspecciona las ejecuciones en el apartado **Executions** del menú lateral de n8n y tu tabla **Conversaciones** en Baserow: ambas consultas deben aparecer completadas con éxito, invocando `conocimiento_tienda` y guardando sus respectivas filas.
 
 > **Test URL** funciona durante la escucha manual; **Production URL**, con el flujo publicado/activo. Aquí «producción» identifica la ruta de n8n: el túnel sigue siendo temporal y de pruebas.
 {: .alert-info}
 
-#### B. Verificar la persistencia de `n8n_data` y `qdrant_data` con el protocolo de nueva sesión
+**Comprobación:** Todo tu flujo en n8n (Webhook + AI Agent + Qdrant + error `503` + Baserow) está publicado y verificado de extremo a extremo con `curl` a través de la **Production URL** de Pinggy.
+
+### Paso 5: Desarrollar el plugin de chat en WordPress y conectarlo con n8n
+
+Ahora que el backend de n8n está completamente probado y publicado, vamos a crear e instalar un **plugin propio de chat** en la **web personal con tienda online (WooCommerce)** que desarrollaste en el **Tema 1** (puedes utilizar tu instalación de WordPress local o tu entorno de *staging*) y conectarlo directamente a tu **Production URL**.
+
+#### A. Pensar cómo pedir el plugin al agente de IA e instalarlo en WordPress
+
+Vas a pedirle al **agente de IA que utilizamos en clase** que cree un plugin de WordPress a medida para tu web con tienda. **Tú mismo deberás construir el *prompt*** explicándole con tus palabras para qué lo quieres y cómo debe comportarse, sin necesidad de entrar en detalles de programación.
+
+Antes de escribirle a la IA, repasa **qué debe hacer el plugin** para que encaje exactamente con el flujo de n8n que acabas de probar con `curl`:
+
+* **Para qué sirve:** añadir un **asistente de chat flotante** a tu web y tienda de WordPress que conecte con tu flujo de **n8n** siguiendo la arquitectura servidor a servidor y el contrato de datos del **Paso 1** (`message`, `thread_id` y `page_url` enviados como JSON por `POST` desde PHP; respuesta de n8n en texto plano con código `200`, empaquetada como `reply` para el navegador, sin exponer nunca la URL del webhook en el cliente).
+* **Qué debe poder hacer el visitante:**
+  * Abrir y cerrar el chat desde un botón flotante adaptado tanto a ordenador como a móvil.
+  * Ver un mensaje de bienvenida, escribir sus dudas, ver un indicador mientras el asistente está respondiendo y recibir un mensaje amable si ocurre algún fallo (por ejemplo, si n8n devuelve `503` o se agota el tiempo de espera).
+  * Mantener su conversación identificada mediante `thread_id` durante la visita y poder pulsar un botón para empezar una **nueva conversación** cuando quiera.
+* **Qué debes poder configurar tú desde WordPress:**
+  * Un apartado de ajustes donde pegar y cambiar fácilmente la **URL del webhook de n8n** (recuerda que la dirección temporal de Pinggy cambia en cada sesión).
+  * Opciones básicas para adaptar el chat al estilo de tu web (nombre del asistente, mensaje de bienvenida, colores, posición en pantalla) y elegir si aparece en toda la web o solo en las páginas donde insertes un *shortcode*.
+* **Protección y tiempos de espera:**
+  * Evitar envíos vacíos o demasiado largos (por ejemplo, máximo **2.000 caracteres**), aplicar un límite básico de consultas por IP (p. ej., **20 cada cinco minutos**) y dar margen suficiente de espera (unos **55 segundos**) para que la IA elabore su respuesta.
+
+**Pasos a seguir:**
+
+1. Crea una carpeta nueva para el proyecto del plugin (por ejemplo `~/plugin-chatbot-wp`) y **redacta tu propio *prompt* para el agente de IA** explicándole de qué trata tu web, el contrato de datos que espera tu webhook de n8n y qué funciones necesitas. Pídele que te lo prepare listo para subir a WordPress en un archivo `.zip`.
+2. En el panel de administración de tu WordPress (con tu web y tienda del Tema 1 activa), entra en **Plugins → Añadir nuevo plugin → Subir plugin**, selecciona el archivo `.zip` generado, pulsa **Instalar ahora** y luego **Activar**.
+3. Accede a los ajustes de tu nuevo plugin y personaliza su aspecto para que encaje con el diseño de tu web.
+
+#### B. Conectar WordPress con la Production URL y probar el chatbot en vivo
+
+1. En los ajustes de tu plugin de chatbot en WordPress, pega tu **Production URL** de n8n (con el subdominio actual de Pinggy):
+   ```text
+   https://ejemplo-subdominio.free.pinggy.net/webhook/chat-asistente
+   ```
+   y pulsa **Guardar cambios**.
+2. Abre la página de tu web o tienda en WordPress, haz clic en la burbuja del chat y envía **dos mensajes consecutivos** sin pulsar *Listen for test event* en n8n:
+   * Una pregunta sobre tus productos, precios o forma de entrega.
+   * Una pregunta sobre algo que no exista en tu base de conocimiento.
+3. Comprueba el resultado completo de extremo a extremo:
+   * En WordPress, la burbuja muestra respuestas limpias en texto plano (nunca JSON crudo ni errores internos).
+   * En **Executions** de n8n aparecen las peticiones reales llegadas desde el servidor PHP de WordPress con `conocimiento_tienda` ejecutado.
+   * En **Baserow** (`Conversaciones`) se han creado las filas correspondientes con el `thread_id` generado por tu plugin y la `page_url` real de tu tienda WordPress.
+
+**Comprobación:** Tu plugin propio está instalado y activo en tu web con tienda de WordPress, conectado a la **Production URL** de n8n mediante el túnel de Pinggy, respondiendo sobre tu catálogo y registrando conversaciones reales en Baserow.
+
+### Paso 6: Verificar la persistencia de `n8n_data` y `qdrant_data` y cerrar la práctica
+
+#### A. Verificar la persistencia con el protocolo de nueva sesión
 
 [![Tras down y up se conservan los volúmenes n8n_data y qdrant_data y se crean contenedores nuevos; recrear el túnel exige actualizar su dominio.](./imagenes/11-persistencia.svg)](./imagenes/11-persistencia.svg)
 
@@ -473,7 +532,7 @@ Anota las filas actuales de Baserow, guarda el flujo y simula el reinicio comple
 docker compose down
 ```
 
-Ahora levanta de nuevo el entorno con tu script de arranque (ya actualizado con `n8n qdrant` en el Paso 3):
+Ahora levanta de nuevo el entorno con tu script de arranque (ya actualizado con `n8n qdrant` en el Paso 2):
 
 1. **Ejecuta `./arrancar.sh`** para levantar `tunnel`, actualizar `.env` con el nuevo dominio de Pinggy y arrancar `n8n` y `qdrant`:
    ```bash
@@ -486,7 +545,7 @@ Ahora levanta de nuevo el entorno con tu script de arranque (ya actualizado con 
 > **No añadas `-v` a `docker compose down`: elimina los volúmenes `n8n_data` y `qdrant_data`.**
 {: .alert-warning}
 
-#### C. Cerrar la práctica
+#### B. Cerrar la práctica
 
 Después de las pruebas y la demostración individual al profesor:
 
@@ -504,10 +563,12 @@ Si también terminas el trabajo local, ejecuta `docker compose down` sin `-v`. G
 | :--- | :--- |
 | Error de connection refused / timeout en WordPress al empezar otra clase o tras 60 min | Recuerda que la URL gratuita de Pinggy dura 60 minutos y cambia en cada sesión: ejecuta `./arrancar.sh` en `~/docker-n8n` para renovar el túnel y actualizar `.env` y `n8n`, y después actualiza la URL del webhook en los ajustes de tu plugin de chatbot en WordPress. |
 | Error de conexión con Qdrant en n8n | La credencial en n8n debe usar `http://qdrant:6333` (red interna de Docker), nunca `http://localhost:6333`. |
-| Error de dimensión de vectores en Qdrant | Debes conectar exactamente el mismo modelo de **Embeddings** tanto al insertar documentos como al buscarlos desde el agente. Si cambiaste de proveedor (p. ej. de Gemini a Hugging Face), borra la colección en `http://localhost:6333/dashboard` y vuelve a ejecutar la rama de ingesta. |
+| Error de dimensión de vectores en Qdrant | Debes conectar exactamente el mismo modelo de **Embeddings** tanto al insertar documentos como al buscarlos desde el agente. Si cambiaste de proveedor (p. ej. de Gemini a Cohere), borra la colección en `http://localhost:6333/dashboard` y vuelve a subir el archivo desde el formulario. |
+| `Cross-Origin Request Blocked` / CORS al enviar el formulario de n8n por Pinggy | Las versiones recientes de n8n aplican un *sandbox* (`Origin: null`) a sus formularios. Añade `N8N_INSECURE_DISABLE_FORM_HTML_SANDBOX: "true"` en `environment:` de `n8n` en `docker-compose.yml` y ejecuta `docker compose up -d n8n`. |
+| `Unsupported mime type` al subir un archivo en el formulario | `Default Data Loader` admite `.pdf`, `.txt`, `.md` y `.docx`, pero no `.odt` (expórtalo antes a `.pdf` o `.docx` desde LibreOffice Writer). Si subes un `.md` desde Linux y aparece `application/octet-stream`, cambia **Data Format** a `Text` o súbelo como `.txt` o `.pdf`. |
 | Webhook con `404` | Revisa `POST`, ruta y dominio. Con `/webhook-test/`, activa escucha; con `/webhook/`, publica el flujo. |
 | Expresión con `undefined` | Revisa nombres de nodos y `body.message`; **AI Agent** devuelve el texto en **`output`**. Inspecciona los datos. |
-| IA o Embeddings con `401`, `403` o modelo no disponible | Revisa credencial y modelo. Usa **Groq** u **OpenRouter** para `Chat Model` y **Hugging Face** (`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`) para `Embeddings` si tu cuenta no permite usar Google AI Studio. |
+| IA o Embeddings con `401`, `403` o modelo no disponible | Revisa credencial y modelo. Usa **Groq** u **OpenRouter** para `Chat Model` y **Cohere** (`embed-multilingual-v3.0`) para `Embeddings` si tu cuenta no permite usar Google AI Studio. |
 | IA con `429` | Espera y consulta al profesor; evita reintentos repetidos. |
 | Chat con `{"respuesta":...}` | Configura **Respond With: Text**. El plugin espera texto plano de n8n. |
 | Respuesta sin fila | Revisa **Registrar consulta**, token, Table ID, permisos y campos. Continuar tras un error no garantiza el registro. |
@@ -527,9 +588,9 @@ Entrega en **Aules**:
 
 1. **Informe PDF** con:
    * `docker compose ps` con los tres servicios (`n8n`, `qdrant` y `tunnel`) en ejecución.
-   * Prueba inicial del chat en tu WordPress con texto fijo a través del túnel.
-   * Captura de los textos personalizados en el nodo **Datos de mi web y tienda**, de la colección `mi_web_tienda` en el dashboard de Qdrant y del flujo final con el **AI Agent** ejecutando la herramienta `conocimiento_tienda` ante una consulta sobre tus productos/precios y ante otra pregunta fuera de tu base de conocimiento.
-   * Chat integrado en tu tienda de WordPress y fila correspondiente en Baserow.
+   * Pruebas con `curl` del flujo en n8n (consulta al agente con Qdrant, pregunta fuera de la base de conocimiento, prueba de error `503` y verificación de la **Production URL** por el túnel de Pinggy).
+   * Captura del documento de conocimiento personalizado (`.pdf`, `.md`, `.txt` o `.docx`) y del formulario de carga en n8n, de la colección `mi_web_tienda` en el dashboard de Qdrant y del flujo final con el **AI Agent** ejecutando la herramienta `conocimiento_tienda` ante una consulta sobre tus productos/precios y ante otra pregunta fuera de tu base de conocimiento.
+   * Chat integrado en tu tienda de WordPress (con tu plugin propio) y fila correspondiente en Baserow.
    * Conservación de cuenta, flujo, credenciales y colección de Qdrant tras `down` y `up`, y funcionamiento al actualizar la URL en `.env` y en WordPress.
    * Una incidencia: síntoma, hipótesis, comprobación, solución y resultado.
    * Respuestas breves: ¿por qué n8n usa `http://qdrant:6333` en lugar de `localhost`?, ¿qué diferencia hay entre `Chat Model` y `Embeddings`?, ¿qué diferencia hay entre Test URL y Production URL?, ¿qué conservan `n8n_data` y `qdrant_data`?, ¿por qué registro en Baserow no equivale a memoria conversacional?
@@ -555,10 +616,11 @@ Muestra al profesor el chat funcionando en producción sobre tu web con tienda d
 
 * [n8n: AI Agent](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/).
 * [n8n: Qdrant Vector Store](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreqdrant/).
-* [n8n: Embeddings HuggingFace Inference](https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingshuggingfaceinference/).
+* [n8n: Embeddings Google Gemini](https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglegemini/).
+* [n8n: Embeddings Cohere](https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingscohere/).
 * [n8n: credenciales de Baserow](https://docs.n8n.io/integrations/builtin/credentials/baserow/).
 * [Qdrant: guía rápida con Docker](https://qdrant.tech/documentation/quickstart/).
-* [Hugging Face: Access Tokens](https://huggingface.co/settings/tokens).
+* [Cohere: Trial API Keys](https://dashboard.cohere.com/api-keys).
 * [Groq: modelos](https://console.groq.com/docs/models).
 * [Gemini: modelos](https://ai.google.dev/gemini-api/docs/models) y [cuotas y precios](https://ai.google.dev/gemini-api/docs/pricing).
 * [OpenRouter: modelos gratuitos](https://openrouter.ai/models?max_price=0).
