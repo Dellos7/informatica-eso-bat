@@ -46,6 +46,24 @@ flowchart TD
     N8N -->|"6. Guarda historial"| BR[("📊 Baserow<br/>Tabla Conversaciones")]
 ```
 
+## 🧰 Herramientas de la práctica y equivalentes profesionales
+
+En esta actividad utilizamos herramientas **gratuitas y autoalojadas** para aprender sin tarjeta ni costes, pero la arquitectura (**Webhook + Orquestador + RAG vectorial + LLM + Registro**) es la misma que se emplea en producción. En la tabla siguiente puedes ver qué pieza usamos en clase y qué alternativas de pago o gestionadas suelen sustituirla en el mundo profesional:
+
+| Función en la arquitectura | Qué usamos en clase (gratis / autoalojado) | Alternativas habituales en entorno profesional (de pago / gestionadas) |
+| :--- | :--- | :--- |
+| **Orquestación de flujos y Agente IA** | **n8n** *(autoalojado en Docker)* | **Make**, **Zapier**, **n8n Cloud**, **Microsoft Power Automate**, **Dify** o frameworks de código (**LangGraph**, **CrewAI**) |
+| **Modelo de conversación (`Chat Model`)** | **Gemini** (`gemini-2.5-flash`), **Groq** (`openai/gpt-oss-120b` / `20b`) u **OpenRouter** (`:free`) *(cuotas gratuitas)* | **OpenAI** (familia GPT), **Anthropic** (Claude), **Google Vertex AI** (Gemini de pago), **Azure OpenAI**, **AWS Bedrock** |
+| **Modelo de *Embeddings* (vectores)** | **Google Gemini** (`gemini-embedding-001`) o **Cohere** (`embed-multilingual-v3.0`, *Trial*) | **OpenAI Embeddings** (`text-embedding-3-large` / `small`), **Voyage AI**, **Cohere** (producción), **Amazon Titan Embeddings** |
+| **Base de datos vectorial (RAG)** | **Qdrant** *(autoalojado en Docker)* | **Pinecone**, **Qdrant Cloud**, **Weaviate Cloud**, **Supabase / PostgreSQL (`pgvector`)**, **MongoDB Atlas Vector Search**, **Elasticsearch** |
+| **Registro de conversaciones / datos** | **Baserow** *(plan gratuito / autoalojable)* | **Airtable**, **PostgreSQL / MySQL gestionado**, **HubSpot**, **Salesforce** o observabilidad IA (**Langfuse**, **LangSmith**) |
+| **Exposición pública HTTPS** | **Pinggy** *(túnel temporal gratuito de 60 min)* | **Dominio propio + servidor VPS/Cloud** con proxy inverso (**Nginx**, **Caddy**, **Traefik**), **Cloudflare Tunnel** (con dominio propio) o **ngrok** (de pago) |
+| **Contenerización y despliegue** | **Docker + Docker Compose** *(en el equipo del aula)* | **Docker en VPS** (Hetzner, DigitalOcean), **Kubernetes** (GKE, EKS, AKS), **AWS ECS**, **Coolify**, **Railway**, **Render** |
+| **Web, tienda y canal de chat** | **WordPress + WooCommerce** + plugin propio | **Shopify**, **PrestaShop**, **Magento**, chats comerciales (**Intercom**, **Zendesk**, **Crisp**, **Tidio**) o canales como **WhatsApp Business API** |
+
+> **Misma arquitectura, piezas intercambiables:** dominar este flujo con herramientas gratuitas te prepara para cualquier entorno empresarial; en la práctica, pasar a una solución comercial suele consistir en cambiar el proveedor/credencial o migrar el contenedor a un servidor con dominio propio.
+{: .alert-info}
+
 ---
 
 ## 🔄 Protocolo de inicio al comenzar cada clase
@@ -107,6 +125,8 @@ Antes de crear el webhook y el Agente de IA, vamos a desplegar **Qdrant**, obten
 > * **Cómo intervienen en nuestro flujo:** primero convierten el archivo de tu web y tienda en vectores para almacenarlos en **Qdrant** (*ingesta*, en este paso); después, cada vez que alguien pregunta en el chat, convierten esa pregunta en otro vector para localizar los fragmentos más parecidos y entregárselos al **`Chat Model`** (Paso 3), que es quien redacta la respuesta.
 > * **Regla importante:** debes usar **siempre el mismo modelo de *embeddings*** tanto para guardar los datos como para buscarlos, ya que cada modelo genera vectores con un tamaño y un «mapa de significados» propios.
 {: .alert-info}
+
+[![Cómo funcionan los embeddings en Qdrant: ingesta y consulta con el mismo modelo de embeddings para localizar el fragmento más cercano por significado antes de entregárselo al Chat Model.](./imagenes/12-embeddings.svg)](./imagenes/12-embeddings.svg)
 
 Trabajaremos exclusivamente con cuotas gratuitas, sin activar facturación.
 

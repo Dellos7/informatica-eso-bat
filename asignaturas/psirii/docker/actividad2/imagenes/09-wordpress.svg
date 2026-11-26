@@ -1,1 +1,90 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 700" width="960" height="700" role="img" aria-labelledby="title desc"><title id="title">No confundas los dos formatos</title><desc id="desc">JSON al entrar en n8n; texto al responder a este plugin.</desc><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 Z" fill="#475569"/></marker></defs><rect x="1" y="1" width="958" height="698" rx="22" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/><text x="32" y="48" font-family="Segoe UI, Arial, sans-serif" font-size="32" fill="#0f172a" font-weight="700" text-anchor="start">No confundas los dos formatos</text><text x="32" y="85" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#0f172a" font-weight="400" text-anchor="start">JSON al entrar en n8n; texto al responder a este plugin.</text><rect x="32" y="135" width="250" height="110" rx="18" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><rect x="32" y="153" width="6" height="74" rx="3" fill="#1d4ed8"/><text x="54" y="171" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#1d4ed8" font-weight="700" text-anchor="start">Navegador</text><text x="54" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">Widget de chat</text><rect x="355" y="135" width="250" height="110" rx="18" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><rect x="355" y="153" width="6" height="74" rx="3" fill="#1d4ed8"/><text x="377" y="171" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#1d4ed8" font-weight="700" text-anchor="start">WordPress · PHP</text><text x="377" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">Plugin Chatbot RAG</text><rect x="678" y="135" width="250" height="110" rx="18" fill="#fff" stroke="#1d4ed8" stroke-width="2"/><rect x="678" y="153" width="6" height="74" rx="3" fill="#1d4ed8"/><text x="700" y="171" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#1d4ed8" font-weight="700" text-anchor="start">n8n</text><text x="700" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#475569" font-weight="400" text-anchor="start">URL del webhook</text><path d="M282 190 H355" fill="none" stroke="#475569" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/><path d="M605 190 H678" fill="none" stroke="#475569" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/><rect x="355" y="300" width="573" height="130" rx="18" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/><text x="379" y="338" font-family="Segoe UI, Arial, sans-serif" font-size="25" fill="#1d4ed8" font-weight="700" text-anchor="start">WordPress → n8n: JSON</text><text x="379" y="377" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#475569" font-weight="400" text-anchor="start">message: pregunta</text><text x="379" y="407" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#475569" font-weight="400" text-anchor="start">thread_id: sesión   ·   page_url: página</text><rect x="355" y="465" width="573" height="100" rx="18" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/><text x="379" y="503" font-family="Segoe UI, Arial, sans-serif" font-size="25" fill="#0f766e" font-weight="700" text-anchor="start">n8n → WordPress: TEXTO PLANO</text><text x="379" y="541" font-family="Segoe UI, Arial, sans-serif" font-size="23" fill="#0f172a" font-weight="400" text-anchor="start">La guía de Linux cuesta 14,90 € y se descarga en PDF.</text><path d="M803 245 V270 H480 V300" fill="none" stroke="#475569" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/><path d="M803 430 V465" fill="none" stroke="#0f766e" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/><path d="M355 515 H155 V245" fill="none" stroke="#0f766e" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/><text x="157" y="414" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#0f766e" font-weight="700" text-anchor="middle">reply</text><text x="157" y="448" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#0f766e" font-weight="400" text-anchor="middle">JSON al widget</text><rect x="32" y="610" width="896" height="56" rx="12" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/><text x="52" y="646" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1d4ed8" font-weight="700" text-anchor="start">PHP hace la llamada a n8n. El navegador no necesita CORS con n8n.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 776" width="960" height="776" role="img" aria-labelledby="title desc">
+  <title id="title">Intercambio de datos entre WordPress y n8n</title>
+  <desc id="desc">Diagrama de secuencia en 4 pasos: el navegador envía JSON a WordPress (PHP), PHP envía JSON por POST HTTPS al webhook de n8n, n8n responde con HTTP 200 OK en texto plano y PHP lo envuelve en un JSON con el campo reply para el widget.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#6d28d9"/>
+    </marker>
+    <marker id="arrow-teal" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#0f766e"/>
+    </marker>
+  </defs>
+
+  <!-- Fondo general -->
+  <rect x="1" y="1" width="958" height="774" rx="22" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Cabecera -->
+  <text x="32" y="48" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#0f172a" font-weight="700">Intercambio de datos entre WordPress y n8n</text>
+  <text x="32" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#475569" font-weight="400">Secuencia servidor a servidor: JSON al entrar en n8n y texto plano al responder.</text>
+
+  <!-- Líneas de vida verticales -->
+  <line x1="144" y1="186" x2="144" y2="686" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 6"/>
+  <line x1="480" y1="186" x2="480" y2="686" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 6"/>
+  <line x1="816" y1="186" x2="816" y2="686" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 6"/>
+
+  <!-- Actores superiores -->
+  <rect x="32" y="108" width="224" height="78" rx="16" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+  <rect x="32" y="122" width="6" height="50" rx="3" fill="#1d4ed8"/>
+  <text x="52" y="142" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1d4ed8" font-weight="700">Navegador</text>
+  <text x="52" y="168" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#475569" font-weight="400">Widget de chat</text>
+
+  <rect x="368" y="108" width="224" height="78" rx="16" fill="#ffffff" stroke="#6d28d9" stroke-width="2"/>
+  <rect x="368" y="122" width="6" height="50" rx="3" fill="#6d28d9"/>
+  <text x="388" y="142" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#6d28d9" font-weight="700">WordPress · PHP</text>
+  <text x="388" y="168" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#475569" font-weight="400">Plugin Chatbot RAG</text>
+
+  <rect x="704" y="108" width="224" height="78" rx="16" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+  <rect x="704" y="122" width="6" height="50" rx="3" fill="#0f766e"/>
+  <text x="724" y="142" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#0f766e" font-weight="700">n8n</text>
+  <text x="724" y="168" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#475569" font-weight="400">Webhook + AI Agent</text>
+
+  <!-- PASO 1: Navegador -> WordPress -->
+  <circle cx="144" cy="232" r="14" fill="#1d4ed8"/>
+  <text x="144" y="237" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#ffffff" font-weight="700" text-anchor="middle">1</text>
+  <path d="M158 232 H474" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+  <text x="316" y="220" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#1d4ed8" font-weight="700" text-anchor="middle">POST /wp-json/mi-chatbot/v1/message</text>
+  <rect x="164" y="244" width="296" height="64" rx="10" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="178" y="266" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1d4ed8" font-weight="700">JSON · Pregunta del visitante</text>
+  <text x="178" y="290" font-family="Consolas, Courier New, monospace" font-size="12" fill="#0f172a">{ "message", "thread_id", "page_url" }</text>
+
+  <!-- PASO 2: WordPress -> n8n -->
+  <circle cx="480" cy="346" r="14" fill="#6d28d9"/>
+  <text x="480" y="351" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#ffffff" font-weight="700" text-anchor="middle">2</text>
+  <path d="M494 346 H810" fill="none" stroke="#6d28d9" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+  <text x="652" y="334" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#6d28d9" font-weight="700" text-anchor="middle">POST HTTPS al Webhook (vía Pinggy)</text>
+  <rect x="500" y="358" width="296" height="80" rx="10" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text x="514" y="380" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#6d28d9" font-weight="700">JSON · application/json</text>
+  <text x="514" y="402" font-family="Consolas, Courier New, monospace" font-size="12" fill="#0f172a">"message": "¿Qué productos vendes?"</text>
+  <text x="514" y="423" font-family="Consolas, Courier New, monospace" font-size="12" fill="#475569">"thread_id": "s1", "page_url": "..."</text>
+
+  <!-- PASO 3: n8n -> WordPress -->
+  <circle cx="816" cy="474" r="14" fill="#0f766e"/>
+  <text x="816" y="479" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#ffffff" font-weight="700" text-anchor="middle">3</text>
+  <path d="M802 474 H486" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
+  <text x="644" y="462" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#0f766e" font-weight="700" text-anchor="middle">HTTP 200 OK · text/plain; charset=utf-8</text>
+  <rect x="500" y="486" width="296" height="82" rx="10" fill="#ecfdf5" stroke="#5eead4" stroke-width="1.5"/>
+  <text x="514" y="508" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#0f766e" font-weight="700">TEXTO PLANO · sin JSON ni Markdown</text>
+  <text x="514" y="531" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" fill="#0f172a">La guía de Linux cuesta 14,90 €</text>
+  <text x="514" y="552" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" fill="#0f172a">y se descarga al instante en PDF.</text>
+
+  <!-- PASO 4: WordPress -> Navegador -->
+  <circle cx="480" cy="602" r="14" fill="#0f766e"/>
+  <text x="480" y="607" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#ffffff" font-weight="700" text-anchor="middle">4</text>
+  <path d="M466 602 H150" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
+  <text x="308" y="590" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#0f766e" font-weight="700" text-anchor="middle">JSON interno para la burbuja del chat</text>
+  <rect x="164" y="614" width="296" height="62" rx="10" fill="#ecfdf5" stroke="#5eead4" stroke-width="1.5"/>
+  <text x="178" y="636" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#0f766e" font-weight="700">JSON · PHP envuelve el texto en reply</text>
+  <text x="178" y="659" font-family="Consolas, Courier New, monospace" font-size="12" fill="#0f172a">{"reply": "La guía de Linux..."}</text>
+
+  <!-- Pie resumen en dos bloques -->
+  <rect x="32" y="700" width="440" height="54" rx="12" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="48" y="722" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#1d4ed8" font-weight="700">Sin CORS ni URL expuesta</text>
+  <text x="48" y="742" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" fill="#334155">El navegador solo habla con WordPress (PHP).</text>
+
+  <rect x="488" y="700" width="440" height="54" rx="12" fill="#fff1f2" stroke="#be123c" stroke-width="1.5"/>
+  <text x="504" y="722" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#be123c" font-weight="700">Ojo con el formato de vuelta</text>
+  <text x="504" y="742" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" fill="#334155">Si n8n devuelve JSON, se verá crudo en el chat.</text>
+</svg>

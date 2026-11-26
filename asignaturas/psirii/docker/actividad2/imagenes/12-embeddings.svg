@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 756" width="960" height="756" role="img" aria-labelledby="title desc">
+  <title id="title">¿Cómo funcionan los embeddings en Qdrant?</title>
+  <desc id="desc">Representación de cómo un mismo modelo de embeddings convierte tanto el catálogo (ingesta) como la pregunta del chat (consulta) en vectores numéricos para que Qdrant localice el fragmento más cercano por significado y se lo entregue al Chat Model.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#6d28d9"/>
+    </marker>
+    <marker id="arrow-teal" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#0f766e"/>
+    </marker>
+  </defs>
+
+  <!-- Fondo general -->
+  <rect x="1" y="1" width="958" height="754" rx="22" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Cabecera -->
+  <text x="32" y="48" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#0f172a" font-weight="700">¿Cómo funcionan los embeddings en Qdrant?</text>
+  <text x="32" y="79" font-family="Segoe UI, Arial, sans-serif" font-size="17.5" fill="#475569" font-weight="400">Convierten textos en vectores numéricos para buscar por significado, no por palabras exactas.</text>
+
+  <!-- COLUMNA IZQUIERDA: Fase 1 (Ingesta) -->
+  <rect x="32" y="102" width="428" height="222" rx="16" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="48" y="128" font-family="Segoe UI, Arial, sans-serif" font-size="15.5" fill="#1d4ed8" font-weight="700">1. INGESTA · Guardar el catálogo (Paso 2)</text>
+
+  <!-- Fragmento A -->
+  <rect x="46" y="142" width="400" height="50" rx="10" fill="#ffffff" stroke="#0f766e" stroke-width="1.5"/>
+  <circle cx="64" cy="167" r="11" fill="#0f766e"/>
+  <text x="64" y="172" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="700" text-anchor="middle">A</text>
+  <text x="82" y="162" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="600">«Guía práctica de comandos Linux y Bash — 4,99 €»</text>
+  <text x="82" y="181" font-family="Consolas, Courier New, monospace" font-size="12" fill="#0f766e">[0.14, -0.82, 0.37, ...]</text>
+
+  <!-- Fragmento B -->
+  <rect x="46" y="200" width="400" height="50" rx="10" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+  <circle cx="64" cy="225" r="11" fill="#1d4ed8"/>
+  <text x="64" y="230" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="700" text-anchor="middle">B</text>
+  <text x="82" y="220" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="600">«Plantillas Docker Compose para Pymes — 19,90 €»</text>
+  <text x="82" y="239" font-family="Consolas, Courier New, monospace" font-size="12" fill="#1d4ed8">[0.22, -0.61, 0.45, ...]</text>
+
+  <!-- Fragmento C -->
+  <rect x="46" y="258" width="400" height="50" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="64" cy="283" r="11" fill="#64748b"/>
+  <text x="64" y="288" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="700" text-anchor="middle">C</text>
+  <text x="82" y="278" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="600">«Devoluciones en 14 días y pagos con tarjeta»</text>
+  <text x="82" y="297" font-family="Consolas, Courier New, monospace" font-size="12" fill="#64748b">[-0.75, 0.48, -0.19, ...]</text>
+
+  <!-- Flecha Fase 1 -> Modelo Embeddings -->
+  <path d="M246 324 V348" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+
+  <!-- Modelo de Embeddings compartido -->
+  <rect x="32" y="352" width="428" height="74" rx="14" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+  <rect x="32" y="364" width="6" height="50" rx="3" fill="#6d28d9"/>
+  <text x="52" y="381" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#6d28d9" font-weight="700">Mismo modelo de Embeddings (Gemini / Cohere)</text>
+  <text x="52" y="405" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" fill="#475569">Traduce ambos textos a vectores en el mismo mapa</text>
+
+  <!-- Flecha Modelo Embeddings -> Qdrant -->
+  <path d="M460 389 H492" fill="none" stroke="#6d28d9" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-purple)"/>
+
+  <!-- Flecha Fase 2 -> Modelo Embeddings -->
+  <path d="M246 454 V430" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
+
+  <!-- COLUMNA IZQUIERDA: Fase 2 (Consulta) -->
+  <rect x="32" y="454" width="428" height="176" rx="16" fill="#ecfdf5" stroke="#5eead4" stroke-width="1.5"/>
+  <text x="48" y="480" font-family="Segoe UI, Arial, sans-serif" font-size="15.5" fill="#0f766e" font-weight="700">2. CONSULTA · Pregunta en el chat (Paso 3)</text>
+
+  <rect x="46" y="494" width="400" height="76" rx="10" fill="#ffffff" stroke="#be123c" stroke-width="1.5"/>
+  <circle cx="64" cy="522" r="11" fill="#be123c"/>
+  <text x="64" y="527" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="700" text-anchor="middle">?</text>
+  <text x="82" y="518" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" fill="#0f172a" font-weight="700">«¿Cuánto cuesta el manual de la terminal?»</text>
+  <text x="82" y="539" font-family="Consolas, Courier New, monospace" font-size="12" fill="#be123c">[0.16, -0.79, 0.35, ...]</text>
+  <text x="82" y="558" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#475569">Palabras distintas a A, pero vector casi idéntico</text>
+
+  <text x="48" y="594" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#0f766e" font-weight="600">Qdrant busca los fragmentos más cercanos a este vector</text>
+  <text x="48" y="613" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" fill="#475569">y los devuelve al Agente de IA como contexto real.</text>
+
+  <!-- COLUMNA DERECHA: Mapa de significados en Qdrant -->
+  <rect x="496" y="102" width="432" height="388" rx="16" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+  <rect x="496" y="116" width="6" height="46" rx="3" fill="#0f766e"/>
+  <text x="516" y="136" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#0f766e" font-weight="700">Qdrant · Mapa de significados</text>
+  <text x="516" y="158" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#475569">Vista simplificada en 2D (en realidad cientos o miles de dimensiones)</text>
+
+  <!-- Plano cartesiano -->
+  <rect x="516" y="172" width="392" height="298" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <line x1="614" y1="172" x2="614" y2="470" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="712" y1="172" x2="712" y2="470" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="810" y1="172" x2="810" y2="470" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="516" y1="246" x2="908" y2="246" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="516" y1="320" x2="908" y2="320" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="516" y1="394" x2="908" y2="394" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Zona de coincidencia cercana -->
+  <circle cx="672" cy="248" r="62" fill="#ccfbf1" fill-opacity="0.45" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="528" y="184" width="118" height="24" rx="12" fill="#0f766e"/>
+  <text x="587" y="200" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#ffffff" font-weight="700" text-anchor="middle">¡Más cercano!</text>
+
+  <!-- Línea de distancia corta entre A y ? -->
+  <line x1="656" y1="230" x2="688" y2="268" stroke="#0f766e" stroke-width="2" stroke-dasharray="3 3"/>
+
+  <!-- Punto A -->
+  <circle cx="656" cy="230" r="13" fill="#0f766e"/>
+  <text x="656" y="235" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="700" text-anchor="middle">A</text>
+  <text x="678" y="226" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" fill="#0f766e" font-weight="700">Guía Linux y Bash</text>
+  <text x="678" y="242" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="#475569">4,99 € (guardado)</text>
+
+  <!-- Punto ? -->
+  <circle cx="688" cy="268" r="13" fill="#be123c"/>
+  <text x="688" y="273" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="700" text-anchor="middle">?</text>
+  <text x="708" y="269" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" fill="#be123c" font-weight="700">Pregunta del chat</text>
+  <text x="708" y="285" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="#475569">«manual de la terminal»</text>
+
+  <!-- Punto B -->
+  <circle cx="792" cy="350" r="13" fill="#1d4ed8"/>
+  <text x="792" y="355" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="700" text-anchor="middle">B</text>
+  <text x="792" y="380" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" fill="#1d4ed8" font-weight="700" text-anchor="middle">Plantillas Docker</text>
+  <text x="792" y="396" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="#475569" text-anchor="middle">(tema afín, más lejos)</text>
+
+  <!-- Punto C -->
+  <circle cx="606" cy="408" r="13" fill="#64748b"/>
+  <text x="606" y="413" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="700" text-anchor="middle">C</text>
+  <text x="606" y="438" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" fill="#475569" font-weight="700" text-anchor="middle">Pagos y devoluciones</text>
+  <text x="606" y="454" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" fill="#64748b" text-anchor="middle">(significado lejano)</text>
+
+  <!-- Flecha Qdrant -> Chat Model -->
+  <path d="M712 490 V526" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-teal)"/>
+  <text x="724" y="513" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#0f766e" font-weight="700">Entrega el fragmento A</text>
+
+  <!-- Chat Model -->
+  <rect x="496" y="530" width="432" height="100" rx="16" fill="#ffffff" stroke="#6d28d9" stroke-width="2"/>
+  <rect x="496" y="544" width="6" height="72" rx="3" fill="#6d28d9"/>
+  <text x="516" y="558" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#6d28d9" font-weight="700">Chat Model (Groq / Gemini / OpenRouter)</text>
+  <text x="516" y="583" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" fill="#475569">Recibe la pregunta + el fragmento A recuperado y redacta:</text>
+  <text x="516" y="608" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" fill="#0f766e" font-weight="700">«La Guía de comandos Linux y Bash cuesta 4,99 €.»</text>
+
+  <!-- Pie: Regla clave -->
+  <rect x="32" y="654" width="896" height="74" rx="14" fill="#fff1f2" stroke="#be123c" stroke-width="2"/>
+  <text x="52" y="683" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#be123c" font-weight="700">Regla importante: usa SIEMPRE el mismo modelo de Embeddings al guardar y al buscar</text>
+  <text x="52" y="709" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" fill="#334155">Cada modelo genera su propio mapa y tamaño de vector. Si cambias de proveedor (p. ej. Gemini a Cohere), borra la colección y reingesta.</text>
+</svg>
