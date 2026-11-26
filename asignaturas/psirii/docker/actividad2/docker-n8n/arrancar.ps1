@@ -36,7 +36,7 @@ $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 $lines = @()
 
 if (Test-Path -LiteralPath $envPath) {
-    $content = [System.IO.File]::ReadAllText($envPath)
+    $content = [System.IO.File]::ReadAllText($envPath).TrimStart([char]0xFEFF)
     if ($content.Length -gt 0) {
         $lines = @($content -replace "`r`n", "`n" -split "`n")
         if ($lines.Count -gt 0 -and $lines[$lines.Count - 1] -eq '') {
@@ -45,18 +45,10 @@ if (Test-Path -LiteralPath $envPath) {
     }
 }
 
-$updated = $false
-for ($i = 0; $i -lt $lines.Count; $i++) {
-    if ($lines[$i] -match '^N8N_WEBHOOK_URL=') {
-        $lines[$i] = "N8N_WEBHOOK_URL=$url/"
-        $updated = $true
-    }
-}
-if (-not $updated) {
-    $lines += "N8N_WEBHOOK_URL=$url/"
-}
+$cleanLines = @($lines | Where-Object { $_ -notmatch '^\s*N8N_WEBHOOK_URL=' })
+$cleanLines += "N8N_WEBHOOK_URL=$url/"
 
-[System.IO.File]::WriteAllText($envPath, ($lines -join "`n") + "`n", $utf8NoBom)
+[System.IO.File]::WriteAllText($envPath, ($cleanLines -join "`n") + "`n", $utf8NoBom)
 
 Write-Host "4. Levantando los servicios n8n y qdrant..."
 docker compose up -d n8n qdrant

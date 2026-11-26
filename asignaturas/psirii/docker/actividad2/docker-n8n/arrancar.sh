@@ -27,10 +27,15 @@ echo "   URL obtenida: $URL"
 
 echo "3. Actualizando el archivo .env..."
 touch .env
+sed -i '1s/^\xef\xbb\xbf//' .env
+sed -i 's/\r$//' .env
+if [ -s .env ] && [ -n "$(tail -c 1 .env)" ]; then
+  printf '\n' >> .env
+fi
 if grep -q '^N8N_WEBHOOK_URL=' .env; then
   sed -i "s|^N8N_WEBHOOK_URL=.*|N8N_WEBHOOK_URL=${URL}/|" .env
 else
-  echo "N8N_WEBHOOK_URL=${URL}/" >> .env
+  printf 'N8N_WEBHOOK_URL=%s/\n' "${URL}" >> .env
 fi
 
 echo "4. Levantando los servicios n8n y qdrant..."
