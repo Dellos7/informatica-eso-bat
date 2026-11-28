@@ -8,12 +8,12 @@ description: Creación de un chat de IA con RAG en n8n con Qdrant y Baserow, pru
 
 # Actividad 2. Chat de IA con RAG para WordPress (n8n, Qdrant y Baserow)
 
-> [📖 **Apuntes: Introducción a Docker y Contenerización**](../apuntes) · [⬅️ **Actividad 1: Despliegue de n8n y túnel con Pinggy**](../actividad1)
+> [📖 **Apuntes: Introducción a Docker y Contenerización**](../apuntes) · [⬅️ **Actividad 1: Despliegue de n8n y túnel con Pinggy**](../actividad1) · [➡️ **Actividad 3: Seguridad y evolución a Agente 2.0**](../actividad3)
 {: .alert-info}
 
 Partiendo del entorno de **n8n** y el túnel inverso de **Pinggy** que desplegaste y automatizaste en la **[Actividad 1](../actividad1)**, en esta segunda actividad incorporarás un **asistente virtual con IA** en tu **web personal con tienda online (WooCommerce)** creada en el **[Tema 1 (Servicios Web)](../../servicios-web/)**.
 
-Para trabajar de forma ordenada y poder aislar cualquier error, **construiremos y verificaremos primero todo el backend en n8n**: ampliaremos `docker-compose.yml` con la base de datos vectorial **Qdrant**, cargaremos una base de conocimiento (**RAG**) adaptada a tu perfil profesional y a los productos de tu tienda, montaremos el **Agente de IA** con control de errores (`503`) y registraremos todas las conversaciones en **Baserow**. Probaremos cada fase del flujo desde la terminal con **`curl`** (simulando las peticiones del chat) y, una vez verificado el flujo en producción a través de **Pinggy**, desarrollaremos con ayuda del agente de IA un **plugin de chat para WordPress** para conectarlo todo y comprobar la persistencia de los datos.
+Para trabajar de forma ordenada y poder aislar cualquier error, **construiremos y verificaremos primero todo el backend en n8n**: ampliaremos `docker-compose.yml` con la base de datos vectorial **Qdrant**, cargaremos una base de conocimiento (**RAG**) adaptada a tu perfil profesional y a los productos de tu tienda, montaremos el **Agente de IA** con control de errores (`503`) y registraremos todas las conversaciones en **Baserow**. Probaremos cada fase del flujo desde la terminal con **`curl`** (simulando las peticiones del chat) y, una vez verificado el flujo en producción a través de **Pinggy**, desarrollaremos con ayuda del agente de IA un **plugin de chat para WordPress** para conectarlo todo y comprobar la persistencia de los datos. *(En la **[Actividad 3](../actividad3)** endureceremos la seguridad del servicio y lo evolucionaremos hacia un Agente 2.0).*
 
 ## 🎯 Objetivos
 
@@ -107,7 +107,7 @@ Antes de construir el flujo en n8n y el plugin de WordPress, debemos tener claro
 
 Esta comunicación servidor a servidor tiene grandes ventajas: **no requiere configurar CORS en n8n** para el navegador del usuario y oculta la dirección directa del webhook a los visitantes.
 
-En esta práctica no añadiremos una cabecera secreta de autenticación al webhook para mantener el ejemplo sencillo. En un servicio público real en producción habría que enviar un token secreto desde PHP, configurar **Header Auth** en n8n y revisar la seguridad perimetral.
+En esta actividad mantendremos el webhook sin autenticación para centrarnos en construir y verificar el flujo RAG y la integración con WordPress; en la **[Actividad 3](../actividad3)** lo protegeremos con un token secreto mediante **Header Auth** desde PHP, añadiremos validación de entrada en n8n y someteremos el asistente a pruebas de *prompt injection*.
 
 **Comprobación:** Comprendes el contrato de datos (`message`, `thread_id`, `page_url` → texto plano con código `200`) que simularemos primero con `curl` y que después implementará tu plugin de WordPress.
 
@@ -330,7 +330,7 @@ En la parte inferior del mismo lienzo de **Chat WordPress**, construimos ahora l
 1. Añade un nodo **Webhook**, conservando exactamente ese nombre:
    * **HTTP Method:** `POST`.
    * **Path:** `chat-asistente`.
-   * **Authentication:** `None`, para esta actividad práctica.
+   * **Authentication:** `None`, para esta actividad (en la **[Actividad 3](../actividad3)** activaremos **Header Auth** con un token secreto).
    * **Respond:** `Using 'Respond to Webhook' Node`.
 2. A su derecha, añade el nodo **AI Agent**, renómbralo como **Asistente IA** y conéctalo: **Webhook → Asistente IA**.
 3. En **Source for Prompt (User Message)** de **Asistente IA**, selecciona **Define below** y activa **Expression**:
@@ -573,7 +573,7 @@ Después de las pruebas y la demostración individual al profesor:
 docker compose stop tunnel
 ```
 
-Si también terminas el trabajo local, ejecuta `docker compose down` sin `-v`. Guarda el Compose, el flujo exportado (`.json`) y las credenciales en Bitwarden antes de abandonar el equipo.
+Si también terminas el trabajo local, ejecuta `docker compose down` sin `-v`. Guarda el Compose, el flujo exportado (`.json`), la carpeta de tu plugin (`~/plugin-chatbot-wp`) y las credenciales en Bitwarden: los utilizaremos directamente como punto de partida en la **[Actividad 3](../actividad3)**.
 
 **Comprobación final:** El chat funciona con Production URL en tu WordPress con tienda, el agente consulta Qdrant con la información personalizada de tu negocio, Baserow registra las consultas con todos sus campos y se demuestra la recuperación de la conexión y la persistencia de los volúmenes Docker (`n8n_data` y `qdrant_data`).
 
@@ -592,15 +592,6 @@ Si también terminas el trabajo local, ejecuta `docker compose down` sin `-v`. G
 | IA con `429` | Espera y consulta al profesor; evita reintentos repetidos. |
 | Chat con `{"respuesta":...}` | Configura **Respond With: Text**. El plugin espera texto plano de n8n. |
 | Respuesta sin fila | Revisa **Registrar consulta**, token, Table ID, permisos y campos. Continuar tras un error no garantiza el registro. |
-
-## 🔎 Ampliaciones opcionales
-
-Realízalas cuando funcione el recorrido completo y el profesor lo indique:
-
-* **Validar entrada en n8n:** añade **If** antes del agente para rechazar mensajes ausentes, vacíos o de más de 2.000 caracteres; devuelve `400`. Una llamada directa puede saltarse la validación del plugin.
-* **Ampliar la base de conocimiento y añadir otra herramienta:** añade nuevos documentos a la colección `mi_web_tienda` en Qdrant (por ejemplo, una sección de preguntas frecuentes técnicas sobre tus productos o comparativas entre planes) o conecta una segunda herramienta (`Tool`) al **AI Agent** y comprueba en el registro de ejecución cuándo decide invocar cada una.
-* **Comparar proveedores:** prueba las mismas tres preguntas de clientes cambiando el `Chat Model` entre dos proveedores y compara precisión en el uso de la herramienta Qdrant, tiempo de respuesta y reconocimiento de datos desconocidos.
-* **Memoria por sesión (`Simple Memory`):** conecta el subnodo **Simple Memory** (Window Buffer Memory) al conector **Memory** del **AI Agent** configurando como *Session Key* el `thread_id` (`{{ $('Webhook').first().json.body.thread_id }}`). Comprueba que cuando un cliente pregunta primero por un producto y en el siguiente mensaje dice *«¿Y cuánto cuesta ese segundo que has dicho?»*, el agente recuerda el turno anterior, y que **Nueva conversación** en WordPress inicia un hilo limpio.
 
 ## 📤 Entrega y evaluación
 
@@ -623,10 +614,10 @@ Muestra al profesor el chat funcionando en producción sobre tu web con tienda d
 
 | Criterio | Insuficiente | Básico | Adecuado | Excelente |
 | :--- | :--- | :--- | :--- | :--- |
-| **Seguridad y credenciales** (máx. 1,5 puntos) | **0 puntos:** No gestiona las credenciales de forma segura o expone secretos en la entrega. | **0,5 puntos:** Guarda solo parte de las credenciales o necesita ayuda para ocultar información sensible. | **1 punto:** Guarda todas las credenciales (IA, Embeddings y Baserow) en Bitwarden y entrega evidencias sin secretos. | **1,5 puntos:** Además, explica los servicios externos que reciben datos, no expone datos sensibles y cierra el túnel al terminar. |
-| **Integración de Qdrant en Docker Compose y persistencia** (máx. 2 puntos) | **0 puntos:** No consigue desplegar Qdrant ni configurar su volumen. | **0,5 puntos:** Arranca Qdrant, pero no configura el volumen `qdrant_data` o expone el puerto en `0.0.0.0`. | **1,25 puntos:** Despliega `qdrant` con `qdrant_data` y lo conecta por red interna, pero la prueba de persistencia es incompleta. | **2 puntos:** Amplía el YAML limpiamente, conecta `http://qdrant:6333` e ingesta vectores demostrando su persistencia tras `docker compose down`. |
-| **Integración en la web con tienda (WordPress) y Webhooks** (máx. 2 puntos) | **0 puntos:** WordPress no logra comunicarse con n8n. | **0,75 puntos:** Solo funciona en local con `curl`, sin conectar el plugin en su web de WordPress. | **1,25 puntos:** Conecta su WordPress por el túnel, pero depende de la escucha manual (*Test URL*) o no actualiza la URL entre sesiones. | **2 puntos:** Integra el chat en su web con tienda del Tema 1, distingue *Test URL* y *Production URL*, publica el flujo y actualiza el dominio al reiniciar el túnel. |
-| **Agente IA personalizado (RAG de la tienda en Qdrant) y Baserow** (máx. 4,5 puntos) | **0 puntos:** No consigue respuesta del Agente IA. | **1,5 puntos:** Obtiene respuesta del modelo, pero no consulta Qdrant, deja textos de ejemplo sin adaptar a su tienda o falla el registro en Baserow. | **3 puntos:** El `AI Agent` consulta Qdrant con datos de su tienda y registra en Baserow, pero faltan campos, reconocimiento de datos desconocidos o ruta de error `503`. | **4,5 puntos:** Adapta la base de conocimiento y el prompt a su web y catálogo de productos del Tema 1, consulta `conocimiento_tienda` en Qdrant, reconoce datos ausentes, registra los 5 campos en Baserow y controla errores (`503`). |
+| **Seguridad y credenciales** (máx. 2 puntos) | **0 puntos:** No gestiona las credenciales de forma segura o expone secretos en la entrega. | **0,5 puntos:** Guarda solo parte de las credenciales o necesita ayuda para ocultar información sensible. | **1 punto:** Guarda todas las credenciales (IA, Embeddings y Baserow) en Bitwarden y entrega evidencias sin secretos. | **2 puntos:** Además, explica los servicios externos que reciben datos, no expone datos sensibles y cierra el túnel al terminar. |
+| **Integración de Qdrant en Docker Compose y persistencia** (máx. 2 puntos) | **0 puntos:** No consigue desplegar Qdrant ni configurar su volumen. | **0,5 puntos:** Arranca Qdrant, pero no configura el volumen `qdrant_data` o expone el puerto en `0.0.0.0`. | **1 punto:** Despliega `qdrant` con `qdrant_data` y lo conecta por red interna, pero la prueba de persistencia es incompleta. | **2 puntos:** Amplía el YAML limpiamente, conecta `http://qdrant:6333` e ingesta vectores demostrando su persistencia tras `docker compose down`. |
+| **Integración en la web con tienda (WordPress) y Webhooks** (máx. 2 puntos) | **0 puntos:** WordPress no logra comunicarse con n8n. | **0,5 puntos:** Solo funciona en local con `curl`, sin conectar el plugin en su web de WordPress. | **1 punto:** Conecta su WordPress por el túnel, pero depende de la escucha manual (*Test URL*) o no actualiza la URL entre sesiones. | **2 puntos:** Desarrolla e integra el plugin de chat en su web con tienda del Tema 1, distingue *Test URL* y *Production URL*, publica el flujo y actualiza el dominio al reiniciar el túnel. |
+| **Agente IA personalizado (RAG de la tienda en Qdrant) y Baserow** (máx. 4 puntos) | **0 puntos:** No consigue respuesta del Agente IA. | **1 punto:** Obtiene respuesta del modelo, pero no consulta Qdrant, deja textos de ejemplo sin adaptar a su tienda o falla el registro en Baserow. | **2,5 puntos:** El `AI Agent` consulta Qdrant con datos de su tienda y registra en Baserow, pero faltan campos, reconocimiento de datos desconocidos o ruta de error `503`. | **4 puntos:** Adapta la base de conocimiento y el prompt a su web y catálogo de productos del Tema 1, consulta `conocimiento_tienda` en Qdrant, reconoce datos ausentes, registra los 5 campos en Baserow y controla errores (`503`). |
 | **Entrega en plazo y documentación** (máx. 0 puntos) | **-2 puntos:** No entrega la actividad o realiza una entrega vacía o con retraso injustificado. | **-1,5 puntos:** Entrega con retraso importante o faltan evidencias clave. | **-1 punto:** Entrega con un pequeño retraso o documentación incompleta. | **0 puntos:** Entrega puntual en Aules con informe, Compose, flujo exportado y demostración individual. |
 
 > La entrega dentro del plazo no resta puntuación. Las entregas con retraso supondrán una penalización de hasta 2 puntos sobre la calificación.

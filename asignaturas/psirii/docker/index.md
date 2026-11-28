@@ -17,4 +17,5 @@ description: Conceptos básicos de Docker, comparativa con Máquinas Virtuales y
 -->
 - [Actividad 1. Despliegue de n8n y túnel público con Pinggy en Docker Compose](./actividad1)
 - [Actividad 2. Chat de IA con RAG para WordPress (n8n, Qdrant y Baserow)](./actividad2)
-- [Actividad 3. Servidor de correo de laboratorio](./actividad3)
+- [Actividad 3. Endurecimiento de seguridad y evolución del chat de IA a Agente 2.0](./actividad3)
+- [Actividad 4. Servidor de correo de laboratorio](./actividad4)
