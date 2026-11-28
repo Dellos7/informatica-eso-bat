@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Actividad 2. Agente de IA con Qdrant en n8n integrado con WordPress y Baserow
-description: Creación del flujo en n8n con Qdrant y Baserow, pruebas completas con curl, desarrollo e integración de un plugin de chat en WordPress a través de Pinggy y verificación de persistencia.
+title: Actividad 2. Chat de IA con RAG para WordPress (n8n, Qdrant y Baserow)
+description: Creación de un chat de IA con RAG en n8n con Qdrant y Baserow, pruebas completas con curl, desarrollo e integración de un plugin de chat en WordPress a través de Pinggy y verificación de persistencia.
 ---
 
 {% raw %}
 
-# Actividad 2. Agente de IA con Qdrant en n8n integrado con WordPress y Baserow
+# Actividad 2. Chat de IA con RAG para WordPress (n8n, Qdrant y Baserow)
 
 > [📖 **Apuntes: Introducción a Docker y Contenerización**](../apuntes) · [⬅️ **Actividad 1: Despliegue de n8n y túnel con Pinggy**](../actividad1)
 {: .alert-info}

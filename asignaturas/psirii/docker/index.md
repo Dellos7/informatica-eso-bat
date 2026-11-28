@@ -16,5 +16,5 @@ description: Conceptos básicos de Docker, comparativa con Máquinas Virtuales y
 - [Actividad 1. Orquestación multiservicio con Docker Compose (Nextcloud + MariaDB)](./actividad1_nextcloud)
 -->
 - [Actividad 1. Despliegue de n8n y túnel público con Pinggy en Docker Compose](./actividad1)
-- [Actividad 2. Agente de IA con Qdrant en n8n integrado con WordPress y Baserow](./actividad2)
+- [Actividad 2. Chat de IA con RAG para WordPress (n8n, Qdrant y Baserow)](./actividad2)
 - [Actividad 3. Servidor de correo de laboratorio](./actividad3)
